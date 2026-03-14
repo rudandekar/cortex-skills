@@ -8,9 +8,9 @@ description: "Orchestrate end-to-end healthcare analytics projects using crawl-w
 ## Overview
 
 This skill orchestrates complete healthcare analytics projects by invoking specialized sub-skills:
-- `hipaa-phi-governance` → Foundation phase
-- `cortex-ml-classification` → Crawl phase
-- `operational-action-queue` → Walk phase
+- `healthcare/hipaa-phi-governance` → Foundation phase (HIPAA compliance, PHI masking)
+- `generic/cortex-ml-classification` → Crawl phase (predictive models)
+- `generic/operational-action-queue` → Walk phase (human-in-the-loop dashboard)
 
 ## Workflow
 
