@@ -357,18 +357,18 @@ Use flat model list without centrality scoring. Adjust weights to compensate
 
 | Dimension | Weight | Description |
 |-----------|--------|-------------|
-| Source Redundancy | 40% | Multiple models reading same source (consolidation opportunity) |
-| Run Frequency | 25% | Query count from QUERY_HISTORY |
-| Table Size | 25% | GB scanned / credit consumption |
-| Logic Duplication | 10% | Repeated CTE patterns across models |
+| Query Frequency | 30% | Query count from QUERY_HISTORY |
+| Bytes Scanned | 25% | GB scanned per query |
+| Credit Consumption | 25% | Warehouse credits attributed to model |
+| Centrality | 20% | PageRank + out-degree in DAG |
 
 ### Tier Thresholds
 
 | Tier | ROI Score | Optimization Priority |
 |------|-----------|----------------------|
-| 1 | ≥ 0.65 | High — optimize in Phase 4 |
-| 2 | 0.35–0.64 | Medium — optimize after Tier 1 |
-| 3 | < 0.35 | Low — only easy wins |
+| 1 | ≥ 0.70 | High — optimize in Phase 4 |
+| 2 | 0.40–0.69 | Medium — optimize after Tier 1 |
+| 3 | < 0.40 | Low — only easy wins |
 
 ### Special Tier Rules
 

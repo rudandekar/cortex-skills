@@ -313,7 +313,7 @@ WHERE STATUS = 'FAILED' AND RUN_ID = '<run_id>';
 
 ### "Corpus search warning" errors
 - Verify Cortex Search service is ACTIVE: `SHOW CORTEX SEARCH SERVICES IN INFA2DBT_DB.PIPELINE`
-- Check warehouse is running: `ALTER WAREHOUSE COCOPROV_WH RESUME`
+- Check warehouse is running: `ALTER WAREHOUSE INFA2DBT_WH RESUME`
 
 ### Low fidelity scores
 - Add more corpus examples for the transformation types in question

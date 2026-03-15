@@ -220,7 +220,7 @@ Build the complete model with CTEs in dependency order:
     meta={
         'source_workflow': '{workflow_name}',
         'target_table': '{target_table}',
-        'generated_by': 'INFA2DBT_accelerator_v1.1',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
         'generation_timestamp': '{iso_timestamp}'
     }
 ) }}

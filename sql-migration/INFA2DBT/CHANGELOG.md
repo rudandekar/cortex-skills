@@ -21,10 +21,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 12 seeded transformation examples in corpus
 - Monitoring queries for pipeline progress and quality metrics
 
+### Security
+- Fixed SQL injection vulnerability in Cortex Search queries (parameterized JSON)
+- Fixed JSON injection in search_corpus() payload construction
+- Added escape_dollar_quotes() to prevent $$ literal injection
+- Connection pooling via context manager (single connection per batch)
+
 ### Changed
 - Agent 2 upgraded to v2.0 with corpus search integration
 - Orchestrator skill upgraded to v2.0 with persistent state
 - State management moved from file-based JSON to Snowflake tables
+- Truncation limit increased to 500 chars with warning comments
+- Lookup CTE uses explicit column selection instead of invalid EXCLUDE syntax
+- Column list truncation uses block comments instead of inline comments
+
+### Fixed
+- ROI weight inconsistency between Step 5 and Reference Tables
+- Gate 1 risk level corrected to HIGH (was MEDIUM)
+- Duplicate Step 9 in converter SKILL.md (now Step 9 and Step 10)
+- Warehouse name standardized to INFA2DBT_WH across all docs
+- Version references updated from v1.1 to v2.0.0
+- Hardcoded dev path removed from agent1_parser.py (now uses argparse CLI)
 
 ### Migration Notes
 - Requires creating `INFA2DBT_DB.PIPELINE` schema

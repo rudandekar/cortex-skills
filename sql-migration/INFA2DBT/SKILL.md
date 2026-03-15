@@ -169,7 +169,7 @@ INFA2DBT_DB.PIPELINE.INFA2DBT_CORPUS (
 CREATE CORTEX SEARCH SERVICE INFA2DBT_DB.PIPELINE.INFA2DBT_CORPUS_SEARCH
 ON DESCRIPTION
 ATTRIBUTES TRANSFORMATION_TYPE, COMPLEXITY, USE_CASE
-WAREHOUSE = COCOPROV_WH
+WAREHOUSE = INFA2DBT_WH
 TARGET_LAG = '1 hour'
 AS SELECT 
     EXAMPLE_ID,
@@ -451,12 +451,12 @@ if retry_count >= max_retries:
 
 | Gate | Phase | Risk | Approval Required |
 |------|-------|------|-------------------|
-| 0 | Pre-flight | 🟡 | Corpus + Scheduling audit |
-| 1 | Phase 1 | 🟡 | Engineering Lead sign-off |
-| 2 | Phase 2 | 🟡 | Stabilization completion |
-| 3 | Phase 3 | 🟡 | ROI tier confirmation |
-| 4 | Phase 4 | 🟡 | Config changes validation |
-| 5 | Phase 5 | 🔴 | Each Pattern C rewrite |
+| 0 | Pre-flight | 🟡 MEDIUM | Corpus + Scheduling audit |
+| 1 | Phase 1 | 🔴 HIGH | Engineering Lead sign-off |
+| 2 | Phase 2 | 🟡 MEDIUM | Stabilization completion |
+| 3 | Phase 3 | 🟡 MEDIUM | ROI tier confirmation |
+| 4 | Phase 4 | 🟡 MEDIUM | Config changes validation |
+| 5 | Phase 5 | 🔴 HIGH | Each Pattern C rewrite |
 
 ## Sub-Skills Reference
 
