@@ -49,6 +49,19 @@ All pipeline state is now stored in Snowflake tables:
 - `MODEL_REGISTRY` — Track all generated DBT models with SQL content
 - `FIDELITY_SCORES` — Track conversion quality metrics per model
 
+### Target Consolidation Detection
+Hybrid approach to identify optimization opportunities when multiple Informatica
+workflows write to the same target table:
+- **Agent 2 (real-time)**: Warns during conversion if target already has models
+- **Agent 6 (batch)**: Deep SQL similarity analysis in Phase 3, Step 11
+- Recommendations: MERGE (>70% similarity), REVIEW (40-70%), KEEP SEPARATE (<40%)
+
+### Security Hardening
+- Parameterized SQL queries (no string interpolation)
+- JSON injection prevention via `json.dumps()`
+- Dollar-quote escaping for `$$` literals
+- Connection pooling via context manager
+
 ## Pipeline Overview
 
 ```

@@ -84,6 +84,8 @@ The INFA2DBT Accelerator is an AI-powered pipeline that converts Informatica Pow
 - **RAG Integration:** Queries `INFA2DBT_CORPUS_SEARCH` for relevant patterns
 - **Persistent State:** Registers models in `MODEL_REGISTRY` table
 - **Fidelity Recording:** Calculates and stores quality scores
+- **Duplicate Target Detection:** Real-time warning when target table already has models
+- **Security Hardening:** Parameterized queries, JSON injection prevention
 
 **Transformation Support:**
 
@@ -146,12 +148,23 @@ The INFA2DBT Accelerator is an AI-powered pipeline that converts Informatica Pow
 ---
 
 ### Agent 6: ROI Scorer (`roi-subgraph-scorer`)
-**Purpose:** Analyze query patterns and tier models by optimization ROI.
+**Purpose:** Analyze query patterns, tier models by optimization ROI, and detect consolidation opportunities.
 
 **Tiers:**
 - **Tier 1:** High-ROI, high-frequency queries → Optimize first
 - **Tier 2:** Medium-ROI → Optimize if time permits
 - **Tier 3:** Low-ROI → Accept as-is
+
+**Target Consolidation Analysis (v2.0):**
+Detects multiple models targeting the same table and recommends consolidation:
+
+| Similarity | Priority | Recommendation |
+|------------|----------|----------------|
+| >70% | HIGH | MERGE - Models are near-duplicates |
+| 40-70% | MEDIUM | REVIEW - Significant overlap |
+| <40% | LOW | KEEP SEPARATE - Distinct logic |
+
+**Similarity Algorithm:** Jaccard index on CTE structure (names + logic hashes)
 
 ---
 

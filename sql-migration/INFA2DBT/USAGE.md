@@ -5,10 +5,26 @@
 ### Prerequisites
 
 1. **Snowflake Access**: Active connection with appropriate privileges
-2. **Cortex Code**: CLI installed and configured
+2. **Python 3.9+**: For running Agent 1 and Agent 2 scripts
 3. **INFA2DBT Objects**: Database, tables, and Cortex Search service created (see MIGRATION.md)
 
-### Basic Usage
+### Command Line Usage
+
+```bash
+# Step 1: Parse Informatica XML files
+python3 src/agent1_parser.py --xml-dir ./xml_exports --output-dir ./artifacts/handoffs
+
+# Step 2: Convert handoffs to dbt models
+python3 src/agent2_converter_v2.py --handoff-dir ./artifacts/handoffs --output-dir ./artifacts/output
+
+# Without Snowflake state persistence (offline mode)
+python3 src/agent2_converter_v2.py --handoff-dir ./artifacts/handoffs --output-dir ./artifacts/output --no-state
+
+# Step 3: Run dbt models
+cd artifacts/output && dbt run
+```
+
+### Cortex Code Usage
 
 ```bash
 # Convert a single Informatica XML workflow
@@ -220,6 +236,36 @@ JOIN INFA2DBT_DB.PIPELINE.FIDELITY_SCORES fs ON mr.MODEL_ID = fs.MODEL_ID
 WHERE fs.OVERALL_SCORE < 0.7
 ORDER BY fs.OVERALL_SCORE ASC;
 ```
+
+### Consolidation Candidates (Duplicate Targets)
+
+When multiple Informatica workflows write to the same target table, Agent 2 logs
+a warning during conversion. Use this query to review all consolidation opportunities:
+
+```sql
+-- Find all target tables with multiple models
+SELECT 
+    TARGET_TABLE,
+    TARGET_SCHEMA,
+    COUNT(DISTINCT MODEL_NAME) AS model_count,
+    ARRAY_AGG(DISTINCT MODEL_NAME) AS models,
+    ARRAY_AGG(DISTINCT SOURCE_WORKFLOW) AS source_workflows
+FROM INFA2DBT_DB.PIPELINE.MODEL_REGISTRY
+GROUP BY TARGET_TABLE, TARGET_SCHEMA
+HAVING COUNT(DISTINCT MODEL_NAME) > 1
+ORDER BY model_count DESC;
+```
+
+**Example output during conversion:**
+```
+Converting: mart_customer_web
+  [WARN] Target 'ANALYTICS.MART_CUSTOMER_360' already has 2 model(s):
+         - mart_customer_crm (from wf_crm_load)
+         - mart_customer_legacy (from wf_legacy_migration)
+         → Consolidation opportunity detected. Review in Phase 3 (Agent 6).
+```
+
+For deep analysis with SQL similarity scoring, run Agent 6 (Phase 3) after stabilization.
 
 ### Transformation Type Coverage
 
