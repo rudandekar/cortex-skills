@@ -20,6 +20,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Model registry with fidelity tracking and audit trail
 - 12 seeded transformation examples in corpus
 - Monitoring queries for pipeline progress and quality metrics
+- **Target Consolidation Detection** (hybrid approach)
+  - Agent 2: Real-time warning when target table already has models in registry
+  - Agent 6: Deep consolidation analysis with SQL similarity scoring (Step 11)
+  - Identifies duplicate models from multiple Informatica workflows → same target
+  - Recommendations: MERGE (>70% similarity), REVIEW (40-70%), KEEP SEPARATE (<40%)
 
 ### Security
 - Fixed SQL injection vulnerability in Cortex Search queries (parameterized JSON)

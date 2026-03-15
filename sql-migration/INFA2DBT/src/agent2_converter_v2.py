@@ -144,6 +144,26 @@ def update_pipeline_status(conn, run_id: str, status: str, phase: str = None, er
         print(f"  [STATE] Warning - could not update status: {e}")
 
 
+def check_duplicate_target(conn, target_table: str, target_schema: str) -> list:
+    """Check if target table already has models in registry. Returns list of existing models."""
+    if conn is None:
+        return []
+    
+    try:
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT MODEL_NAME, SOURCE_WORKFLOW, CREATED_AT
+            FROM INFA2DBT_DB.PIPELINE.MODEL_REGISTRY
+            WHERE TARGET_TABLE = %s AND TARGET_SCHEMA = %s
+            ORDER BY CREATED_AT DESC
+        """, (target_table, target_schema))
+        
+        results = cursor.fetchall()
+        return [{"model": r[0], "workflow": r[1], "created": str(r[2])} for r in results]
+    except Exception as e:
+        return []
+
+
 def register_model(conn, run_id: str, handoff: dict, sql_content: str, schema_yml: str, unit_test_yml: str) -> str:
     """Register converted model in MODEL_REGISTRY table using parameterized queries."""
     model_id = str(uuid.uuid4())[:8]
@@ -743,6 +763,16 @@ def main():
             handoff = load_handoff(str(handoff_file))
             model_name = handoff['proposed_model_name']
             print(f"\nConverting: {model_name}")
+            
+            target = handoff.get('target', {})
+            target_table = target.get('name', '')
+            target_schema = target.get('owner', 'PUBLIC')
+            existing_models = check_duplicate_target(conn, target_table, target_schema)
+            if existing_models:
+                print(f"  [WARN] Target '{target_schema}.{target_table}' already has {len(existing_models)} model(s):")
+                for em in existing_models[:3]:
+                    print(f"         - {em['model']} (from {em['workflow']})")
+                print(f"         → Consolidation opportunity detected. Review in Phase 3 (Agent 6).")
             
             try:
                 for t_type in handoff.get('transformation_types', []):
