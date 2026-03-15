@@ -267,10 +267,10 @@ GRANT READ, WRITE ON STAGE INFA2DBT_DB.PIPELINE.INFA_XMLS TO ROLE DATA_ENGINEERI
 
 ```bash
 # Clone the INFA2DBT skills repository
-git clone https://github.com/your-org/infa2dbt-accelerator.git
+git clone https://github.com/rudandekar/cortex-skills.git
 
 # Copy skills to Cortex Code location
-cp -r infa2dbt-accelerator/skills/* ~/.snowflake/cortex/skills/
+cp -r cortex-skills/sql-migration/INFA2DBT/* ~/.snowflake/cortex/skills/sql-migration/INFA2DBT/
 ```
 
 ---

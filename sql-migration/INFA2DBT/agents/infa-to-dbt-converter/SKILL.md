@@ -369,7 +369,7 @@ If `corpus_coverage_status = missing` for any transformation type:
 
 3. Set `quarantine_flag = True` in output object
 
-### Step 9: Write output files
+### Step 10: Write output files
 
 Write to designated locations:
 - Model SQL: `models/converted/{proposed_model_name}.sql`
