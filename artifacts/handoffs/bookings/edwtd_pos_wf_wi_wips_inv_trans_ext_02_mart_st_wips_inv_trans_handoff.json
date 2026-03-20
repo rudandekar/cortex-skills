@@ -1,0 +1,5358 @@
+{
+  "workflow_name": "wf_m_WI_WIPS_INV_TRANS_EXT",
+  "mapping_name": "m_WI_WIPS_INV_TRANS_EXT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_POS",
+  "target_table": "ST_WIPS_INV_TRANS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_pos_wf_wi_wips_inv_trans_ext_02_mart_st_wips_inv_trans",
+  "source_tables": [
+    "WI_WIPS_INV_TRANS_DIST",
+    "EX_WIPS_INV_TRANS",
+    "ST_WIPS_INV_TRANS",
+    "N_DISTI_INVENTORY_TRX_LINE"
+  ],
+  "sources": [
+    {
+      "name": "WI_WIPS_INV_TRANS_DIST",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV5",
+      "fields": [
+        {
+          "name": "INV_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_PROFILE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INVENTORY_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "EX_WIPS_INV_TRANS",
+      "database_type": "Teradata",
+      "owner": "EXCEPDB_DV2",
+      "fields": [
+        {
+          "name": "INV_TRANS_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_PROFILE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_CUSTOMER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNO_MAP_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STATUS",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVENTORY_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORG_INVENTORY_DATE",
+          "datatype": "varchar",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VENDOR_PART_NO",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MFG_PART_NO",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRODUCT_DESC",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REPORTED_UNIT_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REPORTED_EXTENDED_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONVERSION_RATE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REPORTED_UNIT_PRICE_USD",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_WPL_UNIT_PRICE",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORG_VALUATION_PRICE",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SPECIAL_PRICE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QTY_ON_HAND",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMITTED_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STOCK_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ON_ORDER_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BACKORDER_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IN_TRANSIT_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OTHER_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROD_FAMILY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROD_CATEGORY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROD_TYPE",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROD_GROUP",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BUSINESS_GROUP",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BUSINESS_UNIT",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POSTED_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POST_FISC_YR",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POST_FISC_PRD",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INV_FISC_YR",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INV_FISC_PRD",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARSED_PART_NUM",
+          "datatype": "varchar",
+          "precision": "400",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARSED",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SECOND_SOURCE_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SECOND_SOURCE_COUNTRY_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTED_FLAG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTIVE_FLAG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REPORTED_CURRENCY_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_WPL_UNIT_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_GPL_UNIT_PRICE",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_GPL_UNIT_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OBSOLETE_QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVENTORY_LOCATION",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INV_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SECOND_SOURCE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AVERAGE_SELLING_PRICE",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AVERAGE_SELLING_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE_SOURCE",
+          "datatype": "varchar",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_ACTIVE_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_ACTIVE_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "char",
+          "precision": "2",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AVG_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "ST_WIPS_INV_TRANS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV2",
+      "fields": [
+        {
+          "name": "INV_TRANS_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_PROFILE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_CUSTOMER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNO_MAP_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STATUS",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVENTORY_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORG_INVENTORY_DATE",
+          "datatype": "varchar",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VENDOR_PART_NO",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MFG_PART_NO",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRODUCT_DESC",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REPORTED_UNIT_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REPORTED_EXTENDED_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONVERSION_RATE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REPORTED_UNIT_PRICE_USD",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_WPL_UNIT_PRICE",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORG_VALUATION_PRICE",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SPECIAL_PRICE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QTY_ON_HAND",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMITTED_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STOCK_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ON_ORDER_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BACKORDER_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IN_TRANSIT_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OTHER_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROD_FAMILY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROD_CATEGORY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROD_TYPE",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROD_GROUP",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BUSINESS_GROUP",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BUSINESS_UNIT",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POSTED_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POST_FISC_YR",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POST_FISC_PRD",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INV_FISC_YR",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INV_FISC_PRD",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARSED_PART_NUM",
+          "datatype": "varchar",
+          "precision": "400",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARSED",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SECOND_SOURCE_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SECOND_SOURCE_COUNTRY_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTED_FLAG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTIVE_FLAG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REPORTED_CURRENCY_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_WPL_UNIT_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_GPL_UNIT_PRICE",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_GPL_UNIT_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OBSOLETE_QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVENTORY_LOCATION",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INV_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SECOND_SOURCE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AVERAGE_SELLING_PRICE",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AVERAGE_SELLING_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "14",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE_SOURCE",
+          "datatype": "varchar",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_ACTIVE_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_ACTIVE_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AVG_PRICE_LC",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "N_DISTI_INVENTORY_TRX_LINE",
+      "database_type": "Teradata",
+      "owner": "SLSORDDB_DV2",
+      "fields": [
+        {
+          "name": "DISTI_INVNTRY_TRX_LINE_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ON_HAND_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMITTED_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ON_ORDER_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_REPORTED_IN_TRANSIT_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_REPORTED_DISTI_WHSE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LOCAL_CURRENCY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLBL_PRC_LST_UNIT_PRC_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLBL_PRC_LST_UNIT_PRC_LCL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WHLSL_PRC_LST_UNIT_PRC_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WHLSL_PRC_LST_UNIT_PRC_LCL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPRTD_UNIT_PRC_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPRTD_UNIT_PRC_LCL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTRIBUTOR_WAREHOUSE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE_LOCAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVNTRY_VALUATION_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVNTRY_IN_TRNST_VLTN_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BATCH_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVENTORY_AS_OF_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVENTORY_TYPE_CD",
+          "datatype": "char",
+          "precision": "9",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SECOND_SOURCE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BACKORDERED_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SECOND_SOURCE_ISO_COUNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VENDOR_PART_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LOCAL_TO_USD_CURR_CONV_RT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "17",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AVG_SELLING_PRICE_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AVG_SELLING_PRICE_LOCAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE_SOURCE_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTIVE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CISCO_TO_DISTI_IN_TRANSIT_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_START_ACTIVE_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_ACTIVE_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "OBSOLETE_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTRIBUTOR_RPRTD_IN_STOCK_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVENTORY_VALUATION_LOCAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INVENTORY_OM_AVG_LOCAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INVENTORY_OM_AVG_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "OM_AVG_LOCAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "OM_AVG_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_WIPS_INV_TRANS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "INV_TRANS_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SRC_BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOURCE_PROFILE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOURCE_CUSTOMER_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARTNO_MAP_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "STATUS",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INVENTORY_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ORG_INVENTORY_DATE",
+        "datatype": "varchar",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "VENDOR_PART_NO",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MFG_PART_NO",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PRODUCT_DESC",
+        "datatype": "varchar",
+        "precision": "150",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REPORTED_UNIT_PRICE_LC",
+        "datatype": "decimal",
+        "precision": "14",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REPORTED_EXTENDED_PRICE_LC",
+        "datatype": "decimal",
+        "precision": "14",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CONVERSION_RATE",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REPORTED_UNIT_PRICE_USD",
+        "datatype": "decimal",
+        "precision": "14",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CISCO_WPL_UNIT_PRICE",
+        "datatype": "decimal",
+        "precision": "14",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "VALUATION_PRICE",
+        "datatype": "decimal",
+        "precision": "14",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ORG_VALUATION_PRICE",
+        "datatype": "decimal",
+        "precision": "14",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SPECIAL_PRICE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "QTY_ON_HAND",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMMITTED_QTY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "STOCK_QTY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ON_ORDER_QTY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BACKORDER_QTY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "IN_TRANSIT_QTY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "OTHER_QTY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROD_FAMILY",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROD_CATEGORY",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROD_TYPE",
+        "datatype": "varchar",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROD_GROUP",
+        "datatype": "varchar",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BUSINESS_GROUP",
+        "datatype": "varchar",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BUSINESS_UNIT",
+        "datatype": "varchar",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "POSTED_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "POST_FISC_YR",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "POST_FISC_PRD",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INV_FISC_YR",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INV_FISC_PRD",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARSED_PART_NUM",
+        "datatype": "varchar",
+        "precision": "400",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARSED",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SECOND_SOURCE_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SECOND_SOURCE_COUNTRY_CODE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ADJUSTED_FLAG",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTIVE_FLAG",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATED_BY",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REPORTED_CURRENCY_CODE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CISCO_WPL_UNIT_PRICE_LC",
+        "datatype": "decimal",
+        "precision": "14",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CISCO_GPL_UNIT_PRICE",
+        "datatype": "decimal",
+        "precision": "14",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CISCO_GPL_UNIT_PRICE_LC",
+        "datatype": "decimal",
+        "precision": "14",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "VALUATION_PRICE_LC",
+        "datatype": "decimal",
+        "precision": "14",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "OBSOLETE_QUANTITY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INVENTORY_LOCATION",
+        "datatype": "varchar",
+        "precision": "2000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INV_TYPE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SECOND_SOURCE",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AVERAGE_SELLING_PRICE",
+        "datatype": "decimal",
+        "precision": "14",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AVERAGE_SELLING_PRICE_LC",
+        "datatype": "decimal",
+        "precision": "14",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "VALUATION_PRICE_SOURCE",
+        "datatype": "varchar",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_ACTIVE_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_ACTIVE_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AVG_PRICE_LC",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DISTI_INVNTRY_TRX_LINE_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ON_HAND_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMITTED_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ON_ORDER_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTI_REPORTED_IN_TRANSIT_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTI_REPORTED_DISTI_WHSE_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOCAL_CURRENCY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLBL_PRC_LST_UNIT_PRC_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLBL_PRC_LST_UNIT_PRC_LCL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WHLSL_PRC_LST_UNIT_PRC_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WHLSL_PRC_LST_UNIT_PRC_LCL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTI_RPRTD_UNIT_PRC_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTI_RPRTD_UNIT_PRC_LCL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTRIBUTOR_WAREHOUSE_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VALUATION_PRICE_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VALUATION_PRICE_LOCAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVNTRY_VALUATION_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVNTRY_IN_TRNST_VLTN_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BATCH_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_AS_OF_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SECOND_SOURCE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BACKORDERED_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SECOND_SOURCE_ISO_COUNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VENDOR_PART_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOCAL_TO_USD_CURR_CONV_RT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AVG_SELLING_PRICE_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AVG_SELLING_PRICE_LOCAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VALUATION_PRICE_SOURCE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTIVE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CISCO_TO_DISTI_IN_TRANSIT_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_START_ACTIVE_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_ACTIVE_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTIVE_FLG1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OBSOLETE_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTRIBUTOR_RPRTD_IN_STOCK_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_VALUATION_LOCAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_OM_AVG_LOCAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_OM_AVG_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OM_AVG_LOCAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OM_AVG_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n NDIT.DISTI_INVNTRY_TRX_LINE_ID_INT,\r\n NDIT.ON_HAND_QTY,\r\n NDIT.COMMITTED_QTY,\r\n NDIT.ON_ORDER_QTY,\r\n NDIT.DISTI_REPORTED_IN_TRANSIT_QTY,\r\n NDIT.BK_WIPS_ORIGINATOR_ID_INT,\r\n NDIT.PRODUCT_KEY,\r\n NDIT.DISTI_REPORTED_DISTI_WHSE_NUM,\r\n NDIT.LOCAL_CURRENCY_CD,\r\n NDIT.GLBL_PRC_LST_UNIT_PRC_USD_AMT,\r\n NDIT.GLBL_PRC_LST_UNIT_PRC_LCL_AMT ,\r\n NDIT.WHLSL_PRC_LST_UNIT_PRC_USD_AMT,\r\n NDIT.WHLSL_PRC_LST_UNIT_PRC_LCL_AMT,\r\n NDIT.DISTI_RPRTD_UNIT_PRC_USD_AMT,\r\n NDIT.DISTI_RPRTD_UNIT_PRC_LCL_AMT,\r\n NDIT.DISTRIBUTOR_WAREHOUSE_NUM,\r\n NDIT.VALUATION_PRICE_USD_AMT,\r\n NDIT.VALUATION_PRICE_LOCAL_AMT,\r\n NDIT.INVNTRY_VALUATION_USD_AMT,\r\n NDIT.INVNTRY_IN_TRNST_VLTN_USD_AMT,\r\n NDIT.BATCH_ID_INT,\r\n NDIT.INVENTORY_AS_OF_DT,\r\n NDIT.INVENTORY_TYPE_CD ,\r\n NDIT.SECOND_SOURCE_FLG,\r\n NDIT.BACKORDERED_QTY,\r\nNDIT.SECOND_SOURCE_ISO_COUNTRY_CD,\r\n NDIT.LAST_UPDATE_DTM,\r\n NDIT.VENDOR_PART_NUM,\r\n NDIT.LOCAL_TO_USD_CURR_CONV_RT,\r\n NDIT.AVG_SELLING_PRICE_USD_AMT,\r\n NDIT.AVG_SELLING_PRICE_LOCAL_AMT,\r\n NDIT.VALUATION_PRICE_SOURCE_CD,\r\n NDIT.ACTIVE_FLG ,\r\n NDIT.CISCO_TO_DISTI_IN_TRANSIT_QTY,\r\n EDW_CREATE_USER,\r\n EDW_CREATE_DTM ,\r\n EDW_UPDATE_USER,\r\n CURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM,\r\n 'E' AS ACTIVE_FLG,\r\n NDIT.OBSOLETE_QTY,                  \r\n NDIT.DISTRIBUTOR_RPRTD_IN_STOCK_QTY,\r\n NDIT.INVENTORY_VALUATION_LOCAL_AMT,\r\n NDIT.INVENTORY_OM_AVG_LOCAL_AMT,\r\n NDIT.INVENTORY_OM_AVG_USD_AMT,\r\n NDIT.OM_AVG_LOCAL_AMT,\r\n NDIT.OM_AVG_USD_AMT\r\nFROM  $$STGDB.WI_WIPS_INV_TRANS_FST FST\r\nINNER JOIN $$SLSORDVWDB.N_DISTI_INVENTORY_TRX_LINE NDIT\r\nON ( FST.INV_TYPE = NDIT.INVENTORY_TYPE_CD\r\n\tAND FST.SOURCE_PROFILE_ID = NDIT.BK_WIPS_ORIGINATOR_ID_INT\r\n\tAND NDIT.INVENTORY_AS_OF_DT>=FST.INVENTORY_DATE\r\n\tAND NDIT.ACTIVE_FLG  ='Y')",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_EX_WIPS_INV_TRANS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "INV_TRANS_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SRC_BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_PROFILE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_CUSTOMER_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNO_MAP_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STATUS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_INVENTORY_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VENDOR_PART_NO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MFG_PART_NO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPORTED_UNIT_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPORTED_EXTENDED_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONVERSION_RATE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPORTED_UNIT_PRICE_USD",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CISCO_WPL_UNIT_PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VALUATION_PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_VALUATION_PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SPECIAL_PRICE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QTY_ON_HAND",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMITTED_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STOCK_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ON_ORDER_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BACKORDER_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IN_TRANSIT_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OTHER_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROD_FAMILY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROD_CATEGORY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROD_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROD_GROUP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUSINESS_GROUP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUSINESS_UNIT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "POSTED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "POST_FISC_YR",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "POST_FISC_PRD",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INV_FISC_YR",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INV_FISC_PRD",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARSED_PART_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARSED",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SECOND_SOURCE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SECOND_SOURCE_COUNTRY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTIVE_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPORTED_CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CISCO_WPL_UNIT_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CISCO_GPL_UNIT_PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CISCO_GPL_UNIT_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VALUATION_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OBSOLETE_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_LOCATION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INV_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SECOND_SOURCE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AVERAGE_SELLING_PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AVERAGE_SELLING_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VALUATION_PRICE_SOURCE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_ACTIVE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_ACTIVE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AVG_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nEWIT.\tINV_TRANS_ID                  \t,\r\nEWIT.\tSRC_BATCH_ID                  \t,\r\nEWIT.\tSOURCE_PROFILE_ID             \t,\r\nEWIT.\tSOURCE_CUSTOMER_ID            \t,\r\nEWIT.\tPARTNO_MAP_ID                 \t,\r\nEWIT.\tSTATUS                        \t,\r\nEWIT.\tINVENTORY_DATE                \t,\r\nEWIT.\tORG_INVENTORY_DATE            \t,\r\nEWIT.\tVENDOR_PART_NO                \t,\r\nEWIT.\tMFG_PART_NO                   \t,\r\nEWIT.\tPRODUCT_DESC                  \t,\r\nEWIT.\tREPORTED_UNIT_PRICE_LC        \t,\r\nEWIT.\tREPORTED_EXTENDED_PRICE_LC    \t,\r\nEWIT.\tCONVERSION_RATE               \t,\r\nEWIT.\tREPORTED_UNIT_PRICE_USD       \t,\r\nEWIT.\tCISCO_WPL_UNIT_PRICE          \t,\r\nEWIT.\tVALUATION_PRICE               \t,\r\nEWIT.\tORG_VALUATION_PRICE           \t,\r\nEWIT.\tSPECIAL_PRICE                 \t,\r\nEWIT.\tQTY_ON_HAND                   \t,\r\nEWIT.\tCOMMITTED_QTY                 \t,\r\nEWIT.\tSTOCK_QTY                     \t,\r\nEWIT.\tON_ORDER_QTY                  \t,\r\nEWIT.\tBACKORDER_QTY                 \t,\r\nEWIT.\tIN_TRANSIT_QTY                \t,\r\nEWIT.\tOTHER_QTY                     \t,\r\nEWIT.\tPROD_FAMILY                   \t,\r\nEWIT.\tPROD_CATEGORY                 \t,\r\nEWIT.\tPROD_TYPE                     \t,\r\nEWIT.\tPROD_GROUP                    \t,\r\nEWIT.\tBUSINESS_GROUP                \t,\r\nEWIT.\tBUSINESS_UNIT                 \t,\r\nEWIT.\tPOSTED_DATE                   \t,\r\nEWIT.\tPOST_FISC_YR                  \t,\r\nEWIT.\tPOST_FISC_PRD                 \t,\r\nEWIT.\tINV_FISC_YR                   \t,\r\nEWIT.\tINV_FISC_PRD                  \t,\r\nEWIT.\tPARSED_PART_NUM               \t,\r\nEWIT.\tPARSED                        \t,\r\nEWIT.\tSECOND_SOURCE_NAME            \t,\r\nEWIT.\tSECOND_SOURCE_COUNTRY_CODE    \t,\r\nEWIT.\tADJUSTED_FLAG                 \t,\r\nEWIT.\tACTIVE_FLAG                   \t,\r\nEWIT.\tCREATED_BY                    \t,\r\nEWIT.\tCREATION_DATE                 \t,\r\nEWIT.\tUPDATED_BY                    \t,\r\nEWIT.\tLAST_UPDATE_DATE              \t,\r\nEWIT.\tREPORTED_CURRENCY_CODE        \t,\r\nEWIT.\tCISCO_WPL_UNIT_PRICE_LC       \t,\r\nEWIT.\tCISCO_GPL_UNIT_PRICE          \t,\r\nEWIT.\tCISCO_GPL_UNIT_PRICE_LC       \t,\r\nEWIT.\tVALUATION_PRICE_LC            \t,\r\nEWIT.\tOBSOLETE_QUANTITY             \t,\r\nEWIT.\tINVENTORY_LOCATION            \t,\r\nEWIT.\tINV_TYPE                      \t,\r\nEWIT.\tSECOND_SOURCE                 \t,\r\nEWIT.\tAVERAGE_SELLING_PRICE         \t,\r\nEWIT.\tAVERAGE_SELLING_PRICE_LC      \t,\r\nEWIT.\tVALUATION_PRICE_SOURCE        \t,\r\nEWIT.\tBATCH_ID                      \t,\r\nEWIT.\tACTION_CODE                   \t,\r\nEWIT.\tSTART_ACTIVE_DATE             \t,\r\nEWIT.\tEND_ACTIVE_DATE               \t,\r\nEWIT.\tAVG_PRICE_LC\t\t\t\t\t\r\nFROM \r\n$$EXCEPDB.EX_WIPS_INV_TRANS EWIT\r\nWHERE NOT EXISTS ( SELECT 1 FROM $$STGDB.ST_WIPS_INV_TRANS SWP\r\nWHERE SWP.INV_TRANS_ID = EWIT.INV_TRANS_ID )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_WIPS_INV_TRANS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "INV_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_PROFILE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INV_TRANS_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SRC_BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_CUSTOMER_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNO_MAP_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STATUS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_INVENTORY_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VENDOR_PART_NO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MFG_PART_NO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPORTED_UNIT_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPORTED_EXTENDED_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONVERSION_RATE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPORTED_UNIT_PRICE_USD",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CISCO_WPL_UNIT_PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VALUATION_PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_VALUATION_PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SPECIAL_PRICE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QTY_ON_HAND",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMITTED_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STOCK_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ON_ORDER_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BACKORDER_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IN_TRANSIT_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OTHER_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROD_FAMILY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROD_CATEGORY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROD_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROD_GROUP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUSINESS_GROUP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUSINESS_UNIT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "POSTED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "POST_FISC_YR",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "POST_FISC_PRD",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INV_FISC_YR",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INV_FISC_PRD",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARSED_PART_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARSED",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SECOND_SOURCE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SECOND_SOURCE_COUNTRY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTIVE_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPORTED_CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CISCO_WPL_UNIT_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CISCO_GPL_UNIT_PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CISCO_GPL_UNIT_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VALUATION_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OBSOLETE_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_LOCATION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SECOND_SOURCE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AVERAGE_SELLING_PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AVERAGE_SELLING_PRICE_LC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VALUATION_PRICE_SOURCE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_ACTIVE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_ACTIVE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nST_WIPS_INV_TRANS.INV_TYPE ,\r\nST_WIPS_INV_TRANS.SOURCE_PROFILE_ID, \r\nST_WIPS_INV_TRANS.INVENTORY_DATE\r\nFROM $$STGDB.ST_WIPS_INV_TRANS \r\nGROUP BY 1,2,3",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_WIPS_INV_TRANS_DIST1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "INV_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_PROFILE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nDIT.INVENTORY_TYPE_CD, \r\nDIT.BK_WIPS_ORIGINATOR_ID_INT, \r\nDIT.INVENTORY_AS_OF_DT\r\nFROM $$STGDB.WI_WIPS_INV_TRANS_DIST WIP\r\nINNER JOIN $$SLSORDVWDB.N_DISTI_INVENTORY_TRX_LINE DIT\r\nON ( DIT.INVENTORY_TYPE_CD = WIP.INV_TYPE\r\nAND DIT.BK_WIPS_ORIGINATOR_ID_INT = WIP.SOURCE_PROFILE_ID\r\nAND DIT.INVENTORY_AS_OF_DT < WIP.INVENTORY_DATE\r\nAND DIT.ACTIVE_FLG='Y' )  \r\nQUALIFY ROW_NUMBER () OVER (PARTITION BY DIT.INVENTORY_TYPE_CD, DIT.BK_WIPS_ORIGINATOR_ID_INT ORDER BY DIT.INVENTORY_AS_OF_DT DESC) =1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "INV_TYPE",
+      "from_instance": "SQ_WI_WIPS_INV_TRANS_DIST1",
+      "to_field": "INV_TYPE",
+      "to_instance": "WI_WIPS_INV_TRANS_FST"
+    },
+    {
+      "from_field": "SOURCE_PROFILE_ID",
+      "from_instance": "SQ_WI_WIPS_INV_TRANS_DIST1",
+      "to_field": "SOURCE_PROFILE_ID",
+      "to_instance": "WI_WIPS_INV_TRANS_FST"
+    },
+    {
+      "from_field": "INVENTORY_DATE",
+      "from_instance": "SQ_WI_WIPS_INV_TRANS_DIST1",
+      "to_field": "INVENTORY_DATE",
+      "to_instance": "WI_WIPS_INV_TRANS_FST"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "ACTIVE_FLG1",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "ACTION_CODE",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "DISTI_INVNTRY_TRX_LINE_ID_INT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTI_INVNTRY_TRX_LINE_ID_INT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "ON_HAND_QTY",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "ON_HAND_QTY",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "COMMITTED_QTY",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "COMMITTED_QTY",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "DISTI_REPORTED_DISTI_WHSE_NUM",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTI_REPORTED_DISTI_WHSE_NUM",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "LOCAL_CURRENCY_CD",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "LOCAL_CURRENCY_CD",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "GLBL_PRC_LST_UNIT_PRC_USD_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "GLBL_PRC_LST_UNIT_PRC_USD_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "DISTI_RPRTD_UNIT_PRC_LCL_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTI_RPRTD_UNIT_PRC_LCL_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "DISTRIBUTOR_WAREHOUSE_NUM",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTRIBUTOR_WAREHOUSE_NUM",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "VALUATION_PRICE_USD_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "VALUATION_PRICE_USD_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "VALUATION_PRICE_LOCAL_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "VALUATION_PRICE_LOCAL_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "INVNTRY_VALUATION_USD_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVNTRY_VALUATION_USD_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "GLBL_PRC_LST_UNIT_PRC_LCL_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "GLBL_PRC_LST_UNIT_PRC_LCL_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "WHLSL_PRC_LST_UNIT_PRC_USD_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "WHLSL_PRC_LST_UNIT_PRC_USD_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "WHLSL_PRC_LST_UNIT_PRC_LCL_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "WHLSL_PRC_LST_UNIT_PRC_LCL_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "DISTI_RPRTD_UNIT_PRC_USD_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTI_RPRTD_UNIT_PRC_USD_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "INVNTRY_IN_TRNST_VLTN_USD_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVNTRY_IN_TRNST_VLTN_USD_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "BATCH_ID_INT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "BATCH_ID_INT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "INVENTORY_AS_OF_DT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVENTORY_AS_OF_DT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "INVENTORY_TYPE_CD",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVENTORY_TYPE_CD",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "SECOND_SOURCE_FLG",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "SECOND_SOURCE_FLG",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "BACKORDERED_QTY",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "BACKORDERED_QTY",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "SECOND_SOURCE_ISO_COUNTRY_CD",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "SECOND_SOURCE_ISO_COUNTRY_CD",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "LAST_UPDATE_DTM",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "LAST_UPDATE_DTM",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "VENDOR_PART_NUM",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "VENDOR_PART_NUM",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "LOCAL_TO_USD_CURR_CONV_RT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "LOCAL_TO_USD_CURR_CONV_RT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "AVG_SELLING_PRICE_USD_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "AVG_SELLING_PRICE_USD_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "AVG_SELLING_PRICE_LOCAL_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "AVG_SELLING_PRICE_LOCAL_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "VALUATION_PRICE_SOURCE_CD",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "VALUATION_PRICE_SOURCE_CD",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "ACTIVE_FLG",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "ACTIVE_FLG",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "CISCO_TO_DISTI_IN_TRANSIT_QTY",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "CISCO_TO_DISTI_IN_TRANSIT_QTY",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "INVENTORY_VALUATION_LOCAL_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVENTORY_VALUATION_LOCAL_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "INVENTORY_OM_AVG_LOCAL_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVENTORY_OM_AVG_LOCAL_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "INVENTORY_OM_AVG_USD_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVENTORY_OM_AVG_USD_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "OM_AVG_LOCAL_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "OM_AVG_LOCAL_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "OM_AVG_USD_AMT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "OM_AVG_USD_AMT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "ON_ORDER_QTY",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "ON_ORDER_QTY",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "DISTI_REPORTED_IN_TRANSIT_QTY",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTI_REPORTED_IN_TRANSIT_QTY",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "BK_WIPS_ORIGINATOR_ID_INT",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "BK_WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "OBSOLETE_QTY",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "OBSOLETE_QTY",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "DISTRIBUTOR_RPRTD_IN_STOCK_QTY",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTRIBUTOR_RPRTD_IN_STOCK_QTY",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "WI_WIPS_INV_TRANS_EXT"
+    },
+    {
+      "from_field": "AVERAGE_SELLING_PRICE_LC",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "AVERAGE_SELLING_PRICE_LC",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "VALUATION_PRICE_SOURCE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "VALUATION_PRICE_SOURCE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INV_TRANS_ID",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "INV_TRANS_ID",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SRC_BATCH_ID",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "SRC_BATCH_ID",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SOURCE_PROFILE_ID",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "SOURCE_PROFILE_ID",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SOURCE_CUSTOMER_ID",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "SOURCE_CUSTOMER_ID",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PARTNO_MAP_ID",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "PARTNO_MAP_ID",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "STATUS",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "STATUS",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "START_ACTIVE_DATE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "START_ACTIVE_DATE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "END_ACTIVE_DATE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "END_ACTIVE_DATE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SPECIAL_PRICE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "SPECIAL_PRICE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "QTY_ON_HAND",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "QTY_ON_HAND",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "BUSINESS_GROUP",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "BUSINESS_GROUP",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "BUSINESS_UNIT",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "BUSINESS_UNIT",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "VALUATION_PRICE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "VALUATION_PRICE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "COMMITTED_QTY",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "COMMITTED_QTY",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "STOCK_QTY",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "STOCK_QTY",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "ON_ORDER_QTY",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "ON_ORDER_QTY",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "BACKORDER_QTY",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "BACKORDER_QTY",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "ORG_VALUATION_PRICE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "ORG_VALUATION_PRICE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INVENTORY_DATE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "INVENTORY_DATE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "ORG_INVENTORY_DATE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "ORG_INVENTORY_DATE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "VENDOR_PART_NO",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "VENDOR_PART_NO",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "MFG_PART_NO",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "MFG_PART_NO",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PRODUCT_DESC",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "PRODUCT_DESC",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "REPORTED_UNIT_PRICE_LC",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "REPORTED_UNIT_PRICE_LC",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "REPORTED_EXTENDED_PRICE_LC",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "REPORTED_EXTENDED_PRICE_LC",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CONVERSION_RATE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "CONVERSION_RATE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "REPORTED_UNIT_PRICE_USD",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "REPORTED_UNIT_PRICE_USD",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CISCO_WPL_UNIT_PRICE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "CISCO_WPL_UNIT_PRICE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "IN_TRANSIT_QTY",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "IN_TRANSIT_QTY",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "OTHER_QTY",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "OTHER_QTY",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "POSTED_DATE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "POSTED_DATE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "POST_FISC_YR",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "POST_FISC_YR",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "POST_FISC_PRD",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "POST_FISC_PRD",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INV_FISC_YR",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "INV_FISC_YR",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INV_FISC_PRD",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "INV_FISC_PRD",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PARSED_PART_NUM",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "PARSED_PART_NUM",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PARSED",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "PARSED",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SECOND_SOURCE_NAME",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "SECOND_SOURCE_NAME",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SECOND_SOURCE_COUNTRY_CODE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "SECOND_SOURCE_COUNTRY_CODE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "ADJUSTED_FLAG",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "ADJUSTED_FLAG",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "ACTIVE_FLAG",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "ACTIVE_FLAG",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "CREATED_BY",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "UPDATED_BY",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "UPDATED_BY",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "REPORTED_CURRENCY_CODE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "REPORTED_CURRENCY_CODE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CISCO_WPL_UNIT_PRICE_LC",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "CISCO_WPL_UNIT_PRICE_LC",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CISCO_GPL_UNIT_PRICE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "CISCO_GPL_UNIT_PRICE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CISCO_GPL_UNIT_PRICE_LC",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "CISCO_GPL_UNIT_PRICE_LC",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "VALUATION_PRICE_LC",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "VALUATION_PRICE_LC",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "OBSOLETE_QUANTITY",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "OBSOLETE_QUANTITY",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INVENTORY_LOCATION",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "INVENTORY_LOCATION",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INV_TYPE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "INV_TYPE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SECOND_SOURCE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "SECOND_SOURCE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "AVERAGE_SELLING_PRICE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "AVERAGE_SELLING_PRICE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PROD_FAMILY",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "PROD_FAMILY",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PROD_CATEGORY",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "PROD_CATEGORY",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PROD_TYPE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "PROD_TYPE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PROD_GROUP",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "PROD_GROUP",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "BATCH_ID",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "AVG_PRICE_LC",
+      "from_instance": "SQ_EX_WIPS_INV_TRANS",
+      "to_field": "AVG_PRICE_LC",
+      "to_instance": "ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SOURCE_PROFILE_ID",
+      "from_instance": "SQ_ST_WIPS_INV_TRANS",
+      "to_field": "SOURCE_PROFILE_ID",
+      "to_instance": "WI_WIPS_INV_TRANS_DIST"
+    },
+    {
+      "from_field": "INVENTORY_DATE",
+      "from_instance": "SQ_ST_WIPS_INV_TRANS",
+      "to_field": "INVENTORY_DATE",
+      "to_instance": "WI_WIPS_INV_TRANS_DIST"
+    },
+    {
+      "from_field": "INV_TYPE",
+      "from_instance": "SQ_ST_WIPS_INV_TRANS",
+      "to_field": "INV_TYPE",
+      "to_instance": "WI_WIPS_INV_TRANS_DIST"
+    },
+    {
+      "from_field": "DV_END_ACTIVE_DT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DV_END_ACTIVE_DT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "ACTIVE_FLG",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "ACTIVE_FLG1",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "DISTI_INVNTRY_TRX_LINE_ID_INT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTI_INVNTRY_TRX_LINE_ID_INT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "ON_HAND_QTY",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "ON_HAND_QTY",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "COMMITTED_QTY",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "COMMITTED_QTY",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "ON_ORDER_QTY",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "ON_ORDER_QTY",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "DISTI_REPORTED_IN_TRANSIT_QTY",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTI_REPORTED_IN_TRANSIT_QTY",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "BK_WIPS_ORIGINATOR_ID_INT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "BK_WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "DISTI_REPORTED_DISTI_WHSE_NUM",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTI_REPORTED_DISTI_WHSE_NUM",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "LOCAL_CURRENCY_CD",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "LOCAL_CURRENCY_CD",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "GLBL_PRC_LST_UNIT_PRC_USD_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "GLBL_PRC_LST_UNIT_PRC_USD_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "GLBL_PRC_LST_UNIT_PRC_LCL_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "GLBL_PRC_LST_UNIT_PRC_LCL_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "WHLSL_PRC_LST_UNIT_PRC_USD_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "WHLSL_PRC_LST_UNIT_PRC_USD_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "WHLSL_PRC_LST_UNIT_PRC_LCL_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "WHLSL_PRC_LST_UNIT_PRC_LCL_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "DISTI_RPRTD_UNIT_PRC_USD_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTI_RPRTD_UNIT_PRC_USD_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "DISTI_RPRTD_UNIT_PRC_LCL_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTI_RPRTD_UNIT_PRC_LCL_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "DISTRIBUTOR_WAREHOUSE_NUM",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTRIBUTOR_WAREHOUSE_NUM",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "VALUATION_PRICE_USD_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "VALUATION_PRICE_USD_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "VALUATION_PRICE_LOCAL_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "VALUATION_PRICE_LOCAL_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "INVNTRY_VALUATION_USD_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVNTRY_VALUATION_USD_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "INVNTRY_IN_TRNST_VLTN_USD_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVNTRY_IN_TRNST_VLTN_USD_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "BATCH_ID_INT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "BATCH_ID_INT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "INVENTORY_AS_OF_DT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVENTORY_AS_OF_DT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "INVENTORY_TYPE_CD",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVENTORY_TYPE_CD",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "SECOND_SOURCE_FLG",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "SECOND_SOURCE_FLG",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "BACKORDERED_QTY",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "BACKORDERED_QTY",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "SECOND_SOURCE_ISO_COUNTRY_CD",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "SECOND_SOURCE_ISO_COUNTRY_CD",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "LAST_UPDATE_DTM",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "LAST_UPDATE_DTM",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "VENDOR_PART_NUM",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "VENDOR_PART_NUM",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "LOCAL_TO_USD_CURR_CONV_RT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "LOCAL_TO_USD_CURR_CONV_RT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "AVG_SELLING_PRICE_USD_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "AVG_SELLING_PRICE_USD_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "AVG_SELLING_PRICE_LOCAL_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "AVG_SELLING_PRICE_LOCAL_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "VALUATION_PRICE_SOURCE_CD",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "VALUATION_PRICE_SOURCE_CD",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "ACTIVE_FLG",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "ACTIVE_FLG",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "CISCO_TO_DISTI_IN_TRANSIT_QTY",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "CISCO_TO_DISTI_IN_TRANSIT_QTY",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "DV_START_ACTIVE_DT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DV_START_ACTIVE_DT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "OBSOLETE_QTY",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "OBSOLETE_QTY",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "DISTRIBUTOR_RPRTD_IN_STOCK_QTY",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "DISTRIBUTOR_RPRTD_IN_STOCK_QTY",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "INVENTORY_VALUATION_LOCAL_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVENTORY_VALUATION_LOCAL_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "INVENTORY_OM_AVG_LOCAL_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVENTORY_OM_AVG_LOCAL_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "INVENTORY_OM_AVG_USD_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "INVENTORY_OM_AVG_USD_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "OM_AVG_LOCAL_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "OM_AVG_LOCAL_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "OM_AVG_USD_AMT",
+      "from_instance": "N_DISTI_INVENTORY_TRX_LINE",
+      "to_field": "OM_AVG_USD_AMT",
+      "to_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+    },
+    {
+      "from_field": "PROD_GROUP",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "PROD_GROUP",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "ACTIVE_FLAG",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "ACTIVE_FLAG",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "AVERAGE_SELLING_PRICE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "AVERAGE_SELLING_PRICE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "AVERAGE_SELLING_PRICE_LC",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "AVERAGE_SELLING_PRICE_LC",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "VALUATION_PRICE_SOURCE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "VALUATION_PRICE_SOURCE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "START_ACTIVE_DATE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "START_ACTIVE_DATE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "END_ACTIVE_DATE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "END_ACTIVE_DATE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CISCO_GPL_UNIT_PRICE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "CISCO_GPL_UNIT_PRICE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CISCO_GPL_UNIT_PRICE_LC",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "CISCO_GPL_UNIT_PRICE_LC",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "VALUATION_PRICE_LC",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "VALUATION_PRICE_LC",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "OBSOLETE_QUANTITY",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "OBSOLETE_QUANTITY",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INVENTORY_LOCATION",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "INVENTORY_LOCATION",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PROD_CATEGORY",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "PROD_CATEGORY",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PROD_TYPE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "PROD_TYPE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INV_TRANS_ID",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "INV_TRANS_ID",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "BUSINESS_GROUP",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "BUSINESS_GROUP",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "BUSINESS_UNIT",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "BUSINESS_UNIT",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "POSTED_DATE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "POSTED_DATE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "POST_FISC_YR",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "POST_FISC_YR",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "POST_FISC_PRD",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "POST_FISC_PRD",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INV_FISC_YR",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "INV_FISC_YR",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INV_FISC_PRD",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "INV_FISC_PRD",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PARSED_PART_NUM",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "PARSED_PART_NUM",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PARSED",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "PARSED",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SECOND_SOURCE_NAME",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "SECOND_SOURCE_NAME",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SECOND_SOURCE_COUNTRY_CODE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "SECOND_SOURCE_COUNTRY_CODE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "ADJUSTED_FLAG",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "ADJUSTED_FLAG",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SRC_BATCH_ID",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "SRC_BATCH_ID",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SOURCE_PROFILE_ID",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "SOURCE_PROFILE_ID",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SOURCE_CUSTOMER_ID",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "SOURCE_CUSTOMER_ID",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PARTNO_MAP_ID",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "PARTNO_MAP_ID",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "STATUS",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "STATUS",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INVENTORY_DATE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "INVENTORY_DATE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "ORG_INVENTORY_DATE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "ORG_INVENTORY_DATE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "VENDOR_PART_NO",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "VENDOR_PART_NO",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "MFG_PART_NO",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "MFG_PART_NO",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PRODUCT_DESC",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "PRODUCT_DESC",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "REPORTED_UNIT_PRICE_LC",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "REPORTED_UNIT_PRICE_LC",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "REPORTED_EXTENDED_PRICE_LC",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "REPORTED_EXTENDED_PRICE_LC",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CONVERSION_RATE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "CONVERSION_RATE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "REPORTED_UNIT_PRICE_USD",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "REPORTED_UNIT_PRICE_USD",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CISCO_WPL_UNIT_PRICE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "CISCO_WPL_UNIT_PRICE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "VALUATION_PRICE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "VALUATION_PRICE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "ORG_VALUATION_PRICE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "ORG_VALUATION_PRICE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SPECIAL_PRICE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "SPECIAL_PRICE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "QTY_ON_HAND",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "QTY_ON_HAND",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "COMMITTED_QTY",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "COMMITTED_QTY",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "STOCK_QTY",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "STOCK_QTY",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "ON_ORDER_QTY",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "ON_ORDER_QTY",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "BACKORDER_QTY",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "BACKORDER_QTY",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "IN_TRANSIT_QTY",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "IN_TRANSIT_QTY",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "OTHER_QTY",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "OTHER_QTY",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "PROD_FAMILY",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "PROD_FAMILY",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "UPDATED_BY",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "UPDATED_BY",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "REPORTED_CURRENCY_CODE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "REPORTED_CURRENCY_CODE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "CISCO_WPL_UNIT_PRICE_LC",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "CISCO_WPL_UNIT_PRICE_LC",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INV_TYPE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "INV_TYPE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SECOND_SOURCE",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "SECOND_SOURCE",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "AVG_PRICE_LC",
+      "from_instance": "EX_WIPS_INV_TRANS",
+      "to_field": "AVG_PRICE_LC",
+      "to_instance": "SQ_EX_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INV_TYPE",
+      "from_instance": "ST_WIPS_INV_TRANS1",
+      "to_field": "INV_TYPE",
+      "to_instance": "SQ_ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "SOURCE_PROFILE_ID",
+      "from_instance": "ST_WIPS_INV_TRANS1",
+      "to_field": "SOURCE_PROFILE_ID",
+      "to_instance": "SQ_ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INVENTORY_DATE",
+      "from_instance": "ST_WIPS_INV_TRANS1",
+      "to_field": "INVENTORY_DATE",
+      "to_instance": "SQ_ST_WIPS_INV_TRANS"
+    },
+    {
+      "from_field": "INV_TYPE",
+      "from_instance": "WI_WIPS_INV_TRANS_DIST2",
+      "to_field": "INV_TYPE",
+      "to_instance": "SQ_WI_WIPS_INV_TRANS_DIST1"
+    },
+    {
+      "from_field": "SOURCE_PROFILE_ID",
+      "from_instance": "WI_WIPS_INV_TRANS_DIST2",
+      "to_field": "SOURCE_PROFILE_ID",
+      "to_instance": "SQ_WI_WIPS_INV_TRANS_DIST1"
+    },
+    {
+      "from_field": "INVENTORY_DATE",
+      "from_instance": "WI_WIPS_INV_TRANS_DIST2",
+      "to_field": "INVENTORY_DATE",
+      "to_instance": "SQ_WI_WIPS_INV_TRANS_DIST1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "INV_TRANS_ID",
+      "source_path": [
+        {
+          "from_field": "INV_TRANS_ID",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "INV_TRANS_ID",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SRC_BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "SRC_BATCH_ID",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "SRC_BATCH_ID",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_PROFILE_ID",
+      "source_path": [
+        {
+          "from_field": "SOURCE_PROFILE_ID",
+          "from_instance": "SQ_WI_WIPS_INV_TRANS_DIST1"
+        },
+        {
+          "from_field": "SOURCE_PROFILE_ID",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "SOURCE_PROFILE_ID",
+          "from_instance": "SQ_ST_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "SOURCE_PROFILE_ID",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "SOURCE_PROFILE_ID",
+          "from_instance": "ST_WIPS_INV_TRANS1"
+        },
+        {
+          "from_field": "SOURCE_PROFILE_ID",
+          "from_instance": "WI_WIPS_INV_TRANS_DIST2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_CUSTOMER_ID",
+      "source_path": [
+        {
+          "from_field": "SOURCE_CUSTOMER_ID",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "SOURCE_CUSTOMER_ID",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTNO_MAP_ID",
+      "source_path": [
+        {
+          "from_field": "PARTNO_MAP_ID",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "PARTNO_MAP_ID",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "STATUS",
+      "source_path": [
+        {
+          "from_field": "STATUS",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "STATUS",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INVENTORY_DATE",
+      "source_path": [
+        {
+          "from_field": "INVENTORY_DATE",
+          "from_instance": "SQ_WI_WIPS_INV_TRANS_DIST1"
+        },
+        {
+          "from_field": "INVENTORY_DATE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "INVENTORY_DATE",
+          "from_instance": "SQ_ST_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "INVENTORY_DATE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "INVENTORY_DATE",
+          "from_instance": "ST_WIPS_INV_TRANS1"
+        },
+        {
+          "from_field": "INVENTORY_DATE",
+          "from_instance": "WI_WIPS_INV_TRANS_DIST2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ORG_INVENTORY_DATE",
+      "source_path": [
+        {
+          "from_field": "ORG_INVENTORY_DATE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "ORG_INVENTORY_DATE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "VENDOR_PART_NO",
+      "source_path": [
+        {
+          "from_field": "VENDOR_PART_NO",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "VENDOR_PART_NO",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MFG_PART_NO",
+      "source_path": [
+        {
+          "from_field": "MFG_PART_NO",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "MFG_PART_NO",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRODUCT_DESC",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_DESC",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "PRODUCT_DESC",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REPORTED_UNIT_PRICE_LC",
+      "source_path": [
+        {
+          "from_field": "REPORTED_UNIT_PRICE_LC",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "REPORTED_UNIT_PRICE_LC",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REPORTED_EXTENDED_PRICE_LC",
+      "source_path": [
+        {
+          "from_field": "REPORTED_EXTENDED_PRICE_LC",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "REPORTED_EXTENDED_PRICE_LC",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CONVERSION_RATE",
+      "source_path": [
+        {
+          "from_field": "CONVERSION_RATE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "CONVERSION_RATE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REPORTED_UNIT_PRICE_USD",
+      "source_path": [
+        {
+          "from_field": "REPORTED_UNIT_PRICE_USD",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "REPORTED_UNIT_PRICE_USD",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CISCO_WPL_UNIT_PRICE",
+      "source_path": [
+        {
+          "from_field": "CISCO_WPL_UNIT_PRICE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "CISCO_WPL_UNIT_PRICE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "VALUATION_PRICE",
+      "source_path": [
+        {
+          "from_field": "VALUATION_PRICE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "VALUATION_PRICE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ORG_VALUATION_PRICE",
+      "source_path": [
+        {
+          "from_field": "ORG_VALUATION_PRICE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "ORG_VALUATION_PRICE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SPECIAL_PRICE",
+      "source_path": [
+        {
+          "from_field": "SPECIAL_PRICE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "SPECIAL_PRICE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "QTY_ON_HAND",
+      "source_path": [
+        {
+          "from_field": "QTY_ON_HAND",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "QTY_ON_HAND",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMMITTED_QTY",
+      "source_path": [
+        {
+          "from_field": "COMMITTED_QTY",
+          "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+        },
+        {
+          "from_field": "COMMITTED_QTY",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "COMMITTED_QTY",
+          "from_instance": "N_DISTI_INVENTORY_TRX_LINE"
+        },
+        {
+          "from_field": "COMMITTED_QTY",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "STOCK_QTY",
+      "source_path": [
+        {
+          "from_field": "STOCK_QTY",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "STOCK_QTY",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ON_ORDER_QTY",
+      "source_path": [
+        {
+          "from_field": "ON_ORDER_QTY",
+          "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+        },
+        {
+          "from_field": "ON_ORDER_QTY",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "ON_ORDER_QTY",
+          "from_instance": "N_DISTI_INVENTORY_TRX_LINE"
+        },
+        {
+          "from_field": "ON_ORDER_QTY",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BACKORDER_QTY",
+      "source_path": [
+        {
+          "from_field": "BACKORDER_QTY",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "BACKORDER_QTY",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "IN_TRANSIT_QTY",
+      "source_path": [
+        {
+          "from_field": "IN_TRANSIT_QTY",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "IN_TRANSIT_QTY",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "OTHER_QTY",
+      "source_path": [
+        {
+          "from_field": "OTHER_QTY",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "OTHER_QTY",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROD_FAMILY",
+      "source_path": [
+        {
+          "from_field": "PROD_FAMILY",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "PROD_FAMILY",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROD_CATEGORY",
+      "source_path": [
+        {
+          "from_field": "PROD_CATEGORY",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "PROD_CATEGORY",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROD_TYPE",
+      "source_path": [
+        {
+          "from_field": "PROD_TYPE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "PROD_TYPE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROD_GROUP",
+      "source_path": [
+        {
+          "from_field": "PROD_GROUP",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "PROD_GROUP",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BUSINESS_GROUP",
+      "source_path": [
+        {
+          "from_field": "BUSINESS_GROUP",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "BUSINESS_GROUP",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BUSINESS_UNIT",
+      "source_path": [
+        {
+          "from_field": "BUSINESS_UNIT",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "BUSINESS_UNIT",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "POSTED_DATE",
+      "source_path": [
+        {
+          "from_field": "POSTED_DATE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "POSTED_DATE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "POST_FISC_YR",
+      "source_path": [
+        {
+          "from_field": "POST_FISC_YR",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "POST_FISC_YR",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "POST_FISC_PRD",
+      "source_path": [
+        {
+          "from_field": "POST_FISC_PRD",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "POST_FISC_PRD",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INV_FISC_YR",
+      "source_path": [
+        {
+          "from_field": "INV_FISC_YR",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "INV_FISC_YR",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INV_FISC_PRD",
+      "source_path": [
+        {
+          "from_field": "INV_FISC_PRD",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "INV_FISC_PRD",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARSED_PART_NUM",
+      "source_path": [
+        {
+          "from_field": "PARSED_PART_NUM",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "PARSED_PART_NUM",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARSED",
+      "source_path": [
+        {
+          "from_field": "PARSED",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "PARSED",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SECOND_SOURCE_NAME",
+      "source_path": [
+        {
+          "from_field": "SECOND_SOURCE_NAME",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "SECOND_SOURCE_NAME",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SECOND_SOURCE_COUNTRY_CODE",
+      "source_path": [
+        {
+          "from_field": "SECOND_SOURCE_COUNTRY_CODE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "SECOND_SOURCE_COUNTRY_CODE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ADJUSTED_FLAG",
+      "source_path": [
+        {
+          "from_field": "ADJUSTED_FLAG",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "ADJUSTED_FLAG",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTIVE_FLAG",
+      "source_path": [
+        {
+          "from_field": "ACTIVE_FLAG",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "ACTIVE_FLAG",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATED_BY",
+      "source_path": [
+        {
+          "from_field": "UPDATED_BY",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "UPDATED_BY",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REPORTED_CURRENCY_CODE",
+      "source_path": [
+        {
+          "from_field": "REPORTED_CURRENCY_CODE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "REPORTED_CURRENCY_CODE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CISCO_WPL_UNIT_PRICE_LC",
+      "source_path": [
+        {
+          "from_field": "CISCO_WPL_UNIT_PRICE_LC",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "CISCO_WPL_UNIT_PRICE_LC",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CISCO_GPL_UNIT_PRICE",
+      "source_path": [
+        {
+          "from_field": "CISCO_GPL_UNIT_PRICE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "CISCO_GPL_UNIT_PRICE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CISCO_GPL_UNIT_PRICE_LC",
+      "source_path": [
+        {
+          "from_field": "CISCO_GPL_UNIT_PRICE_LC",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "CISCO_GPL_UNIT_PRICE_LC",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "VALUATION_PRICE_LC",
+      "source_path": [
+        {
+          "from_field": "VALUATION_PRICE_LC",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "VALUATION_PRICE_LC",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "OBSOLETE_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "OBSOLETE_QUANTITY",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "OBSOLETE_QUANTITY",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INVENTORY_LOCATION",
+      "source_path": [
+        {
+          "from_field": "INVENTORY_LOCATION",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "INVENTORY_LOCATION",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INV_TYPE",
+      "source_path": [
+        {
+          "from_field": "INV_TYPE",
+          "from_instance": "SQ_WI_WIPS_INV_TRANS_DIST1"
+        },
+        {
+          "from_field": "INV_TYPE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "INV_TYPE",
+          "from_instance": "SQ_ST_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "INV_TYPE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "INV_TYPE",
+          "from_instance": "ST_WIPS_INV_TRANS1"
+        },
+        {
+          "from_field": "INV_TYPE",
+          "from_instance": "WI_WIPS_INV_TRANS_DIST2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SECOND_SOURCE",
+      "source_path": [
+        {
+          "from_field": "SECOND_SOURCE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "SECOND_SOURCE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AVERAGE_SELLING_PRICE",
+      "source_path": [
+        {
+          "from_field": "AVERAGE_SELLING_PRICE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "AVERAGE_SELLING_PRICE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AVERAGE_SELLING_PRICE_LC",
+      "source_path": [
+        {
+          "from_field": "AVERAGE_SELLING_PRICE_LC",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "AVERAGE_SELLING_PRICE_LC",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "VALUATION_PRICE_SOURCE",
+      "source_path": [
+        {
+          "from_field": "VALUATION_PRICE_SOURCE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "VALUATION_PRICE_SOURCE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTIVE_FLG1",
+          "from_instance": "SQ_N_DISTI_INVENTORY_TRX_LINE"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_ACTIVE_DATE",
+      "source_path": [
+        {
+          "from_field": "START_ACTIVE_DATE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "START_ACTIVE_DATE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_ACTIVE_DATE",
+      "source_path": [
+        {
+          "from_field": "END_ACTIVE_DATE",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "END_ACTIVE_DATE",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AVG_PRICE_LC",
+      "source_path": [
+        {
+          "from_field": "AVG_PRICE_LC",
+          "from_instance": "SQ_EX_WIPS_INV_TRANS"
+        },
+        {
+          "from_field": "AVG_PRICE_LC",
+          "from_instance": "EX_WIPS_INV_TRANS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:17.202483+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,5437 @@
+{
+  "workflow_name": "wf_m_WI_SERVICE_BOOKINGS_BY_PID_PP",
+  "mapping_name": "m_WI_SERVICE_BOOKINGS_BY_PID_PP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_BKG_AGGRS",
+  "target_table": "WI_PRIOR_HISTORY_DATA",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_bkg_aggrs_wf_wi_service_bookings_by_pid_pp_02_mart_wi_prior_history_data",
+  "source_tables": [
+    "WI_PRIOR_HISTORY_DATA",
+    "WI_PP_BOOKINGS_DATA",
+    "WI_SERVICE_BOOKINGS_BY_PID"
+  ],
+  "sources": [
+    {
+      "name": "WI_PRIOR_HISTORY_DATA",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "SERVICEORDERNUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PSG",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PID",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NET_BOOKING",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TOTAL_BOOKNGS_PSG",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TOTAL_BOOKNGS_NPSG",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PID_PSG_PCT",
+          "datatype": "decimal",
+          "precision": "30",
+          "scale": "16",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PID_NPSG_PCT",
+          "datatype": "decimal",
+          "precision": "30",
+          "scale": "16",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_PP_BOOKINGS_DATA",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AR_TRX_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJUSTMENT_DESCR_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REVENUE_TRANSFER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRANSACTION_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "L1_SALES_TERRITORY_DESCR",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SALES_ADJ_LINE_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SALES_ADJ_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_TYPE_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_REVENUE_RECOGNITION_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CORPORATE_BOOKINGS_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRADE_IN_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_LIST_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_COST_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_EXTENDED_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_COST_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_EXTENDED_HOLD_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_COMP_US_STANDARD_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_TRANSACTION_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERVICEORDERNUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_CISCO_BOOKED_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RSTD_DEL_RECORD_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_NET_SPREAD_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_SKU",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_FAMILY_ID",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_PROD_SUBGROUP_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SUMMARY_QUOTE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_SALES_MOTION_ATTRIB_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_ANNUALIZED_US_NET_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_MULTIYEAR_US_NET_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_AI_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AI_INTENT_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "55",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRX_AI_PRODUCT_CLASS_NAME",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FRST_YR_ANNUAL_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MULTI_YEAR_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NON_RECUR_ONE_TM_CR_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FIRST_YEAR_CREDIT_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MULTI_YEAR_CREDIT_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_SERVICE_BOOKINGS_BY_PID",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AR_TRX_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJUSTMENT_DESCR_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REVENUE_TRANSFER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRANSACTION_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "L1_SALES_TERRITORY_DESCR",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SALES_ADJ_LINE_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SALES_ADJ_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_TYPE_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_REVENUE_RECOGNITION_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CORPORATE_BOOKINGS_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRADE_IN_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TSS_BOOKINGS_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_LIST_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_COST_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_EXTENDED_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_COST_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_EXTENDED_HOLD_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_COMP_US_STANDARD_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_TRANSACTION_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERVICEORDERNUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_CISCO_BOOKED_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RSTD_DEL_RECORD_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_NET_SPREAD_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_SKU",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_FAMILY_ID",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_PROD_SUBGROUP_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GOODS_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GOODS_PRODUCT_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "QUOTE_NUMBER",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORDER_ALLOC_PCT",
+          "datatype": "decimal",
+          "precision": "30",
+          "scale": "16",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUOTE_ALLOC_PCT",
+          "datatype": "decimal",
+          "precision": "30",
+          "scale": "16",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PID_PCT",
+          "datatype": "decimal",
+          "precision": "30",
+          "scale": "16",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RECORD_TYPE",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SUMMARY_QUOTE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_SALES_MOTION_ATTRIB_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_ANNUALIZED_US_NET_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_MULTIYEAR_US_NET_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_AI_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AI_INTENT_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "55",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRX_AI_PRODUCT_CLASS_NAME",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FRST_YR_ANNUAL_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MULTI_YEAR_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NON_RECUR_ONE_TM_CR_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FIRST_YEAR_CREDIT_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MULTI_YEAR_CREDIT_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_PRIOR_HISTORY_DATA",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SERVICEORDERNUMBER",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PSG",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PID",
+        "datatype": "varchar",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NET_BOOKING",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TOTAL_BOOKNGS_PSG",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TOTAL_BOOKNGS_NPSG",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PID_PSG_PCT",
+        "datatype": "decimal",
+        "precision": "30",
+        "scale": "16",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PID_NPSG_PCT",
+        "datatype": "decimal",
+        "precision": "30",
+        "scale": "16",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_PP_BOOKINGS_DATA",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AR_TRX_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_DESCR_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REVENUE_TRANSFER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "L1_SALES_TERRITORY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_ADJ_LINE_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_ADJ_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_REVENUE_RECOGNITION_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CORPORATE_BOOKINGS_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRADE_IN_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_LIST_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_EXTENDED_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_HOLD_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_EXTENDED_HOLD_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_STANDARD_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_TRANSACTION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICEORDERNUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_CISCO_BOOKED_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RSTD_DEL_RECORD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_NET_SPREAD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_SKU",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_FAMILY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_PROD_SUBGROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUMMARY_QUOTE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_SALES_MOTION_ATTRIB_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ANNUALIZED_US_NET_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_MULTIYEAR_US_NET_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_AI_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AI_INTENT_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRX_AI_PRODUCT_CLASS_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FRST_YR_ANNUAL_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MULTI_YEAR_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NON_RECUR_ONE_TM_CR_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FIRST_YEAR_CREDIT_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MULTI_YEAR_CREDIT_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n BKGS.BOOKINGS_MEASURE_KEY\r\n,BKGS.SALES_ORDER_KEY\r\n,BKGS.SALES_ORDER_LINE_KEY\r\n,BKGS.PRODUCT_KEY\r\n,BKGS.AR_TRX_LINE_KEY\r\n,BKGS.AR_TRX_KEY\r\n,BKGS.END_CUSTOMER_KEY\r\n,BKGS.BILL_TO_CUSTOMER_KEY\r\n,BKGS.SHIP_TO_CUSTOMER_KEY\r\n,BKGS.SOLD_TO_CUSTOMER_KEY\r\n,BKGS.DV_END_CUSTOMER_KEY\r\n,CHANNEL.PARTNER_SITE_PARTY_KEY\r\n,BKGS.ADJUSTMENT_DESCR_KEY\r\n,BKGS.REVENUE_TRANSFER_KEY\r\n,BKGS.TRANSACTION_DATETIME\r\n,BKGS.SALES_TERRITORY_KEY\r\n,SALES_HIER.L1_SALES_TERRITORY_DESCR\r\n,BKGS.SALES_REP_NUMBER\r\n,BKGS.BOOKINGS_PROCESS_DATE\r\n,BKGS.DV_FISCAL_YEAR_MTH_NUMBER_INT\r\n,BKGS.FISCAL_YEAR_QUARTER_NUMBER_INT\r\n,BKGS.BK_POS_TRANSACTION_ID_INT\r\n,BKGS.BK_SALES_ADJ_LINE_NUMBER_INT\r\n,BKGS.BK_SALES_ADJ_NUMBER_INT\r\n,BKGS.ADJUSTMENT_TYPE_CODE\r\n,BKGS.BKGS_MEASURE_TRANS_TYPE_CODE\r\n,BKGS.SERVICE_FLG\r\n,BKGS.DV_REVENUE_RECOGNITION_FLG\r\n,BKGS.CORPORATE_BOOKINGS_FLG\r\n,BKGS.TRADE_IN_AMOUNT\r\n,BKGS.DD_COMP_US_NET_PRICE_AMOUNT\r\n,BKGS.DD_COMP_US_LIST_PRICE_AMOUNT\r\n,BKGS.DD_COMP_US_COST_AMOUNT\r\n,BKGS.DD_EXTENDED_QUANTITY\r\n,BKGS.DD_COMP_US_HOLD_NET_PRICE_AMT\r\n,BKGS.DD_COMP_US_HOLD_LIST_PRICE_AMT\r\n,BKGS.DD_COMP_US_HOLD_COST_AMOUNT\r\n,BKGS.DD_EXTENDED_HOLD_QUANTITY\r\n,BKGS.DD_COMP_US_STANDARD_PRICE_AMT\r\n,BKGS.WIPS_ORIGINATOR_ID_INT\r\n,BKGS.ADJUSTMENT_CODE\r\n,BKGS.DV_TRANSACTION_NAME\r\n,BKGS.DD_BK_SO_NUMBER_INT AS SERVICEORDERNUMBER\r\n,BKGS.DD_CISCO_BOOKED_DTM\r\n,BKGS.DV_ATTRIBUTION_CD\r\n,BKGS.DV_PRODUCT_KEY\r\n,BKGS.DV_SALES_ORDER_LINE_KEY\r\n,BKGS.DV_AR_TRX_LINE_KEY\r\n,BKGS.XAAS_OFFER_ATRBTN_REV_LINE_KEY\r\n,BKGS.RSTD_DEL_RECORD_FLG\r\n,BKGS.DV_NET_SPREAD_FLG\r\n,PROD.BK_PRODUCT_ID AS SERVICE_SKU\r\n,'NULL' AS PRODUCT_FAMILY_ID\r\n,PROD.RU_BK_SERVICE_PROD_SUBGROUP_ID AS SERVICE_PROD_SUBGROUP_ID\r\n,BKGS.SALES_MOTION_CD\r\n,BKGS.SUMMARY_QUOTE_FLG\r\n,BKGS.SK_SALES_MOTION_ATTRIB_KEY\r\n,BKGS.DV_ANNUALIZED_US_NET_AMT\r\n,BKGS.DV_MULTIYEAR_US_NET_AMT\r\n,BKGS.FRST_YR_ANNUAL_USD_AMT\r\n,BKGS.MULTI_YEAR_USD_AMT\r\n,BKGS.NON_RECUR_ONE_TM_CR_USD_AMT\r\n,BKGS.FIRST_YEAR_CREDIT_USD_AMT\r\n,BKGS.MULTI_YEAR_CREDIT_USD_AMT\r\nFROM $$STGDB.WI_RSTD_BKGS_MEASURE BKGS\r\nINNER JOIN $$COMREFVWDB.R_SALES_HIERARCHY SALES_HIER\r\nON BKGS.SALES_TERRITORY_KEY = SALES_HIER.SALES_TERRITORY_KEY\r\nINNER JOIN $$COMREFVWDB.N_PRODUCT PROD\r\nON PROD.ITEM_KEY = BKGS.PRODUCT_KEY \r\nAND PROD.DIVESTITURE_TYPE_CD = 'UNKNOWN' /* ADDED AS PART OF M&A JUN10 Q4FY18*/\r\nINNER JOIN $$SLSORDVWDB.N_BOOKINGS_CHANNEL_MEASURE CHANNEL\r\nON CHANNEL.BOOKINGS_MEASURE_KEY = BKGS.BOOKINGS_MEASURE_KEY\r\nAND BKGS.BOOKINGS_PROCESS_DATE = CHANNEL.BOOKINGS_PROCESS_DATE\r\nAND BKGS.BKGS_MEASURE_TRANS_TYPE_CODE = CHANNEL.BKGS_MEASURE_TRANS_TYPE_CODE\r\nWHERE SALES_HIER.SALES_TERRITORY_TYPE_CODE IN ('CORP. REVENUE','UNKNOWN')\r\nAND BKGS.DV_REVENUE_RECOGNITION_FLG = 'Y'\r\nAND PROD.BK_PRODUCT_TYPE_ID NOT IN ('TECHDOC', 'TRAINING' )\r\nAND BKGS.SERVICE_FLG = 'Y' \r\nAND BKGS.DV_FISCAL_YEAR_MTH_NUMBER_INT IN (SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_BKGS_CNTRL_MNTH)\r\nAND BKGS.DD_BK_SO_NUMBER_INT <> -9999\r\nAND BKGS.DD_COMP_US_NET_PRICE_AMOUNT <> 0\r\nAND DD_BK_SO_NUMBER_INT IN (SELECT ORDER_NUMBER FROM $$STGDB.WI_PP_ORDER)\r\nAND NOT EXISTS (SEL 1 FROM $$STGDB.WI_SERVICE_BOOKINGS_BY_PID SBP\r\nWHERE SBP.BKGS_MEASURE_TRANS_TYPE_CODE=BKGS.BKGS_MEASURE_TRANS_TYPE_CODE\r\nAND SBP.BOOKINGS_MEASURE_KEY=BKGS.BOOKINGS_MEASURE_KEY\r\nAND SBP.BOOKINGS_PROCESS_DATE=BKGS.BOOKINGS_PROCESS_DATE\r\nAND SBP.SALES_TERRITORY_KEY=BKGS.SALES_TERRITORY_KEY\r\nAND SBP.SALES_REP_NUMBER=BKGS.SALES_REP_NUMBER \r\nGROUP BY BKGS_MEASURE_TRANS_TYPE_CODE ,BOOKINGS_MEASURE_KEY ,BOOKINGS_PROCESS_DATE ,SALES_TERRITORY_KEY, SALES_REP_NUMBER)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AR_TRX_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_DESCR_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REVENUE_TRANSFER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "L1_SALES_TERRITORY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_ADJ_LINE_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_ADJ_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_REVENUE_RECOGNITION_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CORPORATE_BOOKINGS_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRADE_IN_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSS_BOOKINGS_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_LIST_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_EXTENDED_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_HOLD_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_EXTENDED_HOLD_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_STANDARD_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_TRANSACTION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICEORDERNUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_CISCO_BOOKED_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RSTD_DEL_RECORD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_NET_SPREAD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_SKU",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_FAMILY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_PROD_SUBGROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GOODS_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GOODS_PRODUCT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUOTE_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORDER_ALLOC_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUOTE_ALLOC_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PP_PID_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RECORD_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUMMARY_QUOTE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_SALES_MOTION_ATTRIB_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ANNUALIZED_US_NET_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_MULTIYEAR_US_NET_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_AI_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AI_INTENT_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRX_AI_PRODUCT_CLASS_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FRST_YR_ANNUAL_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MULTI_YEAR_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NON_RECUR_ONE_TM_CR_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FIRST_YEAR_CREDIT_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MULTI_YEAR_CREDIT_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nWI_PP_BOOKINGS.BOOKINGS_MEASURE_KEY \r\n,WI_PP_BOOKINGS.SALES_ORDER_KEY \r\n,WI_PP_BOOKINGS.SALES_ORDER_LINE_KEY \r\n,WI_PP_BOOKINGS.PRODUCT_KEY \r\n,WI_PP_BOOKINGS.AR_TRX_LINE_KEY \r\n,WI_PP_BOOKINGS.AR_TRX_KEY \r\n,WI_PP_BOOKINGS.END_CUSTOMER_KEY \r\n,WI_PP_BOOKINGS.BILL_TO_CUSTOMER_KEY \r\n,WI_PP_BOOKINGS.SHIP_TO_CUSTOMER_KEY \r\n,WI_PP_BOOKINGS.SOLD_TO_CUSTOMER_KEY \r\n,WI_PP_BOOKINGS.DV_END_CUSTOMER_KEY \r\n,WI_PP_BOOKINGS.PARTNER_SITE_PARTY_KEY \r\n,WI_PP_BOOKINGS.ADJUSTMENT_DESCR_KEY \r\n,WI_PP_BOOKINGS.REVENUE_TRANSFER_KEY \r\n,WI_PP_BOOKINGS.TRANSACTION_DATETIME \r\n,WI_PP_BOOKINGS.SALES_TERRITORY_KEY \r\n,WI_PP_BOOKINGS.L1_SALES_TERRITORY_DESCR \r\n,WI_PP_BOOKINGS.SALES_REP_NUMBER \r\n,WI_PP_BOOKINGS.BOOKINGS_PROCESS_DATE \r\n,WI_PP_BOOKINGS.DV_FISCAL_YEAR_MTH_NUMBER_INT \r\n,WI_PP_BOOKINGS.FISCAL_YEAR_QUARTER_NUMBER_INT\r\n,WI_PP_BOOKINGS.BK_POS_TRANSACTION_ID_INT \r\n,WI_PP_BOOKINGS.BK_SALES_ADJ_LINE_NUMBER_INT \r\n,WI_PP_BOOKINGS.BK_SALES_ADJ_NUMBER_INT \r\n,WI_PP_BOOKINGS.ADJUSTMENT_TYPE_CODE \r\n,WI_PP_BOOKINGS.BKGS_MEASURE_TRANS_TYPE_CODE \r\n,WI_PP_BOOKINGS.SERVICE_FLG \r\n,WI_PP_BOOKINGS.DV_REVENUE_RECOGNITION_FLG \r\n,WI_PP_BOOKINGS.CORPORATE_BOOKINGS_FLG \r\n,SUM(CAST(WI_PP_BOOKINGS.TRADE_IN_AMOUNT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(18,6))) AS TRADE_IN_AMOUNT \r\n,WI_PP_BOOKINGS.DD_COMP_US_NET_PRICE_AMOUNT \r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_NET_PRICE_AMOUNT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(18,6))) AS TSS_BOOKINGS_AMOUNT\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_LIST_PRICE_AMOUNT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(18,6))) AS DD_COMP_US_LIST_PRICE_AMOUNT\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_COST_AMOUNT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(18,6))) AS DD_COMP_US_COST_AMOUNT\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_EXTENDED_QUANTITY *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(18,6))) AS DD_EXTENDED_QUANTITY\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_HOLD_NET_PRICE_AMT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(18,6))) AS DD_COMP_US_HOLD_NET_PRICE_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_HOLD_LIST_PRICE_AMT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(18,6))) AS DD_COMP_US_HOLD_LIST_PRICE_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_HOLD_COST_AMOUNT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(18,6))) AS DD_COMP_US_HOLD_COST_AMOUNT\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_EXTENDED_HOLD_QUANTITY *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(18,6))) AS DD_EXTENDED_HOLD_QUANTITY\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_STANDARD_PRICE_AMT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(18,6))) AS DD_COMP_US_STANDARD_PRICE_AMT\r\n,WI_PP_BOOKINGS.WIPS_ORIGINATOR_ID_INT \r\n,WI_PP_BOOKINGS.ADJUSTMENT_CODE \r\n,WI_PP_BOOKINGS.DV_TRANSACTION_NAME \r\n,WI_PP_BOOKINGS.SERVICEORDERNUMBER \r\n,WI_PP_BOOKINGS.DD_CISCO_BOOKED_DTM \r\n,WI_PP_BOOKINGS.DV_ATTRIBUTION_CD \r\n,WI_PP_BOOKINGS.DV_PRODUCT_KEY \r\n,WI_PP_BOOKINGS.DV_SALES_ORDER_LINE_KEY \r\n,WI_PP_BOOKINGS.DV_AR_TRX_LINE_KEY \r\n,WI_PP_BOOKINGS.XAAS_OFFER_ATRBTN_REV_LINE_KEY\r\n,WI_PP_BOOKINGS.RSTD_DEL_RECORD_FLG \r\n,WI_PP_BOOKINGS.DV_NET_SPREAD_FLG \r\n,WI_PP_BOOKINGS.SERVICE_SKU AS SERVICE_SKU \r\n,PROD.RU_BK_PRODUCT_FAMILY_ID AS PRODUCT_FAMILY_ID \r\n,WI_PP_BOOKINGS.SERVICE_PROD_SUBGROUP_ID AS SERVICE_PROD_SUBGROUP_ID \r\n,PROD.ITEM_KEY AS GOODS_PRODUCT_KEY \r\n,WI_PRIOR_HISTORY_DATA.PID AS GOODS_PRODUCT_ID \r\n,NULL QUOTE_NUMBER \r\n,1 ORDER_ALLOC_PCT \r\n,1 QUOTE_ALLOC_PCT \r\n,SUM(WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT) AS PP_PID_PCT \r\n,'PRIOR PERIOD' RECORD_TYPE\r\n,WI_PP_BOOKINGS.SALES_MOTION_CD\r\n,WI_PP_BOOKINGS.SUMMARY_QUOTE_FLG \r\n,WI_PP_BOOKINGS.SK_SALES_MOTION_ATTRIB_KEY\r\n,SUM(CAST(WI_PP_BOOKINGS.DV_ANNUALIZED_US_NET_AMT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(18,6))) AS DV_ANNUALIZED_US_NET_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.DV_MULTIYEAR_US_NET_AMT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(18,6))) AS DV_MULTIYEAR_US_NET_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.FRST_YR_ANNUAL_USD_AMT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(26,7))) AS FRST_YR_ANNUAL_USD_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.MULTI_YEAR_USD_AMT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(26,7))) AS MULTI_YEAR_USD_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.NON_RECUR_ONE_TM_CR_USD_AMT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(26,7))) AS NON_RECUR_ONE_TM_CR_USD_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.FIRST_YEAR_CREDIT_USD_AMT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(26,7))) AS FIRST_YEAR_CREDIT_USD_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.MULTI_YEAR_CREDIT_USD_AMT *WI_PRIOR_HISTORY_DATA.PID_NPSG_PCT AS DECIMAL(26,7))) AS MULTI_YEAR_CREDIT_USD_AMT\r\nFROM $$STGDB.WI_PP_BOOKINGS_DATA WI_PP_BOOKINGS\r\nINNER JOIN $$STGDB.WI_PRIOR_HISTORY_DATA WI_PRIOR_HISTORY_DATA\r\nON WI_PP_BOOKINGS.SERVICEORDERNUMBER=WI_PRIOR_HISTORY_DATA.SERVICEORDERNUMBER\r\nINNER JOIN (\r\nSELECT DISTINCT BKGS.SERVICEORDERNUMBER, BKGS.SERVICE_PROD_SUBGROUP_ID AS PSG FROM $$STGDB.WI_PP_BOOKINGS_DATA BKGS\r\nMINUS\r\nSELECT DISTINCT SERVICEORDERNUMBER, WI.PSG AS PSG FROM $$STGDB.WI_PRIOR_HISTORY_DATA WI\r\n) NONSUB \r\nON NONSUB.SERVICEORDERNUMBER=WI_PP_BOOKINGS.SERVICEORDERNUMBER AND WI_PP_BOOKINGS.SERVICE_PROD_SUBGROUP_ID=NONSUB.PSG\r\nINNER JOIN $$COMREFVWDB.N_PRODUCT PROD \r\nON PROD.BK_PRODUCT_ID=WI_PRIOR_HISTORY_DATA.PID \r\nAND PROD.DIVESTITURE_TYPE_CD = 'UNKNOWN' /* ADDED AS PART OF M&A JUN10 Q4FY18*/\r\nAND NOT EXISTS (SEL 1 FROM $$STGDB.WI_SERVICE_BOOKINGS_BY_PID SBP\r\nWHERE SBP.BKGS_MEASURE_TRANS_TYPE_CODE=WI_PP_BOOKINGS.BKGS_MEASURE_TRANS_TYPE_CODE\r\nAND SBP.BOOKINGS_MEASURE_KEY=WI_PP_BOOKINGS.BOOKINGS_MEASURE_KEY\r\nAND SBP.BOOKINGS_PROCESS_DATE=WI_PP_BOOKINGS.BOOKINGS_PROCESS_DATE\r\nAND SBP.SALES_TERRITORY_KEY=WI_PP_BOOKINGS.SALES_TERRITORY_KEY\r\nAND SBP.SALES_REP_NUMBER=WI_PP_BOOKINGS.SALES_REP_NUMBER \r\nGROUP BY BKGS_MEASURE_TRANS_TYPE_CODE ,BOOKINGS_MEASURE_KEY ,BOOKINGS_PROCESS_DATE ,SALES_TERRITORY_KEY, SALES_REP_NUMBER) \r\nGROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,31,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,62,63,64,65",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_PRIOR_HISTORY_DATA",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SERVICEORDERNUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PSG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NET_BOOKING",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_BOOKNGS_PSG",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_BOOKNGS_NPSG",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PID_PSG_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PID_NPSG_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SEL ORDER_NUMBER AS SERVICEORDERNUMBER ,PSG,PID,BOOKINGS,TOTAL_BOOKNGS_PSG,TOTAL_BOOKNGS_NPSG,\r\nCOALESCE(((WI.BOOKINGS/NULLIFZERO(WI.TOTAL_BOOKNGS_PSG))),0)  AS PID_PSG_PCT,\r\nCOALESCE(((WI.BOOKINGS/NULLIFZERO(WI.TOTAL_BOOKNGS_NPSG))),0)  AS PID_NPSG_PCT\r\nFROM\r\n(SELECT ORDER_NUMBER,PSG,PID,CAST (BOOKINGS AS DECIMAL(30,16)) AS BOOKINGS\r\n,CAST(SUM(BOOKINGS) OVER (PARTITION BY  ORDER_NUMBER,PSG ) AS DECIMAL(30,16))TOTAL_BOOKNGS_PSG\r\n,CAST(SUM(BOOKINGS) OVER (PARTITION BY  ORDER_NUMBER ) AS DECIMAL(30,16)) TOTAL_BOOKNGS_NPSG\r\nFROM $$ETLVWDB.EL_RSTD_HISTORY WIH\r\nWHERE FISCAL_PERIOD_ID <= (SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_BKGS_CNTRL_MNTH)\r\nAND BOOKINGS>0 AND PID IS NOT NULL  AND PID <>'UNKNOWN'\r\nAND EXISTS(SEL 1 FROM $$COMREFVWDB.N_PRODUCT PRDT WHERE  PRDT.BK_PRODUCT_ID=WIH.PID AND \r\nPRDT.DIVESTITURE_TYPE_CD = 'UNKNOWN'   /* ADDED AS PART OF M&A JUN10 Q4FY18*/) \r\n)WI",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AR_TRX_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_DESCR_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REVENUE_TRANSFER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "L1_SALES_TERRITORY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_ADJ_LINE_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_ADJ_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_REVENUE_RECOGNITION_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CORPORATE_BOOKINGS_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRADE_IN_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSS_BOOKINGS_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_LIST_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_EXTENDED_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_HOLD_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_EXTENDED_HOLD_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_STANDARD_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_TRANSACTION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICEORDERNUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_CISCO_BOOKED_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RSTD_DEL_RECORD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_NET_SPREAD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_SKU",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_FAMILY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_PROD_SUBGROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GOODS_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GOODS_PRODUCT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUOTE_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORDER_ALLOC_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUOTE_ALLOC_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PP_PID_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RECORD_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUMMARY_QUOTE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_SALES_MOTION_ATTRIB_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ANNUALIZED_US_NET_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_MULTIYEAR_US_NET_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_AI_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AI_INTENT_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRX_AI_PRODUCT_CLASS_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FRST_YR_ANNUAL_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MULTI_YEAR_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NON_RECUR_ONE_TM_CR_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FIRST_YEAR_CREDIT_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MULTI_YEAR_CREDIT_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nWI_PP_BOOKINGS.BOOKINGS_MEASURE_KEY \r\n,WI_PP_BOOKINGS.SALES_ORDER_KEY \r\n,WI_PP_BOOKINGS.SALES_ORDER_LINE_KEY \r\n,WI_PP_BOOKINGS.PRODUCT_KEY \r\n,WI_PP_BOOKINGS.AR_TRX_LINE_KEY \r\n,WI_PP_BOOKINGS.AR_TRX_KEY \r\n,WI_PP_BOOKINGS.END_CUSTOMER_KEY \r\n,WI_PP_BOOKINGS.BILL_TO_CUSTOMER_KEY \r\n,WI_PP_BOOKINGS.SHIP_TO_CUSTOMER_KEY \r\n,WI_PP_BOOKINGS.SOLD_TO_CUSTOMER_KEY \r\n,WI_PP_BOOKINGS.DV_END_CUSTOMER_KEY \r\n,WI_PP_BOOKINGS.PARTNER_SITE_PARTY_KEY \r\n,WI_PP_BOOKINGS.ADJUSTMENT_DESCR_KEY \r\n,WI_PP_BOOKINGS.REVENUE_TRANSFER_KEY \r\n,WI_PP_BOOKINGS.TRANSACTION_DATETIME \r\n,WI_PP_BOOKINGS.SALES_TERRITORY_KEY \r\n,WI_PP_BOOKINGS.L1_SALES_TERRITORY_DESCR \r\n,WI_PP_BOOKINGS.SALES_REP_NUMBER \r\n,WI_PP_BOOKINGS.BOOKINGS_PROCESS_DATE \r\n,WI_PP_BOOKINGS.DV_FISCAL_YEAR_MTH_NUMBER_INT \r\n,WI_PP_BOOKINGS.FISCAL_YEAR_QUARTER_NUMBER_INT\r\n,WI_PP_BOOKINGS.BK_POS_TRANSACTION_ID_INT \r\n,WI_PP_BOOKINGS.BK_SALES_ADJ_LINE_NUMBER_INT \r\n,WI_PP_BOOKINGS.BK_SALES_ADJ_NUMBER_INT \r\n,WI_PP_BOOKINGS.ADJUSTMENT_TYPE_CODE \r\n,WI_PP_BOOKINGS.BKGS_MEASURE_TRANS_TYPE_CODE \r\n,WI_PP_BOOKINGS.SERVICE_FLG \r\n,WI_PP_BOOKINGS.DV_REVENUE_RECOGNITION_FLG \r\n,WI_PP_BOOKINGS.CORPORATE_BOOKINGS_FLG \r\n,SUM(CAST(WI_PP_BOOKINGS.TRADE_IN_AMOUNT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(18,6))) AS TRADE_IN_AMOUNT \r\n,WI_PP_BOOKINGS.DD_COMP_US_NET_PRICE_AMOUNT \r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_NET_PRICE_AMOUNT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(18,6))) AS TSS_BOOKINGS_AMOUNT\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_LIST_PRICE_AMOUNT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(18,6))) AS DD_COMP_US_LIST_PRICE_AMOUNT\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_COST_AMOUNT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(18,6))) AS DD_COMP_US_COST_AMOUNT\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_EXTENDED_QUANTITY *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(18,6))) AS DD_EXTENDED_QUANTITY\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_HOLD_NET_PRICE_AMT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(18,6))) AS DD_COMP_US_HOLD_NET_PRICE_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_HOLD_LIST_PRICE_AMT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(18,6))) AS DD_COMP_US_HOLD_LIST_PRICE_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_HOLD_COST_AMOUNT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(18,6))) AS DD_COMP_US_HOLD_COST_AMOUNT\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_EXTENDED_HOLD_QUANTITY *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(18,6))) AS DD_EXTENDED_HOLD_QUANTITY\r\n,SUM(CAST(WI_PP_BOOKINGS.DD_COMP_US_STANDARD_PRICE_AMT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(18,6))) AS DD_COMP_US_STANDARD_PRICE_AMT\r\n,WI_PP_BOOKINGS.WIPS_ORIGINATOR_ID_INT \r\n,WI_PP_BOOKINGS.ADJUSTMENT_CODE \r\n,WI_PP_BOOKINGS.DV_TRANSACTION_NAME \r\n,WI_PP_BOOKINGS.SERVICEORDERNUMBER \r\n,WI_PP_BOOKINGS.DD_CISCO_BOOKED_DTM \r\n,WI_PP_BOOKINGS.DV_ATTRIBUTION_CD \r\n,WI_PP_BOOKINGS.DV_PRODUCT_KEY \r\n,WI_PP_BOOKINGS.DV_SALES_ORDER_LINE_KEY \r\n,WI_PP_BOOKINGS.DV_AR_TRX_LINE_KEY \r\n,WI_PP_BOOKINGS.XAAS_OFFER_ATRBTN_REV_LINE_KEY\r\n,WI_PP_BOOKINGS.RSTD_DEL_RECORD_FLG \r\n,WI_PP_BOOKINGS.DV_NET_SPREAD_FLG \r\n,WI_PP_BOOKINGS.SERVICE_SKU AS SERVICE_SKU \r\n,PROD.RU_BK_PRODUCT_FAMILY_ID AS PRODUCT_FAMILY_ID \r\n,WI_PP_BOOKINGS.SERVICE_PROD_SUBGROUP_ID AS SERVICE_PROD_SUBGROUP_ID \r\n,PROD.ITEM_KEY AS GOODS_PRODUCT_KEY \r\n,WI_PRIOR_HISTORY_DATA.PID AS GOODS_PRODUCT_ID \r\n,NULL QUOTE_NUMBER \r\n,1 ORDER_ALLOC_PCT \r\n,1 QUOTE_ALLOC_PCT \r\n,SUM(WI_PRIOR_HISTORY_DATA.PID_PSG_PCT) AS PP_PID_PCT \r\n,'PRIOR PERIOD' RECORD_TYPE\r\n,WI_PP_BOOKINGS.SALES_MOTION_CD \r\n,WI_PP_BOOKINGS.SUMMARY_QUOTE_FLG \r\n,WI_PP_BOOKINGS.SK_SALES_MOTION_ATTRIB_KEY\r\n,SUM(CAST(WI_PP_BOOKINGS.DV_ANNUALIZED_US_NET_AMT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(18,6))) AS DV_ANNUALIZED_US_NET_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.DV_MULTIYEAR_US_NET_AMT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(18,6))) AS DV_MULTIYEAR_US_NET_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.FRST_YR_ANNUAL_USD_AMT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(26,7))) AS FRST_YR_ANNUAL_USD_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.MULTI_YEAR_USD_AMT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(26,7))) AS MULTI_YEAR_USD_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.NON_RECUR_ONE_TM_CR_USD_AMT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(26,7))) AS NON_RECUR_ONE_TM_CR_USD_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.FIRST_YEAR_CREDIT_USD_AMT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(26,7))) AS FIRST_YEAR_CREDIT_USD_AMT\r\n,SUM(CAST(WI_PP_BOOKINGS.MULTI_YEAR_CREDIT_USD_AMT *WI_PRIOR_HISTORY_DATA.PID_PSG_PCT AS DECIMAL(26,7))) AS MULTI_YEAR_CREDIT_USD_AMT\r\nFROM $$STGDB.WI_PP_BOOKINGS_DATA WI_PP_BOOKINGS\r\nINNER JOIN $$STGDB.WI_PRIOR_HISTORY_DATA WI_PRIOR_HISTORY_DATA\r\nON WI_PP_BOOKINGS.SERVICEORDERNUMBER=WI_PRIOR_HISTORY_DATA.SERVICEORDERNUMBER\r\nAND WI_PP_BOOKINGS.SERVICE_PROD_SUBGROUP_ID=WI_PRIOR_HISTORY_DATA.PSG\r\nINNER JOIN $$COMREFVWDB.N_PRODUCT PROD\r\nON PROD.BK_PRODUCT_ID=WI_PRIOR_HISTORY_DATA.PID \r\nAND PROD.DIVESTITURE_TYPE_CD = 'UNKNOWN' /* ADDED AS PART OF M&A JUN10 Q4FY18*/\r\nAND NOT EXISTS (SEL 1 FROM $$STGDB.WI_SERVICE_BOOKINGS_BY_PID SBP\r\nWHERE SBP.BKGS_MEASURE_TRANS_TYPE_CODE=WI_PP_BOOKINGS.BKGS_MEASURE_TRANS_TYPE_CODE\r\nAND SBP.BOOKINGS_MEASURE_KEY=WI_PP_BOOKINGS.BOOKINGS_MEASURE_KEY\r\nAND SBP.BOOKINGS_PROCESS_DATE=WI_PP_BOOKINGS.BOOKINGS_PROCESS_DATE\r\nAND SBP.SALES_TERRITORY_KEY=WI_PP_BOOKINGS.SALES_TERRITORY_KEY\r\nAND SBP.SALES_REP_NUMBER=WI_PP_BOOKINGS.SALES_REP_NUMBER \r\nGROUP BY BKGS_MEASURE_TRANS_TYPE_CODE ,BOOKINGS_MEASURE_KEY ,BOOKINGS_PROCESS_DATE ,SALES_TERRITORY_KEY, SALES_REP_NUMBER)\r\nGROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,31,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,62,63,64,65",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "QUOTE_ALLOC_PCT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "QUOTE_ALLOC_PCT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "GOODS_PRODUCT_ID",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "GOODS_PRODUCT_ID",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "QUOTE_NUMBER",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "QUOTE_NUMBER",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "ORDER_ALLOC_PCT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "ORDER_ALLOC_PCT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "TRADE_IN_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "TRADE_IN_AMOUNT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "TSS_BOOKINGS_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "TSS_BOOKINGS_AMOUNT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DD_COMP_US_COST_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_COST_AMOUNT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DD_EXTENDED_QUANTITY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_EXTENDED_QUANTITY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "WIPS_ORIGINATOR_ID_INT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "ADJUSTMENT_CODE",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "ADJUSTMENT_CODE",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DV_TRANSACTION_NAME",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_TRANSACTION_NAME",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "TRANSACTION_AI_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "TRANSACTION_AI_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "AI_INTENT_TYPE_CD",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "AI_INTENT_TYPE_CD",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DD_CISCO_BOOKED_DTM",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_CISCO_BOOKED_DTM",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DV_AR_TRX_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_AR_TRX_LINE_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "RSTD_DEL_RECORD_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "RSTD_DEL_RECORD_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DV_ANNUALIZED_US_NET_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_ANNUALIZED_US_NET_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DV_MULTIYEAR_US_NET_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_MULTIYEAR_US_NET_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "REVENUE_TRANSFER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "REVENUE_TRANSFER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "TRANSACTION_DATETIME",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "TRANSACTION_DATETIME",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "L1_SALES_TERRITORY_DESCR",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "L1_SALES_TERRITORY_DESCR",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SALES_REP_NUMBER",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_NUMBER_INT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BK_SALES_ADJ_NUMBER_INT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "ADJUSTMENT_TYPE_CODE",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "ADJUSTMENT_TYPE_CODE",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SERVICE_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SERVICE_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DV_REVENUE_RECOGNITION_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_REVENUE_RECOGNITION_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "CORPORATE_BOOKINGS_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "CORPORATE_BOOKINGS_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SUMMARY_QUOTE_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SUMMARY_QUOTE_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SERVICEORDERNUMBER",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SERVICEORDERNUMBER",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY_ID",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "PRODUCT_FAMILY_ID",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SERVICE_PROD_SUBGROUP_ID",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SERVICE_PROD_SUBGROUP_ID",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "GOODS_PRODUCT_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "GOODS_PRODUCT_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DV_NET_SPREAD_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_NET_SPREAD_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SERVICE_SKU",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SERVICE_SKU",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "RECORD_TYPE",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "RECORD_TYPE",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "PP_PID_PCT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "PID_PCT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "AR_TRX_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "AR_TRX_LINE_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "AR_TRX_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "AR_TRX_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "ADJUSTMENT_DESCR_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "ADJUSTMENT_DESCR_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "FRST_YR_ANNUAL_USD_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "FRST_YR_ANNUAL_USD_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "MULTI_YEAR_USD_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "MULTI_YEAR_USD_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "NON_RECUR_ONE_TM_CR_USD_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "NON_RECUR_ONE_TM_CR_USD_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "FIRST_YEAR_CREDIT_USD_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "FIRST_YEAR_CREDIT_USD_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "MULTI_YEAR_CREDIT_USD_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "MULTI_YEAR_CREDIT_USD_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID3"
+    },
+    {
+      "from_field": "DV_NET_SPREAD_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DV_NET_SPREAD_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SERVICE_SKU",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SERVICE_SKU",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "ADJUSTMENT_DESCR_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "ADJUSTMENT_DESCR_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "REVENUE_TRANSFER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "REVENUE_TRANSFER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "L1_SALES_TERRITORY_DESCR",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "L1_SALES_TERRITORY_DESCR",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SALES_REP_NUMBER",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_NUMBER_INT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "BK_SALES_ADJ_NUMBER_INT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "ADJUSTMENT_TYPE_CODE",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "ADJUSTMENT_TYPE_CODE",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SERVICE_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SERVICE_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_REVENUE_RECOGNITION_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DV_REVENUE_RECOGNITION_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "CORPORATE_BOOKINGS_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "CORPORATE_BOOKINGS_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "PP_PID_PCT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "PID_PCT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "TRANSACTION_DATETIME",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "TRANSACTION_DATETIME",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "TRADE_IN_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "TRADE_IN_AMOUNT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "TSS_BOOKINGS_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "TSS_BOOKINGS_AMOUNT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_COST_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DD_COMP_US_COST_AMOUNT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_EXTENDED_QUANTITY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DD_EXTENDED_QUANTITY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY_ID",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "PRODUCT_FAMILY_ID",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SERVICE_PROD_SUBGROUP_ID",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SERVICE_PROD_SUBGROUP_ID",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SUMMARY_QUOTE_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SUMMARY_QUOTE_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_ANNUALIZED_US_NET_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DV_ANNUALIZED_US_NET_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_MULTIYEAR_US_NET_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DV_MULTIYEAR_US_NET_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "TRANSACTION_AI_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "TRANSACTION_AI_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "AI_INTENT_TYPE_CD",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "AI_INTENT_TYPE_CD",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "FRST_YR_ANNUAL_USD_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "FRST_YR_ANNUAL_USD_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "MULTI_YEAR_USD_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "MULTI_YEAR_USD_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "NON_RECUR_ONE_TM_CR_USD_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "NON_RECUR_ONE_TM_CR_USD_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "FIRST_YEAR_CREDIT_USD_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "FIRST_YEAR_CREDIT_USD_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "MULTI_YEAR_CREDIT_USD_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "MULTI_YEAR_CREDIT_USD_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "GOODS_PRODUCT_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "GOODS_PRODUCT_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "GOODS_PRODUCT_ID",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "GOODS_PRODUCT_ID",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "QUOTE_NUMBER",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "QUOTE_NUMBER",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "ORDER_ALLOC_PCT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "ORDER_ALLOC_PCT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "QUOTE_ALLOC_PCT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "QUOTE_ALLOC_PCT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "RECORD_TYPE",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "RECORD_TYPE",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "AR_TRX_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "AR_TRX_LINE_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "AR_TRX_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "AR_TRX_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "WIPS_ORIGINATOR_ID_INT",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "ADJUSTMENT_CODE",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "ADJUSTMENT_CODE",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_TRANSACTION_NAME",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DV_TRANSACTION_NAME",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SERVICEORDERNUMBER",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "SERVICEORDERNUMBER",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_CISCO_BOOKED_DTM",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DD_CISCO_BOOKED_DTM",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DV_SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_AR_TRX_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "DV_AR_TRX_LINE_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "RSTD_DEL_RECORD_FLG",
+      "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID",
+      "to_field": "RSTD_DEL_RECORD_FLG",
+      "to_instance": "WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "WIPS_ORIGINATOR_ID_INT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "ADJUSTMENT_CODE",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "ADJUSTMENT_CODE",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DV_TRANSACTION_NAME",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_TRANSACTION_NAME",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SERVICEORDERNUMBER",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SERVICEORDERNUMBER",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DD_CISCO_BOOKED_DTM",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_CISCO_BOOKED_DTM",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DV_NET_SPREAD_FLG",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_NET_SPREAD_FLG",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DV_AR_TRX_LINE_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_AR_TRX_LINE_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "RSTD_DEL_RECORD_FLG",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "RSTD_DEL_RECORD_FLG",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SERVICE_SKU",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SERVICE_SKU",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SERVICE_FLG",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SERVICE_FLG",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DV_REVENUE_RECOGNITION_FLG",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_REVENUE_RECOGNITION_FLG",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "CORPORATE_BOOKINGS_FLG",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "CORPORATE_BOOKINGS_FLG",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "AR_TRX_LINE_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "AR_TRX_LINE_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "AR_TRX_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "AR_TRX_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SUMMARY_QUOTE_FLG",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SUMMARY_QUOTE_FLG",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "ADJUSTMENT_DESCR_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "ADJUSTMENT_DESCR_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "REVENUE_TRANSFER_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "REVENUE_TRANSFER_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "TRANSACTION_DATETIME",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "TRANSACTION_DATETIME",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "L1_SALES_TERRITORY_DESCR",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "L1_SALES_TERRITORY_DESCR",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SALES_REP_NUMBER",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "TRADE_IN_AMOUNT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "TRADE_IN_AMOUNT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_NUMBER_INT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "BK_SALES_ADJ_NUMBER_INT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "ADJUSTMENT_TYPE_CODE",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "ADJUSTMENT_TYPE_CODE",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DD_EXTENDED_QUANTITY",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_EXTENDED_QUANTITY",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DV_ANNUALIZED_US_NET_AMT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_ANNUALIZED_US_NET_AMT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DV_MULTIYEAR_US_NET_AMT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_MULTIYEAR_US_NET_AMT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "DD_COMP_US_COST_AMOUNT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_COST_AMOUNT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY_ID",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "PRODUCT_FAMILY_ID",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "SERVICE_PROD_SUBGROUP_ID",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "SERVICE_PROD_SUBGROUP_ID",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "TRANSACTION_AI_FLG",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "TRANSACTION_AI_FLG",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "AI_INTENT_TYPE_CD",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "AI_INTENT_TYPE_CD",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "FRST_YR_ANNUAL_USD_AMT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "FRST_YR_ANNUAL_USD_AMT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "MULTI_YEAR_USD_AMT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "MULTI_YEAR_USD_AMT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "NON_RECUR_ONE_TM_CR_USD_AMT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "NON_RECUR_ONE_TM_CR_USD_AMT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "FIRST_YEAR_CREDIT_USD_AMT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "FIRST_YEAR_CREDIT_USD_AMT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "MULTI_YEAR_CREDIT_USD_AMT",
+      "from_instance": "SQ_WI_PP_BOOKINGS_DATA",
+      "to_field": "MULTI_YEAR_CREDIT_USD_AMT",
+      "to_instance": "WI_PP_BOOKINGS_DATA1"
+    },
+    {
+      "from_field": "TOTAL_BOOKNGS_PSG",
+      "from_instance": "SQ_WI_PRIOR_HISTORY_DATA",
+      "to_field": "TOTAL_BOOKNGS_PSG",
+      "to_instance": "WI_PRIOR_HISTORY_DATA1"
+    },
+    {
+      "from_field": "SERVICEORDERNUMBER",
+      "from_instance": "SQ_WI_PRIOR_HISTORY_DATA",
+      "to_field": "SERVICEORDERNUMBER",
+      "to_instance": "WI_PRIOR_HISTORY_DATA1"
+    },
+    {
+      "from_field": "PSG",
+      "from_instance": "SQ_WI_PRIOR_HISTORY_DATA",
+      "to_field": "PSG",
+      "to_instance": "WI_PRIOR_HISTORY_DATA1"
+    },
+    {
+      "from_field": "PID",
+      "from_instance": "SQ_WI_PRIOR_HISTORY_DATA",
+      "to_field": "PID",
+      "to_instance": "WI_PRIOR_HISTORY_DATA1"
+    },
+    {
+      "from_field": "TOTAL_BOOKNGS_NPSG",
+      "from_instance": "SQ_WI_PRIOR_HISTORY_DATA",
+      "to_field": "TOTAL_BOOKNGS_NPSG",
+      "to_instance": "WI_PRIOR_HISTORY_DATA1"
+    },
+    {
+      "from_field": "PID_PSG_PCT",
+      "from_instance": "SQ_WI_PRIOR_HISTORY_DATA",
+      "to_field": "PID_PSG_PCT",
+      "to_instance": "WI_PRIOR_HISTORY_DATA1"
+    },
+    {
+      "from_field": "PID_NPSG_PCT",
+      "from_instance": "SQ_WI_PRIOR_HISTORY_DATA",
+      "to_field": "PID_NPSG_PCT",
+      "to_instance": "WI_PRIOR_HISTORY_DATA1"
+    },
+    {
+      "from_field": "NET_BOOKING",
+      "from_instance": "SQ_WI_PRIOR_HISTORY_DATA",
+      "to_field": "NET_BOOKING",
+      "to_instance": "WI_PRIOR_HISTORY_DATA1"
+    },
+    {
+      "from_field": "DV_NET_SPREAD_FLG",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_NET_SPREAD_FLG",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DV_MULTIYEAR_US_NET_AMT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_MULTIYEAR_US_NET_AMT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SERVICE_SKU",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SERVICE_SKU",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY_ID",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "PRODUCT_FAMILY_ID",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SERVICE_PROD_SUBGROUP_ID",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SERVICE_PROD_SUBGROUP_ID",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "AR_TRX_LINE_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "AR_TRX_LINE_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "AR_TRX_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "AR_TRX_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "ADJUSTMENT_DESCR_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "ADJUSTMENT_DESCR_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "REVENUE_TRANSFER_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "REVENUE_TRANSFER_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "TRANSACTION_DATETIME",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "TRANSACTION_DATETIME",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "L1_SALES_TERRITORY_DESCR",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "L1_SALES_TERRITORY_DESCR",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SALES_REP_NUMBER",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DV_ANNUALIZED_US_NET_AMT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_ANNUALIZED_US_NET_AMT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_NUMBER_INT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "BK_SALES_ADJ_NUMBER_INT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "ADJUSTMENT_TYPE_CODE",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "ADJUSTMENT_TYPE_CODE",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SERVICE_FLG",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SERVICE_FLG",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DV_REVENUE_RECOGNITION_FLG",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_REVENUE_RECOGNITION_FLG",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "CORPORATE_BOOKINGS_FLG",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "CORPORATE_BOOKINGS_FLG",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "TRADE_IN_AMOUNT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "TRADE_IN_AMOUNT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DD_COMP_US_COST_AMOUNT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_COST_AMOUNT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DD_EXTENDED_QUANTITY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_EXTENDED_QUANTITY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "WIPS_ORIGINATOR_ID_INT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "ADJUSTMENT_CODE",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "ADJUSTMENT_CODE",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DV_TRANSACTION_NAME",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_TRANSACTION_NAME",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SERVICEORDERNUMBER",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SERVICEORDERNUMBER",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DD_CISCO_BOOKED_DTM",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DD_CISCO_BOOKED_DTM",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "DV_AR_TRX_LINE_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "DV_AR_TRX_LINE_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "RSTD_DEL_RECORD_FLG",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "RSTD_DEL_RECORD_FLG",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SUMMARY_QUOTE_FLG",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SUMMARY_QUOTE_FLG",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "TRANSACTION_AI_FLG",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "TRANSACTION_AI_FLG",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "AI_INTENT_TYPE_CD",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "AI_INTENT_TYPE_CD",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "FRST_YR_ANNUAL_USD_AMT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "FRST_YR_ANNUAL_USD_AMT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "MULTI_YEAR_USD_AMT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "MULTI_YEAR_USD_AMT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "NON_RECUR_ONE_TM_CR_USD_AMT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "NON_RECUR_ONE_TM_CR_USD_AMT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "FIRST_YEAR_CREDIT_USD_AMT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "FIRST_YEAR_CREDIT_USD_AMT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "MULTI_YEAR_CREDIT_USD_AMT",
+      "from_instance": "WI_PP_BOOKINGS_DATA",
+      "to_field": "MULTI_YEAR_CREDIT_USD_AMT",
+      "to_instance": "SQ_WI_PP_BOOKINGS_DATA"
+    },
+    {
+      "from_field": "TRANSACTION_AI_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "TRANSACTION_AI_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "AI_INTENT_TYPE_CD",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "AI_INTENT_TYPE_CD",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SUMMARY_QUOTE_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SUMMARY_QUOTE_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "ADJUSTMENT_DESCR_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "ADJUSTMENT_DESCR_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SERVICE_PROD_SUBGROUP_ID",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SERVICE_PROD_SUBGROUP_ID",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "GOODS_PRODUCT_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "GOODS_PRODUCT_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "GOODS_PRODUCT_ID",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "GOODS_PRODUCT_ID",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "L1_SALES_TERRITORY_DESCR",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "L1_SALES_TERRITORY_DESCR",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SALES_REP_NUMBER",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_NUMBER_INT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "BK_SALES_ADJ_NUMBER_INT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "ADJUSTMENT_TYPE_CODE",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "ADJUSTMENT_TYPE_CODE",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SERVICE_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SERVICE_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DV_REVENUE_RECOGNITION_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DV_REVENUE_RECOGNITION_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "CORPORATE_BOOKINGS_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "CORPORATE_BOOKINGS_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "TRADE_IN_AMOUNT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "TRADE_IN_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "TSS_BOOKINGS_AMOUNT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "TSS_BOOKINGS_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DD_COMP_US_COST_AMOUNT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DD_COMP_US_COST_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DD_EXTENDED_QUANTITY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DD_EXTENDED_QUANTITY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DV_NET_SPREAD_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DV_NET_SPREAD_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "AR_TRX_LINE_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "AR_TRX_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "AR_TRX_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "AR_TRX_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "REVENUE_TRANSFER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "REVENUE_TRANSFER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "QUOTE_NUMBER",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "QUOTE_NUMBER",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "ORDER_ALLOC_PCT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "ORDER_ALLOC_PCT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "QUOTE_ALLOC_PCT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "QUOTE_ALLOC_PCT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "RECORD_TYPE",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "RECORD_TYPE",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SERVICE_SKU",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SERVICE_SKU",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY_ID",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "PRODUCT_FAMILY_ID",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "PID_PCT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "PP_PID_PCT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "WIPS_ORIGINATOR_ID_INT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "ADJUSTMENT_CODE",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "ADJUSTMENT_CODE",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DV_TRANSACTION_NAME",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DV_TRANSACTION_NAME",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SERVICEORDERNUMBER",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SERVICEORDERNUMBER",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DD_CISCO_BOOKED_DTM",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DD_CISCO_BOOKED_DTM",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DV_SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DV_AR_TRX_LINE_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DV_AR_TRX_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "RSTD_DEL_RECORD_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "RSTD_DEL_RECORD_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DV_ANNUALIZED_US_NET_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DV_ANNUALIZED_US_NET_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "DV_MULTIYEAR_US_NET_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "DV_MULTIYEAR_US_NET_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "TRANSACTION_DATETIME",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "TRANSACTION_DATETIME",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "FRST_YR_ANNUAL_USD_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "FRST_YR_ANNUAL_USD_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "MULTI_YEAR_USD_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "MULTI_YEAR_USD_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "NON_RECUR_ONE_TM_CR_USD_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "NON_RECUR_ONE_TM_CR_USD_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "FIRST_YEAR_CREDIT_USD_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "FIRST_YEAR_CREDIT_USD_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "MULTI_YEAR_CREDIT_USD_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2",
+      "to_field": "MULTI_YEAR_CREDIT_USD_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+    },
+    {
+      "from_field": "SERVICEORDERNUMBER",
+      "from_instance": "WI_PRIOR_HISTORY_DATA",
+      "to_field": "SERVICEORDERNUMBER",
+      "to_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+    },
+    {
+      "from_field": "PSG",
+      "from_instance": "WI_PRIOR_HISTORY_DATA",
+      "to_field": "PSG",
+      "to_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+    },
+    {
+      "from_field": "PID",
+      "from_instance": "WI_PRIOR_HISTORY_DATA",
+      "to_field": "PID",
+      "to_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+    },
+    {
+      "from_field": "TOTAL_BOOKNGS_PSG",
+      "from_instance": "WI_PRIOR_HISTORY_DATA",
+      "to_field": "TOTAL_BOOKNGS_PSG",
+      "to_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+    },
+    {
+      "from_field": "TOTAL_BOOKNGS_NPSG",
+      "from_instance": "WI_PRIOR_HISTORY_DATA",
+      "to_field": "TOTAL_BOOKNGS_NPSG",
+      "to_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+    },
+    {
+      "from_field": "PID_PSG_PCT",
+      "from_instance": "WI_PRIOR_HISTORY_DATA",
+      "to_field": "PID_PSG_PCT",
+      "to_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+    },
+    {
+      "from_field": "PID_NPSG_PCT",
+      "from_instance": "WI_PRIOR_HISTORY_DATA",
+      "to_field": "PID_NPSG_PCT",
+      "to_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+    },
+    {
+      "from_field": "NET_BOOKING",
+      "from_instance": "WI_PRIOR_HISTORY_DATA",
+      "to_field": "NET_BOOKING",
+      "to_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "TRANSACTION_AI_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "TRANSACTION_AI_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "GOODS_PRODUCT_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "GOODS_PRODUCT_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SERVICE_PROD_SUBGROUP_ID",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SERVICE_PROD_SUBGROUP_ID",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "GOODS_PRODUCT_ID",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "GOODS_PRODUCT_ID",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_NUMBER_INT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BK_SALES_ADJ_NUMBER_INT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "ADJUSTMENT_TYPE_CODE",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "ADJUSTMENT_TYPE_CODE",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_EXTENDED_QUANTITY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_EXTENDED_QUANTITY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "TSS_BOOKINGS_AMOUNT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "TSS_BOOKINGS_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_COST_AMOUNT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_COST_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "WIPS_ORIGINATOR_ID_INT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "ADJUSTMENT_CODE",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "ADJUSTMENT_CODE",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_TRANSACTION_NAME",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_TRANSACTION_NAME",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "FRST_YR_ANNUAL_USD_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "FRST_YR_ANNUAL_USD_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "MULTI_YEAR_USD_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "MULTI_YEAR_USD_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "NON_RECUR_ONE_TM_CR_USD_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "NON_RECUR_ONE_TM_CR_USD_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "FIRST_YEAR_CREDIT_USD_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "FIRST_YEAR_CREDIT_USD_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "MULTI_YEAR_CREDIT_USD_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "MULTI_YEAR_CREDIT_USD_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SERVICEORDERNUMBER",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SERVICEORDERNUMBER",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DD_CISCO_BOOKED_DTM",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DD_CISCO_BOOKED_DTM",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_AR_TRX_LINE_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_AR_TRX_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "RSTD_DEL_RECORD_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "RSTD_DEL_RECORD_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_NET_SPREAD_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_NET_SPREAD_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SERVICE_SKU",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SERVICE_SKU",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY_ID",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "PRODUCT_FAMILY_ID",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SUMMARY_QUOTE_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SUMMARY_QUOTE_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SERVICE_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SERVICE_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_REVENUE_RECOGNITION_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_REVENUE_RECOGNITION_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "CORPORATE_BOOKINGS_FLG",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "CORPORATE_BOOKINGS_FLG",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "TRADE_IN_AMOUNT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "TRADE_IN_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "AR_TRX_LINE_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "AR_TRX_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "AR_TRX_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "AR_TRX_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "QUOTE_NUMBER",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "QUOTE_NUMBER",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "ORDER_ALLOC_PCT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "ORDER_ALLOC_PCT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "QUOTE_ALLOC_PCT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "QUOTE_ALLOC_PCT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "RECORD_TYPE",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "RECORD_TYPE",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "PID_PCT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "PP_PID_PCT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "ADJUSTMENT_DESCR_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "ADJUSTMENT_DESCR_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "REVENUE_TRANSFER_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "REVENUE_TRANSFER_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "TRANSACTION_DATETIME",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "TRANSACTION_DATETIME",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_ANNUALIZED_US_NET_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_ANNUALIZED_US_NET_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_MULTIYEAR_US_NET_AMT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_MULTIYEAR_US_NET_AMT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "L1_SALES_TERRITORY_DESCR",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "L1_SALES_TERRITORY_DESCR",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "SALES_REP_NUMBER",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    },
+    {
+      "from_field": "AI_INTENT_TYPE_CD",
+      "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1",
+      "to_field": "AI_INTENT_TYPE_CD",
+      "to_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SERVICEORDERNUMBER",
+      "source_path": [
+        {
+          "from_field": "SERVICEORDERNUMBER",
+          "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID1"
+        },
+        {
+          "from_field": "SERVICEORDERNUMBER",
+          "from_instance": "SQ_WI_SERVICE_BOOKINGS_BY_PID"
+        },
+        {
+          "from_field": "SERVICEORDERNUMBER",
+          "from_instance": "SQ_WI_PP_BOOKINGS_DATA"
+        },
+        {
+          "from_field": "SERVICEORDERNUMBER",
+          "from_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+        },
+        {
+          "from_field": "SERVICEORDERNUMBER",
+          "from_instance": "WI_PP_BOOKINGS_DATA"
+        },
+        {
+          "from_field": "SERVICEORDERNUMBER",
+          "from_instance": "WI_SERVICE_BOOKINGS_BY_PID2"
+        },
+        {
+          "from_field": "SERVICEORDERNUMBER",
+          "from_instance": "WI_PRIOR_HISTORY_DATA"
+        },
+        {
+          "from_field": "SERVICEORDERNUMBER",
+          "from_instance": "WI_SERVICE_BOOKINGS_BY_PID1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PSG",
+      "source_path": [
+        {
+          "from_field": "PSG",
+          "from_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+        },
+        {
+          "from_field": "PSG",
+          "from_instance": "WI_PRIOR_HISTORY_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PID",
+      "source_path": [
+        {
+          "from_field": "PID",
+          "from_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+        },
+        {
+          "from_field": "PID",
+          "from_instance": "WI_PRIOR_HISTORY_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NET_BOOKING",
+      "source_path": [
+        {
+          "from_field": "NET_BOOKING",
+          "from_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+        },
+        {
+          "from_field": "NET_BOOKING",
+          "from_instance": "WI_PRIOR_HISTORY_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TOTAL_BOOKNGS_PSG",
+      "source_path": [
+        {
+          "from_field": "TOTAL_BOOKNGS_PSG",
+          "from_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+        },
+        {
+          "from_field": "TOTAL_BOOKNGS_PSG",
+          "from_instance": "WI_PRIOR_HISTORY_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TOTAL_BOOKNGS_NPSG",
+      "source_path": [
+        {
+          "from_field": "TOTAL_BOOKNGS_NPSG",
+          "from_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+        },
+        {
+          "from_field": "TOTAL_BOOKNGS_NPSG",
+          "from_instance": "WI_PRIOR_HISTORY_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PID_PSG_PCT",
+      "source_path": [
+        {
+          "from_field": "PID_PSG_PCT",
+          "from_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+        },
+        {
+          "from_field": "PID_PSG_PCT",
+          "from_instance": "WI_PRIOR_HISTORY_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PID_NPSG_PCT",
+      "source_path": [
+        {
+          "from_field": "PID_NPSG_PCT",
+          "from_instance": "SQ_WI_PRIOR_HISTORY_DATA"
+        },
+        {
+          "from_field": "PID_NPSG_PCT",
+          "from_instance": "WI_PRIOR_HISTORY_DATA"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:12.600122+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

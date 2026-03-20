@@ -1,0 +1,105 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_st_ccrm_profile_eoa', 'batch', 'edwtd_ngccrm'],
+    meta={
+        'source_workflow': 'wf_m_ST_CCRM_PROFILE_EOA',
+        'target_table': 'FF_CCRM_PROFILES',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:46.760856+00:00'
+    }
+) }}
+
+WITH 
+
+source_ff_ccrm_profile_eoa AS (
+    SELECT
+        batch_id,
+        eoa_id,
+        profile_id,
+        fiscal_period,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        eoa_type,
+        reason_code,
+        comments,
+        current_datetime,
+        action_code
+    FROM {{ source('raw', 'ff_ccrm_profile_eoa') }}
+),
+
+final AS (
+    SELECT
+        batch_id,
+        profile_id,
+        global_deal_id,
+        completeness_flag,
+        profile_status,
+        primary_reserve_type,
+        prime_flag,
+        agreement_name,
+        cust_id,
+        partner_name,
+        fiscal_period,
+        start_period,
+        legal_contact,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        last_erp_update_date,
+        version,
+        first_install_date,
+        rm_email_id,
+        profile_source,
+        profile_type,
+        theater_id,
+        area_id,
+        revrec_status,
+        corporate_flag,
+        deferral_net_value,
+        forecast_invalid_flag,
+        customer_id,
+        customer_name,
+        legacy_flag,
+        forecast_submit_flag,
+        fcst_last_updated_by,
+        fcst_last_update_date,
+        merged_flag,
+        profile_catg,
+        discriminator,
+        systematic_hold,
+        defer_percent,
+        assigned_on,
+        category_cd,
+        cogs_impact,
+        operating_unit,
+        sales_segment,
+        accounting_rule,
+        join_deal,
+        deal_exp_date,
+        global,
+        originating_local,
+        origin_dl_pro_created,
+        originating_profile_id,
+        originating_deal_id,
+        reference_id,
+        reference_name,
+        reference_value,
+        reopen_reason_code,
+        ack_profile_status,
+        accrule_updated_by,
+        transaction_level,
+        revenue_rule,
+        sales_insen_prog,
+        exp_rev_reg_date,
+        ns_term_summary,
+        profile_status_date,
+        current_datetime,
+        action_code
+    FROM source_ff_ccrm_profile_eoa
+)
+
+SELECT * FROM final

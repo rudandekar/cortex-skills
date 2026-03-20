@@ -1,0 +1,156 @@
+{{ config(
+    materialized='view',
+    schema='',
+    tags=['wf_m_cg1_xxscm_dv_otm_delv_ib_iface', 'batch', 'edwtd_batch_accum'],
+    meta={
+        'source_workflow': 'wf_m_CG1_XXSCM_DV_OTM_DELV_IB_IFACE',
+        'target_table': 'STG_CG1_XXSCM_DV_OTM_DELV_IB_I',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:22:00.735211+00:00'
+    }
+) }}
+
+WITH 
+
+source_stg_cg1_xxscm_dv_otm_delv_ib_i AS (
+    SELECT
+        plan_seq_id,
+        delivery_id,
+        release_weight,
+        freight_charge,
+        assignment_status,
+        last_updated_by,
+        last_update_date,
+        created_by,
+        creation_date,
+        request_id,
+        program_id,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        source_dml_type,
+        trail_file_name,
+        source_commit_time,
+        refresh_datetime
+    FROM {{ source('raw', 'stg_cg1_xxscm_dv_otm_delv_ib_i') }}
+),
+
+source_cg1_xxscm_dv_otm_delv_ib_iface AS (
+    SELECT
+        source_dml_type,
+        fully_qualified_table_name,
+        source_commit_time,
+        refresh_datetime,
+        trail_position,
+        token,
+        plan_seq_id,
+        delivery_id,
+        release_weight,
+        freight_charge,
+        assignment_status,
+        last_updated_by,
+        last_update_date,
+        created_by,
+        creation_date,
+        request_id,
+        program_id,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15
+    FROM {{ source('raw', 'cg1_xxscm_dv_otm_delv_ib_iface') }}
+),
+
+transformed_exp_cg1_xxscm_dv_otm_delv_ib_iface AS (
+    SELECT
+    source_dml_type,
+    source_commit_time,
+    refresh_datetime,
+    plan_seq_id,
+    delivery_id,
+    release_weight,
+    freight_charge,
+    assignment_status,
+    last_updated_by,
+    last_update_date,
+    created_by,
+    creation_date,
+    request_id,
+    program_id,
+    attribute1,
+    attribute2,
+    attribute3,
+    attribute4,
+    attribute5,
+    attribute6,
+    attribute7,
+    attribute8,
+    attribute9,
+    attribute10,
+    attribute11,
+    attribute12,
+    attribute13,
+    attribute14,
+    attribute15
+    FROM source_cg1_xxscm_dv_otm_delv_ib_iface
+),
+
+final AS (
+    SELECT
+        plan_seq_id,
+        delivery_id,
+        release_weight,
+        freight_charge,
+        assignment_status,
+        last_updated_by,
+        last_update_date,
+        created_by,
+        creation_date,
+        request_id,
+        program_id,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        source_dml_type,
+        trail_file_name,
+        source_commit_time,
+        refresh_datetime
+    FROM transformed_exp_cg1_xxscm_dv_otm_delv_ib_iface
+)
+
+SELECT * FROM final

@@ -1,0 +1,156 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_ff_ood_fusn_ra_customer_trx_all', 'batch', 'edwtd_ood'],
+    meta={
+        'source_workflow': 'wf_m_FF_OOD_FUSN_RA_CUSTOMER_TRX_ALL',
+        'target_table': 'FF_OOD_FUSN_RA_CUSTOMER_TRX_ALL',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:44.000888+00:00'
+    }
+) }}
+
+WITH 
+
+source_saas_ra_customer_trx_all AS (
+    SELECT
+        xpk_root,
+        xpk_ra_cust_trx,
+        fk_root,
+        attribute10,
+        batch_source_id,
+        bill_to_customer_number,
+        bill_to_location_number,
+        creation_date,
+        last_update_date,
+        complete_flag,
+        customer_trx_id,
+        cust_trx_type_id,
+        interface_header_attribute1,
+        interface_header_attribute10,
+        interface_header_attribute11,
+        interface_header_attribute9,
+        interface_header_context,
+        invoice_currency_code,
+        invoicing_rule_id,
+        org_id,
+        previous_customer_trx_id,
+        purchase_order,
+        reason_code,
+        request_id,
+        set_of_books_id,
+        ship_to_customer_number,
+        ship_to_location_number,
+        sold_to_customer_number,
+        term_id,
+        trx_date,
+        trx_number,
+        interface_header_attribute6,
+        bill_to_customer_id,
+        ship_to_customer_id,
+        bill_to_site_use_id,
+        ship_to_site_use_id,
+        exchange_rate,
+        exchange_date,
+        deal_id,
+        split_key
+    FROM {{ source('raw', 'saas_ra_customer_trx_all') }}
+),
+
+xml_parsed_xmldsq_saas_ra_customer_trx_all AS (
+    SELECT
+        src.*,
+        xml_record.VALUE AS xml_content
+    FROM source_saas_ra_customer_trx_all src,
+    LATERAL FLATTEN(INPUT => PARSE_XML(src.xml_data):"root") xml_record
+),
+
+transformed_exp_fusn_ra_customer_trx_all AS (
+    SELECT
+    attribute10,
+    batch_source_id,
+    bill_to_customer_number,
+    bill_to_location_number,
+    creation_date,
+    last_update_date,
+    complete_flag,
+    customer_trx_id,
+    cust_trx_type_id,
+    interface_header_attribute1,
+    interface_header_attribute10,
+    interface_header_attribute11,
+    interface_header_attribute9,
+    interface_header_context,
+    invoice_currency_code,
+    invoicing_rule_id,
+    org_id,
+    previous_customer_trx_id,
+    purchase_order,
+    reason_code,
+    request_id,
+    set_of_books_id,
+    ship_to_customer_number,
+    ship_to_location_number,
+    sold_to_customer_number,
+    term_id,
+    trx_date,
+    trx_number,
+    interface_header_attribute6,
+    bill_to_customer_id,
+    ship_to_customer_id,
+    bill_to_site_use_id,
+    ship_to_site_use_id,
+    exchange_rate,
+    exchange_date,
+    deal_id,
+    split_key,
+    CURRENT_TIMESTAMP() AS create_datetime,
+    'I' AS action_code
+    FROM xml_parsed_xmldsq_saas_ra_customer_trx_all
+),
+
+final AS (
+    SELECT
+        attribute10,
+        batch_source_id,
+        bill_to_customer_number,
+        bill_to_location_number,
+        creation_date,
+        last_update_date,
+        complete_flag,
+        customer_trx_id,
+        cust_trx_type_id,
+        interface_header_attribute1,
+        interface_header_attribute10,
+        interface_header_attribute11,
+        interface_header_attribute9,
+        interface_header_context,
+        invoice_currency_code,
+        invoicing_rule_id,
+        org_id,
+        previous_customer_trx_id,
+        purchase_order,
+        reason_code,
+        request_id,
+        set_of_books_id,
+        ship_to_customer_number,
+        ship_to_location_number,
+        sold_to_customer_number,
+        term_id,
+        trx_date,
+        trx_number,
+        interface_header_attribute6,
+        bill_to_customer_id,
+        ship_to_customer_id,
+        bill_to_site_use_id,
+        ship_to_site_use_id,
+        exchange_rate,
+        exchange_date,
+        deal_id,
+        split_key,
+        create_datetime,
+        action_code
+    FROM transformed_exp_fusn_ra_customer_trx_all
+)
+
+SELECT * FROM final

@@ -1,0 +1,216 @@
+{
+  "workflow_name": "wf_m_WI_CCM_SRVC_CONTRACT_CH_FLG",
+  "mapping_name": "m_WI_CCM_SRVC_CONTRACT_CH_FLG",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_CCM_SRVC_CONTRACT_CH_FLG",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_ccm_srvc_contract_ch_flg_01_mart_wi_ccm_srvc_contract_ch_flg",
+  "source_tables": [
+    "WI_CCM_SRVC_CONTRACT_CH_FLG",
+    "WI_CCM_SRVC_CONTRACT"
+  ],
+  "sources": [
+    {
+      "name": "WI_CCM_SRVC_CONTRACT_CH_FLG",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CHANNEL_BOOKINGS_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_CCM_SRVC_CONTRACT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_CCM_SRVC_CONTRACT_CH_FLG",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "CHANNEL_BOOKINGS_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_1_WI_CCM_SRVC_CONTRACT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT SRC_RPTD_SERVICE_CONTARCT_NUM \r\nFROM $$FINLGLVWDB.MT_SR_SSC_COST_MEASURE WHERE FISCAL_YEAR_MONTH_INT  IN (SELECT TARGET_FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_COGS_RTM_MTH_CNTL GROUP BY 1)\r\nGROUP BY 1\r\nUNION\r\nSELECT SRC_RPTD_SERVICE_CONTARCT_NUM \r\nFROM $$FINLGLVWDB.MT_SR_TAC_COST_MEASURE WHERE FISCAL_YEAR_MONTH_INT IN  (SELECT TARGET_FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_COGS_RTM_MTH_CNTL GROUP BY 1) \r\nGROUP BY 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_2_WI_CCM_SRVC_CONTRACT_CH_FLG",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_BOOKINGS_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\tNBM.SRC_RPTD_SERVICE_CONTARCT_NUM,\r\n\tCHFLG.CHANNEL_BOOKINGS_FLG CHANNEL_BOOKINGS_FLG\r\n\tFROM  \r\n\t$$STGDB.WI_CCM_SRVC_CONTRACT NBM\r\n\tINNER JOIN \r\n\t(\r\n\tSELECT \r\n\tSOLTV.RU_SERVICE_CONTRACT_NUMBER  AS SERVICE_CONTRACT ,\r\n\tNBCM.CHANNEL_BOOKINGS_FLG\r\n\tFROM \r\n\t$$SLSORDVWDB.N_BKGS_MEASURE NB \r\n\r\n\tINNER JOIN  $$SLSORDVWDB.N_BKGS_CHNL_MEASURE NBCM\r\n\tON  NB.BKGS_MEASURE_TRANS_TYPE_CODE  = NBCM.BKGS_MEASURE_TRANS_TYPE_CODE\r\n\tAND NB.BOOKINGS_MEASURE_KEY          = NBCM.BOOKINGS_MEASURE_KEY\r\n\tAND NB.BOOKINGS_PROCESS_DATE         = NBCM.BOOKINGS_PROCESS_DATE\t \r\n\r\n\tINNER JOIN   (SELECT SOLTV_IN.SALES_ORDER_LINE_KEY,SOLTV_IN.RU_SERVICE_CONTRACT_NUMBER \r\n\tFROM $$SLSORDVWDB.N_SALES_ORDER_LINE_TV   SOLTV_IN\r\n\tINNER JOIN $$STGDB.WI_CCM_SRVC_CONTRACT NBM_IN\r\n\tON NBM_IN.SRC_RPTD_SERVICE_CONTARCT_NUM=SOLTV_IN.RU_SERVICE_CONTRACT_NUMBER\r\n\tGROUP BY 1,2) SOLTV\r\n\tON SOLTV.SALES_ORDER_LINE_KEY = NB.SALES_ORDER_LINE_KEY\r\n\r\n\tINNER JOIN $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR FD\r\n\tON NB.BOOKINGS_PROCESS_DATE = FD.CALENDAR_DATE\r\n\r\n\tINNER JOIN (SELECT DRIVER_FISCAL_YEAR_MONTH_INT,CURRENT_FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_COGS_RTM_MTH_CNTL GROUP BY 1,2)CNTL\r\n\tON FD.FISCAL_YEAR_MONTH_INT BETWEEN CNTL.DRIVER_FISCAL_YEAR_MONTH_INT AND CNTL.CURRENT_FISCAL_YEAR_MONTH_INT\r\n\r\n\r\n\tWHERE   NB.BKGS_MEASURE_TRANS_TYPE_CODE IN ('ERP','AR')\r\n\t/*AND FD.FISCAL_YEAR_MONTH_INT  BETWEEN 201301 and 201609 */\r\n\r\n\tGROUP BY \r\n\t1,2\r\n\tQUALIFY \r\n\tCOUNT (NBCM.CHANNEL_BOOKINGS_FLG) OVER (PARTITION BY SERVICE_CONTRACT)  =1\r\n\t) CHFLG   \r\n\tON NBM.SRC_RPTD_SERVICE_CONTARCT_NUM =  CHFLG.SERVICE_CONTRACT",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "from_instance": "SQ_1_WI_CCM_SRVC_CONTRACT",
+      "to_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "to_instance": "WI_CCM_SRVC_CONTRACT1"
+    },
+    {
+      "from_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "from_instance": "SQ_2_WI_CCM_SRVC_CONTRACT_CH_FLG",
+      "to_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "to_instance": "WI_CCM_SRVC_CONTRACT_CH_FLG"
+    },
+    {
+      "from_field": "CHANNEL_BOOKINGS_FLG",
+      "from_instance": "SQ_2_WI_CCM_SRVC_CONTRACT_CH_FLG",
+      "to_field": "CHANNEL_BOOKINGS_FLG",
+      "to_instance": "WI_CCM_SRVC_CONTRACT_CH_FLG"
+    },
+    {
+      "from_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "from_instance": "WI_CCM_SRVC_CONTRACT_CH_FLG1",
+      "to_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "to_instance": "SQ_2_WI_CCM_SRVC_CONTRACT_CH_FLG"
+    },
+    {
+      "from_field": "CHANNEL_BOOKINGS_FLG",
+      "from_instance": "WI_CCM_SRVC_CONTRACT_CH_FLG1",
+      "to_field": "CHANNEL_BOOKINGS_FLG",
+      "to_instance": "SQ_2_WI_CCM_SRVC_CONTRACT_CH_FLG"
+    },
+    {
+      "from_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "from_instance": "WI_CCM_SRVC_CONTRACT",
+      "to_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "to_instance": "SQ_1_WI_CCM_SRVC_CONTRACT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "source_path": [
+        {
+          "from_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+          "from_instance": "SQ_1_WI_CCM_SRVC_CONTRACT"
+        },
+        {
+          "from_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+          "from_instance": "SQ_2_WI_CCM_SRVC_CONTRACT_CH_FLG"
+        },
+        {
+          "from_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+          "from_instance": "WI_CCM_SRVC_CONTRACT_CH_FLG1"
+        },
+        {
+          "from_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+          "from_instance": "WI_CCM_SRVC_CONTRACT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CHANNEL_BOOKINGS_FLG",
+      "source_path": [
+        {
+          "from_field": "CHANNEL_BOOKINGS_FLG",
+          "from_instance": "SQ_2_WI_CCM_SRVC_CONTRACT_CH_FLG"
+        },
+        {
+          "from_field": "CHANNEL_BOOKINGS_FLG",
+          "from_instance": "WI_CCM_SRVC_CONTRACT_CH_FLG1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:27.679503+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

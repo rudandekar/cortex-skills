@@ -1,0 +1,537 @@
+{
+  "workflow_name": "wf_m_ST_INT_DEAL_REOPEN_REASON_RNWL_KFKA",
+  "mapping_name": "m_ST_INT_DEAL_REOPEN_REASON_RNWL_KFKA",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "ST_INT_DEAL_REOPEN_REASON_RNWL2",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_st_int_deal_reopen_reason_rnwl_kfka_01_int_st_int_deal_reopen_reason_rnwl2",
+  "source_tables": [
+    "EL_INT_DEAL_REOPN_REASON_RNWL_KAFKA_1"
+  ],
+  "sources": [
+    {
+      "name": "EL_INT_DEAL_REOPN_REASON_RNWL_KAFKA_1",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_DV1",
+      "fields": [
+        {
+          "name": "DEAL_OBJECT_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REOPEN_REASON",
+          "datatype": "varchar",
+          "precision": "500",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "256",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_ON",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "varchar",
+          "precision": "256",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_ON",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATED_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_BY_KAFKA",
+          "datatype": "varchar",
+          "precision": "256",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_ON_KAFKA",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OFFSET_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "varchar",
+          "precision": "256",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTITION_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MESSAGE_SEQUENCE_NUMBER",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_INT_DEAL_REOPEN_REASON_RNWL2",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "DEAL_OBJECT_ID",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REOPEN_REASON",
+        "datatype": "varchar",
+        "precision": "500",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "varchar",
+        "precision": "256",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_ON",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATED_BY",
+        "datatype": "varchar",
+        "precision": "256",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATED_ON",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATED_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DEAL_OBJECT_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REOPEN_REASON",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_ON",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_ON",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_BY_KAFKA",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_ON_KAFKA",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OFFSET_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTITION_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MESSAGE_SEQUENCE_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nDEAL_OBJECT_ID,\r\nREOPEN_REASON,\r\nEDW_CREATE_USER,\r\nEDW_CREATE_DTM,\r\nEDW_UPDATE_USER,\r\nEDW_UPDATED_DATE AS UPDATED_ON,\r\nEDW_UPDATED_DATE\r\nFROM\r\n$$ETLVWDB.EL_INT_DEAL_REOPN_REASON_RNWL_KFKA EL\r\nWhere EL.EDW_CREATE_DTM >= (SELECT LAST_EXTRACT_DATE FROM $$ETLVWDB.DW_JOB_STREAMS\r\nwhere JOB_STREAM_ID='wf_ST_INT_DEAL_REOPEN_REASON_RNWL_KFKA')",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "DEAL_OBJECT_ID",
+      "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "DEAL_OBJECT_ID",
+      "to_instance": "ST_INT_DEAL_REOPEN_REASON_RNWL"
+    },
+    {
+      "from_field": "REOPEN_REASON",
+      "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "REOPEN_REASON",
+      "to_instance": "ST_INT_DEAL_REOPEN_REASON_RNWL"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "CREATED_BY",
+      "to_instance": "ST_INT_DEAL_REOPEN_REASON_RNWL"
+    },
+    {
+      "from_field": "CREATED_ON",
+      "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "CREATED_ON",
+      "to_instance": "ST_INT_DEAL_REOPEN_REASON_RNWL"
+    },
+    {
+      "from_field": "UPDATED_BY",
+      "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "UPDATED_BY",
+      "to_instance": "ST_INT_DEAL_REOPEN_REASON_RNWL"
+    },
+    {
+      "from_field": "UPDATED_ON",
+      "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "UPDATED_ON",
+      "to_instance": "ST_INT_DEAL_REOPEN_REASON_RNWL"
+    },
+    {
+      "from_field": "EDW_UPDATED_DATE",
+      "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "EDW_UPDATED_DATE",
+      "to_instance": "ST_INT_DEAL_REOPEN_REASON_RNWL"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "DEAL_OBJECT_ID",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "DEAL_OBJECT_ID",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "REOPEN_REASON",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "REOPEN_REASON",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "CREATED_ON",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "CREATED_ON",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "UPDATED_BY",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "UPDATED_BY",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "UPDATED_ON",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "UPDATED_ON",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "EDW_UPDATED_DATE",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "EDW_UPDATED_DATE",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "UPDATED_BY_KAFKA",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "UPDATED_BY_KAFKA",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "UPDATED_ON_KAFKA",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "UPDATED_ON_KAFKA",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "OFFSET_NUMBER",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "OFFSET_NUMBER",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "MESSAGE_SEQUENCE_NUMBER",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "MESSAGE_SEQUENCE_NUMBER",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    },
+    {
+      "from_field": "PARTITION_NUMBER",
+      "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA",
+      "to_field": "PARTITION_NUMBER",
+      "to_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "DEAL_OBJECT_ID",
+      "source_path": [
+        {
+          "from_field": "DEAL_OBJECT_ID",
+          "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        },
+        {
+          "from_field": "DEAL_OBJECT_ID",
+          "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REOPEN_REASON",
+      "source_path": [
+        {
+          "from_field": "REOPEN_REASON",
+          "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        },
+        {
+          "from_field": "REOPEN_REASON",
+          "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_ON",
+      "source_path": [
+        {
+          "from_field": "CREATED_ON",
+          "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        },
+        {
+          "from_field": "CREATED_ON",
+          "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATED_BY",
+      "source_path": [
+        {
+          "from_field": "UPDATED_BY",
+          "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        },
+        {
+          "from_field": "UPDATED_BY",
+          "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATED_ON",
+      "source_path": [
+        {
+          "from_field": "UPDATED_ON",
+          "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        },
+        {
+          "from_field": "UPDATED_ON",
+          "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATED_DATE",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATED_DATE",
+          "from_instance": "SQ_EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        },
+        {
+          "from_field": "EDW_UPDATED_DATE",
+          "from_instance": "EL_INT_DEAL_REOPN_REASON_RNWL_KFKA"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:26:47.534311+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

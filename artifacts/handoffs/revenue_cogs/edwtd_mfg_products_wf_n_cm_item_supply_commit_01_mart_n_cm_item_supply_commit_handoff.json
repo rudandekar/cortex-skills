@@ -1,0 +1,609 @@
+{
+  "workflow_name": "wf_m_N_CM_ITEM_SUPPLY_COMMIT",
+  "mapping_name": "m_N_CM_ITEM_SUPPLY_COMMIT",
+  "mapping_description": "This ETL mapping extracts data from W_CM_ITEM_SUPPLY_COMMIT table from Work table to 3NF table - Supply Chain data stream",
+  "folder_name": "EDWTD_MFG_PRODUCTS",
+  "target_table": "N_CM_ITEM_SUPPLY_COMMIT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_mfg_products_wf_n_cm_item_supply_commit_01_mart_n_cm_item_supply_commit",
+  "source_tables": [
+    "W_CM_ITEM_SUPPLY_COMMIT"
+  ],
+  "sources": [
+    {
+      "name": "W_CM_ITEM_SUPPLY_COMMIT",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV1",
+      "fields": [
+        {
+          "name": "ITEM_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INVENTORY_ORGN_NAME_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SUPPLY_COMMIT_PLANNED_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SUPPLY_COMMIT_START_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SUPPLY_COMMIT_END_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMIT_MESSAGE_TXT",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMITTED_ITEM_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PIP_INVENTORY_ORG_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_CM_ITEM_SUPPLY_COMMIT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ITEM_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "INVENTORY_ORGN_NAME_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_SUPPLY_COMMIT_PLANNED_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SUPPLY_COMMIT_START_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SUPPLY_COMMIT_END_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMMIT_MESSAGE_TXT",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMMITTED_ITEM_QTY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PIP_INVENTORY_ORG_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "Sq_W_CM_ITEM_SUPPLY_COMMIT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_SUPPLY_COMMIT_PLANNED_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMIT_MESSAGE_TXT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PIP_INVENTORY_ORG_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMITTED_ITEM_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUPPLY_COMMIT_START_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUPPLY_COMMIT_END_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_ORGN_NAME_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ITEM_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "W_CM_ITEM_SUPPLY_COMMIT.DML_TYPE='I'",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "INVENTORY_ORGN_NAME_KEY",
+      "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "INVENTORY_ORGN_NAME_KEY",
+      "to_instance": "N_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "ITEM_KEY",
+      "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "ITEM_KEY",
+      "to_instance": "N_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "BK_SUPPLY_COMMIT_PLANNED_DT",
+      "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "BK_SUPPLY_COMMIT_PLANNED_DT",
+      "to_instance": "N_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "COMMIT_MESSAGE_TXT",
+      "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "COMMIT_MESSAGE_TXT",
+      "to_instance": "N_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "PIP_INVENTORY_ORG_KEY",
+      "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "PIP_INVENTORY_ORG_KEY",
+      "to_instance": "N_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "COMMITTED_ITEM_QTY",
+      "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "COMMITTED_ITEM_QTY",
+      "to_instance": "N_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "SUPPLY_COMMIT_START_DT",
+      "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "SUPPLY_COMMIT_START_DT",
+      "to_instance": "N_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "SUPPLY_COMMIT_END_DT",
+      "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "SUPPLY_COMMIT_END_DT",
+      "to_instance": "N_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "BK_SUPPLY_COMMIT_PLANNED_DT",
+      "from_instance": "W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "BK_SUPPLY_COMMIT_PLANNED_DT",
+      "to_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "COMMIT_MESSAGE_TXT",
+      "from_instance": "W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "COMMIT_MESSAGE_TXT",
+      "to_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "PIP_INVENTORY_ORG_KEY",
+      "from_instance": "W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "PIP_INVENTORY_ORG_KEY",
+      "to_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "COMMITTED_ITEM_QTY",
+      "from_instance": "W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "COMMITTED_ITEM_QTY",
+      "to_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "SUPPLY_COMMIT_START_DT",
+      "from_instance": "W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "SUPPLY_COMMIT_START_DT",
+      "to_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "SUPPLY_COMMIT_END_DT",
+      "from_instance": "W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "SUPPLY_COMMIT_END_DT",
+      "to_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "INVENTORY_ORGN_NAME_KEY",
+      "from_instance": "W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "INVENTORY_ORGN_NAME_KEY",
+      "to_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "ITEM_KEY",
+      "from_instance": "W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "ITEM_KEY",
+      "to_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "DML_TYPE",
+      "to_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "W_CM_ITEM_SUPPLY_COMMIT",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ITEM_KEY",
+      "source_path": [
+        {
+          "from_field": "ITEM_KEY",
+          "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+        },
+        {
+          "from_field": "ITEM_KEY",
+          "from_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INVENTORY_ORGN_NAME_KEY",
+      "source_path": [
+        {
+          "from_field": "INVENTORY_ORGN_NAME_KEY",
+          "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+        },
+        {
+          "from_field": "INVENTORY_ORGN_NAME_KEY",
+          "from_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SUPPLY_COMMIT_PLANNED_DT",
+      "source_path": [
+        {
+          "from_field": "BK_SUPPLY_COMMIT_PLANNED_DT",
+          "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+        },
+        {
+          "from_field": "BK_SUPPLY_COMMIT_PLANNED_DT",
+          "from_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SUPPLY_COMMIT_START_DT",
+      "source_path": [
+        {
+          "from_field": "SUPPLY_COMMIT_START_DT",
+          "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+        },
+        {
+          "from_field": "SUPPLY_COMMIT_START_DT",
+          "from_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SUPPLY_COMMIT_END_DT",
+      "source_path": [
+        {
+          "from_field": "SUPPLY_COMMIT_END_DT",
+          "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+        },
+        {
+          "from_field": "SUPPLY_COMMIT_END_DT",
+          "from_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMMIT_MESSAGE_TXT",
+      "source_path": [
+        {
+          "from_field": "COMMIT_MESSAGE_TXT",
+          "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+        },
+        {
+          "from_field": "COMMIT_MESSAGE_TXT",
+          "from_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMMITTED_ITEM_QTY",
+      "source_path": [
+        {
+          "from_field": "COMMITTED_ITEM_QTY",
+          "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+        },
+        {
+          "from_field": "COMMITTED_ITEM_QTY",
+          "from_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PIP_INVENTORY_ORG_KEY",
+      "source_path": [
+        {
+          "from_field": "PIP_INVENTORY_ORG_KEY",
+          "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+        },
+        {
+          "from_field": "PIP_INVENTORY_ORG_KEY",
+          "from_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "Sq_W_CM_ITEM_SUPPLY_COMMIT"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:16.163259+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

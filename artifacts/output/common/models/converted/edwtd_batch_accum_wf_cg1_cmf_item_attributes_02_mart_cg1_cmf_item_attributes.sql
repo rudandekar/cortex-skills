@@ -1,0 +1,158 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_cg1_cmf_item_attributes', 'batch', 'edwtd_batch_accum'],
+    meta={
+        'source_workflow': 'wf_m_CG1_CMF_ITEM_ATTRIBUTES',
+        'target_table': 'CG1_CMF_ITEM_ATTRIBUTES',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:22:00.523474+00:00'
+    }
+) }}
+
+WITH 
+
+source_stg_cg1_cmf_item_attributes AS (
+    SELECT
+        inventory_item_id,
+        organization_id,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        attribute16,
+        attribute17,
+        attribute18,
+        attribute19,
+        attribute20,
+        created_by,
+        created_on,
+        last_updated_by,
+        last_updated_date,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        processed_flag
+    FROM {{ source('raw', 'stg_cg1_cmf_item_attributes') }}
+),
+
+source_cg1_cmf_item_attributes AS (
+    SELECT
+        source_dml_type,
+        fully_qualified_table_name,
+        source_commit_time,
+        refresh_datetime,
+        trail_position,
+        token,
+        inventory_item_id,
+        organization_id,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        attribute16,
+        attribute17,
+        attribute18,
+        attribute19,
+        attribute20,
+        created_by,
+        created_on,
+        last_updated_by,
+        last_updated_date
+    FROM {{ source('raw', 'cg1_cmf_item_attributes') }}
+),
+
+transformed_exp_cg1_cmf_item_attributes AS (
+    SELECT
+    source_dml_type,
+    source_commit_time,
+    refresh_datetime,
+    inventory_item_id,
+    organization_id,
+    attribute1,
+    attribute2,
+    attribute3,
+    attribute4,
+    attribute5,
+    attribute6,
+    attribute7,
+    attribute8,
+    attribute9,
+    attribute10,
+    attribute11,
+    attribute12,
+    attribute13,
+    attribute14,
+    attribute15,
+    attribute16,
+    attribute17,
+    attribute18,
+    attribute19,
+    attribute20,
+    created_by,
+    created_on,
+    last_updated_by,
+    last_updated_date
+    FROM source_cg1_cmf_item_attributes
+),
+
+final AS (
+    SELECT
+        inventory_item_id,
+        organization_id,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        attribute16,
+        attribute17,
+        attribute18,
+        attribute19,
+        attribute20,
+        created_by,
+        created_on,
+        last_updated_by,
+        last_updated_date,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        processed_flag
+    FROM transformed_exp_cg1_cmf_item_attributes
+)
+
+SELECT * FROM final

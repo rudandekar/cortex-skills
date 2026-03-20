@@ -1,0 +1,330 @@
+{
+  "workflow_name": "wf_m_N_CUST_ACCT_WITH_WIPS_DISTRI_STG23NF",
+  "mapping_name": "m_N_CUST_ACCT_WITH_WIPS_DISTRI_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_POS",
+  "target_table": "N_CUST_ACCT_WITH_WIPS_DISTRI",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_pos_wf_n_cust_acct_with_wips_distri_stg23nf_01_mart_n_cust_acct_with_wips_distri",
+  "source_tables": [
+    "ST_WIPS_DISTI_CBN_MAPPING_INTF"
+  ],
+  "sources": [
+    {
+      "name": "ST_WIPS_DISTI_CBN_MAPPING_INTF",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CBN_CID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISTI_PROFILE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_CUST_ACCT_WITH_WIPS_DISTRI",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "CUSTOMER_ACCT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_CBN_MAPPING_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_WIPS_ORIGINATOR_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CUST_ACCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTI_PROFILE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nNCA.CUSTOMER_ACCOUNT_KEY AS CUST_ACCT_KEY\r\n,COALESCE(CBN.ID,-999) AS SK_CBN_MAPPING_ID_INT\r\n,COALESCE(DISTI_PROFILE_ID,-999) AS BK_WIPS_ORIGINATOR_ID_INT\r\n,CURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM \r\n,USER AS EDW_CREATE_USER\r\n,CURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM \r\n,USER AS EDW_UPDATE_USER\r\nFROM\r\n$$STGDB.ST_WIPS_DISTI_CBN_MAPPING_INTF CBN\r\n\r\nINNER JOIN $$COMREFVWDB.N_CUSTOMER_ACCOUNT NCA\r\nON TRIM(CBN.CBN_CID)=NCA.BK_CUSTOMER_ACCOUNT_NUMBER",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ID",
+      "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "to_field": "SK_CBN_MAPPING_ID_INT",
+      "to_instance": "N_CUST_ACCT_WITH_WIPS_DISTRI"
+    },
+    {
+      "from_field": "DISTI_PROFILE_ID",
+      "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "to_field": "BK_WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "N_CUST_ACCT_WITH_WIPS_DISTRI"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_CUST_ACCT_WITH_WIPS_DISTRI"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_CUST_ACCT_WITH_WIPS_DISTRI"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_CUST_ACCT_WITH_WIPS_DISTRI"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_CUST_ACCT_WITH_WIPS_DISTRI"
+    },
+    {
+      "from_field": "CUST_ACCT_KEY",
+      "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "to_field": "CUSTOMER_ACCT_KEY",
+      "to_instance": "N_CUST_ACCT_WITH_WIPS_DISTRI"
+    },
+    {
+      "from_field": "ID",
+      "from_instance": "ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "to_field": "CUST_ACCT_KEY",
+      "to_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+    },
+    {
+      "from_field": "DISTI_PROFILE_ID",
+      "from_instance": "ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "to_field": "DISTI_PROFILE_ID",
+      "to_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+    },
+    {
+      "from_field": "ID",
+      "from_instance": "ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "to_field": "ID",
+      "to_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+    },
+    {
+      "from_field": "CBN_CID",
+      "from_instance": "ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+    },
+    {
+      "from_field": "CBN_CID",
+      "from_instance": "ST_WIPS_DISTI_CBN_MAPPING_INTF1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "CUSTOMER_ACCT_KEY",
+      "source_path": [
+        {
+          "from_field": "CUST_ACCT_KEY",
+          "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_CBN_MAPPING_ID_INT",
+      "source_path": [
+        {
+          "from_field": "ID",
+          "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_WIPS_ORIGINATOR_ID_INT",
+      "source_path": [
+        {
+          "from_field": "DISTI_PROFILE_ID",
+          "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+        },
+        {
+          "from_field": "CBN_CID",
+          "from_instance": "ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+        },
+        {
+          "from_field": "CBN_CID",
+          "from_instance": "ST_WIPS_DISTI_CBN_MAPPING_INTF1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:15.234815+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

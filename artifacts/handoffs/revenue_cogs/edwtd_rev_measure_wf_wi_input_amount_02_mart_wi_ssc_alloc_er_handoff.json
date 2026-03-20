@@ -1,0 +1,507 @@
+{
+  "workflow_name": "wf_m_WI_INPUT_AMOUNT",
+  "mapping_name": "m_WI_INPUT_AMOUNT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_SSC_ALLOC_ER",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_input_amount_02_mart_wi_ssc_alloc_er",
+  "source_tables": [
+    "WI_SSC_ALLOC_ER",
+    "WI_INPUT_AMOUNT"
+  ],
+  "sources": [
+    {
+      "name": "WI_SSC_ALLOC_ER",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "THEATER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COST_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUB_COST_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COST",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_INPUT_AMOUNT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "PL_NODE_VALUE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCOUNT_NUMBER",
+          "datatype": "varchar",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ALLOCATION_METHOD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUB_ACCOUNT_NUMBER",
+          "datatype": "varchar",
+          "precision": "4",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FUNCTIONAL_COST",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COST_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INPUT_AMOUNT",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_SSC_ALLOC_ER",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_MONTH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "THEATER",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COST_TYPE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SUB_COST_TYPE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COST",
+        "datatype": "decimal",
+        "precision": "38",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_SSC_ALLOC_ER",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COST_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUB_COST_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COST",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nWCSQD.FISCAL_MONTH_ID ,\r\nTHEATER,\r\nIAT.COST_TYPE,\r\n1,\r\nIAT.INPUT_AMOUNT * INV_PERCENTAGE\r\nFROM $$STGDB.WI_CCM_SSC_QOH_DRIVER WCSQD\r\nJOIN WI_INPUT_AMOUNT IAT\r\nON WCSQD.FISCAL_MONTH_ID IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_INPUT_AMOUNT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PL_NODE_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ALLOCATION_METHOD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUB_ACCOUNT_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FUNCTIONAL_COST",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COST_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INPUT_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "/*IF (UPPER (WCSMA.account_number) <> 'EXPENSE' AND WCSMA.sub_account_number IS NOT NULL)*/\r\nSELECT WCSMA.PL_NODE_VALUE,\r\nWCSMA.ACCOUNT_NUMBER,\r\nWCSMA.ALLOCATION_METHOD,\r\nWCSMA.SUB_ACCOUNT_NUMBER,\r\nWCSMA.FUNCTIONAL_COST,\r\nWCSMA.COST_TYPE,\r\nCOALESCE(SUM (WCSID.AMOUNT), 0) AS INPUT_AMOUNT\r\nFROM $$STGDB.WI_CCM_SSC_MAPPING_ALLOCATION WCSMA\r\nJOIN $$STGDB.WI_CCM_SSC_INPUT_DOLLAR WCSID\r\nON WCSMA.PL_NODE_VALUE =WCSID.PL_NODE_VALUE\r\nAND WCSMA.ACCOUNT_NUMBER =WCSID.ACCOUNT_NUMBER\r\nAND TRIM(CAST(WCSMA.SUB_ACCOUNT_NUMBER AS INTEGER)) = TRIM(CAST(WCSID.SUB_ACCOUNT_NUMBER AS INTEGER))\r\nAND WCSMA.FUNCTIONAL_COST =WCSID.FUNCTIONAL_COST\r\nAND WCSMA.FISCAL_MONTH_ID =WCSID.FISCAL_MONTH_ID\r\nAND WCSMA.FISCAL_MONTH_ID IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)\r\nAND UPPER(WCSMA.ALLOCATION_METHOD) = 'QOH RATIO'\r\nAND UPPER(WCSMA.ACCOUNT_NUMBER) <> 'EXPENSE'\r\nAND WCSMA.SUB_ACCOUNT_NUMBER IS NOT NULL\r\nAND WCSID.ACCOUNT_NUMBER <> 68102\r\nGROUP BY 1,2,3,4,5,6\r\n\r\nUNION\r\n/*IF (UPPER (c.account_number) <> 'EXPENSE'  AND c.sub_account_number IS NULL)*/\r\nSELECT WCSMA.PL_NODE_VALUE,\r\nWCSMA.ACCOUNT_NUMBER,\r\nWCSMA.ALLOCATION_METHOD,\r\nWCSMA.SUB_ACCOUNT_NUMBER,\r\nWCSMA.FUNCTIONAL_COST,\r\nWCSMA.COST_TYPE,\r\nCOALESCE(SUM (WCSID.AMOUNT), 0) AS INPUT_AMOUNT\r\nFROM $$STGDB.WI_CCM_SSC_MAPPING_ALLOCATION WCSMA\r\nJOIN $$STGDB.WI_CCM_SSC_INPUT_DOLLAR WCSID\r\nON  WCSMA.PL_NODE_VALUE =WCSID.PL_NODE_VALUE\r\nAND WCSMA.ACCOUNT_NUMBER =WCSID.ACCOUNT_NUMBER\r\nAND WCSMA.FUNCTIONAL_COST =WCSID.FUNCTIONAL_COST\r\nAND WCSMA.FISCAL_MONTH_ID =WCSID.FISCAL_MONTH_ID\r\nAND WCSMA.FISCAL_MONTH_ID IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)\r\nAND UPPER(WCSMA.ALLOCATION_METHOD) = 'QOH RATIO'\r\nAND UPPER(WCSMA.ACCOUNT_NUMBER) <> 'EXPENSE'\r\nAND WCSMA.SUB_ACCOUNT_NUMBER IS NULL\r\nAND WCSID.ACCOUNT_NUMBER <> 68102\r\nGROUP BY 1,2,3,4,5,6\r\n\r\nUNION\r\n/*IF (UPPER (c.account_number) = 'EXPENSE')*/\r\nSELECT WCSMA.PL_NODE_VALUE,\r\nWCSMA.ACCOUNT_NUMBER,\r\nWCSMA.ALLOCATION_METHOD,\r\nWCSMA.SUB_ACCOUNT_NUMBER,\r\nWCSMA.FUNCTIONAL_COST,\r\nWCSMA.COST_TYPE,\r\nCOALESCE(SUM (WCSID.AMOUNT), 0) AS INPUT_AMOUNT\r\nFROM $$STGDB.WI_CCM_SSC_MAPPING_ALLOCATION WCSMA\r\nJOIN $$STGDB.WI_CCM_SSC_INPUT_DOLLAR WCSID\r\nON WCSMA.PL_NODE_VALUE =WCSID.PL_NODE_VALUE\r\nAND WCSMA.FUNCTIONAL_COST =WCSID.FUNCTIONAL_COST\r\nAND WCSMA.FISCAL_MONTH_ID =WCSID.FISCAL_MONTH_ID\r\nAND WCSMA.FISCAL_MONTH_ID IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)\r\nAND UPPER(WCSMA.ALLOCATION_METHOD) = 'QOH RATIO'\r\nAND UPPER(WCSMA.ACCOUNT_NUMBER) = 'EXPENSE'\r\nAND WCSID.ACCOUNT_NUMBER <> 68102\r\nGROUP BY 1,2,3,4,5,6\r\n\r\nUNION\r\n/* IF NONE OF ABOVE STATEMENTS ARE MATCHING AND UPPER (FUNCTIONAL_COST) = 'OTHER'*/\r\nSELECT PL_NODE_VALUE,\r\nACCOUNT_NUMBER,\r\n'Other' AS ALLOCATION_METHOD,\r\nSUB_ACCOUNT_NUMBER,\r\nFUNCTIONAL_COST,\r\n'Other' AS COST_TYPE,\r\nCOALESCE(SUM(AMOUNT),0) AS INPUT_AMOUNT\r\nFROM $$STGDB.WI_CCM_SSC_INPUT_DOLLAR WCSID\r\nWHERE UPPER (FUNCTIONAL_COST) = 'OTHER' \r\nAND FISCAL_MONTH_ID IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)\r\nGROUP BY 1,2,3,4,5,6",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "DELETE FROM $$STGDB.WI_INPUT_AMOUNT;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "PL_NODE_VALUE",
+      "from_instance": "SQ_WI_INPUT_AMOUNT",
+      "to_field": "PL_NODE_VALUE",
+      "to_instance": "WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "ACCOUNT_NUMBER",
+      "from_instance": "SQ_WI_INPUT_AMOUNT",
+      "to_field": "ACCOUNT_NUMBER",
+      "to_instance": "WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "ALLOCATION_METHOD",
+      "from_instance": "SQ_WI_INPUT_AMOUNT",
+      "to_field": "ALLOCATION_METHOD",
+      "to_instance": "WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "SUB_ACCOUNT_NUMBER",
+      "from_instance": "SQ_WI_INPUT_AMOUNT",
+      "to_field": "SUB_ACCOUNT_NUMBER",
+      "to_instance": "WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "FUNCTIONAL_COST",
+      "from_instance": "SQ_WI_INPUT_AMOUNT",
+      "to_field": "FUNCTIONAL_COST",
+      "to_instance": "WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "COST_TYPE",
+      "from_instance": "SQ_WI_INPUT_AMOUNT",
+      "to_field": "COST_TYPE",
+      "to_instance": "WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "INPUT_AMOUNT",
+      "from_instance": "SQ_WI_INPUT_AMOUNT",
+      "to_field": "INPUT_AMOUNT",
+      "to_instance": "WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_WI_SSC_ALLOC_ER",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "WI_SSC_ALLOC_ER"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "SQ_WI_SSC_ALLOC_ER",
+      "to_field": "THEATER",
+      "to_instance": "WI_SSC_ALLOC_ER"
+    },
+    {
+      "from_field": "COST_TYPE",
+      "from_instance": "SQ_WI_SSC_ALLOC_ER",
+      "to_field": "COST_TYPE",
+      "to_instance": "WI_SSC_ALLOC_ER"
+    },
+    {
+      "from_field": "SUB_COST_TYPE",
+      "from_instance": "SQ_WI_SSC_ALLOC_ER",
+      "to_field": "SUB_COST_TYPE",
+      "to_instance": "WI_SSC_ALLOC_ER"
+    },
+    {
+      "from_field": "COST",
+      "from_instance": "SQ_WI_SSC_ALLOC_ER",
+      "to_field": "COST",
+      "to_instance": "WI_SSC_ALLOC_ER"
+    },
+    {
+      "from_field": "PL_NODE_VALUE",
+      "from_instance": "WI_INPUT_AMOUNT1",
+      "to_field": "PL_NODE_VALUE",
+      "to_instance": "SQ_WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "ACCOUNT_NUMBER",
+      "from_instance": "WI_INPUT_AMOUNT1",
+      "to_field": "ACCOUNT_NUMBER",
+      "to_instance": "SQ_WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "ALLOCATION_METHOD",
+      "from_instance": "WI_INPUT_AMOUNT1",
+      "to_field": "ALLOCATION_METHOD",
+      "to_instance": "SQ_WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "SUB_ACCOUNT_NUMBER",
+      "from_instance": "WI_INPUT_AMOUNT1",
+      "to_field": "SUB_ACCOUNT_NUMBER",
+      "to_instance": "SQ_WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "FUNCTIONAL_COST",
+      "from_instance": "WI_INPUT_AMOUNT1",
+      "to_field": "FUNCTIONAL_COST",
+      "to_instance": "SQ_WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "COST_TYPE",
+      "from_instance": "WI_INPUT_AMOUNT1",
+      "to_field": "COST_TYPE",
+      "to_instance": "SQ_WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "INPUT_AMOUNT",
+      "from_instance": "WI_INPUT_AMOUNT1",
+      "to_field": "INPUT_AMOUNT",
+      "to_instance": "SQ_WI_INPUT_AMOUNT"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "WI_SSC_ALLOC_ER1",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_WI_SSC_ALLOC_ER"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "WI_SSC_ALLOC_ER1",
+      "to_field": "THEATER",
+      "to_instance": "SQ_WI_SSC_ALLOC_ER"
+    },
+    {
+      "from_field": "COST_TYPE",
+      "from_instance": "WI_SSC_ALLOC_ER1",
+      "to_field": "COST_TYPE",
+      "to_instance": "SQ_WI_SSC_ALLOC_ER"
+    },
+    {
+      "from_field": "SUB_COST_TYPE",
+      "from_instance": "WI_SSC_ALLOC_ER1",
+      "to_field": "SUB_COST_TYPE",
+      "to_instance": "SQ_WI_SSC_ALLOC_ER"
+    },
+    {
+      "from_field": "COST",
+      "from_instance": "WI_SSC_ALLOC_ER1",
+      "to_field": "COST",
+      "to_instance": "SQ_WI_SSC_ALLOC_ER"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_MONTH_ID",
+      "source_path": [
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "SQ_WI_SSC_ALLOC_ER"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "WI_SSC_ALLOC_ER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "THEATER",
+      "source_path": [
+        {
+          "from_field": "THEATER",
+          "from_instance": "SQ_WI_SSC_ALLOC_ER"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "WI_SSC_ALLOC_ER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COST_TYPE",
+      "source_path": [
+        {
+          "from_field": "COST_TYPE",
+          "from_instance": "SQ_WI_INPUT_AMOUNT"
+        },
+        {
+          "from_field": "COST_TYPE",
+          "from_instance": "SQ_WI_SSC_ALLOC_ER"
+        },
+        {
+          "from_field": "COST_TYPE",
+          "from_instance": "WI_INPUT_AMOUNT1"
+        },
+        {
+          "from_field": "COST_TYPE",
+          "from_instance": "WI_SSC_ALLOC_ER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SUB_COST_TYPE",
+      "source_path": [
+        {
+          "from_field": "SUB_COST_TYPE",
+          "from_instance": "SQ_WI_SSC_ALLOC_ER"
+        },
+        {
+          "from_field": "SUB_COST_TYPE",
+          "from_instance": "WI_SSC_ALLOC_ER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COST",
+      "source_path": [
+        {
+          "from_field": "COST",
+          "from_instance": "SQ_WI_SSC_ALLOC_ER"
+        },
+        {
+          "from_field": "COST",
+          "from_instance": "WI_SSC_ALLOC_ER1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:29.732087+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,296 @@
+{
+  "workflow_name": "wf_m_FF_VW_LDSG_EXTRACT",
+  "mapping_name": "m_FF_VW_LDSG_EXTRACT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "FF_VW_LDSG_EXTRACT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_ff_vw_ldsg_extract_01_mart_ff_vw_ldsg_extract",
+  "source_tables": [
+    "VW_LDSG_EXTRACT"
+  ],
+  "sources": [
+    {
+      "name": "VW_LDSG_EXTRACT",
+      "database_type": "Oracle",
+      "owner": "FINFBLPL",
+      "fields": [
+        {
+          "name": "SPEND_CATEGORY",
+          "datatype": "nvarchar2",
+          "precision": "256",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH_NAME",
+          "datatype": "nvarchar2",
+          "precision": "256",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NODE_LEVEL05_VALUE",
+          "datatype": "nvarchar2",
+          "precision": "256",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FORECAST_AMT",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LOAD_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_VW_LDSG_EXTRACT",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SPEND_CATEGORY",
+        "datatype": "string",
+        "precision": "256",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FISCAL_MONTH_NAME",
+        "datatype": "string",
+        "precision": "256",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL05_VALUE",
+        "datatype": "string",
+        "precision": "256",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FORECAST_AMT",
+        "datatype": "number",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LOAD_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_VW_LDSG_EXTRACT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SPEND_CATEGORY",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_MONTH_NAME",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL05_VALUE",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FORECAST_AMT",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOAD_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSPEND_CATEGORY,\r\nFISCAL_MONTH_NAME,\r\nNODE_LEVEL05_VALUE,\r\nFORECAST_AMT,\r\nLOAD_DATE\r\nFROM\r\nFINFBLPL.VW_LDSG_EXTRACT\r\nWHERE \r\nLOAD_DATE\r\n>to_date('$$LastExtractDate','MM/DD/YYYY HH24:MI:SS')",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SPEND_CATEGORY",
+      "from_instance": "SQ_VW_LDSG_EXTRACT",
+      "to_field": "SPEND_CATEGORY",
+      "to_instance": "FF_VW_LDSG_EXTRACT1"
+    },
+    {
+      "from_field": "FORECAST_AMT",
+      "from_instance": "SQ_VW_LDSG_EXTRACT",
+      "to_field": "FORECAST_AMT",
+      "to_instance": "FF_VW_LDSG_EXTRACT1"
+    },
+    {
+      "from_field": "LOAD_DATE",
+      "from_instance": "SQ_VW_LDSG_EXTRACT",
+      "to_field": "LOAD_DATE",
+      "to_instance": "FF_VW_LDSG_EXTRACT1"
+    },
+    {
+      "from_field": "FISCAL_MONTH_NAME",
+      "from_instance": "SQ_VW_LDSG_EXTRACT",
+      "to_field": "FISCAL_MONTH_NAME",
+      "to_instance": "FF_VW_LDSG_EXTRACT1"
+    },
+    {
+      "from_field": "NODE_LEVEL05_VALUE",
+      "from_instance": "SQ_VW_LDSG_EXTRACT",
+      "to_field": "NODE_LEVEL05_VALUE",
+      "to_instance": "FF_VW_LDSG_EXTRACT1"
+    },
+    {
+      "from_field": "SPEND_CATEGORY",
+      "from_instance": "VW_LDSG_EXTRACT",
+      "to_field": "SPEND_CATEGORY",
+      "to_instance": "SQ_VW_LDSG_EXTRACT"
+    },
+    {
+      "from_field": "FORECAST_AMT",
+      "from_instance": "VW_LDSG_EXTRACT",
+      "to_field": "FORECAST_AMT",
+      "to_instance": "SQ_VW_LDSG_EXTRACT"
+    },
+    {
+      "from_field": "LOAD_DATE",
+      "from_instance": "VW_LDSG_EXTRACT",
+      "to_field": "LOAD_DATE",
+      "to_instance": "SQ_VW_LDSG_EXTRACT"
+    },
+    {
+      "from_field": "FISCAL_MONTH_NAME",
+      "from_instance": "VW_LDSG_EXTRACT",
+      "to_field": "FISCAL_MONTH_NAME",
+      "to_instance": "SQ_VW_LDSG_EXTRACT"
+    },
+    {
+      "from_field": "NODE_LEVEL05_VALUE",
+      "from_instance": "VW_LDSG_EXTRACT",
+      "to_field": "NODE_LEVEL05_VALUE",
+      "to_instance": "SQ_VW_LDSG_EXTRACT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SPEND_CATEGORY",
+      "source_path": [
+        {
+          "from_field": "SPEND_CATEGORY",
+          "from_instance": "SQ_VW_LDSG_EXTRACT"
+        },
+        {
+          "from_field": "SPEND_CATEGORY",
+          "from_instance": "VW_LDSG_EXTRACT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FISCAL_MONTH_NAME",
+      "source_path": [
+        {
+          "from_field": "FISCAL_MONTH_NAME",
+          "from_instance": "SQ_VW_LDSG_EXTRACT"
+        },
+        {
+          "from_field": "FISCAL_MONTH_NAME",
+          "from_instance": "VW_LDSG_EXTRACT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL05_VALUE",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL05_VALUE",
+          "from_instance": "SQ_VW_LDSG_EXTRACT"
+        },
+        {
+          "from_field": "NODE_LEVEL05_VALUE",
+          "from_instance": "VW_LDSG_EXTRACT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FORECAST_AMT",
+      "source_path": [
+        {
+          "from_field": "FORECAST_AMT",
+          "from_instance": "SQ_VW_LDSG_EXTRACT"
+        },
+        {
+          "from_field": "FORECAST_AMT",
+          "from_instance": "VW_LDSG_EXTRACT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LOAD_DATE",
+      "source_path": [
+        {
+          "from_field": "LOAD_DATE",
+          "from_instance": "SQ_VW_LDSG_EXTRACT"
+        },
+        {
+          "from_field": "LOAD_DATE",
+          "from_instance": "VW_LDSG_EXTRACT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:07.724551+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

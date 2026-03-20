@@ -1,0 +1,807 @@
+{
+  "workflow_name": "wf_m_W_DFRD_REV_OFFR_HIER_NODE",
+  "mapping_name": "m_W_DFRD_REV_OFFR_HIER_NODE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_Products",
+  "target_table": "WI_XXHMP_DEF_REV_HIER_VW",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_products_wf_w_dfrd_rev_offr_hier_node_01_mart_wi_xxhmp_def_rev_hier_vw",
+  "source_tables": [
+    "W_DFRD_REV_OFFR_HIER_NODE",
+    "WI_XXHMP_DEF_REV_HIER_VW",
+    "SM_DFRD_REV_OFFR_HIER_NODE"
+  ],
+  "sources": [
+    {
+      "name": "W_DFRD_REV_OFFR_HIER_NODE",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV1",
+      "fields": [
+        {
+          "name": "DFRD_REV_OFFR_HIER_NODE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DFRD_REV_OFFR_HIER_GROUP_NODE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_NODE_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "NODE_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_XXHMP_DEF_REV_HIER_VW",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "NODE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PARENT_NODE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NODE_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RELATIONSHIP_START_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RELATIONSHIP_END_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "SM_DFRD_REV_OFFR_HIER_NODE",
+      "database_type": "Teradata",
+      "owner": "ETLVWDB_DV1",
+      "fields": [
+        {
+          "name": "DFRD_REV_OFFR_HIER_NODE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_NODE_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_XXHMP_DEF_REV_HIER_VW",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "NODE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "PARENT_NODE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RELATIONSHIP_START_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RELATIONSHIP_END_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOURCE_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "NODE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARENT_NODE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RELATIONSHIP_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RELATIONSHIP_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nNODE_ID                       ,\r\nCOALESCE (PARENT_NODE_ID   ,-999)               ,\r\nNODE_NAME                     ,\r\nRELATIONSHIP_START_DATE       ,\r\nRELATIONSHIP_END_DATE         ,\r\nSOURCE_UPDATE_DATE\r\nFROM\r\n(\r\nSELECT\r\nNODE_ID                       ,\r\nPARENT_NODE_ID                 ,\r\nNODE_NAME                     ,\r\nRELATIONSHIP_START_DATE       ,\r\nRELATIONSHIP_END_DATE         ,\r\nSOURCE_UPDATE_DATE                          \r\nFROM $$STGDB.ST_XXHMP_DEF_REV_HIER_VW\r\n QUALIFY ROW_NUMBER () OVER(PARTITION BY NODE_ID\r\nORDER BY SOURCE_UPDATE_DATE DESC, CHANGE_ID DESC ) =1\r\n) ABC\r\nWHERE  PARENT_NODE_ID  IS NOT NULL",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_2_SM_DFRD_REV_OFFR_HIER_NODE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DFRD_REV_OFFR_HIER_NODE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_NODE_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nROW_NUMBER() OVER (ORDER BY NODE_ID) + SM.DFRD_REV_OFFR_HIER_NODE_KEY ,\r\nNODE_ID SK_NODE_ID_INT,\r\nCURRENT_TIMESTAMP(0) EDW_CREATE_DTM                ,\r\nUSER EDW_CREATE_USER  \r\nFROM \r\n(\r\nSELECT \r\nNODE_ID\r\nFROM $$STGDB.WI_XXHMP_DEF_REV_HIER_VW\r\n)ST\r\nINNER JOIN \r\n( SELECT COALESCE( MAX(DFRD_REV_OFFR_HIER_NODE_KEY),0 ) DFRD_REV_OFFR_HIER_NODE_KEY FROM $$ETLVWDB.SM_DFRD_REV_OFFR_HIER_NODE ) SM\r\nON 1=1\r\nWHERE NOT EXISTS \r\n(SELECT 1 FROM $$ETLVWDB.SM_DFRD_REV_OFFR_HIER_NODE SM_INR WHERE         \r\nST.NODE_ID = SM_INR.SK_NODE_ID_INT)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DFRD_REV_OFFR_HIER_NODE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DFRD_REV_OFFR_HIER_GROUP_NODE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_NODE_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n   DFRD_REV_OFFR_HIER_NODE_KEY ,           \r\n   DFRD_REV_OFFR_HIER_GROUP_NODE_KEY,     \r\n   SK_NODE_ID_INT       ,    \r\n   NODE_NAME,\r\n   CURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\n   USER AS EDW_CREATE_USER,\r\n   CURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM,\r\n   USER AS EDW_UPDATE_USER,               \r\n   START_TV_DT  ,                 \r\n   END_TV_DT     ,\r\n   ACTION_CODE,\r\n   DML_TYPE                \r\n   FROM\r\n   (\r\n   SELECT \r\n   TVOUTPUT.DFRD_REV_OFFR_HIER_NODE_KEY,\r\n   TVOUTPUT.DFRD_REV_OFFR_HIER_GROUP_NODE_KEY,\r\n   TVOUTPUT.SK_NODE_ID_INT,\r\n   TVOUTPUT.NODE_NAME,\r\n   CAST(TVOUTPUT.START_TV_DT AS DATE)  AS START_TV_DT,\r\n   \r\n   (CASE WHEN TVOUTPUT.RELATIONSHIP_END_DATE <= CURRENT_DATE THEN RELATIONSHIP_END_DATE\r\n   ELSE COALESCE (MAX (CAST(TVOUTPUT.START_TV_DT  AS DATE) - INTERVAL '1' DAY) \r\n   OVER (PARTITION BY TVOUTPUT.DFRD_REV_OFFR_HIER_NODE_KEY\r\n   ORDER BY TVOUTPUT.START_TV_DT ASC ROWS BETWEEN 1 FOLLOWING AND 1 FOLLOWING), DATE '3500-01-01') END ) AS END_TV_DT,\r\n  \r\n   TVOUTPUT.ACTION_CODE AS ACTION_CODE, \r\n   \r\n   ROW_NUMBER () OVER (PARTITION BY TVOUTPUT.DFRD_REV_OFFR_HIER_NODE_KEY  ORDER BY TVOUTPUT.START_TV_DT ASC) AS RANK_INDEX,\r\n   ( CASE WHEN RANK_INDEX = 1 AND TV_3NF.DFRD_REV_OFFR_HIER_NODE_KEY  IS NOT NULL  THEN 'U'ELSE 'I' END ) AS DML_TYPE, \r\n   TVOUTPUT.LAST_UPDATE_DATE AS TRANSACTION_DATE\r\n   \r\n   FROM\r\n   (\r\n   SELECT\r\n   DFRD_REV_OFFR_HIER_NODE_KEY,\r\n   DFRD_REV_OFFR_HIER_GROUP_NODE_KEY,\r\n   SK_NODE_ID_INT,\r\n   NODE_NAME,\r\n   START_TV_DT,\r\n   CREATE_DATETIME,\r\n   ACTION_CODE, \r\n   LAST_UPDATE_DATE,\r\n   RELATIONSHIP_END_DATE,\r\n   ROW_NUMBER () OVER (PARTITION BY DFRD_REV_OFFR_HIER_NODE_KEY,DFRD_REV_OFFR_HIER_GROUP_NODE_KEY,NODE_NAME ORDER BY LAST_UPDATE_DATE DESC) AS ROW_NUM  \r\n   FROM \r\n   (\r\n   SELECT\r\n   SM_NODE.DFRD_REV_OFFR_HIER_NODE_KEY DFRD_REV_OFFR_HIER_NODE_KEY,\r\n   SM_PARENT.DFRD_REV_OFFR_HIER_NODE_KEY DFRD_REV_OFFR_HIER_GROUP_NODE_KEY,\r\n   ST.NODE_ID SK_NODE_ID_INT,\r\n   ST.NODE_NAME,\r\n   CAST(ST.RELATIONSHIP_START_DATE AS DATE) AS START_TV_DT,\r\n   CURRENT_TIMESTAMP(0) AS CREATE_DATETIME,\r\n   'X' ACTION_CODE,\r\n   ST.SOURCE_UPDATE_DATE AS LAST_UPDATE_DATE ,\r\n   ST.RELATIONSHIP_END_DATE  \r\n   FROM $$STGDB.WI_XXHMP_DEF_REV_HIER_VW ST \r\nINNER JOIN  $$ETLVWDB.SM_DFRD_REV_OFFR_HIER_NODE SM_NODE\r\n ON ST.NODE_ID = SM_NODE.SK_NODE_ID_INT\r\n INNER JOIN  $$ETLVWDB.SM_DFRD_REV_OFFR_HIER_NODE SM_PARENT\r\n ON ST.PARENT_NODE_ID = SM_PARENT.SK_NODE_ID_INT\r\n \r\n    UNION ALL\r\n    \r\n   SELECT  \r\n   TV_3NF.DFRD_REV_OFFR_HIER_NODE_KEY,\r\n   TV_3NF.DFRD_REV_OFFR_HIER_GROUP_NODE_KEY,\r\n   TV_3NF.SK_NODE_ID_INT,\r\n   TV_3NF.NODE_NAME,\r\n   TV_3NF.START_TV_DT,\r\n   CAST(TV_3NF.START_TV_DT AS TIMESTAMP(0))  CREATE_DATETIME, \r\n   'X' ACTION_CODE, \r\n    CAST(TV_3NF.START_TV_DT AS TIMESTAMP(0))  LAST_UPDATE_DATE,\r\n    TV_3NF.END_TV_DT AS RELATIONSHIP_END_DATE \r\n   FROM\r\n   $$FINLGLVWDB.N_DFRD_REV_OFFR_HIER_NODE_TV TV_3NF\r\n   WHERE\r\n   (TV_3NF.SK_NODE_ID_INT) IN ( SELECT NODE_ID FROM $$STGDB.WI_XXHMP_DEF_REV_HIER_VW  )\r\n   AND TV_3NF.END_TV_DT = CAST ('3500-01-01' AS DATE)\r\n   ) TVINPUT\r\n   \r\n   QUALIFY ROW_NUMBER () OVER (PARTITION BY TVINPUT.DFRD_REV_OFFR_HIER_NODE_KEY,  CAST(TVINPUT.LAST_UPDATE_DATE AS DATE)\r\n   ORDER BY TVINPUT.LAST_UPDATE_DATE DESC) = 1\r\n   \r\n   ) TVOUTPUT\r\n   LEFT JOIN $$FINLGLVWDB.N_DFRD_REV_OFFR_HIER_NODE_TV TV_3NF\r\n   ON TVOUTPUT.DFRD_REV_OFFR_HIER_NODE_KEY = TV_3NF.DFRD_REV_OFFR_HIER_NODE_KEY\r\n   AND TV_3NF.END_TV_DT =CAST ('3500-01-01' AS DATE)\r\n   WHERE TVOUTPUT.ROW_NUM = 1\r\n   )A",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "DFRD_REV_OFFR_HIER_NODE_KEY",
+      "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "DFRD_REV_OFFR_HIER_NODE_KEY",
+      "to_instance": "W_DFRD_REV_OFFR_HIER_NODE_3"
+    },
+    {
+      "from_field": "DFRD_REV_OFFR_HIER_GROUP_NODE_KEY",
+      "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "DFRD_REV_OFFR_HIER_GROUP_NODE_KEY",
+      "to_instance": "W_DFRD_REV_OFFR_HIER_NODE_3"
+    },
+    {
+      "from_field": "SK_NODE_ID_INT",
+      "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "SK_NODE_ID_INT",
+      "to_instance": "W_DFRD_REV_OFFR_HIER_NODE_3"
+    },
+    {
+      "from_field": "NODE_NAME",
+      "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "NODE_NAME",
+      "to_instance": "W_DFRD_REV_OFFR_HIER_NODE_3"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_DFRD_REV_OFFR_HIER_NODE_3"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_DFRD_REV_OFFR_HIER_NODE_3"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_DFRD_REV_OFFR_HIER_NODE_3"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_DFRD_REV_OFFR_HIER_NODE_3"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "START_TV_DT",
+      "to_instance": "W_DFRD_REV_OFFR_HIER_NODE_3"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "END_TV_DT",
+      "to_instance": "W_DFRD_REV_OFFR_HIER_NODE_3"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_DFRD_REV_OFFR_HIER_NODE_3"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_DFRD_REV_OFFR_HIER_NODE_3"
+    },
+    {
+      "from_field": "NODE_ID",
+      "from_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW",
+      "to_field": "NODE_ID",
+      "to_instance": "WI_XXHMP_DEF_REV_HIER_VW_1"
+    },
+    {
+      "from_field": "PARENT_NODE_ID",
+      "from_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW",
+      "to_field": "PARENT_NODE_ID",
+      "to_instance": "WI_XXHMP_DEF_REV_HIER_VW_1"
+    },
+    {
+      "from_field": "NODE_NAME",
+      "from_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW",
+      "to_field": "NODE_NAME",
+      "to_instance": "WI_XXHMP_DEF_REV_HIER_VW_1"
+    },
+    {
+      "from_field": "RELATIONSHIP_START_DATE",
+      "from_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW",
+      "to_field": "RELATIONSHIP_START_DATE",
+      "to_instance": "WI_XXHMP_DEF_REV_HIER_VW_1"
+    },
+    {
+      "from_field": "RELATIONSHIP_END_DATE",
+      "from_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW",
+      "to_field": "RELATIONSHIP_END_DATE",
+      "to_instance": "WI_XXHMP_DEF_REV_HIER_VW_1"
+    },
+    {
+      "from_field": "SOURCE_UPDATE_DATE",
+      "from_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW",
+      "to_field": "SOURCE_UPDATE_DATE",
+      "to_instance": "WI_XXHMP_DEF_REV_HIER_VW_1"
+    },
+    {
+      "from_field": "DFRD_REV_OFFR_HIER_NODE_KEY",
+      "from_instance": "SQ_2_SM_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "DFRD_REV_OFFR_HIER_NODE_KEY",
+      "to_instance": "SM_DFRD_REV_OFFR_HIER_NODE_2"
+    },
+    {
+      "from_field": "SK_NODE_ID_INT",
+      "from_instance": "SQ_2_SM_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "SK_NODE_ID_INT",
+      "to_instance": "SM_DFRD_REV_OFFR_HIER_NODE_2"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_2_SM_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_DFRD_REV_OFFR_HIER_NODE_2"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_2_SM_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_DFRD_REV_OFFR_HIER_NODE_2"
+    },
+    {
+      "from_field": "NODE_ID",
+      "from_instance": "WI_XXHMP_DEF_REV_HIER_VW",
+      "to_field": "NODE_ID",
+      "to_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW"
+    },
+    {
+      "from_field": "PARENT_NODE_ID",
+      "from_instance": "WI_XXHMP_DEF_REV_HIER_VW",
+      "to_field": "PARENT_NODE_ID",
+      "to_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW"
+    },
+    {
+      "from_field": "NODE_NAME",
+      "from_instance": "WI_XXHMP_DEF_REV_HIER_VW",
+      "to_field": "NODE_NAME",
+      "to_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW"
+    },
+    {
+      "from_field": "RELATIONSHIP_START_DATE",
+      "from_instance": "WI_XXHMP_DEF_REV_HIER_VW",
+      "to_field": "RELATIONSHIP_START_DATE",
+      "to_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW"
+    },
+    {
+      "from_field": "RELATIONSHIP_END_DATE",
+      "from_instance": "WI_XXHMP_DEF_REV_HIER_VW",
+      "to_field": "RELATIONSHIP_END_DATE",
+      "to_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW"
+    },
+    {
+      "from_field": "SOURCE_UPDATE_DATE",
+      "from_instance": "WI_XXHMP_DEF_REV_HIER_VW",
+      "to_field": "SOURCE_UPDATE_DATE",
+      "to_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW"
+    },
+    {
+      "from_field": "DFRD_REV_OFFR_HIER_NODE_KEY",
+      "from_instance": "SM_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "DFRD_REV_OFFR_HIER_NODE_KEY",
+      "to_instance": "SQ_2_SM_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "SK_NODE_ID_INT",
+      "from_instance": "SM_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "SK_NODE_ID_INT",
+      "to_instance": "SQ_2_SM_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SM_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_2_SM_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SM_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_2_SM_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "DFRD_REV_OFFR_HIER_NODE_KEY",
+      "from_instance": "W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "DFRD_REV_OFFR_HIER_NODE_KEY",
+      "to_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "DFRD_REV_OFFR_HIER_GROUP_NODE_KEY",
+      "from_instance": "W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "DFRD_REV_OFFR_HIER_GROUP_NODE_KEY",
+      "to_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "SK_NODE_ID_INT",
+      "from_instance": "W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "SK_NODE_ID_INT",
+      "to_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "NODE_NAME",
+      "from_instance": "W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "NODE_NAME",
+      "to_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "START_TV_DT",
+      "to_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "END_TV_DT",
+      "to_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_DFRD_REV_OFFR_HIER_NODE",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "NODE_ID",
+      "source_path": [
+        {
+          "from_field": "NODE_ID",
+          "from_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW"
+        },
+        {
+          "from_field": "NODE_ID",
+          "from_instance": "WI_XXHMP_DEF_REV_HIER_VW"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARENT_NODE_ID",
+      "source_path": [
+        {
+          "from_field": "PARENT_NODE_ID",
+          "from_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW"
+        },
+        {
+          "from_field": "PARENT_NODE_ID",
+          "from_instance": "WI_XXHMP_DEF_REV_HIER_VW"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_NAME",
+      "source_path": [
+        {
+          "from_field": "NODE_NAME",
+          "from_instance": "SQ_3_W_DFRD_REV_OFFR_HIER_NODE"
+        },
+        {
+          "from_field": "NODE_NAME",
+          "from_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW"
+        },
+        {
+          "from_field": "NODE_NAME",
+          "from_instance": "WI_XXHMP_DEF_REV_HIER_VW"
+        },
+        {
+          "from_field": "NODE_NAME",
+          "from_instance": "W_DFRD_REV_OFFR_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RELATIONSHIP_START_DATE",
+      "source_path": [
+        {
+          "from_field": "RELATIONSHIP_START_DATE",
+          "from_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW"
+        },
+        {
+          "from_field": "RELATIONSHIP_START_DATE",
+          "from_instance": "WI_XXHMP_DEF_REV_HIER_VW"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RELATIONSHIP_END_DATE",
+      "source_path": [
+        {
+          "from_field": "RELATIONSHIP_END_DATE",
+          "from_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW"
+        },
+        {
+          "from_field": "RELATIONSHIP_END_DATE",
+          "from_instance": "WI_XXHMP_DEF_REV_HIER_VW"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "SOURCE_UPDATE_DATE",
+          "from_instance": "SQ_1_WI_XXHMP_DEF_REV_HIER_VW"
+        },
+        {
+          "from_field": "SOURCE_UPDATE_DATE",
+          "from_instance": "WI_XXHMP_DEF_REV_HIER_VW"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:21.446901+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

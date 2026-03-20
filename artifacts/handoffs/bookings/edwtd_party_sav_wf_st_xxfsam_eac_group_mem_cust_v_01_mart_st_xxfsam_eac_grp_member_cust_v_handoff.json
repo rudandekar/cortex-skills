@@ -1,0 +1,296 @@
+{
+  "workflow_name": "wf_m_ST_XXFSAM_EAC_GROUP_MEMBER_CUST_V",
+  "mapping_name": "m_ST_XXFSAM_EAC_GROUP_MEMBER_CUST_V",
+  "mapping_description": "",
+  "folder_name": "EDWTD_PARTY_SAV",
+  "target_table": "ST_XXFSAM_EAC_GRP_MEMBER_CUST_V",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_party_sav_wf_st_xxfsam_eac_group_mem_cust_v_01_mart_st_xxfsam_eac_grp_member_cust_v",
+  "source_tables": [
+    "FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+  ],
+  "sources": [
+    {
+      "name": "FF_XXFSAM_EAC_GROUP_MEM_CUST_V",
+      "database_type": "Flat File",
+      "owner": "",
+      "fields": [
+        {
+          "name": "EAC_GROUP_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CUSTOMER_PARTY_BU",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EFFECTIVE_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXPIRATION_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_XXFSAM_EAC_GRP_MEMBER_CUST_V",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "EAC_GROUP_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CUSTOMER_PARTY_BU",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EFFECTIVE_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EXPIRATION_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "EAC_GROUP_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUSTOMER_PARTY_BU",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EFFECTIVE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXPIRATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "EAC_GROUP_ID",
+      "from_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V",
+      "to_field": "EAC_GROUP_ID",
+      "to_instance": "ST_XXFSAM_EAC_GRP_MEMBER_CUST_V"
+    },
+    {
+      "from_field": "CUSTOMER_PARTY_BU",
+      "from_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V",
+      "to_field": "CUSTOMER_PARTY_BU",
+      "to_instance": "ST_XXFSAM_EAC_GRP_MEMBER_CUST_V"
+    },
+    {
+      "from_field": "EFFECTIVE_DATE",
+      "from_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V",
+      "to_field": "EFFECTIVE_DATE",
+      "to_instance": "ST_XXFSAM_EAC_GRP_MEMBER_CUST_V"
+    },
+    {
+      "from_field": "EXPIRATION_DATE",
+      "from_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V",
+      "to_field": "EXPIRATION_DATE",
+      "to_instance": "ST_XXFSAM_EAC_GRP_MEMBER_CUST_V"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "ST_XXFSAM_EAC_GRP_MEMBER_CUST_V"
+    },
+    {
+      "from_field": "EAC_GROUP_ID",
+      "from_instance": "FF_XXFSAM_EAC_GROUP_MEM_CUST_V",
+      "to_field": "EAC_GROUP_ID",
+      "to_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+    },
+    {
+      "from_field": "CUSTOMER_PARTY_BU",
+      "from_instance": "FF_XXFSAM_EAC_GROUP_MEM_CUST_V",
+      "to_field": "CUSTOMER_PARTY_BU",
+      "to_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+    },
+    {
+      "from_field": "EFFECTIVE_DATE",
+      "from_instance": "FF_XXFSAM_EAC_GROUP_MEM_CUST_V",
+      "to_field": "EFFECTIVE_DATE",
+      "to_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+    },
+    {
+      "from_field": "EXPIRATION_DATE",
+      "from_instance": "FF_XXFSAM_EAC_GROUP_MEM_CUST_V",
+      "to_field": "EXPIRATION_DATE",
+      "to_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "FF_XXFSAM_EAC_GROUP_MEM_CUST_V",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "EAC_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "EAC_GROUP_ID",
+          "from_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+        },
+        {
+          "from_field": "EAC_GROUP_ID",
+          "from_instance": "FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CUSTOMER_PARTY_BU",
+      "source_path": [
+        {
+          "from_field": "CUSTOMER_PARTY_BU",
+          "from_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+        },
+        {
+          "from_field": "CUSTOMER_PARTY_BU",
+          "from_instance": "FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EFFECTIVE_DATE",
+      "source_path": [
+        {
+          "from_field": "EFFECTIVE_DATE",
+          "from_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+        },
+        {
+          "from_field": "EFFECTIVE_DATE",
+          "from_instance": "FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EXPIRATION_DATE",
+      "source_path": [
+        {
+          "from_field": "EXPIRATION_DATE",
+          "from_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+        },
+        {
+          "from_field": "EXPIRATION_DATE",
+          "from_instance": "FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "FF_XXFSAM_EAC_GROUP_MEM_CUST_V"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:15.015010+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

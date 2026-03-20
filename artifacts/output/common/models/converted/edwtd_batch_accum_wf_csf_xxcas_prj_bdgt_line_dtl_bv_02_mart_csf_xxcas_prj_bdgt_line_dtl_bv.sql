@@ -1,0 +1,157 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_csf_xxcas_prj_bdgt_line_dtl_bv', 'batch', 'edwtd_batch_accum'],
+    meta={
+        'source_workflow': 'wf_m_CSF_XXCAS_PRJ_BDGT_LINE_DTL_BV',
+        'target_table': 'CSF_XXCAS_PRJ_BDGT_LINE_DTL_BV',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:22:00.552328+00:00'
+    }
+) }}
+
+WITH 
+
+source_csf_xxcas_prj_bgt_line_dtl_bv AS (
+    SELECT
+        source_dml_type,
+        fully_qualified_table_name,
+        source_commit_time,
+        refresh_datetime,
+        trail_position,
+        token,
+        refresh_day,
+        project_id,
+        task_id,
+        budget_line_id,
+        budget_version_id,
+        version_number,
+        budget_status_code,
+        period_name,
+        start_date,
+        end_date,
+        cr_so_book_date,
+        project_curr_amt,
+        project_curr_code,
+        bi_amt_usd,
+        func_curr_code,
+        func_curr_amt,
+        cr_so_num,
+        conv_rate,
+        conv_rate_type,
+        last_update_date,
+        last_updated_by,
+        creation_date,
+        created_by,
+        resource_list_member_id,
+        fin_plan_type_id,
+        ogg_key_id
+    FROM {{ source('raw', 'csf_xxcas_prj_bgt_line_dtl_bv') }}
+),
+
+source_stg_csf_xxcas_prj_bdgt_line_dtl_bv AS (
+    SELECT
+        project_id,
+        task_id,
+        budget_line_id,
+        budget_version_id,
+        version_number,
+        budget_status_code,
+        period_name,
+        start_date,
+        end_date,
+        cr_so_book_date,
+        project_curr_amt,
+        project_curr_code,
+        bi_amt_usd,
+        func_curr_code,
+        func_curr_amt,
+        cr_so_num,
+        conv_rate,
+        conv_rate_type,
+        last_update_date,
+        last_updated_by,
+        creation_date,
+        created_by,
+        resource_list_member_id,
+        fin_plan_type_id,
+        ogg_key_id,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime
+    FROM {{ source('raw', 'stg_csf_xxcas_prj_bdgt_line_dtl_bv') }}
+),
+
+transformed_exp_csf_xxcas_prj_bdgt_line_dtl_bv AS (
+    SELECT
+    source_dml_type,
+    fully_qualified_table_name,
+    source_commit_time,
+    refresh_datetime,
+    trail_position,
+    token,
+    refresh_day,
+    project_id,
+    task_id,
+    budget_line_id,
+    budget_version_id,
+    version_number,
+    budget_status_code,
+    period_name,
+    start_date,
+    end_date,
+    cr_so_book_date,
+    project_curr_amt,
+    project_curr_code,
+    bi_amt_usd,
+    func_curr_code,
+    func_curr_amt,
+    cr_so_num,
+    conv_rate,
+    conv_rate_type,
+    last_update_date,
+    last_updated_by,
+    creation_date,
+    created_by,
+    resource_list_member_id,
+    fin_plan_type_id,
+    ogg_key_id
+    FROM source_stg_csf_xxcas_prj_bdgt_line_dtl_bv
+),
+
+final AS (
+    SELECT
+        project_id,
+        task_id,
+        budget_line_id,
+        budget_version_id,
+        version_number,
+        budget_status_code,
+        period_name,
+        start_date,
+        end_date,
+        cr_so_book_date,
+        project_curr_amt,
+        project_curr_code,
+        bi_amt_usd,
+        func_curr_code,
+        func_curr_amt,
+        cr_so_num,
+        conv_rate,
+        conv_rate_type,
+        last_update_date,
+        last_updated_by,
+        creation_date,
+        created_by,
+        resource_list_member_id,
+        fin_plan_type_id,
+        ogg_key_id,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime
+    FROM transformed_exp_csf_xxcas_prj_bdgt_line_dtl_bv
+)
+
+SELECT * FROM final

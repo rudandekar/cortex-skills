@@ -1,0 +1,386 @@
+{
+  "workflow_name": "wf_m_W_LEGAL_CONTRACT_LINK",
+  "mapping_name": "m_W_LEGAL_CONTRACT_LINK",
+  "mapping_description": "",
+  "folder_name": "EDWTD_NGCCRM",
+  "target_table": "W_LEGAL_CONTRACT_LINK",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ngccrm_wf_w_legal_contract_link_01_mart_w_legal_contract_link",
+  "source_tables": [
+    "ST_ECLM_CMS_CONTRACT_MAPPING"
+  ],
+  "sources": [
+    {
+      "name": "ST_ECLM_CMS_CONTRACT_MAPPING",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ECLM_CONTRACT_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CMS_CONTRACT_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CMS_VERSION",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RELATED_CONTRACT_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RELATIONSHIP",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTRACT_NEGOTIATOR",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ECLM_CONTRACT_STATUS",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EFFECTIVE_START_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXPIRATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_TIMESTAMP",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_LEGAL_CONTRACT_LINK",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_FROM_CONTRACT_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_TO_CONTRACT_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "CONTRACT_TRANSACTION_TYPE_CD",
+        "datatype": "char",
+        "precision": "9",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_LEGAL_CONTRACT_LINK",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_FROM_CONTRACT_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_TO_CONTRACT_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONTRACT_TRANSACTION_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT  \r\n  SECCM.ECLM_CONTRACT_NUMBER  BK_FROM_CONTRACT_NUMBER_INT,\r\n  SECCM.RELATED_CONTRACT_NUMBER  BK_TO_CONTRACT_NUMBER_INT,\r\n  (CASE  WHEN SECCM.RELATIONSHIP= 'AMENDMENT_TO' THEN 'AMENDMENT'\r\n         WHEN SECCM.RELATIONSHIP='ADDENDUM_TO' THEN 'ADDENDUM' \r\n         WHEN SECCM.RELATIONSHIP is NULL THEN 'UNKNOWN'  \r\n        ELSE   SECCM.RELATIONSHIP end ) AS  CONTRACT_TRANSACTION_TYPE_CD\r\n  FROM  $$STGDB.ST_ECLM_CMS_CONTRACT_MAPPING SECCM",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_FROM_CONTRACT_NUM_INT",
+      "from_instance": "SQ_W_LEGAL_CONTRACT_LINK",
+      "to_field": "BK_FROM_CONTRACT_NUM_INT",
+      "to_instance": "W_LEGAL_CONTRACT_LINK"
+    },
+    {
+      "from_field": "BK_TO_CONTRACT_NUM_INT",
+      "from_instance": "SQ_W_LEGAL_CONTRACT_LINK",
+      "to_field": "BK_TO_CONTRACT_NUM_INT",
+      "to_instance": "W_LEGAL_CONTRACT_LINK"
+    },
+    {
+      "from_field": "CONTRACT_TRANSACTION_TYPE_CD",
+      "from_instance": "SQ_W_LEGAL_CONTRACT_LINK",
+      "to_field": "CONTRACT_TRANSACTION_TYPE_CD",
+      "to_instance": "W_LEGAL_CONTRACT_LINK"
+    },
+    {
+      "from_field": "ECLM_CONTRACT_NUMBER",
+      "from_instance": "ST_ECLM_CMS_CONTRACT_MAPPING",
+      "to_field": "BK_FROM_CONTRACT_NUM_INT",
+      "to_instance": "SQ_W_LEGAL_CONTRACT_LINK"
+    },
+    {
+      "from_field": "RELATED_CONTRACT_NUMBER",
+      "from_instance": "ST_ECLM_CMS_CONTRACT_MAPPING",
+      "to_field": "BK_TO_CONTRACT_NUM_INT",
+      "to_instance": "SQ_W_LEGAL_CONTRACT_LINK"
+    },
+    {
+      "from_field": "RELATIONSHIP",
+      "from_instance": "ST_ECLM_CMS_CONTRACT_MAPPING",
+      "to_field": "CONTRACT_TRANSACTION_TYPE_CD",
+      "to_instance": "SQ_W_LEGAL_CONTRACT_LINK"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_FROM_CONTRACT_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "BK_FROM_CONTRACT_NUM_INT",
+          "from_instance": "SQ_W_LEGAL_CONTRACT_LINK"
+        },
+        {
+          "from_field": "ECLM_CONTRACT_NUMBER",
+          "from_instance": "ST_ECLM_CMS_CONTRACT_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_TO_CONTRACT_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "BK_TO_CONTRACT_NUM_INT",
+          "from_instance": "SQ_W_LEGAL_CONTRACT_LINK"
+        },
+        {
+          "from_field": "RELATED_CONTRACT_NUMBER",
+          "from_instance": "ST_ECLM_CMS_CONTRACT_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CONTRACT_TRANSACTION_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "CONTRACT_TRANSACTION_TYPE_CD",
+          "from_instance": "SQ_W_LEGAL_CONTRACT_LINK"
+        },
+        {
+          "from_field": "RELATIONSHIP",
+          "from_instance": "ST_ECLM_CMS_CONTRACT_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:19.772166+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,101 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_csf_pa_project_role_types_tl', 'batch', 'edwtd_batch_accum'],
+    meta={
+        'source_workflow': 'wf_m_CSF_PA_PROJECT_ROLE_TYPES_TL',
+        'target_table': 'CSF_PA_PROJECT_ROLE_TYPES_TL',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:22:00.790728+00:00'
+    }
+) }}
+
+WITH 
+
+source_csf_pa_project_role_types_tl AS (
+    SELECT
+        source_dml_type,
+        fully_qualified_table_name,
+        source_commit_time,
+        refresh_datetime,
+        trail_position,
+        token,
+        refresh_day,
+        project_role_id,
+        language,
+        source_lang,
+        meaning,
+        description,
+        creation_date,
+        created_by,
+        last_update_date,
+        last_updated_by,
+        last_update_login,
+        zd_edition_name,
+        zd_sync
+    FROM {{ source('raw', 'csf_pa_project_role_types_tl') }}
+),
+
+source_stg_csf_pa_project_role_types_tl AS (
+    SELECT
+        project_role_id,
+        language_,
+        source_lang,
+        meaning,
+        description,
+        creation_date,
+        created_by,
+        last_update_date,
+        last_updated_by,
+        last_update_login,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime
+    FROM {{ source('raw', 'stg_csf_pa_project_role_types_tl') }}
+),
+
+transformed_exp_csf_pa_project_role_types_tl AS (
+    SELECT
+    source_dml_type,
+    fully_qualified_table_name,
+    source_commit_time,
+    refresh_datetime,
+    trail_position,
+    token,
+    refresh_day,
+    project_role_id,
+    language,
+    source_lang,
+    meaning,
+    description,
+    creation_date,
+    created_by,
+    last_update_date,
+    last_updated_by,
+    last_update_login,
+    zd_edition_name,
+    zd_sync
+    FROM source_stg_csf_pa_project_role_types_tl
+),
+
+final AS (
+    SELECT
+        project_role_id,
+        language_,
+        source_lang,
+        meaning,
+        description,
+        creation_date,
+        created_by,
+        last_update_date,
+        last_updated_by,
+        last_update_login,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime
+    FROM transformed_exp_csf_pa_project_role_types_tl
+)
+
+SELECT * FROM final

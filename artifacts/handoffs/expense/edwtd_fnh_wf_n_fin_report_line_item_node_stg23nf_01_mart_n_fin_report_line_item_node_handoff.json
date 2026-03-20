@@ -1,0 +1,1048 @@
+{
+  "workflow_name": "wf_m_N_FIN_REPORT_LINE_ITEM_NODE_STG23NF",
+  "mapping_name": "m_N_FIN_REPORT_LINE_ITEM_NODE_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_FNH",
+  "target_table": "N_FIN_REPORT_LINE_ITEM_NODE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_fnh_wf_n_fin_report_line_item_node_stg23nf_01_mart_n_fin_report_line_item_node",
+  "source_tables": [
+    "ST_N_FINANCIAL_RLI_PC_HIER"
+  ],
+  "sources": [
+    {
+      "name": "ST_N_FINANCIAL_RLI_PC_HIER",
+      "database_type": "Teradata",
+      "owner": "APIUSER",
+      "fields": [
+        {
+          "name": "PARENT_RLI",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CHILD_RLI",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CHILD_RLI_DESC",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REFRESH_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SEQ_NO",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_FIN_REPORT_LINE_ITEM_NODE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "FINANCE_REPORT_LINE_ITEM_DESCR",
+        "datatype": "varchar",
+        "precision": "256",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_LEVEL_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LINE_ITEM_NODE_TYPE",
+        "datatype": "char",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RLI_REPORTING_SEQUENCE_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXPTRANS1",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_FINANCE_REPORT_LINE_ITEM_CD"
+        },
+        {
+          "name": "FINANCE_REPORT_LINE_ITEM_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FINANCE_REPORT_LINE_ITEM_DESCR"
+        },
+        {
+          "name": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RU_PRNT_FIN_REPORT_LN_ITEM_CD"
+        },
+        {
+          "name": "DV_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DV_LEVEL_NUM_INT"
+        },
+        {
+          "name": "LINE_ITEM_NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LINE_ITEM_NODE_TYPE"
+        },
+        {
+          "name": "RLI_REPORTING_SEQUENCE_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RLI_REPORTING_SEQUENCE_NUM_INT"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "UPD_INS",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FINANCE_REPORT_LINE_ITEM_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LINE_ITEM_NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RLI_REPORTING_SEQUENCE_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_INSERT",
+        "Forward Rejected Rows": "NO",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "UPD_UPD",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FINANCE_REPORT_LINE_ITEM_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LINE_ITEM_NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RLI_REPORTING_SEQUENCE_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_UPDATE",
+        "Forward Rejected Rows": "NO",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FINANCE_REPORT_LINE_ITEM_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LINE_ITEM_NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RLI_REPORTING_SEQUENCE_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_QUERY2",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_FINANCE_REPORT_LINE_ITEM_CD"
+        },
+        {
+          "name": "FINANCE_REPORT_LINE_ITEM_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FINANCE_REPORT_LINE_ITEM_DESCR"
+        },
+        {
+          "name": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RU_PRNT_FIN_REPORT_LN_ITEM_CD"
+        },
+        {
+          "name": "DV_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DV_LEVEL_NUM_INT"
+        },
+        {
+          "name": "LINE_ITEM_NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LINE_ITEM_NODE_TYPE"
+        },
+        {
+          "name": "RLI_REPORTING_SEQUENCE_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RLI_REPORTING_SEQUENCE_NUM_INT"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SYSTIMESTAMP('SS')"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FINANCE_REPORT_LINE_ITEM_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LINE_ITEM_NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RLI_REPORTING_SEQUENCE_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_QUERY1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression",
+    "Update Strategy"
+  ],
+  "connectors": [
+    {
+      "from_field": "LINE_ITEM_NODE_TYPE",
+      "from_instance": "UPD_INS",
+      "to_field": "LINE_ITEM_NODE_TYPE",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Ins"
+    },
+    {
+      "from_field": "DV_LEVEL_NUM_INT",
+      "from_instance": "UPD_INS",
+      "to_field": "DV_LEVEL_NUM_INT",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Ins"
+    },
+    {
+      "from_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "from_instance": "UPD_INS",
+      "to_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Ins"
+    },
+    {
+      "from_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "from_instance": "UPD_INS",
+      "to_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Ins"
+    },
+    {
+      "from_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "from_instance": "UPD_INS",
+      "to_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Ins"
+    },
+    {
+      "from_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "from_instance": "UPD_INS",
+      "to_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Ins"
+    },
+    {
+      "from_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "from_instance": "UPD_UPD",
+      "to_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Upd"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "UPD_UPD",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Upd"
+    },
+    {
+      "from_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "from_instance": "UPD_UPD",
+      "to_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Upd"
+    },
+    {
+      "from_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "from_instance": "UPD_UPD",
+      "to_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Upd"
+    },
+    {
+      "from_field": "LINE_ITEM_NODE_TYPE",
+      "from_instance": "UPD_UPD",
+      "to_field": "LINE_ITEM_NODE_TYPE",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Upd"
+    },
+    {
+      "from_field": "DV_LEVEL_NUM_INT",
+      "from_instance": "UPD_UPD",
+      "to_field": "DV_LEVEL_NUM_INT",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Upd"
+    },
+    {
+      "from_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "from_instance": "UPD_UPD",
+      "to_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "to_instance": "N_FIN_REPORT_LINE_ITEM_NODE_Upd"
+    },
+    {
+      "from_field": "LINE_ITEM_NODE_TYPE",
+      "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins",
+      "to_field": "LINE_ITEM_NODE_TYPE",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "DV_LEVEL_NUM_INT",
+      "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins",
+      "to_field": "DV_LEVEL_NUM_INT",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins",
+      "to_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins",
+      "to_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins",
+      "to_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins",
+      "to_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "LINE_ITEM_NODE_TYPE",
+      "from_instance": "EXPTRANS1",
+      "to_field": "LINE_ITEM_NODE_TYPE",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "DV_LEVEL_NUM_INT",
+      "from_instance": "EXPTRANS1",
+      "to_field": "DV_LEVEL_NUM_INT",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "from_instance": "EXPTRANS1",
+      "to_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "from_instance": "EXPTRANS1",
+      "to_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "from_instance": "EXPTRANS1",
+      "to_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "from_instance": "EXPTRANS1",
+      "to_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "LINE_ITEM_NODE_TYPE",
+      "from_instance": "EXPTRANS",
+      "to_field": "LINE_ITEM_NODE_TYPE",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "DV_LEVEL_NUM_INT",
+      "from_instance": "EXPTRANS",
+      "to_field": "DV_LEVEL_NUM_INT",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "from_instance": "EXPTRANS",
+      "to_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "from_instance": "EXPTRANS",
+      "to_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "from_instance": "EXPTRANS",
+      "to_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EXPTRANS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "from_instance": "EXPTRANS",
+      "to_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "CHILD_RLI",
+      "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER",
+      "to_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "to_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd"
+    },
+    {
+      "from_field": "CHILD_RLI_DESC",
+      "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER",
+      "to_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "to_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER",
+      "to_field": "DV_LEVEL_NUM_INT",
+      "to_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd"
+    },
+    {
+      "from_field": "PARENT_RLI",
+      "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER",
+      "to_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "to_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd"
+    },
+    {
+      "from_field": "CHILD_RLI_DESC",
+      "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER",
+      "to_field": "LINE_ITEM_NODE_TYPE",
+      "to_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd"
+    },
+    {
+      "from_field": "SEQ_NO",
+      "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER",
+      "to_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "to_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd"
+    },
+    {
+      "from_field": "LINE_ITEM_NODE_TYPE",
+      "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd",
+      "to_field": "LINE_ITEM_NODE_TYPE",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "DV_LEVEL_NUM_INT",
+      "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd",
+      "to_field": "DV_LEVEL_NUM_INT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd",
+      "to_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd",
+      "to_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd",
+      "to_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd",
+      "to_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "CHILD_RLI",
+      "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER1",
+      "to_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "to_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER1",
+      "to_field": "DV_LEVEL_NUM_INT",
+      "to_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins"
+    },
+    {
+      "from_field": "PARENT_RLI",
+      "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER1",
+      "to_field": "LINE_ITEM_NODE_TYPE",
+      "to_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins"
+    },
+    {
+      "from_field": "CHILD_RLI_DESC",
+      "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER1",
+      "to_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "to_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins"
+    },
+    {
+      "from_field": "CHILD_RLI_DESC",
+      "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER1",
+      "to_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "to_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins"
+    },
+    {
+      "from_field": "SEQ_NO",
+      "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER1",
+      "to_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "to_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+      "source_path": [
+        {
+          "from_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+          "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins"
+        },
+        {
+          "from_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "CHILD_RLI",
+          "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER"
+        },
+        {
+          "from_field": "BK_FINANCE_REPORT_LINE_ITEM_CD",
+          "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd"
+        },
+        {
+          "from_field": "CHILD_RLI",
+          "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FINANCE_REPORT_LINE_ITEM_DESCR",
+      "source_path": [
+        {
+          "from_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+          "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins"
+        },
+        {
+          "from_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "CHILD_RLI_DESC",
+          "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER"
+        },
+        {
+          "from_field": "FINANCE_REPORT_LINE_ITEM_DESCR",
+          "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd"
+        },
+        {
+          "from_field": "CHILD_RLI_DESC",
+          "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+      "source_path": [
+        {
+          "from_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+          "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins"
+        },
+        {
+          "from_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "PARENT_RLI",
+          "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER"
+        },
+        {
+          "from_field": "RU_PRNT_FIN_REPORT_LN_ITEM_CD",
+          "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd"
+        },
+        {
+          "from_field": "CHILD_RLI_DESC",
+          "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_LEVEL_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "DV_LEVEL_NUM_INT",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "DV_LEVEL_NUM_INT",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "DV_LEVEL_NUM_INT",
+          "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins"
+        },
+        {
+          "from_field": "DV_LEVEL_NUM_INT",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "DV_LEVEL_NUM_INT",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER"
+        },
+        {
+          "from_field": "DV_LEVEL_NUM_INT",
+          "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LINE_ITEM_NODE_TYPE",
+      "source_path": [
+        {
+          "from_field": "LINE_ITEM_NODE_TYPE",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "LINE_ITEM_NODE_TYPE",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "LINE_ITEM_NODE_TYPE",
+          "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins"
+        },
+        {
+          "from_field": "LINE_ITEM_NODE_TYPE",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "LINE_ITEM_NODE_TYPE",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "CHILD_RLI_DESC",
+          "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER"
+        },
+        {
+          "from_field": "LINE_ITEM_NODE_TYPE",
+          "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd"
+        },
+        {
+          "from_field": "PARENT_RLI",
+          "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EXPTRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RLI_REPORTING_SEQUENCE_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+          "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Ins"
+        },
+        {
+          "from_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "SEQ_NO",
+          "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER"
+        },
+        {
+          "from_field": "RLI_REPORTING_SEQUENCE_NUM_INT",
+          "from_instance": "SQ_ST_N_FINANCIAL_RLI_PC_HIER_Upd"
+        },
+        {
+          "from_field": "SEQ_NO",
+          "from_instance": "ST_N_FINANCIAL_RLI_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "thin",
+  "generated_timestamp": "2026-03-19T18:05:04.961367+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

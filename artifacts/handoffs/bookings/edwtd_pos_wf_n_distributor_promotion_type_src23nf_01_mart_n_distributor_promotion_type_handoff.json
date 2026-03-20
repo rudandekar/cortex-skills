@@ -1,0 +1,1044 @@
+{
+  "workflow_name": "wf_m_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+  "mapping_name": "m_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_POS",
+  "target_table": "N_DISTRIBUTOR_PROMOTION_TYPE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_pos_wf_n_distributor_promotion_type_src23nf_01_mart_n_distributor_promotion_type",
+  "source_tables": [
+    "DCA_LOOKUPS"
+  ],
+  "sources": [
+    {
+      "name": "DCA_LOOKUPS",
+      "database_type": "Oracle",
+      "owner": "DCAADM",
+      "fields": [
+        {
+          "name": "LOOKUP_CODE",
+          "datatype": "varchar2",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LOOKUP_TYPE",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LOOKUP_DESC",
+          "datatype": "varchar2",
+          "precision": "1000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXT_REF_CODE",
+          "datatype": "varchar2",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXT_REF_ID",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMENTS",
+          "datatype": "varchar2",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTIVE_FLAG",
+          "datatype": "varchar2",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE1",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE2",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE3",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE4",
+          "datatype": "varchar2",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE5",
+          "datatype": "varchar2",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_DISTRIBUTOR_PROMOTION_TYPE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_PROMOTION_TYPE_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "Lkp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "type": "Lookup Procedure",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PROMOTION_TYPE_CD",
+          "datatype": "string",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "in_LOOKUP_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Lookup Sql Override": "",
+        "Lookup table name": "N_DISTRIBUTOR_PROMOTION_TYPE",
+        "Lookup Source Filter": "",
+        "Lookup caching enabled": "YES",
+        "Lookup policy on multiple match": "Use Any Value",
+        "Lookup condition": "BK_PROMOTION_TYPE_CD = in_LOOKUP_CODE",
+        "Connection Information": "$Target",
+        "Source Type": "Database",
+        "Recache if Stale": "NO",
+        "Tracing Level": "Normal",
+        "Lookup cache directory name": "$PMCacheDir",
+        "Lookup cache initialize": "NO",
+        "Lookup cache persistent": "NO",
+        "Lookup Data Cache Size": "Auto",
+        "Lookup Index Cache Size": "Auto",
+        "Dynamic Lookup Cache": "NO",
+        "Synchronize Dynamic Cache": "NO",
+        "Output Old Value On Update": "NO",
+        "Update Dynamic Cache Condition": "TRUE",
+        "Cache File Name Prefix": "",
+        "Re-cache from lookup source": "NO",
+        "Insert Else Update": "NO",
+        "Update Else Insert": "NO",
+        "Datetime Format": "",
+        "Thousand Separator": "None",
+        "Decimal Separator": ".",
+        "Case Sensitive String Comparison": "NO",
+        "Null ordering": "Null Is Highest Value",
+        "Sorted Input": "NO",
+        "Lookup source is static": "NO",
+        "Pre-build lookup cache": "Auto",
+        "Subsecond Precision": "6"
+      }
+    },
+    {
+      "name": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PROMOTION_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_PROMOTION_TYPE_CD"
+        },
+        {
+          "name": "LOOKUP_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LOOKUP_CODE"
+        },
+        {
+          "name": "LOOKUP_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LOOKUP_TYPE"
+        },
+        {
+          "name": "LOOKUP_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LOOKUP_DESC"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_DATE"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "type": "Router",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PROMOTION_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_CODE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_DESC",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_PROMOTION_TYPE_CD1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_CODE1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_TYPE1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_DESC1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE1",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM1",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM1",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_PROMOTION_TYPE_CD3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_CODE3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_TYPE3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_DESC3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE3",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM3",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM3",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_PROMOTION_TYPE_CD2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_CODE2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_TYPE2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_DESC2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE2",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM2",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM2",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      },
+      "groups": [
+        {
+          "name": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "INSERT",
+          "expression": "IIF(ISNULL(BK_PROMOTION_TYPE_CD),TRUE,FALSE)"
+        },
+        {
+          "name": "DEFAULT1",
+          "expression": ""
+        },
+        {
+          "name": "UPDATE",
+          "expression": "IIF(NOT ISNULL(BK_PROMOTION_TYPE_CD),TRUE,FALSE)"
+        }
+      ]
+    },
+    {
+      "name": "Upd_INSERT",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "LOOKUP_CODE1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_TYPE1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_DESC1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE1",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM1",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM1",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_INSERT",
+        "Forward Rejected Rows": "YES",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "Upd_UPDATE",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PROMOTION_TYPE_CD3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_TYPE3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_DESC3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE3",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM3",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM3",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_UPDATE",
+        "Forward Rejected Rows": "YES",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_DCA_LOOKUPS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "LOOKUP_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXT_REF_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXT_REF_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMENTS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTIVE_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE4",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE5",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Lookup Procedure",
+    "Router",
+    "Source Qualifier",
+    "Update Strategy"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_PROMOTION_TYPE_CD3",
+      "from_instance": "Upd_UPDATE",
+      "to_field": "BK_PROMOTION_TYPE_CD",
+      "to_instance": "N_DISTRIBUTOR_PROMOTION_TYPE_UPDATE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM3",
+      "from_instance": "Upd_UPDATE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_DISTRIBUTOR_PROMOTION_TYPE_UPDATE"
+    },
+    {
+      "from_field": "LOOKUP_CODE1",
+      "from_instance": "Upd_INSERT",
+      "to_field": "BK_PROMOTION_TYPE_CD",
+      "to_instance": "N_DISTRIBUTOR_PROMOTION_TYPE_INSERT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM1",
+      "from_instance": "Upd_INSERT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_DISTRIBUTOR_PROMOTION_TYPE_INSERT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM1",
+      "from_instance": "Upd_INSERT",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_DISTRIBUTOR_PROMOTION_TYPE_INSERT"
+    },
+    {
+      "from_field": "LOOKUP_CODE",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "LOOKUP_CODE",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "LOOKUP_TYPE",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "LOOKUP_TYPE",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "LOOKUP_DESC",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "LOOKUP_DESC",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "EXT_REF_CODE",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "EXT_REF_CODE",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "EXT_REF_ID",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "EXT_REF_ID",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "COMMENTS",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "COMMENTS",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "ACTIVE_FLAG",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "ACTIVE_FLAG",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "CREATED_DATE",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "UPDATED_BY",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "UPDATED_BY",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "ATTRIBUTE1",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "ATTRIBUTE1",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "ATTRIBUTE2",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "ATTRIBUTE2",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "ATTRIBUTE3",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "ATTRIBUTE3",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "ATTRIBUTE4",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "ATTRIBUTE4",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "ATTRIBUTE5",
+      "from_instance": "DCA_LOOKUPS",
+      "to_field": "ATTRIBUTE5",
+      "to_instance": "SQ_DCA_LOOKUPS"
+    },
+    {
+      "from_field": "LOOKUP_CODE",
+      "from_instance": "SQ_DCA_LOOKUPS",
+      "to_field": "in_LOOKUP_CODE",
+      "to_instance": "Lkp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+    },
+    {
+      "from_field": "BK_PROMOTION_TYPE_CD",
+      "from_instance": "Lkp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "BK_PROMOTION_TYPE_CD",
+      "to_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+    },
+    {
+      "from_field": "LOOKUP_CODE",
+      "from_instance": "SQ_DCA_LOOKUPS",
+      "to_field": "LOOKUP_CODE",
+      "to_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+    },
+    {
+      "from_field": "LOOKUP_TYPE",
+      "from_instance": "SQ_DCA_LOOKUPS",
+      "to_field": "LOOKUP_TYPE",
+      "to_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+    },
+    {
+      "from_field": "LOOKUP_DESC",
+      "from_instance": "SQ_DCA_LOOKUPS",
+      "to_field": "LOOKUP_DESC",
+      "to_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+    },
+    {
+      "from_field": "BK_PROMOTION_TYPE_CD",
+      "from_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "BK_PROMOTION_TYPE_CD",
+      "to_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+    },
+    {
+      "from_field": "LOOKUP_CODE",
+      "from_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "LOOKUP_CODE",
+      "to_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+    },
+    {
+      "from_field": "LOOKUP_TYPE",
+      "from_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "LOOKUP_TYPE",
+      "to_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+    },
+    {
+      "from_field": "LOOKUP_DESC",
+      "from_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "LOOKUP_DESC",
+      "to_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM3",
+      "from_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "EDW_UPDATE_DTM3",
+      "to_instance": "Upd_UPDATE"
+    },
+    {
+      "from_field": "LOOKUP_CODE1",
+      "from_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "LOOKUP_CODE1",
+      "to_instance": "Upd_INSERT"
+    },
+    {
+      "from_field": "LOOKUP_TYPE1",
+      "from_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "LOOKUP_TYPE1",
+      "to_instance": "Upd_INSERT"
+    },
+    {
+      "from_field": "LOOKUP_DESC1",
+      "from_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "LOOKUP_DESC1",
+      "to_instance": "Upd_INSERT"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE1",
+      "from_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "LAST_UPDATE_DATE1",
+      "to_instance": "Upd_INSERT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM1",
+      "from_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "EDW_CREATE_DTM1",
+      "to_instance": "Upd_INSERT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM1",
+      "from_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "EDW_UPDATE_DTM1",
+      "to_instance": "Upd_INSERT"
+    },
+    {
+      "from_field": "BK_PROMOTION_TYPE_CD3",
+      "from_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "BK_PROMOTION_TYPE_CD3",
+      "to_instance": "Upd_UPDATE"
+    },
+    {
+      "from_field": "LOOKUP_TYPE3",
+      "from_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "LOOKUP_TYPE3",
+      "to_instance": "Upd_UPDATE"
+    },
+    {
+      "from_field": "LOOKUP_DESC3",
+      "from_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "LOOKUP_DESC3",
+      "to_instance": "Upd_UPDATE"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE3",
+      "from_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "LAST_UPDATE_DATE3",
+      "to_instance": "Upd_UPDATE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM3",
+      "from_instance": "Rtr_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF",
+      "to_field": "EDW_CREATE_DTM3",
+      "to_instance": "Upd_UPDATE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_PROMOTION_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "BK_PROMOTION_TYPE_CD3",
+          "from_instance": "Upd_UPDATE"
+        },
+        {
+          "from_field": "LOOKUP_CODE1",
+          "from_instance": "Upd_INSERT"
+        },
+        {
+          "from_field": "BK_PROMOTION_TYPE_CD",
+          "from_instance": "Lkp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+        },
+        {
+          "from_field": "BK_PROMOTION_TYPE_CD",
+          "from_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM1",
+          "from_instance": "Upd_INSERT"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM3",
+          "from_instance": "Upd_UPDATE"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM1",
+          "from_instance": "Upd_INSERT"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "Exp_N_DISTRIBUTOR_PROMOTION_TYPE_SRC23NF"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "thin",
+  "generated_timestamp": "2026-03-19T18:41:15.401496+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

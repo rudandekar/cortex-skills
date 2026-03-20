@@ -1,0 +1,158 @@
+{{ config(
+    materialized='view',
+    schema='',
+    tags=['wf_m_cg1_xxitm_ege_bundle_mappings', 'batch', 'edwtd_batch_accum'],
+    meta={
+        'source_workflow': 'wf_m_CG1_XXITM_EGE_BUNDLE_MAPPINGS',
+        'target_table': 'STG_CG1_XXITM_EGE_BUNDLE_MAPP',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:22:01.059278+00:00'
+    }
+) }}
+
+WITH 
+
+source_stg_cg1_xxitm_ege_bundle_mapp AS (
+    SELECT
+        bundle_mapping_id,
+        comp_type,
+        comp_seq,
+        item_name,
+        item_id,
+        parent_bundle_mapping_id,
+        relation_type,
+        discount_percent,
+        required_flag,
+        min_qty,
+        max_qty,
+        multi_flavor,
+        batch_id,
+        start_date_active,
+        end_date_active,
+        category_name,
+        category_id,
+        description,
+        ege_request_id,
+        creation_date,
+        created_by,
+        last_update_date,
+        last_update_login,
+        last_updated_by,
+        publish_flag,
+        bundle_id,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        processed_flag
+    FROM {{ source('raw', 'stg_cg1_xxitm_ege_bundle_mapp') }}
+),
+
+source_cg1_xxitm_ege_bundle_mappings AS (
+    SELECT
+        source_dml_type,
+        fully_qualified_table_name,
+        source_commit_time,
+        refresh_datetime,
+        trail_position,
+        token,
+        bundle_mapping_id,
+        comp_type,
+        comp_seq,
+        item_name,
+        item_id,
+        parent_bundle_mapping_id,
+        relation_type,
+        discount_percent,
+        required_flag,
+        min_qty,
+        max_qty,
+        multi_flavor,
+        batch_id,
+        start_date_active,
+        end_date_active,
+        category_name,
+        category_id,
+        description,
+        ege_request_id,
+        creation_date,
+        created_by,
+        last_update_login,
+        last_update_date,
+        last_updated_by,
+        publish_flag,
+        bundle_id
+    FROM {{ source('raw', 'cg1_xxitm_ege_bundle_mappings') }}
+),
+
+transformed_exp_cg1_xxitm_ege_bundle_mappings AS (
+    SELECT
+    source_dml_type,
+    source_commit_time,
+    refresh_datetime,
+    bundle_mapping_id,
+    comp_type,
+    comp_seq,
+    item_name,
+    item_id,
+    parent_bundle_mapping_id,
+    relation_type,
+    discount_percent,
+    required_flag,
+    min_qty,
+    max_qty,
+    multi_flavor,
+    batch_id,
+    start_date_active,
+    end_date_active,
+    category_name,
+    category_id,
+    description,
+    ege_request_id,
+    creation_date,
+    created_by,
+    last_update_login,
+    last_update_date,
+    last_updated_by,
+    publish_flag,
+    bundle_id
+    FROM source_cg1_xxitm_ege_bundle_mappings
+),
+
+final AS (
+    SELECT
+        bundle_mapping_id,
+        comp_type,
+        comp_seq,
+        item_name,
+        item_id,
+        parent_bundle_mapping_id,
+        relation_type,
+        discount_percent,
+        required_flag,
+        min_qty,
+        max_qty,
+        multi_flavor,
+        batch_id,
+        start_date_active,
+        end_date_active,
+        category_name,
+        category_id,
+        description,
+        ege_request_id,
+        creation_date,
+        created_by,
+        last_update_date,
+        last_update_login,
+        last_updated_by,
+        publish_flag,
+        bundle_id,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        processed_flag
+    FROM transformed_exp_cg1_xxitm_ege_bundle_mappings
+)
+
+SELECT * FROM final

@@ -1,0 +1,131 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_w_ccrm_profile_sales_order', 'batch', 'edwtd_ngccrm'],
+    meta={
+        'source_workflow': 'wf_m_W_CCRM_PROFILE_SALES_ORDER',
+        'target_table': 'EX_CCRM_PROFILE_ORDER',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:44.035129+00:00'
+    }
+) }}
+
+WITH 
+
+source_n_sales_order AS (
+    SELECT
+        sales_order_key,
+        bk_company_code,
+        bk_set_of_books_key,
+        bk_so_number_int,
+        start_tv_datetime,
+        start_ssp_date,
+        end_tv_datetime,
+        end_ssp_date,
+        shipment_priority_code,
+        purchase_order_type_code,
+        purchase_order_number,
+        order_datetime,
+        oracle_book_datetime,
+        transactional_currency_code,
+        invoicing_deferral_expir_dtm,
+        early_ship_allowed_flag,
+        partial_shipment_allowed_flag,
+        sales_order_open_flag,
+        customer_service_rep_name,
+        purchase_order_date,
+        fax_received_datetime,
+        complete_order_result_code,
+        sales_order_expiration_dtm,
+        cust_svc_rep_team_name,
+        conversion_type_code,
+        original_system_reference_code,
+        submitted_on_web_by_name,
+        ru_cisco_booked_datetime,
+        bk_inv_org_name_code,
+        bk_deal_id,
+        bk_price_list_name,
+        bk_so_source_name,
+        bk_order_type_name,
+        bk_fob_point_code,
+        bk_freight_terms_code,
+        bk_so_src_crt_datetime,
+        bk_so_src_upd_datetime,
+        bk_sales_channel_code,
+        bk_sales_channel_source_type,
+        cisco_booked_status_role,
+        sales_order_category_type,
+        sk_sales_order_header_id_int,
+        ss_code,
+        cancelled_flag,
+        pricing_datetime,
+        ship_to_customer_key,
+        bill_to_customer_key,
+        sold_to_customer_key,
+        ru_bk_orig_sales_order_key,
+        edw_create_user,
+        edw_update_user,
+        edw_create_datetime,
+        edw_update_datetime,
+        order_cycle_status_cd,
+        so_created_by_erp_user_name,
+        so_modified_by_erp_user_name
+    FROM {{ source('raw', 'n_sales_order') }}
+),
+
+source_st_ccrm_profile_order AS (
+    SELECT
+        batch_id,
+        profile_id,
+        header_id,
+        order_number,
+        global_name,
+        global_deal_id,
+        aph_flag,
+        book_def_flag,
+        rev_def_flag,
+        cogs_def_flag,
+        ord_cycle_open_flag,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        new_order_flag,
+        workflow_flag,
+        processed,
+        archived_flag,
+        order_status,
+        creation_datetime,
+        action_code
+    FROM {{ source('raw', 'st_ccrm_profile_order') }}
+),
+
+final AS (
+    SELECT
+        batch_id,
+        profile_id,
+        header_id,
+        order_number,
+        global_name,
+        global_deal_id,
+        aph_flag,
+        book_def_flag,
+        rev_def_flag,
+        cogs_def_flag,
+        ord_cycle_open_flag,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        new_order_flag,
+        workflow_flag,
+        processed,
+        archived_flag,
+        order_status,
+        creation_datetime,
+        action_code,
+        exception_type
+    FROM source_st_ccrm_profile_order
+)
+
+SELECT * FROM final

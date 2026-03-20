@@ -1,0 +1,592 @@
+{
+  "workflow_name": "wf_m_N_GTC_PART_CLASS_STG23NF",
+  "mapping_name": "m_N_GTC_PART_CLASS_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GTC",
+  "target_table": "N_GTC_PART_CLASS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gtc_wf_n_gtc_part_class_stg23nf_01_mart_n_gtc_part_class",
+  "source_tables": [
+    "N_GTC_PART_CLASS"
+  ],
+  "sources": [
+    {
+      "name": "N_GTC_PART_CLASS",
+      "database_type": "Teradata",
+      "owner": "FINLGLVWDB_DV4",
+      "fields": [
+        {
+          "name": "GTC_PART_CLASS_CD",
+          "datatype": "varchar",
+          "precision": "80",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SS_CD",
+          "datatype": "char",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PART_CLASS_DESCR",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_GTC_PART_CLASS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "GTC_PART_CLASS_CD",
+        "datatype": "varchar",
+        "precision": "80",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SS_CD",
+        "datatype": "char",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "PART_CLASS_DESCR",
+        "datatype": "varchar",
+        "precision": "250",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_GTC_PART_CLASS1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "GTC_PART_CLASS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PART_CLASS_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nBK_PART_CLASS_CD              ,\r\n'CISCO' AS SS_CD,\r\nPART_CLASS_DESCR              ,\r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\nUSER \t\t\t\t AS EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM,\r\nUSER \t\t\t\t AS EDW_UPDATE_USER\r\nFROM $$COMREFVWDB.N_PART_CLASS NPC\r\nWHERE NOT EXISTS\r\n(\r\nSELECT 1\r\n  FROM $$FINLGLVWDB.N_GTC_PART_CLASS NGPC\r\n WHERE NGPC.GTC_PART_CLASS_CD = NPC.BK_PART_CLASS_CD\r\n   AND NGPC.SS_CD = 'CISCO'\r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_N_GTC_PART_CLASS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "GTC_PART_CLASS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PART_CLASS_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT COALESCE(TRIM(TRAILING '-' FROM NAME ) ,'UNKNOWN') AS GTC_PART_CLASS_CD,\r\nCOALESCE(SOURCE1,'UNKNOWN') AS SS_CD,\r\nDESCRIPTION AS PART_CLASS_DESCR,\r\nCURRENT_TIMESTAMP(0),\r\nUSER,\r\nCURRENT_TIMESTAMP(0),\r\nUSER\r\n FROM  $$STGDB.ST_XXCFI_CB_PT_CC XCTS\r\nWHERE  XCTS.SOURCE1 <> 'CISCO' AND XCTS.PRODUCT_FLAG = 'C'\r\nAND NOT EXISTS (SELECT 1 FROM  $$FINLGLVWDB.N_GTC_PART_CLASS NGPC WHERE NGPC.GTC_PART_CLASS_CD = TRIM(TRAILING '-' FROM XCTS.NAME))\r\nQUALIFY ROW_NUMBER() OVER( PARTITION BY TRIM(TRAILING '-' FROM NAME), XCTS.SOURCE1 ORDER BY XCTS.MODIFIED_DATE DESC) = 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "GTC_PART_CLASS_CD",
+      "from_instance": "SQ_N_GTC_PART_CLASS",
+      "to_field": "GTC_PART_CLASS_CD",
+      "to_instance": "N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "SQ_N_GTC_PART_CLASS",
+      "to_field": "SS_CD",
+      "to_instance": "N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "PART_CLASS_DESCR",
+      "from_instance": "SQ_N_GTC_PART_CLASS",
+      "to_field": "PART_CLASS_DESCR",
+      "to_instance": "N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_GTC_PART_CLASS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_GTC_PART_CLASS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_GTC_PART_CLASS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_GTC_PART_CLASS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "GTC_PART_CLASS_CD",
+      "from_instance": "SQ_N_GTC_PART_CLASS1",
+      "to_field": "GTC_PART_CLASS_CD",
+      "to_instance": "N_GTC_PART_CLASS2"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "SQ_N_GTC_PART_CLASS1",
+      "to_field": "SS_CD",
+      "to_instance": "N_GTC_PART_CLASS2"
+    },
+    {
+      "from_field": "PART_CLASS_DESCR",
+      "from_instance": "SQ_N_GTC_PART_CLASS1",
+      "to_field": "PART_CLASS_DESCR",
+      "to_instance": "N_GTC_PART_CLASS2"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_GTC_PART_CLASS1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_GTC_PART_CLASS2"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_GTC_PART_CLASS1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_GTC_PART_CLASS2"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_GTC_PART_CLASS1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_GTC_PART_CLASS2"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_GTC_PART_CLASS1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_GTC_PART_CLASS2"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "N_GTC_PART_CLASS11",
+      "to_field": "SS_CD",
+      "to_instance": "SQ_N_GTC_PART_CLASS1"
+    },
+    {
+      "from_field": "PART_CLASS_DESCR",
+      "from_instance": "N_GTC_PART_CLASS11",
+      "to_field": "PART_CLASS_DESCR",
+      "to_instance": "SQ_N_GTC_PART_CLASS1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_GTC_PART_CLASS11",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_GTC_PART_CLASS1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_GTC_PART_CLASS11",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_GTC_PART_CLASS1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_GTC_PART_CLASS11",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_GTC_PART_CLASS1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_GTC_PART_CLASS11",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_GTC_PART_CLASS1"
+    },
+    {
+      "from_field": "GTC_PART_CLASS_CD",
+      "from_instance": "N_GTC_PART_CLASS11",
+      "to_field": "GTC_PART_CLASS_CD",
+      "to_instance": "SQ_N_GTC_PART_CLASS1"
+    },
+    {
+      "from_field": "GTC_PART_CLASS_CD",
+      "from_instance": "N_GTC_PART_CLASS1",
+      "to_field": "GTC_PART_CLASS_CD",
+      "to_instance": "SQ_N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "N_GTC_PART_CLASS1",
+      "to_field": "SS_CD",
+      "to_instance": "SQ_N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "PART_CLASS_DESCR",
+      "from_instance": "N_GTC_PART_CLASS1",
+      "to_field": "PART_CLASS_DESCR",
+      "to_instance": "SQ_N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_GTC_PART_CLASS1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_GTC_PART_CLASS1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_GTC_PART_CLASS1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_GTC_PART_CLASS"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_GTC_PART_CLASS1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_GTC_PART_CLASS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "GTC_PART_CLASS_CD",
+      "source_path": [
+        {
+          "from_field": "GTC_PART_CLASS_CD",
+          "from_instance": "SQ_N_GTC_PART_CLASS"
+        },
+        {
+          "from_field": "GTC_PART_CLASS_CD",
+          "from_instance": "SQ_N_GTC_PART_CLASS1"
+        },
+        {
+          "from_field": "GTC_PART_CLASS_CD",
+          "from_instance": "N_GTC_PART_CLASS11"
+        },
+        {
+          "from_field": "GTC_PART_CLASS_CD",
+          "from_instance": "N_GTC_PART_CLASS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CD",
+      "source_path": [
+        {
+          "from_field": "SS_CD",
+          "from_instance": "SQ_N_GTC_PART_CLASS"
+        },
+        {
+          "from_field": "SS_CD",
+          "from_instance": "SQ_N_GTC_PART_CLASS1"
+        },
+        {
+          "from_field": "SS_CD",
+          "from_instance": "N_GTC_PART_CLASS11"
+        },
+        {
+          "from_field": "SS_CD",
+          "from_instance": "N_GTC_PART_CLASS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PART_CLASS_DESCR",
+      "source_path": [
+        {
+          "from_field": "PART_CLASS_DESCR",
+          "from_instance": "SQ_N_GTC_PART_CLASS"
+        },
+        {
+          "from_field": "PART_CLASS_DESCR",
+          "from_instance": "SQ_N_GTC_PART_CLASS1"
+        },
+        {
+          "from_field": "PART_CLASS_DESCR",
+          "from_instance": "N_GTC_PART_CLASS11"
+        },
+        {
+          "from_field": "PART_CLASS_DESCR",
+          "from_instance": "N_GTC_PART_CLASS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_GTC_PART_CLASS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_GTC_PART_CLASS1"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_GTC_PART_CLASS11"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_GTC_PART_CLASS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_GTC_PART_CLASS"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_GTC_PART_CLASS1"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_GTC_PART_CLASS11"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_GTC_PART_CLASS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_N_GTC_PART_CLASS"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_N_GTC_PART_CLASS1"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "N_GTC_PART_CLASS11"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "N_GTC_PART_CLASS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_GTC_PART_CLASS"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_GTC_PART_CLASS1"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_GTC_PART_CLASS11"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_GTC_PART_CLASS1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:12.895122+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

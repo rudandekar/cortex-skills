@@ -1,0 +1,132 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_n_sca_non_apld_trx_oly_rtnr_tv', 'batch', 'edwtd_sales_orders'],
+    meta={
+        'source_workflow': 'wf_m_N_SCA_NON_APLD_TRX_OLY_RTNR_TV',
+        'target_table': 'N_SCA_NON_APLD_TRX_OLY_RTNR',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:34.212640+00:00'
+    }
+) }}
+
+WITH 
+
+source_w_sca_non_apld_trx_oly_rtnr AS (
+    SELECT
+        sales_cr_assgn_nonappld_key,
+        bk_sls_terr_assignment_type_cd,
+        pd_assignment_mode_cd,
+        pd_scan_creation_dt,
+        sk_trx_split_sc_id_int,
+        pd_bk_sales_credit_type_cd,
+        pd_sales_rep_num,
+        pd_sales_territory_key,
+        pd_ar_trx_line_key,
+        pd_sales_commission_pct,
+        pd_ss_cd,
+        pd_created_by_erp_user_name,
+        src_rptd_rbk_otm_terr_id_int,
+        src_rptd_rbk_otm_terr_name,
+        src_rptd_rbk_otm_terr_type_cd,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        pd_sls_credit_last_update_dtm,
+        pd_sales_credit_usage_cd,
+        pd_sls_credit_unallocated_flg,
+        bk_sls_crdt_asgnmnt_reason_cd,
+        start_tv_dtm,
+        end_tv_dtm,
+        ucrm_case_num,
+        trx_split_bu_id,
+        sk_trx_split_id_int,
+        offer_attrbtn_id_int,
+        split_1_offr_attrbtn_pct,
+        split_2_new_renew_pct,
+        rtr_attribution_key,
+        total_split_pct,
+        sales_motion_cd,
+        action_code,
+        dml_type
+    FROM {{ source('raw', 'w_sca_non_apld_trx_oly_rtnr') }}
+),
+
+source_n_sca_non_apld_trx_oly_rtnr_tv AS (
+    SELECT
+        sales_cr_assgn_nonappld_key,
+        bk_sls_terr_assignment_type_cd,
+        pd_assignment_mode_cd,
+        pd_scan_creation_dt,
+        sk_trx_split_sc_id_int,
+        pd_bk_sales_credit_type_cd,
+        pd_sales_rep_num,
+        pd_sales_territory_key,
+        pd_ar_trx_line_key,
+        pd_sales_commission_pct,
+        pd_ss_cd,
+        pd_created_by_erp_user_name,
+        src_rptd_rbk_otm_terr_id_int,
+        src_rptd_rbk_otm_terr_name,
+        src_rptd_rbk_otm_terr_type_cd,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        pd_sls_credit_last_update_dtm,
+        pd_sales_credit_usage_cd,
+        pd_sls_credit_unallocated_flg,
+        bk_sls_crdt_asgnmnt_reason_cd,
+        start_tv_dtm,
+        end_tv_dtm,
+        ucrm_case_num,
+        trx_split_bu_id,
+        sk_trx_split_id_int,
+        offer_attrbtn_id_int,
+        split_1_offr_attrbtn_pct,
+        split_2_new_renew_pct,
+        rtr_attribution_key,
+        total_split_pct,
+        sales_motion_cd
+    FROM {{ source('raw', 'n_sca_non_apld_trx_oly_rtnr_tv') }}
+),
+
+final AS (
+    SELECT
+        sales_cr_assgn_nonappld_key,
+        bk_sls_terr_assignment_type_cd,
+        src_rptd_rbk_otm_terr_id_int,
+        src_rptd_rbk_otm_terr_name,
+        src_rptd_rbk_otm_terr_type_cd,
+        sk_trx_split_sc_id_int,
+        pd_assignment_mode_cd,
+        pd_scan_creation_dt,
+        pd_bk_sales_credit_type_cd,
+        pd_sales_rep_num,
+        pd_sales_territory_key,
+        pd_ar_trx_line_key,
+        pd_sales_commission_pct,
+        pd_ss_cd,
+        pd_created_by_erp_user_name,
+        pd_sales_credit_usage_cd,
+        pd_sls_credit_unallocated_flg,
+        bk_sls_crdt_asgnmnt_reason_cd,
+        pd_sls_credit_last_update_dtm,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        ucrm_case_num,
+        trx_split_bu_id,
+        sk_trx_split_id_int,
+        offer_attrbtn_id_int,
+        split_1_offr_attrbtn_pct,
+        split_2_new_renew_pct,
+        rtr_attribution_key,
+        total_split_pct,
+        sales_motion_cd
+    FROM source_n_sca_non_apld_trx_oly_rtnr_tv
+)
+
+SELECT * FROM final

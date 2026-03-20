@@ -1,0 +1,101 @@
+{{ config(
+    materialized='view',
+    schema='',
+    tags=['wf_m_el_int_raw_cq_quote_line_vw', 'batch', 'edwtd_sales_orders'],
+    meta={
+        'source_workflow': 'wf_m_EL_INT_RAW_CQ_QUOTE_LINE_VW',
+        'target_table': 'EL_INT_RAW_CQ_QUOTE_LINE_VW',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:26:59.908100+00:00'
+    }
+) }}
+
+WITH 
+
+source_st_int_raw_cq_quote_line_vw AS (
+    SELECT
+        object_id,
+        parent_line_object_id,
+        line_number,
+        quote_object_id,
+        line_type,
+        line_type_name,
+        ext_list_price_gpl,
+        ext_list_price,
+        quantity,
+        final_net_price,
+        part_number,
+        description,
+        fulfillment_type,
+        duration,
+        contractual_disc,
+        mlb_indicator,
+        promo_disc,
+        nonstandard_disc,
+        trade_in_disc,
+        multi_year_disc,
+        active,
+        created_date,
+        created_by,
+        updated_date,
+        updated_by,
+        web_order_id,
+        order_status,
+        wf_priced,
+        smt_line_id_int,
+        solution_identifier,
+        ext_net_price_amt_std,
+        negotiated_adjusted_disc,
+        additional_unit_credit_amt,
+        trade_in_unit_credit_amt_std,
+        oem_reb_flag,
+        program_id,
+        as_project_number,
+        additional_item_info
+    FROM {{ source('raw', 'st_int_raw_cq_quote_line_vw') }}
+),
+
+final AS (
+    SELECT
+        object_id,
+        parent_line_object_id,
+        line_number,
+        quote_object_id,
+        line_type,
+        line_type_name,
+        ext_list_price_gpl,
+        ext_list_price,
+        quantity,
+        final_net_price,
+        part_number,
+        description,
+        fulfillment_type,
+        duration,
+        contractual_disc,
+        mlb_indicator,
+        promo_disc,
+        nonstandard_disc,
+        trade_in_disc,
+        multi_year_disc,
+        active,
+        created_date,
+        created_by,
+        updated_date,
+        updated_by,
+        web_order_id,
+        order_status,
+        wf_priced,
+        smt_line_id_int,
+        solution_identifier,
+        ext_net_price_amt_std,
+        negotiated_adjusted_disc,
+        additional_unit_credit_amt,
+        trade_in_unit_credit_amt_std,
+        oem_reb_flag,
+        program_id,
+        as_project_number,
+        additional_item_info
+    FROM source_st_int_raw_cq_quote_line_vw
+)
+
+SELECT * FROM final

@@ -1,0 +1,792 @@
+{
+  "workflow_name": "wf_m_FF_CAP_ROLL_WORKING_PLAN_ARC",
+  "mapping_name": "m_FF_CAP_ROLL_WORKING_PLAN_ARC",
+  "mapping_description": "",
+  "folder_name": "EDWTD_FA_FUTURE",
+  "target_table": "FF_CAP_ROLL_WORKING_PLAN_ARC",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_fa_future_wf_ff_cap_roll_working_plan_arc_01_mart_ff_cap_roll_working_plan_arc",
+  "source_tables": [
+    "CAP_ROLL_WORKING_PLAN_ARC"
+  ],
+  "sources": [
+    {
+      "name": "CAP_ROLL_WORKING_PLAN_ARC",
+      "database_type": "Oracle",
+      "owner": "CBTADM",
+      "fields": [
+        {
+          "name": "PROJECT_ID",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AMOUNT",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PERIOD_ID",
+          "datatype": "varchar2",
+          "precision": "6",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_ID",
+          "datatype": "varchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "varchar2",
+          "precision": "2",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COUNTRY_DEPARTMENT",
+          "datatype": "varchar2",
+          "precision": "11",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CIP_FLAG",
+          "datatype": "varchar2",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PERIOD_NAME",
+          "datatype": "varchar2",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUARTER_ID",
+          "datatype": "varchar2",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PLANNING_ID",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_CAP_ROLL_WORKING_PLAN_ARC",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BATCH_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROJECT_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AMOUNT",
+        "datatype": "number",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PERIOD_ID",
+        "datatype": "string",
+        "precision": "6",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCOUNT_ID",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ORG_ID",
+        "datatype": "string",
+        "precision": "2",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COUNTRY_DEPARTMENT",
+        "datatype": "string",
+        "precision": "11",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CIP_FLAG",
+        "datatype": "string",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PERIOD_NAME",
+        "datatype": "string",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "QUARTER_ID",
+        "datatype": "string",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PLANNING_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "string",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_CAP_ROLL_WORKING_PLAN_ARC",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PROJECT_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COUNTRY_DEPARTMENT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CIP_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUARTER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PLANNING_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT CRWPA.PROJECT_ID,\r\nCRWPA.AMOUNT,\r\nCRWPA.PERIOD_ID,\r\nCRWPA.ACCOUNT_ID,\r\nCRWPA.ORG_ID,\r\nCRWPA.COUNTRY_DEPARTMENT,\r\nCRWPA.CIP_FLAG,CRWPA.PERIOD_NAME,CRWPA.QUARTER_ID,CRWPA.PLANNING_ID\r\nFROM CAP_ROLL_WORKING_PLAN_ARC CRWPA,\r\n(\r\nselect org_id,PLANNING_ID from CAP_ORG_PLANNING_CYCLE where (org_id,PLANNING_DATE)\r\nin (select org_id,max(PLANNING_DATE) from CAP_ORG_PLANNING_CYCLE group by org_id)\r\n) COPC\r\nwhere CRWPA.PLANNING_ID=COPC.PLANNING_ID\r\nand CRWPA.ORG_ID=COPC.ORG_ID",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": "$$BatchId"
+        },
+        {
+          "name": "PROJECT_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PROJECT_ID"
+        },
+        {
+          "name": "AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AMOUNT"
+        },
+        {
+          "name": "PERIOD_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PERIOD_ID"
+        },
+        {
+          "name": "ACCOUNT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACCOUNT_ID"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ORG_ID"
+        },
+        {
+          "name": "COUNTRY_DEPARTMENT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "COUNTRY_DEPARTMENT"
+        },
+        {
+          "name": "CIP_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CIP_FLAG"
+        },
+        {
+          "name": "PERIOD_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PERIOD_NAME"
+        },
+        {
+          "name": "QUARTER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "QUARTER_ID"
+        },
+        {
+          "name": "PLANNING_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PLANNING_ID"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "ACTION_CODE",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "BATCH_ID",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "PROJECT_ID",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "PROJECT_ID",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "AMOUNT",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "AMOUNT",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "PERIOD_ID",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "PERIOD_ID",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "ACCOUNT_ID",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "ACCOUNT_ID",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "ORG_ID",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "COUNTRY_DEPARTMENT",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "COUNTRY_DEPARTMENT",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "CIP_FLAG",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "CIP_FLAG",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "PERIOD_NAME",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "PERIOD_NAME",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "QUARTER_ID",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "QUARTER_ID",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "PLANNING_ID",
+      "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "PLANNING_ID",
+      "to_instance": "FF_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "ORG_ID",
+      "to_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "COUNTRY_DEPARTMENT",
+      "from_instance": "CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "COUNTRY_DEPARTMENT",
+      "to_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "CIP_FLAG",
+      "from_instance": "CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "CIP_FLAG",
+      "to_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "PERIOD_NAME",
+      "from_instance": "CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "PERIOD_NAME",
+      "to_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "QUARTER_ID",
+      "from_instance": "CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "QUARTER_ID",
+      "to_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "ACCOUNT_ID",
+      "from_instance": "CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "ACCOUNT_ID",
+      "to_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "PLANNING_ID",
+      "from_instance": "CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "PLANNING_ID",
+      "to_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "AMOUNT",
+      "from_instance": "CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "AMOUNT",
+      "to_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "PERIOD_ID",
+      "from_instance": "CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "PERIOD_ID",
+      "to_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "PROJECT_ID",
+      "from_instance": "CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "PROJECT_ID",
+      "to_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "PROJECT_ID",
+      "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "PROJECT_ID",
+      "to_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "AMOUNT",
+      "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "AMOUNT",
+      "to_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "PERIOD_ID",
+      "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "PERIOD_ID",
+      "to_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "ACCOUNT_ID",
+      "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "ACCOUNT_ID",
+      "to_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "ORG_ID",
+      "to_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "COUNTRY_DEPARTMENT",
+      "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "COUNTRY_DEPARTMENT",
+      "to_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "CIP_FLAG",
+      "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "CIP_FLAG",
+      "to_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "PERIOD_NAME",
+      "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "PERIOD_NAME",
+      "to_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "QUARTER_ID",
+      "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "QUARTER_ID",
+      "to_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+    },
+    {
+      "from_field": "PLANNING_ID",
+      "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC",
+      "to_field": "PLANNING_ID",
+      "to_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROJECT_ID",
+      "source_path": [
+        {
+          "from_field": "PROJECT_ID",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "PROJECT_ID",
+          "from_instance": "CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "PROJECT_ID",
+          "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AMOUNT",
+      "source_path": [
+        {
+          "from_field": "AMOUNT",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "AMOUNT",
+          "from_instance": "CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "AMOUNT",
+          "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PERIOD_ID",
+      "source_path": [
+        {
+          "from_field": "PERIOD_ID",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "PERIOD_ID",
+          "from_instance": "CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "PERIOD_ID",
+          "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNT_ID",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_ID",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "ACCOUNT_ID",
+          "from_instance": "CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "ACCOUNT_ID",
+          "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ORG_ID",
+      "source_path": [
+        {
+          "from_field": "ORG_ID",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "ORG_ID",
+          "from_instance": "CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "ORG_ID",
+          "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COUNTRY_DEPARTMENT",
+      "source_path": [
+        {
+          "from_field": "COUNTRY_DEPARTMENT",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "COUNTRY_DEPARTMENT",
+          "from_instance": "CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "COUNTRY_DEPARTMENT",
+          "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CIP_FLAG",
+      "source_path": [
+        {
+          "from_field": "CIP_FLAG",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "CIP_FLAG",
+          "from_instance": "CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "CIP_FLAG",
+          "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PERIOD_NAME",
+      "source_path": [
+        {
+          "from_field": "PERIOD_NAME",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "PERIOD_NAME",
+          "from_instance": "CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "PERIOD_NAME",
+          "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "QUARTER_ID",
+      "source_path": [
+        {
+          "from_field": "QUARTER_ID",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "QUARTER_ID",
+          "from_instance": "CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "QUARTER_ID",
+          "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PLANNING_ID",
+      "source_path": [
+        {
+          "from_field": "PLANNING_ID",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "PLANNING_ID",
+          "from_instance": "CAP_ROLL_WORKING_PLAN_ARC"
+        },
+        {
+          "from_field": "PLANNING_ID",
+          "from_instance": "SQ_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_CAP_ROLL_WORKING_PLAN_ARC"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:04.571323+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

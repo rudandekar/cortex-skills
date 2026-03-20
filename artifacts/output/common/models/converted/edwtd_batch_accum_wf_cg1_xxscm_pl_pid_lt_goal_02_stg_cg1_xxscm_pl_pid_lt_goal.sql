@@ -1,0 +1,156 @@
+{{ config(
+    materialized='view',
+    schema='',
+    tags=['wf_m_cg1_xxscm_pl_pid_lt_goal', 'batch', 'edwtd_batch_accum'],
+    meta={
+        'source_workflow': 'wf_m_CG1_XXSCM_PL_PID_LT_GOAL',
+        'target_table': 'STG_CG1_XXSCM_PL_PID_LT_GOAL',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:22:00.631397+00:00'
+    }
+) }}
+
+WITH 
+
+source_stg_cg1_xxscm_pl_pid_lt_goal AS (
+    SELECT
+        product_id,
+        inventory_item_id,
+        delivery_method,
+        pid_lead_time_goal,
+        comments,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        created_by_user,
+        last_updated_by_user,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime
+    FROM {{ source('raw', 'stg_cg1_xxscm_pl_pid_lt_goal') }}
+),
+
+source_cg1_xxscm_pl_pid_lt_goal AS (
+    SELECT
+        source_dml_type,
+        fully_qualified_table_name,
+        source_commit_time,
+        refresh_datetime,
+        trail_position,
+        token,
+        product_id,
+        inventory_item_id,
+        delivery_method,
+        pid_lead_time_goal,
+        comments,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        created_by_user,
+        last_updated_by_user,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15
+    FROM {{ source('raw', 'cg1_xxscm_pl_pid_lt_goal') }}
+),
+
+transformed_exp_cg1_xxscm_pl_pid_lt_goal AS (
+    SELECT
+    source_dml_type,
+    source_commit_time,
+    refresh_datetime,
+    product_id,
+    inventory_item_id,
+    delivery_method,
+    pid_lead_time_goal,
+    comments,
+    created_by,
+    creation_date,
+    last_updated_by,
+    last_update_date,
+    created_by_user,
+    last_updated_by_user,
+    attribute1,
+    attribute2,
+    attribute3,
+    attribute4,
+    attribute5,
+    attribute6,
+    attribute7,
+    attribute8,
+    attribute9,
+    attribute10,
+    attribute11,
+    attribute12,
+    attribute13,
+    attribute14,
+    attribute15
+    FROM source_cg1_xxscm_pl_pid_lt_goal
+),
+
+final AS (
+    SELECT
+        product_id,
+        inventory_item_id,
+        delivery_method,
+        pid_lead_time_goal,
+        comments,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        created_by_user,
+        last_updated_by_user,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime
+    FROM transformed_exp_cg1_xxscm_pl_pid_lt_goal
+)
+
+SELECT * FROM final

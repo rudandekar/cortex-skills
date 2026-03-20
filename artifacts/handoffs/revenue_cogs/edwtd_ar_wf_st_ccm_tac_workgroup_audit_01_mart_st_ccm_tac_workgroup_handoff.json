@@ -1,0 +1,343 @@
+{
+  "workflow_name": "wf_m_ST_CCM_TAC_WORKGROUP",
+  "mapping_name": "m_ST_CCM_TAC_WORKGROUP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "ST_CCM_TAC_WORKGROUP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_st_ccm_tac_workgroup_audit_01_mart_st_ccm_tac_workgroup",
+  "source_tables": [
+    "FF_CCM_TAC_WORKGROUP"
+  ],
+  "sources": [
+    {
+      "name": "FF_CCM_TAC_WORKGROUP",
+      "database_type": "Flat File",
+      "owner": "FLATFILE",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WG_NAME",
+          "datatype": "string",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DELIVERY_CHANNEL",
+          "datatype": "string",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CCM_THEATER",
+          "datatype": "string",
+          "precision": "500",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OVERRIDE_THEATER",
+          "datatype": "string",
+          "precision": "500",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_CCM_TAC_WORKGROUP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_MONTH_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "WG_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "THEATER",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DELIVERY_CHANNEL",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CCM_THEATER",
+        "datatype": "varchar",
+        "precision": "500",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "OVERRIDE_THEATER",
+        "datatype": "varchar",
+        "precision": "500",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_CCM_TAC_WORKGROUP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WG_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DELIVERY_CHANNEL",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CCM_THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OVERRIDE_THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_FF_CCM_TAC_WORKGROUP",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "ST_CCM_TAC_WORKGROUP"
+    },
+    {
+      "from_field": "WG_NAME",
+      "from_instance": "SQ_FF_CCM_TAC_WORKGROUP",
+      "to_field": "WG_NAME",
+      "to_instance": "ST_CCM_TAC_WORKGROUP"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "SQ_FF_CCM_TAC_WORKGROUP",
+      "to_field": "THEATER",
+      "to_instance": "ST_CCM_TAC_WORKGROUP"
+    },
+    {
+      "from_field": "DELIVERY_CHANNEL",
+      "from_instance": "SQ_FF_CCM_TAC_WORKGROUP",
+      "to_field": "DELIVERY_CHANNEL",
+      "to_instance": "ST_CCM_TAC_WORKGROUP"
+    },
+    {
+      "from_field": "CCM_THEATER",
+      "from_instance": "SQ_FF_CCM_TAC_WORKGROUP",
+      "to_field": "CCM_THEATER",
+      "to_instance": "ST_CCM_TAC_WORKGROUP"
+    },
+    {
+      "from_field": "OVERRIDE_THEATER",
+      "from_instance": "SQ_FF_CCM_TAC_WORKGROUP",
+      "to_field": "OVERRIDE_THEATER",
+      "to_instance": "ST_CCM_TAC_WORKGROUP"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "FF_CCM_TAC_WORKGROUP",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_FF_CCM_TAC_WORKGROUP"
+    },
+    {
+      "from_field": "WG_NAME",
+      "from_instance": "FF_CCM_TAC_WORKGROUP",
+      "to_field": "WG_NAME",
+      "to_instance": "SQ_FF_CCM_TAC_WORKGROUP"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "FF_CCM_TAC_WORKGROUP",
+      "to_field": "THEATER",
+      "to_instance": "SQ_FF_CCM_TAC_WORKGROUP"
+    },
+    {
+      "from_field": "DELIVERY_CHANNEL",
+      "from_instance": "FF_CCM_TAC_WORKGROUP",
+      "to_field": "DELIVERY_CHANNEL",
+      "to_instance": "SQ_FF_CCM_TAC_WORKGROUP"
+    },
+    {
+      "from_field": "CCM_THEATER",
+      "from_instance": "FF_CCM_TAC_WORKGROUP",
+      "to_field": "CCM_THEATER",
+      "to_instance": "SQ_FF_CCM_TAC_WORKGROUP"
+    },
+    {
+      "from_field": "OVERRIDE_THEATER",
+      "from_instance": "FF_CCM_TAC_WORKGROUP",
+      "to_field": "OVERRIDE_THEATER",
+      "to_instance": "SQ_FF_CCM_TAC_WORKGROUP"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_MONTH_ID",
+      "source_path": [
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "SQ_FF_CCM_TAC_WORKGROUP"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "FF_CCM_TAC_WORKGROUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "WG_NAME",
+      "source_path": [
+        {
+          "from_field": "WG_NAME",
+          "from_instance": "SQ_FF_CCM_TAC_WORKGROUP"
+        },
+        {
+          "from_field": "WG_NAME",
+          "from_instance": "FF_CCM_TAC_WORKGROUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "THEATER",
+      "source_path": [
+        {
+          "from_field": "THEATER",
+          "from_instance": "SQ_FF_CCM_TAC_WORKGROUP"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "FF_CCM_TAC_WORKGROUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DELIVERY_CHANNEL",
+      "source_path": [
+        {
+          "from_field": "DELIVERY_CHANNEL",
+          "from_instance": "SQ_FF_CCM_TAC_WORKGROUP"
+        },
+        {
+          "from_field": "DELIVERY_CHANNEL",
+          "from_instance": "FF_CCM_TAC_WORKGROUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CCM_THEATER",
+      "source_path": [
+        {
+          "from_field": "CCM_THEATER",
+          "from_instance": "SQ_FF_CCM_TAC_WORKGROUP"
+        },
+        {
+          "from_field": "CCM_THEATER",
+          "from_instance": "FF_CCM_TAC_WORKGROUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "OVERRIDE_THEATER",
+      "source_path": [
+        {
+          "from_field": "OVERRIDE_THEATER",
+          "from_instance": "SQ_FF_CCM_TAC_WORKGROUP"
+        },
+        {
+          "from_field": "OVERRIDE_THEATER",
+          "from_instance": "FF_CCM_TAC_WORKGROUP"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:32:58.166774+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

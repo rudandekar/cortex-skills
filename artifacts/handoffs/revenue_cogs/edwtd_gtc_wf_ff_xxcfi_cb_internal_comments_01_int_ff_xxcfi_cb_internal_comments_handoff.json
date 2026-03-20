@@ -1,0 +1,540 @@
+{
+  "workflow_name": "wf_m_FF_XXCFI_CB_INTERNAL_COMMENTS",
+  "mapping_name": "m_FF_XXCFI_CB_INTERNAL_COMMENTS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GTC",
+  "target_table": "FF_XXCFI_CB_INTERNAL_COMMENTS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gtc_wf_ff_xxcfi_cb_internal_comments_01_int_ff_xxcfi_cb_internal_comments",
+  "source_tables": [
+    "XXCFI_CB_INTERNAL_COMMENTS"
+  ],
+  "sources": [
+    {
+      "name": "XXCFI_CB_INTERNAL_COMMENTS",
+      "database_type": "Oracle",
+      "owner": "CUBE",
+      "fields": [
+        {
+          "name": "INTERNAL_COMMENTS_ID",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "IDENTIFIER1",
+          "datatype": "varchar2",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IDENTIFIER2",
+          "datatype": "varchar2",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMENTS",
+          "datatype": "varchar2",
+          "precision": "4000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar2",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_XXCFI_CB_INTERNAL_COMMENTS",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BATCH_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INTERNAL_COMMENTS_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "IDENTIFIER1",
+        "datatype": "string",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "IDENTIFIER2",
+        "datatype": "string",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMMENTS",
+        "datatype": "string",
+        "precision": "4000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "string",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "string",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_XXCFI_CB_INTERNAL_COMMENTS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "INTERNAL_COMMENTS_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IDENTIFIER1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IDENTIFIER2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMENTS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "select INTERNAL_COMMENTS_ID\r\n,IDENTIFIER1\r\n,IDENTIFIER2\r\n,REPLACE(REPLACE( COMMENTS,CHR(10),' '),CHR(13),' ')  COMMENTS\r\n,CREATED_BY\r\n,CREATED_DATE\r\nfrom  CUBE.XXCFI_CB_INTERNAL_COMMENTS  where\r\nXXCFI_CB_INTERNAL_COMMENTS.CREATED_DATE > TO_DATE('$$LastExtractDate','MM/DD/YYYY HH24:MI:SS')",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": "$$BatchId"
+        },
+        {
+          "name": "INTERNAL_COMMENTS_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "INTERNAL_COMMENTS_ID"
+        },
+        {
+          "name": "IDENTIFIER1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "IDENTIFIER1"
+        },
+        {
+          "name": "IDENTIFIER2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "IDENTIFIER2"
+        },
+        {
+          "name": "COMMENTS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "COMMENTS"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATED_BY"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATED_DATE"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "BATCH_ID",
+      "to_instance": "FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "INTERNAL_COMMENTS_ID",
+      "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "INTERNAL_COMMENTS_ID",
+      "to_instance": "FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "IDENTIFIER1",
+      "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "IDENTIFIER1",
+      "to_instance": "FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "IDENTIFIER2",
+      "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "IDENTIFIER2",
+      "to_instance": "FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "COMMENTS",
+      "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "COMMENTS",
+      "to_instance": "FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATED_BY",
+      "to_instance": "FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATED_DATE",
+      "to_instance": "FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "INTERNAL_COMMENTS_ID",
+      "from_instance": "XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "INTERNAL_COMMENTS_ID",
+      "to_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "IDENTIFIER1",
+      "from_instance": "XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "IDENTIFIER1",
+      "to_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "IDENTIFIER2",
+      "from_instance": "XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "IDENTIFIER2",
+      "to_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "COMMENTS",
+      "from_instance": "XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "COMMENTS",
+      "to_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATED_DATE",
+      "to_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "INTERNAL_COMMENTS_ID",
+      "from_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "INTERNAL_COMMENTS_ID",
+      "to_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "IDENTIFIER1",
+      "from_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "IDENTIFIER1",
+      "to_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "IDENTIFIER2",
+      "from_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "IDENTIFIER2",
+      "to_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "COMMENTS",
+      "from_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "COMMENTS",
+      "to_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATED_BY",
+      "to_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATED_DATE",
+      "to_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INTERNAL_COMMENTS_ID",
+      "source_path": [
+        {
+          "from_field": "INTERNAL_COMMENTS_ID",
+          "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+        },
+        {
+          "from_field": "INTERNAL_COMMENTS_ID",
+          "from_instance": "XXCFI_CB_INTERNAL_COMMENTS"
+        },
+        {
+          "from_field": "INTERNAL_COMMENTS_ID",
+          "from_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "IDENTIFIER1",
+      "source_path": [
+        {
+          "from_field": "IDENTIFIER1",
+          "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+        },
+        {
+          "from_field": "IDENTIFIER1",
+          "from_instance": "XXCFI_CB_INTERNAL_COMMENTS"
+        },
+        {
+          "from_field": "IDENTIFIER1",
+          "from_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "IDENTIFIER2",
+      "source_path": [
+        {
+          "from_field": "IDENTIFIER2",
+          "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+        },
+        {
+          "from_field": "IDENTIFIER2",
+          "from_instance": "XXCFI_CB_INTERNAL_COMMENTS"
+        },
+        {
+          "from_field": "IDENTIFIER2",
+          "from_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMMENTS",
+      "source_path": [
+        {
+          "from_field": "COMMENTS",
+          "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+        },
+        {
+          "from_field": "COMMENTS",
+          "from_instance": "XXCFI_CB_INTERNAL_COMMENTS"
+        },
+        {
+          "from_field": "COMMENTS",
+          "from_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "XXCFI_CB_INTERNAL_COMMENTS"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+        },
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "XXCFI_CB_INTERNAL_COMMENTS"
+        },
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "SQ_XXCFI_CB_INTERNAL_COMMENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "exp_FF_XXCFI_CB_INTERNAL_COMMENTS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:12.685899+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

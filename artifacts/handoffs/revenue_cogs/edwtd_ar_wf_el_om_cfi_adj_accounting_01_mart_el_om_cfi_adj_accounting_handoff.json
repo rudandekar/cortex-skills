@@ -1,0 +1,603 @@
+{
+  "workflow_name": "wf_m_EL_OM_CFI_ADJ_ACCOUNTING",
+  "mapping_name": "m_EL_OM_CFI_ADJ_ACCOUNTING",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "EL_OM_CFI_ADJ_ACCOUNTING",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_el_om_cfi_adj_accounting_01_mart_el_om_cfi_adj_accounting",
+  "source_tables": [
+    "EL_OM_CFI_ADJ_ACCOUNTING",
+    "ST_OM_CFI_ADJ_ACCOUNTING"
+  ],
+  "sources": [
+    {
+      "name": "EL_OM_CFI_ADJ_ACCOUNTING",
+      "database_type": "Teradata",
+      "owner": "ETLVWDB_LSS",
+      "fields": [
+        {
+          "name": "ACCOUNTNO",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJ_ACCOUNTING_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJ_TYPE_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "ST_OM_CFI_ADJ_ACCOUNTING",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCOUNTNO",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJ_ACCOUNTING_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJ_TYPE_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SUBACCOUNT",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_OM_CFI_ADJ_ACCOUNTING",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ACCOUNTNO",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ADJ_ACCOUNTING_ID",
+        "datatype": "decimal",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "ACCOUNT_TYPE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ADJ_TYPE_ID",
+        "datatype": "decimal",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GLOBAL_NAME",
+        "datatype": "varchar",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_OM_CFI_ADJ_ACCOUNTING",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTNO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJ_ACCOUNTING_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJ_TYPE_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBACCOUNT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSOCAA.ACCOUNTNO, \r\nSOCAA.ADJ_ACCOUNTING_ID, \r\nSOCAA.ACCOUNT_TYPE,\r\nSOCAA.ADJ_TYPE_ID, \r\nSOCAA.GLOBAL_NAME \r\nFROM\r\n $$STGDB.ST_OM_CFI_ADJ_ACCOUNTING SOCAA\r\nWHERE NOT EXISTS(\r\nSELECT 1 FROM $$ETLVWDB.EL_OM_CFI_ADJ_ACCOUNTING EOCAA\r\nWHERE SOCAA.ADJ_ACCOUNTING_ID=EOCAA.ADJ_ACCOUNTING_ID\r\nAND SOCAA.GLOBAL_NAME = EOCAA.GLOBAL_NAME)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_XLA_AE_LINE_CORP_ADJ_INCR",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNTNO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJ_ACCOUNTING_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJ_TYPE_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nACCOUNTNO,\r\n(MAX_ID + ROW_NUMBER () OVER ( ORDER BY ACCOUNTNO,ACCOUNT_TYPE,ADJ_TYPE_ID )) AS ADJ_ACCOUNTING_ID,  \r\nACCOUNT_TYPE,\r\nADJ_TYPE_ID,\r\nGLOBAL_NAME\r\nFROM\r\n(\r\nSELECT\r\nNGLA.BK_FINANCIAL_ACCOUNT_CODE AS ACCOUNTNO,\r\nTMP_MX.MAX_ID,\r\nXAL.ACCOUNTING_CLASS_CODE AS ACCOUNT_TYPE ,\r\nEOCATA.ADJ_TYPE_ID ,\r\nNSSC.GLOBAL_NAME \r\nFROM $$STGDB.WI_XLA_AE_LINE_CORP_ADJ_INCR XAL\r\nINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC \r\n ON XAL.GLOBAL_NAME = NSSC.GLOBAL_NAME\r\nINNER JOIN $$ETLVWDB.EL_OM_CFI_ADJ_TYPE_ALL EOCATA \r\n ON XAL.DIST_TYPE = EOCATA.ADJ_TYPE_NAME\r\nINNER JOIN $$FINLGLVWDB.N_GENERAL_LEDGER_ACCOUNT NGLA\r\nON XAL.CODE_COMBINATION_ID = NGLA.SK_CODE_COMBINATION_ID_INT\r\nAND NSSC.SOURCE_SYSTEM_CODE = NGLA.SS_CODE\r\nAND NGLA.BK_FINANCIAL_ACCOUNT_CODE LIKE '4%'\r\nINNER JOIN \r\n ( SELECT COALESCE(MAX(ADJ_ACCOUNTING_ID),0) MAX_ID FROM  $$ETLVWDB.EL_OM_CFI_ADJ_ACCOUNTING ) TMP_MX  \r\n ON 1=1\r\nWHERE \r\nXAL.ACCOUNTING_CLASS_CODE = 'REVENUE'\r\nAND NOT EXISTS (\r\nSELECT 'Y' FROM $$ETLVWDB.EL_OM_CFI_ADJ_ACCOUNTING EOCAA\r\nWHERE EOCAA.ACCOUNTNO =  NGLA.BK_FINANCIAL_ACCOUNT_CODE                 \r\n AND EOCAA.ACCOUNT_TYPE = XAL.ACCOUNTING_CLASS_CODE  \r\n AND EOCAA.ADJ_TYPE_ID =  EOCATA.ADJ_TYPE_ID\r\n/* AND EOCAA.GLOBAL_NAME = XAL.GLOBAL_NAME*/\r\n)\r\nQUALIFY ROW_NUMBER() OVER(PARTITION BY  NGLA.BK_FINANCIAL_ACCOUNT_CODE  ORDER BY XAL.ACCOUNTING_CLASS_CODE) = 1\r\n)A",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACCOUNTNO",
+      "from_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "ACCOUNTNO",
+      "to_instance": "EL_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "ADJ_ACCOUNTING_ID",
+      "from_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "ADJ_ACCOUNTING_ID",
+      "to_instance": "EL_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE",
+      "from_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "ACCOUNT_TYPE",
+      "to_instance": "EL_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "ADJ_TYPE_ID",
+      "from_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "ADJ_TYPE_ID",
+      "to_instance": "EL_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EL_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "ACCOUNTNO",
+      "from_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR",
+      "to_field": "ACCOUNTNO",
+      "to_instance": "EL_OM_CFI_ADJ_ACCOUNTING_Corp_Adj"
+    },
+    {
+      "from_field": "ADJ_ACCOUNTING_ID",
+      "from_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR",
+      "to_field": "ADJ_ACCOUNTING_ID",
+      "to_instance": "EL_OM_CFI_ADJ_ACCOUNTING_Corp_Adj"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE",
+      "from_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR",
+      "to_field": "ACCOUNT_TYPE",
+      "to_instance": "EL_OM_CFI_ADJ_ACCOUNTING_Corp_Adj"
+    },
+    {
+      "from_field": "ADJ_TYPE_ID",
+      "from_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR",
+      "to_field": "ADJ_TYPE_ID",
+      "to_instance": "EL_OM_CFI_ADJ_ACCOUNTING_Corp_Adj"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EL_OM_CFI_ADJ_ACCOUNTING_Corp_Adj"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "SUBACCOUNT",
+      "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "SUBACCOUNT",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "ACCOUNTNO",
+      "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "ACCOUNTNO",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "ADJ_ACCOUNTING_ID",
+      "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "ADJ_ACCOUNTING_ID",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE",
+      "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "ACCOUNT_TYPE",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "ADJ_TYPE_ID",
+      "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING",
+      "to_field": "ADJ_TYPE_ID",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+    },
+    {
+      "from_field": "ACCOUNTNO",
+      "from_instance": "EL_OM_CFI_ADJ_ACCOUNTING1",
+      "to_field": "ACCOUNTNO",
+      "to_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR"
+    },
+    {
+      "from_field": "ADJ_ACCOUNTING_ID",
+      "from_instance": "EL_OM_CFI_ADJ_ACCOUNTING1",
+      "to_field": "ADJ_ACCOUNTING_ID",
+      "to_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE",
+      "from_instance": "EL_OM_CFI_ADJ_ACCOUNTING1",
+      "to_field": "ACCOUNT_TYPE",
+      "to_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR"
+    },
+    {
+      "from_field": "ADJ_TYPE_ID",
+      "from_instance": "EL_OM_CFI_ADJ_ACCOUNTING1",
+      "to_field": "ADJ_TYPE_ID",
+      "to_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "EL_OM_CFI_ADJ_ACCOUNTING1",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ACCOUNTNO",
+      "source_path": [
+        {
+          "from_field": "ACCOUNTNO",
+          "from_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+        },
+        {
+          "from_field": "ACCOUNTNO",
+          "from_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR"
+        },
+        {
+          "from_field": "ACCOUNTNO",
+          "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING"
+        },
+        {
+          "from_field": "ACCOUNTNO",
+          "from_instance": "EL_OM_CFI_ADJ_ACCOUNTING1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ADJ_ACCOUNTING_ID",
+      "source_path": [
+        {
+          "from_field": "ADJ_ACCOUNTING_ID",
+          "from_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+        },
+        {
+          "from_field": "ADJ_ACCOUNTING_ID",
+          "from_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR"
+        },
+        {
+          "from_field": "ADJ_ACCOUNTING_ID",
+          "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING"
+        },
+        {
+          "from_field": "ADJ_ACCOUNTING_ID",
+          "from_instance": "EL_OM_CFI_ADJ_ACCOUNTING1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNT_TYPE",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_TYPE",
+          "from_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+        },
+        {
+          "from_field": "ACCOUNT_TYPE",
+          "from_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR"
+        },
+        {
+          "from_field": "ACCOUNT_TYPE",
+          "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING"
+        },
+        {
+          "from_field": "ACCOUNT_TYPE",
+          "from_instance": "EL_OM_CFI_ADJ_ACCOUNTING1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ADJ_TYPE_ID",
+      "source_path": [
+        {
+          "from_field": "ADJ_TYPE_ID",
+          "from_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+        },
+        {
+          "from_field": "ADJ_TYPE_ID",
+          "from_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR"
+        },
+        {
+          "from_field": "ADJ_TYPE_ID",
+          "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING"
+        },
+        {
+          "from_field": "ADJ_TYPE_ID",
+          "from_instance": "EL_OM_CFI_ADJ_ACCOUNTING1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GLOBAL_NAME",
+      "source_path": [
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_ST_OM_CFI_ADJ_ACCOUNTING"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_XLA_AE_LINE_CORP_ADJ_INCR"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "ST_OM_CFI_ADJ_ACCOUNTING"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "EL_OM_CFI_ADJ_ACCOUNTING1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:32:56.760267+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

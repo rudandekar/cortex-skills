@@ -1,0 +1,201 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_wips_pos_svc_details_pub_smc', 'batch', 'edwtd_pos'],
+    meta={
+        'source_workflow': 'wf_m_WI_WIPS_POS_SVC_DETAILS_PUB_SMC',
+        'target_table': 'EL_SALES_ORDER_TRAD_SERV',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:34.127506+00:00'
+    }
+) }}
+
+WITH 
+
+source_ex_wips_pos_svc_details_pub_int AS (
+    SELECT
+        trans_id,
+        id,
+        booking_flag,
+        service_type,
+        active_flag,
+        created_date,
+        created_by,
+        last_updated_date,
+        last_updated_by,
+        action_code,
+        derived_quote_number,
+        derived_contract_number,
+        derived_quote_line_id,
+        derived_order_line_id,
+        match_type,
+        order_header_id,
+        quote_header_id,
+        revenue_source_code,
+        confidence_flag,
+        po_exists_flg,
+        po_distri_exists_flg,
+        po_prdt_exists_flg,
+        quote_exists_flg,
+        quote_distri_exists_flg,
+        quote_prdt_exists_flg,
+        multiple_sales_motion_flg,
+        multiple_match_flg,
+        approved_erp_linkage_flg,
+        order_identifier,
+        ex_reason
+    FROM {{ source('raw', 'ex_wips_pos_svc_details_pub_int') }}
+),
+
+source_st_rtnr_smc_allocation_pos_en AS (
+    SELECT
+        sales_order_line_key,
+        sales_motion_cd,
+        dv_allocation_pct
+    FROM {{ source('raw', 'st_rtnr_smc_allocation_pos_en') }}
+),
+
+source_wi_wips_pos_svc_details_pub_smc AS (
+    SELECT
+        trans_id,
+        id,
+        booking_flag,
+        service_type,
+        active_flag,
+        created_date,
+        created_by,
+        last_updated_date,
+        last_updated_by,
+        action_code,
+        derived_quote_number,
+        derived_contract_number,
+        derived_quote_line_id,
+        derived_order_line_id,
+        match_type,
+        order_header_id,
+        quote_header_id,
+        revenue_source_code,
+        confidence_flag,
+        po_exists_flg,
+        po_distri_exists_flg,
+        po_prdt_exists_flg,
+        quote_exists_flg,
+        quote_distri_exists_flg,
+        quote_prdt_exists_flg,
+        multiple_sales_motion_flg,
+        sales_order_line_key,
+        sales_motion_cd,
+        sol_allocation_pct,
+        rtr_allocation_pct,
+        dv_allocation_pct,
+        multiple_match_flg,
+        approved_erp_linkage_flg,
+        sales_motion_timing_cd,
+        order_identifier,
+        ss_code,
+        net_price_flg
+    FROM {{ source('raw', 'wi_wips_pos_svc_details_pub_smc') }}
+),
+
+source_el_sales_order_trad_serv AS (
+    SELECT
+        sk_so_line_id_int,
+        sales_order_key,
+        sales_order_line_key,
+        product_key,
+        sales_motion_cd,
+        bk_so_source_name,
+        ss_code
+    FROM {{ source('raw', 'el_sales_order_trad_serv') }}
+),
+
+source_wi_wips_pos_svc_details_pub_amt AS (
+    SELECT
+        trans_id,
+        id,
+        booking_flag,
+        service_type,
+        active_flag,
+        created_date,
+        created_by,
+        last_updated_date,
+        last_updated_by,
+        action_code,
+        derived_quote_number,
+        derived_contract_number,
+        derived_quote_line_id,
+        derived_order_line_id,
+        match_type,
+        order_header_id,
+        quote_header_id,
+        revenue_source_code,
+        confidence_flag,
+        po_exists_flg,
+        po_distri_exists_flg,
+        po_prdt_exists_flg,
+        quote_exists_flg,
+        quote_distri_exists_flg,
+        quote_prdt_exists_flg,
+        multiple_sales_motion_flg,
+        sales_order_line_key,
+        sales_motion_cd,
+        sol_amount,
+        sum_sol_amount,
+        sol_allocation_pct,
+        multiple_match_flg,
+        approved_erp_linkage_flg,
+        sales_motion_timing_cd,
+        order_identifier,
+        ss_code,
+        net_price_flg
+    FROM {{ source('raw', 'wi_wips_pos_svc_details_pub_amt') }}
+),
+
+source_st_wips_pos_svc_details_pub AS (
+    SELECT
+        trans_id,
+        id,
+        booking_flag,
+        service_type,
+        active_flag,
+        created_date,
+        created_by,
+        last_updated_date,
+        last_updated_by,
+        action_code,
+        derived_quote_number,
+        derived_contract_number,
+        derived_quote_line_id,
+        derived_order_line_id,
+        match_type,
+        order_header_id,
+        quote_header_id,
+        revenue_source_code,
+        confidence_flag,
+        po_exists_flg,
+        po_distri_exists_flg,
+        po_prdt_exists_flg,
+        quote_exists_flg,
+        quote_distri_exists_flg,
+        quote_prdt_exists_flg,
+        multiple_sales_motion_flg,
+        multiple_match_flg,
+        approved_erp_linkage_flg,
+        order_identifier,
+        net_price_flg
+    FROM {{ source('raw', 'st_wips_pos_svc_details_pub') }}
+),
+
+final AS (
+    SELECT
+        sk_so_line_id_int,
+        sales_order_key,
+        sales_order_line_key,
+        product_key,
+        sales_motion_cd,
+        bk_so_source_name,
+        ss_code
+    FROM source_st_wips_pos_svc_details_pub
+)
+
+SELECT * FROM final

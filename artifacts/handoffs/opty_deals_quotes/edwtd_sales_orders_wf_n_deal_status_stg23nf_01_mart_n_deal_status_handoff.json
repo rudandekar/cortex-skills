@@ -1,0 +1,386 @@
+{
+  "workflow_name": "wf_m_N_DEAL_STATUS_STG23NF",
+  "mapping_name": "m_N_DEAL_STATUS_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "N_DEAL_STATUS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_n_deal_status_stg23nf_01_mart_n_deal_status",
+  "source_tables": [
+    "N_DEAL_STATUS"
+  ],
+  "sources": [
+    {
+      "name": "N_DEAL_STATUS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "BK_DEAL_STATUS_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DEAL_STATUS_DESCR",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTIVE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_DEAL_STATUS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_DEAL_STATUS_CD",
+        "datatype": "varchar",
+        "precision": "500",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DEAL_STATUS_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTIVE_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_DEAL_STATUS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_DEAL_STATUS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEAL_STATUS_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTIVE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_DEAL_STATUS_CODE",
+      "from_instance": "SQ_N_DEAL_STATUS",
+      "to_field": "BK_DEAL_STATUS_CD",
+      "to_instance": "N_DEAL_STATUS1"
+    },
+    {
+      "from_field": "ACTIVE_FLG",
+      "from_instance": "SQ_N_DEAL_STATUS",
+      "to_field": "ACTIVE_FLG",
+      "to_instance": "N_DEAL_STATUS1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_DEAL_STATUS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_DEAL_STATUS1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_DEAL_STATUS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_DEAL_STATUS1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_DEAL_STATUS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_DEAL_STATUS1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_DEAL_STATUS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_DEAL_STATUS1"
+    },
+    {
+      "from_field": "DEAL_STATUS_DESCR",
+      "from_instance": "SQ_N_DEAL_STATUS",
+      "to_field": "DEAL_STATUS_DESCR",
+      "to_instance": "N_DEAL_STATUS1"
+    },
+    {
+      "from_field": "BK_DEAL_STATUS_CD",
+      "from_instance": "N_DEAL_STATUS",
+      "to_field": "BK_DEAL_STATUS_CODE",
+      "to_instance": "SQ_N_DEAL_STATUS"
+    },
+    {
+      "from_field": "DEAL_STATUS_DESCR",
+      "from_instance": "N_DEAL_STATUS",
+      "to_field": "DEAL_STATUS_DESCR",
+      "to_instance": "SQ_N_DEAL_STATUS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_DEAL_STATUS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_DEAL_STATUS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_DEAL_STATUS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_DEAL_STATUS"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_DEAL_STATUS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_DEAL_STATUS"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_DEAL_STATUS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_DEAL_STATUS"
+    },
+    {
+      "from_field": "ACTIVE_FLG",
+      "from_instance": "N_DEAL_STATUS",
+      "to_field": "ACTIVE_FLG",
+      "to_instance": "SQ_N_DEAL_STATUS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_DEAL_STATUS_CD",
+      "source_path": [
+        {
+          "from_field": "BK_DEAL_STATUS_CODE",
+          "from_instance": "SQ_N_DEAL_STATUS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DEAL_STATUS_DESCR",
+      "source_path": [
+        {
+          "from_field": "DEAL_STATUS_DESCR",
+          "from_instance": "SQ_N_DEAL_STATUS"
+        },
+        {
+          "from_field": "DEAL_STATUS_DESCR",
+          "from_instance": "N_DEAL_STATUS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_DEAL_STATUS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_DEAL_STATUS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_DEAL_STATUS"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_DEAL_STATUS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_N_DEAL_STATUS"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "N_DEAL_STATUS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_DEAL_STATUS"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_DEAL_STATUS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTIVE_FLG",
+      "source_path": [
+        {
+          "from_field": "ACTIVE_FLG",
+          "from_instance": "SQ_N_DEAL_STATUS"
+        },
+        {
+          "from_field": "ACTIVE_FLG",
+          "from_instance": "N_DEAL_STATUS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:26:47.211176+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

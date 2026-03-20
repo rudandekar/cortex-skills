@@ -1,0 +1,393 @@
+{
+  "workflow_name": "wf_m_WI_PNL_AUDIT",
+  "mapping_name": "m_WI_PNL_AUDIT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_SRP_PNL_AUDIT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_pnl_audit_01_mart_wi_srp_pnl_audit",
+  "source_tables": [
+    "WI_SRP_PNL_AUDIT"
+  ],
+  "sources": [
+    {
+      "name": "WI_SRP_PNL_AUDIT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_SOURCE_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DOLLAR_MISMATCH_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_SRP_PNL_AUDIT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_SOURCE_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_TABLE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DOLLAR_MISMATCH_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_SRP_PNL_AUDIT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SOURCE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DOLLAR_MISMATCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n SRC.DV_FISCAL_YEAR_MTH_NUMBER_INT \r\n,SRC.DV_DATA_SOURCE_NAME\r\n,'MT_PNL_REV_COST_MSR' AS AUDIT_TABLE\r\n,CURRENT_DATE AS AUDIT_DATE\r\n,ABS(ROUND(COALESCE(SRC.SRC_REV,1)-COALESCE(TGT.TGT_REV,1),4)) AS REV_MISMATCH_AMT  \r\nFROM \r\n(SELECT DV_FISCAL_YEAR_MTH_NUMBER_INT,DV_DATA_SOURCE_NAME,SUM(DV_COMP_US_NET_REV_AMT) SRC_REV  \r\n FROM $$FINLGLVWDB.MT_TSS_SERVICE_REVENUE \r\n WHERE DV_FISCAL_YEAR_MTH_NUMBER_INT IN (SELECT FISCAL_YEAR_MONTH_INT FROM $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR  WHERE FISCAL_YEAR_AGE IN (0,1,2,3) ) \r\n    AND DV_ATTRIBUTION_CD IN ('STANDALONE','ATTRIBUTED')\r\nGROUP BY 1,2\r\n) SRC \r\nLEFT JOIN \r\n(SELECT DV_FISCAL_YEAR_MTH_NUMBER_INT,DV_DATA_SOURCE_NAME,SUM(COMP_US_NET_REV_AMT)AS TGT_REV \r\nFROM $$FINLGLVWDB.MT_PNL_REV_COST_MSR \r\nGROUP BY 1,2\r\n) TGT \r\nON SRC.DV_FISCAL_YEAR_MTH_NUMBER_INT=TGT.DV_FISCAL_YEAR_MTH_NUMBER_INT\r\nAND SRC.DV_DATA_SOURCE_NAME=TGT.DV_DATA_SOURCE_NAME",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_PNL",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DV_FISCAL_YEAR_MTH_NUMBER_INT"
+        },
+        {
+          "name": "DV_SOURCE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DV_SOURCE_NAME"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TABLE"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_DATE"
+        },
+        {
+          "name": "DOLLAR_MISMATCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "DOLLAR_MISMATCH_CHECK",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": "IIF(DOLLAR_MISMATCH_AMT>1000,ABORT(' $ diff >1000 in MT_PNL_REV_COST_MSR'),DOLLAR_MISMATCH_AMT)"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "EXP_PNL",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "WI_SRP_PNL_AUDIT1"
+    },
+    {
+      "from_field": "DOLLAR_MISMATCH_CHECK",
+      "from_instance": "EXP_PNL",
+      "to_field": "DOLLAR_MISMATCH_AMT",
+      "to_instance": "WI_SRP_PNL_AUDIT1"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "EXP_PNL",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "WI_SRP_PNL_AUDIT1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "EXP_PNL",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_SRP_PNL_AUDIT1"
+    },
+    {
+      "from_field": "DV_SOURCE_NAME",
+      "from_instance": "EXP_PNL",
+      "to_field": "DV_SOURCE_NAME",
+      "to_instance": "WI_SRP_PNL_AUDIT1"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "WI_SRP_PNL_AUDIT",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "SQ_WI_SRP_PNL_AUDIT"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "WI_SRP_PNL_AUDIT",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "SQ_WI_SRP_PNL_AUDIT"
+    },
+    {
+      "from_field": "DOLLAR_MISMATCH_AMT",
+      "from_instance": "WI_SRP_PNL_AUDIT",
+      "to_field": "DOLLAR_MISMATCH_AMT",
+      "to_instance": "SQ_WI_SRP_PNL_AUDIT"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_SRP_PNL_AUDIT",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_SRP_PNL_AUDIT"
+    },
+    {
+      "from_field": "DV_SOURCE_NAME",
+      "from_instance": "WI_SRP_PNL_AUDIT",
+      "to_field": "DV_SOURCE_NAME",
+      "to_instance": "SQ_WI_SRP_PNL_AUDIT"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_SRP_PNL_AUDIT",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "EXP_PNL"
+    },
+    {
+      "from_field": "DV_SOURCE_NAME",
+      "from_instance": "SQ_WI_SRP_PNL_AUDIT",
+      "to_field": "DV_SOURCE_NAME",
+      "to_instance": "EXP_PNL"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "SQ_WI_SRP_PNL_AUDIT",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "EXP_PNL"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "SQ_WI_SRP_PNL_AUDIT",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "EXP_PNL"
+    },
+    {
+      "from_field": "DOLLAR_MISMATCH_AMT",
+      "from_instance": "SQ_WI_SRP_PNL_AUDIT",
+      "to_field": "DOLLAR_MISMATCH_AMT",
+      "to_instance": "EXP_PNL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "EXP_PNL"
+        },
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "WI_SRP_PNL_AUDIT"
+        },
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "SQ_WI_SRP_PNL_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_SOURCE_NAME",
+      "source_path": [
+        {
+          "from_field": "DV_SOURCE_NAME",
+          "from_instance": "EXP_PNL"
+        },
+        {
+          "from_field": "DV_SOURCE_NAME",
+          "from_instance": "WI_SRP_PNL_AUDIT"
+        },
+        {
+          "from_field": "DV_SOURCE_NAME",
+          "from_instance": "SQ_WI_SRP_PNL_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_TABLE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "EXP_PNL"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "WI_SRP_PNL_AUDIT"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "SQ_WI_SRP_PNL_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_DATE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "EXP_PNL"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "WI_SRP_PNL_AUDIT"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "SQ_WI_SRP_PNL_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DOLLAR_MISMATCH_AMT",
+      "source_path": [
+        {
+          "from_field": "DOLLAR_MISMATCH_CHECK",
+          "from_instance": "EXP_PNL"
+        },
+        {
+          "from_field": "DOLLAR_MISMATCH_AMT",
+          "from_instance": "WI_SRP_PNL_AUDIT"
+        },
+        {
+          "from_field": "DOLLAR_MISMATCH_AMT",
+          "from_instance": "SQ_WI_SRP_PNL_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:30.772064+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

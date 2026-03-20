@@ -1,0 +1,525 @@
+{
+  "workflow_name": "wf_m_W_SALES_ORDER_HOLD_GROUP",
+  "mapping_name": "m_W_SALES_ORDER_HOLD_GROUP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "W_SALES_ORDER_HOLD_GROUP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_w_sales_order_hold_group_01_mart_w_sales_order_hold_group",
+  "source_tables": [
+    "ST_UO_OE_HOLD_DEFINITIONS"
+  ],
+  "sources": [
+    {
+      "name": "ST_UO_OE_HOLD_DEFINITIONS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "HOLD_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTIVITY_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NAME",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE2",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE6",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "2",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DML_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REFRESH_DATETIME",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_SALES_ORDER_HOLD_GROUP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_SOL_HOLD_GROUP_CODE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_UO_OE_HOLD_DEFINITIONS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ATTRIBUTE6",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nCOALESCE(HOLD_DEF.BK_SOL_HOLD_GROUP_CODE,'ATT6') AS BK_SOL_HOLD_GROUP_CODE,\r\nHOLD_DEF.START_TV_DATE,\r\nHOLD_DEF.END_TV_DATE,\r\nHOLD_DEF.EDW_CREATE_USER,\r\nHOLD_DEF.EDW_CREATE_DATETIME,\r\nHOLD_DEF.EDW_UPDATE_USER,\r\nHOLD_DEF.EDW_UPDATE_DATETIME,\r\nHOLD_DEF.ACTION_CODE,\r\nHOLD_DEF.DML_TYPE\r\n FROM\r\n(\r\nSELECT\r\nSUOHD.ATTRIBUTE6                                BK_SOL_HOLD_GROUP_CODE,\r\nSUOHD.CREATE_DATETIME\t\t\t\t\t\t\tSTART_TV_DATE,\r\n'3500-01-01'\t\t\t\t\t\t\t\t\tEND_TV_DATE,\r\nUSER \t\t\t\t\t\t\t\t\t\t\tEDW_CREATE_USER,\r\nCAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)  ) \tEDW_CREATE_DATETIME,\r\nUSER \t\t\t\t\t\t\t\t\t\t\tEDW_UPDATE_USER,\r\nCAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)  )  \tEDW_UPDATE_DATETIME,\r\n'I' as\t\t\t\t\t\t\t\tACTION_CODE,\r\n'=' \t\t\t\t\t\t\t\t\t\t\tDML_TYPE\r\nFROM \r\n$$STGDB.ST_UO_OE_HOLD_DEFINITIONS SUOHD\r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY SUOHD.ATTRIBUTE6\r\n\t\tORDER BY SUOHD.CREATE_DATETIME DESC) = 1\r\n\r\nUNION ALL\r\n\r\nSELECT \r\nSBOHD.ATTRIBUTE6\t\t\t\t\t\t\t\tBK_SOL_HOLD_GROUP_CODE,\r\nSBOHD.CREATE_DATETIME\t\t\t\t\t\t\tSTART_TV_DATE,\r\n'3500-01-01'\t\t\t\t\t\t\t\t\tEND_TV_DATE,\r\nUSER \t\t\t\t\t\t\t\t\t\t\tEDW_CREATE_USER,\r\nCAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)  ) \tEDW_CREATE_DATETIME,\r\nUSER \t\t\t\t\t\t\t\t\t\t\tEDW_UPDATE_USER,\r\nCAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)  )  \tEDW_UPDATE_DATETIME,\r\n'I' as\t\t\t\t\t\t\t\tACTION_CODE,\r\n'=' \t\t\t\t\t\t\t\t\t\t\tDML_TYPE\r\nFROM \r\n$$STGDB.ST_BO_OE_HOLD_DEFINITIONS SBOHD\r\nLEFT OUTER JOIN \r\n$$STGDB.ST_UO_OE_HOLD_DEFINITIONS SUOHD\r\nON SBOHD.ATTRIBUTE6 = SUOHD.ATTRIBUTE6\r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY SBOHD.ATTRIBUTE6\r\n\t\tORDER BY SBOHD.CREATE_DATETIME DESC) = 1\r\nWHERE SUOHD.ATTRIBUTE6 IS NULL\r\n\r\nUNION ALL\r\n\r\nSELECT \r\nSCOHD.ATTRIBUTE6                                BK_SOL_HOLD_GROUP_CODE,\r\nSCOHD.CREATE_DATETIME\t\t\t\t\t\t\tSTART_TV_DATE,\r\n'3500-01-01'\t\t\t\t\t\t\t\t\tEND_TV_DATE,\r\nUSER \t\t\t\t\t\t\t\t\t\t\tEDW_CREATE_USER,\r\nCAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)  ) \tEDW_CREATE_DATETIME,\r\nUSER \t\t\t\t\t\t\t\t\t\t\tEDW_UPDATE_USER,\r\nCAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)  )  \tEDW_UPDATE_DATETIME,\r\n'I'\t\t\t\t\t\t\t\t\t\t\t\tACTION_CODE,\r\n'=' \t\t\t\t\t\t\t\t\t\t\tDML_TYPE\r\nFROM \r\n$$STGDB.ST_CG1_OE_HOLD_DEFINITIONS SCOHD\r\nLEFT OUTER JOIN \r\n$$STGDB.ST_UO_OE_HOLD_DEFINITIONS SUOHD\r\nON SCOHD.ATTRIBUTE6 = SUOHD.ATTRIBUTE6\r\nLEFT OUTER JOIN \r\n$$STGDB.ST_BO_OE_HOLD_DEFINITIONS SBOHD\r\nON SCOHD.ATTRIBUTE6 = SBOHD.ATTRIBUTE6\r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY SCOHD.ATTRIBUTE6\r\n\t\tORDER BY SCOHD.CREATE_DATETIME DESC) = 1\r\nWHERE SBOHD.ATTRIBUTE6 IS NULL  AND SUOHD.ATTRIBUTE6 IS NULL\r\n\r\n) HOLD_DEF\r\nWHERE NOT EXISTS\r\n( SELECT 1 FROM $$SLSORDDB.N_SALES_ORDER_HOLD_GROUP_TV NSOHGT WHERE\r\nHOLD_DEF.BK_SOL_HOLD_GROUP_CODE  = NSOHGT.BK_SOL_HOLD_GROUP_CODE \r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ATTRIBUTE6",
+      "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "BK_SOL_HOLD_GROUP_CODE",
+      "to_instance": "W_SALES_ORDER_HOLD_GROUP"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "START_TV_DATE",
+      "to_instance": "W_SALES_ORDER_HOLD_GROUP"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "END_TV_DATE",
+      "to_instance": "W_SALES_ORDER_HOLD_GROUP"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_SALES_ORDER_HOLD_GROUP"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_SALES_ORDER_HOLD_GROUP"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "W_SALES_ORDER_HOLD_GROUP"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_SALES_ORDER_HOLD_GROUP"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "W_SALES_ORDER_HOLD_GROUP"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_SALES_ORDER_HOLD_GROUP"
+    },
+    {
+      "from_field": "ATTRIBUTE6",
+      "from_instance": "ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "ATTRIBUTE6",
+      "to_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+    },
+    {
+      "from_field": "ACTIVITY_NAME",
+      "from_instance": "ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+    },
+    {
+      "from_field": "ACTIVITY_NAME",
+      "from_instance": "ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "END_TV_DATE",
+      "to_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+    },
+    {
+      "from_field": "ACTIVITY_NAME",
+      "from_instance": "ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+    },
+    {
+      "from_field": "ACTIVITY_NAME",
+      "from_instance": "ST_UO_OE_HOLD_DEFINITIONS",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_SOL_HOLD_GROUP_CODE",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE6",
+          "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_UO_OE_HOLD_DEFINITIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+        },
+        {
+          "from_field": "ACTIVITY_NAME",
+          "from_instance": "ST_UO_OE_HOLD_DEFINITIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_UO_OE_HOLD_DEFINITIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+        },
+        {
+          "from_field": "ACTIVITY_NAME",
+          "from_instance": "ST_UO_OE_HOLD_DEFINITIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_UO_OE_HOLD_DEFINITIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+        },
+        {
+          "from_field": "ACTIVITY_NAME",
+          "from_instance": "ST_UO_OE_HOLD_DEFINITIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_ST_UO_OE_HOLD_DEFINITIONS"
+        },
+        {
+          "from_field": "ACTIVITY_NAME",
+          "from_instance": "ST_UO_OE_HOLD_DEFINITIONS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:25.384031+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

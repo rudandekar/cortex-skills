@@ -1,0 +1,383 @@
+{
+  "workflow_name": "wf_m_WI_CORP_ADJ_AMOUNT",
+  "mapping_name": "m_WI_CORP_ADJ_AMOUNT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "WI_CORP_ADJ_AMOUNT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_wi_corp_adj_amount_01_mart_wi_corp_adj_amount",
+  "source_tables": [
+    "WI_CORP_ADJ_AMONUT"
+  ],
+  "sources": [
+    {
+      "name": "WI_CORP_ADJ_AMONUT",
+      "database_type": "Teradata",
+      "owner": "TDDEV",
+      "fields": [
+        {
+          "name": "AE_HEADER_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AE_LINE_NUM",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "APPLICATION_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_REVENUE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_COGS",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_CORP_ADJ_AMOUNT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "TRANSACTION_DIST_ID",
+        "datatype": "decimal",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AE_HEADER_ID",
+        "datatype": "decimal",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AE_LINE_NUM",
+        "datatype": "decimal",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "APPLICATION_ID",
+        "datatype": "decimal",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GLOBAL_NAME",
+        "datatype": "varchar",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ADJUSTMENT_REVENUE",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ADJUSTMENT_COGS",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_CORP_ADJ_AMONUT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "TRANSACTION_DIST_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AE_HEADER_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AE_LINE_NUM",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "APPLICATION_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_REVENUE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_COGS",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nTRANSACTION_DIST_ID\r\n,AE_HEADER_ID                  \r\n,AE_LINE_NUM                   \r\n,XAL.APPLICATION_ID                \r\n,XAL.GLOBAL_NAME\r\n,COALESCE(XAL.ACCOUNTED_CR,0) - COALESCE(XAL.ACCOUNTED_DR,0) AS ADJUSTMENT_REVENUE\r\n,CAST (0 AS DECIMAL(26,7)) AS ADJUSTMENT_COGS\r\nFROM \r\n$$STGDB.WI_XLA_AE_LINE_CORP_ADJ_INCR XAL\r\nINNER JOIN $$ETLVWDB.EL_FND_APPLICATION_AR APPL\r\nON XAL.APPLICATION_ID = APPL.APPLICATION_ID\r\nAND APPL.LANG = 'US'\r\nAND APPL.APPLICATION_NAME = 'Cisco Open RMA'\r\n/*UNION ALL\r\nSELECT\r\nAE_HEADER_ID                  \r\n,AE_LINE_NUM                   \r\n,XAL.APPLICATION_ID                \r\n,XAL.GLOBAL_NAME\r\n,CAST( (COALESCE(XAL.ACCOUNTED_CR,0) + COALESCE(XAL.ACCOUNTED_DR,0)) * \r\n (CASE WHEN XAL.ATTRIBUTE7 = 'REVENUE DEFERRAL OFFSET' THEN -1 WHEN XAL.ATTRIBUTE7 = 'REVENUE AMORTIZATION OFFSET' THEN 1 ELSE 1 END) AS DECIMAL(26,7)) AS ADJUSTMENT_REVENUE\r\n,CAST( (COALESCE(ADJ_COGS.ADJUSTMENT_COGS,0)) *\r\n(CASE WHEN XAL.ATTRIBUTE7 = 'REVENUE DEFERRAL OFFSET' THEN -1 WHEN XAL.ATTRIBUTE7 = 'REVENUE AMORTIZATION OFFSET' THEN 1 ELSE 1 END) AS DECIMAL(26,7)) AS ADJUSTMENT_COGS\r\nFROM \r\n$$STGDB.WI_XLA_AE_LINE_CORP_ADJ_INCR XAL\r\nINNER JOIN $$ETLVWDB.EL_FND_APPLICATION_AR APPL\r\nON XAL.APPLICATION_ID = APPL.APPLICATION_ID\r\nAND APPL.LANG = 'US'\r\nAND APPL.APPLICATION_NAME = 'Cisco Two Tier'\r\nINNER JOIN $$ETLVWDB.EL_AR_MONTH_PROCESS_DATE FTH\r\nON CAST(XAL.ACCOUNTING_DATE AS DATE) BETWEEN FTH.START_DATE AND FTH.END_DATE \r\nINNER JOIN\r\n(\r\nSELECT\r\nSUM(COALESCE(XAL.ACCOUNTED_CR,0) + COALESCE(XAL.ACCOUNTED_DR,0)) AS ADJUSTMENT_COGS\r\n,FTH.FISCAL_ID AS FISCAL_ID\r\n,CASE WHEN XAL.ATTRIBUTE7 = 'COGS DEFERRAL OFFSET' THEN 'REVENUE DEFERRAL OFFSET' ELSE 'REVENUE AMORTIZATION OFFSET' END AS DIST_TYPE\r\n,XAL.ATTRIBUTE9\r\nFROM \r\n$$ETLVWDB. EL_XLA_AE_LINES_AR XAL\r\nINNER JOIN $$ETLVWDB.EL_XLA_AE_HEADERS_AR EXAHA\r\nON EXAHA.AE_HEADER_ID = XAL.AE_HEADER_ID\r\nAND EXAHA.APPLICATION_ID = XAL.APPLICATION_ID\r\nAND EXAHA.GLOBAL_NAME = XAL.GLOBAL_NAME\r\nINNER JOIN $$ETLVWDB.EL_FND_APPLICATION_AR APPL\r\nON XAL.APPLICATION_ID = APPL.APPLICATION_ID\r\nAND APPL.LANG = 'US'\r\nAND APPL.APPLICATION_NAME = 'Cisco Two Tier'\r\nINNER JOIN $$ETLVWDB.EL_AR_MONTH_PROCESS_DATE FTH\r\nON CAST(XAL.ACCOUNTING_DATE AS DATE) BETWEEN START_DATE AND END_DATE\r\nWHERE XAL.ATTRIBUTE7 IN ('COGS DEFERRAL OFFSET', 'COGS AMORTIZATION OFFSET')\r\nAND EXAHA.GL_TRANSFER_DATE IS NOT NULL\r\nAND COALESCE(EXAHA.GL_TRANSFER_STATUS_CODE, 'N') = 'Y'\r\nGROUP BY 2,3,4\r\n) ADJ_COGS\r\nON XAL.ATTRIBUTE7 = ADJ_COGS.DIST_TYPE\r\nAND XAL.ATTRIBUTE9 = ADJ_COGS.ATTRIBUTE9\r\nAND ADJ_COGS.FISCAL_ID = FTH.FISCAL_ID\r\nWHERE XAL.ATTRIBUTE7 IN ('REVENUE DEFERRAL OFFSET', 'REVENUE AMORTIZATION OFFSET')\r\n*/",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "AE_HEADER_ID",
+      "from_instance": "SQ_WI_CORP_ADJ_AMONUT",
+      "to_field": "AE_HEADER_ID",
+      "to_instance": "WI_CORP_ADJ_AMOUNT"
+    },
+    {
+      "from_field": "AE_LINE_NUM",
+      "from_instance": "SQ_WI_CORP_ADJ_AMONUT",
+      "to_field": "AE_LINE_NUM",
+      "to_instance": "WI_CORP_ADJ_AMOUNT"
+    },
+    {
+      "from_field": "APPLICATION_ID",
+      "from_instance": "SQ_WI_CORP_ADJ_AMONUT",
+      "to_field": "APPLICATION_ID",
+      "to_instance": "WI_CORP_ADJ_AMOUNT"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_WI_CORP_ADJ_AMONUT",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "WI_CORP_ADJ_AMOUNT"
+    },
+    {
+      "from_field": "ADJUSTMENT_REVENUE",
+      "from_instance": "SQ_WI_CORP_ADJ_AMONUT",
+      "to_field": "ADJUSTMENT_REVENUE",
+      "to_instance": "WI_CORP_ADJ_AMOUNT"
+    },
+    {
+      "from_field": "ADJUSTMENT_COGS",
+      "from_instance": "SQ_WI_CORP_ADJ_AMONUT",
+      "to_field": "ADJUSTMENT_COGS",
+      "to_instance": "WI_CORP_ADJ_AMOUNT"
+    },
+    {
+      "from_field": "TRANSACTION_DIST_ID",
+      "from_instance": "SQ_WI_CORP_ADJ_AMONUT",
+      "to_field": "TRANSACTION_DIST_ID",
+      "to_instance": "WI_CORP_ADJ_AMOUNT"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "WI_CORP_ADJ_AMONUT",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_WI_CORP_ADJ_AMONUT"
+    },
+    {
+      "from_field": "ADJUSTMENT_REVENUE",
+      "from_instance": "WI_CORP_ADJ_AMONUT",
+      "to_field": "ADJUSTMENT_REVENUE",
+      "to_instance": "SQ_WI_CORP_ADJ_AMONUT"
+    },
+    {
+      "from_field": "ADJUSTMENT_COGS",
+      "from_instance": "WI_CORP_ADJ_AMONUT",
+      "to_field": "ADJUSTMENT_COGS",
+      "to_instance": "SQ_WI_CORP_ADJ_AMONUT"
+    },
+    {
+      "from_field": "AE_HEADER_ID",
+      "from_instance": "WI_CORP_ADJ_AMONUT",
+      "to_field": "AE_HEADER_ID",
+      "to_instance": "SQ_WI_CORP_ADJ_AMONUT"
+    },
+    {
+      "from_field": "AE_LINE_NUM",
+      "from_instance": "WI_CORP_ADJ_AMONUT",
+      "to_field": "AE_LINE_NUM",
+      "to_instance": "SQ_WI_CORP_ADJ_AMONUT"
+    },
+    {
+      "from_field": "APPLICATION_ID",
+      "from_instance": "WI_CORP_ADJ_AMONUT",
+      "to_field": "APPLICATION_ID",
+      "to_instance": "SQ_WI_CORP_ADJ_AMONUT"
+    },
+    {
+      "from_field": "AE_HEADER_ID",
+      "from_instance": "WI_CORP_ADJ_AMONUT",
+      "to_field": "TRANSACTION_DIST_ID",
+      "to_instance": "SQ_WI_CORP_ADJ_AMONUT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "TRANSACTION_DIST_ID",
+      "source_path": [
+        {
+          "from_field": "TRANSACTION_DIST_ID",
+          "from_instance": "SQ_WI_CORP_ADJ_AMONUT"
+        },
+        {
+          "from_field": "AE_HEADER_ID",
+          "from_instance": "WI_CORP_ADJ_AMONUT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AE_HEADER_ID",
+      "source_path": [
+        {
+          "from_field": "AE_HEADER_ID",
+          "from_instance": "SQ_WI_CORP_ADJ_AMONUT"
+        },
+        {
+          "from_field": "AE_HEADER_ID",
+          "from_instance": "WI_CORP_ADJ_AMONUT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AE_LINE_NUM",
+      "source_path": [
+        {
+          "from_field": "AE_LINE_NUM",
+          "from_instance": "SQ_WI_CORP_ADJ_AMONUT"
+        },
+        {
+          "from_field": "AE_LINE_NUM",
+          "from_instance": "WI_CORP_ADJ_AMONUT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "APPLICATION_ID",
+      "source_path": [
+        {
+          "from_field": "APPLICATION_ID",
+          "from_instance": "SQ_WI_CORP_ADJ_AMONUT"
+        },
+        {
+          "from_field": "APPLICATION_ID",
+          "from_instance": "WI_CORP_ADJ_AMONUT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GLOBAL_NAME",
+      "source_path": [
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_WI_CORP_ADJ_AMONUT"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "WI_CORP_ADJ_AMONUT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ADJUSTMENT_REVENUE",
+      "source_path": [
+        {
+          "from_field": "ADJUSTMENT_REVENUE",
+          "from_instance": "SQ_WI_CORP_ADJ_AMONUT"
+        },
+        {
+          "from_field": "ADJUSTMENT_REVENUE",
+          "from_instance": "WI_CORP_ADJ_AMONUT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ADJUSTMENT_COGS",
+      "source_path": [
+        {
+          "from_field": "ADJUSTMENT_COGS",
+          "from_instance": "SQ_WI_CORP_ADJ_AMONUT"
+        },
+        {
+          "from_field": "ADJUSTMENT_COGS",
+          "from_instance": "WI_CORP_ADJ_AMONUT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:00.204786+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

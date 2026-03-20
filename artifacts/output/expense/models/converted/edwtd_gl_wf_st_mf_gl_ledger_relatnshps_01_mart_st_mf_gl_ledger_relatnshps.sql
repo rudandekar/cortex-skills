@@ -1,0 +1,105 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_st_mf_gl_ledger_relatnshps', 'batch', 'edwtd_gl'],
+    meta={
+        'source_workflow': 'wf_m_ST_MF_GL_LEDGER_RELATNSHPS',
+        'target_table': 'ST_MF_GL_LEDGER_RELATNSHPS',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:05:28.690524+00:00'
+    }
+) }}
+
+WITH 
+
+source_ff_mf_gl_ledger_relatnshps AS (
+    SELECT
+        batch_id,
+        relationship_id,
+        source_ledger_id,
+        target_ledger_id,
+        sla_ledger_id,
+        primary_ledger_id,
+        target_currency_code,
+        target_ledger_name,
+        target_ledger_short_name,
+        target_ledger_category_code,
+        relationship_type_code,
+        relationship_enabled_flag,
+        inherit_creation_user_flag,
+        last_update_date,
+        last_updated_by,
+        creation_date,
+        created_by,
+        last_update_login,
+        gl_je_conversion_set_id,
+        sl_coa_mapping_id,
+        automatic_post_flag,
+        alc_default_conv_rate_type,
+        alc_no_rate_action_code,
+        alc_max_days_roll_rate,
+        alc_inherit_conversion_type,
+        alc_init_conv_option_code,
+        alc_init_period,
+        alc_init_date,
+        alc_initializing_rate_date,
+        alc_initializing_rate_type,
+        alc_period_average_rate_type,
+        alc_period_end_rate_type,
+        application_id,
+        org_id,
+        disable_conversion_date,
+        status_code,
+        global_name,
+        ges_update_date,
+        create_datetime,
+        action_code
+    FROM {{ source('raw', 'ff_mf_gl_ledger_relatnshps') }}
+),
+
+final AS (
+    SELECT
+        batch_id,
+        relationship_id,
+        source_ledger_id,
+        target_ledger_id,
+        sla_ledger_id,
+        primary_ledger_id,
+        target_currency_code,
+        target_ledger_name,
+        target_ledger_short_name,
+        target_ledger_category_code,
+        relationship_type_code,
+        relationship_enabled_flag,
+        inherit_creation_user_flag,
+        last_update_date,
+        last_updated_by,
+        creation_date,
+        created_by,
+        last_update_login,
+        gl_je_conversion_set_id,
+        sl_coa_mapping_id,
+        automatic_post_flag,
+        alc_default_conv_rate_type,
+        alc_no_rate_action_code,
+        alc_max_days_roll_rate,
+        alc_inherit_conversion_type,
+        alc_init_conv_option_code,
+        alc_init_period,
+        alc_init_date,
+        alc_initializing_rate_date,
+        alc_initializing_rate_type,
+        alc_period_average_rate_type,
+        alc_period_end_rate_type,
+        application_id,
+        org_id,
+        disable_conversion_date,
+        status_code,
+        global_name,
+        ges_update_date,
+        create_datetime,
+        action_code
+    FROM source_ff_mf_gl_ledger_relatnshps
+)
+
+SELECT * FROM final

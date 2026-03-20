@@ -1,0 +1,142 @@
+{
+  "workflow_name": "wf_m_OVERLAY_PROCESS_CONTROL",
+  "mapping_name": "m_OVERLAY_PROCESS_CONTROL",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "WI_OVERLAY_PROCESS_CONTROL_FILE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_overlay_param_generate_01_mart_wi_overlay_process_control_file",
+  "source_tables": [
+    "WI_OVERLAY_PROCESS_CONTROL"
+  ],
+  "sources": [
+    {
+      "name": "WI_OVERLAY_PROCESS_CONTROL",
+      "database_type": "Teradata",
+      "owner": "STGDB_TS1",
+      "fields": [
+        {
+          "name": "ACTIVE_IND",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROCESS_TYPE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROCESS_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_OVERLAY_PROCESS_CONTROL_FILE",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PROCESS_FLAG",
+        "datatype": "string",
+        "precision": "1000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_OVERLAY_PROCESS_CONTROL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACTIVE_IND",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROCESS_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT SUM(COUNT_PROCESS_TYPE) AS PROCESS_TYPE_COUNT FROM (SELECT COUNT( DISTINCT PROCESS_TYPE) AS COUNT_PROCESS_TYPE FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL WHERE ACTIVE_IND='Y' GROUP BY PROCESS_TYPE HAVING COUNT(DISTINCT PROCESS_TYPE) =1) AS A \r\nHAVING SUM(COUNT_PROCESS_TYPE)=1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACTIVE_IND",
+      "from_instance": "SQ_OVERLAY_PROCESS_CONTROL",
+      "to_field": "PROCESS_FLAG",
+      "to_instance": "WI_OVERLAY_PROCESS_CONTROL_FILE_FLATFILE"
+    },
+    {
+      "from_field": "ACTIVE_IND",
+      "from_instance": "WI_OVERLAY_PROCESS_CONTROL",
+      "to_field": "ACTIVE_IND",
+      "to_instance": "SQ_OVERLAY_PROCESS_CONTROL"
+    },
+    {
+      "from_field": "PROCESS_TYPE",
+      "from_instance": "WI_OVERLAY_PROCESS_CONTROL",
+      "to_field": "PROCESS_TYPE",
+      "to_instance": "SQ_OVERLAY_PROCESS_CONTROL"
+    },
+    {
+      "from_field": "PROCESS_DATE",
+      "from_instance": "WI_OVERLAY_PROCESS_CONTROL",
+      "to_field": "PROCESS_DATE",
+      "to_instance": "SQ_OVERLAY_PROCESS_CONTROL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PROCESS_FLAG",
+      "source_path": [
+        {
+          "from_field": "ACTIVE_IND",
+          "from_instance": "SQ_OVERLAY_PROCESS_CONTROL"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:20.329993+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

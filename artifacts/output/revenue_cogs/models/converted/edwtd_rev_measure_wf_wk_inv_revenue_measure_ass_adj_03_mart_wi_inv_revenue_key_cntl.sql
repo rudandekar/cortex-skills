@@ -1,0 +1,144 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wk_inv_revenue_measure_ass_adj', 'batch', 'edwtd_rev_measure'],
+    meta={
+        'source_workflow': 'wf_m_WK_INV_REVENUE_MEASURE_ASS_ADJ',
+        'target_table': 'WI_INV_REVENUE_KEY_CNTL',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:45.765861+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_inv_revenue_key_cntl AS (
+    SELECT
+        revenue_measure_key,
+        dv_fiscal_year_mth_num_int
+    FROM {{ source('raw', 'wi_inv_revenue_key_cntl') }}
+),
+
+source_wi_inv_rev_measure_ass_ma AS (
+    SELECT
+        product_key,
+        sales_territory_key,
+        general_ledger_account_key,
+        dd_bk_financial_account_cd,
+        functional_currency_code,
+        dv_comp_us_net_price_amt,
+        dv_comp_us_net_rev_amt,
+        operating_unit_name_cd,
+        dv_fiscal_year_mth_number_int,
+        gl_posted_dtm
+    FROM {{ source('raw', 'wi_inv_rev_measure_ass_ma') }}
+),
+
+source_w_inv_rev_measure AS (
+    SELECT
+        revenue_measure_key,
+        sales_order_key,
+        sales_order_line_key,
+        product_key,
+        ar_trx_key,
+        ar_trx_line_key,
+        bk_ar_trx_line_gl_distrib_key,
+        end_customer_key,
+        bill_to_customer_key,
+        ship_to_customer_key,
+        sold_to_customer_key,
+        sales_territory_key,
+        direct_corp_adjustment_key,
+        general_ledger_account_key,
+        sales_rep_number,
+        bk_pos_transaction_id_int,
+        bk_sales_adj_line_number_int,
+        bk_sales_adj_number_int,
+        dv_fiscal_year_mth_number_int,
+        dd_bk_financial_account_cd,
+        dd_gl_datetime,
+        dd_bk_trxl_currency_cd,
+        bk_order_type_name,
+        dv_fiscal_dt,
+        dd_functional_currency_cd,
+        dd_bk_ar_trx_type_cd,
+        dd_bk_direct_corp_adj_type_cd,
+        dd_service_type_cd,
+        bk_sales_credit_type_cd,
+        ar_trx_datetime,
+        rev_measure_trans_type_cd,
+        dv_forward_reverse_cd,
+        dv_corporate_revenue_flg,
+        dv_ic_revenue_flg,
+        dv_charges_flg,
+        dv_misc_flg,
+        dv_service_flg,
+        dv_international_demo_flg,
+        dv_replacement_demo_flg,
+        dv_revenue_flg,
+        dv_comp_us_net_price_amt,
+        dv_comp_us_net_list_price_amt,
+        dv_comp_us_gross_list_price_am,
+        dv_comp_us_net_cost_amt,
+        dv_comp_us_gross_rev_amt,
+        dv_comp_us_net_rev_amt,
+        dv_comp_us_2tier_cmdm_amt,
+        dv_comp_us_gross_cost_amt,
+        dv_comp_us_standard_price_amt,
+        dd_extended_net_qty,
+        dd_extended_gross_qty,
+        edw_create_user,
+        edw_create_datetime,
+        edw_update_user,
+        edw_update_datetime,
+        bk_adjustment_type_cd,
+        bk_revenue_or_cogs_type_cd,
+        gl_dt,
+        bk_ss_cd,
+        dv_extended_qty,
+        gl_distrib_functional_amt,
+        gl_distrib_transactional_amt,
+        operating_unit_name_cd,
+        account_class_cd,
+        transaction_type_category_cd,
+        warehouse_inventory_org_key,
+        transaction_dt,
+        gl_posted_dtm,
+        rae_adjustment_schedule_ln_key,
+        action_code,
+        dml_type
+    FROM {{ source('raw', 'w_inv_rev_measure') }}
+),
+
+source_n_rae_adjstmnt_gl_dstrbtn AS (
+    SELECT
+        rae_adjustment_gl_dstrbtn_key,
+        credit_debit_type,
+        gl_dtm,
+        gl_posted_flg,
+        journal_entry_batch_id_int,
+        journal_entry_source_name,
+        company_cd,
+        set_of_books_key,
+        general_ledger_account_key,
+        sk_summary_id_int,
+        ss_cd,
+        ru_functional_credit_amt,
+        ru_transactional_credit_amt,
+        ru_functional_debit_amt,
+        ru_transactional_debit_amt,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user
+    FROM {{ source('raw', 'n_rae_adjstmnt_gl_dstrbtn') }}
+),
+
+final AS (
+    SELECT
+        revenue_measure_key,
+        dv_fiscal_year_mth_num_int
+    FROM source_n_rae_adjstmnt_gl_dstrbtn
+)
+
+SELECT * FROM final

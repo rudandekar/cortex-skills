@@ -1,0 +1,390 @@
+{
+  "workflow_name": "wf_m_EL_CCM_ACOD_CLASSIFICATION",
+  "mapping_name": "m_EL_CCM_ACOD_CLASSIFICATION",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "EL_CCM_ACOD_CLASSIFICATION",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_el_ccm_acod_classification_01_mart_el_ccm_acod_classification",
+  "source_tables": [
+    "TWFM022_ACOD_CLASSIFICATION"
+  ],
+  "sources": [
+    {
+      "name": "TWFM022_ACOD_CLASSIFICATION",
+      "database_type": "Oracle",
+      "owner": "DWBASE_CCM_O",
+      "fields": [
+        {
+          "name": "ID",
+          "datatype": "number(p,s)",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MIN_ACOD",
+          "datatype": "number(p,s)",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MAX_ACOD",
+          "datatype": "number(p,s)",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_ID",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "UPDATED_ID",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_CCM_ACOD_CLASSIFICATION",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MIN_ACOD",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MAX_ACOD",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_ID",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATED_ID",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATED_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_TWFM022_ACOD_CLASSIFICATION",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MIN_ACOD",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MAX_ACOD",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT ID, MIN_ACOD, MAX_ACOD, CREATED_ID, CREATED_DATE, UPDATED_ID, UPDATED_DATE \r\nFROM\r\nFINCCMTRX.TWFM022_ACOD_CLASSIFICATION",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "MIN_ACOD",
+      "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "MIN_ACOD",
+      "to_instance": "EL_CCM_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "MAX_ACOD",
+      "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "MAX_ACOD",
+      "to_instance": "EL_CCM_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "CREATED_ID",
+      "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "CREATED_ID",
+      "to_instance": "EL_CCM_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "CREATED_DATE",
+      "to_instance": "EL_CCM_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "UPDATED_ID",
+      "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "UPDATED_ID",
+      "to_instance": "EL_CCM_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "ID",
+      "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "ID",
+      "to_instance": "EL_CCM_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "UPDATED_DATE",
+      "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "UPDATED_DATE",
+      "to_instance": "EL_CCM_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "MAX_ACOD",
+      "from_instance": "TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "MAX_ACOD",
+      "to_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "ID",
+      "from_instance": "TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "ID",
+      "to_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "MIN_ACOD",
+      "from_instance": "TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "MIN_ACOD",
+      "to_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "CREATED_ID",
+      "from_instance": "TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "CREATED_ID",
+      "to_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "CREATED_DATE",
+      "to_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "UPDATED_ID",
+      "from_instance": "TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "UPDATED_ID",
+      "to_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+    },
+    {
+      "from_field": "UPDATED_DATE",
+      "from_instance": "TWFM022_ACOD_CLASSIFICATION",
+      "to_field": "UPDATED_DATE",
+      "to_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ID",
+      "source_path": [
+        {
+          "from_field": "ID",
+          "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+        },
+        {
+          "from_field": "ID",
+          "from_instance": "TWFM022_ACOD_CLASSIFICATION"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MIN_ACOD",
+      "source_path": [
+        {
+          "from_field": "MIN_ACOD",
+          "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+        },
+        {
+          "from_field": "MIN_ACOD",
+          "from_instance": "TWFM022_ACOD_CLASSIFICATION"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MAX_ACOD",
+      "source_path": [
+        {
+          "from_field": "MAX_ACOD",
+          "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+        },
+        {
+          "from_field": "MAX_ACOD",
+          "from_instance": "TWFM022_ACOD_CLASSIFICATION"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_ID",
+      "source_path": [
+        {
+          "from_field": "CREATED_ID",
+          "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+        },
+        {
+          "from_field": "CREATED_ID",
+          "from_instance": "TWFM022_ACOD_CLASSIFICATION"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+        },
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "TWFM022_ACOD_CLASSIFICATION"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATED_ID",
+      "source_path": [
+        {
+          "from_field": "UPDATED_ID",
+          "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+        },
+        {
+          "from_field": "UPDATED_ID",
+          "from_instance": "TWFM022_ACOD_CLASSIFICATION"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATED_DATE",
+      "source_path": [
+        {
+          "from_field": "UPDATED_DATE",
+          "from_instance": "SQ_TWFM022_ACOD_CLASSIFICATION"
+        },
+        {
+          "from_field": "UPDATED_DATE",
+          "from_instance": "TWFM022_ACOD_CLASSIFICATION"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:21.676393+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

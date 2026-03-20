@@ -1,0 +1,390 @@
+{
+  "workflow_name": "wf_m_ST_SI_ACCOUNT_TYPE",
+  "mapping_name": "m_ST_SI_ACCOUNT_TYPE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "ST_SI_ACCOUNT_TYPE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_st_si_account_type_01_mart_st_si_account_type",
+  "source_tables": [
+    "FF_SI_ACCOUNT_TYPE"
+  ],
+  "sources": [
+    {
+      "name": "FF_SI_ACCOUNT_TYPE",
+      "database_type": "Flat File",
+      "owner": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCOUNT_TYPE_ID",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_TYPE_DESC",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_SI_ACCOUNT_TYPE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCOUNT_TYPE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCOUNT_TYPE_DESC",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ENABLED_FLAG",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_SI_ACCOUNT_TYPE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_TYPE_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_TYPE_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_FF_SI_ACCOUNT_TYPE",
+      "to_field": "BATCH_ID",
+      "to_instance": "ST_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE_ID",
+      "from_instance": "SQ_FF_SI_ACCOUNT_TYPE",
+      "to_field": "ACCOUNT_TYPE_ID",
+      "to_instance": "ST_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE_DESC",
+      "from_instance": "SQ_FF_SI_ACCOUNT_TYPE",
+      "to_field": "ACCOUNT_TYPE_DESC",
+      "to_instance": "ST_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_FF_SI_ACCOUNT_TYPE",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "ST_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "SQ_FF_SI_ACCOUNT_TYPE",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "ST_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_FF_SI_ACCOUNT_TYPE",
+      "to_field": "ACTION_CODE",
+      "to_instance": "ST_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_FF_SI_ACCOUNT_TYPE",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "ST_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "FF_SI_ACCOUNT_TYPE",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE_ID",
+      "from_instance": "FF_SI_ACCOUNT_TYPE",
+      "to_field": "ACCOUNT_TYPE_ID",
+      "to_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE_DESC",
+      "from_instance": "FF_SI_ACCOUNT_TYPE",
+      "to_field": "ACCOUNT_TYPE_DESC",
+      "to_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "FF_SI_ACCOUNT_TYPE",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "FF_SI_ACCOUNT_TYPE",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "FF_SI_ACCOUNT_TYPE",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "FF_SI_ACCOUNT_TYPE",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "FF_SI_ACCOUNT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNT_TYPE_ID",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_TYPE_ID",
+          "from_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+        },
+        {
+          "from_field": "ACCOUNT_TYPE_ID",
+          "from_instance": "FF_SI_ACCOUNT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNT_TYPE_DESC",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_TYPE_DESC",
+          "from_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+        },
+        {
+          "from_field": "ACCOUNT_TYPE_DESC",
+          "from_instance": "FF_SI_ACCOUNT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "FF_SI_ACCOUNT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ENABLED_FLAG",
+      "source_path": [
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "FF_SI_ACCOUNT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "FF_SI_ACCOUNT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_FF_SI_ACCOUNT_TYPE"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "FF_SI_ACCOUNT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:12.298395+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

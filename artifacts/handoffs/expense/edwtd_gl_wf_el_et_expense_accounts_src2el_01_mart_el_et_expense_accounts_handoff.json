@@ -1,0 +1,1239 @@
+{
+  "workflow_name": "wf_m_EL_ET_EXPENSE_ACCOUNTS_SRC2EL",
+  "mapping_name": "m_EL_ET_EXPENSE_ACCOUNTS_SRC2EL",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "EL_ET_EXPENSE_ACCOUNTS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_el_et_expense_accounts_src2el_01_mart_el_et_expense_accounts",
+  "source_tables": [
+    "ET_EXPENSE_ACCOUNTS"
+  ],
+  "sources": [
+    {
+      "name": "ET_EXPENSE_ACCOUNTS",
+      "database_type": "Oracle",
+      "owner": "EDADM",
+      "fields": [
+        {
+          "name": "ACCOUNT_ID",
+          "datatype": "varchar2",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar2",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DB_PREFIX",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_USER",
+          "datatype": "varchar2",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATE_USER",
+          "datatype": "varchar2",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CENTRALIZED_ALLOCATION_FLAG",
+          "datatype": "varchar2",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_ET_EXPENSE_ACCOUNTS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ACCOUNT_ID",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "ACCOUNT_BUCKET_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DESCRIPTION",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DB_PREFIX",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CENTRALIZED_ALLOCATION_FLAG",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "UPD_UPDTRANS",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DB_PREFIX",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CENTRALIZED_ALLOCATION_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_UPDATE",
+        "Forward Rejected Rows": "YES",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ET_EXPENSE_ACCOUNTS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DB_PREFIX",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CENTRALIZED_ALLOCATION_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "INS_UPDTRANS",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DB_PREFIX",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CENTRALIZED_ALLOCATION_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_INSERT",
+        "Forward Rejected Rows": "YES",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACCOUNT_ID"
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID",
+          "datatype": "double",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "out_ACCOUNT_BUCKET_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "TO_INTEGER(ACCOUNT_BUCKET_ID)"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DESCRIPTION"
+        },
+        {
+          "name": "DB_PREFIX",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DB_PREFIX"
+        },
+        {
+          "name": "CENTRALIZED_ALLOCATION_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CENTRALIZED_ALLOCATION_FLAG"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "LKPTRANS",
+      "type": "Lookup Procedure",
+      "description": "",
+      "fields": [
+        {
+          "name": "in_ACCOUNT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_ID",
+          "datatype": "string",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID",
+          "datatype": "integer",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DB_PREFIX",
+          "datatype": "string",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CENTRALIZED_ALLOCATION_FLAG",
+          "datatype": "string",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Lookup Sql Override": "SELECT  EL_ET_EXPENSE_ACCOUNTS.ACCOUNT_BUCKET_ID AS ACCOUNT_BUCKET_ID,  \r\n EL_ET_EXPENSE_ACCOUNTS.DESCRIPTION AS DESCRIPTION,  \r\n EL_ET_EXPENSE_ACCOUNTS.DB_PREFIX AS DB_PREFIX,  \r\n EL_ET_EXPENSE_ACCOUNTS.CENTRALIZED_ALLOCATION_FLAG AS CENTRALIZED_ALLOCATION_FLAG,  \r\n EL_ET_EXPENSE_ACCOUNTS.ACCOUNT_ID AS ACCOUNT_ID  \r\n FROM $$ETLVWDB.EL_ET_EXPENSE_ACCOUNTS",
+        "Lookup table name": "EL_ET_EXPENSE_ACCOUNTS",
+        "Lookup Source Filter": "",
+        "Lookup caching enabled": "YES",
+        "Lookup policy on multiple match": "Use Any Value",
+        "Lookup condition": "ACCOUNT_ID = in_ACCOUNT_ID",
+        "Connection Information": "$Target",
+        "Source Type": "Database",
+        "Recache if Stale": "NO",
+        "Tracing Level": "Normal",
+        "Lookup cache directory name": "$PMCacheDir",
+        "Lookup cache initialize": "NO",
+        "Lookup cache persistent": "NO",
+        "Lookup Data Cache Size": "Auto",
+        "Lookup Index Cache Size": "Auto",
+        "Dynamic Lookup Cache": "NO",
+        "Synchronize Dynamic Cache": "NO",
+        "Output Old Value On Update": "NO",
+        "Update Dynamic Cache Condition": "TRUE",
+        "Cache File Name Prefix": "",
+        "Re-cache from lookup source": "NO",
+        "Insert Else Update": "NO",
+        "Update Else Insert": "NO",
+        "Datetime Format": "",
+        "Thousand Separator": "None",
+        "Decimal Separator": ".",
+        "Case Sensitive String Comparison": "NO",
+        "Null ordering": "Null Is Highest Value",
+        "Sorted Input": "NO",
+        "Lookup source is static": "NO",
+        "Pre-build lookup cache": "Auto",
+        "Subsecond Precision": "6"
+      }
+    },
+    {
+      "name": "EXPTRANS1",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACCOUNT_ID"
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACCOUNT_BUCKET_ID"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DESCRIPTION"
+        },
+        {
+          "name": "DB_PREFIX",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DB_PREFIX"
+        },
+        {
+          "name": "CENTRALIZED_ALLOCATION_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CENTRALIZED_ALLOCATION_FLAG"
+        },
+        {
+          "name": "LKP_ACCOUNT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LKP_ACCOUNT_ID"
+        },
+        {
+          "name": "LKP_ACCOUNT_BUCKET_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LKP_ACCOUNT_BUCKET_ID"
+        },
+        {
+          "name": "LKP_DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LKP_DESCRIPTION"
+        },
+        {
+          "name": "LKP_DB_PREFIX",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LKP_DB_PREFIX"
+        },
+        {
+          "name": "LKP_CENTRALIZED_ALLOCATION_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LKP_CENTRALIZED_ALLOCATION_FLAG"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "RTRTRANS",
+      "type": "Router",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_ID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID",
+          "datatype": "integer",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "DB_PREFIX",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "CENTRALIZED_ALLOCATION_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_ACCOUNT_ID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_ACCOUNT_BUCKET_ID",
+          "datatype": "integer",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_DB_PREFIX",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_CENTRALIZED_ALLOCATION_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_ID1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID1",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DB_PREFIX1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CENTRALIZED_ALLOCATION_FLAG1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_ACCOUNT_ID1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_ACCOUNT_BUCKET_ID1",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_DESCRIPTION1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_DB_PREFIX1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_CENTRALIZED_ALLOCATION_FLAG1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_ID3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID3",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DB_PREFIX3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CENTRALIZED_ALLOCATION_FLAG3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_ACCOUNT_ID3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_ACCOUNT_BUCKET_ID3",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_DESCRIPTION3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_DB_PREFIX3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_CENTRALIZED_ALLOCATION_FLAG3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_ID2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID2",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DB_PREFIX2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CENTRALIZED_ALLOCATION_FLAG2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_ACCOUNT_ID2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_ACCOUNT_BUCKET_ID2",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_DESCRIPTION2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_DB_PREFIX2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_CENTRALIZED_ALLOCATION_FLAG2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      },
+      "groups": [
+        {
+          "name": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "INSERT",
+          "expression": "IIF(ISNULL(LKP_ACCOUNT_ID) ,TRUE,FALSE)"
+        },
+        {
+          "name": "DEFAULT1",
+          "expression": ""
+        },
+        {
+          "name": "UPDATE",
+          "expression": "IIF((NOT ISNULL(LKP_ACCOUNT_ID) ) AND \r\n(LKP_DESCRIPTION != DESCRIPTION OR\r\nIIF(ISNULL(LKP_DB_PREFIX),'UNK',LKP_DB_PREFIX)  != IIF(ISNULL(DB_PREFIX),'UNK',DB_PREFIX)  OR\r\nIIF(ISNULL(LKP_CENTRALIZED_ALLOCATION_FLAG),'UNK',LKP_CENTRALIZED_ALLOCATION_FLAG)  != IIF(ISNULL(CENTRALIZED_ALLOCATION_FLAG),'UNK',CENTRALIZED_ALLOCATION_FLAG) ),TRUE,FALSE)"
+        }
+      ]
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Update Strategy",
+    "Router",
+    "Lookup Procedure",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACCOUNT_ID",
+      "from_instance": "UPD_UPDTRANS",
+      "to_field": "ACCOUNT_ID",
+      "to_instance": "EL_ET_EXPENSE_ACCOUNTS_UPD"
+    },
+    {
+      "from_field": "ACCOUNT_BUCKET_ID",
+      "from_instance": "UPD_UPDTRANS",
+      "to_field": "ACCOUNT_BUCKET_ID",
+      "to_instance": "EL_ET_EXPENSE_ACCOUNTS_UPD"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "UPD_UPDTRANS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EL_ET_EXPENSE_ACCOUNTS_UPD"
+    },
+    {
+      "from_field": "DB_PREFIX",
+      "from_instance": "UPD_UPDTRANS",
+      "to_field": "DB_PREFIX",
+      "to_instance": "EL_ET_EXPENSE_ACCOUNTS_UPD"
+    },
+    {
+      "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "from_instance": "UPD_UPDTRANS",
+      "to_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "to_instance": "EL_ET_EXPENSE_ACCOUNTS_UPD"
+    },
+    {
+      "from_field": "ACCOUNT_ID",
+      "from_instance": "INS_UPDTRANS",
+      "to_field": "ACCOUNT_ID",
+      "to_instance": "EL_ET_EXPENSE_ACCOUNTS_INS"
+    },
+    {
+      "from_field": "ACCOUNT_BUCKET_ID",
+      "from_instance": "INS_UPDTRANS",
+      "to_field": "ACCOUNT_BUCKET_ID",
+      "to_instance": "EL_ET_EXPENSE_ACCOUNTS_INS"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "INS_UPDTRANS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EL_ET_EXPENSE_ACCOUNTS_INS"
+    },
+    {
+      "from_field": "DB_PREFIX",
+      "from_instance": "INS_UPDTRANS",
+      "to_field": "DB_PREFIX",
+      "to_instance": "EL_ET_EXPENSE_ACCOUNTS_INS"
+    },
+    {
+      "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "from_instance": "INS_UPDTRANS",
+      "to_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "to_instance": "EL_ET_EXPENSE_ACCOUNTS_INS"
+    },
+    {
+      "from_field": "ACCOUNT_ID",
+      "from_instance": "ET_EXPENSE_ACCOUNTS",
+      "to_field": "ACCOUNT_ID",
+      "to_instance": "SQ_ET_EXPENSE_ACCOUNTS"
+    },
+    {
+      "from_field": "ACCOUNT_BUCKET_ID",
+      "from_instance": "ET_EXPENSE_ACCOUNTS",
+      "to_field": "ACCOUNT_BUCKET_ID",
+      "to_instance": "SQ_ET_EXPENSE_ACCOUNTS"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "ET_EXPENSE_ACCOUNTS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "SQ_ET_EXPENSE_ACCOUNTS"
+    },
+    {
+      "from_field": "DB_PREFIX",
+      "from_instance": "ET_EXPENSE_ACCOUNTS",
+      "to_field": "DB_PREFIX",
+      "to_instance": "SQ_ET_EXPENSE_ACCOUNTS"
+    },
+    {
+      "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "from_instance": "ET_EXPENSE_ACCOUNTS",
+      "to_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "to_instance": "SQ_ET_EXPENSE_ACCOUNTS"
+    },
+    {
+      "from_field": "LKP_ACCOUNT_ID3",
+      "from_instance": "RTRTRANS",
+      "to_field": "ACCOUNT_ID",
+      "to_instance": "UPD_UPDTRANS"
+    },
+    {
+      "from_field": "ACCOUNT_BUCKET_ID3",
+      "from_instance": "RTRTRANS",
+      "to_field": "ACCOUNT_BUCKET_ID",
+      "to_instance": "UPD_UPDTRANS"
+    },
+    {
+      "from_field": "DESCRIPTION3",
+      "from_instance": "RTRTRANS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "UPD_UPDTRANS"
+    },
+    {
+      "from_field": "DB_PREFIX3",
+      "from_instance": "RTRTRANS",
+      "to_field": "DB_PREFIX",
+      "to_instance": "UPD_UPDTRANS"
+    },
+    {
+      "from_field": "CENTRALIZED_ALLOCATION_FLAG3",
+      "from_instance": "RTRTRANS",
+      "to_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "to_instance": "UPD_UPDTRANS"
+    },
+    {
+      "from_field": "DB_PREFIX",
+      "from_instance": "SQ_ET_EXPENSE_ACCOUNTS",
+      "to_field": "DB_PREFIX",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "ACCOUNT_ID",
+      "from_instance": "SQ_ET_EXPENSE_ACCOUNTS",
+      "to_field": "ACCOUNT_ID",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "ACCOUNT_BUCKET_ID",
+      "from_instance": "SQ_ET_EXPENSE_ACCOUNTS",
+      "to_field": "ACCOUNT_BUCKET_ID",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SQ_ET_EXPENSE_ACCOUNTS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "from_instance": "SQ_ET_EXPENSE_ACCOUNTS",
+      "to_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "ACCOUNT_ID1",
+      "from_instance": "RTRTRANS",
+      "to_field": "ACCOUNT_ID",
+      "to_instance": "INS_UPDTRANS"
+    },
+    {
+      "from_field": "ACCOUNT_BUCKET_ID1",
+      "from_instance": "RTRTRANS",
+      "to_field": "ACCOUNT_BUCKET_ID",
+      "to_instance": "INS_UPDTRANS"
+    },
+    {
+      "from_field": "DESCRIPTION1",
+      "from_instance": "RTRTRANS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "INS_UPDTRANS"
+    },
+    {
+      "from_field": "DB_PREFIX1",
+      "from_instance": "RTRTRANS",
+      "to_field": "DB_PREFIX",
+      "to_instance": "INS_UPDTRANS"
+    },
+    {
+      "from_field": "CENTRALIZED_ALLOCATION_FLAG1",
+      "from_instance": "RTRTRANS",
+      "to_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "to_instance": "INS_UPDTRANS"
+    },
+    {
+      "from_field": "ACCOUNT_ID",
+      "from_instance": "EXPTRANS",
+      "to_field": "in_ACCOUNT_ID",
+      "to_instance": "LKPTRANS"
+    },
+    {
+      "from_field": "ACCOUNT_ID",
+      "from_instance": "EXPTRANS",
+      "to_field": "ACCOUNT_ID",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "out_ACCOUNT_BUCKET_ID",
+      "from_instance": "EXPTRANS",
+      "to_field": "ACCOUNT_BUCKET_ID",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EXPTRANS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "DB_PREFIX",
+      "from_instance": "EXPTRANS",
+      "to_field": "DB_PREFIX",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "from_instance": "EXPTRANS",
+      "to_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "ACCOUNT_ID",
+      "from_instance": "LKPTRANS",
+      "to_field": "LKP_ACCOUNT_ID",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "ACCOUNT_BUCKET_ID",
+      "from_instance": "LKPTRANS",
+      "to_field": "LKP_ACCOUNT_BUCKET_ID",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "LKPTRANS",
+      "to_field": "LKP_DESCRIPTION",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "DB_PREFIX",
+      "from_instance": "LKPTRANS",
+      "to_field": "LKP_DB_PREFIX",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "from_instance": "LKPTRANS",
+      "to_field": "LKP_CENTRALIZED_ALLOCATION_FLAG",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "ACCOUNT_BUCKET_ID",
+      "from_instance": "EXPTRANS1",
+      "to_field": "ACCOUNT_BUCKET_ID",
+      "to_instance": "RTRTRANS"
+    },
+    {
+      "from_field": "ACCOUNT_ID",
+      "from_instance": "EXPTRANS1",
+      "to_field": "ACCOUNT_ID",
+      "to_instance": "RTRTRANS"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EXPTRANS1",
+      "to_field": "DESCRIPTION",
+      "to_instance": "RTRTRANS"
+    },
+    {
+      "from_field": "DB_PREFIX",
+      "from_instance": "EXPTRANS1",
+      "to_field": "DB_PREFIX",
+      "to_instance": "RTRTRANS"
+    },
+    {
+      "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "from_instance": "EXPTRANS1",
+      "to_field": "CENTRALIZED_ALLOCATION_FLAG",
+      "to_instance": "RTRTRANS"
+    },
+    {
+      "from_field": "LKP_ACCOUNT_ID",
+      "from_instance": "EXPTRANS1",
+      "to_field": "LKP_ACCOUNT_ID",
+      "to_instance": "RTRTRANS"
+    },
+    {
+      "from_field": "LKP_ACCOUNT_BUCKET_ID",
+      "from_instance": "EXPTRANS1",
+      "to_field": "LKP_ACCOUNT_BUCKET_ID",
+      "to_instance": "RTRTRANS"
+    },
+    {
+      "from_field": "LKP_DESCRIPTION",
+      "from_instance": "EXPTRANS1",
+      "to_field": "LKP_DESCRIPTION",
+      "to_instance": "RTRTRANS"
+    },
+    {
+      "from_field": "LKP_DB_PREFIX",
+      "from_instance": "EXPTRANS1",
+      "to_field": "LKP_DB_PREFIX",
+      "to_instance": "RTRTRANS"
+    },
+    {
+      "from_field": "LKP_CENTRALIZED_ALLOCATION_FLAG",
+      "from_instance": "EXPTRANS1",
+      "to_field": "LKP_CENTRALIZED_ALLOCATION_FLAG",
+      "to_instance": "RTRTRANS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ACCOUNT_ID",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_ID",
+          "from_instance": "UPD_UPDTRANS"
+        },
+        {
+          "from_field": "ACCOUNT_ID",
+          "from_instance": "INS_UPDTRANS"
+        },
+        {
+          "from_field": "ACCOUNT_ID",
+          "from_instance": "ET_EXPENSE_ACCOUNTS"
+        },
+        {
+          "from_field": "LKP_ACCOUNT_ID3",
+          "from_instance": "RTRTRANS"
+        },
+        {
+          "from_field": "ACCOUNT_ID",
+          "from_instance": "SQ_ET_EXPENSE_ACCOUNTS"
+        },
+        {
+          "from_field": "ACCOUNT_ID1",
+          "from_instance": "RTRTRANS"
+        },
+        {
+          "from_field": "ACCOUNT_ID",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "ACCOUNT_ID",
+          "from_instance": "EXPTRANS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNT_BUCKET_ID",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_BUCKET_ID",
+          "from_instance": "UPD_UPDTRANS"
+        },
+        {
+          "from_field": "ACCOUNT_BUCKET_ID",
+          "from_instance": "INS_UPDTRANS"
+        },
+        {
+          "from_field": "ACCOUNT_BUCKET_ID",
+          "from_instance": "ET_EXPENSE_ACCOUNTS"
+        },
+        {
+          "from_field": "ACCOUNT_BUCKET_ID3",
+          "from_instance": "RTRTRANS"
+        },
+        {
+          "from_field": "ACCOUNT_BUCKET_ID",
+          "from_instance": "SQ_ET_EXPENSE_ACCOUNTS"
+        },
+        {
+          "from_field": "ACCOUNT_BUCKET_ID1",
+          "from_instance": "RTRTRANS"
+        },
+        {
+          "from_field": "out_ACCOUNT_BUCKET_ID",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "ACCOUNT_BUCKET_ID",
+          "from_instance": "EXPTRANS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "UPD_UPDTRANS"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "INS_UPDTRANS"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "ET_EXPENSE_ACCOUNTS"
+        },
+        {
+          "from_field": "DESCRIPTION3",
+          "from_instance": "RTRTRANS"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "SQ_ET_EXPENSE_ACCOUNTS"
+        },
+        {
+          "from_field": "DESCRIPTION1",
+          "from_instance": "RTRTRANS"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "EXPTRANS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DB_PREFIX",
+      "source_path": [
+        {
+          "from_field": "DB_PREFIX",
+          "from_instance": "UPD_UPDTRANS"
+        },
+        {
+          "from_field": "DB_PREFIX",
+          "from_instance": "INS_UPDTRANS"
+        },
+        {
+          "from_field": "DB_PREFIX",
+          "from_instance": "ET_EXPENSE_ACCOUNTS"
+        },
+        {
+          "from_field": "DB_PREFIX3",
+          "from_instance": "RTRTRANS"
+        },
+        {
+          "from_field": "DB_PREFIX",
+          "from_instance": "SQ_ET_EXPENSE_ACCOUNTS"
+        },
+        {
+          "from_field": "DB_PREFIX1",
+          "from_instance": "RTRTRANS"
+        },
+        {
+          "from_field": "DB_PREFIX",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "DB_PREFIX",
+          "from_instance": "EXPTRANS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CENTRALIZED_ALLOCATION_FLAG",
+      "source_path": [
+        {
+          "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+          "from_instance": "UPD_UPDTRANS"
+        },
+        {
+          "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+          "from_instance": "INS_UPDTRANS"
+        },
+        {
+          "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+          "from_instance": "ET_EXPENSE_ACCOUNTS"
+        },
+        {
+          "from_field": "CENTRALIZED_ALLOCATION_FLAG3",
+          "from_instance": "RTRTRANS"
+        },
+        {
+          "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+          "from_instance": "SQ_ET_EXPENSE_ACCOUNTS"
+        },
+        {
+          "from_field": "CENTRALIZED_ALLOCATION_FLAG1",
+          "from_instance": "RTRTRANS"
+        },
+        {
+          "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "CENTRALIZED_ALLOCATION_FLAG",
+          "from_instance": "EXPTRANS1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "thin",
+  "generated_timestamp": "2026-03-19T18:05:05.329045+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

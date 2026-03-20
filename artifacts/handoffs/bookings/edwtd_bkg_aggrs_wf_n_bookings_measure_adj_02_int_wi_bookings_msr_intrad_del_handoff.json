@@ -1,0 +1,3973 @@
+{
+  "workflow_name": "wf_m_N_BOOKINGS_MEASURE_ADJ",
+  "mapping_name": "m_N_BOOKINGS_MEASURE_ADJ",
+  "mapping_description": "",
+  "folder_name": "EDWTD_BKG_AGGRS",
+  "target_table": "WI_BOOKINGS_MSR_INTRAD_DEL",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_bkg_aggrs_wf_n_bookings_measure_adj_02_int_wi_bookings_msr_intrad_del",
+  "source_tables": [
+    "WI_BOOKINGS_SW_ANNUALISED_ADJ",
+    "W_BOOKINGS_MEASURE",
+    "WI_BOOKINGS_MSR_INTRAD_DEL"
+  ],
+  "sources": [
+    {
+      "name": "WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTRACT_START_DTM",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTRACT_END_DTM",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTRACT_DURATION",
+          "datatype": "decimal",
+          "precision": "16",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ANNUALIZED_FLG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "W_BOOKINGS_MEASURE",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV1",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AR_TRX_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SALES_ADJ_LINE_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SALES_ADJ_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_TYPE_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_CREDIT_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IDE_ADJUSTMENT_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CANCELLED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CANCEL_CODE",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACQUISITION_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FORWARD_REVERSE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISTRIBUTOR_OFFSET_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CORPORATE_BOOKINGS_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "OVERLAY_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "IC_REVENUE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CHARGES_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALESREP_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MISC_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INTERNATIONAL_DEMO_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REPLACEMENT_DEMO_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REVENUE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RMA_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRADE_IN_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_LIST_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_COST_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_EXTENDED_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_COST_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_EXTENDED_HOLD_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_COMP_US_STANDARD_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CONVERSION_RT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "17",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CONVERSION_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_BK_SO_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_CISCO_BOOKED_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_SALES_ORDER_CATEGORY_TYPE",
+          "datatype": "char",
+          "precision": "6",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_SLS_ORD_OPERATING_UNIT_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_TRX_CURRENCY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_TRANSACTION_TYPE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_DESCR_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_TRANSACTION_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BOOKINGS_SPLIT_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_REVENUE_RECOGNITION_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_NET_SPREAD_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REVENUE_TRANSFER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FMV_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_SERVICE_CONTRACT_START_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_SERVICE_CONTRACT_END_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_CONTRACT_DURATION",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ANNUALIZED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ANNUALIZED_US_NET_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_MULTIYEAR_US_NET_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DSV_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_SOURCE_ORDER_NUM_INT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_DEAL_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TSS_COUNTRY_FACTOR_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_BKG_GROSS_MGN_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_BGM_FX_COST_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FX_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_LOCAL_EXTND_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LOCAL_UNIT_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_UNIT_LIST_PRICE_USD_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ORDER_VALUE_USD_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_MTHLY_RCR_REV_TRXL_USD_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_INCRML_MTHY_RCRR_RV_USD_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ANNLZD_MTHY_RCRR_RV_USD_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_INCRML_ANNL_RCRR_RV_USD_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_RECURRING_OFFER_CD",
+          "datatype": "varchar",
+          "precision": "70",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_PURCHASE_ADJ_DSCNT_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POB_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NRS_TRANSITION_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "varchar",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_BKG_REBATE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_FX_REBATE_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_SALES_MOTION_ATTRIB_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_ENRICHED_SERVICE_CONTRACT_START_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ENRICHED_SERVICE_CONTRACT_END_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ENRICHED_CONTRACT_DURATION",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ENRICHMENT_RULE_DESC",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ENRICHED_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ENRICHED_UNK_END_CUST_RULE_DESC",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTED_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_ADJUSTMENT_SOURCE_CODE",
+          "datatype": "char",
+          "precision": "6",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_COMP_US_ORIG_LIST_PRICE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_ORIG_EXT_LIST_PRICE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BOOKINGS_POLICY_CD",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_INV_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_REP_ANNUAL_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_COMPENSATION_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_COMP_US_GROSS_BKG_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_ENRICH_CONTRACT_DURATION",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_ANNUITY_RELEASE_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_AI_FLG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AI_INTENT_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "55",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRX_AI_PRODUCT_CLASS_NAME",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BUYING_TRANSACTION_TYPE_NAME",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TOTAL_NETPC_WTHOUT_CR_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FRST_YR_ANNUAL_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MULTI_YEAR_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NON_RECUR_ONE_TM_CR_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FIRST_YEAR_CREDIT_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MULTI_YEAR_CREDIT_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINKED_BOOKINGS_MEASURE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MNTLY_SUBSCR_CHRG_UPLIFT_US_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SK_ACQ_OPTY_LINE_ID",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_BOOKINGS_MSR_INTRAD_DEL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV2",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PROCESS_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_BOOKINGS_MSR_INTRAD_DEL",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BOOKINGS_MEASURE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "PROCESS_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+        "datatype": "char",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT      \r\n  MDSPD.BK_SALES_ADJ_LINE_NUMBER_INT AS BOOKINGS_MEASURE_KEY ,  \r\n  MDSPD.PROCESS_DATE AS PROCESS_DATE ,  \r\n  'SLS_ADJ' AS BKGS_MEASURE_TRANS_TYPE_CODE,   \r\n  MDSPD.EDW_UPDATE_DTM AS EDW_UPDATE_DATETIME  \r\n  \n , FRST_YR_ANNUAL_USD_AMT AS FRST_YR_ANNUAL_USD_AMT \n , MULTI_YEAR_USD_AMT AS MULTI_YEAR_USD_AMT \n , LINKED_BOOKINGS_MEASURE_KEY AS LINKED_BOOKINGS_MEASURE_KEY FROM    \r\n  $$NRTNCRVWDB.MT_SALES_ADJUSTMENT_LINE_DEL MDSPD  \r\n   INNER JOIN $$SLSORDVWDB.N_SALES_ADJUSTMENT SALES_ADJ\r\n\tON MDSPD.BK_SALES_ADJ_NUMBER_INT = SALES_ADJ.BK_SALES_ADJ_NUMBER_INT\r\n\tAND SALES_ADJ.BK_SALES_ADJ_TYPE_CODE <> 'POS'\r\n\tAND MDSPD.IDE_IFC_ADJ_REPORTING_TYPE_CD <>'M'\r\n  WHERE MDSPD.EDW_UPDATE_DTM > (SELECT LAST_EXTRACT_DATE FROM $$ETLVWDB.CTL_ETL_LAST_EXTRACT_DATES   WHERE JOB_STREAM_ID='wf_N_BOOKINGS_MEASURE_ADJ' AND TABLE_NAME='MT_SALES_ADJUSTMENT_LINE_DEL')\r\n  UNION ALL\r\n  SELECT      \r\n  MDSPD.BK_SALES_ADJ_LINE_NUMBER_INT AS BOOKINGS_MEASURE_KEY ,  \r\n  MDSPD.PROCESS_DATE AS PROCESS_DATE ,  \r\n  'POS_ADJ' AS BKGS_MEASURE_TRANS_TYPE_CODE,   \r\n  MDSPD.EDW_UPDATE_DTM AS EDW_UPDATE_DATETIME  \r\n  FROM    \r\n  $$NRTNCRVWDB.MT_SALES_ADJUSTMENT_LINE_DEL MDSPD\r\n  INNER JOIN $$SLSORDVWDB.N_SALES_ADJUSTMENT SALES_ADJ\r\n\tON  MDSPD.BK_SALES_ADJ_NUMBER_INT = SALES_ADJ.BK_SALES_ADJ_NUMBER_INT\r\n\tAND SALES_ADJ.BK_SALES_ADJ_TYPE_CODE = 'POS'\r\n\tAND SALES_ADJ.BK_SALES_ADJ_CODE<>'POS-OA'\r\n  WHERE MDSPD.EDW_UPDATE_DTM > (SELECT LAST_EXTRACT_DATE FROM $$ETLVWDB.CTL_ETL_LAST_EXTRACT_DATES WHERE JOB_STREAM_ID='wf_N_BOOKINGS_MEASURE_ADJ' AND TABLE_NAME='MT_SALES_ADJUSTMENT_LINE_DEL')",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "DELETE FROM $$STGDB.WI_BOOKINGS_MSR_INTRAD_DEL WHERE BKGS_MEASURE_TRANS_TYPE_CODE  IN ('SLS_ADJ', 'POS_ADJ') ;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_W_BOOKINGS_MEASURE1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AR_TRX_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_ADJ_LINE_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_ADJ_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_CREDIT_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IDE_ADJUSTMENT_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CANCELLED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CANCEL_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACQUISITION_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FORWARD_REVERSE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTRIBUTOR_OFFSET_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CORPORATE_BOOKINGS_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OVERLAY_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IC_REVENUE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHARGES_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALESREP_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MISC_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INTERNATIONAL_DEMO_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPLACEMENT_DEMO_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REVENUE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RMA_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRADE_IN_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_LIST_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_EXTENDED_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_HOLD_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_EXTENDED_HOLD_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_STANDARD_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONVERSION_RT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONVERSION_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_BK_SO_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_CISCO_BOOKED_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_SALES_ORDER_CATEGORY_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_SLS_ORD_OPERATING_UNIT_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_TRX_CURRENCY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_TRANSACTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_DESCR_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_TRANSACTION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_SPLIT_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_REVENUE_RECOGNITION_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_NET_SPREAD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REVENUE_TRANSFER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FMV_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_SERVICE_CONTRACT_START_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_SERVICE_CONTRACT_END_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_CONTRACT_DURATION",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ANNUALIZED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ANNUALIZED_US_NET_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_MULTIYEAR_US_NET_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SOURCE_ORDER_NUM_INT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_DEAL_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSS_COUNTRY_FACTOR_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BKG_GROSS_MGN_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BGM_FX_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FX_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "XCAT_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_OFFER_TYPE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RECURRING_OFFER_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ELA_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_LOCAL_EXTND_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOCAL_UNIT_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_UNIT_LIST_PRICE_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ORDER_VALUE_USD_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_MTHLY_RCR_REV_TRXL_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_INCRML_MTHY_RCRR_RV_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ANNLZD_MTHY_RCRR_RV_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_INCRML_ANNL_RCRR_RV_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_RECURRING_OFFER_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PURCHASE_ADJ_DSCNT_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BGM_NON_STANDARD_COST_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BKG_REBATE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FX_REBATE_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_SALES_MOTION_ATTRIB_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ENRICHED_SERVICE_CONTRACT_START_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ENRICHED_SERVICE_CONTRACT_END_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ENRICHED_CONTRACT_DURATION",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ENRICHMENT_RULE_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ENRICHED_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ENRICHED_UNK_END_CUST_RULE_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTED_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ADJUSTMENT_SOURCE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_COMPENSATION_POLICY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_INV_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_REP_ANNUAL_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_COMPENSATION_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUNDLE_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ATO_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ANNUITY_RELEASE_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_COMP_RSW_TREATED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_AI_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AI_INTENT_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRX_AI_PRODUCT_CLASS_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FOR_PRTNR_NEW_CUST_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUYING_TRANSACTION_TYPE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FRST_YR_ANNUAL_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MULTI_YEAR_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LINKED_BOOKINGS_MEASURE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MNTLY_SUBSCR_CHRG_UPLIFT_US_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_ACQ_OPTY_LINE_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n W_BOOKINGS_MEASURE.BOOKINGS_MEASURE_KEY,\r\n W_BOOKINGS_MEASURE.SALES_ORDER_KEY,\r\n W_BOOKINGS_MEASURE.SALES_ORDER_LINE_KEY,\r\n W_BOOKINGS_MEASURE.PRODUCT_KEY,\r\n W_BOOKINGS_MEASURE.AR_TRX_LINE_KEY,\r\n W_BOOKINGS_MEASURE.AR_TRX_KEY,\r\n W_BOOKINGS_MEASURE.END_CUSTOMER_KEY,\r\n W_BOOKINGS_MEASURE.BILL_TO_CUSTOMER_KEY,\r\n W_BOOKINGS_MEASURE.SHIP_TO_CUSTOMER_KEY,\r\n W_BOOKINGS_MEASURE.SOLD_TO_CUSTOMER_KEY,\r\n W_BOOKINGS_MEASURE.DV_END_CUSTOMER_KEY,\r\n W_BOOKINGS_MEASURE.TRANSACTION_DATETIME,\r\n W_BOOKINGS_MEASURE.SALES_TERRITORY_KEY,\r\n W_BOOKINGS_MEASURE.SALES_REP_NUMBER,\r\n W_BOOKINGS_MEASURE.BOOKINGS_PROCESS_DATE,\r\n W_BOOKINGS_MEASURE.DV_FISCAL_YEAR_MTH_NUMBER_INT,\r\n W_BOOKINGS_MEASURE.BK_POS_TRANSACTION_ID_INT,\r\n W_BOOKINGS_MEASURE.BK_SALES_ADJ_LINE_NUMBER_INT,\r\n W_BOOKINGS_MEASURE.BK_SALES_ADJ_NUMBER_INT,\r\n W_BOOKINGS_MEASURE.ADJUSTMENT_TYPE_CODE,\r\n W_BOOKINGS_MEASURE.SALES_CHANNEL_CODE,\r\n W_BOOKINGS_MEASURE.SALES_CREDIT_TYPE_CODE,\r\n W_BOOKINGS_MEASURE.IDE_ADJUSTMENT_CODE,\r\n W_BOOKINGS_MEASURE.ADJUSTMENT_CODE,\r\n W_BOOKINGS_MEASURE.BKGS_MEASURE_TRANS_TYPE_CODE,\r\n W_BOOKINGS_MEASURE.CANCELLED_FLG,\r\n W_BOOKINGS_MEASURE.CANCEL_CODE ,\r\n W_BOOKINGS_MEASURE.ACQUISITION_FLG,\r\n W_BOOKINGS_MEASURE.FORWARD_REVERSE_FLG,\r\n W_BOOKINGS_MEASURE.DISTRIBUTOR_OFFSET_FLG,\r\n W_BOOKINGS_MEASURE.CORPORATE_BOOKINGS_FLG,\r\n W_BOOKINGS_MEASURE.OVERLAY_FLG,\r\n W_BOOKINGS_MEASURE.IC_REVENUE_FLG,\r\n W_BOOKINGS_MEASURE.CHARGES_FLG,\r\n W_BOOKINGS_MEASURE.SALESREP_FLG,\r\n W_BOOKINGS_MEASURE.MISC_FLG,\r\n W_BOOKINGS_MEASURE.SERVICE_FLG,\r\n W_BOOKINGS_MEASURE.INTERNATIONAL_DEMO_FLG,\r\n W_BOOKINGS_MEASURE.REPLACEMENT_DEMO_FLG,\r\n W_BOOKINGS_MEASURE.REVENUE_FLG,\r\n W_BOOKINGS_MEASURE.RMA_FLG,\r\n W_BOOKINGS_MEASURE.TRADE_IN_AMOUNT,\r\n W_BOOKINGS_MEASURE.DD_COMP_US_NET_PRICE_AMOUNT,\r\n W_BOOKINGS_MEASURE.DD_COMP_US_LIST_PRICE_AMOUNT,\r\n W_BOOKINGS_MEASURE.DD_COMP_US_COST_AMOUNT,\r\n W_BOOKINGS_MEASURE.DD_EXTENDED_QUANTITY,\r\n W_BOOKINGS_MEASURE.DD_COMP_US_HOLD_NET_PRICE_AMT,\r\n W_BOOKINGS_MEASURE.DD_COMP_US_HOLD_LIST_PRICE_AMT,\r\n W_BOOKINGS_MEASURE.DD_COMP_US_HOLD_COST_AMOUNT,\r\n W_BOOKINGS_MEASURE.DD_EXTENDED_HOLD_QUANTITY,\r\n W_BOOKINGS_MEASURE.DD_COMP_US_STANDARD_PRICE_AMT,\r\n W_BOOKINGS_MEASURE.WIPS_ORIGINATOR_ID_INT,\r\n W_BOOKINGS_MEASURE.EDW_CREATE_USER,\r\n W_BOOKINGS_MEASURE.EDW_UPDATE_USER,\r\n W_BOOKINGS_MEASURE.EDW_CREATE_DATETIME,\r\n W_BOOKINGS_MEASURE.EDW_UPDATE_DATETIME,  \r\n W_BOOKINGS_MEASURE.CONVERSION_RT, \r\n W_BOOKINGS_MEASURE.CONVERSION_DT,\r\n W_BOOKINGS_MEASURE.DD_BK_SO_NUMBER_INT, \r\n W_BOOKINGS_MEASURE.DD_CISCO_BOOKED_DTM, \r\n W_BOOKINGS_MEASURE.DD_SALES_ORDER_CATEGORY_TYPE,\r\n W_BOOKINGS_MEASURE.DD_SLS_ORD_OPERATING_UNIT_CD, \r\n W_BOOKINGS_MEASURE.DD_TRX_CURRENCY_CD,\r\n W_BOOKINGS_MEASURE.DV_TRANSACTION_TYPE,\r\n W_BOOKINGS_MEASURE.ADJUSTMENT_DESCR_KEY,\r\n W_BOOKINGS_MEASURE.DV_TRANSACTION_NAME,   /**R9**/\r\n W_BOOKINGS_MEASURE.BOOKINGS_SPLIT_PCT ,    /**R9**/\r\n W_BOOKINGS_MEASURE.DV_REVENUE_RECOGNITION_FLG,   /* Added as part of true demand bkgs definition*/    \r\n W_BOOKINGS_MEASURE.DV_NET_SPREAD_FLG ,     /* Added as part of true demand bkgs definition*/  \r\n W_BOOKINGS_MEASURE.REVENUE_TRANSFER_KEY,  /* vetalla : Added as part of Q3FY14 RTE*/\r\n /* Added as part of OFFER ATTRIBUTION Q3FY14*/\r\n W_BOOKINGS_MEASURE.DV_ATTRIBUTION_CD,\r\n W_BOOKINGS_MEASURE.DV_PRODUCT_KEY,\r\n W_BOOKINGS_MEASURE.DV_SALES_ORDER_LINE_KEY,\r\n W_BOOKINGS_MEASURE.SK_OFFER_ATTRIBUTION_ID_INT ,\r\n W_BOOKINGS_MEASURE.DV_FMV_FLG , /* Q1FY15 FMV */\r\n W_BOOKINGS_MEASURE.RU_SERVICE_CONTRACT_START_DTM     ,\r\n W_BOOKINGS_MEASURE.RU_SERVICE_CONTRACT_END_DTM       ,\r\nW_BOOKINGS_MEASURE.DV_CONTRACT_DURATION           ,\r\n W_BOOKINGS_MEASURE.DV_ANNUALIZED_FLG                 ,\r\n W_BOOKINGS_MEASURE.DV_ANNUALIZED_US_NET_AMT          ,\r\n W_BOOKINGS_MEASURE.DV_MULTIYEAR_US_NET_AMT ,\r\n W_BOOKINGS_MEASURE.SO_SBSCRPTN_ITM_SLS_TRX_KEY, /* Added as part of XAAS-Q3FY15 */\r\n W_BOOKINGS_MEASURE.DV_SOURCE_ORDER_NUM_INT, /* Added as part of FY18 May Release*/\r\n W_BOOKINGS_MEASURE.DV_SO_SBSCRPTN_ITM_SLS_TRX_KEY, /* Added as part of OA-Q1FY16 */\r\n W_BOOKINGS_MEASURE.FISCAL_YEAR_QUARTER_NUMBER_INT, /* ADDED AS PART OF sep 27TH CD RELEASE */\r\n W_BOOKINGS_MEASURE.DV_AR_TRX_LINE_KEY,/*Added as part of Q3FY16-Offer Attribution*/\r\n W_BOOKINGS_MEASURE.XAAS_OFFER_ATRBTN_REV_LINE_KEY, /*Added as part of Q3FY16-Offer Attribution*/\r\n W_BOOKINGS_MEASURE.DV_DEAL_ID, /*Added as part of Q4FY16-XAAS*/\r\n W_BOOKINGS_MEASURE.TSS_COUNTRY_FACTOR_KEY,\r\n W_BOOKINGS_MEASURE.DV_BKG_GROSS_MGN_AMOUNT,\r\n W_BOOKINGS_MEASURE.DV_BGM_FX_COST_AMOUNT,\r\n W_BOOKINGS_MEASURE.DV_FX_NET_PRICE_AMT /*BGM Changes Q1FY17*/\r\n /*Added the below columns as part of RO project for Q3FY17 */\r\n ,W_BOOKINGS_MEASURE.XCAT_FLG\r\n ,W_BOOKINGS_MEASURE.BK_OFFER_TYPE_NAME\r\n ,W_BOOKINGS_MEASURE.RECURRING_OFFER_FLG\r\n ,W_BOOKINGS_MEASURE.ELA_FLG\r\n,W_BOOKINGS_MEASURE.DV_LOCAL_EXTND_LIST_PRICE_AMT \r\n,W_BOOKINGS_MEASURE.LOCAL_UNIT_LIST_PRICE_AMT     \r\n,W_BOOKINGS_MEASURE.DV_UNIT_LIST_PRICE_USD_AMT\r\n,CAST(0.0 AS DECIMAL(18,6))DV_ORDER_VALUE_USD_AMOUNT      \r\n,W_BOOKINGS_MEASURE.DV_MTHLY_RCR_REV_TRXL_USD_AMT /* modified as part of Sub Metrics FY19 May2Rel R18396*/\r\n,CAST(0.0 AS DECIMAL(18,6))DV_INCRML_MTHY_RCRR_RV_USD_AMT \r\n,W_BOOKINGS_MEASURE.DV_ANNLZD_MTHY_RCRR_RV_USD_AMT /* modified as part of Sub Metrics FY19 May2Rel R18396*/\r\n,CAST(0.0 AS DECIMAL(18,6))DV_INCRML_ANNL_RCRR_RV_USD_AMT \r\n /*ADDED AS PART ICPM XCAT Changes for Bookings FY21 Nov07th*/\r\n ,CASE WHEN BKGS_MEASURE_TRANS_TYPE_CODE NOT IN ('SLS_ADJ') THEN\r\n   CAST (TRIM(W_BOOKINGS_MEASURE.PRODUCT_KEY) || '~' || TRIM(COALESCE(W_BOOKINGS_MEASURE.DV_PRODUCT_KEY,-999)) ||  '~' || \r\n   TRIM(W_BOOKINGS_MEASURE.SALES_ORDER_KEY) ||  '~' || TRIM(COALESCE(W_BOOKINGS_MEASURE.SK_OFFER_ATTRIBUTION_ID_INT,-9999)) AS VARCHAR(70)) \r\n ELSE \r\n   CAST (TRIM(W_BOOKINGS_MEASURE.PRODUCT_KEY) || '~' || TRIM(COALESCE(W_BOOKINGS_MEASURE.DV_PRODUCT_KEY,-999)) ||  '~' || \r\n   TRIM(W_BOOKINGS_MEASURE.SALES_ORDER_KEY) ||  '~' || TRIM(COALESCE(W_BOOKINGS_MEASURE.SK_OFFER_ATTRIBUTION_ID_INT,-9999)) || '~' || \r\nTRIM(CAST(CASE WHEN W_BOOKINGS_MEASURE.DV_DEAL_ID IS NULL OR W_BOOKINGS_MEASURE.DV_DEAL_ID IN ('UNKNOWN',-9999,0) THEN -9999 ELSE W_BOOKINGS_MEASURE.DV_DEAL_ID END AS VARCHAR(50)) ) ||  '~' ||   \r\nTRIM(CAST( CASE WHEN W_BOOKINGS_MEASURE.DV_SOURCE_ORDER_NUM_INT <= 0 OR W_BOOKINGS_MEASURE.DV_SOURCE_ORDER_NUM_INT IS NULL THEN -9999 ELSE W_BOOKINGS_MEASURE.DV_SOURCE_ORDER_NUM_INT END AS BIGINT))AS VARCHAR(70)) \r\n   END AS DV_RECURRING_OFFER_CD  /*  added as part of June29th2017 */\r\n ,W_BOOKINGS_MEASURE.DV_PURCHASE_ADJ_DSCNT_USD_AMT /*Q1FY18*/\r\n ,W_BOOKINGS_MEASURE.DV_BGM_NON_STANDARD_COST_AMT\r\n ,W_BOOKINGS_MEASURE.SALES_MOTION_CD\r\n ,W_BOOKINGS_MEASURE.DV_BKG_REBATE_AMT\r\n,W_BOOKINGS_MEASURE.DV_FX_REBATE_PRICE_AMT\r\n,W_BOOKINGS_MEASURE.SK_SALES_MOTION_ATTRIB_KEY /* Added as part of SALES FY18 May12Rel */\r\n,W_BOOKINGS_MEASURE.DV_ENRICHED_SERVICE_CONTRACT_START_DT\r\n,W_BOOKINGS_MEASURE.DV_ENRICHED_SERVICE_CONTRACT_END_DT\r\n,W_BOOKINGS_MEASURE.DV_ENRICHED_CONTRACT_DURATION\r\n,W_BOOKINGS_MEASURE.DV_ENRICHMENT_RULE_DESC\r\n/* added as part of 10th March release*/\r\n,W_BOOKINGS_MEASURE.ENRICHED_END_CUSTOMER_KEY\r\n,W_BOOKINGS_MEASURE.DV_ENRICHED_UNK_END_CUST_RULE_DESC\r\n,ATTRIBUTED_PRODUCT_KEY\r\n,SALES_ADJUSTMENT_SOURCE_CODE\r\n/* ADDED AS A PART OF Q1FY21 ACV SCALE*/\r\n,W_BOOKINGS_MEASURE.SALES_COMPENSATION_POLICY_CODE \r\n,W_BOOKINGS_MEASURE.DV_INV_DTM\r\n,W_BOOKINGS_MEASURE.SOURCE_REP_ANNUAL_USD_AMT /* ADDED AS A PART OF Q1FY21 ACV SCALE*/\r\n,W_BOOKINGS_MEASURE.DV_COMPENSATION_DTM\r\n/* END OF Q1FY21 ACV SCALE*/ \r\n,W_BOOKINGS_MEASURE.BUNDLE_TYPE_CD\r\n,COALESCE(W_BOOKINGS_MEASURE.DV_PRODUCT_KEY,-999) as DV_ATO_PRODUCT_KEY /*Added as part of Q3FY22 ATO_PRODUCT_KEY changes*/\r\n,W_BOOKINGS_MEASURE.DV_ANNUITY_RELEASE_FLAG\t  /*Added as part of iACV Dec  rel*/\r\n,W_BOOKINGS_MEASURE.SALES_COMP_RSW_TREATED_FLG\r\n,W_BOOKINGS_MEASURE.TRANSACTION_AI_FLG\r\n,W_BOOKINGS_MEASURE.AI_INTENT_TYPE_CD\r\n,W_BOOKINGS_MEASURE.TRX_AI_PRODUCT_CLASS_NAME\r\n,W_BOOKINGS_MEASURE.DV_FOR_PRTNR_NEW_CUST_FLG\r\n,W_BOOKINGS_MEASURE.BUYING_TRANSACTION_TYPE_NAME    \r\n\n , FRST_YR_ANNUAL_USD_AMT AS FRST_YR_ANNUAL_USD_AMT \n , MULTI_YEAR_USD_AMT AS MULTI_YEAR_USD_AMT \n , LINKED_BOOKINGS_MEASURE_KEY AS LINKED_BOOKINGS_MEASURE_KEY FROM\r\n $$WORKDB.W_BOOKINGS_MEASURE \r\n WHERE W_BOOKINGS_MEASURE.BKGS_MEASURE_TRANS_TYPE_CODE IN ('POS_ADJ', 'SLS_ADJ' ) /* Added as part of BKGS CARBT changes Q4FY15 CR */",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONTRACT_START_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONTRACT_END_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONTRACT_DURATION",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ANNUALIZED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nNBM1.BOOKINGS_MEASURE_KEY,\r\nNBM1.BOOKINGS_PROCESS_DATE,\r\nNBM1.BKGS_MEASURE_TRANS_TYPE_CODE ,\r\nNBM1.CONTRACT_START_DTM,\r\nNBM1.CONTRACT_END_DTM,\r\nNBM1.CONTRACT_DURATION AS CONTRACT_DURATION ,\r\nNBM1.ANNUALIZED_FLG\r\n\n , FRST_YR_ANNUAL_USD_AMT AS FRST_YR_ANNUAL_USD_AMT \n , MULTI_YEAR_USD_AMT AS MULTI_YEAR_USD_AMT \n , LINKED_BOOKINGS_MEASURE_KEY AS LINKED_BOOKINGS_MEASURE_KEY FROM\r\n(\r\nSELECT\r\nNBM.BOOKINGS_MEASURE_KEY,\r\nNBM.BOOKINGS_PROCESS_DATE,\r\nNBM.BKGS_MEASURE_TRANS_TYPE_CODE ,\r\nCAST(TRX.CONTRACT_START_DT AS DATE )  CONTRACT_START_DTM ,\r\nCAST(TRX.CONTRACT_END_DT AS DATE )  CONTRACT_END_DTM,    \r\nROUND(CASE WHEN SERVICE_FLG='N'\t\t\t  \r\n\t\tTHEN   \r\n\t\tCASE /*CONTRACT DURTN DERIVATION FOR PRODUCTS START*/\r\n\t\tWHEN TRX.CONTRACT_END_DT <> '3500-01-01' AND ( CAST(TRX.CONTRACT_END_DT  AS DATE ) - CAST(TRX.CONTRACT_START_DT AS DATE ) )  > 0\r\n\t\t\t THEN CAST((CAST(CAST(TRX.CONTRACT_END_DT AS DATE) -  CAST(TRX.CONTRACT_START_DT AS DATE) AS INTEGER)*12(FLOAT))/365 AS DECIMAL(15,6) ) \r\n\t\tWHEN TRX.SUBSCRIPTON_TERM_MTHS_CNT > 0\r\n\t\tTHEN TRX.SUBSCRIPTON_TERM_MTHS_CNT\r\n\t\tWHEN ( NP.BK_PRODUCT_ID LIKE 'SWOA%' OR  NP.BK_PRODUCT_ID LIKE '%ADJ%' ) AND NP.BK_PRODUCT_ID NOT LIKE 'SWOA-MX%' THEN NULL\r\n\t\tELSE CASE\r\n\t\t\tWHEN NP.PRICING_UNIT_NAME = 'YEAR' THEN NP.PRICING_UNIT_DURATION_INT * 12 \r\n\t\t\tWHEN NP.PRICING_UNIT_NAME = 'MONTHS' THEN NP.PRICING_UNIT_DURATION_INT  \r\n\t\t\t/* Added as part of June-2018 Meraki scope - goponnus */  \r\n\t\t\tWHEN NP.PRICING_UNIT_NAME = 'DAYS' THEN ((NP.PRICING_UNIT_DURATION_INT *12)/365)\r\n\t\t\tWHEN EL.BIZ_DEF_TERM IS NOT NULL THEN EL.BIZ_DEF_TERM\r\n\t\t\tWHEN EL.DURATION IS NOT NULL THEN EL.DURATION\r\n\t\t\tELSE NULL\r\n\t\t\tEND \r\n\t\tEND  /*CONTRACT DURTN DERIVATION FOR PRODUCTS END*/\r\n\tELSE\r\n\t/*CONTRACT DURTN DERIVATION FOR SERVICES START*/\r\n\tCASE\r\n\t WHEN ( CAST(TRX.CONTRACT_END_DT AS DATE ) - CAST(TRX.CONTRACT_START_DT AS DATE ) )  >0 AND TRX.CONTRACT_END_DT <> '3500-01-01'\r\n\t THEN CAST((CAST((TRX.CONTRACT_END_DT -  TRX.CONTRACT_START_DT ) AS INTEGER)*12(FLOAT))/365 AS DECIMAL(15,6) )\r\n\t WHEN TRX.SUBSCRIPTON_TERM_MTHS_CNT > 0\r\n\t\tTHEN TRX.SUBSCRIPTON_TERM_MTHS_CNT\r\n\t\tELSE NULL\r\nEND /*CONTRACT DURTN DERIVATION FOR SERVICES END*/\r\nEND\t\t)\t  CONTRACT_DURATION , /* Rounded as part of FY20 Oct 6th Release */\t\t\t\r\nCASE WHEN SERVICE_FLG='N' THEN  /*ANNUALIZED FLAG DERIVATION FOR PRODUCTS START*/\r\n\t\tCASE WHEN CONTRACT_DURATION IS NULL THEN 'Y' \r\n\t\t\tWHEN CONTRACT_DURATION IS NOT NULL THEN\r\n\t\t\tCASE\r\n\t\t\t\t\tWHEN NP.MONETIZATION_TYPE_CD ='PERPETUAL' AND NP.ELA_FLG = 'Y' THEN 'Y'  \r\n\t\t\t\t\tWHEN\tCOALESCE ( EX.EXCLUDE_FLAG,'N' ) = 'Y' THEN 'Y' \r\n\t\t\t\t\tWHEN\tEX.EXCLUDE_FLAG IS NOT NULL AND\tEX.EXCLUDE_FLAG = 'N'  \r\n\t\t\t\t\tTHEN     CASE \tWHEN\t  CONTRACT_DURATION >12  \tAND\tNP.MONETIZATION_TYPE_CD <>'USAGE' \tTHEN 'N' ELSE\t'Y' END\r\n\t\t\t\t\t\t WHEN NBM.XCAT_FLG ='Y' \r\n\t AND(NSO.BK_DEAL_ID IN (\r\n'16621975','16922373','6922383','16897335','16901905','17684649') \r\nOR NBM.DV_DEAL_ID IN (\r\n'16621975','16922373','6922383','16897335','16901905','17684649'))  AND NP.RU_BK_PRODUCT_FAMILY_ID='WBXEE'  THEN 'Y'\r\n\t\t\t\t\tWHEN\tCONTRACT_DURATION >12 AND\tNP.MONETIZATION_TYPE_CD <>'USAGE'  /*AND\tNBM.XCAT_FLG <>'Y'*//*SVAKULAB*/ AND FDM.BK_DEAL_ID IS NULL THEN 'N' ELSE\t'Y'\r\n\t\t\tEND\r\n\t\tEND\t/*ANNUALIZED FLAG DERIVATION FOR PRODUCTS END*/\r\nELSE\t/*ANNUALIZED FLAG DERIVATION FOR SERVICES START*/\r\n\t\t CASE  WHEN CONTRACT_DURATION >12 THEN 'N'\r\n\t\t ELSE 'Y'  \r\n\t\tEND/*ANNUALIZED FLAG DERIVATION FOR SERVICES END*/\r\n\t\t\r\nEND\t\tANNUALIZED_FLG  \r\n  \r\nFROM $$SLSORDVWDB.N_BOOKINGS_MEASURE NBM\r\n\r\n/*INNER  JOIN (SELECT \r\n\t\t\t\tDV_FISCAL_YEAR_QUARTER_NUM_INT,PRODUCT_KEY, BK_PRDT_ALLCTN_METRIC_CD,BK_PRDT_ALLCTN_CLSFCTN_CD,ALLOCATION_PCT\r\n\t\t\t\tFROM $$COMREFVWDB.N_PRDT_TO_PRDT_CLSFTN_ALCTN  WHERE  BK_PRDT_ALLCTN_METRIC_CD IN ('BOOKINGS','UNKNOWN')\r\n\t\t\t\tGROUP BY 1,2,3,4,5 QUALIFY RANK()  OVER (PARTITION BY DV_FISCAL_YEAR_QUARTER_NUM_INT,PRODUCT_KEY, BK_PRDT_ALLCTN_METRIC_CD  \r\n\t\t\t\t\tORDER BY  BK_PRDT_ALLCTN_CLSFCTN_CD DESC  ) = 1\r\n\t\t\t) ALCTN\r\nON NBM.PRODUCT_KEY= ALCTN.PRODUCT_KEY AND NBM.FISCAL_YEAR_QUARTER_NUMBER_INT=ALCTN.DV_FISCAL_YEAR_QUARTER_NUM_INT*/\r\nINNER JOIN \r\n\t\t$$COMREFVWDB.N_PRODUCT NP\r\n\t\t\t\tON NBM.PRODUCT_KEY=NP.ITEM_KEY\r\n\t\t\t\tAND NBM.SALES_ADJUSTMENT_SOURCE_CODE <> 'PPP' /*Added as part of PR18374-VIP_CSPP_Line_Level_Posting_to_EDW_Aug*/\r\nLEFT OUTER JOIN $$COMREFVWDB.N_PRODUCT_FAMILY NPF ON NP.RU_BK_PRODUCT_FAMILY_ID=NPF.BK_PRODUCT_FAMILY_ID\r\nLEFT OUTER JOIN (SELECT \r\n\t\t\t\t\tSKU,INVENTORY_ITEM_ID,DURATION,END_DATE,BIZ_DEF_TERM,VERSION_NUMBER FROM $$ETLVWDB.EL_CG1_XXCFIR_PROD_SUBSCR_SKU \r\n\t\t\t\t\tGROUP BY 1,2,3,4,5,6\r\n\t\t\t\t\tQUALIFY RANK() OVER (PARTITION BY SKU,INVENTORY_ITEM_ID ORDER BY END_DATE,VERSION_NUMBER DESC)=1\r\n\t\t\t\t)EL\r\nON NP.BK_PRODUCT_ID=EL.SKU\r\nINNER  JOIN $$SLSORDVWDB.N_SALES_ADJUSTMENT_LINE  NADJ\r\n\t\t\t\tON     NBM.BOOKINGS_MEASURE_KEY      = NADJ.BK_SALES_ADJ_LINE_NUMBER_INT \r\n  INNER JOIN\r\n     $$SLSORDVWDB.N_SALES_ORDER_TV NSO\r\n\t ON NBM.SALES_ORDER_KEY = NSO.SALES_ORDER_KEY/*ICPM Annualization-svakulab*/\t\t   \t\t\t\t\r\nLEFT OUTER JOIN $$NRTNCRVWDB.N_SLS_ADJ_REBOK_MNL_TRX_NRT_TV  TRX \r\n\t\t\t\tON  NADJ.MANUAL_TRX_KEY = TRX.MANUAL_TRX_KEY \r\n\t\t\t\t\tAND TRX.END_TV_DTM ='3500-01-01 00:00:00'\r\n\r\nLEFT OUTER JOIN $$FINLGLVWDB.N_FCM_DEAL_MAPPING  FDM\r\nON NBM.DV_DEAL_ID = FDM.BK_DEAL_ID\r\nAND NBM.DV_FISCAL_YEAR_MTH_NUMBER_INT = FDM.BK_DV_FISCAL_YEAR_MTH_NUM_INT\r\n\t\t\t\t\r\nLEFT OUTER JOIN $$STGDB.WI_ATCCV_EXCLUDE_TRX EX \r\nON\tEX.EXCLUDE_VALUE =  ( \r\n\t\t\t\t\tCASE\tWHEN EX.EXCLUDE_REF_COLUMN_1 = 'RU_BK_PRODUCT_FAMILY_ID' THEN NP.RU_BK_PRODUCT_FAMILY_ID \r\n\t\t\t                    WHEN EXCLUDE_REF_COLUMN_1 = 'ADJUSTMENT_CODE'  THEN NBM.ADJUSTMENT_CODE\r\n                   \t\t\t\tWHEN EXCLUDE_REF_COLUMN_1 = 'BK_PRODUCT_ID'  THEN NP.BK_PRODUCT_ID \r\n\t\t\t\t\t\t\t\tWHEN EXCLUDE_REF_COLUMN_1='BK_BUSINESS_UNIT_ID' THEN NPF.BK_BUSINESS_UNIT_ID\r\n\t\t\t\t\tEND\t) \r\nWHERE 1=1/*NBM.SERVICE_FLG  ='N'*/\r\n/*AND NBM.CORPORATE_BOOKINGS_FLG='Y'*/\r\nAND NBM.DV_FISCAL_YEAR_MTH_NUMBER_INT = (SELECT FISCAL_YEAR_MTH_NUMBER_INT     FROM $$ETLVWDB.BKG_PROCESS_DT_CNTRL)\r\n/*AND ALCTN.BK_PRDT_ALLCTN_CLSFCTN_CD       IN  ( 'Software'  )*/\r\nAND NBM.BKGS_MEASURE_TRANS_TYPE_CODE  = 'SLS_ADJ'\r\nGROUP BY 1,2,3,4,5,6,7\r\n) NBM1\r\n\r\nINNER JOIN $$SLSORDVWDB.N_BOOKINGS_MEASURE MEASURE\r\nON NBM1.BOOKINGS_MEASURE_KEY= MEASURE.BOOKINGS_MEASURE_KEY\r\nAND NBM1.BOOKINGS_PROCESS_DATE= MEASURE.BOOKINGS_PROCESS_DATE\r\nAND NBM1.BKGS_MEASURE_TRANS_TYPE_CODE= MEASURE.BKGS_MEASURE_TRANS_TYPE_CODE      \r\nAND MEASURE.BKGS_MEASURE_TRANS_TYPE_CODE = 'SLS_ADJ'\r\n\r\nWHERE \r\n   (\r\n   COALESCE(CAST(NBM1.CONTRACT_START_DTM AS DATE FORMAT 'YYYY-MM-DD'),CAST( '3500-01-01' AS DATE FORMAT 'YYYY-MM-DD') )<> COALESCE(CAST(MEASURE.RU_SERVICE_CONTRACT_START_DTM AS DATE FORMAT 'YYYY-MM-DD'),CAST ('3500-01-01' AS DATE FORMAT 'YYYY-MM-DD'))\r\n   OR COALESCE(CAST(NBM1.CONTRACT_END_DTM AS DATE FORMAT 'YYYY-MM-DD'),CAST( '3500-01-01' AS DATE FORMAT 'YYYY-MM-DD')) <> COALESCE(CAST(MEASURE.RU_SERVICE_CONTRACT_END_DTM AS DATE FORMAT 'YYYY-MM-DD'),CAST ('3500-01-01' AS DATE FORMAT 'YYYY-MM-DD'))\r\n   OR COALESCE(NBM1.CONTRACT_DURATION,-1)  <>COALESCE(MEASURE.DV_CONTRACT_DURATION,-1)\r\n  OR COALESCE(NBM1.ANNUALIZED_FLG,'=' )  <> COALESCE(MEASURE.DV_ANNUALIZED_FLG,'=' ) \r\n   )\r\n AND 1=2",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "MISC_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "MISC_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_COMPENSATION_POLICY_CODE",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_COMPENSATION_POLICY_CODE",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_ATO_PRODUCT_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ATO_PRODUCT_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_ANNUITY_RELEASE_FLAG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ANNUITY_RELEASE_FLAG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "ENRICHED_END_CUSTOMER_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "ENRICHED_END_CUSTOMER_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "CONVERSION_RT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "CONVERSION_RT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_ENRICHED_UNK_END_CUST_RULE_DESC",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ENRICHED_UNK_END_CUST_RULE_DESC",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_DEAL_ID",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_DEAL_ID",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "IDE_ADJUSTMENT_CODE",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "IDE_ADJUSTMENT_CODE",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_SALES_ORDER_LINE_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SALESREP_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SALESREP_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_EXTENDED_QUANTITY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_EXTENDED_QUANTITY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_LOCAL_EXTND_LIST_PRICE_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_LOCAL_EXTND_LIST_PRICE_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "LOCAL_UNIT_LIST_PRICE_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "LOCAL_UNIT_LIST_PRICE_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_UNIT_LIST_PRICE_USD_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_UNIT_LIST_PRICE_USD_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_ORDER_VALUE_USD_AMOUNT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ORDER_VALUE_USD_AMOUNT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_MTHLY_RCR_REV_TRXL_USD_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_MTHLY_RCR_REV_TRXL_USD_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "TRANSACTION_AI_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "TRANSACTION_AI_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "AI_INTENT_TYPE_CD",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "AI_INTENT_TYPE_CD",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "REVENUE_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "REVENUE_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "BUYING_TRANSACTION_TYPE_NAME",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "BUYING_TRANSACTION_TYPE_NAME",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "FRST_YR_ANNUAL_USD_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "FRST_YR_ANNUAL_USD_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "MULTI_YEAR_USD_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "MULTI_YEAR_USD_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "LINKED_BOOKINGS_MEASURE_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "LINKED_BOOKINGS_MEASURE_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_TRANSACTION_TYPE",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_TRANSACTION_TYPE",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_ENRICHED_SERVICE_CONTRACT_START_DT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ENRICHED_SERVICE_CONTRACT_START_DT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_ENRICHED_SERVICE_CONTRACT_END_DT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ENRICHED_SERVICE_CONTRACT_END_DT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_ENRICHED_CONTRACT_DURATION",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ENRICHED_CONTRACT_DURATION",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_COMP_RSW_TREATED_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_COMP_RSW_TREATED_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_REP_NUMBER",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "XCAT_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "XCAT_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "CHARGES_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "CHARGES_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DISTRIBUTOR_OFFSET_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DISTRIBUTOR_OFFSET_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "AR_TRX_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "AR_TRX_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_SALES_ORDER_CATEGORY_TYPE",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_SALES_ORDER_CATEGORY_TYPE",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_SLS_ORD_OPERATING_UNIT_CD",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_SLS_ORD_OPERATING_UNIT_CD",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "CORPORATE_BOOKINGS_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "CORPORATE_BOOKINGS_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "OVERLAY_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "OVERLAY_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "BK_OFFER_TYPE_NAME",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "BK_OFFER_TYPE_NAME",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "RECURRING_OFFER_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "RECURRING_OFFER_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "ELA_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "ELA_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "IC_REVENUE_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "IC_REVENUE_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_AR_TRX_LINE_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_AR_TRX_LINE_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SOURCE_REP_ANNUAL_USD_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SOURCE_REP_ANNUAL_USD_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "ADJUSTMENT_TYPE_CODE",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "ADJUSTMENT_TYPE_CODE",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_CHANNEL_CODE",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_CHANNEL_CODE",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_CREDIT_TYPE_CODE",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_CREDIT_TYPE_CODE",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "WIPS_ORIGINATOR_ID_INT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "ADJUSTMENT_DESCR_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "ADJUSTMENT_DESCR_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "RMA_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "RMA_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "TRADE_IN_AMOUNT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "TRADE_IN_AMOUNT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "TRANSACTION_DATETIME",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "TRANSACTION_DATETIME",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_FMV_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_FMV_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "RU_SERVICE_CONTRACT_START_DTM",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "RU_SERVICE_CONTRACT_START_DTM",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "RU_SERVICE_CONTRACT_END_DTM",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "RU_SERVICE_CONTRACT_END_DTM",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_BGM_FX_COST_AMOUNT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_BGM_FX_COST_AMOUNT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_FX_NET_PRICE_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_FX_NET_PRICE_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_RECURRING_OFFER_CD",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_RECURRING_OFFER_CD",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_PURCHASE_ADJ_DSCNT_USD_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_PURCHASE_ADJ_DSCNT_USD_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_COMP_US_COST_AMOUNT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_COST_AMOUNT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_NUMBER_INT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "BK_SALES_ADJ_NUMBER_INT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "ADJUSTMENT_CODE",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "ADJUSTMENT_CODE",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "TSS_COUNTRY_FACTOR_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "TSS_COUNTRY_FACTOR_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "MNTLY_SUBSCR_CHRG_UPLIFT_US_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "MNTLY_SUBSCR_CHRG_UPLIFT_US_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SK_ACQ_OPTY_LINE_ID",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SK_ACQ_OPTY_LINE_ID",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "AR_TRX_LINE_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "AR_TRX_LINE_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_INV_DTM",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_INV_DTM",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_COMPENSATION_DTM",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_COMPENSATION_DTM",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_INCRML_MTHY_RCRR_RV_USD_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_INCRML_MTHY_RCRR_RV_USD_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_ANNLZD_MTHY_RCRR_RV_USD_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ANNLZD_MTHY_RCRR_RV_USD_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_INCRML_ANNL_RCRR_RV_USD_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_INCRML_ANNL_RCRR_RV_USD_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "CONVERSION_DT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "CONVERSION_DT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "CANCELLED_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "CANCELLED_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "CANCEL_CODE",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "CANCEL_CODE",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "ACQUISITION_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "ACQUISITION_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "FORWARD_REVERSE_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "FORWARD_REVERSE_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "BUNDLE_TYPE_CD",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "BUNDLE_TYPE_CD",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_TRX_CURRENCY_CD",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_TRX_CURRENCY_CD",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_BGM_NON_STANDARD_COST_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_BGM_NON_STANDARD_COST_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "INTERNATIONAL_DEMO_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "INTERNATIONAL_DEMO_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_FOR_PRTNR_NEW_CUST_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_FOR_PRTNR_NEW_CUST_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "REPLACEMENT_DEMO_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "REPLACEMENT_DEMO_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "ATTRIBUTED_PRODUCT_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "ATTRIBUTED_PRODUCT_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_ADJUSTMENT_SOURCE_CODE",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_ADJUSTMENT_SOURCE_CODE",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SERVICE_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SERVICE_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_CONTRACT_DURATION",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_CONTRACT_DURATION",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_ANNUALIZED_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ANNUALIZED_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_ANNUALIZED_US_NET_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ANNUALIZED_US_NET_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_MULTIYEAR_US_NET_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_MULTIYEAR_US_NET_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_BKG_REBATE_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_BKG_REBATE_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_FX_REBATE_PRICE_AMT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_FX_REBATE_PRICE_AMT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_NET_SPREAD_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_NET_SPREAD_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "REVENUE_TRANSFER_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "REVENUE_TRANSFER_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_CISCO_BOOKED_DTM",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_CISCO_BOOKED_DTM",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_TRANSACTION_NAME",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_TRANSACTION_NAME",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_SOURCE_ORDER_NUM_INT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_SOURCE_ORDER_NUM_INT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "BOOKINGS_SPLIT_PCT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "BOOKINGS_SPLIT_PCT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_REVENUE_RECOGNITION_FLG",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_REVENUE_RECOGNITION_FLG",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_ENRICHMENT_RULE_DESC",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ENRICHMENT_RULE_DESC",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_BK_SO_NUMBER_INT",
+      "from_instance": "SQ_W_BOOKINGS_MEASURE1",
+      "to_field": "DD_BK_SO_NUMBER_INT",
+      "to_instance": "N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "WI_BOOKINGS_MSR_INTRAD_DEL1"
+    },
+    {
+      "from_field": "PROCESS_DATE",
+      "from_instance": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL",
+      "to_field": "PROCESS_DATE",
+      "to_instance": "WI_BOOKINGS_MSR_INTRAD_DEL1"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "WI_BOOKINGS_MSR_INTRAD_DEL1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "WI_BOOKINGS_MSR_INTRAD_DEL1"
+    },
+    {
+      "from_field": "CONTRACT_DURATION",
+      "from_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "CONTRACT_DURATION",
+      "to_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ1"
+    },
+    {
+      "from_field": "ANNUALIZED_FLG",
+      "from_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "ANNUALIZED_FLG",
+      "to_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ1"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ1"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ1"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ1"
+    },
+    {
+      "from_field": "CONTRACT_START_DTM",
+      "from_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "CONTRACT_START_DTM",
+      "to_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ1"
+    },
+    {
+      "from_field": "CONTRACT_END_DTM",
+      "from_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "CONTRACT_END_DTM",
+      "to_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ1"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "WI_BOOKINGS_MSR_INTRAD_DEL",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "WI_BOOKINGS_MSR_INTRAD_DEL",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "WI_BOOKINGS_MSR_INTRAD_DEL",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL"
+    },
+    {
+      "from_field": "PROCESS_DATE",
+      "from_instance": "WI_BOOKINGS_MSR_INTRAD_DEL",
+      "to_field": "PROCESS_DATE",
+      "to_instance": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL"
+    },
+    {
+      "from_field": "FRST_YR_ANNUAL_USD_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "FRST_YR_ANNUAL_USD_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "MULTI_YEAR_USD_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "MULTI_YEAR_USD_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "LINKED_BOOKINGS_MEASURE_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "LINKED_BOOKINGS_MEASURE_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "ELA_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_INCRML_ANNL_RCRR_RV_USD_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_BGM_NON_STANDARD_COST_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_COMP_US_COST_AMOUNT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_COST_AMOUNT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_EXTENDED_QUANTITY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_EXTENDED_QUANTITY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_INV_DTM",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_INV_DTM",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_INCRML_ANNL_RCRR_RV_USD_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_PURCHASE_ADJ_DSCNT_USD_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "XCAT_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_DEAL_ID",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "BK_OFFER_TYPE_NAME",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "CONVERSION_RT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "CONVERSION_RT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "CONVERSION_DT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "CONVERSION_DT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_FMV_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_FMV_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_RECURRING_OFFER_CD",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_COMPENSATION_DTM",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_COMPENSATION_DTM",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SOURCE_REP_ANNUAL_USD_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SOURCE_REP_ANNUAL_USD_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "ATTRIBUTED_PRODUCT_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ATO_PRODUCT_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_ANNUITY_RELEASE_FLAG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ANNUITY_RELEASE_FLAG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "BUYING_TRANSACTION_TYPE_NAME",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "BUYING_TRANSACTION_TYPE_NAME",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "REVENUE_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "REVENUE_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_BK_SO_NUMBER_INT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_BK_SO_NUMBER_INT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_CISCO_BOOKED_DTM",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_CISCO_BOOKED_DTM",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_SALES_ORDER_CATEGORY_TYPE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_SALES_ORDER_CATEGORY_TYPE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_SLS_ORD_OPERATING_UNIT_CD",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_SLS_ORD_OPERATING_UNIT_CD",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_TRX_CURRENCY_CD",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_TRX_CURRENCY_CD",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_ANNUALIZED_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ANNUALIZED_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_ANNUALIZED_US_NET_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ANNUALIZED_US_NET_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "TRANSACTION_AI_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "TRANSACTION_AI_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "AI_INTENT_TYPE_CD",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "AI_INTENT_TYPE_CD",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_ENRICHED_UNK_END_CUST_RULE_DESC",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ENRICHED_UNK_END_CUST_RULE_DESC",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "AR_TRX_LINE_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "AR_TRX_LINE_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "AR_TRX_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "AR_TRX_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "CHARGES_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "CHARGES_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_EXTENDED_HOLD_QUANTITY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_ENRICHED_CONTRACT_DURATION",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ENRICHED_CONTRACT_DURATION",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_ENRICHMENT_RULE_DESC",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ENRICHMENT_RULE_DESC",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "ENRICHED_END_CUSTOMER_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "ENRICHED_END_CUSTOMER_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "ATTRIBUTED_PRODUCT_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "ATTRIBUTED_PRODUCT_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SALES_ADJUSTMENT_SOURCE_CODE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_ADJUSTMENT_SOURCE_CODE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_MULTIYEAR_US_NET_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_MULTIYEAR_US_NET_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "RECURRING_OFFER_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DISTRIBUTOR_OFFSET_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DISTRIBUTOR_OFFSET_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "BK_SALES_ADJ_LINE_NUMBER_INT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "RU_SERVICE_CONTRACT_START_DTM",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "RU_SERVICE_CONTRACT_START_DTM",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "RU_SERVICE_CONTRACT_END_DTM",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "RU_SERVICE_CONTRACT_END_DTM",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_TRANSACTION_TYPE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_TRANSACTION_TYPE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "ADJUSTMENT_DESCR_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "ADJUSTMENT_DESCR_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_INCRML_MTHY_RCRR_RV_USD_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_INCRML_MTHY_RCRR_RV_USD_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_ANNLZD_MTHY_RCRR_RV_USD_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ANNLZD_MTHY_RCRR_RV_USD_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_BKG_REBATE_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_BKG_REBATE_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_ENRICHED_SERVICE_CONTRACT_START_DT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ENRICHED_SERVICE_CONTRACT_START_DT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_ENRICHED_SERVICE_CONTRACT_END_DT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ENRICHED_SERVICE_CONTRACT_END_DT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_FX_REBATE_PRICE_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_FX_REBATE_PRICE_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_SO_SBSCRPTN_ITM_SLS_TRX_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_INCRML_ANNL_RCRR_RV_USD_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_INCRML_ANNL_RCRR_RV_USD_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "FORWARD_REVERSE_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "FORWARD_REVERSE_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_ORDER_VALUE_USD_AMOUNT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ORDER_VALUE_USD_AMOUNT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_NUMBER_INT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "BK_SALES_ADJ_NUMBER_INT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "ADJUSTMENT_TYPE_CODE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "ADJUSTMENT_TYPE_CODE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SALES_CHANNEL_CODE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_CHANNEL_CODE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SALES_CREDIT_TYPE_CODE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_CREDIT_TYPE_CODE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "ADJUSTMENT_CODE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "ADJUSTMENT_CODE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "XAAS_OFFER_ATRBTN_REV_LINE_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "CORPORATE_BOOKINGS_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "CORPORATE_BOOKINGS_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "OVERLAY_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "OVERLAY_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "IC_REVENUE_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "IC_REVENUE_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_LINE_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_DEAL_ID",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_DEAL_ID",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "TSS_COUNTRY_FACTOR_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "TSS_COUNTRY_FACTOR_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SERVICE_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SERVICE_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "INTERNATIONAL_DEMO_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "INTERNATIONAL_DEMO_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "REPLACEMENT_DEMO_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "REPLACEMENT_DEMO_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "RMA_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "RMA_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "TRADE_IN_AMOUNT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "TRADE_IN_AMOUNT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "TRANSACTION_DATETIME",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "TRANSACTION_DATETIME",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_LOCAL_EXTND_LIST_PRICE_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_LOCAL_EXTND_LIST_PRICE_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SK_SALES_MOTION_ATTRIB_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "CANCELLED_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "CANCELLED_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "CANCEL_CODE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "CANCEL_CODE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "WIPS_ORIGINATOR_ID_INT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_AR_TRX_LINE_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_AR_TRX_LINE_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "IDE_ADJUSTMENT_CODE",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "IDE_ADJUSTMENT_CODE",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "LOCAL_UNIT_LIST_PRICE_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "LOCAL_UNIT_LIST_PRICE_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_UNIT_LIST_PRICE_USD_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_UNIT_LIST_PRICE_USD_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SALES_REP_NUMBER",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_MTHLY_RCR_REV_TRXL_USD_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_MTHLY_RCR_REV_TRXL_USD_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "ACQUISITION_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "ACQUISITION_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "MNTLY_SUBSCR_CHRG_UPLIFT_US_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "MNTLY_SUBSCR_CHRG_UPLIFT_US_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SK_ACQ_OPTY_LINE_ID",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SK_ACQ_OPTY_LINE_ID",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "MISC_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "MISC_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "SALESREP_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "SALESREP_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "BOOKINGS_SPLIT_PCT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "BOOKINGS_SPLIT_PCT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_REVENUE_RECOGNITION_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_REVENUE_RECOGNITION_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_NET_SPREAD_FLG",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_NET_SPREAD_FLG",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "REVENUE_TRANSFER_KEY",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "REVENUE_TRANSFER_KEY",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_CONTRACT_DURATION",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_CONTRACT_DURATION",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_SOURCE_ORDER_NUM_INT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_SOURCE_ORDER_NUM_INT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_BGM_FX_COST_AMOUNT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_BGM_FX_COST_AMOUNT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_FX_NET_PRICE_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_FX_NET_PRICE_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DD_COMP_US_HOLD_COST_AMOUNT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_TRANSACTION_NAME",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_TRANSACTION_NAME",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "W_BOOKINGS_MEASURE1",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_W_BOOKINGS_MEASURE1"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ"
+    },
+    {
+      "from_field": "CONTRACT_START_DTM",
+      "from_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "CONTRACT_START_DTM",
+      "to_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ"
+    },
+    {
+      "from_field": "CONTRACT_END_DTM",
+      "from_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "CONTRACT_END_DTM",
+      "to_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ"
+    },
+    {
+      "from_field": "CONTRACT_DURATION",
+      "from_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "CONTRACT_DURATION",
+      "to_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ"
+    },
+    {
+      "from_field": "ANNUALIZED_FLG",
+      "from_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "ANNUALIZED_FLG",
+      "to_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BOOKINGS_MEASURE_KEY",
+      "source_path": [
+        {
+          "from_field": "BOOKINGS_MEASURE_KEY",
+          "from_instance": "SQ_W_BOOKINGS_MEASURE1"
+        },
+        {
+          "from_field": "BOOKINGS_MEASURE_KEY",
+          "from_instance": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL"
+        },
+        {
+          "from_field": "BOOKINGS_MEASURE_KEY",
+          "from_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ"
+        },
+        {
+          "from_field": "BOOKINGS_MEASURE_KEY",
+          "from_instance": "WI_BOOKINGS_MSR_INTRAD_DEL"
+        },
+        {
+          "from_field": "BOOKINGS_MEASURE_KEY",
+          "from_instance": "W_BOOKINGS_MEASURE1"
+        },
+        {
+          "from_field": "BOOKINGS_MEASURE_KEY",
+          "from_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROCESS_DATE",
+      "source_path": [
+        {
+          "from_field": "PROCESS_DATE",
+          "from_instance": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL"
+        },
+        {
+          "from_field": "PROCESS_DATE",
+          "from_instance": "WI_BOOKINGS_MSR_INTRAD_DEL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "source_path": [
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "SQ_W_BOOKINGS_MEASURE1"
+        },
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL"
+        },
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "SQ3_WI_BOOKINGS_SW_ANNUALISED_ADJ"
+        },
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "WI_BOOKINGS_MSR_INTRAD_DEL"
+        },
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "W_BOOKINGS_MEASURE1"
+        },
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "WI_BOOKINGS_SW_ANNUALISED_ADJ"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "SQ_W_BOOKINGS_MEASURE1"
+        },
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "SQ_WI_BOOKINGS_MSR_INTRAD_DEL"
+        },
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "WI_BOOKINGS_MSR_INTRAD_DEL"
+        },
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "W_BOOKINGS_MEASURE1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:10.496249+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

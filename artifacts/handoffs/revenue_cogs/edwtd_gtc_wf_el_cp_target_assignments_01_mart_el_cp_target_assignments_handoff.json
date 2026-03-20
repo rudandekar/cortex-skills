@@ -1,0 +1,996 @@
+{
+  "workflow_name": "wf_m_EL_CP_TARGET_ASSIGNMENTS",
+  "mapping_name": "m_EL_CP_TARGET_ASSIGNMENTS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GTC",
+  "target_table": "EL_CP_TARGET_ASSIGNMENTS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gtc_wf_el_cp_target_assignments_01_mart_el_cp_target_assignments",
+  "source_tables": [
+    "EL_CP_TARGET_ASSIGNMENTS"
+  ],
+  "sources": [
+    {
+      "name": "EL_CP_TARGET_ASSIGNMENTS",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_DV1",
+      "fields": [
+        {
+          "name": "TARGET_ASSIGNMENT_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TARGET_ACCT_CURRENCY",
+          "datatype": "varchar",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "varchar",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_CP_TARGET_ASSIGNMENTS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "TARGET_ASSIGNMENT_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "TARGET_ACCT_CURRENCY",
+        "datatype": "varchar",
+        "precision": "5",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SS_CODE",
+        "datatype": "varchar",
+        "precision": "5",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "TARGET_ASSIGNMENT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TARGET_ACCT_CURRENCY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nTARGET_ASSIGNMENT_ID,\r\nTARGET_ACCT_CURRENCY,\r\nUSER AS EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\nUSER AS EDW_UPDATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM,\r\n'SJ' AS SS_CODE \r\nFROM $$STGDB.ST_CP_TARGET_ASSIGNMENTS_SJ HSTECPS\r\nWHERE NOT EXISTS \r\n(SELECT 1 FROM  $$ETLVWDB.EL_CP_TARGET_ASSIGNMENTS  ECPS\r\nWHERE ECPS.TARGET_ASSIGNMENT_ID = HSTECPS.TARGET_ASSIGNMENT_ID AND ECPS.SS_CODE = 'SJ' )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "TARGET_ASSIGNMENT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TARGET_ACCT_CURRENCY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nTARGET_ASSIGNMENT_ID,\r\nTARGET_ACCT_CURRENCY,\r\nUSER AS EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\nUSER AS EDW_UPDATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM,\r\n'CG' AS SS_CODE \r\nFROM $$STGDB.ST_CP_TARGET_ASSIGNMENTS_CG1 HSTECPS\r\nWHERE NOT EXISTS \r\n(SELECT 1 FROM  $$ETLVWDB.EL_CP_TARGET_ASSIGNMENTS  ECPS\r\nWHERE ECPS.TARGET_ASSIGNMENT_ID = HSTECPS.TARGET_ASSIGNMENT_ID AND ECPS.SS_CODE = 'CG' )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "TARGET_ASSIGNMENT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TARGET_ACCT_CURRENCY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nTARGET_ASSIGNMENT_ID,\r\nTARGET_ACCT_CURRENCY,\r\nUSER AS EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\nUSER AS EDW_UPDATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM,\r\n'BV' AS SS_CODE \r\nFROM $$STGDB.ST_CP_TARGET_ASSIGNMENTS_BV  HSTECPS\r\nWHERE NOT EXISTS \r\n(SELECT 1 FROM  $$ETLVWDB.EL_CP_TARGET_ASSIGNMENTS  ECPS\r\nWHERE ECPS.TARGET_ASSIGNMENT_ID = HSTECPS.TARGET_ASSIGNMENT_ID AND ECPS.SS_CODE = 'BV' )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "TARGET_ASSIGNMENT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TARGET_ACCT_CURRENCY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nTARGET_ASSIGNMENT_ID,\r\nTARGET_ACCT_CURRENCY,\r\nUSER AS EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\nUSER AS EDW_UPDATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM,\r\n'QTC' AS SS_CODE \r\nFROM $$STGDB.ST_CP_TARGET_ASSIGNMENTS_QTC HSTECPS\r\nWHERE NOT EXISTS \r\n(SELECT 1 FROM  $$ETLVWDB.EL_CP_TARGET_ASSIGNMENTS  ECPS\r\nWHERE ECPS.TARGET_ASSIGNMENT_ID = HSTECPS.TARGET_ASSIGNMENT_ID AND ECPS.SS_CODE = 'QTC' )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_SJ1"
+    },
+    {
+      "from_field": "TARGET_ASSIGNMENT_ID",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ",
+      "to_field": "TARGET_ASSIGNMENT_ID",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_SJ1"
+    },
+    {
+      "from_field": "TARGET_ACCT_CURRENCY",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ",
+      "to_field": "TARGET_ACCT_CURRENCY",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_SJ1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_SJ1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_SJ1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_SJ1"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ",
+      "to_field": "SS_CODE",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_SJ1"
+    },
+    {
+      "from_field": "TARGET_ASSIGNMENT_ID",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1",
+      "to_field": "TARGET_ASSIGNMENT_ID",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_CG11"
+    },
+    {
+      "from_field": "TARGET_ACCT_CURRENCY",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1",
+      "to_field": "TARGET_ACCT_CURRENCY",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_CG11"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_CG11"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_CG11"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_CG11"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_CG11"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1",
+      "to_field": "SS_CODE",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_CG11"
+    },
+    {
+      "from_field": "TARGET_ACCT_CURRENCY",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV",
+      "to_field": "TARGET_ACCT_CURRENCY",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_BV1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_BV1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_BV1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_BV1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_BV1"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV",
+      "to_field": "SS_CODE",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_BV1"
+    },
+    {
+      "from_field": "TARGET_ASSIGNMENT_ID",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV",
+      "to_field": "TARGET_ASSIGNMENT_ID",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_BV1"
+    },
+    {
+      "from_field": "TARGET_ASSIGNMENT_ID",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC",
+      "to_field": "TARGET_ASSIGNMENT_ID",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_QTC1"
+    },
+    {
+      "from_field": "TARGET_ACCT_CURRENCY",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC",
+      "to_field": "TARGET_ACCT_CURRENCY",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_QTC1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_QTC1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_QTC1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_QTC1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_QTC1"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC",
+      "to_field": "SS_CODE",
+      "to_instance": "EL_CP_TARGET_ASSIGNMENTS_QTC1"
+    },
+    {
+      "from_field": "TARGET_ASSIGNMENT_ID",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS",
+      "to_field": "TARGET_ASSIGNMENT_ID",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+    },
+    {
+      "from_field": "TARGET_ACCT_CURRENCY",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS",
+      "to_field": "TARGET_ACCT_CURRENCY",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+    },
+    {
+      "from_field": "TARGET_ASSIGNMENT_ID",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS1",
+      "to_field": "TARGET_ASSIGNMENT_ID",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+    },
+    {
+      "from_field": "TARGET_ACCT_CURRENCY",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS1",
+      "to_field": "TARGET_ACCT_CURRENCY",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS1",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+    },
+    {
+      "from_field": "TARGET_ASSIGNMENT_ID",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS2",
+      "to_field": "TARGET_ASSIGNMENT_ID",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+    },
+    {
+      "from_field": "TARGET_ACCT_CURRENCY",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS2",
+      "to_field": "TARGET_ACCT_CURRENCY",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS2",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS2",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS2",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS2",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS2",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+    },
+    {
+      "from_field": "TARGET_ASSIGNMENT_ID",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS3",
+      "to_field": "TARGET_ASSIGNMENT_ID",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+    },
+    {
+      "from_field": "TARGET_ACCT_CURRENCY",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS3",
+      "to_field": "TARGET_ACCT_CURRENCY",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS3",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS3",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS3",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS3",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "EL_CP_TARGET_ASSIGNMENTS3",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "TARGET_ASSIGNMENT_ID",
+      "source_path": [
+        {
+          "from_field": "TARGET_ASSIGNMENT_ID",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+        },
+        {
+          "from_field": "TARGET_ASSIGNMENT_ID",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+        },
+        {
+          "from_field": "TARGET_ASSIGNMENT_ID",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+        },
+        {
+          "from_field": "TARGET_ASSIGNMENT_ID",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+        },
+        {
+          "from_field": "TARGET_ASSIGNMENT_ID",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS"
+        },
+        {
+          "from_field": "TARGET_ASSIGNMENT_ID",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS1"
+        },
+        {
+          "from_field": "TARGET_ASSIGNMENT_ID",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS2"
+        },
+        {
+          "from_field": "TARGET_ASSIGNMENT_ID",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS3"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TARGET_ACCT_CURRENCY",
+      "source_path": [
+        {
+          "from_field": "TARGET_ACCT_CURRENCY",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+        },
+        {
+          "from_field": "TARGET_ACCT_CURRENCY",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+        },
+        {
+          "from_field": "TARGET_ACCT_CURRENCY",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+        },
+        {
+          "from_field": "TARGET_ACCT_CURRENCY",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+        },
+        {
+          "from_field": "TARGET_ACCT_CURRENCY",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS"
+        },
+        {
+          "from_field": "TARGET_ACCT_CURRENCY",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS1"
+        },
+        {
+          "from_field": "TARGET_ACCT_CURRENCY",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS2"
+        },
+        {
+          "from_field": "TARGET_ACCT_CURRENCY",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS3"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS1"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS2"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS3"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS1"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS2"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS3"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS1"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS2"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS3"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS1"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS2"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS3"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CODE",
+      "source_path": [
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_SJ"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_CG1"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_BV"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_ST_CP_TARGET_ASSIGNMENTS_QTC"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS1"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS2"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "EL_CP_TARGET_ASSIGNMENTS3"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:12.272910+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

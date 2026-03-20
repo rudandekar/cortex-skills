@@ -1,0 +1,115 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_mt_rstd_finance_deferred_rev_qtr_man_jv', 'batch', 'edwtd_rev_measure'],
+    meta={
+        'source_workflow': 'wf_m_MT_RSTD_FINANCE_DEFERRED_REV_QTR_MAN_JV',
+        'target_table': 'MT_RSTD_FIN_DEFERRED_REV_QTR',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:45.137925+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_rstd_fin_def_rev_qtr_man_jv AS (
+    SELECT
+        fiscal_year_quarter_number_int,
+        rev_measurement_type_cd,
+        fiscal_year_month_int,
+        dv_measure_name,
+        bk_measure_name,
+        sales_territory_key,
+        product_key,
+        src_entity_name,
+        bk_deal_id,
+        erp_deal_id,
+        bk_ccrm_profile_id_int,
+        service_flg,
+        sales_order_key,
+        dv_attribution_cd,
+        dv_product_key,
+        xcat_flg,
+        recurring_offer_flg,
+        bk_offer_type_name,
+        ela_flg,
+        def_ref_amt,
+        sk_offer_attribution_id_int,
+        product_subscription_flg,
+        recognize_or_projected_type_cd
+    FROM {{ source('raw', 'wi_rstd_fin_def_rev_qtr_man_jv') }}
+),
+
+source_mt_rstd_fin_deferred_rev_qtr AS (
+    SELECT
+        fiscal_year_quarter_number_int,
+        fiscal_year_month_int,
+        dv_measure_name,
+        bk_measure_name,
+        sales_territory_key,
+        product_key,
+        src_entity_name,
+        bk_deal_id,
+        erp_deal_id,
+        bk_ccrm_profile_id_int,
+        service_flg,
+        sales_order_key,
+        dv_attribution_cd,
+        dv_product_key,
+        xcat_flg,
+        recurring_offer_flg,
+        bk_offer_type_name,
+        ela_flg,
+        balance_rev_usd_amt,
+        recognized_rev_usd_amt,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        dv_beginning_blnce_rev_usd_amt,
+        dv_bridge_balance_rev_usd_amt,
+        sk_offer_attribution_id_int,
+        product_subscription_flg,
+        deferral_rev_usd_amt,
+        recognize_or_projected_type_cd,
+        dv_recurring_offer_cd
+    FROM {{ source('raw', 'mt_rstd_fin_deferred_rev_qtr') }}
+),
+
+final AS (
+    SELECT
+        fiscal_year_quarter_number_int,
+        fiscal_year_month_int,
+        dv_measure_name,
+        bk_measure_name,
+        sales_territory_key,
+        product_key,
+        src_entity_name,
+        bk_deal_id,
+        erp_deal_id,
+        bk_ccrm_profile_id_int,
+        service_flg,
+        sales_order_key,
+        dv_attribution_cd,
+        dv_product_key,
+        xcat_flg,
+        recurring_offer_flg,
+        bk_offer_type_name,
+        ela_flg,
+        balance_rev_usd_amt,
+        recognized_rev_usd_amt,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        dv_beginning_blnce_rev_usd_amt,
+        dv_bridge_balance_rev_usd_amt,
+        sk_offer_attribution_id_int,
+        product_subscription_flg,
+        deferral_rev_usd_amt,
+        recognize_or_projected_type_cd,
+        dv_recurring_offer_cd
+    FROM source_mt_rstd_fin_deferred_rev_qtr
+)
+
+SELECT * FROM final

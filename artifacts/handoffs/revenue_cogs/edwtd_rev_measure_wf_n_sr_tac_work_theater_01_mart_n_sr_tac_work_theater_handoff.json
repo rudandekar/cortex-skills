@@ -1,0 +1,343 @@
+{
+  "workflow_name": "wf_m_N_SR_TAC_WORK_THEATER",
+  "mapping_name": "m_N_SR_TAC_WORK_THEATER",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "N_SR_TAC_WORK_THEATER",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_n_sr_tac_work_theater_01_mart_n_sr_tac_work_theater",
+  "source_tables": [
+    "N_SR_TAC_WORK_THEATER"
+  ],
+  "sources": [
+    {
+      "name": "N_SR_TAC_WORK_THEATER",
+      "database_type": "Teradata",
+      "owner": "FINLGLDB_DV1",
+      "fields": [
+        {
+          "name": "SR_TAC_WORK_THEATER_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WORK_THEATER_IS_VALID_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_SR_TAC_WORK_THEATER",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SR_TAC_WORK_THEATER_CODE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "WORK_THEATER_IS_VALID_FLAG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_SR_TAC_WORK_THEATER",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SR_TAC_WORK_THEATER_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WORK_THEATER_IS_VALID_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSR_TAC_WORK_THEATER_CODE \r\n,WORK_THEATER_IS_VALID_FLAG\r\n,CURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM\r\n,CURRENT_USER AS EDW_CREATE_USER\r\n,CURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM\r\n,CURRENT_USER AS EDW_UPDATE_USER\r\nFROM \r\n$$WORKDB.W_SR_TAC_WORK_THEATER",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SR_TAC_WORK_THEATER_CODE",
+      "from_instance": "SQ_N_SR_TAC_WORK_THEATER",
+      "to_field": "SR_TAC_WORK_THEATER_CODE",
+      "to_instance": "N_SR_TAC_WORK_THEATER1"
+    },
+    {
+      "from_field": "WORK_THEATER_IS_VALID_FLAG",
+      "from_instance": "SQ_N_SR_TAC_WORK_THEATER",
+      "to_field": "WORK_THEATER_IS_VALID_FLAG",
+      "to_instance": "N_SR_TAC_WORK_THEATER1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_SR_TAC_WORK_THEATER",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_SR_TAC_WORK_THEATER1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_SR_TAC_WORK_THEATER",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_SR_TAC_WORK_THEATER1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_SR_TAC_WORK_THEATER",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_SR_TAC_WORK_THEATER1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_SR_TAC_WORK_THEATER",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_SR_TAC_WORK_THEATER1"
+    },
+    {
+      "from_field": "SR_TAC_WORK_THEATER_CODE",
+      "from_instance": "N_SR_TAC_WORK_THEATER",
+      "to_field": "SR_TAC_WORK_THEATER_CODE",
+      "to_instance": "SQ_N_SR_TAC_WORK_THEATER"
+    },
+    {
+      "from_field": "WORK_THEATER_IS_VALID_FLAG",
+      "from_instance": "N_SR_TAC_WORK_THEATER",
+      "to_field": "WORK_THEATER_IS_VALID_FLAG",
+      "to_instance": "SQ_N_SR_TAC_WORK_THEATER"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_SR_TAC_WORK_THEATER",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_SR_TAC_WORK_THEATER"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_SR_TAC_WORK_THEATER",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_SR_TAC_WORK_THEATER"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_SR_TAC_WORK_THEATER",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_SR_TAC_WORK_THEATER"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_SR_TAC_WORK_THEATER",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_SR_TAC_WORK_THEATER"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SR_TAC_WORK_THEATER_CODE",
+      "source_path": [
+        {
+          "from_field": "SR_TAC_WORK_THEATER_CODE",
+          "from_instance": "SQ_N_SR_TAC_WORK_THEATER"
+        },
+        {
+          "from_field": "SR_TAC_WORK_THEATER_CODE",
+          "from_instance": "N_SR_TAC_WORK_THEATER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "WORK_THEATER_IS_VALID_FLAG",
+      "source_path": [
+        {
+          "from_field": "WORK_THEATER_IS_VALID_FLAG",
+          "from_instance": "SQ_N_SR_TAC_WORK_THEATER"
+        },
+        {
+          "from_field": "WORK_THEATER_IS_VALID_FLAG",
+          "from_instance": "N_SR_TAC_WORK_THEATER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_SR_TAC_WORK_THEATER"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_SR_TAC_WORK_THEATER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_SR_TAC_WORK_THEATER"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_SR_TAC_WORK_THEATER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_N_SR_TAC_WORK_THEATER"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "N_SR_TAC_WORK_THEATER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_SR_TAC_WORK_THEATER"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_SR_TAC_WORK_THEATER"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:26.641395+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

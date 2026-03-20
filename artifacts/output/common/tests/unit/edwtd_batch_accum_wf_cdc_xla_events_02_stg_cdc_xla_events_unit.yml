@@ -1,0 +1,13 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_batch_accum_wf_cdc_xla_events_02_stg_cdc_xla_events_expression_transform
+    model: edwtd_batch_accum_wf_cdc_xla_events_02_stg_cdc_xla_events
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'cdc_xla_events')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

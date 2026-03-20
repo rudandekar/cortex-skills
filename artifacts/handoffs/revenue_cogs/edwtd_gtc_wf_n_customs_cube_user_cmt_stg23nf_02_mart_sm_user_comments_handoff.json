@@ -1,0 +1,822 @@
+{
+  "workflow_name": "wf_m_N_CUSTOMS_CUBE_USER_CMT_STG23NF",
+  "mapping_name": "m_N_CUSTOMS_CUBE_USER_CMT_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GTC",
+  "target_table": "SM_USER_COMMENTS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gtc_wf_n_customs_cube_user_cmt_stg23nf_02_mart_sm_user_comments",
+  "source_tables": [
+    "N_CUSTOMS_CUBE_USER_CMT",
+    "ST_XXCFI_CB_INTERNAL_COMMENTS",
+    "SM_USER_COMMENTS"
+  ],
+  "sources": [
+    {
+      "name": "N_CUSTOMS_CUBE_USER_CMT",
+      "database_type": "Teradata",
+      "owner": "FINLGLDB_DV4",
+      "fields": [
+        {
+          "name": "CUSTOMS_CUBE_USER_CMT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_CMT_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CMTR_CB_USR_CSO_WKR_PTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CMTE_CB_USR_CSO_WKR_PTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "USER_CMT",
+          "datatype": "varchar",
+          "precision": "4000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SK_INTERNAL_COMMENTS_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INTERNAL_COMMENTS_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IDENTIFIER1",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IDENTIFIER2",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMENTS",
+          "datatype": "varchar",
+          "precision": "4000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "SM_USER_COMMENTS",
+      "database_type": "Teradata",
+      "owner": "ETLVWDB_DV3",
+      "fields": [
+        {
+          "name": "USER_COMMENT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_INTERNAL_COMMENTS_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "SM_USER_COMMENTS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "USER_COMMENT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_INTERNAL_COMMENTS_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INTERNAL_COMMENTS_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IDENTIFIER1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IDENTIFIER2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMENTS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query3",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_N_CUSTOMS_CUBE_USER_CMT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CUSTOMS_CUBE_USER_CMT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_CMT_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CMTR_CB_USR_CSO_WKR_PTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CMTE_CB_USR_CSO_WKR_PTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "USER_CMT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_INTERNAL_COMMENTS_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query2",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_SM_USER_COMMENTS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "USER_COMMENT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_INTERNAL_COMMENTS_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "INTERNAL_COMMENTS_ID",
+      "from_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "INTERNAL_COMMENTS_ID",
+      "to_instance": "EX_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "IDENTIFIER1",
+      "from_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "IDENTIFIER1",
+      "to_instance": "EX_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "IDENTIFIER2",
+      "from_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "IDENTIFIER2",
+      "to_instance": "EX_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "COMMENTS",
+      "from_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "COMMENTS",
+      "to_instance": "EX_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATED_BY",
+      "to_instance": "EX_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATED_DATE",
+      "to_instance": "EX_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EX_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "EX_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CUSTOMS_CUBE_USER_CMT_KEY",
+      "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT",
+      "to_field": "CUSTOMS_CUBE_USER_CMT_KEY",
+      "to_instance": "N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "BK_CMT_DTM",
+      "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT",
+      "to_field": "BK_CMT_DTM",
+      "to_instance": "N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "CMTR_CB_USR_CSO_WKR_PTY_KEY",
+      "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT",
+      "to_field": "CMTR_CB_USR_CSO_WKR_PTY_KEY",
+      "to_instance": "N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "CMTE_CB_USR_CSO_WKR_PTY_KEY",
+      "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT",
+      "to_field": "CMTE_CB_USR_CSO_WKR_PTY_KEY",
+      "to_instance": "N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "USER_CMT",
+      "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT",
+      "to_field": "USER_CMT",
+      "to_instance": "N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "SK_INTERNAL_COMMENTS_ID_INT",
+      "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT",
+      "to_field": "SK_INTERNAL_COMMENTS_ID_INT",
+      "to_instance": "N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "USER_COMMENT_KEY",
+      "from_instance": "SQ_SM_USER_COMMENTS",
+      "to_field": "USER_COMMENT_KEY",
+      "to_instance": "SM_USER_COMMENTS1"
+    },
+    {
+      "from_field": "SK_INTERNAL_COMMENTS_ID_INT",
+      "from_instance": "SQ_SM_USER_COMMENTS",
+      "to_field": "SK_INTERNAL_COMMENTS_ID_INT",
+      "to_instance": "SM_USER_COMMENTS1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_SM_USER_COMMENTS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_USER_COMMENTS1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_SM_USER_COMMENTS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_USER_COMMENTS1"
+    },
+    {
+      "from_field": "USER_COMMENT_KEY",
+      "from_instance": "SM_USER_COMMENTS",
+      "to_field": "USER_COMMENT_KEY",
+      "to_instance": "SQ_SM_USER_COMMENTS"
+    },
+    {
+      "from_field": "SK_INTERNAL_COMMENTS_ID_INT",
+      "from_instance": "SM_USER_COMMENTS",
+      "to_field": "SK_INTERNAL_COMMENTS_ID_INT",
+      "to_instance": "SQ_SM_USER_COMMENTS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SM_USER_COMMENTS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_SM_USER_COMMENTS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SM_USER_COMMENTS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_SM_USER_COMMENTS"
+    },
+    {
+      "from_field": "IDENTIFIER1",
+      "from_instance": "ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "IDENTIFIER1",
+      "to_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "IDENTIFIER2",
+      "from_instance": "ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "IDENTIFIER2",
+      "to_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "COMMENTS",
+      "from_instance": "ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "COMMENTS",
+      "to_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "INTERNAL_COMMENTS_ID",
+      "from_instance": "ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "INTERNAL_COMMENTS_ID",
+      "to_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATED_DATE",
+      "to_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_XXCFI_CB_INTERNAL_COMMENTS",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "SQ_ST_XXCFI_CB_INTERNAL_COMMENTS"
+    },
+    {
+      "from_field": "CUSTOMS_CUBE_USER_CMT_KEY",
+      "from_instance": "N_CUSTOMS_CUBE_USER_CMT1",
+      "to_field": "CUSTOMS_CUBE_USER_CMT_KEY",
+      "to_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "BK_CMT_DTM",
+      "from_instance": "N_CUSTOMS_CUBE_USER_CMT1",
+      "to_field": "BK_CMT_DTM",
+      "to_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "CMTR_CB_USR_CSO_WKR_PTY_KEY",
+      "from_instance": "N_CUSTOMS_CUBE_USER_CMT1",
+      "to_field": "CMTR_CB_USR_CSO_WKR_PTY_KEY",
+      "to_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "CMTE_CB_USR_CSO_WKR_PTY_KEY",
+      "from_instance": "N_CUSTOMS_CUBE_USER_CMT1",
+      "to_field": "CMTE_CB_USR_CSO_WKR_PTY_KEY",
+      "to_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "USER_CMT",
+      "from_instance": "N_CUSTOMS_CUBE_USER_CMT1",
+      "to_field": "USER_CMT",
+      "to_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "SK_INTERNAL_COMMENTS_ID_INT",
+      "from_instance": "N_CUSTOMS_CUBE_USER_CMT1",
+      "to_field": "SK_INTERNAL_COMMENTS_ID_INT",
+      "to_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_CUSTOMS_CUBE_USER_CMT1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_CUSTOMS_CUBE_USER_CMT1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_CUSTOMS_CUBE_USER_CMT1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_CUSTOMS_CUBE_USER_CMT1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "USER_COMMENT_KEY",
+      "source_path": [
+        {
+          "from_field": "USER_COMMENT_KEY",
+          "from_instance": "SQ_SM_USER_COMMENTS"
+        },
+        {
+          "from_field": "USER_COMMENT_KEY",
+          "from_instance": "SM_USER_COMMENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_INTERNAL_COMMENTS_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_INTERNAL_COMMENTS_ID_INT",
+          "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+        },
+        {
+          "from_field": "SK_INTERNAL_COMMENTS_ID_INT",
+          "from_instance": "SQ_SM_USER_COMMENTS"
+        },
+        {
+          "from_field": "SK_INTERNAL_COMMENTS_ID_INT",
+          "from_instance": "SM_USER_COMMENTS"
+        },
+        {
+          "from_field": "SK_INTERNAL_COMMENTS_ID_INT",
+          "from_instance": "N_CUSTOMS_CUBE_USER_CMT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_SM_USER_COMMENTS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SM_USER_COMMENTS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_CUSTOMS_CUBE_USER_CMT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_CUSTOMS_CUBE_USER_CMT"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_SM_USER_COMMENTS"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SM_USER_COMMENTS"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_CUSTOMS_CUBE_USER_CMT1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:12.826574+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

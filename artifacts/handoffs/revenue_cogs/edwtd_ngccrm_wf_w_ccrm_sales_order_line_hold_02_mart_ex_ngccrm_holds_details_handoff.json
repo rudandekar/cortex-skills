@@ -1,0 +1,5582 @@
+{
+  "workflow_name": "wf_m_W_CCRM_SALES_ORDER_LINE_HOLD",
+  "mapping_name": "m_W_CCRM_SALES_ORDER_LINE_HOLD",
+  "mapping_description": "",
+  "folder_name": "EDWTD_NGCCRM",
+  "target_table": "EX_NGCCRM_HOLDS_DETAILS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ngccrm_wf_w_ccrm_sales_order_line_hold_02_mart_ex_ngccrm_holds_details",
+  "source_tables": [
+    "ST_NGCCRM_HOLDS_DETAILS",
+    "N_RAE_ADJUSTMENT",
+    "N_CCRM_ADJUSTMENT_SUBREASON",
+    "N_CCRM_ADJUSTMENT_REASON",
+    "ST_NGCCRM_SOL_AC_SCOPE",
+    "N_SALES_ORDER_LINE"
+  ],
+  "sources": [
+    {
+      "name": "ST_NGCCRM_HOLDS_DETAILS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV5",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "HOLD_DETAIL_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SO_HEADER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SO_LINE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REASON_CODE",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SO_ACCOUNTING_RULE",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IS_SPLIT",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EITF_PCT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOP_PCT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ELEMENT_TYPE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SO_LINE_AMT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ELEMENT_AMT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RC_RANK",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRIORITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DATASET_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ELEMENT_PCT_ON_SOLINE",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ELEMENT_PCT_FUNDED",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ELEMENT_PCT_FUNDED_P",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ELEMENT_PCT_AVAILABLE",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UNFUNDED",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ELEMENT_RELEASE_PCT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ELEMENT_RELEASE_AMT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "USAGE_PCT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RECLASS_PCT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TOTAL_SEQ_DEFER_PCT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TOTAL_SEQ_PROV_PCT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TOTAL_ELEMENT_PCT_FUNDED",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RAE_PCT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RAE_PROCESS_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RAE_POSTED",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RAE_ADJUSTMENT_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CATEOGORY_ID",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INHERITED_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STATUS_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_PERIOD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_PERIOD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVOICE_HOLD",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_HIERARCHY",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "APPLY_FUTURE_TRXS",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEFER_IMMD",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TOTAL_SEQ_PROV_AMT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TOTAL_SEQ_DEFER_AMT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INHERITED_FRM_HDR_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INHERITED_FRM_LN_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROFILE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TEMPLATE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TEMPLATE_NAME",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REASON_CODE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STARTING_POINT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SRC_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "HOLD_INTERFACE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE_CAT",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE1",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE2",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE3",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE4",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE5",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE6",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE7",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE8",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE9",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE10",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE11",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE12",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE13",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE14",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE15",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "N_RAE_ADJUSTMENT",
+      "database_type": "Teradata",
+      "owner": "FINLGLDB_DV5",
+      "fields": [
+        {
+          "name": "RAE_ADJUSTMENT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJUSTMENT_CATEGORY_CD",
+          "datatype": "char",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJUSTMENT_DESCR",
+          "datatype": "varchar",
+          "precision": "4000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ASSOCIATION_TYPE",
+          "datatype": "char",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJUSTMENT_STATUS_CD",
+          "datatype": "char",
+          "precision": "9",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RPRTD_ADJUST_VALUE_FUNC_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXECUTION_EVENT_CD",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJUSTMENT_SOURCE_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "JOURNAL_CATEGORY_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "JOURNAL_SOURCE_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VARIABLE_ROLE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DEBIT_GL_ACCOUNT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREDIT_GL_ACCOUNT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FROM_CURRENCY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TO_CURRENCY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CONVERSION_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "OPERATING_UNIT_NAME_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_TO_CURRENCY_CODE",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_RAE_ADJUSTMENT_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SS_CD",
+          "datatype": "char",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_ADJUSTMENT_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_ADJUSTMENT_START_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_ADJUSTMENT_END_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_ADJUSTMENT_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_ADJUSTMENT_CATEGORY_CD",
+          "datatype": "char",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_CCRM_PROFILE_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_CCRM_ELEMENT_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_CCRM_ADJUSTMENT_RSN_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_CCRM_ADJUST_RSN_VER_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_CCRM_ADJUST_SUBRSN_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_CCRM_ADJ_SUBRSN_VER_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_ACCOUNTING_SCOPE_SMMRY_CD",
+          "datatype": "char",
+          "precision": "11",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "N_CCRM_ADJUSTMENT_SUBREASON",
+      "database_type": "Teradata",
+      "owner": "FINLGLDB_DV5",
+      "fields": [
+        {
+          "name": "BK_CCRM_ADJ_SUBREASON_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_CCRM_ADJ_SUBRSN_VER_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SUBREASON_DESCR",
+          "datatype": "varchar",
+          "precision": "120",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SK_SUBREASON_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "N_CCRM_ADJUSTMENT_REASON",
+      "database_type": "Teradata",
+      "owner": "FINLGLDB_DV5",
+      "fields": [
+        {
+          "name": "BK_CCRM_ADJUSTMENT_REASON_CD",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_CCRM_ADJ_REASON_VER_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REASON_FLOW_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REASON_PATH_CD",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REASON_DESCR",
+          "datatype": "varchar",
+          "precision": "120",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SK_REASON_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_SCOPE_SUMMARY_CD",
+          "datatype": "char",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CCRM_REASON_TYPE_CD",
+          "datatype": "char",
+          "precision": "9",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "ST_NGCCRM_SOL_AC_SCOPE",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV5",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROFILE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SO_HEADER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SO_LINE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "char",
+          "precision": "2",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VSOE_ACCT_SCOPE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURR_EITF_PERC",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURR_SOP_PERC",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PREV_EITF_PERC",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PREV_SOP_PERC",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINE_TYPE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERVICE_TYPE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MESSAGE",
+          "datatype": "varchar",
+          "precision": "500",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE1",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE2",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE3",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE4",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE5",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE6",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE7",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE8",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE9",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE10",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE11",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE12",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE13",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE14",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE15",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_LOGIN",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "N_SALES_ORDER_LINE",
+      "database_type": "Teradata",
+      "owner": "SLSORDVWDB_DV5",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_COMPANY_CODE",
+          "datatype": "varchar",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SET_OF_BOOKS_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SO_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SO_LINE_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SHIPMENT_LOT_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_OPTION_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SHIP_FROM_INV_ORG_NAME_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_TV_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "START_SSP_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_TV_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_SSP_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BOOKINGS_PERCENT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORDER_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UNIT_SALE_PRICE",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UNIT_LIST_PRICE",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UNIT_TRADE_IN_USD_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REVENUE_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ITEM_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_BOOKED_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_BOOKED_STATUS_CODE",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPPED_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SO_LINE_CLOSED_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ERP_SHIP_TO_CONTACT_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SO_LINE_OPEN_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SCHEDULED_SHIP_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CUST_REQUESTED_SHIPMENT_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROMISED_TO_CUST_SHIPMENT_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CUST_SHIPMENT_RECOMMIT_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIP_SET_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVOICED_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_CONFIRMED_RESULT_CODE",
+          "datatype": "char",
+          "precision": "9",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_CONFIRMED_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FACTORY_RECOMMIT_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FREIGHT_CARRIER_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PICK_RELEASE_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PICK_RELEASE_RESULT_CODE",
+          "datatype": "char",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_SCHEDULE_RESULT_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_SCHEDULE_RESULT_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SO_LINE_OPTION_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AR_INTERFACE_RESULT_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AR_INTERFACE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_SOL_RETURN_CONTEXT_CODE",
+          "datatype": "char",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_SOL_RETURN_REASON_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_SERVICE_CONTRACT_START_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_SERVICE_CONTRACT_END_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_SERVICE_CONTRACT_NUMBER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SO_SRC_CRT_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SO_SRC_UPD_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERVICE_CONTRACT_ROLE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MAJOR_LINE_TYPE",
+          "datatype": "char",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_CATEGORY_TYPE",
+          "datatype": "char",
+          "precision": "6",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_SO_LINE_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "char",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CANCELLED_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ITEM_CATEGORY_DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRICING_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_PARNT_SLS_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADVANCED_SERVICES_PROJECT_CD",
+          "datatype": "char",
+          "precision": "6",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_BUNDLE_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINE_STATUS_CD",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COMPLETE_LINE_RESULT_CD",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOL_CREATED_BY_ERP_USER_NAME",
+          "datatype": "varchar",
+          "precision": "70",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOL_MODIFIED_BY_ERP_USER_NAME",
+          "datatype": "varchar",
+          "precision": "70",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_SHIPMENT_CONFIRMED_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CISCO_SCHEDULED_RESULT_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PICK_RELEASE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SOL_CANCELLED_QTY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_PARENT_LINE_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_OPTION_CLASS_LINE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EX_NGCCRM_HOLDS_DETAILS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "HOLD_DETAIL_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SO_HEADER_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SO_LINE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REASON_CODE",
+        "datatype": "varchar",
+        "precision": "250",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SO_ACCOUNTING_RULE",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "IS_SPLIT",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EITF_PCT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOP_PCT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ELEMENT_TYPE",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SO_LINE_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ELEMENT_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RC_RANK",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PRIORITY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DATASET_NUMBER",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ELEMENT_PCT_ON_SOLINE",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ELEMENT_PCT_FUNDED",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ELEMENT_PCT_FUNDED_P",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ELEMENT_PCT_AVAILABLE",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UNFUNDED",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ELEMENT_RELEASE_PCT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ELEMENT_RELEASE_AMT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "USAGE_PCT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RECLASS_PCT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TOTAL_SEQ_DEFER_PCT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TOTAL_SEQ_PROV_PCT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TOTAL_ELEMENT_PCT_FUNDED",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RAE_PCT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RAE_PROCESS_FLAG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RAE_POSTED",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RAE_ADJUSTMENT_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CATEOGORY_ID",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INHERITED_FLAG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ORG_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "STATUS_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FISCAL_PERIOD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_PERIOD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INVOICE_HOLD",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GLOBAL_HIERARCHY",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "APPLY_FUTURE_TRXS",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DEFER_IMMD",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TOTAL_SEQ_PROV_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TOTAL_SEQ_DEFER_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INHERITED_FRM_HDR_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INHERITED_FRM_LN_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROFILE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TEMPLATE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TEMPLATE_NAME",
+        "datatype": "varchar",
+        "precision": "250",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REASON_CODE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "STARTING_POINT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SRC_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GLOBAL_NAME",
+        "datatype": "varchar",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "HOLD_INTERFACE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE_CAT",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE1",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE2",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE3",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE4",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE5",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE6",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE7",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE8",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE9",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE10",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE11",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE12",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE13",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE14",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE15",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATED_BY",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HOLD_DETAIL_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_HEADER_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_LINE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REASON_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_ACCOUNTING_RULE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IS_SPLIT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EITF_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOP_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ELEMENT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_LINE_AMT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ELEMENT_AMT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RC_RANK",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRIORITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DATASET_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ELEMENT_PCT_ON_SOLINE",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ELEMENT_PCT_FUNDED",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ELEMENT_PCT_FUNDED_P",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ELEMENT_PCT_AVAILABLE",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UNFUNDED",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ELEMENT_RELEASE_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ELEMENT_RELEASE_AMT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "USAGE_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RECLASS_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_SEQ_DEFER_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_SEQ_PROV_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_ELEMENT_PCT_FUNDED",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RAE_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RAE_PROCESS_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RAE_POSTED",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RAE_ADJUSTMENT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CATEOGORY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INHERITED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STATUS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_PERIOD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_PERIOD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVOICE_HOLD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_HIERARCHY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "APPLY_FUTURE_TRXS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEFER_IMMD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_SEQ_PROV_AMT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_SEQ_DEFER_AMT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INHERITED_FRM_HDR_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INHERITED_FRM_LN_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROFILE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TEMPLATE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TEMPLATE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REASON_CODE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STARTING_POINT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SRC_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HOLD_INTERFACE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE_CAT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE4",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE5",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE6",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE7",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE8",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE9",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE10",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE11",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE12",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE13",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE14",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE15",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT SNHDS.BATCH_ID, SNHDS.HOLD_DETAIL_ID,  SNHDS.SO_HEADER_ID, SNHDS.SO_LINE_ID, SNHDS.REASON_CODE, SNHDS.SO_ACCOUNTING_RULE, SNHDS.IS_SPLIT, SNHDS.EITF_PCT, SNHDS.SOP_PCT, SNHDS.ELEMENT_TYPE, SNHDS.ACTION, SNHDS.SO_LINE_AMT, SNHDS.ELEMENT_AMT, SNHDS.RC_RANK, SNHDS.PRIORITY, SNHDS.DATASET_NUMBER, SNHDS.ELEMENT_PCT_ON_SOLINE, SNHDS.ELEMENT_PCT_FUNDED, SNHDS.ELEMENT_PCT_FUNDED_P, SNHDS.ELEMENT_PCT_AVAILABLE, SNHDS.UNFUNDED, SNHDS.ELEMENT_RELEASE_PCT, SNHDS.ELEMENT_RELEASE_AMT, SNHDS.USAGE_PCT, SNHDS.RECLASS_PCT, SNHDS.TOTAL_SEQ_DEFER_PCT, SNHDS.TOTAL_SEQ_PROV_PCT, SNHDS.TOTAL_ELEMENT_PCT_FUNDED, SNHDS.RAE_PCT, SNHDS.RAE_PROCESS_FLAG, SNHDS.RAE_POSTED, SNHDS.RAE_ADJUSTMENT_ID, SNHDS.CATEOGORY_ID, SNHDS.INHERITED_FLAG, SNHDS.ORG_ID, SNHDS.STATUS_CODE, SNHDS.FISCAL_PERIOD, SNHDS.START_PERIOD, SNHDS.INVOICE_HOLD, SNHDS.GLOBAL_HIERARCHY, SNHDS.APPLY_FUTURE_TRXS, SNHDS.DEFER_IMMD, SNHDS.TOTAL_SEQ_PROV_AMT, SNHDS.TOTAL_SEQ_DEFER_AMT, SNHDS.INHERITED_FRM_HDR_ID, SNHDS.INHERITED_FRM_LN_ID, SNHDS.PROFILE_ID, SNHDS.TEMPLATE_ID, SNHDS.TEMPLATE_NAME, SNHDS.REASON_CODE_ID, SNHDS.STARTING_POINT, SNHDS.SRC_ID, SNHDS.GLOBAL_NAME, SNHDS.HOLD_INTERFACE_ID, SNHDS.ATTRIBUTE_CAT, SNHDS.ATTRIBUTE1, SNHDS.ATTRIBUTE2, SNHDS.ATTRIBUTE3, SNHDS.ATTRIBUTE4, SNHDS.ATTRIBUTE5, SNHDS.ATTRIBUTE6, SNHDS.ATTRIBUTE7, SNHDS.ATTRIBUTE8, SNHDS.ATTRIBUTE9, SNHDS.ATTRIBUTE10, SNHDS.ATTRIBUTE11, SNHDS.ATTRIBUTE12, SNHDS.ATTRIBUTE13, SNHDS.ATTRIBUTE14, SNHDS.ATTRIBUTE15, SNHDS.LAST_UPDATED_BY, SNHDS.LAST_UPDATE_DATE, SNHDS.CREATED_BY, SNHDS.CREATION_DATE, SNHDS.CREATE_DATETIME, \r\nSNHDS.ACTION_CODE\r\nFROM\r\n$$STGDB.ST_NGCCRM_HOLDS_DETAILS SNHDS\r\nWHERE NOT EXISTS\r\n(SELECT \r\n1\r\nFROM  $$WORKDB.W_CCRM_SALES_ORDER_LINE_HOLD WNHD\r\nWHERE WNHD.SK_HOLD_DETAIL_ID_INT= SNHDS.HOLD_DETAIL_ID )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_CCRM_ADJUSTMENT_GRP_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ADJUSTMENT_CATEGORY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_CCRM_ADJUSTMENT_REASON_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_CCRM_ADJ_REASON_VER_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ACCOUNTING_SCOPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RAE_ADJUSTMENT_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVOICE_HOLD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SPLIT_ACCOUNTING_SCOPE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RSN_CD_DEFER_IMMDTLY_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TEMPLATE_ADJUSTMENT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "USER_SPECIFIED_RSN_ACTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_SCOPE_HOLD_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RSN_CD_STARTING_POINT_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RSN_CD_RANKING_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RSN_CD_PRIORITY_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_UNRECOGNIZED_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_SEQUENTIAL_PRVSN_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_SEQUENTIAL_DFRRD_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTUAL_RECLASS_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTUAL_USAGE_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTUAL_RELEASED_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTUAL_UNRECOGNIZED_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REQUESTED_UNRECOGNIZED_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_CREATED_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_HOLD_DETAIL_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SRC_RPTD_VSOE_ACCNTNG_SCP_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RAE_ADJUSTMENT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CCRM_PROFILE_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_CCRM_ADJ_SUBREASON_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_CCRM_ADJ_SUBRSN_VER_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CCRM_ELEMENT_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSNHD.DATASET_NUMBER \tAS\t\tBK_CCRM_ADJUSTMENT_GRP_ID_INT, \r\nSNHD.ELEMENT_TYPE \t\tAS \t\tBK_ADJUSTMENT_CATEGORY_CD,     \r\nNAR.BK_CCRM_ADJUSTMENT_REASON_CD \t AS \t\tBK_CCRM_ADJUSTMENT_REASON_CD  ,\r\nNAR.BK_CCRM_ADJ_REASON_VER_NUM_INT \t AS \tBK_CCRM_ADJ_REASON_VER_NUM_INT,\r\n\r\n(CASE WHEN SNHD.SOP_PCT > 0 THEN  'SOP-97-2' \r\n            WHEN SNHD.EITF_PCT > 0 THEN  'EITF-08-01' \r\nEND) AS BK_ACCOUNTING_SCOPE_CD,\r\nNSOL.SALES_ORDER_LINE_KEY\t\tAS\t\tSALES_ORDER_LINE_KEY ,      \r\n(CASE WHEN SNHD.RAE_PCT IS NULL THEN 0 ELSE SNHD.RAE_PCT END)\t\t\t\tAS\t\tRAE_ADJUSTMENT_PCT,            \r\n(CASE WHEN SNHD.INVOICE_HOLD\tIS NULL THEN 'N' ELSE SNHD.INVOICE_HOLD END) \tAS\t\tINVOICE_HOLD_FLG,             \r\n(CASE WHEN SNHD.IS_SPLIT IS NULL THEN 'N' ELSE SNHD.IS_SPLIT END)\t\t\tAS\t\tSPLIT_ACCOUNTING_SCOPE_FLG,    \r\n(CASE WHEN SNHD.DEFER_IMMD\tIS NULL THEN 'N' ELSE SNHD.DEFER_IMMD END)\t\tAS\t\tRSN_CD_DEFER_IMMDTLY_FLG ,     \r\n(CASE WHEN SNHD.TEMPLATE_NAME\tIS NULL THEN 'UNKNOWN' ELSE SNHD.TEMPLATE_NAME END)\tAS\t\tTEMPLATE_ADJUSTMENT_NAME ,     \r\n(CASE WHEN SNHD.ACTION\tIS NULL THEN 'UNKNOWN' ELSE SNHD.ACTION END)\t\t\tAS\t\tUSER_SPECIFIED_RSN_ACTION_CD,  \r\n0 ACCOUNTING_SCOPE_HOLD_PCT,\r\n(CASE WHEN SNHD.STARTING_POINT IS NULL  THEN -999 ELSE  SNHD.STARTING_POINT END)\t\tAS\t\tRSN_CD_STARTING_POINT_NUM_INT ,\r\n(CASE WHEN SNHD.RC_RANK IS NULL THEN -9 ELSE SNHD.RC_RANK END)\t\t\t\t\tAS\t\tRSN_CD_RANKING_NUM_INT ,       \r\n(CASE WHEN SNHD.PRIORITY\tIS NULL THEN -9 ELSE SNHD.PRIORITY\tEND)\t\t\t\tAS\t\tRSN_CD_PRIORITY_NUM_INT ,      \r\n(CASE WHEN SNHD.TOTAL_ELEMENT_PCT_FUNDED IS NULL THEN  0 ELSE SNHD.TOTAL_ELEMENT_PCT_FUNDED END)  AS\t\tTOTAL_UNRECOGNIZED_PCT,        \r\n(CASE WHEN SNHD.TOTAL_SEQ_PROV_PCT IS NULL THEN  0 ELSE SNHD.TOTAL_SEQ_PROV_PCT END)\t  \t       AS\t\tTOTAL_SEQUENTIAL_PRVSN_PCT,    \r\n(CASE WHEN SNHD.TOTAL_SEQ_DEFER_PCT IS NULL THEN  0 ELSE\tSNHD.TOTAL_SEQ_DEFER_PCT END)\t       AS\t\tTOTAL_SEQUENTIAL_DFRRD_PCT,    \r\n(CASE WHEN SNHD.RECLASS_PCT\t IS NULL THEN  0 ELSE SNHD.RECLASS_PCT END)\t\t\t\t       AS   \t\tACTUAL_RECLASS_PCT ,           \r\n(CASE WHEN SNHD.USAGE_PCT IS NULL THEN 0 ELSE SNHD.USAGE_PCT\t END )\t\t\t\t\tAS\t\tACTUAL_USAGE_PCT  ,            \r\n(CASE WHEN SNHD.ELEMENT_RELEASE_PCT\t IS NULL THEN 0 ELSE SNHD.ELEMENT_RELEASE_PCT END)\tAS\t\tACTUAL_RELEASED_PCT,           \r\n(CASE WHEN SNHD.ELEMENT_PCT_FUNDED\tIS NULL THEN 0 ELSE  SNHD.ELEMENT_PCT_FUNDED\tEND)\tAS\t\tACTUAL_UNRECOGNIZED_PCT,       \r\n(CASE WHEN SNHD.ELEMENT_PCT_ON_SOLINE IS NULL THEN 0 ELSE SNHD.ELEMENT_PCT_ON_SOLINE END)\tAS \t\tREQUESTED_UNRECOGNIZED_PCT,    \r\n(CASE WHEN SNHD.CREATION_DATE IS NULL THEN CURRENT_DATE ELSE SNHD.CREATION_DATE \tEND)\t\tAS\t\tSOURCE_CREATED_DTM,            \r\nSNHD.HOLD_DETAIL_ID \t\tAS\t\tSK_HOLD_DETAIL_ID_INT ,        \r\nCOALESCE(SNSAS.VSOE_ACCT_SCOPE,SNSAS_PAR.VSOE_ACCT_SCOPE)\t\tAS\t\tSRC_RPTD_VSOE_ACCNTNG_SCP_CD , \r\nCOALESCE(NRA.RAE_ADJUSTMENT_KEY,-999)\t \tAS \t\tRAE_ADJUSTMENT_KEY,                     \r\n(CASE WHEN SNHD.PROFILE_ID IS NULL THEN -999 ELSE SNHD.PROFILE_ID END) \t\t\tAS\t\tCCRM_PROFILE_ID_INT ,          \r\nNASR.BK_CCRM_ADJ_SUBREASON_CD\tAS\t\tCCRM_ADJUSTMENT_SUBRSN_CD,     \r\nNASR.BK_CCRM_ADJ_SUBRSN_VER_NUM_INT\t AS\tCCRM_ADJUST_SUBRSN_VER_NUM_INT,\r\nCOALESCE(SNSAS.LINE_TYPE,SNSAS_PAR.LINE_TYPE)\t\t\t\tAS\t\tCCRM_ELEMENT_TYPE_CD ,    \r\n(CASE WHEN SNHD.ATTRIBUTE11='Y' THEN SNHD.LAST_UPDATE_DATE ELSE CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0))  END) EDW_CREATE_DTM,\r\n(CASE WHEN SNHD.ATTRIBUTE11='Y' THEN 'E_MIGRATION_BATCH' ELSE USER END) EDW_CREATE_USER,\r\nCAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) EDW_UPDATE_DTM,\r\nUSER EDW_UPDATE_USER,\r\nSNHD.ACTION_CODE,\r\n'I'\r\nFROM  $$STGDB.ST_NGCCRM_HOLDS_DETAILS SNHD\r\nINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC ON SNHD.GLOBAL_NAME = NSSC.GLOBAL_NAME\r\nINNER JOIN $$FINLGLVWDB.N_CCRM_ADJUSTMENT_REASON NAR ON (SNHD.REASON_CODE_ID = NAR.SK_REASON_ID_INT)\r\nINNER JOIN $$FINLGLVWDB.N_CCRM_ADJUSTMENT_SUBREASON NASR ON (SNHD.SRC_ID = NASR.SK_SUBREASON_ID_INT)\r\nLEFT OUTER JOIN $$FINLGLVWDB.N_RAE_ADJUSTMENT NRA ON (SNHD.RAE_ADJUSTMENT_ID = NRA.SK_RAE_ADJUSTMENT_ID_INT AND NRA.SS_CD = NSSC.SOURCE_SYSTEM_CODE)\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL ON (SNHD.SO_LINE_ID = NSOL.SK_SO_LINE_ID_INT AND NSOL.SS_CODE = NSSC.SOURCE_SYSTEM_CODE)\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL_PAR ON (NSOL_PAR.SALES_ORDER_LINE_KEY = NSOL.RU_PARNT_SLS_ORDER_LINE_KEY) \r\nLEFT OUTER JOIN $$ETLVWDB.EL_NGCCRM_SOL_AC_SCOPE SNSAS ON (  SNSAS.SO_LINE_ID = NSOL.SK_SO_LINE_ID_INT AND  SNSAS.GLOBAL_NAME=NSSC.GLOBAL_NAME) \r\nLEFT OUTER JOIN $$ETLVWDB.EL_NGCCRM_SOL_AC_SCOPE SNSAS_PAR ON (  SNSAS_PAR.SO_LINE_ID = NSOL_PAR.SK_SO_LINE_ID_INT AND  SNSAS_PAR.GLOBAL_NAME=NSSC.GLOBAL_NAME) \r\nWHERE\r\n(  COALESCE( SNHD.EITF_PCT, 0) >0  OR\r\n    COALESCE( SNHD.SOP_PCT,0) >0\r\n)\r\nUNION ALL\r\n\r\nSELECT \r\nENHD.DATASET_NUMBER \tAS\t\tBK_CCRM_ADJUSTMENT_GRP_ID_INT, \r\nENHD.ELEMENT_TYPE \t\tAS \t\tBK_ADJUSTMENT_CATEGORY_CD,     \r\nNAR.BK_CCRM_ADJUSTMENT_REASON_CD \t AS \t\tBK_CCRM_ADJUSTMENT_REASON_CD  ,\r\nNAR.BK_CCRM_ADJ_REASON_VER_NUM_INT \t AS \tBK_CCRM_ADJ_REASON_VER_NUM_INT,\r\n\r\n(CASE WHEN ENHD.SOP_PCT > 0 THEN  'SOP-97-2' \r\n            WHEN ENHD.EITF_PCT > 0 THEN  'EITF-08-01' \r\nEND) AS BK_ACCOUNTING_SCOPE_CD,\r\nNSOL.SALES_ORDER_LINE_KEY\t\tAS\t\tSALES_ORDER_LINE_KEY ,       \r\n\r\n(CASE WHEN ENHD.RAE_PCT IS NULL THEN 0 ELSE ENHD.RAE_PCT END)\t\t\t\tAS\t\tRAE_ADJUSTMENT_PCT,            \r\n(CASE WHEN ENHD.INVOICE_HOLD\tIS NULL THEN '=' ELSE ENHD.INVOICE_HOLD END) \tAS\t\tINVOICE_HOLD_FLG ,             \r\n(CASE WHEN ENHD.IS_SPLIT IS NULL THEN 'N' ELSE ENHD.IS_SPLIT END)\t\t\tAS\t\tSPLIT_ACCOUNTING_SCOPE_FLG,    \r\n(CASE WHEN ENHD.DEFER_IMMD\tIS NULL THEN 'N' ELSE ENHD.DEFER_IMMD END)\t\tAS\t\tRSN_CD_DEFER_IMMDTLY_FLG ,     \r\n(CASE WHEN ENHD.TEMPLATE_NAME\tIS NULL THEN 'UNKNOWN' ELSE ENHD.TEMPLATE_NAME END)\tAS\t\tTEMPLATE_ADJUSTMENT_NAME ,     \r\n(CASE WHEN ENHD.ACTION\tIS NULL THEN 'UNKNOWN' ELSE ENHD.ACTION END)\t\t\tAS\t\tUSER_SPECIFIED_RSN_ACTION_CD,  \r\n0 ACCOUNTING_SCOPE_HOLD_PCT,\r\n(CASE WHEN ENHD.STARTING_POINT IS NULL  THEN -999 ELSE  ENHD.STARTING_POINT END)\t\tAS\t\tRSN_CD_STARTING_POINT_NUM_INT ,\r\n(CASE WHEN ENHD.RC_RANK IS NULL THEN -9 ELSE ENHD.RC_RANK END)\t\t\t\t\tAS\t\tRSN_CD_RANKING_NUM_INT ,       \r\n(CASE WHEN ENHD.PRIORITY\tIS NULL THEN -9 ELSE ENHD.PRIORITY\tEND)\t\t\t\tAS\t\tRSN_CD_PRIORITY_NUM_INT ,      \r\n(CASE WHEN ENHD.TOTAL_ELEMENT_PCT_FUNDED IS NULL THEN  0 ELSE ENHD.TOTAL_ELEMENT_PCT_FUNDED END)  AS\t\tTOTAL_UNRECOGNIZED_PCT,        \r\n(CASE WHEN ENHD.TOTAL_SEQ_PROV_PCT IS NULL THEN  0 ELSE ENHD.TOTAL_SEQ_PROV_PCT END)\t  \t       AS\t\tTOTAL_SEQUENTIAL_PRVSN_PCT,    \r\n(CASE WHEN ENHD.TOTAL_SEQ_DEFER_PCT IS NULL THEN  0 ELSE\tENHD.TOTAL_SEQ_DEFER_PCT END)\t       AS\t\tTOTAL_SEQUENTIAL_DFRRD_PCT,    \r\n(CASE WHEN ENHD.RECLASS_PCT\t IS NULL THEN  0 ELSE ENHD.RECLASS_PCT END)\t\t\t\t       AS   \t\tACTUAL_RECLASS_PCT ,           \r\n(CASE WHEN ENHD.USAGE_PCT IS NULL THEN 0 ELSE ENHD.USAGE_PCT\t END )\t\t\t\t\tAS\t\tACTUAL_USAGE_PCT  ,            \r\n(CASE WHEN ENHD.ELEMENT_RELEASE_PCT\t IS NULL THEN 0 ELSE ENHD.ELEMENT_RELEASE_PCT END)\tAS\t\tACTUAL_RELEASED_PCT,           \r\n(CASE WHEN ENHD.ELEMENT_PCT_FUNDED\tIS NULL THEN 0 ELSE  ENHD.ELEMENT_PCT_FUNDED\tEND)\tAS\t\tACTUAL_UNRECOGNIZED_PCT,       \r\n(CASE WHEN ENHD.ELEMENT_PCT_ON_SOLINE IS NULL THEN 0 ELSE ENHD.ELEMENT_PCT_ON_SOLINE END)\tAS \t\tREQUESTED_UNRECOGNIZED_PCT,    \r\n(CASE WHEN ENHD.CREATION_DATE IS NULL THEN CURRENT_DATE ELSE ENHD.CREATION_DATE \tEND)\t\tAS\t\tSOURCE_CREATED_DTM,            \r\nENHD.HOLD_DETAIL_ID \t\tAS\t\tSK_HOLD_DETAIL_ID_INT ,        \r\nCOALESCE(SNSAS.VSOE_ACCT_SCOPE,SNSAS_PAR.VSOE_ACCT_SCOPE)\t\tAS\t\tSRC_RPTD_VSOE_ACCNTNG_SCP_CD , \r\nCOALESCE(NRA.RAE_ADJUSTMENT_KEY,-999)\t \tAS \t\tRAE_ADJUSTMENT_KEY,                     \r\n(CASE WHEN ENHD.PROFILE_ID IS NULL THEN -999 ELSE ENHD.PROFILE_ID END) \t\t\tAS\t\tCCRM_PROFILE_ID_INT ,          \r\nNASR.BK_CCRM_ADJ_SUBREASON_CD\tAS\t\tCCRM_ADJUSTMENT_SUBRSN_CD,     \r\nNASR.BK_CCRM_ADJ_SUBRSN_VER_NUM_INT\t AS\tCCRM_ADJUST_SUBRSN_VER_NUM_INT,\r\nCOALESCE(SNSAS.LINE_TYPE,SNSAS_PAR.LINE_TYPE)\t\t\t\tAS\t\tCCRM_ELEMENT_TYPE_CD ,      \r\n(CASE WHEN ENHD.ATTRIBUTE11='Y' THEN ENHD.LAST_UPDATE_DATE ELSE CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0))  END) EDW_CREATE_DTM,\r\n(CASE WHEN ENHD.ATTRIBUTE11='Y' THEN 'E_MIGRATION_BATCH' ELSE USER END) EDW_CREATE_USER,\r\nCAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) EDW_UPDATE_DTM,\r\nUSER EDW_UPDATE_USER,\r\nENHD.ACTION_CODE,\r\n'I'\r\nFROM  $$EXCEPDB.EX_NGCCRM_HOLDS_DETAILS ENHD\r\nINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC ON ENHD.GLOBAL_NAME = NSSC.GLOBAL_NAME\r\nINNER JOIN $$FINLGLVWDB.N_CCRM_ADJUSTMENT_REASON NAR ON (ENHD.REASON_CODE_ID = NAR.SK_REASON_ID_INT)\r\nINNER JOIN $$FINLGLVWDB.N_CCRM_ADJUSTMENT_SUBREASON NASR ON (ENHD.SRC_ID = NASR.SK_SUBREASON_ID_INT)\r\nLEFT OUTER JOIN $$FINLGLVWDB.N_RAE_ADJUSTMENT NRA ON (ENHD.RAE_ADJUSTMENT_ID = NRA.SK_RAE_ADJUSTMENT_ID_INT AND NRA.SS_CD = NSSC.SOURCE_SYSTEM_CODE)\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL ON (ENHD.SO_LINE_ID = NSOL.SK_SO_LINE_ID_INT AND NSOL.SS_CODE = NSSC.SOURCE_SYSTEM_CODE)\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL_PAR ON (NSOL_PAR.SALES_ORDER_LINE_KEY = NSOL.RU_PARNT_SLS_ORDER_LINE_KEY) \r\nLEFT OUTER JOIN $$ETLVWDB.EL_NGCCRM_SOL_AC_SCOPE SNSAS ON (  SNSAS.SO_LINE_ID = NSOL.SK_SO_LINE_ID_INT AND  SNSAS.GLOBAL_NAME=NSSC.GLOBAL_NAME) \r\nLEFT OUTER JOIN $$ETLVWDB.EL_NGCCRM_SOL_AC_SCOPE SNSAS_PAR ON (  SNSAS_PAR.SO_LINE_ID = NSOL_PAR.SK_SO_LINE_ID_INT AND  SNSAS_PAR.GLOBAL_NAME=NSSC.GLOBAL_NAME)\r\nWHERE\r\n(  COALESCE( ENHD.EITF_PCT, 0) >0  OR\r\n    COALESCE( ENHD.SOP_PCT,0) >0\r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "PRIORITY",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "PRIORITY",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "DATASET_NUMBER",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "DATASET_NUMBER",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "RAE_PROCESS_FLAG",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "RAE_PROCESS_FLAG",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "RAE_POSTED",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "RAE_POSTED",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "RAE_ADJUSTMENT_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "RAE_ADJUSTMENT_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "CATEOGORY_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "CATEOGORY_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "SO_ACCOUNTING_RULE",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "SO_ACCOUNTING_RULE",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "IS_SPLIT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "IS_SPLIT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "SO_LINE_AMT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "SO_LINE_AMT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ELEMENT_AMT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_AMT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "RC_RANK",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "RC_RANK",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ELEMENT_PCT_ON_SOLINE",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_PCT_ON_SOLINE",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "HOLD_DETAIL_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "HOLD_DETAIL_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "SO_HEADER_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "SO_HEADER_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "TEMPLATE_NAME",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TEMPLATE_NAME",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "REASON_CODE_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "REASON_CODE_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "STARTING_POINT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "STARTING_POINT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "SRC_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "SRC_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE_CAT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE_CAT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "INHERITED_FLAG",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "INHERITED_FLAG",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "FISCAL_PERIOD",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "FISCAL_PERIOD",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "START_PERIOD",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "START_PERIOD",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "INVOICE_HOLD",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "INVOICE_HOLD",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "GLOBAL_HIERARCHY",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "GLOBAL_HIERARCHY",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "CREATED_BY",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "HOLD_INTERFACE_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "HOLD_INTERFACE_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "SO_LINE_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "SO_LINE_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "REASON_CODE",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "REASON_CODE",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ORG_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ELEMENT_PCT_FUNDED",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_PCT_FUNDED",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ELEMENT_PCT_FUNDED_P",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_PCT_FUNDED_P",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE14",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE14",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ELEMENT_PCT_AVAILABLE",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_PCT_AVAILABLE",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "TOTAL_SEQ_DEFER_AMT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TOTAL_SEQ_DEFER_AMT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "PROFILE_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "PROFILE_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "TEMPLATE_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TEMPLATE_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ACTION",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ACTION",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "USAGE_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "USAGE_PCT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "RECLASS_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "RECLASS_PCT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "TOTAL_SEQ_DEFER_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TOTAL_SEQ_DEFER_PCT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "EITF_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "EITF_PCT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "SOP_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "SOP_PCT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ELEMENT_TYPE",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_TYPE",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE1",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE1",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE2",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE2",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE3",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE3",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE4",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE4",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE5",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE5",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE6",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE6",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE7",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE7",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE8",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE8",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE9",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE9",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE10",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE10",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE11",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE11",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE12",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE12",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE13",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE13",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ATTRIBUTE15",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE15",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "STATUS_CODE",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "STATUS_CODE",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "APPLY_FUTURE_TRXS",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "APPLY_FUTURE_TRXS",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "DEFER_IMMD",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "DEFER_IMMD",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "TOTAL_SEQ_PROV_AMT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TOTAL_SEQ_PROV_AMT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "INHERITED_FRM_HDR_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "INHERITED_FRM_HDR_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "INHERITED_FRM_LN_ID",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "INHERITED_FRM_LN_ID",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "TOTAL_SEQ_PROV_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TOTAL_SEQ_PROV_PCT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "UNFUNDED",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "UNFUNDED",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ELEMENT_RELEASE_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_RELEASE_PCT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ELEMENT_RELEASE_AMT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_RELEASE_AMT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "TOTAL_ELEMENT_PCT_FUNDED",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TOTAL_ELEMENT_PCT_FUNDED",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "RAE_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "RAE_PCT",
+      "to_instance": "EX_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "RSN_CD_RANKING_NUM_INT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "RSN_CD_RANKING_NUM_INT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "RSN_CD_PRIORITY_NUM_INT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "RSN_CD_PRIORITY_NUM_INT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "TOTAL_UNRECOGNIZED_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "TOTAL_UNRECOGNIZED_PCT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "TOTAL_SEQUENTIAL_PRVSN_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "TOTAL_SEQUENTIAL_PRVSN_PCT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "TOTAL_SEQUENTIAL_DFRRD_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "TOTAL_SEQUENTIAL_DFRRD_PCT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "BK_CCRM_ADJUSTMENT_GRP_ID_INT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "BK_CCRM_ADJUSTMENT_GRP_ID_INT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "ACTUAL_USAGE_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "ACTUAL_USAGE_PCT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "ACTUAL_RELEASED_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "ACTUAL_RELEASED_PCT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "ACTUAL_UNRECOGNIZED_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "ACTUAL_UNRECOGNIZED_PCT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "INVOICE_HOLD_FLG",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "INVOICE_HOLD_FLG",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "ACTUAL_RECLASS_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "ACTUAL_RECLASS_PCT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "BK_ADJUSTMENT_CATEGORY_CD",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "BK_ADJUSTMENT_CATEGORY_CD",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "BK_CCRM_ADJUSTMENT_REASON_CD",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "BK_CCRM_ADJUSTMENT_REASON_CD",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "BK_CCRM_ADJ_REASON_VER_NUM_INT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "BK_CCRM_ADJ_REASON_VER_NUM_INT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "RAE_ADJUSTMENT_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "RAE_ADJUSTMENT_PCT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "SPLIT_ACCOUNTING_SCOPE_FLG",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "SPLIT_ACCOUNTING_SCOPE_FLG",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "RSN_CD_DEFER_IMMDTLY_FLG",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "RSN_CD_DEFER_IMMDTLY_FLG",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "RSN_CD_STARTING_POINT_NUM_INT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "RSN_CD_STARTING_POINT_NUM_INT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_SCOPE_CD",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "BK_ACCOUNTING_SCOPE_CD",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "ACCOUNTING_SCOPE_HOLD_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "ACCOUNTING_SCOPE_HOLD_PCT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "REQUESTED_UNRECOGNIZED_PCT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "REQUESTED_UNRECOGNIZED_PCT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "TEMPLATE_ADJUSTMENT_NAME",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "TEMPLATE_ADJUSTMENT_NAME",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "USER_SPECIFIED_RSN_ACTION_CD",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "USER_SPECIFIED_RSN_ACTION_CD",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "SOURCE_CREATED_DTM",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "SOURCE_CREATED_DTM",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "SK_HOLD_DETAIL_ID_INT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "SK_HOLD_DETAIL_ID_INT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "SRC_RPTD_VSOE_ACCNTNG_SCP_CD",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "SRC_RPTD_VSOE_ACCNTNG_SCP_CD",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "RAE_ADJUSTMENT_KEY",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "RAE_ADJUSTMENT_KEY",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "CCRM_PROFILE_ID_INT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "CCRM_PROFILE_ID_INT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "BK_CCRM_ADJ_SUBREASON_CD",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "CCRM_ADJUSTMENT_SUBRSN_CD",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "BK_CCRM_ADJ_SUBRSN_VER_NUM_INT",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "CCRM_ADJUST_SUBRSN_VER_NUM_INT",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "CCRM_ELEMENT_TYPE_CD",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "CCRM_ELEMENT_TYPE_CD",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_CCRM_SALES_ORDER_LINE_HOLD"
+    },
+    {
+      "from_field": "UNFUNDED",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "UNFUNDED",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ELEMENT_RELEASE_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_RELEASE_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ELEMENT_RELEASE_AMT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_RELEASE_AMT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "SRC_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "SRC_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "HOLD_INTERFACE_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "HOLD_INTERFACE_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE3",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE3",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE4",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE4",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE5",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE5",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE6",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE6",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE_CAT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE_CAT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE1",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE1",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "TOTAL_ELEMENT_PCT_FUNDED",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TOTAL_ELEMENT_PCT_FUNDED",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ELEMENT_TYPE",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_TYPE",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ACTION",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ACTION",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "SO_LINE_AMT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "SO_LINE_AMT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ELEMENT_AMT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_AMT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ELEMENT_PCT_FUNDED",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_PCT_FUNDED",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ELEMENT_PCT_FUNDED_P",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_PCT_FUNDED_P",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ELEMENT_PCT_AVAILABLE",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_PCT_AVAILABLE",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "DATASET_NUMBER",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "DATASET_NUMBER",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ELEMENT_PCT_ON_SOLINE",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ELEMENT_PCT_ON_SOLINE",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "RC_RANK",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "RC_RANK",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "PRIORITY",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "PRIORITY",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "RAE_POSTED",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "RAE_POSTED",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "RAE_ADJUSTMENT_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "RAE_ADJUSTMENT_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "CATEOGORY_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "CATEOGORY_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "INHERITED_FLAG",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "INHERITED_FLAG",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "START_PERIOD",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "START_PERIOD",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "INVOICE_HOLD",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "INVOICE_HOLD",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "GLOBAL_HIERARCHY",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "GLOBAL_HIERARCHY",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "APPLY_FUTURE_TRXS",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "APPLY_FUTURE_TRXS",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "DEFER_IMMD",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "DEFER_IMMD",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "TOTAL_SEQ_PROV_AMT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TOTAL_SEQ_PROV_AMT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "TOTAL_SEQ_DEFER_AMT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TOTAL_SEQ_DEFER_AMT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "INHERITED_FRM_HDR_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "INHERITED_FRM_HDR_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "INHERITED_FRM_LN_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "INHERITED_FRM_LN_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "PROFILE_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "PROFILE_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "TEMPLATE_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TEMPLATE_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "TEMPLATE_NAME",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TEMPLATE_NAME",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "REASON_CODE_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "REASON_CODE_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "STARTING_POINT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "STARTING_POINT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE2",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE2",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ORG_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "STATUS_CODE",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "STATUS_CODE",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "FISCAL_PERIOD",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "FISCAL_PERIOD",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "REASON_CODE",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "REASON_CODE",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "SO_ACCOUNTING_RULE",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "SO_ACCOUNTING_RULE",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "IS_SPLIT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "IS_SPLIT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE15",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE15",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "HOLD_DETAIL_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "HOLD_DETAIL_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "SO_HEADER_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "SO_HEADER_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "SO_LINE_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "SO_LINE_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "EITF_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "EITF_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "SOP_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "SOP_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE7",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE7",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE8",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE8",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "USAGE_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "USAGE_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "RECLASS_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "RECLASS_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "TOTAL_SEQ_DEFER_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TOTAL_SEQ_DEFER_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "TOTAL_SEQ_PROV_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "TOTAL_SEQ_PROV_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "RAE_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "RAE_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "RAE_PROCESS_FLAG",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "RAE_PROCESS_FLAG",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE9",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE9",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE10",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE10",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE11",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE11",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE12",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE12",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE13",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE13",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ATTRIBUTE14",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS1",
+      "to_field": "ATTRIBUTE14",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+    },
+    {
+      "from_field": "ELEMENT_PCT_FUNDED",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "ACTUAL_UNRECOGNIZED_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "VSOE_ACCT_SCOPE",
+      "from_instance": "ST_NGCCRM_SOL_AC_SCOPE",
+      "to_field": "SRC_RPTD_VSOE_ACCNTNG_SCP_CD",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "RAE_ADJUSTMENT_KEY",
+      "from_instance": "N_RAE_ADJUSTMENT",
+      "to_field": "RAE_ADJUSTMENT_KEY",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_CCRM_ADJUSTMENT_SUBREASON",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_CCRM_ADJUSTMENT_SUBREASON",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_NGCCRM_SOL_AC_SCOPE",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ELEMENT_PCT_ON_SOLINE",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "REQUESTED_UNRECOGNIZED_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "HOLD_DETAIL_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "SK_HOLD_DETAIL_ID_INT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "SOURCE_CREATED_DTM",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "STARTING_POINT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "RSN_CD_STARTING_POINT_NUM_INT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "RAE_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "RAE_ADJUSTMENT_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "INVOICE_HOLD",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "INVOICE_HOLD_FLG",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "DEFER_IMMD",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "RSN_CD_DEFER_IMMDTLY_FLG",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "IS_SPLIT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "SPLIT_ACCOUNTING_SCOPE_FLG",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ACTION",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "USER_SPECIFIED_RSN_ACTION_CD",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "TEMPLATE_NAME",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "TEMPLATE_ADJUSTMENT_NAME",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ELEMENT_RELEASE_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "ACTUAL_RELEASED_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "BK_CCRM_ADJ_REASON_VER_NUM_INT",
+      "from_instance": "N_CCRM_ADJUSTMENT_REASON",
+      "to_field": "BK_CCRM_ADJ_REASON_VER_NUM_INT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "TOTAL_ELEMENT_PCT_FUNDED",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "TOTAL_UNRECOGNIZED_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "TOTAL_SEQ_PROV_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "TOTAL_SEQUENTIAL_PRVSN_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "SUBREASON_DESCR",
+      "from_instance": "N_CCRM_ADJUSTMENT_SUBREASON",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "LINE_TYPE",
+      "from_instance": "ST_NGCCRM_SOL_AC_SCOPE",
+      "to_field": "CCRM_ELEMENT_TYPE_CD",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "N_SALES_ORDER_LINE",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "PROFILE_ID",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "CCRM_PROFILE_ID_INT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "BK_CCRM_ADJ_SUBREASON_CD",
+      "from_instance": "N_CCRM_ADJUSTMENT_SUBREASON",
+      "to_field": "BK_CCRM_ADJ_SUBREASON_CD",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "BK_CCRM_ADJ_SUBRSN_VER_NUM_INT",
+      "from_instance": "N_CCRM_ADJUSTMENT_SUBREASON",
+      "to_field": "BK_CCRM_ADJ_SUBRSN_VER_NUM_INT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "RC_RANK",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "RSN_CD_RANKING_NUM_INT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "PRIORITY",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "RSN_CD_PRIORITY_NUM_INT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ELEMENT_TYPE",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "BK_ADJUSTMENT_CATEGORY_CD",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "DATASET_NUMBER",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "BK_CCRM_ADJUSTMENT_GRP_ID_INT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "BK_CCRM_ADJUSTMENT_REASON_CD",
+      "from_instance": "N_CCRM_ADJUSTMENT_REASON",
+      "to_field": "BK_CCRM_ADJUSTMENT_REASON_CD",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_NGCCRM_SOL_AC_SCOPE",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "LINE_TYPE",
+      "from_instance": "ST_NGCCRM_SOL_AC_SCOPE",
+      "to_field": "BK_ACCOUNTING_SCOPE_CD",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "PREV_SOP_PERC",
+      "from_instance": "ST_NGCCRM_SOL_AC_SCOPE",
+      "to_field": "ACCOUNTING_SCOPE_HOLD_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "SUBREASON_DESCR",
+      "from_instance": "N_CCRM_ADJUSTMENT_SUBREASON",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "TOTAL_SEQ_DEFER_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "TOTAL_SEQUENTIAL_DFRRD_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "RECLASS_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "ACTUAL_RECLASS_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    },
+    {
+      "from_field": "USAGE_PCT",
+      "from_instance": "ST_NGCCRM_HOLDS_DETAILS",
+      "to_field": "ACTUAL_USAGE_PCT",
+      "to_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "HOLD_DETAIL_ID",
+      "source_path": [
+        {
+          "from_field": "HOLD_DETAIL_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "HOLD_DETAIL_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SO_HEADER_ID",
+      "source_path": [
+        {
+          "from_field": "SO_HEADER_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "SO_HEADER_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SO_LINE_ID",
+      "source_path": [
+        {
+          "from_field": "SO_LINE_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "SO_LINE_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REASON_CODE",
+      "source_path": [
+        {
+          "from_field": "REASON_CODE",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "REASON_CODE",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SO_ACCOUNTING_RULE",
+      "source_path": [
+        {
+          "from_field": "SO_ACCOUNTING_RULE",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "SO_ACCOUNTING_RULE",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "IS_SPLIT",
+      "source_path": [
+        {
+          "from_field": "IS_SPLIT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "IS_SPLIT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EITF_PCT",
+      "source_path": [
+        {
+          "from_field": "EITF_PCT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "EITF_PCT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOP_PCT",
+      "source_path": [
+        {
+          "from_field": "SOP_PCT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "SOP_PCT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ELEMENT_TYPE",
+      "source_path": [
+        {
+          "from_field": "ELEMENT_TYPE",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ELEMENT_TYPE",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION",
+      "source_path": [
+        {
+          "from_field": "ACTION",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ACTION",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SO_LINE_AMT",
+      "source_path": [
+        {
+          "from_field": "SO_LINE_AMT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "SO_LINE_AMT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ELEMENT_AMT",
+      "source_path": [
+        {
+          "from_field": "ELEMENT_AMT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ELEMENT_AMT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RC_RANK",
+      "source_path": [
+        {
+          "from_field": "RC_RANK",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "RC_RANK",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRIORITY",
+      "source_path": [
+        {
+          "from_field": "PRIORITY",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "PRIORITY",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DATASET_NUMBER",
+      "source_path": [
+        {
+          "from_field": "DATASET_NUMBER",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "DATASET_NUMBER",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ELEMENT_PCT_ON_SOLINE",
+      "source_path": [
+        {
+          "from_field": "ELEMENT_PCT_ON_SOLINE",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ELEMENT_PCT_ON_SOLINE",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ELEMENT_PCT_FUNDED",
+      "source_path": [
+        {
+          "from_field": "ELEMENT_PCT_FUNDED",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ELEMENT_PCT_FUNDED",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ELEMENT_PCT_FUNDED_P",
+      "source_path": [
+        {
+          "from_field": "ELEMENT_PCT_FUNDED_P",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ELEMENT_PCT_FUNDED_P",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ELEMENT_PCT_AVAILABLE",
+      "source_path": [
+        {
+          "from_field": "ELEMENT_PCT_AVAILABLE",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ELEMENT_PCT_AVAILABLE",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UNFUNDED",
+      "source_path": [
+        {
+          "from_field": "UNFUNDED",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "UNFUNDED",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ELEMENT_RELEASE_PCT",
+      "source_path": [
+        {
+          "from_field": "ELEMENT_RELEASE_PCT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ELEMENT_RELEASE_PCT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ELEMENT_RELEASE_AMT",
+      "source_path": [
+        {
+          "from_field": "ELEMENT_RELEASE_AMT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ELEMENT_RELEASE_AMT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "USAGE_PCT",
+      "source_path": [
+        {
+          "from_field": "USAGE_PCT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "USAGE_PCT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RECLASS_PCT",
+      "source_path": [
+        {
+          "from_field": "RECLASS_PCT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "RECLASS_PCT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TOTAL_SEQ_DEFER_PCT",
+      "source_path": [
+        {
+          "from_field": "TOTAL_SEQ_DEFER_PCT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "TOTAL_SEQ_DEFER_PCT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TOTAL_SEQ_PROV_PCT",
+      "source_path": [
+        {
+          "from_field": "TOTAL_SEQ_PROV_PCT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "TOTAL_SEQ_PROV_PCT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TOTAL_ELEMENT_PCT_FUNDED",
+      "source_path": [
+        {
+          "from_field": "TOTAL_ELEMENT_PCT_FUNDED",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "TOTAL_ELEMENT_PCT_FUNDED",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RAE_PCT",
+      "source_path": [
+        {
+          "from_field": "RAE_PCT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "RAE_PCT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RAE_PROCESS_FLAG",
+      "source_path": [
+        {
+          "from_field": "RAE_PROCESS_FLAG",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "RAE_PROCESS_FLAG",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RAE_POSTED",
+      "source_path": [
+        {
+          "from_field": "RAE_POSTED",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "RAE_POSTED",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RAE_ADJUSTMENT_ID",
+      "source_path": [
+        {
+          "from_field": "RAE_ADJUSTMENT_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "RAE_ADJUSTMENT_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CATEOGORY_ID",
+      "source_path": [
+        {
+          "from_field": "CATEOGORY_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "CATEOGORY_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INHERITED_FLAG",
+      "source_path": [
+        {
+          "from_field": "INHERITED_FLAG",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "INHERITED_FLAG",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ORG_ID",
+      "source_path": [
+        {
+          "from_field": "ORG_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ORG_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "STATUS_CODE",
+      "source_path": [
+        {
+          "from_field": "STATUS_CODE",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "STATUS_CODE",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FISCAL_PERIOD",
+      "source_path": [
+        {
+          "from_field": "FISCAL_PERIOD",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "FISCAL_PERIOD",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_PERIOD",
+      "source_path": [
+        {
+          "from_field": "START_PERIOD",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "START_PERIOD",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INVOICE_HOLD",
+      "source_path": [
+        {
+          "from_field": "INVOICE_HOLD",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "INVOICE_HOLD",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GLOBAL_HIERARCHY",
+      "source_path": [
+        {
+          "from_field": "GLOBAL_HIERARCHY",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "GLOBAL_HIERARCHY",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "APPLY_FUTURE_TRXS",
+      "source_path": [
+        {
+          "from_field": "APPLY_FUTURE_TRXS",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "APPLY_FUTURE_TRXS",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DEFER_IMMD",
+      "source_path": [
+        {
+          "from_field": "DEFER_IMMD",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "DEFER_IMMD",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TOTAL_SEQ_PROV_AMT",
+      "source_path": [
+        {
+          "from_field": "TOTAL_SEQ_PROV_AMT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "TOTAL_SEQ_PROV_AMT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TOTAL_SEQ_DEFER_AMT",
+      "source_path": [
+        {
+          "from_field": "TOTAL_SEQ_DEFER_AMT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "TOTAL_SEQ_DEFER_AMT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INHERITED_FRM_HDR_ID",
+      "source_path": [
+        {
+          "from_field": "INHERITED_FRM_HDR_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "INHERITED_FRM_HDR_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INHERITED_FRM_LN_ID",
+      "source_path": [
+        {
+          "from_field": "INHERITED_FRM_LN_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "INHERITED_FRM_LN_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROFILE_ID",
+      "source_path": [
+        {
+          "from_field": "PROFILE_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "PROFILE_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TEMPLATE_ID",
+      "source_path": [
+        {
+          "from_field": "TEMPLATE_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "TEMPLATE_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TEMPLATE_NAME",
+      "source_path": [
+        {
+          "from_field": "TEMPLATE_NAME",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "TEMPLATE_NAME",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REASON_CODE_ID",
+      "source_path": [
+        {
+          "from_field": "REASON_CODE_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "REASON_CODE_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "STARTING_POINT",
+      "source_path": [
+        {
+          "from_field": "STARTING_POINT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "STARTING_POINT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SRC_ID",
+      "source_path": [
+        {
+          "from_field": "SRC_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "SRC_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GLOBAL_NAME",
+      "source_path": [
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "HOLD_INTERFACE_ID",
+      "source_path": [
+        {
+          "from_field": "HOLD_INTERFACE_ID",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "HOLD_INTERFACE_ID",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE_CAT",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE_CAT",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE_CAT",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE1",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE1",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE1",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE2",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE2",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE2",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE3",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE3",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE3",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE4",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE4",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE4",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE5",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE5",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE5",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE6",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE6",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE6",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE7",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE7",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE7",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE8",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE8",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE8",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE9",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE9",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE9",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE10",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE10",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE10",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE11",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE11",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE11",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE12",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE12",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE12",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE13",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE13",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE13",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE14",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE14",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE14",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE15",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE15",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ATTRIBUTE15",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATED_BY",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_NGCCRM_HOLDS_DETAILS"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_NGCCRM_HOLDS_DETAILS1"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_NGCCRM_SOL_AC_SCOPE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:19.746679+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,343 @@
+{
+  "workflow_name": "wf_m_N_GTC_BUSINESS_ENTITY_STG23NF",
+  "mapping_name": "m_N_GTC_BUSINESS_ENTITY_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GTC",
+  "target_table": "N_GTC_BUSINESS_ENTITY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gtc_wf_n_gtc_business_entity_stg23nf_01_mart_n_gtc_business_entity",
+  "source_tables": [
+    "N_GTC_BUSINESS_ENTITY"
+  ],
+  "sources": [
+    {
+      "name": "N_GTC_BUSINESS_ENTITY",
+      "database_type": "Teradata",
+      "owner": "FINLGLDB_DV1",
+      "fields": [
+        {
+          "name": "BK_GTC_BUSINESS_ENTITY_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_GTC_BUSINESS_ENTITY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_GTC_BUSINESS_ENTITY_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SOURCE_DELETED_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_GTC_BUSINESS_ENTITY",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_GTC_BUSINESS_ENTITY_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\tCOALESCE( X.BK_GTC_BUSINESS_ENTITY_NAME, 'UNKNOWN') AS BK_GTC_BUSINESS_ENTITY_NAME ,\r\n\t'N' AS SOURCE_DELETED_FLG,\r\n\tCURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\n\tUSER EDW_CREATE_USER,\r\n\tCURRENT_TIMESTAMP(0) EDW_UPDATE_DTM,\r\n\tUSER EDW_UPDATE_USER\r\nFROM\r\n( \r\n\t(\r\n\tSELECT  REFERENCE11  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE11 IS NOT NULL\r\n\t UNION\r\n\tSELECT  REFERENCE13  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE13 IS NOT NULL\r\n\t UNION\r\n\tSELECT  REFERENCE12  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE12 IS NOT NULL\r\n\t UNION\r\n\tSELECT  REFERENCE14  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE14 IS NOT NULL\r\n\t UNION\r\n\tSELECT  REFERENCE7   AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE7 IS NOT NULL\r\n\t)\r\n\tUNION\r\n\t(\r\n\t SELECT  REFERENCE31  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\t WHERE REFERENCE31 IS NOT NULL\r\n\t  UNION\r\n\t SELECT  REFERENCE33  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\t WHERE REFERENCE33 IS NOT NULL\r\n\t UNION\r\n\t SELECT  REFERENCE32  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\t WHERE REFERENCE32 IS NOT NULL\r\n\t  UNION\r\n\t SELECT  REFERENCE34  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\t WHERE REFERENCE34 IS NOT NULL\r\n\t  UNION\r\n\t SELECT  REFERENCE27  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\t WHERE REFERENCE27 IS NOT NULL\r\n\t)\r\n\tUNION\r\n\t(\r\n\tSELECT  REFERENCE51  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE51 IS NOT NULL\r\n\t UNION\r\n\tSELECT  REFERENCE53  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE53 IS NOT NULL\r\n\t UNION\r\n\tSELECT  REFERENCE52  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE52 IS NOT NULL\r\n\t UNION\r\n\tSELECT  REFERENCE54  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE54 IS NOT NULL\r\n\t UNION\r\n\tSELECT  REFERENCE47  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE47 IS NOT NULL\r\n\t)\r\n\tUNION\r\n\t(\r\n\tSELECT  REFERENCE71  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE71 IS NOT NULL\r\n\t UNION\r\n\tSELECT  REFERENCE73  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE73 IS NOT NULL\r\n\t UNION\r\n\tSELECT  REFERENCE72  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE72 IS NOT NULL\r\n\t UNION\r\n\tSELECT  REFERENCE74  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE74 IS NOT NULL\r\n\t UNION\r\n\tSELECT  REFERENCE67  AS BK_GTC_BUSINESS_ENTITY_NAME FROM  $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 \r\n\tWHERE REFERENCE67 IS NOT NULL\r\n\t)\r\n) X\r\nWHERE NOT EXISTS\r\n(\r\n\tSELECT 1 FROM $$FINLGLVWDB.N_GTC_BUSINESS_ENTITY NGBE\r\n\tWHERE NGBE.BK_GTC_BUSINESS_ENTITY_NAME = X.BK_GTC_BUSINESS_ENTITY_NAME\r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_GTC_BUSINESS_ENTITY_NAME",
+      "from_instance": "SQ_N_GTC_BUSINESS_ENTITY",
+      "to_field": "BK_GTC_BUSINESS_ENTITY_NAME",
+      "to_instance": "N_GTC_BUSINESS_ENTITY"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "SQ_N_GTC_BUSINESS_ENTITY",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "N_GTC_BUSINESS_ENTITY"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_GTC_BUSINESS_ENTITY",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_GTC_BUSINESS_ENTITY"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_GTC_BUSINESS_ENTITY",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_GTC_BUSINESS_ENTITY"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_GTC_BUSINESS_ENTITY",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_GTC_BUSINESS_ENTITY"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_GTC_BUSINESS_ENTITY",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_GTC_BUSINESS_ENTITY"
+    },
+    {
+      "from_field": "BK_GTC_BUSINESS_ENTITY_NAME",
+      "from_instance": "N_GTC_BUSINESS_ENTITY",
+      "to_field": "BK_GTC_BUSINESS_ENTITY_NAME",
+      "to_instance": "SQ_N_GTC_BUSINESS_ENTITY"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "N_GTC_BUSINESS_ENTITY",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "SQ_N_GTC_BUSINESS_ENTITY"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_GTC_BUSINESS_ENTITY",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_GTC_BUSINESS_ENTITY"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_GTC_BUSINESS_ENTITY",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_GTC_BUSINESS_ENTITY"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_GTC_BUSINESS_ENTITY",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_GTC_BUSINESS_ENTITY"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_GTC_BUSINESS_ENTITY",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_GTC_BUSINESS_ENTITY"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_GTC_BUSINESS_ENTITY_NAME",
+      "source_path": [
+        {
+          "from_field": "BK_GTC_BUSINESS_ENTITY_NAME",
+          "from_instance": "SQ_N_GTC_BUSINESS_ENTITY"
+        },
+        {
+          "from_field": "BK_GTC_BUSINESS_ENTITY_NAME",
+          "from_instance": "N_GTC_BUSINESS_ENTITY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_DELETED_FLG",
+      "source_path": [
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "SQ_N_GTC_BUSINESS_ENTITY"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "N_GTC_BUSINESS_ENTITY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_GTC_BUSINESS_ENTITY"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_GTC_BUSINESS_ENTITY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_GTC_BUSINESS_ENTITY"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_GTC_BUSINESS_ENTITY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_N_GTC_BUSINESS_ENTITY"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "N_GTC_BUSINESS_ENTITY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_GTC_BUSINESS_ENTITY"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_GTC_BUSINESS_ENTITY"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:12.871871+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

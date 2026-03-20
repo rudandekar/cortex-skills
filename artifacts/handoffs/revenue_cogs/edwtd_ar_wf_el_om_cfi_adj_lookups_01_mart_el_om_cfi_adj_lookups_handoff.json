@@ -1,0 +1,600 @@
+{
+  "workflow_name": "wf_m_EL_OM_CFI_ADJ_LOOKUPS",
+  "mapping_name": "m_EL_OM_CFI_ADJ_LOOKUPS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "EL_OM_CFI_ADJ_LOOKUPS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_el_om_cfi_adj_lookups_01_mart_el_om_cfi_adj_lookups",
+  "source_tables": [
+    "ST_OM_CFI_ADJ_LOOKUPS"
+  ],
+  "sources": [
+    {
+      "name": "ST_OM_CFI_ADJ_LOOKUPS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV6",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE1",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE2",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE3",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE4",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE5",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "80",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LOOKUP_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LOOKUP_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LOOKUP_VALUE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "START_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_OM_CFI_ADJ_LOOKUPS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "LOOKUP_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DESCRIPTION",
+        "datatype": "varchar",
+        "precision": "80",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GLOBAL_NAME",
+        "datatype": "varchar",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "LOOKUP_TYPE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LOOKUP_VALUE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_OM_CFI_ADJ_LOOKUPS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE4",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE5",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSOCAL.DESCRIPTION, \r\nSOCAL.GLOBAL_NAME, \r\nSOCAL.LOOKUP_ID, \r\nSOCAL.LOOKUP_TYPE, \r\nSOCAL.LOOKUP_VALUE \r\nFROM\r\n$$STGDB.ST_OM_CFI_ADJ_LOOKUPS SOCAL\r\nWHERE NOT EXISTS (SELECT 1 FROM $$ETLVWDB.EL_OM_CFI_ADJ_LOOKUPS EOCAL\r\n\tWHERE SOCAL.LOOKUP_ID = EOCAL.LOOKUP_ID\r\n\tAND SOCAL.GLOBAL_NAME = EOCAL.GLOBAL_NAME)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EL_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EL_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "LOOKUP_ID",
+      "from_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "LOOKUP_ID",
+      "to_instance": "EL_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "LOOKUP_TYPE",
+      "from_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "LOOKUP_TYPE",
+      "to_instance": "EL_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "LOOKUP_VALUE",
+      "from_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "LOOKUP_VALUE",
+      "to_instance": "EL_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "ATTRIBUTE1",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "ATTRIBUTE1",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "ATTRIBUTE2",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "ATTRIBUTE2",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "ATTRIBUTE3",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "ATTRIBUTE3",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "ATTRIBUTE4",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "ATTRIBUTE4",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "ATTRIBUTE5",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "ATTRIBUTE5",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "END_DATE",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "LOOKUP_ID",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "LOOKUP_ID",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "LOOKUP_TYPE",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "LOOKUP_TYPE",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "LOOKUP_VALUE",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "LOOKUP_VALUE",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "START_DATE",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "START_DATE",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_OM_CFI_ADJ_LOOKUPS",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "LOOKUP_ID",
+      "source_path": [
+        {
+          "from_field": "LOOKUP_ID",
+          "from_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+        },
+        {
+          "from_field": "LOOKUP_ID",
+          "from_instance": "ST_OM_CFI_ADJ_LOOKUPS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "ST_OM_CFI_ADJ_LOOKUPS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GLOBAL_NAME",
+      "source_path": [
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "ST_OM_CFI_ADJ_LOOKUPS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LOOKUP_TYPE",
+      "source_path": [
+        {
+          "from_field": "LOOKUP_TYPE",
+          "from_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+        },
+        {
+          "from_field": "LOOKUP_TYPE",
+          "from_instance": "ST_OM_CFI_ADJ_LOOKUPS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LOOKUP_VALUE",
+      "source_path": [
+        {
+          "from_field": "LOOKUP_VALUE",
+          "from_instance": "SQ_ST_OM_CFI_ADJ_LOOKUPS"
+        },
+        {
+          "from_field": "LOOKUP_VALUE",
+          "from_instance": "ST_OM_CFI_ADJ_LOOKUPS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:32:56.766007+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

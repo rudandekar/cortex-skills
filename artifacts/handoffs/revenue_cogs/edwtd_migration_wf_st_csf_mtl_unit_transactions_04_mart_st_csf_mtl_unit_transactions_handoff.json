@@ -1,0 +1,386 @@
+{
+  "workflow_name": "wf_m_ST_CSF_MTL_UNIT_TRANSACTIONS_RMA",
+  "mapping_name": "m_ST_CSF_MTL_UNIT_TRANSACTIONS_RMA",
+  "mapping_description": "",
+  "folder_name": "EDWTD_MIGRATION",
+  "target_table": "ST_CSF_MTL_UNIT_TRANSACTIONS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_migration_wf_st_csf_mtl_unit_transactions_04_mart_st_csf_mtl_unit_transactions",
+  "source_tables": [
+    "CSF_MTL_UNIT_TRANSACTIONS",
+    "FF_CSF_MTL_UNIT_TRANSACTIONS"
+  ],
+  "sources": [
+    {
+      "name": "CSF_MTL_UNIT_TRANSACTIONS",
+      "database_type": "Oracle",
+      "owner": "Oracle",
+      "fields": [
+        {
+          "name": "ROWNUMBER",
+          "datatype": "number(p,s)",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "transaction_id",
+          "datatype": "number(p,s)",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "serial_number",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "last_update_date",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "creation_date",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "database_type": "Flat File",
+      "owner": "",
+      "fields": [
+        {
+          "name": "ROWNUMBER",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "transaction_id",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "serial_number",
+          "datatype": "string",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "last_update_date",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "creation_date",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_CSF_MTL_UNIT_TRANSACTIONS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ROWNUMBER",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "transaction_id",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "serial_number",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "last_update_date",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "creation_date",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ROWNUMBER",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "transaction_id",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "serial_number",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "last_update_date",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "creation_date",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "transaction_id",
+      "from_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "to_field": "transaction_id",
+      "to_instance": "ST_CSF_MTL_UNIT_TRANSACTIONS"
+    },
+    {
+      "from_field": "serial_number",
+      "from_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "to_field": "serial_number",
+      "to_instance": "ST_CSF_MTL_UNIT_TRANSACTIONS"
+    },
+    {
+      "from_field": "last_update_date",
+      "from_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "to_field": "last_update_date",
+      "to_instance": "ST_CSF_MTL_UNIT_TRANSACTIONS"
+    },
+    {
+      "from_field": "creation_date",
+      "from_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "to_field": "creation_date",
+      "to_instance": "ST_CSF_MTL_UNIT_TRANSACTIONS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "ST_CSF_MTL_UNIT_TRANSACTIONS"
+    },
+    {
+      "from_field": "ROWNUMBER",
+      "from_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "to_field": "ROWNUMBER",
+      "to_instance": "ST_CSF_MTL_UNIT_TRANSACTIONS"
+    },
+    {
+      "from_field": "transaction_id",
+      "from_instance": "FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "to_field": "transaction_id",
+      "to_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS"
+    },
+    {
+      "from_field": "serial_number",
+      "from_instance": "FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "to_field": "serial_number",
+      "to_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS"
+    },
+    {
+      "from_field": "last_update_date",
+      "from_instance": "FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "to_field": "last_update_date",
+      "to_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS"
+    },
+    {
+      "from_field": "creation_date",
+      "from_instance": "FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "to_field": "creation_date",
+      "to_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS"
+    },
+    {
+      "from_field": "ROWNUMBER",
+      "from_instance": "FF_CSF_MTL_UNIT_TRANSACTIONS",
+      "to_field": "ROWNUMBER",
+      "to_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ROWNUMBER",
+      "source_path": [
+        {
+          "from_field": "ROWNUMBER",
+          "from_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS"
+        },
+        {
+          "from_field": "ROWNUMBER",
+          "from_instance": "FF_CSF_MTL_UNIT_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "transaction_id",
+      "source_path": [
+        {
+          "from_field": "transaction_id",
+          "from_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS"
+        },
+        {
+          "from_field": "transaction_id",
+          "from_instance": "FF_CSF_MTL_UNIT_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "serial_number",
+      "source_path": [
+        {
+          "from_field": "serial_number",
+          "from_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS"
+        },
+        {
+          "from_field": "serial_number",
+          "from_instance": "FF_CSF_MTL_UNIT_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "last_update_date",
+      "source_path": [
+        {
+          "from_field": "last_update_date",
+          "from_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS"
+        },
+        {
+          "from_field": "last_update_date",
+          "from_instance": "FF_CSF_MTL_UNIT_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "creation_date",
+      "source_path": [
+        {
+          "from_field": "creation_date",
+          "from_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS"
+        },
+        {
+          "from_field": "creation_date",
+          "from_instance": "FF_CSF_MTL_UNIT_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_FF_CSF_MTL_UNIT_TRANSACTIONS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "FF_CSF_MTL_UNIT_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:18.164845+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,132 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_xla_revenue_transfer_incr', 'batch', 'edwtd_ar'],
+    meta={
+        'source_workflow': 'wf_m_WI_XLA_REVENUE_TRANSFER_INCR',
+        'target_table': 'WI_XLA_REVENUE_TRANSFER_INCR',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:46.672717+00:00'
+    }
+) }}
+
+WITH 
+
+source_ex_xxcfir_revenue_dist_v_ar_rt AS (
+    SELECT
+        transaction_dist_id,
+        ae_header_id,
+        ae_line_num,
+        application_id,
+        code_combination_id,
+        accounting_class_code,
+        entered_dr,
+        entered_cr,
+        accounted_dr,
+        accounted_cr,
+        currency_code,
+        dist_bal_type,
+        order_number,
+        order_line_id,
+        trx_line_id,
+        attribute9,
+        attribute6,
+        attribute7,
+        attribute8,
+        transaction_id,
+        attribute14,
+        attribute12,
+        attribute13,
+        attribute1,
+        attribute15,
+        ledger_id,
+        exception_type,
+        amount,
+        accounted_amount,
+        gl_date,
+        gl_posted_date,
+        dist_type,
+        element_type
+    FROM {{ source('raw', 'ex_xxcfir_revenue_dist_v_ar_rt') }}
+),
+
+source_wi_xla_revenue_transfer_incr AS (
+    SELECT
+        ae_header_id,
+        ae_line_num,
+        application_id,
+        accounting_date,
+        gl_transfer_date,
+        ledger_id,
+        accounted_cr,
+        accounted_dr,
+        accounting_class_code,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        order_line_id,
+        trx_line_id,
+        attribute9,
+        attribute7,
+        attribute8,
+        transaction_id,
+        code_combination_id,
+        currency_code,
+        entered_cr,
+        entered_dr,
+        accounting_rule_duration,
+        accounting_rule_name,
+        contract_number,
+        element_type,
+        rule_end_date,
+        rule_start_date,
+        ss_code,
+        attribute15,
+        attribute1,
+        attribute21,
+        attribute22
+    FROM {{ source('raw', 'wi_xla_revenue_transfer_incr') }}
+),
+
+final AS (
+    SELECT
+        transaction_dist_id,
+        ae_header_id,
+        ae_line_num,
+        application_id,
+        accounting_date,
+        gl_transfer_date,
+        ledger_id,
+        accounted_cr,
+        accounted_dr,
+        accounting_class_code,
+        attribute14,
+        attribute12,
+        attribute13,
+        attribute1,
+        order_line_id,
+        trx_line_id,
+        attribute9,
+        attribute7,
+        attribute8,
+        transaction_id,
+        code_combination_id,
+        currency_code,
+        entered_cr,
+        entered_dr,
+        accounting_rule_duration,
+        accounting_rule_name,
+        contract_number,
+        element_type,
+        rule_end_date,
+        rule_start_date,
+        ss_code,
+        attribute15,
+        order_number,
+        attribute21,
+        attribute22
+    FROM source_wi_xla_revenue_transfer_incr
+)
+
+SELECT * FROM final

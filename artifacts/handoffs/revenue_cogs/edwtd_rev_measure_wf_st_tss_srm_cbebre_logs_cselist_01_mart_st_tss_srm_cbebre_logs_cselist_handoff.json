@@ -1,0 +1,210 @@
+{
+  "workflow_name": "wf_m_ST_TSS_SRM_CBEBRE_LOGS_CSELIST",
+  "mapping_name": "m_ST_TSS_SRM_CBEBRE_LOGS_CSELIST",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "ST_TSS_SRM_CBEBRE_LOGS_CSELIST",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_st_tss_srm_cbebre_logs_cselist_01_mart_st_tss_srm_cbebre_logs_cselist",
+  "source_tables": [
+    "FF_BRE_CSELIST"
+  ],
+  "sources": [
+    {
+      "name": "FF_BRE_CSELIST",
+      "database_type": "Flat File",
+      "owner": "Flat_File",
+      "fields": [
+        {
+          "name": "TRANSACTION_ID",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CSEID",
+          "datatype": "string",
+          "precision": "9000",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_TSS_SRM_CBEBRE_LOGS_CSELIST",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "TRANSACTION_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CSEID",
+        "datatype": "varchar",
+        "precision": "9000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "TRANSACTION_ID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_TRANSACTION_ID",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(TRANSACTION_ID)) = '\\N',NULL,TRANSACTION_ID)"
+        },
+        {
+          "name": "CSEID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_CSEID",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(CSEID)) = '\\N',NULL,CSEID)"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_FF_BRE_CSELIST",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "TRANSACTION_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CSEID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "O_TRANSACTION_ID",
+      "from_instance": "EXPTRANS",
+      "to_field": "TRANSACTION_ID",
+      "to_instance": "ST_TSS_SRM_CBEBRE_LOGS_CSELIST"
+    },
+    {
+      "from_field": "O_CSEID",
+      "from_instance": "EXPTRANS",
+      "to_field": "CSEID",
+      "to_instance": "ST_TSS_SRM_CBEBRE_LOGS_CSELIST"
+    },
+    {
+      "from_field": "TRANSACTION_ID",
+      "from_instance": "SQ_FF_BRE_CSELIST",
+      "to_field": "TRANSACTION_ID",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "CSEID",
+      "from_instance": "SQ_FF_BRE_CSELIST",
+      "to_field": "CSEID",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "TRANSACTION_ID",
+      "from_instance": "FF_BRE_CSELIST",
+      "to_field": "TRANSACTION_ID",
+      "to_instance": "SQ_FF_BRE_CSELIST"
+    },
+    {
+      "from_field": "CSEID",
+      "from_instance": "FF_BRE_CSELIST",
+      "to_field": "CSEID",
+      "to_instance": "SQ_FF_BRE_CSELIST"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "TRANSACTION_ID",
+      "source_path": [
+        {
+          "from_field": "O_TRANSACTION_ID",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "TRANSACTION_ID",
+          "from_instance": "SQ_FF_BRE_CSELIST"
+        },
+        {
+          "from_field": "TRANSACTION_ID",
+          "from_instance": "FF_BRE_CSELIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CSEID",
+      "source_path": [
+        {
+          "from_field": "O_CSEID",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "CSEID",
+          "from_instance": "SQ_FF_BRE_CSELIST"
+        },
+        {
+          "from_field": "CSEID",
+          "from_instance": "FF_BRE_CSELIST"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:27.077519+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

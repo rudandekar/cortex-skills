@@ -1,0 +1,662 @@
+{
+  "workflow_name": "wf_m_WI_RET_DVAD_BKGS_CHNL_MEASURE",
+  "mapping_name": "m_WI_RET_DVAD_BKGS_CHNL_MEASURE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_BKG_AGGRS",
+  "target_table": "WI_RET_DVAD_BKGS_CHNL_MEASURE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_bkg_aggrs_wf_wi_ret_dvad_bkgs_chnl_measure_02_mart_wi_ret_dvad_bkgs_chnl_measure",
+  "source_tables": [
+    "WI_RET_DVAD_BKGS_CHNL_MEASURE",
+    "WI_CHNL_RET_DVAD_PART_COUNTRY"
+  ],
+  "sources": [
+    {
+      "name": "WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV2",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CHANNEL_DROP_SHIP_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_ROUTE_TO_MARKET_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_CHNL_RET_DVAD_PART_COUNTRY",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV9",
+      "fields": [
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DEALS_PPSK",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUST_COUNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEALS_CNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_RET_DVAD_BKGS_CHNL_MEASURE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BOOKINGS_MEASURE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BOOKINGS_PROCESS_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+        "datatype": "char",
+        "precision": "7",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "PARTNER_SITE_PARTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CHANNEL_BOOKINGS_FLG_AS",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CHANNEL_DROP_SHIP_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_ROUTE_TO_MARKET_CD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BOOKING_CHANNEL_TYPE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEALS_PPSK",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_COUNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEALS_CNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEALS_PARTY_SITE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_DROP_SHIP_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\tEDC.SOLD_TO_CUSTOMER_KEY\tAS SOLD_TO_CUSTOMER_KEY,\r\n\tEDC.DV_END_CUSTOMER_KEY\t\tAS DV_END_CUSTOMER_KEY,\r\n\tEDC.SALES_ORDER_KEY\t\tAS SALES_ORDER_KEY, \r\n\tEDC.DV_END_CUST_PARTY_KEY \tAS DV_END_CUST_PARTY_KEY, \r\n\tEDC.DEALS_PPSK  \t\tAS DEALS_PPSK,  \r\n\tEDC.DV_END_CUST_COUNTRY_CD   \tAS DV_END_CUST_COUNTRY_CD,\r\n\tEDC.DEALS_CNTRY_CD      \tAS DEALS_CNTRY_CD,        \r\n       \r\n        COALESCE(DSHIP.PARTNER_SITE_PARTY_KEY,-999) AS DEALS_PARTY_SITE_KEY,\r\n\tCASE \r\n\t\tWHEN EDC.DEALS_PPSK = -999 THEN -999 \r\n\t\tELSE \r\n\t\t\tCASE \r\n\t\t\t\tWHEN EDC.DEALS_PPSK = EDC.DV_END_CUST_PARTY_KEY THEN EDC.DEALS_PPSK \r\n\t\t\t\tELSE \r\n\t\t\t\t\tCASE \r\n\t\t\t\t\t\tWHEN EDC.DEALS_CNTRY_CD = EDC.DV_END_CUST_COUNTRY_CD THEN  EDC.DEALS_PPSK \r\n\t\t\t\t\t\tELSE \r\n\t\t\t\t\t\t\tCASE \r\n\t\t\t\t\t\t\t\tWHEN COALESCE(DSHIP.PARTNER_SITE_PARTY_KEY,-999) = -999 THEN EDC.DEALS_PPSK \r\n\t\t\t\t\t\t\t\tELSE COALESCE(DSHIP.PARTNER_SITE_PARTY_KEY,-999)\r\n\t\t\t\t\t\t\tEND\r\n\t\t\t\t\tEND\r\n\t\t\tEND\r\n\tEND \t\t\t\t\t\tAS PARTNER_SITE_PARTY_KEY,\r\n\tCASE WHEN EDC.DEALS_PPSK = -999 THEN 'N' \r\n\t\tELSE CASE WHEN EDC.DEALS_PPSK = DV_END_CUST_PARTY_KEY THEN 'N' \r\n\t\t\tELSE CASE WHEN EDC.DV_END_CUST_COUNTRY_CD = 'UNK' THEN 'N'\r\n\t\t\t\tELSE CASE WHEN EDC.DEALS_CNTRY_CD = EDC.DV_END_CUST_COUNTRY_CD THEN  'N' \r\n\t\t\t\t\tELSE 'Y' \r\n\t\t\t\tEND\r\n\t\t\tEND\r\n\t\tEND\r\n\tEND \tAS CHANNEL_DROP_SHIP_FLAG,\r\n\tEDC.SHIP_TO_CUSTOMER_KEY\tAS SHIP_TO_CUSTOMER_KEY\r\nFROM $$STGDB.WI_CHNL_RET_DVAD_PART_COUNTRY EDC\r\n\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CHANNEL_PARTNER_SITE NCPS\r\nON EDC.DEALS_PPSK = NCPS.PARTNER_SITE_PARTY_KEY\r\n\r\nLEFT OUTER JOIN  \r\n(\r\nSELECT \r\n\tPS.PARTNER_SITE_PARTY_KEY, \r\n\tCOALESCE(PS.BK_PARTY_ID_INT,-999) PARTY_ID,\r\n\tCOALESCE(DD_GRNDPARNT_PARTNER_PARTY_KEY,-999) GRNDPARNT_PARTNER_PARTY_KEY,\r\n\tCOALESCE (BK_ISO_COUNTRY_CODE,'UNK')  ISO_COUNTRY_CODE\r\nFROM \r\n\t$$COMREFVWDB.N_CHANNEL_PARTNER_SITE PS,\r\n\t$$COMREFVWDB.N_CHNL_PTNR_COUNTRY PC\r\nWHERE \t1=1\r\n\tAND PS.PARTNER_COUNTRY_PARTY_KEY = PC.PARTNER_COUNTRY_PARTY_KEY\r\n\tAND PS.SOURCE_DELETED_FLG='N'\r\n\tAND PC.SOURCE_DELETED_FLG='N'\r\nQUALIFY ROW_NUMBER () OVER (PARTITION BY \r\n\tGRNDPARNT_PARTNER_PARTY_KEY,\r\n\tISO_COUNTRY_CODE \r\n\tORDER BY PARTY_ID ASC) =1\r\n) DSHIP\r\n\tON \tCOALESCE(NCPS.DD_GRNDPARNT_PARTNER_PARTY_KEY,-999) = DSHIP.GRNDPARNT_PARTNER_PARTY_KEY\r\n\tAND \tEDC.DV_END_CUST_COUNTRY_CD = DSHIP.ISO_COUNTRY_CODE",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_BOOKINGS_FLG_AS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_DROP_SHIP_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ROUTE_TO_MARKET_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKING_CHANNEL_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n   NBM.BOOKINGS_MEASURE_KEY\r\n  ,NBM.BOOKINGS_PROCESS_DATE\r\n  ,NBM.BKGS_MEASURE_TRANS_TYPE_CODE\r\n  ,EDC.PARTNER_SITE_PARTY_KEY\r\n  ,CASE \r\n    --WHEN NBM.ADJUSTMENT_CODE = 'RB' THEN 'REBATES' \r\n            WHEN RSH.L1_SALES_TERRITORY_NAME_CODE = 'WW Distribution' THEN 'N' \r\n\t\t\tELSE 'Y'\r\n       END CHANNEL_BOOKINGS_FLG_AS\r\n  ,EDC.CHANNEL_DROP_SHIP_FLG,\r\n  /*ADDED AS A PART OF ICPM Q2FY16*/\r\n  CASE WHEN CHANNEL_BOOKINGS_FLG_AS='N' AND SOL.BK_SO_NUMBER_INT            < 0 THEN 'OTHERS'\r\n WHEN CHANNEL_BOOKINGS_FLG_AS='N' AND SOL.BK_SO_NUMBER_INT            > 0  THEN 'DIRECT'\r\n WHEN  CHANNEL_BOOKINGS_FLG_AS='Y'   THEN '1-TIER'\r\n \r\n ELSE 'OTHERS'\r\n END  DV_ROUTE_TO_MARKET_CD,\r\n CASE \r\n    --WHEN NBM.ADJUSTMENT_CODE = 'RB' THEN 'REBATES' \r\n            WHEN RSH.L1_SALES_TERRITORY_NAME_CODE = 'WW Distribution' THEN 'NON CHANNEL' \r\n\t\t\tELSE 'CHANNEL'\r\n       END BOOKING_CHANNEL_TYPE  \r\n FROM \r\n $$SLSORDVWDB.N_BOOKINGS_MEASURE NBM,\r\n $$STGDB.WI_CHNL_RET_DATES CRD,\r\n $$STGDB.WI_CHNL_RET_DVAD_PART_DSF_PSPK EDC,\r\n $$SLSORDVWDB.N_BOOKINGS_CHANNEL_MEASURE  RBCM,\r\n $$SLSORDVWDB.N_SALES_ORDER_TV SOL,\r\n $$COMREFVWDB.R_SALES_HIERARCHY RSH\r\n WHERE \r\n  NBM.BOOKINGS_PROCESS_DATE = CRD.CALENDAR_DATE\r\n  AND   NBM.SOLD_TO_CUSTOMER_KEY = EDC.SOLD_TO_CUSTOMER_KEY\r\n  AND   NBM.DV_END_CUSTOMER_KEY = EDC.DV_END_CUSTOMER_KEY\r\n  AND   NBM.SALES_ORDER_KEY = EDC.SALES_ORDER_KEY\r\n  AND   NBM.SHIP_TO_CUSTOMER_KEY = EDC.SHIP_TO_CUSTOMER_KEY\r\n  AND   NBM.BKGS_MEASURE_TRANS_TYPE_CODE IN ('ERP')\r\n  AND   NBM.SALES_CHANNEL_CODE = 'DVAD' /*DVAD records only*/\r\n  AND NBM.BOOKINGS_MEASURE_KEY = RBCM.BOOKINGS_MEASURE_KEY\r\n  AND NBM.BOOKINGS_PROCESS_DATE = RBCM.BOOKINGS_PROCESS_DATE\r\n  AND NBM.BKGS_MEASURE_TRANS_TYPE_CODE = RBCM.BKGS_MEASURE_TRANS_TYPE_CODE\r\n  AND NBM.SALES_ORDER_KEY = SOL.SALES_ORDER_KEY                            \r\n  AND NBM.SALES_TERRITORY_KEY=RSH.SALES_TERRITORY_KEY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "DV_ROUTE_TO_MARKET_CD",
+      "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "DV_ROUTE_TO_MARKET_CD",
+      "to_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE2"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE2"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE2"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE2"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE2"
+    },
+    {
+      "from_field": "CHANNEL_DROP_SHIP_FLG",
+      "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "CHANNEL_DROP_SHIP_FLG",
+      "to_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE2"
+    },
+    {
+      "from_field": "BOOKING_CHANNEL_TYPE",
+      "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "BOOKING_CHANNEL_TYPE",
+      "to_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE2"
+    },
+    {
+      "from_field": "CHANNEL_BOOKINGS_FLG_AS",
+      "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "CHANNEL_BOOKINGS_FLG_AS",
+      "to_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE2"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_DSF_PSPK1"
+    },
+    {
+      "from_field": "DEALS_PPSK",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1",
+      "to_field": "DEALS_PPSK",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_DSF_PSPK1"
+    },
+    {
+      "from_field": "DV_END_CUST_COUNTRY_CD",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1",
+      "to_field": "DV_END_CUST_COUNTRY_CD",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_DSF_PSPK1"
+    },
+    {
+      "from_field": "DEALS_CNTRY_CD",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1",
+      "to_field": "DEALS_CNTRY_CD",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_DSF_PSPK1"
+    },
+    {
+      "from_field": "DEALS_PARTY_SITE_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1",
+      "to_field": "DEALS_PARTY_SITE_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_DSF_PSPK1"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_DSF_PSPK1"
+    },
+    {
+      "from_field": "CHANNEL_DROP_SHIP_FLAG",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1",
+      "to_field": "CHANNEL_DROP_SHIP_FLG",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_DSF_PSPK1"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_DSF_PSPK1"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_DSF_PSPK1"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_DSF_PSPK1"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_DSF_PSPK1"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1"
+    },
+    {
+      "from_field": "DEALS_PPSK",
+      "from_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY",
+      "to_field": "DEALS_PPSK",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1"
+    },
+    {
+      "from_field": "DV_END_CUST_COUNTRY_CD",
+      "from_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY",
+      "to_field": "DV_END_CUST_COUNTRY_CD",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1"
+    },
+    {
+      "from_field": "DEALS_CNTRY_CD",
+      "from_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY",
+      "to_field": "DEALS_CNTRY_CD",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1"
+    },
+    {
+      "from_field": "DV_ROUTE_TO_MARKET_CD",
+      "from_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "DV_ROUTE_TO_MARKET_CD",
+      "to_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+    },
+    {
+      "from_field": "CHANNEL_DROP_SHIP_FLG",
+      "from_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE",
+      "to_field": "CHANNEL_DROP_SHIP_FLG",
+      "to_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BOOKINGS_MEASURE_KEY",
+      "source_path": [
+        {
+          "from_field": "BOOKINGS_MEASURE_KEY",
+          "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        },
+        {
+          "from_field": "BOOKINGS_MEASURE_KEY",
+          "from_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BOOKINGS_PROCESS_DATE",
+      "source_path": [
+        {
+          "from_field": "BOOKINGS_PROCESS_DATE",
+          "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        },
+        {
+          "from_field": "BOOKINGS_PROCESS_DATE",
+          "from_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "source_path": [
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        },
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTNER_SITE_PARTY_KEY",
+      "source_path": [
+        {
+          "from_field": "PARTNER_SITE_PARTY_KEY",
+          "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        },
+        {
+          "from_field": "PARTNER_SITE_PARTY_KEY",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1"
+        },
+        {
+          "from_field": "PARTNER_SITE_PARTY_KEY",
+          "from_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CHANNEL_BOOKINGS_FLG_AS",
+      "source_path": [
+        {
+          "from_field": "CHANNEL_BOOKINGS_FLG_AS",
+          "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CHANNEL_DROP_SHIP_FLG",
+      "source_path": [
+        {
+          "from_field": "CHANNEL_DROP_SHIP_FLG",
+          "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        },
+        {
+          "from_field": "CHANNEL_DROP_SHIP_FLAG",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PART_COUNTRY1"
+        },
+        {
+          "from_field": "CHANNEL_DROP_SHIP_FLG",
+          "from_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_ROUTE_TO_MARKET_CD",
+      "source_path": [
+        {
+          "from_field": "DV_ROUTE_TO_MARKET_CD",
+          "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        },
+        {
+          "from_field": "DV_ROUTE_TO_MARKET_CD",
+          "from_instance": "WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BOOKING_CHANNEL_TYPE",
+      "source_path": [
+        {
+          "from_field": "BOOKING_CHANNEL_TYPE",
+          "from_instance": "SQ_WI_RET_DVAD_BKGS_CHNL_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:12.000061+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

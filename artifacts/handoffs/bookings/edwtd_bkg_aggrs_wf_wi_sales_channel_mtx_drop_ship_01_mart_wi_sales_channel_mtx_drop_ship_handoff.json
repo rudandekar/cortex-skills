@@ -1,0 +1,1803 @@
+{
+  "workflow_name": "wf_m_WI_SALES_CHANNEL_MTX_DROP_SHIP",
+  "mapping_name": "m_WI_SALES_CHANNEL_MTX_DROP_SHIP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_BKG_AGGRS",
+  "target_table": "WI_SALES_CHANNEL_MTX_DROP_SHIP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_bkg_aggrs_wf_wi_sales_channel_mtx_drop_ship_01_mart_wi_sales_channel_mtx_drop_ship",
+  "source_tables": [
+    "N_CHANNEL_PARTNER_SITE",
+    "WI_SALES_CHANNEL_MTX_COUNTRY",
+    "WI_CHANNEL_MTX_DROP_SHIP_INT"
+  ],
+  "sources": [
+    {
+      "name": "N_CHANNEL_PARTNER_SITE",
+      "database_type": "Teradata",
+      "owner": "COMREFDB_DV8",
+      "fields": [
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_PARTY_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER_COUNTRY_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_GRNDPARNT_PARTNER_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV8",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_TYPE_CODE",
+          "datatype": "char",
+          "precision": "16",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER_PARTY_SITE_KEY_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRTN_CNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_CUST_CNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_CHANNEL_MTX_DROP_SHIP_INT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV8",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_TYPE_CODE",
+          "datatype": "char",
+          "precision": "16",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRTN_CNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_CUST_CNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DROP_SHIP_PARTY_SITE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_SALES_CHANNEL_MTX_DROP_SHIP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_TERRITORY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SOLD_TO_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "END_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DV_END_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "END_CUSTOMER_TYPE_CODE",
+        "datatype": "char",
+        "precision": "16",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BILL_TO_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SOLD_TO_PARTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BILL_TO_PARTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_END_CUST_PARTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARTNER_PARTY_SITE_KEY_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARTNER",
+        "datatype": "char",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BILL_TO_GRAND_PRNT_PTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PRTN_CNTRY_CD",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_END_CUST_CNTRY_CD",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DROP_SHIP_PARTY_SITE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARTNER_SITE_PARTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CHANNEL_DROP_SHIP_FLAG",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_CUST_PARTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIP_TO_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARTNER_BILL_TO_CUST_PARTY_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_PARTY_SITE_KEY_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRTN_CNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_CNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DROP_SHIP_PARTY_SITE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_BILL_TO_CUST_PARTY_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\t WCMC.SALES_TERRITORY_KEY\t\r\n\t,WCMC.SOLD_TO_CUSTOMER_KEY\t\r\n\t,WCMC.END_CUSTOMER_KEY\r\n\t,WCMC.DV_END_CUSTOMER_KEY\r\n\t,WCMC.END_CUSTOMER_TYPE_CODE\t\r\n\t,WCMC.BILL_TO_CUSTOMER_KEY\r\n\t,WCMC.SOLD_TO_PARTY_KEY\t\t\r\n\t,WCMC.BILL_TO_PARTY_KEY\t\t\r\n\t,WCMC.DV_END_CUST_PARTY_KEY\t\r\n\t,WCMC.PARTNER_PARTY_SITE_KEY_INT\r\n\t,WCMC.PARTNER\t\t\t\r\n\t,WCMC.SOLD_TO_GRAND_PRNT_PTY_KEY\r\n\t,WCMC.BILL_TO_GRAND_PRNT_PTY_KEY\r\n\t,WCMC.EDW_CREATE_USER\t\t\r\n\t,WCMC.EDW_CREATE_DATETIME\t\r\n\t,WCMC.PRTN_CNTRY_CD\t\t\r\n\t,WCMC.DV_END_CUST_CNTRY_CD\t\t\r\n\t,COALESCE(DSHIP.PARTNER_SITE_PARTY_KEY,-999) AS DROP_SHIP_PARTY_SITE_KEY\r\n\t,WCMC.SHIP_TO_CUSTOMER_KEY\r\n\t,WCMC.PARTNER_BILL_TO_CUST_PARTY_KEY /* ADDED AS PART OF ATHENA */\r\nFROM $$STGDB.WI_SALES_CHANNEL_MTX_COUNTRY WCMC\r\nLEFT OUTER JOIN  (SELECT PS.PARTNER_SITE_PARTY_KEY, \r\n\t\t\tCOALESCE(PS.BK_PARTY_ID_INT,-999) PARTY_ID,\r\n\t\t\tCOALESCE(DD_GRNDPARNT_PARTNER_PARTY_KEY,-999) GRNDPARNT_PARTNER_PARTY_KEY,\r\n\t\t\tCOALESCE (BK_ISO_COUNTRY_CODE,'UNK')  ISO_COUNTRY_CODE\r\n\t\t  FROM \r\n\t\t\t$$COMREFVWDB.N_CHANNEL_PARTNER_SITE PS,\r\n\t\t\t$$COMREFVWDB.N_CHNL_PTNR_COUNTRY PC\r\n\t\t  WHERE 1=1\r\n\t\t  AND   PS.PARTNER_COUNTRY_PARTY_KEY = PC.PARTNER_COUNTRY_PARTY_KEY\r\n  \t\t  AND   PS.SOURCE_DELETED_FLG='N'\r\n\t\t  AND   PC.SOURCE_DELETED_FLG='N'\r\n\t\t  QUALIFY ROW_NUMBER () OVER (PARTITION BY GRNDPARNT_PARTNER_PARTY_KEY,ISO_COUNTRY_CODE \r\n\t\t\t    ORDER BY PARTY_ID ASC) =1)  DSHIP\r\nON WCMC.SOLD_TO_GRAND_PRNT_PTY_KEY = DSHIP.GRNDPARNT_PARTNER_PARTY_KEY\r\nAND WCMC.DV_END_CUST_CNTRY_CD = DSHIP.ISO_COUNTRY_CODE",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRTN_CNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_CNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DROP_SHIP_PARTY_SITE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_DROP_SHIP_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_BILL_TO_CUST_PARTY_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n   WCMDSI.SALES_TERRITORY_KEY \r\n  ,WCMDSI.SOLD_TO_CUSTOMER_KEY \r\n  ,WCMDSI.END_CUSTOMER_KEY\r\n  ,WCMDSI.DV_END_CUSTOMER_KEY  \r\n  ,WCMDSI.END_CUSTOMER_TYPE_CODE \r\n  ,WCMDSI.BILL_TO_CUSTOMER_KEY \r\n  ,WCMDSI.SOLD_TO_PARTY_KEY  \r\n  ,WCMDSI.BILL_TO_PARTY_KEY \r\n  ,WCMDSI.DV_END_CUST_PARTY_KEY \r\n  ,WCMDSI.PARTNER_SITE_PARTY_KEY_INT\r\n  ,WCMDSI.PARTNER   \r\n  ,WCMDSI.SOLD_TO_GRAND_PRNT_PTY_KEY\r\n  ,WCMDSI.BILL_TO_GRAND_PRNT_PTY_KEY\r\n  ,WCMDSI.EDW_CREATE_USER  \r\n  ,WCMDSI.EDW_CREATE_DATETIME \r\n  ,WCMDSI.PRTN_CNTRY_CD  \r\n  ,WCMDSI.DV_END_CUST_CNTRY_CD  \r\n  ,WCMDSI.DROP_SHIP_PARTY_SITE_KEY \r\n  ,CASE WHEN WCMDSI.PARTNER_SITE_PARTY_KEY_INT = -999 THEN -999 \r\n          ELSE \r\n              CASE   WHEN WCMDSI.PARTNER_SITE_PARTY_KEY_INT = WCMDSI.DV_END_CUST_PARTY_KEY   THEN WCMDSI.PARTNER_SITE_PARTY_KEY_INT \r\n       ELSE \r\n                         CASE WHEN WCMDSI.PRTN_CNTRY_CD = WCMDSI.DV_END_CUST_CNTRY_CD  THEN  WCMDSI.PARTNER_SITE_PARTY_KEY_INT \r\n          ELSE \r\n             CASE WHEN WCMDSI.DROP_SHIP_PARTY_SITE_KEY  = -999 THEN WCMDSI.PARTNER_SITE_PARTY_KEY_INT \r\n           ELSE WCMDSI.DROP_SHIP_PARTY_SITE_KEY \r\n                                  END \r\n      END\r\n          END\r\n  END PARTNER_SITE_PARTY_KEY\r\n   ,CASE  WHEN WCMDSI.PARTNER_SITE_PARTY_KEY_INT = -999 THEN 'N' \r\n             ELSE  \r\n                      CASE WHEN  WCMDSI.PARTNER_SITE_PARTY_KEY_INT = WCMDSI.DV_END_CUST_PARTY_KEY  THEN 'N' \r\n                             ELSE\r\n                     CASE WHEN WCMDSI.DV_END_CUST_CNTRY_CD = 'UNK' THEN 'N'\r\n                           ELSE  \r\n              CASE WHEN WCMDSI.PRTN_CNTRY_CD  =  WCMDSI.DV_END_CUST_CNTRY_CD   THEN  'N' \r\n            ELSE 'Y' \r\n          END\r\n                     END\r\n           END\r\n  END CHANNEL_DROP_SHIP_FLAG \r\n \r\n  ,CASE WHEN WCMDSI.END_CUSTOMER_TYPE_CODE='ACCOUNT' THEN COALESCE(NEP_END_CUST.PARTY_KEY,-999)\r\n        WHEN WCMDSI.END_CUSTOMER_TYPE_CODE='ACCOUNT_LOCATION' THEN COALESCE(NECAL_END_CUST_LOC.CUSTOMER_PARTY_KEY,-999)\r\n        ELSE -999\r\n  END   END_CUST_PARTY_KEY \r\n     ,WCMDSI.SHIP_TO_CUSTOMER_KEY\r\n\t ,WCMDSI.PARTNER_BILL_TO_CUST_PARTY_KEY\r\n FROM $$STGDB.WI_CHANNEL_MTX_DROP_SHIP_INT WCMDSI\r\n \r\n \r\n LEFT OUTER JOIN ( $$COMREFVWDB.N_CUSTOMER_ACCOUNT NCA_END_CUST\r\n     INNER JOIN $$COMREFVWDB.N_ERP_PARTY NEP_END_CUST\r\n     ON(NEP_END_CUST.ERP_PARTY_NUMBER = NCA_END_CUST.ERP_CUSTOMER_NUMBER) \r\n     )\r\n  ON (NCA_END_CUST.CUSTOMER_ACCOUNT_KEY= WCMDSI.END_CUSTOMER_KEY )\r\n LEFT OUTER JOIN $$COMREFVWDB.N_ERP_CUST_ACCT_LOC_USE NECAL_END_CUST_LOC\r\n  ON(NECAL_END_CUST_LOC.ERP_CUST_ACCOUNT_LOCATION_KEY = WCMDSI.END_CUSTOMER_KEY )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "PRTN_CNTRY_CD",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "PRTN_CNTRY_CD",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "DV_END_CUST_CNTRY_CD",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "DV_END_CUST_CNTRY_CD",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "PARTNER_PARTY_SITE_KEY_INT",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "SOLD_TO_PARTY_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "SOLD_TO_PARTY_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "BILL_TO_PARTY_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "BILL_TO_PARTY_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "PARTNER",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "PARTNER",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "END_CUSTOMER_TYPE_CODE",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "PARTNER_BILL_TO_CUST_PARTY_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1",
+      "to_field": "PARTNER_BILL_TO_CUST_PARTY_KEY",
+      "to_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT_step1"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "END_CUSTOMER_TYPE_CODE",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "SOLD_TO_PARTY_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "SOLD_TO_PARTY_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "BILL_TO_PARTY_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "BILL_TO_PARTY_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "PARTNER",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "PARTNER",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "PRTN_CNTRY_CD",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "PRTN_CNTRY_CD",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "DV_END_CUST_CNTRY_CD",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "DV_END_CUST_CNTRY_CD",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "PARTNER_PARTY_SITE_KEY_INT",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "CHANNEL_DROP_SHIP_FLAG",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "CHANNEL_DROP_SHIP_FLAG",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "END_CUST_PARTY_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "END_CUST_PARTY_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "PARTNER_BILL_TO_CUST_PARTY_KEY",
+      "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2",
+      "to_field": "PARTNER_BILL_TO_CUST_PARTY_KEY",
+      "to_instance": "WI_SALES_CHANNEL_MTX_DROP_SHIP_step2"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "END_CUSTOMER_TYPE_CODE",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "SOLD_TO_PARTY_KEY",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "SOLD_TO_PARTY_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "BILL_TO_PARTY_KEY",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "BILL_TO_PARTY_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "PARTNER_PARTY_SITE_KEY_INT",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "PARTNER_PARTY_SITE_KEY_INT",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "PARTNER",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "PARTNER",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "PRTN_CNTRY_CD",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "PRTN_CNTRY_CD",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "DV_END_CUST_CNTRY_CD",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "DV_END_CUST_CNTRY_CD",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "N_CHANNEL_PARTNER_SITE",
+      "to_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "SOLD_TO_PARTY_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "SOLD_TO_PARTY_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "BILL_TO_PARTY_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "BILL_TO_PARTY_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "PARTNER",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "PARTNER",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "PRTN_CNTRY_CD",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "PRTN_CNTRY_CD",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "DV_END_CUST_CNTRY_CD",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "DV_END_CUST_CNTRY_CD",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "END_CUST_PARTY_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "PRTN_CNTRY_CD",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "CHANNEL_DROP_SHIP_FLAG",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "END_CUSTOMER_TYPE_CODE",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_TERRITORY_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_TERRITORY_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "SALES_TERRITORY_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "SALES_TERRITORY_KEY",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "SALES_TERRITORY_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOLD_TO_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "END_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "END_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "END_CUSTOMER_KEY",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "END_CUSTOMER_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_END_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "DV_END_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "DV_END_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "DV_END_CUSTOMER_KEY",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "DV_END_CUSTOMER_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_CUSTOMER_TYPE_CODE",
+      "source_path": [
+        {
+          "from_field": "END_CUSTOMER_TYPE_CODE",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "END_CUSTOMER_TYPE_CODE",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "END_CUSTOMER_TYPE_CODE",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "END_CUSTOMER_TYPE_CODE",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BILL_TO_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "BILL_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "BILL_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "BILL_TO_CUSTOMER_KEY",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "BILL_TO_CUSTOMER_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOLD_TO_PARTY_KEY",
+      "source_path": [
+        {
+          "from_field": "SOLD_TO_PARTY_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "SOLD_TO_PARTY_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "SOLD_TO_PARTY_KEY",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "SOLD_TO_PARTY_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BILL_TO_PARTY_KEY",
+      "source_path": [
+        {
+          "from_field": "BILL_TO_PARTY_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "BILL_TO_PARTY_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "BILL_TO_PARTY_KEY",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "BILL_TO_PARTY_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_END_CUST_PARTY_KEY",
+      "source_path": [
+        {
+          "from_field": "DV_END_CUST_PARTY_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "DV_END_CUST_PARTY_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "DV_END_CUST_PARTY_KEY",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "DV_END_CUST_PARTY_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTNER_PARTY_SITE_KEY_INT",
+      "source_path": [
+        {
+          "from_field": "PARTNER_SITE_PARTY_KEY_INT",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "PARTNER_PARTY_SITE_KEY_INT",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTNER",
+      "source_path": [
+        {
+          "from_field": "PARTNER",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "PARTNER",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "PARTNER",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "PARTNER",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "source_path": [
+        {
+          "from_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "source_path": [
+        {
+          "from_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRTN_CNTRY_CD",
+      "source_path": [
+        {
+          "from_field": "PRTN_CNTRY_CD",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "PRTN_CNTRY_CD",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "PRTN_CNTRY_CD",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "PRTN_CNTRY_CD",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_END_CUST_CNTRY_CD",
+      "source_path": [
+        {
+          "from_field": "DV_END_CUST_CNTRY_CD",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "DV_END_CUST_CNTRY_CD",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "DV_END_CUST_CNTRY_CD",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "DV_END_CUST_CNTRY_CD",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DROP_SHIP_PARTY_SITE_KEY",
+      "source_path": [
+        {
+          "from_field": "DROP_SHIP_PARTY_SITE_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "DROP_SHIP_PARTY_SITE_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "PARTNER_SITE_PARTY_KEY",
+          "from_instance": "N_CHANNEL_PARTNER_SITE"
+        },
+        {
+          "from_field": "DROP_SHIP_PARTY_SITE_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTNER_SITE_PARTY_KEY",
+      "source_path": [
+        {
+          "from_field": "PARTNER_SITE_PARTY_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "DROP_SHIP_PARTY_SITE_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CHANNEL_DROP_SHIP_FLAG",
+      "source_path": [
+        {
+          "from_field": "CHANNEL_DROP_SHIP_FLAG",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "PRTN_CNTRY_CD",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_CUST_PARTY_KEY",
+      "source_path": [
+        {
+          "from_field": "END_CUST_PARTY_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "DROP_SHIP_PARTY_SITE_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIP_TO_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "SHIP_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "SHIP_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        },
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "WI_SALES_CHANNEL_MTX_COUNTRY"
+        },
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "WI_CHANNEL_MTX_DROP_SHIP_INT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTNER_BILL_TO_CUST_PARTY_KEY",
+      "source_path": [
+        {
+          "from_field": "PARTNER_BILL_TO_CUST_PARTY_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_MTX_COUNTRY_step1"
+        },
+        {
+          "from_field": "PARTNER_BILL_TO_CUST_PARTY_KEY",
+          "from_instance": "SQ_WI_CHANNEL_MTX_DROP_SHIP_INT_step2"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:12.270050+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

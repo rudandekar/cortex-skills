@@ -1,0 +1,343 @@
+{
+  "workflow_name": "wf_m_WI_AR_SUMMARY_QUOTE_SMR",
+  "mapping_name": "m_WI_AR_SUMMARY_QUOTE_SMR",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_AR_SUMMARY_QUOTE_SMR",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_ar_summary_quote_smr_01_mart_wi_ar_summary_quote_smr",
+  "source_tables": [
+    "WI_AR_SUMMARY_QUOTE_SMR"
+  ],
+  "sources": [
+    {
+      "name": "WI_AR_SUMMARY_QUOTE_SMR",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_EFFECTIVE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "varchar",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "11",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_AR_SUMMARY_QUOTE_SMR",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_ORDER_LINE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_EFFECTIVE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_MOTION_CD",
+        "datatype": "varchar",
+        "precision": "7",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_ALLOCATION_PCT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "11",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_AR_SUMMARY_QUOTE_SMR",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_EFFECTIVE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SEL  \r\nWI.SALES_ORDER_LINE_KEY,\r\nWI.DV_EFFECTIVE_DTM,\r\nWI.SALES_MOTION_CD,\r\nWI.EDW_CREATE_USER,\r\nWI.EDW_CREATE_DTM,\r\nWI.DV_ALLOCATION_PCT\r\nFROM (\r\nSELECT SALES_ORDER_LINE_KEY, \r\n'1900-01-01 00:00:00' DV_EFFECTIVE_DTM,\r\nSALES_MOTION_CD, \r\nUSER EDW_CREATE_USER, \r\nCURRENT_TIMESTAMP(0) EDW_CREATE_DTM ,\r\nSum(DV_ALLOCATION_PCT) DV_ALLOCATION_PCT\r\nFROM $$SLSORDVWDB.MT_SUMMARY_QUOTE_SOL_ALLOC \r\nWHERE DV_EXPIRATION_DTM = '3500-01-01 00:00:00'  \r\nAND SALES_ORDER_LINE_KEY IN ( SELECT SALES_ORDER_LINE_KEY  \r\nFROM ( SELECT\r\nSALES_ORDER_LINE_KEY,\r\nSALES_MOTION_CD,\r\nDV_EFFECTIVE_DTM,\r\nEDW_UPDATE_DTM,\r\nSUM(DV_ALLOCATION_PCT) OVER(PARTITION BY SALES_ORDER_LINE_KEY ) SUM_ALLOCATION_PCT,\r\nCAST( DV_ALLOCATION_PCT/SUM_ALLOCATION_PCT AS DECIMAL(18,6) ) AS DV_ALLOCATION_PCT  /* Included inner query part to handle CS SQ scenario Sep 26 Q2FY20 Release */\r\nFROM $$SLSORDVWDB.MT_SUMMARY_QUOTE_SOL_ALLOC \r\nWHERE DV_EXPIRATION_DTM = '3500-01-01 00:00:00' \r\n) WO\r\nWHERE EDW_UPDATE_DTM > ( SELECT LAST_EXTRACT_DATE FROM $$ETLVWDB.CTL_ETL_LAST_EXTRACT_DATES WHERE JOB_STREAM_ID = 'wf_WI_AR_SUMMARY_QUOTE_SMR' AND Table_Name = 'WI_AR_SUMMARY_QUOTE_SMR' ) \r\n)\r\nGROUP BY 1,2,3,4,5\r\n)WI\r\nWHERE NOT EXISTS ( SEL 1 FROM $$STGDB.WI_AR_SUMMARY_QUOTE_SMR_PRE PRE\r\n  WHERE PRE.SALES_ORDER_LINE_KEY = WI.SALES_ORDER_LINE_KEY\r\n  AND PRE.SALES_MOTION_CD=WI.SALES_MOTION_CD\r\n  AND PRE.DV_ALLOCATION_PCT=WI.DV_ALLOCATION_PCT)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_AR_SUMMARY_QUOTE_SMR1"
+    },
+    {
+      "from_field": "DV_EFFECTIVE_DTM",
+      "from_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR",
+      "to_field": "DV_EFFECTIVE_DTM",
+      "to_instance": "WI_AR_SUMMARY_QUOTE_SMR1"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "WI_AR_SUMMARY_QUOTE_SMR1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_AR_SUMMARY_QUOTE_SMR1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "WI_AR_SUMMARY_QUOTE_SMR1"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "WI_AR_SUMMARY_QUOTE_SMR1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_AR_SUMMARY_QUOTE_SMR",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR"
+    },
+    {
+      "from_field": "DV_EFFECTIVE_DTM",
+      "from_instance": "WI_AR_SUMMARY_QUOTE_SMR",
+      "to_field": "DV_EFFECTIVE_DTM",
+      "to_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "WI_AR_SUMMARY_QUOTE_SMR",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_AR_SUMMARY_QUOTE_SMR",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "WI_AR_SUMMARY_QUOTE_SMR",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "WI_AR_SUMMARY_QUOTE_SMR",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_ORDER_LINE_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_AR_SUMMARY_QUOTE_SMR"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_EFFECTIVE_DTM",
+      "source_path": [
+        {
+          "from_field": "DV_EFFECTIVE_DTM",
+          "from_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR"
+        },
+        {
+          "from_field": "DV_EFFECTIVE_DTM",
+          "from_instance": "WI_AR_SUMMARY_QUOTE_SMR"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_MOTION_CD",
+      "source_path": [
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR"
+        },
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "WI_AR_SUMMARY_QUOTE_SMR"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "WI_AR_SUMMARY_QUOTE_SMR"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "WI_AR_SUMMARY_QUOTE_SMR"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_ALLOCATION_PCT",
+      "source_path": [
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "SQ_WI_AR_SUMMARY_QUOTE_SMR"
+        },
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "WI_AR_SUMMARY_QUOTE_SMR"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:27.327198+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,296 @@
+{
+  "workflow_name": "wf_m_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT_SEP",
+  "mapping_name": "m_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT_SEP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_ASBI",
+  "target_table": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_asbi_wf_sm_as_qt_rsrc_typ_ms_tsk_asgmt_sep_01_mart_sm_as_qt_rsrc_typ_ms_tsk_asgmt",
+  "source_tables": [
+    "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+  ],
+  "sources": [
+    {
+      "name": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+      "database_type": "Teradata",
+      "owner": "TRANSLATIONDB_DV4",
+      "fields": [
+        {
+          "name": "RESOURCE_ASSIGNMENT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_TASK_RESOURCE_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SS_CD",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "RESOURCE_ASSIGNMENT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_TASK_RESOURCE_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_SS_CD",
+        "datatype": "varchar",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "RESOURCE_ASSIGNMENT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_TASK_RESOURCE_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT RANK() OVER (ORDER BY STTQMTR.SK_TASK_RESOURCE_ID_INT)+ MAX_VAL AS RESOURCE_ASSIGNMENT_KEY,\r\nSTTQMTR.SK_TASK_RESOURCE_ID_INT  AS SK_TASK_RESOURCE_ID_INT,\r\nSS_CD AS BK_SS_CD,\r\nCURRENT_TIMESTAMP(0) AS CREATE_DATETIME,\r\nUSER AS EDW_CREATE_USER\r\nFROM $$STGDB.ST_AS_QT_RSRC_TYP_MS_TSK_ASGMT_HDP STTQMTR ,\r\n \r\n(SELECT COALESCE(MAX(RESOURCE_ASSIGNMENT_KEY),0) MAX_VAL \r\nFROM $$ETLVWDB.SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT\r\n) SMASQR\r\nWHERE NOT EXISTS\r\n(\r\nSELECT\r\n1 \r\nFROM $$ETLVWDB.SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT SMASQR\r\nWHERE SMASQR.SK_TASK_RESOURCE_ID_INT=STTQMTR.SK_TASK_RESOURCE_ID_INT\r\nAND SMASQR.BK_SS_CD = STTQMTR.SS_CD )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "COLLECT STATS ON $$STGDB.ST_AS_QT_RSRC_TYP_MS_TSK_ASGMT_HDP;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "RESOURCE_ASSIGNMENT_KEY",
+      "from_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+      "to_field": "RESOURCE_ASSIGNMENT_KEY",
+      "to_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT1"
+    },
+    {
+      "from_field": "SK_TASK_RESOURCE_ID_INT",
+      "from_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+      "to_field": "SK_TASK_RESOURCE_ID_INT",
+      "to_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT1"
+    },
+    {
+      "from_field": "BK_SS_CD",
+      "from_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+      "to_field": "BK_SS_CD",
+      "to_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT1"
+    },
+    {
+      "from_field": "RESOURCE_ASSIGNMENT_KEY",
+      "from_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+      "to_field": "RESOURCE_ASSIGNMENT_KEY",
+      "to_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+    },
+    {
+      "from_field": "SK_TASK_RESOURCE_ID_INT",
+      "from_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+      "to_field": "SK_TASK_RESOURCE_ID_INT",
+      "to_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+    },
+    {
+      "from_field": "BK_SS_CD",
+      "from_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT",
+      "to_field": "BK_SS_CD",
+      "to_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "RESOURCE_ASSIGNMENT_KEY",
+      "source_path": [
+        {
+          "from_field": "RESOURCE_ASSIGNMENT_KEY",
+          "from_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+        },
+        {
+          "from_field": "RESOURCE_ASSIGNMENT_KEY",
+          "from_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_TASK_RESOURCE_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_TASK_RESOURCE_ID_INT",
+          "from_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+        },
+        {
+          "from_field": "SK_TASK_RESOURCE_ID_INT",
+          "from_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SS_CD",
+      "source_path": [
+        {
+          "from_field": "BK_SS_CD",
+          "from_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+        },
+        {
+          "from_field": "BK_SS_CD",
+          "from_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SM_AS_QT_RSRC_TYP_MS_TSK_ASGMT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:09.261333+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

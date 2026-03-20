@@ -1,0 +1,97 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_st_cg1_x_mk_3c9_hdr_ib_ifac ', 'batch', 'edwtd_mfg_products'],
+    meta={
+        'source_workflow': 'wf_m_ST_CG1_X_MK_3C9_HDR_IB_IFAC ',
+        'target_table': 'ST_CG1_X_MK_3C9_HDR_IB_IFAC',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:46.754866+00:00'
+    }
+) }}
+
+WITH 
+
+source_ff_cg1_x_mk_3c9_hdr_ib_ifac AS (
+    SELECT
+        message_id,
+        creation_date,
+        created_by,
+        last_update_date,
+        last_updated_by,
+        po_number,
+        receipt_date_time,
+        so_number,
+        partner_name,
+        org_code,
+        cisco_duns_number,
+        partner_duns_number,
+        return_from,
+        transmission_date,
+        process_status,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        request_id,
+        ges_update_date,
+        global_name,
+        batch_id,
+        created_dt,
+        action_code
+    FROM {{ source('raw', 'ff_cg1_x_mk_3c9_hdr_ib_ifac') }}
+),
+
+final AS (
+    SELECT
+        message_id,
+        creation_date,
+        created_by,
+        last_update_date,
+        last_updated_by,
+        po_number,
+        receipt_date_time,
+        so_number,
+        partner_name,
+        org_code,
+        cisco_duns_number,
+        partner_duns_number,
+        return_from,
+        transmission_date,
+        process_status,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        request_id,
+        ges_update_date,
+        global_name,
+        batch_id,
+        create_datetime,
+        action_code
+    FROM source_ff_cg1_x_mk_3c9_hdr_ib_ifac
+)
+
+SELECT * FROM final

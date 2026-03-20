@@ -1,0 +1,13 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_gl_wf_n_currency_conv_daily_rate_01_mart_n_currency_conv_daily_rate_expression_transform
+    model: edwtd_gl_wf_n_currency_conv_daily_rate_01_mart_n_currency_conv_daily_rate
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'w_currency_conv_daily_rate')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

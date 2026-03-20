@@ -1,0 +1,202 @@
+{
+  "workflow_name": "wf_m_WI_TSS_COGS_RTM_MTH_CNTL",
+  "mapping_name": "m_WI_TSS_COGS_RTM_MTH_CNTL",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_TSS_COGS_RTM_MTH_CNTL",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_tss_cogs_rtm_mth_cntl_01_mart_wi_tss_cogs_rtm_mth_cntl",
+  "source_tables": [
+    "WI_TSS_COGS_RTM_MTH_CNTL"
+  ],
+  "sources": [
+    {
+      "name": "WI_TSS_COGS_RTM_MTH_CNTL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "CURRENT_FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TARGET_FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DRIVER_FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_TSS_COGS_RTM_MTH_CNTL",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "CURRENT_FISCAL_YEAR_MONTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TARGET_FISCAL_YEAR_MONTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DRIVER_FISCAL_YEAR_MONTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_1_WI_TSS_COGS_RTM_MTH_CNTL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CURRENT_FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TARGET_FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DRIVER_FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nCOL1.FISCAL_YEAR_MONTH_INT    AS      CURRENT_FISCAL_YEAR_MONTH_INT,\r\nCOL2.FISCAL_YEAR_MONTH_INT    AS      TARGET_FISCAL_YEAR_MONTH_INT,\r\n201301 AS  DRIVER_FISCAL_YEAR_MONTH_INT\r\nFROM \r\n(SELECT FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_CCM_TS_MTH_QTR_CNTL GROUP BY 1) COL1  ,\r\n(SELECT FISCAL_YEAR_MONTH_INT FROM $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RFMTY\r\nWHERE RFMTY.FISCAL_YEAR_MONTH_INT <=(SELECT FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_CCM_TS_MTH_QTR_CNTL)\r\nAND  FISCAL_YEAR_AGE IN (0,1,2,3) GROUP BY 1)  COL2",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "CURRENT_FISCAL_YEAR_MONTH_INT",
+      "from_instance": "SQ_1_WI_TSS_COGS_RTM_MTH_CNTL",
+      "to_field": "CURRENT_FISCAL_YEAR_MONTH_INT",
+      "to_instance": "WI_TSS_COGS_RTM_MTH_CNTL1"
+    },
+    {
+      "from_field": "TARGET_FISCAL_YEAR_MONTH_INT",
+      "from_instance": "SQ_1_WI_TSS_COGS_RTM_MTH_CNTL",
+      "to_field": "TARGET_FISCAL_YEAR_MONTH_INT",
+      "to_instance": "WI_TSS_COGS_RTM_MTH_CNTL1"
+    },
+    {
+      "from_field": "DRIVER_FISCAL_YEAR_MONTH_INT",
+      "from_instance": "SQ_1_WI_TSS_COGS_RTM_MTH_CNTL",
+      "to_field": "DRIVER_FISCAL_YEAR_MONTH_INT",
+      "to_instance": "WI_TSS_COGS_RTM_MTH_CNTL1"
+    },
+    {
+      "from_field": "CURRENT_FISCAL_YEAR_MONTH_INT",
+      "from_instance": "WI_TSS_COGS_RTM_MTH_CNTL",
+      "to_field": "CURRENT_FISCAL_YEAR_MONTH_INT",
+      "to_instance": "SQ_1_WI_TSS_COGS_RTM_MTH_CNTL"
+    },
+    {
+      "from_field": "TARGET_FISCAL_YEAR_MONTH_INT",
+      "from_instance": "WI_TSS_COGS_RTM_MTH_CNTL",
+      "to_field": "TARGET_FISCAL_YEAR_MONTH_INT",
+      "to_instance": "SQ_1_WI_TSS_COGS_RTM_MTH_CNTL"
+    },
+    {
+      "from_field": "DRIVER_FISCAL_YEAR_MONTH_INT",
+      "from_instance": "WI_TSS_COGS_RTM_MTH_CNTL",
+      "to_field": "DRIVER_FISCAL_YEAR_MONTH_INT",
+      "to_instance": "SQ_1_WI_TSS_COGS_RTM_MTH_CNTL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "CURRENT_FISCAL_YEAR_MONTH_INT",
+      "source_path": [
+        {
+          "from_field": "CURRENT_FISCAL_YEAR_MONTH_INT",
+          "from_instance": "SQ_1_WI_TSS_COGS_RTM_MTH_CNTL"
+        },
+        {
+          "from_field": "CURRENT_FISCAL_YEAR_MONTH_INT",
+          "from_instance": "WI_TSS_COGS_RTM_MTH_CNTL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TARGET_FISCAL_YEAR_MONTH_INT",
+      "source_path": [
+        {
+          "from_field": "TARGET_FISCAL_YEAR_MONTH_INT",
+          "from_instance": "SQ_1_WI_TSS_COGS_RTM_MTH_CNTL"
+        },
+        {
+          "from_field": "TARGET_FISCAL_YEAR_MONTH_INT",
+          "from_instance": "WI_TSS_COGS_RTM_MTH_CNTL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DRIVER_FISCAL_YEAR_MONTH_INT",
+      "source_path": [
+        {
+          "from_field": "DRIVER_FISCAL_YEAR_MONTH_INT",
+          "from_instance": "SQ_1_WI_TSS_COGS_RTM_MTH_CNTL"
+        },
+        {
+          "from_field": "DRIVER_FISCAL_YEAR_MONTH_INT",
+          "from_instance": "WI_TSS_COGS_RTM_MTH_CNTL"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:34.646729+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

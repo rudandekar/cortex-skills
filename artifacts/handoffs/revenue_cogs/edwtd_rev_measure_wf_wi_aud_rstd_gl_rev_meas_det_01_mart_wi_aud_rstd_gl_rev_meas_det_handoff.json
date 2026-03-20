@@ -1,0 +1,610 @@
+{
+  "workflow_name": "wf_m_WI_AUD_RSTD_GL_REV_MEAS_DET",
+  "mapping_name": "m_WI_AUD_RSTD_GL_REV_MEAS_DET",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_AUD_RSTD_GL_REV_MEAS_DET",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_aud_rstd_gl_rev_meas_det_01_mart_wi_aud_rstd_gl_rev_meas_det",
+  "source_tables": [
+    "WI_AUD_RSTD_GL_REV_MEAS_DET"
+  ],
+  "sources": [
+    {
+      "name": "WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "AUDIT_TABLE_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REVENUE_MEASURE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REV_MEASURE_TRANS_TYPE_CD",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_AUD_RSTD_GL_REV_MEAS_DET",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "AUDIT_TABLE_NAME",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "REVENUE_MEASURE_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "REV_MEASURE_TRANS_TYPE_CD",
+        "datatype": "char",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "AUDIT_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TABLE_NAME"
+        },
+        {
+          "name": "AUDIT_COLUMN_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_COLUMN_NAME"
+        },
+        {
+          "name": "MISSING_KEYS_COUNT",
+          "datatype": "integer",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "VALIDATE_MISSING_KEYS",
+          "datatype": "string",
+          "porttype": "LOCAL VARIABLE",
+          "expression": "IIF(MISSING_KEYS_COUNT >= 1 , ABORT('THERE ARE MISSING MEASURE KEY FOR THE CURRENT OR PREVIOUS FISCAL MONTH' ) )"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "AUDIT_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REVENUE_MEASURE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REV_MEASURE_TRANS_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n'MT_RSTD_GL_REV_MEASURE' AS AUDIT_TABLE_NAME ,\r\nNGRM.REVENUE_MEASURE_KEY, \r\nNGRM.DV_FISCAL_YEAR_MTH_NUMBER_INT, \r\nNGRM.REV_MEASURE_TRANS_TYPE_CD, \r\nUSER AS EDW_CREATE_USER, \r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DATEETIME, \r\nUSER AS EDW_UPDATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DATETIME\r\n FROM $$FINLGLVWDB.N_GL_REV_MEASURE NGRM\r\n INNER JOIN  $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR       RFMY  ON (\r\n( RFMY.PREVIOUS_FSCL_MONTH_FLAG      = 'Y' \r\n\t AND CURRENT_DATE BETWEEN RFMY.FISCAL_MONTH_END_DATE + 1 AND  RFMY.FISCAL_MONTH_END_DATE + 6) \r\nOR RFMY.CURRENT_FISCAL_MONTH_FLAG    = 'Y'   \r\n)\r\nWHERE RFMY.FISCAL_YEAR_MONTH_INT  = NGRM.DV_FISCAL_YEAR_MTH_NUMBER_INT  \r\nGROUP BY 1, 2, 3, 4, 5, 6, 7, 8 \r\n\r\nMINUS\r\n\r\nSELECT \r\n'MT_RSTD_GL_REV_MEASURE' AS AUDIT_TABLE_NAME ,\r\nMTRGRM.REVENUE_MEASURE_KEY, \r\nMTRGRM.DV_FISCAL_YEAR_MTH_NUMBER_INT, \r\nMTRGRM.REV_MEASURE_TRANS_TYPE_CD, \r\nUSER AS EDW_CREATE_USER, \r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DATEETIME, \r\nUSER AS EDW_UPDATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DATETIME\r\n FROM $$FINLGLVWDB.MT_RSTD_GL_REV_MEASURE  MTRGRM\r\n INNER JOIN  $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR       RFMY  ON (\r\n( RFMY.PREVIOUS_FSCL_MONTH_FLAG      = 'Y' \r\n\t AND CURRENT_DATE BETWEEN RFMY.FISCAL_MONTH_END_DATE + 1 AND  RFMY.FISCAL_MONTH_END_DATE + 6) \r\nOR RFMY.CURRENT_FISCAL_MONTH_FLAG    = 'Y'   \r\n)\r\nWHERE RFMY.FISCAL_YEAR_MONTH_INT  = MTRGRM.DV_FISCAL_YEAR_MTH_NUMBER_INT  \r\nGROUP BY 1, 2, 3, 4, 5, 6, 7, 8",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_AUD_RSTD_REV_THRESHLD_VALUES",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "AUDIT_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_COLUMN_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MISSING_KEYS_COUNT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT AUDIT_TABLE_NAME ,\r\n'REVENUE_MEASURE_KEY' AS AUDIT_COLUMN_NAME, \r\nCOUNT(*)  MISSING_KEYS_COUNT \r\nFROM $$STGDB.WI_AUD_RSTD_GL_REV_MEAS_DET  WHERE  AUDIT_TABLE_NAME IN ( 'MT_RSTD_GL_REV_MEASURE' , 'N_GL_REV_MEASURE')\r\n\r\nGROUP BY 1, 2",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "FILTRANS",
+      "type": "Filter",
+      "description": "",
+      "fields": [
+        {
+          "name": "AUDIT_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_COLUMN_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Filter Condition": "FALSE",
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Filter",
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "AUDIT_TABLE_NAME",
+      "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "AUDIT_TABLE_NAME",
+      "to_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET1"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET1"
+    },
+    {
+      "from_field": "REVENUE_MEASURE_KEY",
+      "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "REVENUE_MEASURE_KEY",
+      "to_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET1"
+    },
+    {
+      "from_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "to_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET1"
+    },
+    {
+      "from_field": "AUDIT_TABLE_NAME",
+      "from_instance": "FILTRANS",
+      "to_field": "AUDIT_TABLE_NAME",
+      "to_instance": "WI_AUD_RSTD_REV_THRSHLD_VALUES"
+    },
+    {
+      "from_field": "AUDIT_COLUMN_NAME",
+      "from_instance": "FILTRANS",
+      "to_field": "AUDIT_COLUMN_NAME",
+      "to_instance": "WI_AUD_RSTD_REV_THRSHLD_VALUES"
+    },
+    {
+      "from_field": "AUDIT_TABLE_NAME",
+      "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "AUDIT_TABLE_NAME",
+      "to_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+    },
+    {
+      "from_field": "REVENUE_MEASURE_KEY",
+      "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "REVENUE_MEASURE_KEY",
+      "to_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+    },
+    {
+      "from_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "to_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+    },
+    {
+      "from_field": "AUDIT_TABLE_NAME",
+      "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET2",
+      "to_field": "AUDIT_TABLE_NAME",
+      "to_instance": "SQ_WI_AUD_RSTD_REV_THRESHLD_VALUES"
+    },
+    {
+      "from_field": "REVENUE_MEASURE_KEY",
+      "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET2",
+      "to_field": "MISSING_KEYS_COUNT",
+      "to_instance": "SQ_WI_AUD_RSTD_REV_THRESHLD_VALUES"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET2",
+      "to_field": "AUDIT_COLUMN_NAME",
+      "to_instance": "SQ_WI_AUD_RSTD_REV_THRESHLD_VALUES"
+    },
+    {
+      "from_field": "AUDIT_TABLE_NAME",
+      "from_instance": "SQ_WI_AUD_RSTD_REV_THRESHLD_VALUES",
+      "to_field": "AUDIT_TABLE_NAME",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "AUDIT_COLUMN_NAME",
+      "from_instance": "SQ_WI_AUD_RSTD_REV_THRESHLD_VALUES",
+      "to_field": "AUDIT_COLUMN_NAME",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "MISSING_KEYS_COUNT",
+      "from_instance": "SQ_WI_AUD_RSTD_REV_THRESHLD_VALUES",
+      "to_field": "MISSING_KEYS_COUNT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "AUDIT_TABLE_NAME",
+      "from_instance": "EXPTRANS",
+      "to_field": "AUDIT_TABLE_NAME",
+      "to_instance": "FILTRANS"
+    },
+    {
+      "from_field": "AUDIT_COLUMN_NAME",
+      "from_instance": "EXPTRANS",
+      "to_field": "AUDIT_COLUMN_NAME",
+      "to_instance": "FILTRANS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "AUDIT_TABLE_NAME",
+      "source_path": [
+        {
+          "from_field": "AUDIT_TABLE_NAME",
+          "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+        },
+        {
+          "from_field": "AUDIT_TABLE_NAME",
+          "from_instance": "FILTRANS"
+        },
+        {
+          "from_field": "AUDIT_TABLE_NAME",
+          "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET"
+        },
+        {
+          "from_field": "AUDIT_TABLE_NAME",
+          "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET2"
+        },
+        {
+          "from_field": "AUDIT_TABLE_NAME",
+          "from_instance": "SQ_WI_AUD_RSTD_REV_THRESHLD_VALUES"
+        },
+        {
+          "from_field": "AUDIT_TABLE_NAME",
+          "from_instance": "EXPTRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REVENUE_MEASURE_KEY",
+      "source_path": [
+        {
+          "from_field": "REVENUE_MEASURE_KEY",
+          "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+        },
+        {
+          "from_field": "REVENUE_MEASURE_KEY",
+          "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+        },
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REV_MEASURE_TRANS_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "REV_MEASURE_TRANS_TYPE_CD",
+          "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+        },
+        {
+          "from_field": "REV_MEASURE_TRANS_TYPE_CD",
+          "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+        },
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "SQ_WI_AUD_RSTD_GL_REV_MEAS_DET"
+        },
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "WI_AUD_RSTD_GL_REV_MEAS_DET"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:27.472593+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,390 @@
+{
+  "workflow_name": "wf_m_SM_SUMMARY_QUOTE_SOL_ALLOC",
+  "mapping_name": "m_SM_SUMMARY_QUOTE_SOL_ALLOC",
+  "mapping_description": "",
+  "folder_name": "EDWTD_MIGRATION",
+  "target_table": "SM_SUMMARY_QUOTE_SOL_ALLOC",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_migration_wf_sm_summary_quote_sol_alloc_01_mart_sm_summary_quote_sol_alloc",
+  "source_tables": [
+    "SM_SUMMARY_QUOTE_SOL_ALLOC"
+  ],
+  "sources": [
+    {
+      "name": "SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "database_type": "Teradata",
+      "owner": "TRANSLATIONDB_DV4",
+      "fields": [
+        {
+          "name": "SK_SQ_SOL_ALLOC_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_EFFECTIVE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "SM_SUMMARY_QUOTE_SOL_ALLOC",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SK_SQ_SOL_ALLOC_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_ORDER_LINE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_MOTION_CD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_EFFECTIVE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SK_SQ_SOL_ALLOC_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_EFFECTIVE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT RANK() OVER (ORDER BY SMC.SALES_ORDER_LINE_KEY,SMC.SALES_MOTION_CD,SMC.DV_EFFECTIVE_DTM,SMC.SK_OFFER_ATTRIBUTION_ID_INT)\r\n+ MAX_VAL SK_SQ_SOL_ALLOC_KEY,\r\nSMC.SALES_ORDER_LINE_KEY SALES_ORDER_LINE_KEY,\r\nSMC.SALES_MOTION_CD SALES_MOTION_CD,\r\nSMC.DV_EFFECTIVE_DTM DV_EFFECTIVE_DTM,\r\nSMC.SK_OFFER_ATTRIBUTION_ID_INT,\r\nCURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\nUSER EDW_CREATE_USER\r\nFROM $$MGRSTGDB.WI_SUMMARY_QUOTE_SMC_4 SMC,\r\n(SELECT COALESCE(MAX(SK_SQ_SOL_ALLOC_KEY),0) MAX_VAL FROM $$TRANSLATIONDB.SM_SUMMARY_QUOTE_SOL_ALLOC) SSQS\r\nWHERE NOT EXISTS\r\n(\r\nSELECT\r\n1 \r\nFROM $$TRANSLATIONDB.SM_SUMMARY_QUOTE_SOL_ALLOC SSQS\r\nWHERE SSQS.SALES_ORDER_LINE_KEY=SMC.SALES_ORDER_LINE_KEY AND SSQS.SALES_MOTION_CD=SMC.SALES_MOTION_CD AND SSQS.DV_EFFECTIVE_DTM=SMC.DV_EFFECTIVE_DTM AND SSQS.SK_OFFER_ATTRIBUTION_ID_INT=SMC.SK_OFFER_ATTRIBUTION_ID_INT)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SK_SQ_SOL_ALLOC_KEY",
+      "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "SK_SQ_SOL_ALLOC_KEY",
+      "to_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC1"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC1"
+    },
+    {
+      "from_field": "DV_EFFECTIVE_DTM",
+      "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "DV_EFFECTIVE_DTM",
+      "to_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC1"
+    },
+    {
+      "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "to_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC1"
+    },
+    {
+      "from_field": "SK_SQ_SOL_ALLOC_KEY",
+      "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "SK_SQ_SOL_ALLOC_KEY",
+      "to_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+    },
+    {
+      "from_field": "DV_EFFECTIVE_DTM",
+      "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "DV_EFFECTIVE_DTM",
+      "to_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+    },
+    {
+      "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "to_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SK_SQ_SOL_ALLOC_KEY",
+      "source_path": [
+        {
+          "from_field": "SK_SQ_SOL_ALLOC_KEY",
+          "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+        },
+        {
+          "from_field": "SK_SQ_SOL_ALLOC_KEY",
+          "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_ORDER_LINE_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_MOTION_CD",
+      "source_path": [
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+        },
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_EFFECTIVE_DTM",
+      "source_path": [
+        {
+          "from_field": "DV_EFFECTIVE_DTM",
+          "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+        },
+        {
+          "from_field": "DV_EFFECTIVE_DTM",
+          "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+        },
+        {
+          "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_SM_SUMMARY_QUOTE_SOL_ALLOC"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SM_SUMMARY_QUOTE_SOL_ALLOC"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:14.366352+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

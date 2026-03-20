@@ -1,0 +1,296 @@
+{
+  "workflow_name": "wf_m_WI_QTR_PROJ_MNTH_CNTL",
+  "mapping_name": "m_WI_QTR_PROJ_MNTH_CNTL",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_QTR_PROJ_MNTH_CNTL",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_qtr_proj_mnth_cntl_01_mart_wi_qtr_proj_mnth_cntl",
+  "source_tables": [
+    "WI_QTR_PROJ_MNTH_CNTL"
+  ],
+  "sources": [
+    {
+      "name": "WI_QTR_PROJ_MNTH_CNTL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "PROCESSED_FISCAL_YEAR_QTR_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PROCESSED_FISCAL_YEAR_MTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RUN_BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INC_FLAG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_QTR_PROJ_MNTH_CNTL",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PROCESSED_FISCAL_YEAR_QTR_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROCESSED_FISCAL_YEAR_MTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FISCAL_YEAR_MONTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RUN_BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INC_FLAG",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_QTR_PROJ_MNTH_CNTL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PROCESSED_FISCAL_YEAR_QTR_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROCESSED_FISCAL_YEAR_MTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RUN_BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INC_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nFISCAL_YEAR_QUARTER_NUMBER_INT PROCESSED_FISCAL_YEAR_QTR_INT,\r\nFISCAL_YEAR_MONTH_INT PROCESSED_FISCAL_YEAR_MTH_INT,\r\nFISCAL_YEAR_MONTH_INT,\r\n(RANK() OVER (  ORDER BY FISCAL_YEAR_MONTH_INT)-1)/3+1 RUN_BATCH_ID ,\r\n'Y' INC_FLAG\r\nFROM \r\n$$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR \r\nWHERE  FISCAL_QTR_AGE  IN(0,1)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "PROCESSED_FISCAL_YEAR_QTR_INT",
+      "from_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL",
+      "to_field": "PROCESSED_FISCAL_YEAR_QTR_INT",
+      "to_instance": "WI_QTR_PROJ_MNTH_CNTL"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_YEAR_MTH_INT",
+      "from_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL",
+      "to_field": "PROCESSED_FISCAL_YEAR_MTH_INT",
+      "to_instance": "WI_QTR_PROJ_MNTH_CNTL"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "WI_QTR_PROJ_MNTH_CNTL"
+    },
+    {
+      "from_field": "RUN_BATCH_ID",
+      "from_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL",
+      "to_field": "RUN_BATCH_ID",
+      "to_instance": "WI_QTR_PROJ_MNTH_CNTL"
+    },
+    {
+      "from_field": "INC_FLAG",
+      "from_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL",
+      "to_field": "INC_FLAG",
+      "to_instance": "WI_QTR_PROJ_MNTH_CNTL"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_YEAR_QTR_INT",
+      "from_instance": "WI_QTR_PROJ_MNTH_CNTL1",
+      "to_field": "PROCESSED_FISCAL_YEAR_QTR_INT",
+      "to_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_YEAR_MTH_INT",
+      "from_instance": "WI_QTR_PROJ_MNTH_CNTL1",
+      "to_field": "PROCESSED_FISCAL_YEAR_MTH_INT",
+      "to_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "WI_QTR_PROJ_MNTH_CNTL1",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL"
+    },
+    {
+      "from_field": "RUN_BATCH_ID",
+      "from_instance": "WI_QTR_PROJ_MNTH_CNTL1",
+      "to_field": "RUN_BATCH_ID",
+      "to_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL"
+    },
+    {
+      "from_field": "INC_FLAG",
+      "from_instance": "WI_QTR_PROJ_MNTH_CNTL1",
+      "to_field": "INC_FLAG",
+      "to_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PROCESSED_FISCAL_YEAR_QTR_INT",
+      "source_path": [
+        {
+          "from_field": "PROCESSED_FISCAL_YEAR_QTR_INT",
+          "from_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL"
+        },
+        {
+          "from_field": "PROCESSED_FISCAL_YEAR_QTR_INT",
+          "from_instance": "WI_QTR_PROJ_MNTH_CNTL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROCESSED_FISCAL_YEAR_MTH_INT",
+      "source_path": [
+        {
+          "from_field": "PROCESSED_FISCAL_YEAR_MTH_INT",
+          "from_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL"
+        },
+        {
+          "from_field": "PROCESSED_FISCAL_YEAR_MTH_INT",
+          "from_instance": "WI_QTR_PROJ_MNTH_CNTL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FISCAL_YEAR_MONTH_INT",
+      "source_path": [
+        {
+          "from_field": "FISCAL_YEAR_MONTH_INT",
+          "from_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL"
+        },
+        {
+          "from_field": "FISCAL_YEAR_MONTH_INT",
+          "from_instance": "WI_QTR_PROJ_MNTH_CNTL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RUN_BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "RUN_BATCH_ID",
+          "from_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL"
+        },
+        {
+          "from_field": "RUN_BATCH_ID",
+          "from_instance": "WI_QTR_PROJ_MNTH_CNTL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INC_FLAG",
+      "source_path": [
+        {
+          "from_field": "INC_FLAG",
+          "from_instance": "SQ_WI_QTR_PROJ_MNTH_CNTL"
+        },
+        {
+          "from_field": "INC_FLAG",
+          "from_instance": "WI_QTR_PROJ_MNTH_CNTL1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:31.180756+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

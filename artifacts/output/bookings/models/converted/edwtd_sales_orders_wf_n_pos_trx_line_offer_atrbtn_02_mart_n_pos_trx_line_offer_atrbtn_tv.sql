@@ -1,0 +1,130 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_n_pos_trx_line_offer_atrbtn', 'batch', 'edwtd_sales_orders'],
+    meta={
+        'source_workflow': 'wf_m_N_POS_TRX_LINE_OFFER_ATRBTN',
+        'target_table': 'N_POS_TRX_LINE_OFFER_ATRBTN_TV',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:33.819937+00:00'
+    }
+) }}
+
+WITH 
+
+source_n_pos_trx_line_offer_atrbtn_tv AS (
+    SELECT
+        bk_offer_attribution_id_int,
+        attributed_product_key,
+        bk_pos_transaction_id_int,
+        bk_orgnl_offr_attrbtn_id_int,
+        attribution_pct,
+        product_attributed_qty,
+        unit_list_price_usd_amt,
+        unit_net_price_usd_amt,
+        transaction_type_cd,
+        unit_global_lst_prc_usd_amt,
+        unit_wholesale_lst_prc_usd_amt,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        start_tv_dtm,
+        end_tv_dtm,
+        version_id_int,
+        obsolete_flg,
+        attribution_top_sku_flg,
+        top_sku_pos_trx_id_int,
+        exception_reason_cd,
+        exception_status_cd,
+        disti_pos_trx_type_cd,
+        attribution_cd,
+        parent_offer_attrib_id_int,
+        pob_type_cd,
+        dv_pob_top_prdt_key,
+        unit_net_price_local_amt,
+        unit_globl_list_prc_lcl_amt,
+        unit_wholesale_lst_prc_lcl_amt,
+        currency_conversion_rate
+    FROM {{ source('raw', 'n_pos_trx_line_offer_atrbtn_tv') }}
+),
+
+source_w_pos_trx_line_offer_atrbtn AS (
+    SELECT
+        bk_offer_attribution_id_int,
+        attributed_product_key,
+        bk_pos_transaction_id_int,
+        bk_orgnl_offr_attrbtn_id_int,
+        attribution_pct,
+        product_attributed_qty,
+        unit_list_price_usd_amt,
+        unit_net_price_usd_amt,
+        transaction_type_cd,
+        unit_global_lst_prc_usd_amt,
+        unit_wholesale_lst_prc_usd_amt,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        start_tv_dtm,
+        end_tv_dtm,
+        version_id_int,
+        obsolete_flg,
+        attribution_top_sku_flg,
+        top_sku_pos_trx_id_int,
+        exception_reason_cd,
+        exception_status_cd,
+        disti_pos_trx_type_cd,
+        attribution_cd,
+        parent_offer_attrib_id_int,
+        pob_type_cd,
+        dv_pob_top_prdt_key,
+        unit_net_price_local_amt,
+        unit_globl_list_prc_lcl_amt,
+        unit_wholesale_lst_prc_lcl_amt,
+        currency_conversion_rate,
+        action_code,
+        dml_type
+    FROM {{ source('raw', 'w_pos_trx_line_offer_atrbtn') }}
+),
+
+final AS (
+    SELECT
+        bk_offer_attribution_id_int,
+        attributed_product_key,
+        bk_pos_transaction_id_int,
+        bk_orgnl_offr_attrbtn_id_int,
+        attribution_pct,
+        product_attributed_qty,
+        unit_list_price_usd_amt,
+        unit_net_price_usd_amt,
+        transaction_type_cd,
+        unit_global_lst_prc_usd_amt,
+        unit_wholesale_lst_prc_usd_amt,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        start_tv_dtm,
+        end_tv_dtm,
+        version_id_int,
+        obsolete_flg,
+        attribution_top_sku_flg,
+        top_sku_pos_trx_id_int,
+        exception_reason_cd,
+        exception_status_cd,
+        disti_pos_trx_type_cd,
+        attribution_cd,
+        parent_offer_attrib_id_int,
+        pob_type_cd,
+        dv_pob_top_prdt_key,
+        as_architecture_flg,
+        bookings_policy_cd,
+        unit_net_price_local_amt,
+        unit_globl_list_prc_lcl_amt,
+        unit_wholesale_lst_prc_lcl_amt,
+        currency_conversion_rate
+    FROM source_w_pos_trx_line_offer_atrbtn
+)
+
+SELECT * FROM final

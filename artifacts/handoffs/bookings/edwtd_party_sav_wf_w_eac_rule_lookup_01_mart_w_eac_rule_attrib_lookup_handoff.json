@@ -1,0 +1,560 @@
+{
+  "workflow_name": "wf_m_W_EAC_RULE_LOOKUP",
+  "mapping_name": "m_W_EAC_RULE_LOOKUP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_PARTY_SAV",
+  "target_table": "W_EAC_RULE_ATTRIB_LOOKUP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_party_sav_wf_w_eac_rule_lookup_01_mart_w_eac_rule_attrib_lookup",
+  "source_tables": [
+    "ST_XXFSAM_LOOKUP_V"
+  ],
+  "sources": [
+    {
+      "name": "ST_XXFSAM_LOOKUP_V",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "LOOKUP_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LOOKUP_TYPE",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LOOKUP_DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LOOKUP_VALUE",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_EAC_RULE_ATTRIB_LOOKUP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "EAC_RULE_ATTRIB_LOOKUP_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_EAC_ORG_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "ATTRIBUTE_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE_VALUE_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE_VALUE_TEXT",
+        "datatype": "varchar",
+        "precision": "150",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EFFECTIVE_END_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EFFECTIVE_START_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_XXFSAM_LOOKUP_V",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "LOOKUP_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOOKUP_DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nST_XXFSAM_LOOKUP_V.LOOKUP_ID,\r\nST_XXFSAM_LOOKUP_V.ORG_ID,\r\nCOALESCE(ST_XXFSAM_LOOKUP_V.LOOKUP_TYPE,'UNKNOWN'),\r\nCOALESCE(ST_XXFSAM_LOOKUP_V.LOOKUP_VALUE,'UNKNOWN'),\r\nCOALESCE(ST_XXFSAM_LOOKUP_V.LOOKUP_DESCRIPTION,'UNKNOWN'),\r\nCOALESCE(ST_XXFSAM_LOOKUP_V.END_DATE,CAST('3500-01-01' AS DATE)),\r\nCOALESCE(ST_XXFSAM_LOOKUP_V.START_DATE,CURRENT_DATE()),\r\nUSER EDW_CREATE_USER,\r\nUSER EDW_UPDATE_USER,\r\nCURRENT_TIMESTAMP(0) EDW_CREATE_DATETIME,\r\nCURRENT_TIMESTAMP(0) EDW_UPDATE_DATETIME,\r\n'I' ACTION_CODE,\r\n'I' AS DML_TYPE\r\nFROM\r\n$$STGDB.ST_XXFSAM_LOOKUP_V ST_XXFSAM_LOOKUP_V\r\nINNER JOIN $$SLSORDVWDB.N_EAC_ORG ORG\r\nON ORG.BK_EAC_ORG_ID = ST_XXFSAM_LOOKUP_V.ORG_ID",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_XXFSAM_LOOKUP_V",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "LOOKUP_ID",
+      "from_instance": "SQ_ST_XXFSAM_LOOKUP_V",
+      "to_field": "EAC_RULE_ATTRIB_LOOKUP_ID",
+      "to_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "SQ_ST_XXFSAM_LOOKUP_V",
+      "to_field": "BK_EAC_ORG_ID",
+      "to_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "LOOKUP_TYPE",
+      "from_instance": "SQ_ST_XXFSAM_LOOKUP_V",
+      "to_field": "ATTRIBUTE_NAME",
+      "to_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "LOOKUP_VALUE",
+      "from_instance": "SQ_ST_XXFSAM_LOOKUP_V",
+      "to_field": "ATTRIBUTE_VALUE_NAME",
+      "to_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "LOOKUP_DESCRIPTION",
+      "from_instance": "SQ_ST_XXFSAM_LOOKUP_V",
+      "to_field": "ATTRIBUTE_VALUE_TEXT",
+      "to_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "SQ_ST_XXFSAM_LOOKUP_V",
+      "to_field": "EFFECTIVE_END_DT",
+      "to_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "START_DATE",
+      "from_instance": "SQ_ST_XXFSAM_LOOKUP_V",
+      "to_field": "EFFECTIVE_START_DT",
+      "to_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_ST_XXFSAM_LOOKUP_V",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "SQ_ST_XXFSAM_LOOKUP_V",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_ST_XXFSAM_LOOKUP_V",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "LOOKUP_ID",
+      "from_instance": "ST_XXFSAM_LOOKUP_V",
+      "to_field": "LOOKUP_ID",
+      "to_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+    },
+    {
+      "from_field": "LOOKUP_DESCRIPTION",
+      "from_instance": "ST_XXFSAM_LOOKUP_V",
+      "to_field": "LOOKUP_DESCRIPTION",
+      "to_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "ST_XXFSAM_LOOKUP_V",
+      "to_field": "END_DATE",
+      "to_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "ST_XXFSAM_LOOKUP_V",
+      "to_field": "ORG_ID",
+      "to_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+    },
+    {
+      "from_field": "START_DATE",
+      "from_instance": "ST_XXFSAM_LOOKUP_V",
+      "to_field": "START_DATE",
+      "to_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "ST_XXFSAM_LOOKUP_V",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_XXFSAM_LOOKUP_V",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_XXFSAM_LOOKUP_V",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "ST_XXFSAM_LOOKUP_V",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+    },
+    {
+      "from_field": "LOOKUP_TYPE",
+      "from_instance": "ST_XXFSAM_LOOKUP_V",
+      "to_field": "LOOKUP_TYPE",
+      "to_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+    },
+    {
+      "from_field": "LOOKUP_VALUE",
+      "from_instance": "ST_XXFSAM_LOOKUP_V",
+      "to_field": "LOOKUP_VALUE",
+      "to_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "EAC_RULE_ATTRIB_LOOKUP_ID",
+      "source_path": [
+        {
+          "from_field": "LOOKUP_ID",
+          "from_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_EAC_ORG_ID",
+      "source_path": [
+        {
+          "from_field": "ORG_ID",
+          "from_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE_NAME",
+      "source_path": [
+        {
+          "from_field": "LOOKUP_TYPE",
+          "from_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE_VALUE_NAME",
+      "source_path": [
+        {
+          "from_field": "LOOKUP_VALUE",
+          "from_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE_VALUE_TEXT",
+      "source_path": [
+        {
+          "from_field": "LOOKUP_DESCRIPTION",
+          "from_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EFFECTIVE_END_DT",
+      "source_path": [
+        {
+          "from_field": "END_DATE",
+          "from_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EFFECTIVE_START_DT",
+      "source_path": [
+        {
+          "from_field": "START_DATE",
+          "from_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_ST_XXFSAM_LOOKUP_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:15.134421+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

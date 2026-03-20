@@ -1,0 +1,537 @@
+{
+  "workflow_name": "wf_m_W_PRICING_INCENTIVE",
+  "mapping_name": "m_W_PRICING_INCENTIVE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_RDC",
+  "target_table": "W_PRICING_INCENTIVE_TEMP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rdc_wf_w_pricing_incentive_01_int_w_pricing_incentive_temp",
+  "source_tables": [
+    "ST_CHANNELS_ALIGNMENT"
+  ],
+  "sources": [
+    {
+      "name": "ST_CHANNELS_ALIGNMENT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "SUB_PROMO_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CHANNEL_ALIGNMENT",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STATUS",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROMOTION_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROMOTION_TYPE",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_PRICING_INCENTIVE_TEMP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_PRICING_INCENTIVE_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "CHANNEL_PRMTN_ALGNMT_CD",
+        "datatype": "varchar",
+        "precision": "150",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ALIGNED_STATUS_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PRICING_INCENTIVE_GROUP_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PRICING_INCENTIVE_TYPE_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_CHANNEL_ALIGNMENT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SUB_PROMO_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_ALIGNMENT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STATUS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROMOTION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROMOTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nST.SUB_PROMO_NAME,\r\nST.CHANNEL_ALIGNMENT,\r\nST.STATUS,\r\nST.PROMOTION_NAME,\r\nCURRENT_TIMESTAMP(0) EDW_CREATE_DTM, \r\nUSER EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) EDW_UPDATE_DTM, \r\nUSER EDW_UPDATE_USER,\r\nST.PROMOTION_TYPE,\r\nST.ACTION_CODE,\r\n'I' DML_TYPE\r\nFROM \r\n$$STGDB.ST_CHANNELS_ALIGNMENT ST",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "COLLECT STATS ON $$STGDB.ST_CHANNELS_ALIGNMENT COLUMN ( CHANNEL_ALIGNMENT ) ;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SUB_PROMO_NAME",
+      "from_instance": "SQ_ST_CHANNEL_ALIGNMENT",
+      "to_field": "BK_PRICING_INCENTIVE_NAME",
+      "to_instance": "W_PRICING_INCENTIVE"
+    },
+    {
+      "from_field": "CHANNEL_ALIGNMENT",
+      "from_instance": "SQ_ST_CHANNEL_ALIGNMENT",
+      "to_field": "CHANNEL_PRMTN_ALGNMT_CD",
+      "to_instance": "W_PRICING_INCENTIVE"
+    },
+    {
+      "from_field": "STATUS",
+      "from_instance": "SQ_ST_CHANNEL_ALIGNMENT",
+      "to_field": "ALIGNED_STATUS_FLG",
+      "to_instance": "W_PRICING_INCENTIVE"
+    },
+    {
+      "from_field": "PROMOTION_NAME",
+      "from_instance": "SQ_ST_CHANNEL_ALIGNMENT",
+      "to_field": "PRICING_INCENTIVE_GROUP_NAME",
+      "to_instance": "W_PRICING_INCENTIVE"
+    },
+    {
+      "from_field": "PROMOTION_TYPE",
+      "from_instance": "SQ_ST_CHANNEL_ALIGNMENT",
+      "to_field": "PRICING_INCENTIVE_TYPE_CD",
+      "to_instance": "W_PRICING_INCENTIVE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_CHANNEL_ALIGNMENT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_PRICING_INCENTIVE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_CHANNEL_ALIGNMENT",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_PRICING_INCENTIVE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_CHANNEL_ALIGNMENT",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_PRICING_INCENTIVE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_CHANNEL_ALIGNMENT",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_PRICING_INCENTIVE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_CHANNEL_ALIGNMENT",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_PRICING_INCENTIVE"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_CHANNEL_ALIGNMENT",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_PRICING_INCENTIVE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_CHANNELS_ALIGNMENT",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_CHANNELS_ALIGNMENT",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "SUB_PROMO_NAME",
+      "from_instance": "ST_CHANNELS_ALIGNMENT",
+      "to_field": "SUB_PROMO_NAME",
+      "to_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "CHANNEL_ALIGNMENT",
+      "from_instance": "ST_CHANNELS_ALIGNMENT",
+      "to_field": "CHANNEL_ALIGNMENT",
+      "to_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "STATUS",
+      "from_instance": "ST_CHANNELS_ALIGNMENT",
+      "to_field": "STATUS",
+      "to_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "PROMOTION_NAME",
+      "from_instance": "ST_CHANNELS_ALIGNMENT",
+      "to_field": "PROMOTION_NAME",
+      "to_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "PROMOTION_TYPE",
+      "from_instance": "ST_CHANNELS_ALIGNMENT",
+      "to_field": "PROMOTION_TYPE",
+      "to_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_CHANNELS_ALIGNMENT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_CHANNELS_ALIGNMENT",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "SUB_PROMO_NAME",
+      "from_instance": "ST_CHANNELS_ALIGNMENT",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "CHANNEL_ALIGNMENT",
+      "from_instance": "ST_CHANNELS_ALIGNMENT",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_PRICING_INCENTIVE_NAME",
+      "source_path": [
+        {
+          "from_field": "SUB_PROMO_NAME",
+          "from_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CHANNEL_PRMTN_ALGNMT_CD",
+      "source_path": [
+        {
+          "from_field": "CHANNEL_ALIGNMENT",
+          "from_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ALIGNED_STATUS_FLG",
+      "source_path": [
+        {
+          "from_field": "STATUS",
+          "from_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRICING_INCENTIVE_GROUP_NAME",
+      "source_path": [
+        {
+          "from_field": "PROMOTION_NAME",
+          "from_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_CHANNELS_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+        },
+        {
+          "from_field": "SUB_PROMO_NAME",
+          "from_instance": "ST_CHANNELS_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_CHANNELS_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+        },
+        {
+          "from_field": "CHANNEL_ALIGNMENT",
+          "from_instance": "ST_CHANNELS_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRICING_INCENTIVE_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "PROMOTION_TYPE",
+          "from_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_CHANNELS_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_ST_CHANNEL_ALIGNMENT"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_CHANNELS_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:17.937832+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

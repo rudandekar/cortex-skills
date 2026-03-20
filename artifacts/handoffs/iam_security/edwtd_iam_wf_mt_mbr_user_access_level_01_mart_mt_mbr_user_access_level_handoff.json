@@ -1,0 +1,437 @@
+{
+  "workflow_name": "wf_m_MT_MBR_USER_ACCESS_LEVEL",
+  "mapping_name": "m_MT_MBR_USER_ACCESS_LEVEL",
+  "mapping_description": "",
+  "folder_name": "EDWTD_IAM",
+  "target_table": "MT_MBR_USER_ACCESS_LEVEL",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_iam_wf_mt_mbr_user_access_level_01_mart_mt_mbr_user_access_level",
+  "source_tables": [
+    "MT_MBR_USER_ACCESS_LEVEL"
+  ],
+  "sources": [
+    {
+      "name": "MT_MBR_USER_ACCESS_LEVEL",
+      "database_type": "Teradata",
+      "owner": "SECURITYDB_DV4",
+      "fields": [
+        {
+          "name": "BK_CEC_ID",
+          "datatype": "char",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TOP_LEVEL_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SUBSEQUENT_LEVEL_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_APPLICATION_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "MT_MBR_USER_ACCESS_LEVEL",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_CEC_ID",
+        "datatype": "char",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "TOP_LEVEL_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SUBSEQUENT_LEVEL_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_APPLICATION_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_MT_MBR_USER_ACCESS_LEVEL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_CEC_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOP_LEVEL_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBSEQUENT_LEVEL_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_APPLICATION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nDISTINCT DD_CEC_ID, MIN(IAM_LEVEL_NUM_INT) TOP_LEVEL_INT, (TOP_LEVEL_INT+1) SUBSEQUENT_LEVEL_INT ,\r\nCASE WHEN APPLICATION_NAME='My Business Report Tool' AND BK_SALES_TERR_ASSGNMNT_TYPE_CD='DR' THEN 'MBR RM DR'\r\nWHEN APPLICATION_NAME='My Business Report Tool' AND BK_SALES_TERR_ASSGNMNT_TYPE_CD='IS' THEN 'MBR RM IS'\r\nWHEN APPLICATION_NAME='MBR AM' THEN 'MBR AM'\r\nWHEN APPLICATION_NAME='MBR Overlay'  THEN 'MBR Overlay' ELSE NULL end  BK_APPLICATION_NAME,\r\nCURRENT_TIMESTAMP(0),\r\nUSER,\r\nCURRENT_TIMESTAMP(0),\r\nUSER\r\nFROM $$SECURITYVWDB.MT_BUSMBR_IAM_SALES_TERR_LINK LNK, $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RFMY\r\nWHERE RFMY.FISCAL_YEAR_MONTH_INT = LNK.FISCAL_YEAR_MONTH_INT\r\nAND RFMY.CURRENT_FISCAL_MONTH_FLAG='Y'\r\nAND BK_IAM_ROLE_NAME <> 'Bookings 360'\r\nAND DD_CEC_ID<>'  -999' AND DD_CEC_ID IS NOT NULL AND BK_APPLICATION_NAME IS NOT NULL\r\nGROUP BY DD_CEC_ID,BK_APPLICATION_NAME\r\n\r\nUNION ALL\r\n\r\nSELECT \r\nDISTINCT DD_CEC_ID, MIN(IAM_LEVEL_NUM_INT) TOP_LEVEL_INT, (TOP_LEVEL_INT+1) SUBSEQUENT_LEVEL_INT ,\r\nCASE WHEN APPLICATION_NAME='My Business Report Tool' AND BK_SALES_TERR_ASSGNMNT_TYPE_CD='DR'  THEN 'MBR RM PREV' ELSE NULL END BK_APPLICATION_NAME,\r\nCURRENT_TIMESTAMP(0),\r\nUSER,\r\nCURRENT_TIMESTAMP(0),\r\nUSER\r\nFROM $$SECURITYVWDB.MT_BUSMBR_IAM_SALES_TERR_LINK MBISTL\r\nWHERE FISCAL_YEAR_MONTH_INT=(SELECT MAX(FISCAL_YEAR_MONTH_INT) FROM $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RFMY WHERE FISCAL_YEAR_AGE=1)\r\nAND BK_IAM_ROLE_NAME <> 'Bookings 360'\r\nAND DD_CEC_ID<>'  -999' AND DD_CEC_ID IS NOT NULL AND BK_APPLICATION_NAME IS NOT NULL\r\nGROUP BY DD_CEC_ID,BK_APPLICATION_NAME",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_CEC_ID",
+      "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "BK_CEC_ID",
+      "to_instance": "MT_MBR_USER_ACCESS_LEVEL1"
+    },
+    {
+      "from_field": "TOP_LEVEL_INT",
+      "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "TOP_LEVEL_INT",
+      "to_instance": "MT_MBR_USER_ACCESS_LEVEL1"
+    },
+    {
+      "from_field": "SUBSEQUENT_LEVEL_INT",
+      "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "SUBSEQUENT_LEVEL_INT",
+      "to_instance": "MT_MBR_USER_ACCESS_LEVEL1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "MT_MBR_USER_ACCESS_LEVEL1"
+    },
+    {
+      "from_field": "BK_APPLICATION_NAME",
+      "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "BK_APPLICATION_NAME",
+      "to_instance": "MT_MBR_USER_ACCESS_LEVEL1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "MT_MBR_USER_ACCESS_LEVEL1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "MT_MBR_USER_ACCESS_LEVEL1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "MT_MBR_USER_ACCESS_LEVEL1"
+    },
+    {
+      "from_field": "BK_CEC_ID",
+      "from_instance": "MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "BK_CEC_ID",
+      "to_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+    },
+    {
+      "from_field": "TOP_LEVEL_INT",
+      "from_instance": "MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "TOP_LEVEL_INT",
+      "to_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+    },
+    {
+      "from_field": "SUBSEQUENT_LEVEL_INT",
+      "from_instance": "MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "SUBSEQUENT_LEVEL_INT",
+      "to_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+    },
+    {
+      "from_field": "BK_APPLICATION_NAME",
+      "from_instance": "MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "BK_APPLICATION_NAME",
+      "to_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "MT_MBR_USER_ACCESS_LEVEL",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_CEC_ID",
+      "source_path": [
+        {
+          "from_field": "BK_CEC_ID",
+          "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+        },
+        {
+          "from_field": "BK_CEC_ID",
+          "from_instance": "MT_MBR_USER_ACCESS_LEVEL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TOP_LEVEL_INT",
+      "source_path": [
+        {
+          "from_field": "TOP_LEVEL_INT",
+          "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+        },
+        {
+          "from_field": "TOP_LEVEL_INT",
+          "from_instance": "MT_MBR_USER_ACCESS_LEVEL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SUBSEQUENT_LEVEL_INT",
+      "source_path": [
+        {
+          "from_field": "SUBSEQUENT_LEVEL_INT",
+          "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+        },
+        {
+          "from_field": "SUBSEQUENT_LEVEL_INT",
+          "from_instance": "MT_MBR_USER_ACCESS_LEVEL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_APPLICATION_NAME",
+      "source_path": [
+        {
+          "from_field": "BK_APPLICATION_NAME",
+          "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+        },
+        {
+          "from_field": "BK_APPLICATION_NAME",
+          "from_instance": "MT_MBR_USER_ACCESS_LEVEL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "MT_MBR_USER_ACCESS_LEVEL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "MT_MBR_USER_ACCESS_LEVEL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "MT_MBR_USER_ACCESS_LEVEL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_MT_MBR_USER_ACCESS_LEVEL"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "MT_MBR_USER_ACCESS_LEVEL"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:25:36.341402+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

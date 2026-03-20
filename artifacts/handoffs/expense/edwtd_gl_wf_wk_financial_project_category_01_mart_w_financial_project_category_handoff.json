@@ -1,0 +1,465 @@
+{
+  "workflow_name": "wf_m_WK_FINANCIAL_PROJECT_CATEGORY",
+  "mapping_name": "m_WK_FINANCIAL_PROJECT_CATEGORY",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "W_FINANCIAL_PROJECT_CATEGORY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_wk_financial_project_category_01_mart_w_financial_project_category",
+  "source_tables": [
+    "ST_SI_PROJECT_CATEGORY"
+  ],
+  "sources": [
+    {
+      "name": "ST_SI_PROJECT_CATEGORY",
+      "database_type": "Teradata",
+      "owner": "STGDB_DEV",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROJECT_CATEGORY_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PROJECT_CATEGORY_DESC",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SI_FLEX_STRUCT_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_FINANCIAL_PROJECT_CATEGORY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_FIN_PROJ_CATEGORY_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "FINANCIAL_PROJ_CATEGORY_DESCR",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_SI_PROJECT_CATEGORY",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROJECT_CATEGORY_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROJECT_CATEGORY_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SI_FLEX_STRUCT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\t\r\nSSPC .BATCH_ID, \r\nSSPC .PROJECT_CATEGORY_ID, \r\nSSPC .PROJECT_CATEGORY_DESC, \r\nSSPC .ENABLED_FLAG, \r\nSSPC .SI_FLEX_STRUCT_ID, \r\nSSPC .LAST_UPDATE_DATE, \r\nSSPC .CREATE_DATETIME, \r\nSSPC .ACTION_CODE \r\nFROM\r\n$$STGDB.ST_SI_PROJECT_CATEGORY SSPC",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_W_FIN_PROJECT_CATEGORY",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BATCH_ID"
+        },
+        {
+          "name": "PROJECT_CATEGORY_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PROJECT_CATEGORY_ID"
+        },
+        {
+          "name": "PROJECT_CATEGORY_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PROJECT_CATEGORY_DESC"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ENABLED_FLAG"
+        },
+        {
+          "name": "SI_FLEX_STRUCT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SI_FLEX_STRUCT_ID"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_DATE"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATE_DATETIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "PROJECT_CATEGORY_DESC",
+      "from_instance": "Exp_W_FIN_PROJECT_CATEGORY",
+      "to_field": "FINANCIAL_PROJ_CATEGORY_DESCR",
+      "to_instance": "W_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_W_FIN_PROJECT_CATEGORY",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "PROJECT_CATEGORY_ID",
+      "from_instance": "Exp_W_FIN_PROJECT_CATEGORY",
+      "to_field": "BK_FIN_PROJ_CATEGORY_ID_INT",
+      "to_instance": "W_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_SI_PROJECT_CATEGORY",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_SI_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "PROJECT_CATEGORY_ID",
+      "from_instance": "ST_SI_PROJECT_CATEGORY",
+      "to_field": "PROJECT_CATEGORY_ID",
+      "to_instance": "SQ_ST_SI_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "PROJECT_CATEGORY_DESC",
+      "from_instance": "ST_SI_PROJECT_CATEGORY",
+      "to_field": "PROJECT_CATEGORY_DESC",
+      "to_instance": "SQ_ST_SI_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "ST_SI_PROJECT_CATEGORY",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "SQ_ST_SI_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "SI_FLEX_STRUCT_ID",
+      "from_instance": "ST_SI_PROJECT_CATEGORY",
+      "to_field": "SI_FLEX_STRUCT_ID",
+      "to_instance": "SQ_ST_SI_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_SI_PROJECT_CATEGORY",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_SI_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_SI_PROJECT_CATEGORY",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_SI_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_SI_PROJECT_CATEGORY",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_SI_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_ST_SI_PROJECT_CATEGORY",
+      "to_field": "BATCH_ID",
+      "to_instance": "Exp_W_FIN_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "PROJECT_CATEGORY_ID",
+      "from_instance": "SQ_ST_SI_PROJECT_CATEGORY",
+      "to_field": "PROJECT_CATEGORY_ID",
+      "to_instance": "Exp_W_FIN_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "PROJECT_CATEGORY_DESC",
+      "from_instance": "SQ_ST_SI_PROJECT_CATEGORY",
+      "to_field": "PROJECT_CATEGORY_DESC",
+      "to_instance": "Exp_W_FIN_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "SQ_ST_SI_PROJECT_CATEGORY",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "Exp_W_FIN_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "SI_FLEX_STRUCT_ID",
+      "from_instance": "SQ_ST_SI_PROJECT_CATEGORY",
+      "to_field": "SI_FLEX_STRUCT_ID",
+      "to_instance": "Exp_W_FIN_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_SI_PROJECT_CATEGORY",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "Exp_W_FIN_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_SI_PROJECT_CATEGORY",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "Exp_W_FIN_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_SI_PROJECT_CATEGORY",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_W_FIN_PROJECT_CATEGORY"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_FIN_PROJ_CATEGORY_ID_INT",
+      "source_path": [
+        {
+          "from_field": "PROJECT_CATEGORY_ID",
+          "from_instance": "Exp_W_FIN_PROJECT_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FINANCIAL_PROJ_CATEGORY_DESCR",
+      "source_path": [
+        {
+          "from_field": "PROJECT_CATEGORY_DESC",
+          "from_instance": "Exp_W_FIN_PROJECT_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_W_FIN_PROJECT_CATEGORY"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_SI_PROJECT_CATEGORY"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_SI_PROJECT_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:12.987505+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

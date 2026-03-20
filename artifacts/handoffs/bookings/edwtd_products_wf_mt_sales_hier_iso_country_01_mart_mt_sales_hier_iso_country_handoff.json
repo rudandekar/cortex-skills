@@ -1,0 +1,296 @@
+{
+  "workflow_name": "wf_m_MT_SALES_HIER_ISO_COUNTRY",
+  "mapping_name": "m_MT_SALES_HIER_ISO_COUNTRY",
+  "mapping_description": "",
+  "folder_name": "EDWTD_Products",
+  "target_table": "MT_SALES_HIER_ISO_COUNTRY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_products_wf_mt_sales_hier_iso_country_01_mart_mt_sales_hier_iso_country",
+  "source_tables": [
+    "MT_SALES_HIER_ISO_COUNTRY"
+  ],
+  "sources": [
+    {
+      "name": "MT_SALES_HIER_ISO_COUNTRY",
+      "database_type": "Teradata",
+      "owner": "COMREFDB_DV8",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "L6_SALES_TERRITORY_NAME_CD",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_SUBCOVERAGE_CD",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ISO_COUNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_ISO_COUNTRY_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "MT_SALES_HIER_ISO_COUNTRY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_TERRITORY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "L6_SALES_TERRITORY_NAME_CD",
+        "datatype": "varchar",
+        "precision": "32",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_SUBCOVERAGE_CD",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ISO_COUNTRY_CD",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DD_ISO_COUNTRY_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_MT_SALES_HIER_ISO_COUNTRY",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "L6_SALES_TERRITORY_NAME_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_SUBCOVERAGE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ISO_COUNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_ISO_COUNTRY_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT SH.SALES_TERRITORY_KEY, \r\n       SH.L6_SALES_TERRITORY_NAME_CODE,\r\n       SH.SALES_SUBCOVERAGE_CODE, \r\n       CASE WHEN  SH.ISO_COUNTRY_CODE IS NULL THEN 'UNK' \r\n            WHEN SH.ISO_COUNTRY_CODE = 'N' THEN 'UNK' ELSE SH.ISO_COUNTRY_CODE END AS ISO_COUNTRY_CODE,\r\n       CASE WHEN CNT.ISO_COUNTRY_NAME IS NULL THEN 'UNDEFINED COUNTRY' ELSE CNT.ISO_COUNTRY_NAME END\r\n  FROM $$COMREFVWDB.R_SALES_HIERARCHY_TV SH\r\n  INNER JOIN \r\n       $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR TME\r\n   ON TME.FISCAL_MONTH_END_DATE BETWEEN SH.START_TV_DATE AND SH.END_TV_DATE \r\nLEFT OUTER JOIN \r\n        COMREFDB_DV8.N_ISO_COUNTRY CNT\r\n   ON SH.ISO_COUNTRY_CODE           = CNT.BK_ISO_COUNTRY_CODE        \r\n WHERE SH.SALES_TERRITORY_TYPE_CODE IN ( 'CORP. REVENUE', 'UNKNOWN')\r\n   AND TME.FISCAL_YEAR_MONTH_INT         = $$SHFISYR",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "MT_SALES_HIER_ISO_COUNTRY1"
+    },
+    {
+      "from_field": "L6_SALES_TERRITORY_NAME_CD",
+      "from_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY",
+      "to_field": "L6_SALES_TERRITORY_NAME_CD",
+      "to_instance": "MT_SALES_HIER_ISO_COUNTRY1"
+    },
+    {
+      "from_field": "SALES_SUBCOVERAGE_CD",
+      "from_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY",
+      "to_field": "SALES_SUBCOVERAGE_CD",
+      "to_instance": "MT_SALES_HIER_ISO_COUNTRY1"
+    },
+    {
+      "from_field": "ISO_COUNTRY_CD",
+      "from_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY",
+      "to_field": "ISO_COUNTRY_CD",
+      "to_instance": "MT_SALES_HIER_ISO_COUNTRY1"
+    },
+    {
+      "from_field": "DD_ISO_COUNTRY_NAME",
+      "from_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY",
+      "to_field": "DD_ISO_COUNTRY_NAME",
+      "to_instance": "MT_SALES_HIER_ISO_COUNTRY1"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "MT_SALES_HIER_ISO_COUNTRY",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY"
+    },
+    {
+      "from_field": "L6_SALES_TERRITORY_NAME_CD",
+      "from_instance": "MT_SALES_HIER_ISO_COUNTRY",
+      "to_field": "L6_SALES_TERRITORY_NAME_CD",
+      "to_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY"
+    },
+    {
+      "from_field": "SALES_SUBCOVERAGE_CD",
+      "from_instance": "MT_SALES_HIER_ISO_COUNTRY",
+      "to_field": "SALES_SUBCOVERAGE_CD",
+      "to_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY"
+    },
+    {
+      "from_field": "ISO_COUNTRY_CD",
+      "from_instance": "MT_SALES_HIER_ISO_COUNTRY",
+      "to_field": "ISO_COUNTRY_CD",
+      "to_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY"
+    },
+    {
+      "from_field": "DD_ISO_COUNTRY_NAME",
+      "from_instance": "MT_SALES_HIER_ISO_COUNTRY",
+      "to_field": "DD_ISO_COUNTRY_NAME",
+      "to_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_TERRITORY_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_TERRITORY_KEY",
+          "from_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY"
+        },
+        {
+          "from_field": "SALES_TERRITORY_KEY",
+          "from_instance": "MT_SALES_HIER_ISO_COUNTRY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "L6_SALES_TERRITORY_NAME_CD",
+      "source_path": [
+        {
+          "from_field": "L6_SALES_TERRITORY_NAME_CD",
+          "from_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY"
+        },
+        {
+          "from_field": "L6_SALES_TERRITORY_NAME_CD",
+          "from_instance": "MT_SALES_HIER_ISO_COUNTRY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_SUBCOVERAGE_CD",
+      "source_path": [
+        {
+          "from_field": "SALES_SUBCOVERAGE_CD",
+          "from_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY"
+        },
+        {
+          "from_field": "SALES_SUBCOVERAGE_CD",
+          "from_instance": "MT_SALES_HIER_ISO_COUNTRY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ISO_COUNTRY_CD",
+      "source_path": [
+        {
+          "from_field": "ISO_COUNTRY_CD",
+          "from_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY"
+        },
+        {
+          "from_field": "ISO_COUNTRY_CD",
+          "from_instance": "MT_SALES_HIER_ISO_COUNTRY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DD_ISO_COUNTRY_NAME",
+      "source_path": [
+        {
+          "from_field": "DD_ISO_COUNTRY_NAME",
+          "from_instance": "SQ_MT_SALES_HIER_ISO_COUNTRY"
+        },
+        {
+          "from_field": "DD_ISO_COUNTRY_NAME",
+          "from_instance": "MT_SALES_HIER_ISO_COUNTRY"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:17.844751+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

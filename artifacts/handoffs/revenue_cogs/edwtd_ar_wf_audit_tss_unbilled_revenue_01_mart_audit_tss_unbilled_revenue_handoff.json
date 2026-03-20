@@ -1,0 +1,639 @@
+{
+  "workflow_name": "wf_m_AUDIT_TSS_UNBILLED_REVENUE",
+  "mapping_name": "m_AUDIT_TSS_UNBILLED_REVENUE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "AUDIT_TSS_UNBILLED_REVENUE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_audit_tss_unbilled_revenue_01_mart_audit_tss_unbilled_revenue",
+  "source_tables": [
+    "AUDIT_TSS_UNBILLED_REVENUE"
+  ],
+  "sources": [
+    {
+      "name": "AUDIT_TSS_UNBILLED_REVENUE",
+      "database_type": "Teradata",
+      "owner": "STGDB_TS3",
+      "fields": [
+        {
+          "name": "PROCESSED_FISCAL_MTH",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TSS_UB_AMT_MISMATCH",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUDIT_TRXN_TYPE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "AUDIT_TSS_UNBILLED_REVENUE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PROCESSED_FISCAL_MTH",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "TSS_UB_AMT_MISMATCH",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_TRXN_TYPE",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "AUDIT_TABLE",
+        "datatype": "varchar",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "AUDIT_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PROCESSED_FISCAL_MTH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSS_UB_AMT_MISMATCH",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TRXN_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT MT_UN.PROCESSED_FISCAL_MTH,\r\nABS(ROUND(SUM(MT_UN.UNBILLED_REVENUE + MT_TSS_UN.TSS_UNBILLED_REVENUE))) AS TSS_UB_AMT_MISMATCH ,\r\n'ERP' AS AUDIT_TRXN_TYPE,\r\n'MT_TSS_UNBILLED_REVENUE' AS AUDIT_TABLE,\r\n   Current_Date AS AUDIT_DATE\r\nFROM\r\n(SELECT MT.PROCESSED_FISCAL_MTH AS PROCESSED_FISCAL_MTH,MT.TRANSACTION_TYPE AS TRANSACTION_TYPE,\r\nSUM((MT.UNBILLED_REVENUE_AMT  *  COALESCE(SFH.ALLOCATION_PERCENTAGE,1)) ) AS UNBILLED_REVENUE\r\nFROM $$FINLGLVWDB.MT_RSTD_UNBILLED_REVENUE MT\r\nINNER JOIN $$COMREFVWDB.MT_CS_DEAL_SVC_FIN_HIER_ALLOC SFH                     \r\nON SFH.ITEM_KEY =  MT.ATTRIBUTED_PRODUCT_KEY \r\nAND SFH.BK_SERVICE_CATEGORY_ID='TECHNICAL SUPPORT SERVICES'\r\nAND SFH.DV_PRDT_SUB_GRP_ALLOC_SRC_CD='SPA'\r\nWHERE TRANSACTION_TYPE IN  ('ERP','NET_ADJ_ERP')\r\nAND MT.PROCESSED_FISCAL_MTH = (SELECT FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_UNBILL_CTRL_MTH GROUP BY 1)\r\nAND MT.CORP_FLG='Y' AND MT.SERVICE_FLG = 'Y'                        \t\r\nGROUP BY 1,2) MT_UN\r\nLEFT JOIN\r\n(SELECT MT.PROCESSED_FISCAL_MTH AS PROCESSED_FISCAL_MTH ,MT.TRANSACTION_TYPE AS TRANSACTION_TYPE,\r\nSUM(MT.TSS_UNBILLED_REVENUE_AMT)*-1 AS TSS_UNBILLED_REVENUE \r\nFROM $$FINLGLVWDB.MT_TSS_UNBILLED_REVENUE MT\r\nWHERE TRANSACTION_TYPE IN  ('ERP','NET_ADJ_ERP')\r\nAND MT.PROCESSED_FISCAL_MTH = (SELECT FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_UNBILL_CTRL_MTH GROUP BY 1)\r\nGROUP BY 1,2) MT_TSS_UN\r\nON MT_UN.PROCESSED_FISCAL_MTH=MT_TSS_UN.PROCESSED_FISCAL_MTH\r\nAND MT_UN.TRANSACTION_TYPE=MT_TSS_UN.TRANSACTION_TYPE\r\nGROUP BY 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PROCESSED_FISCAL_MTH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSS_UB_AMT_MISMATCH",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TRXN_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT MT_UN.PROCESSED_FISCAL_MTH,\r\nABS(ROUND(SUM(MT_UN.UNBILLED_REVENUE + MT_TSS_UN.TSS_UNBILLED_REVENUE))) AS TSS_UB_AMT_MISMATCH ,\r\n'SBP' AS AUDIT_TRXN_TYPE,\r\n'MT_TSS_UNBILLED_REVENUE' AS AUDIT_TABLE,\r\n   Current_Date AS AUDIT_DATE\r\nFROM\r\n(SELECT MT.PROCESSED_FISCAL_MTH AS PROCESSED_FISCAL_MTH,MT.TRANSACTION_TYPE AS TRANSACTION_TYPE,\r\nSUM((MT.UNBILLED_REVENUE_AMT  *  COALESCE(SFH.ALLOCATION_PERCENTAGE,1)) ) AS UNBILLED_REVENUE\r\nFROM $$FINLGLVWDB.MT_RSTD_UNBILLED_REVENUE MT\r\nINNER JOIN $$COMREFVWDB.MT_CS_DEAL_SVC_FIN_HIER_ALLOC SFH                     \r\nON SFH.ITEM_KEY =  MT.ATTRIBUTED_PRODUCT_KEY \r\nAND SFH.BK_SERVICE_CATEGORY_ID='TECHNICAL SUPPORT SERVICES'\r\nAND SFH.DV_PRDT_SUB_GRP_ALLOC_SRC_CD='SPA'\r\nWHERE TRANSACTION_TYPE IN ('SBP','SBP ACCURALS','NET_ADJ_SBP')\r\nAND MT.PROCESSED_FISCAL_MTH = (SELECT FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_UNBILL_CTRL_MTH GROUP BY 1)\r\nAND MT.CORP_FLG='Y' AND MT.SERVICE_FLG = 'Y'                        \t\r\nGROUP BY 1,2) MT_UN\r\nLEFT JOIN\r\n(SELECT MT.PROCESSED_FISCAL_MTH AS PROCESSED_FISCAL_MTH ,MT.TRANSACTION_TYPE AS TRANSACTION_TYPE,\r\nSUM(MT.TSS_UNBILLED_REVENUE_AMT)*-1 AS TSS_UNBILLED_REVENUE \r\nFROM $$FINLGLVWDB.MT_TSS_UNBILLED_REVENUE MT\r\nWHERE TRANSACTION_TYPE IN ('SBP','SBP ACCURALS','NET_ADJ_SBP')\r\nAND MT.PROCESSED_FISCAL_MTH = (SELECT FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_UNBILL_CTRL_MTH GROUP BY 1) \r\nGROUP BY 1,2) MT_TSS_UN\r\nON MT_UN.PROCESSED_FISCAL_MTH=MT_TSS_UN.PROCESSED_FISCAL_MTH\r\nAND MT_UN.TRANSACTION_TYPE=MT_TSS_UN.TRANSACTION_TYPE\r\nGROUP BY 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXPTRANS1",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "PROCESSED_FISCAL_MTH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PROCESSED_FISCAL_MTH"
+        },
+        {
+          "name": "TSS_UB_AMT_MISMATCH",
+          "datatype": "decimal",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TRXN_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TRXN_TYPE"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TABLE"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_DATE"
+        },
+        {
+          "name": "REV_AUDIT_CHK",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": "IIF(TSS_UB_AMT_MISMATCH>1000,ABORT('TSS_UB_AMT_MISMATCH >1000 IN MT_TSS_UNBILLED_REVENUE FOR ERP'),TSS_UB_AMT_MISMATCH)"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "EXPTRANS2",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "PROCESSED_FISCAL_MTH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PROCESSED_FISCAL_MTH"
+        },
+        {
+          "name": "TSS_UB_AMT_MISMATCH",
+          "datatype": "decimal",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TRXN_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TRXN_TYPE"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TABLE"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_DATE"
+        },
+        {
+          "name": "REV_AUDIT_CHK",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": "IIF(TSS_UB_AMT_MISMATCH>1000,ABORT('TSS_UB_AMT_MISMATCH >1000 IN MT_TSS_UNBILLED_REVENUE FOR ERP'),TSS_UB_AMT_MISMATCH)"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "PROCESSED_FISCAL_MTH",
+      "from_instance": "EXPTRANS2",
+      "to_field": "PROCESSED_FISCAL_MTH",
+      "to_instance": "AUDIT_TSS_UNBILLED_REVENUE2"
+    },
+    {
+      "from_field": "AUDIT_TRXN_TYPE",
+      "from_instance": "EXPTRANS2",
+      "to_field": "AUDIT_TRXN_TYPE",
+      "to_instance": "AUDIT_TSS_UNBILLED_REVENUE2"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "EXPTRANS2",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "AUDIT_TSS_UNBILLED_REVENUE2"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "EXPTRANS2",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "AUDIT_TSS_UNBILLED_REVENUE2"
+    },
+    {
+      "from_field": "REV_AUDIT_CHK",
+      "from_instance": "EXPTRANS2",
+      "to_field": "TSS_UB_AMT_MISMATCH",
+      "to_instance": "AUDIT_TSS_UNBILLED_REVENUE2"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_MTH",
+      "from_instance": "EXPTRANS1",
+      "to_field": "PROCESSED_FISCAL_MTH",
+      "to_instance": "AUDIT_TSS_UNBILLED_REVENUE1"
+    },
+    {
+      "from_field": "AUDIT_TRXN_TYPE",
+      "from_instance": "EXPTRANS1",
+      "to_field": "AUDIT_TRXN_TYPE",
+      "to_instance": "AUDIT_TSS_UNBILLED_REVENUE1"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "EXPTRANS1",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "AUDIT_TSS_UNBILLED_REVENUE1"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "EXPTRANS1",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "AUDIT_TSS_UNBILLED_REVENUE1"
+    },
+    {
+      "from_field": "REV_AUDIT_CHK",
+      "from_instance": "EXPTRANS1",
+      "to_field": "TSS_UB_AMT_MISMATCH",
+      "to_instance": "AUDIT_TSS_UNBILLED_REVENUE1"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_MTH",
+      "from_instance": "AUDIT_TSS_UNBILLED_REVENUE",
+      "to_field": "PROCESSED_FISCAL_MTH",
+      "to_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP"
+    },
+    {
+      "from_field": "TSS_UB_AMT_MISMATCH",
+      "from_instance": "AUDIT_TSS_UNBILLED_REVENUE",
+      "to_field": "TSS_UB_AMT_MISMATCH",
+      "to_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP"
+    },
+    {
+      "from_field": "AUDIT_TRXN_TYPE",
+      "from_instance": "AUDIT_TSS_UNBILLED_REVENUE",
+      "to_field": "AUDIT_TRXN_TYPE",
+      "to_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "AUDIT_TSS_UNBILLED_REVENUE",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "AUDIT_TSS_UNBILLED_REVENUE",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_MTH",
+      "from_instance": "AUDIT_TSS_UNBILLED_REVENUE4",
+      "to_field": "PROCESSED_FISCAL_MTH",
+      "to_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP"
+    },
+    {
+      "from_field": "TSS_UB_AMT_MISMATCH",
+      "from_instance": "AUDIT_TSS_UNBILLED_REVENUE4",
+      "to_field": "TSS_UB_AMT_MISMATCH",
+      "to_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP"
+    },
+    {
+      "from_field": "AUDIT_TRXN_TYPE",
+      "from_instance": "AUDIT_TSS_UNBILLED_REVENUE4",
+      "to_field": "AUDIT_TRXN_TYPE",
+      "to_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "AUDIT_TSS_UNBILLED_REVENUE4",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "AUDIT_TSS_UNBILLED_REVENUE4",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_MTH",
+      "from_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP",
+      "to_field": "PROCESSED_FISCAL_MTH",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "TSS_UB_AMT_MISMATCH",
+      "from_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP",
+      "to_field": "TSS_UB_AMT_MISMATCH",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "AUDIT_TRXN_TYPE",
+      "from_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP",
+      "to_field": "AUDIT_TRXN_TYPE",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_MTH",
+      "from_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP",
+      "to_field": "PROCESSED_FISCAL_MTH",
+      "to_instance": "EXPTRANS2"
+    },
+    {
+      "from_field": "TSS_UB_AMT_MISMATCH",
+      "from_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP",
+      "to_field": "TSS_UB_AMT_MISMATCH",
+      "to_instance": "EXPTRANS2"
+    },
+    {
+      "from_field": "AUDIT_TRXN_TYPE",
+      "from_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP",
+      "to_field": "AUDIT_TRXN_TYPE",
+      "to_instance": "EXPTRANS2"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "EXPTRANS2"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "EXPTRANS2"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PROCESSED_FISCAL_MTH",
+      "source_path": [
+        {
+          "from_field": "PROCESSED_FISCAL_MTH",
+          "from_instance": "EXPTRANS2"
+        },
+        {
+          "from_field": "PROCESSED_FISCAL_MTH",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "PROCESSED_FISCAL_MTH",
+          "from_instance": "AUDIT_TSS_UNBILLED_REVENUE"
+        },
+        {
+          "from_field": "PROCESSED_FISCAL_MTH",
+          "from_instance": "AUDIT_TSS_UNBILLED_REVENUE4"
+        },
+        {
+          "from_field": "PROCESSED_FISCAL_MTH",
+          "from_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP"
+        },
+        {
+          "from_field": "PROCESSED_FISCAL_MTH",
+          "from_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TSS_UB_AMT_MISMATCH",
+      "source_path": [
+        {
+          "from_field": "REV_AUDIT_CHK",
+          "from_instance": "EXPTRANS2"
+        },
+        {
+          "from_field": "REV_AUDIT_CHK",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "TSS_UB_AMT_MISMATCH",
+          "from_instance": "AUDIT_TSS_UNBILLED_REVENUE"
+        },
+        {
+          "from_field": "TSS_UB_AMT_MISMATCH",
+          "from_instance": "AUDIT_TSS_UNBILLED_REVENUE4"
+        },
+        {
+          "from_field": "TSS_UB_AMT_MISMATCH",
+          "from_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP"
+        },
+        {
+          "from_field": "TSS_UB_AMT_MISMATCH",
+          "from_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_TRXN_TYPE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_TRXN_TYPE",
+          "from_instance": "EXPTRANS2"
+        },
+        {
+          "from_field": "AUDIT_TRXN_TYPE",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "AUDIT_TRXN_TYPE",
+          "from_instance": "AUDIT_TSS_UNBILLED_REVENUE"
+        },
+        {
+          "from_field": "AUDIT_TRXN_TYPE",
+          "from_instance": "AUDIT_TSS_UNBILLED_REVENUE4"
+        },
+        {
+          "from_field": "AUDIT_TRXN_TYPE",
+          "from_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP"
+        },
+        {
+          "from_field": "AUDIT_TRXN_TYPE",
+          "from_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_TABLE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "EXPTRANS2"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "AUDIT_TSS_UNBILLED_REVENUE"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "AUDIT_TSS_UNBILLED_REVENUE4"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_DATE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "EXPTRANS2"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "AUDIT_TSS_UNBILLED_REVENUE"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "AUDIT_TSS_UNBILLED_REVENUE4"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "SQ1_AUDIT_TSS_UNBILLED_REVENUE_ERP"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "SQ2_AUDIT_TSS_UNBILLED_REVENUE_SBP"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:32:56.591153+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,4241 @@
+{
+  "workflow_name": "wf_m_WI_DRVD_NRT_POS_TRX",
+  "mapping_name": "m_WI_DRVD_NRT_POS_TRX",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "WI_MT_DRVD_NRT_POS_TRX_RETRO",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_wi_drvd_nrt_pos_trx_02_mart_wi_mt_drvd_nrt_pos_trx_retro",
+  "source_tables": [
+    "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+    "N_BKG_POS_TRANSACTION_LINE",
+    "N_POS_TRANSACTION_LINE",
+    "N_DRVD_SCA_POS_ADJ_DETAILS"
+  ],
+  "sources": [
+    {
+      "name": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "ALLOCATED_POS_ADJ_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DSV_OR_POS_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TSS_COUNTRY_FACTOR_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_BKG_GROSS_MGN_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_BGM_FX_COST_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FX_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "N_BKG_POS_TRANSACTION_LINE",
+      "database_type": "Teradata",
+      "owner": "SLSORDDB_DV4",
+      "fields": [
+        {
+          "name": "BK_WEB_ORDER_ID",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_QUOTE_NUM",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CISCO_CREATED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DSV_EVENT_CD",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CUST_REQUESTED_SHIP_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_CUST_REQUESTED_SHIP_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CHANGE_IDENTIFIER_TXT",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXPIRATION_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EXTENDED_EXPIRATION_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISTI_TO_RESELLER_SO_NUMBER",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_SO_LINE_NUMBER",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_2_DISTI_TRX_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISTRIBUTOR_REPORTED_DEAL_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CONVERSION_RATE",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "11",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SHIP_TO_WIPS_SITE_USE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_BILL_TO_WIPS_SITE_USE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_END_USER_WIPS_SITE_USE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SOLD_TO_WIPS_SITE_USE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_LOCAL_ISO_CURRENCY_CODE",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_DEAL_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BATCH_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DROP_SHIP_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISTI_RPTD_COST_UNIT_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OFFICIAL_SALE_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_RET_ORIG_BS_LST_U_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_RET_ORIG_CST_U_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROFESSIONAL_SERVICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RPTD_EXTENDED_PRICE_LOCAL_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RPTD_NET_UNIT_PRICE_USD_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RPTD_UNIT_PRICE_USD_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RPTD_UNIT_PRICE_LOCAL_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRODUCT_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POS_TRX_LINE_PRODUCT_QUANT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POS_TRX_LINE_POSTED_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POS_TRX_LINE_ACTIVE_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRANSACTION_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_RSLR_TO_DISTI_PO_NUMBER",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VLDTD_NET_UNIT_PRICE_USD_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VLDTD_NET_UNIT_PRICE_LOCAL_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE_USD_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE_LOCAL_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTRIBUTOR_WAREHOUSE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROMOTION_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ELIG_FOR_SALES_CREDIT_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DSTRBTR_RSLR_SALES_ORDER_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_SOURCE_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BASE_LIST_UNIT_PROD_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERVICE_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_BOOKING_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_BKG_DUR_MTHS_CNT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CISCO_BOOKED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PARENT_POS_TRX_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_TOP_BKGS_POS_TRX_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "N_POS_TRANSACTION_LINE",
+      "database_type": "Teradata",
+      "owner": "SLSORDDB_DV4",
+      "fields": [
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISTI_TO_RESELLER_SO_NUMBER",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BASE_LIST_UNIT_PROD_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLBL_PRC_LST_UNT_PRC_USD_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLBO_PRC_LST_UNT_PRC_LCL_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DIST_RPTD_SALES_REP_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DIST_RPTD_CISCO_SO_NUM",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_SO_LINE_NUMBER",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_2_CISCO_PO_NUMBER",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WHLSL_PRC_LST_UNT_PRC_USD_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WHSL_PRC_LST_UNT_PRC_LCL_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_SBMTD_CISCO_CONTRACT_NUM",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DST_SBMTD_CSCO_CTRCT_TYP_DESCR",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_2_DISTI_TRX_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISTRIBUTOR_REPORTED_DEAL_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTRIBUTOR_PART_NUMBER",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DROP_SHIP_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISTI_RPTD_END_CUST_VAT_NUMBER",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DIST_RPTD_END_USR_EML_CT_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DIST_RPTD_END_USR_CONTACT_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DIST_RPTD_END_USR_CT_TEL_NUM",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_CUST_TO_RESELLER_PO_NUM",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXPORT_REFERENCE_NUMBER",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INSTALLATION_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTRIBUTOR_INVOICE_NUMBER",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MAINTENANCE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MANAGED_SERVICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MARKET_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OFFICIAL_SALE_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "OTHER_CONSULTING_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRODUCT_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POS_TRX_LINE_PRODUCT_QUANT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINKSYS_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "POS_TRX_LINE_POSTED_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROFESSIONAL_SERVICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RPTD_EXTENDED_PRICE_LOCAL_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RPTD_NET_UNIT_PRICE_USD_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RPTD_UNIT_PRICE_USD_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RPTD_UNIT_PRICE_LOCAL_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SVC_CONTRACT_CENTER_QUOTE_NUM",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SECOND_SOURCE_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DST_RPTD_2ND_SRC_DST_CTRY_CODE",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPTD_2ND_SRC_DISTI_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERVICE_CONTRACT_NUMBER",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTRIBUTOR_SHIP_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SPECIAL_DISCOUNT_PERCENTAGE",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POS_TRX_LINE_ACTIVE_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRANSPORT_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VLDTD_NET_UNIT_PRICE_USD_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VLDTD_NET_UNIT_PRICE_LOCAL_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE_USD_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUATION_PRICE_LOCAL_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTRIBUTOR_WAREHOUSE_NUMBER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CONVERSION_RATE",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "11",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POS_TRANSACTION_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROMOTION_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPTD_COST_UNIT_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPTD_PROMOTION_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPTD_PROMOTION_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POS_TRX_REBILL_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_CAD_PO_NUMBER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_RSLR_TO_DISTI_ACCOUT_NUMBER",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_RSLR_TO_DISTI_PO_NUMBER",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_DISTI_RPTD_SALES_ORDER_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_MANAGED_SERVICE_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_SOLUTION_ID",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_SOLUTION_SOLD_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_SOLUTION_LENGTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_DISTI_TO_SP_INVOICE_NUMBER",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_SP_TO_END_USER_INVOICE_NUM",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_RET_ORIG_BS_LST_U_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_RET_ORIG_CST_U_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_RET_ORIG_DISTI_SO_NUM",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_RET_ORIG_DISTI2RSLR_INV_NUM",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_RET_ORIG_DISTI_INV_NUM",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPTD_CAM_NAME",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_CAM_PARTY_KEY",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_DEAL_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_LOCAL_ISO_CURRENCY_CODE",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_REBILL_POS_TRANSACTION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SECONDARY_RESELLER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_BK_RET_POS_TRANSACTION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "POS_SOURCE_TYPE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ELIG_FOR_SALES_CREDIT_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_ALLOCATED_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "POS_RETURN_ROLE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BATCH_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPTD_DISTI_WHSE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SHIP_TO_WIPS_SITE_USE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_BILL_TO_WIPS_SITE_USE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_END_USER_WIPS_SITE_USE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SOLD_TO_WIPS_SITE_USE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOLD_TO_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISTI_RPTD_SLD_TO_EMAIL_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPTD_PARTNER_CERT_CD",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DUPLICATE_POS_TRX_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERIAL_NUM_STATUS_SUMMARY_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPTD_SLD_TO_TEL_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DSTI_RPTD_SLD_TO_CNTCT_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPTD_SVC_SLS_ORD_NUM",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPTD_PARTNER_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_CISCO_TO_SVC_PROV_SO_NUM",
+          "datatype": "char",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_ORIGINAL_BATCH_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPTD_SVC_PROVIDER_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OPPORTUNITY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_SOURCE_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_RPTD_CSC_SVC_PVDR_PO_NUM",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_RPRTD_RSLLR_CRTFCTN_CD",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_RPRTD_RSLLR_AREA_NAME",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SRC_RPRTD_END_CSTMR_AREA_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_RPRTD_PARTNER_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_RPRTD_PRTNR_STATUS_CD",
+          "datatype": "char",
+          "precision": "12",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_RPRTD_PARTNER_TYPE_CD",
+          "datatype": "char",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPRTD_VRTCL_MKT_SGMNT_CD",
+          "datatype": "char",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRE_UPLFT_VLD_N_UPR_LC_CUR_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRE_UPLFT_VLD_NT_U_PR_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GROSS_POS_REVALUED_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_BOOKING_POS_TRX_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DSV_OR_POS_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_TOP_BKGS_POS_TRX_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "database_type": "Teradata",
+      "owner": "SLSORDDB_DV4",
+      "fields": [
+        {
+          "name": "ALLOCATED_POS_ADJ_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_RECORD_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_SEQUENCE_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SALES_REP_NUMBER",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_CREDIT_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_COMMISSION_PERCENTAGE",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXTENDED_LIST_PRICE_USD_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXTENDED_COST_PRICE_USD_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXTENDED_NET_PRICE_USD_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FORWARD_REVERSE_CODE",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTRIBUTOR_OFFSET_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJUSTMENT_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_CHANNEL_SOURCE_TYPE",
+          "datatype": "char",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CHANNEL_BOOKING_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ADJUSTMENT_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERVICE_BOOKING_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_FISCAL_CALENDAR_CODE",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_FISCAL_YEAR_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_FISCAL_MONTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PROCESS_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_REVENUE_RECOGNITION_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_NET_SPREAD_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_CORPORATE_BOOKING_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJUSTMENT_QTY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_LATEST_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_OFFER_ATTRIBUTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TOP_SKU_ATTRIBUTED_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ATTRIBUTION_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "POS_OFFSET_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "NET_CHANGE_PROCESS_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_TRX_SALES_CREDIT_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DSV_OR_POS_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "POS_RETURN_ROLE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GLBL_LST_PRC_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLBO_LST_PRC_LCL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINKED_ALLOCATED_POS_ADJ_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_MT_DRVD_NRT_POS_TRX_RETRO",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ALLOCATED_POS_ADJ_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_POS_TRANSACTION_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BOOKINGS_PROCESS_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "END_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BILL_TO_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIP_TO_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOLD_TO_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+        "datatype": "char",
+        "precision": "7",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ALLOCATED_POS_ADJ_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\tPOS_DETAIL.ALLOCATED_POS_ADJ_KEY,\r\nPOS_DETAIL.BK_POS_TRANSACTION_ID_INT,\r\n\tPOS_DETAIL.PROCESS_DATE,\r\n\tCOALESCE (BKG_TRANS.BK_END_USER_WIPS_SITE_USE_KEY, CAST (-999 AS INTEGER)),\r\n\tCOALESCE (BKG_TRANS.BK_BILL_TO_WIPS_SITE_USE_KEY, CAST (-999 AS INTEGER)),\r\n\tCOALESCE (BKG_TRANS.BK_SHIP_TO_WIPS_SITE_USE_KEY, CAST (-999 AS INTEGER)),\r\n\tCOALESCE (BKG_TRANS.BK_SOLD_TO_WIPS_SITE_USE_KEY, CAST (-999 AS INTEGER)),\r\n\t'POS' BKGS_MEASURE_TRANS_TYPE_CODE\r\nFROM \t\r\n$$SLSORDVWDB.N_BKG_POS_TRANSACTION_LINE BKG_TRANS ,\r\n$$SLSORDVWDB.N_DRVD_SCA_POS_ADJ_DETAILS POS_DETAIL\r\nWHERE \r\n\tPOS_DETAIL.BK_POS_TRANSACTION_ID_INT = BKG_TRANS.BK_POS_TRANSACTION_ID_INT AND \r\n\tBKG_TRANS.EDW_UPDATE_DTM > '$$LastExtractDate'\r\nAND  POS_DETAIL.DSV_OR_POS_TYPE_CD ='DSV_BKG'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ALLOCATED_POS_ADJ_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_REP_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_CREDIT_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_COMMISSION_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_COST_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FORWARD_REVERSE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTRIBUTOR_OFFSET_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADJUSTMENT_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_CHANNEL_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CORPORATE_BOOKING_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_EXTENDED_QTY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ATTRIBUTION_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_REVENUE_RECOGNITION_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_NET_SPREAD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DSV_OR_POS_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_RSLR_TO_DISTI_PO_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "POS_TRX_LINE_POSTED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_DEAL_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "POS_RETURN_ROLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_TOP_BKGS_POS_TRX_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_BOOKING_POS_TRX_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_BOOKING_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BKG_GROSS_MGN_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BGM_FX_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FX_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSS_COUNTRY_FACTOR_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_LOCAL_EXTND_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOCAL_UNIT_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_UNIT_LIST_PRICE_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BGM_NON_STANDARD_COST_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BKG_REBATE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FX_REBATE_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "POB_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_SERVICE_CONTRACT_START_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_SERVICE_CONTRACT_END_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_CONTRACT_DURATION",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ANNUALIZED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ANNUALIZED_US_NET_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_MULTIYEAR_US_NET_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "POS_ANNUALIZED_BKG_TRX_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTIONAL_ACV_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HISTORY_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ANNUAL_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORIG_COMP_US_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORIG_ANNUALIZED_US_NET_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORIG_MULTIYEAR_US_NET_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_RUNNING_TOTAL_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ORDER_VALUE_USD_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_POLICY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_STANDARD_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_AI_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AI_INTENT_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRX_AI_PRODUCT_CLASS_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUYING_TRANSACTION_TYPE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LINKED_ALLOCATED_POS_ADJ_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT    \r\n   POS_DETAIL.ALLOCATED_POS_ADJ_KEY     ,\r\n    COALESCE(POS_DETAIL.BK_SALES_REP_NUMBER ,'-999')     AS BK_SALES_REP_NUM  ,\r\n   POS_DETAIL.SALES_CREDIT_TYPE_CODE       AS SALES_CREDIT_TYPE_CD  ,\r\n   COALESCE(POS_DETAIL.SALES_COMMISSION_PERCENTAGE,CAST( 0.00 AS DECIMAL(18,6)))    AS  BOOKINGS_SPLIT_PCT  ,\r\n   COALESCE(POS_DETAIL.EXTENDED_LIST_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6)))      AS DD_COMP_US_LIST_PRICE_AMOUNT  ,\r\n   COALESCE(POS_DETAIL.EXTENDED_COST_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6)))    AS DD_COMP_US_COST_AMOUNT  ,\r\n   COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6)))        AS DD_COMP_US_NET_PRICE_AMOUNT  ,\r\n    COALESCE(POS_DETAIL.FORWARD_REVERSE_CODE  ,'=')            AS FORWARD_REVERSE_FLG  ,\r\n   COALESCE(POS_DETAIL.BK_POS_TRANSACTION_ID_INT ,CAST(-9999 AS INTEGER))  AS BK_POS_TRANSACTION_ID_INT  ,\r\n   COALESCE(POS_DETAIL.DISTRIBUTOR_OFFSET_FLAG  ,'=')      AS DISTRIBUTOR_OFFSET_FLG  ,\r\n     COALESCE(POS_DETAIL.SALES_TERRITORY_KEY  ,CAST(-999 AS INTEGER))      AS SALES_TERRITORY_KEY  ,\r\n   POS_DETAIL.ADJUSTMENT_CODE         AS ADJUSTMENT_CD  ,\r\n    COALESCE(POS_DETAIL.DESCRIPTION ,'UNKNOWN')   AS DESCRIPTION,\r\n   POS_DETAIL.SALES_CHANNEL_CODE        AS SALES_CHANNEL_CD  ,\r\n     COALESCE(POS_DETAIL.SALES_ADJUSTMENT_DATETIME ,CURRENT_TIMESTAMP(0))      AS TRANSACTION_DTM  ,\r\n   COALESCE(POS_DETAIL.SERVICE_BOOKING_FLAG ,'=')       AS SERVICE_FLG  ,\r\n   COALESCE(POS_DETAIL.DV_FISCAL_YEAR_MTH_NUMBER_INT ,CAST(-999 AS INTEGER))    AS DV_FISCAL_YEAR_MTH_NUMBER_INT  ,\r\n    COALESCE(POS_DETAIL.PRODUCT_KEY ,CAST(-999 AS INTEGER))       AS PRODUCT_KEY  ,\r\n   POS_DETAIL.PROCESS_DATE  AS  BOOKINGS_PROCESS_DT  ,\r\n   COALESCE(POS_DETAIL.DV_CORPORATE_BOOKING_FLG ,'=')    AS CORPORATE_BOOKINGS_FLG  ,\r\n   COALESCE(POS_DETAIL.ADJUSTMENT_QTY ,CAST ( 0.00 AS DECIMAL(18,6)))      AS DD_EXTENDED_QTY,\r\n   COALESCE(POS_DETAIL.BK_OFFER_ATTRIBUTION_ID_INT ,CAST(-9999 AS INTEGER ))   AS SK_OFFER_ATTRIBUTION_ID_INT,\r\n   COALESCE(POS_DETAIL.TOP_SKU_ATTRIBUTED_PRODUCT_KEY ,CAST(-999 AS INTEGER)) AS DV_PRODUCT_KEY  ,\r\n   COALESCE(POS_DETAIL.ATTRIBUTION_TYPE_CD ,'UNKNOWN')           AS DV_ATTRIBUTION_TYPE_CD,\r\n   COALESCE(POS_TRANS.BK_WIPS_ORIGINATOR_ID_INT ,CAST(-999 AS INTEGER))   AS BK_WIPS_ORIGINATOR_ID_INT  ,\r\n   COALESCE(POS_TRANS.BK_SHIP_TO_WIPS_SITE_USE_KEY,CAST(-999 AS INTEGER))  AS SHIP_TO_CUSTOMER_KEY  ,\r\n   COALESCE(POS_TRANS.BK_BILL_TO_WIPS_SITE_USE_KEY,CAST(-999 AS INTEGER))  AS BILL_TO_CUSTOMER_KEY  ,\r\n   COALESCE(POS_TRANS.BK_END_USER_WIPS_SITE_USE_KEY,CAST(-999 AS INTEGER))  AS END_CUSTOMER_KEY  ,\r\n   COALESCE(POS_TRANS.BK_SOLD_TO_WIPS_SITE_USE_KEY,CAST(-999 AS INTEGER))  AS SOLD_TO_CUSTOMER_KEY  ,\r\n    CASE    WHEN POS_DETAIL.DISTRIBUTOR_OFFSET_FLAG = 'Y' THEN CAST (-888 AS INTEGER) \r\n            ELSE COALESCE(POS_TRANS.BK_END_USER_WIPS_SITE_USE_KEY, CAST(-999 AS INTEGER))\r\n    END AS DV_END_CUSTOMER_KEY  ,\r\n   POS_DETAIL.DV_REVENUE_RECOGNITION_FLG  ,\r\n   POS_DETAIL.DV_NET_SPREAD_FLG   ,\r\n   CURRENT_TIMESTAMP(0)        AS EDW_CREATE_DTM  ,\r\n    USER           AS EDW_CREATE_USER  ,\r\n   CURRENT_TIMESTAMP(0)        AS EDW_UPDATE_DTM  ,\r\n   USER           AS EDW_UPDATE_USER    ,\r\n   /*ADDED AS PART OF DSV Q1FY16 */\r\n   POS_DETAIL.DSV_OR_POS_TYPE_CD,\r\n   POS_TRANS.RU_RSLR_TO_DISTI_PO_NUMBER,\r\n   POS_TRANS.POS_TRX_LINE_POSTED_DATE,\r\n   POS_TRANS.BK_DEAL_ID,\r\n   POS_DETAIL.POS_RETURN_ROLE,\r\n   POS_TRANS.BK_TOP_BKGS_POS_TRX_ID_INT,\r\n   POS_TRANS.BK_BOOKING_POS_TRX_ID_INT AS BOOKING_POS_TRX_ID_INT,\r\n   POS_DETAIL.CHANNEL_BOOKING_FLAG AS CHANNEL_BOOKING_FLG\r\n   /*    BGM changes starts here*/\r\n  \r\n   ,CASE WHEN POS_DETAIL.SERVICE_BOOKING_FLAG = 'Y'  AND COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) <> 0 \r\n    THEN\r\n     CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n      THEN  \r\n       CAST( (COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) - (COALESCE(TSS.COST_FACTOR_PCT,TSS1.COST_FACTOR_PCT) * COALESCE(POS_DETAIL.EXTENDED_LIST_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) /100)    \r\n        )  AS DECIMAL(18,6) )   \r\n      WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL \r\n      THEN\r\n       CAST( (COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) *\r\n        (COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT)/100) )  AS DECIMAL(18,6) )  \r\n      ELSE 0\r\n     END \r\n    ELSE 0\r\n    END  DV_BKG_GROSS_MGN_AMOUNT\r\n   \r\n   ,\r\n   CASE WHEN POS_DETAIL.SERVICE_BOOKING_FLAG = 'Y'  AND COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) <> 0 AND MCR.SALES_TERRITORY_KEY IS NOT NULL\r\n    THEN\r\n     CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n      THEN  \r\n       CAST( ( (COALESCE(TSS.COST_FACTOR_PCT,TSS1.COST_FACTOR_PCT)*COALESCE(POS_DETAIL.EXTENDED_LIST_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) /100)    \r\n       )  AS DECIMAL(18,6) )   \r\n      WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL \r\n      THEN\r\n       CAST( COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) *\r\n        (COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT))/100 \r\n       AS DECIMAL(18,6) )  \r\n      ELSE 0\r\n     END \r\n    ELSE 0\r\n    END  DV_BGM_FX_COST_AMOUNT\r\n    \r\n    \r\n   , CASE WHEN (POS_DETAIL.SERVICE_BOOKING_FLAG = 'Y' AND COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) <> 0 AND \r\n   COALESCE(COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY),L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL )\r\n   THEN COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))),0) \r\n   ELSE 0\r\n    END AS DV_FX_NET_PRICE_AMT\r\n     ,\r\n   CASE WHEN POS_DETAIL.SERVICE_BOOKING_FLAG = 'Y'  AND COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) <> 0 \r\n       THEN\r\n           CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  THEN     \r\n                   COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY)\r\n               WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL THEN\r\n                   COALESCE(L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY,-999) \r\n                   ELSE -999 \r\n           END \r\n   ELSE -999 END TSS_COUNTRY_FACTOR_KEY,\r\n    /*    BGM changes ends here*/\r\n COALESCE(POS_DETAIL.DV_EXTND_LIST_PRICE_LOCAL_AMT,CAST(0.0 AS DECIMAL(18,6)) )AS DV_LOCAL_EXTND_LIST_PRICE_AMT,\r\n COALESCE(POS_DETAIL.UNIT_LIST_PRICE_LOCAL_AMT,CAST(0.0 AS DECIMAL(18,6)) )AS LOCAL_UNIT_LIST_PRICE_AMT,\r\n COALESCE(POS_DETAIL.DV_UNIT_LIST_PRICE_USD_AMT,CAST(0.0 AS DECIMAL(18,6))) AS DV_UNIT_LIST_PRICE_USD_AMT,\r\n 0 DV_BGM_NON_STANDARD_COST_AMT  /*added as part product BGM - Q1FY18 release */\r\n/*REBATE BGM NET START */\r\n,CASE WHEN POS_DETAIL.SERVICE_BOOKING_FLAG = 'Y' AND COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) <> 0\r\n\tTHEN\r\n\t\tCASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n\t\t\tTHEN \t\r\n\t\t\t\tCAST( (COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) - (COALESCE(TSS.REBATE_FACTOR_PCT,TSS1.REBATE_FACTOR_PCT) * POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT /100)    \r\n\t\t\t\t\t)  AS DECIMAL(18,6) )   \r\n\t\t\tWHEN COALESCE(L4_TSD.REBATE_FACTOR_PCT,L3_TSD.REBATE_FACTOR_PCT,L2_TSD.REBATE_FACTOR_PCT,L1_TSD.REBATE_FACTOR_PCT,0) <> 0\r\n\t\t\tTHEN\r\n\t\t\t\tCAST( (COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6)))*\r\n\t\t\t\t\t(COALESCE(L4_TSD.REBATE_FACTOR_PCT,L3_TSD.REBATE_FACTOR_PCT,L2_TSD.REBATE_FACTOR_PCT,L1_TSD.REBATE_FACTOR_PCT)/100) )  AS DECIMAL(18,6) )\t\t\r\n\t\t\tELSE  POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT\r\n\t\tEND \r\n\tELSE  0\r\n END DV_BKG_REBATE,\r\n\r\nCASE WHEN (POS_DETAIL.SERVICE_BOOKING_FLAG = 'Y' AND DV_BKG_REBATE <> 0 AND \r\nCOALESCE(COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY),L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL )\r\nTHEN COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*DV_BKG_REBATE,0) \r\nELSE 0\r\nEND AS DV_FX_REBATE_PRICE_AMT\r\n/*REBATE BGM NET END */\r\n  ,POS_DETAIL.POB_TYPE_CD\r\n  ,POS_DETAIL.RU_SERVICE_CONTRACT_START_DTM\r\n  ,POS_DETAIL.RU_SERVICE_CONTRACT_END_DTM\r\n  ,POS_DETAIL.DV_CONTRACT_DURATION\r\n  ,POS_DETAIL.DV_ANNUALIZED_FLG\r\n  ,POS_DETAIL.DV_ANNUALIZED_US_NET_AMT\r\n  ,POS_DETAIL.DV_MULTI_YEAR_US_NET_AMT\r\n  ,POS_DETAIL.POS_ANNUALIZED_BKG_TRX_KEY\r\n,POS_DETAIL.TRANSACTIONAL_ACV_FLG\r\n,POS_DETAIL.HISTORY_FLG\r\n,POS_DETAIL.ANNUAL_FLG\r\n,POS_DETAIL.ORIG_COMP_US_NET_PRICE_AMT\r\n,POS_DETAIL.ORIG_ANNUALIZED_US_NET_AMT\r\n,POS_DETAIL.ORIG_MULTIYEAR_US_NET_AMT\r\n,POS_DETAIL.DV_RUNNING_TOTAL_USD_AMT\r\n,POS_DETAIL.DV_ORDER_VALUE_USD_AMT AS DV_ORDER_VALUE_USD_AMOUNT\r\n,POS_DETAIL.BOOKINGS_POLICY_CD\r\n /* added below columns as part of AI Bookings Scope */\r\n, POS_DETAIL.TRANSACTION_AI_FLG\r\n, POS_DETAIL.AI_INTENT_TYPE_CD\r\n, POS_DETAIL.TRX_AI_PRODUCT_CLASS_NAME\r\n,POS_DETAIL.BUYING_TRANSACTION_TYPE_NAME   AS  BUYING_TRANSACTION_TYPE_NAME  /*Epic 6200 Sept 2025 release */\r\n   FROM $$SLSORDVWDB.N_DRVD_SCA_POS_ADJ_DETAILS POS_DETAIL \r\n   LEFT OUTER JOIN $$SLSORDVWDB.N_POS_TRANSACTION_LINE POS_TRANS \r\n   ON POS_DETAIL.BK_POS_TRANSACTION_ID_INT = POS_TRANS.BK_POS_TRANSACTION_ID_INT\r\n       /*    BGM changes starts here*/\r\n   LEFT JOIN $$COMREFVWDB.MT_ENDCUST_CUSTOMER_PARTY_HIER ENDCUST\r\n   ON POS_TRANS.BK_END_USER_WIPS_SITE_USE_KEY=ENDCUST.END_CUSTOMER_KEY      \r\n   \r\n   LEFT JOIN $$COMREFVWDB.R_SALES_HIERARCHY HIER\r\n   ON POS_DETAIL.SALES_TERRITORY_KEY=HIER.SALES_TERRITORY_KEY\r\n   \r\nLEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR TSS\r\nON TSS.PRODUCT_KEY                    = POS_DETAIL.PRODUCT_KEY\r\nAND TSS.BK_ISO_COUNTRY_CD = ENDCUST.BRANCH_ISO_COUNTRY_CD                    \r\nAND TSS.BKGS_MEASURE_TRANS_TYPE_CODE ='POS' \r\nAND TSS.SALES_TERRITORY_NAME=HIER.L2_SALES_TERRITORY_NAME_CODE\r\nAND TSS.COUNTRY_FLG='Y'\r\n\r\nLEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR TSS1\r\nON TSS1.PRODUCT_KEY                    = POS_DETAIL.PRODUCT_KEY\r\nAND TSS1.BK_ISO_COUNTRY_CD = ENDCUST.BRANCH_ISO_COUNTRY_CD                    \r\nAND TSS1.BKGS_MEASURE_TRANS_TYPE_CODE ='POS' \r\nAND TSS1.SALES_TERRITORY_NAME=HIER.L1_SALES_TERRITORY_NAME_CODE\r\nAND TSS1.COUNTRY_FLG='Y'\r\n   \r\n   LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L4_TSD\r\n   ON L4_TSD.SALES_TERRITORY_NAME=HIER.L4_SALES_TERRITORY_NAME_CODE\r\n   AND L4_TSD.COUNTRY_FLG='N'\r\n   \r\n   LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L3_TSD\r\n   ON L3_TSD.SALES_TERRITORY_NAME=HIER.L3_SALES_TERRITORY_NAME_CODE\r\n   AND L3_TSD.COUNTRY_FLG='N'\r\n   \r\n   \r\n   LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L2_TSD\r\n   ON L2_TSD.SALES_TERRITORY_NAME=HIER.L2_SALES_TERRITORY_NAME_CODE\r\n   AND L2_TSD.COUNTRY_FLG='N'\r\n   \r\n   LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L1_TSD\r\n   ON L1_TSD.SALES_TERRITORY_NAME=HIER.L1_SALES_TERRITORY_NAME_CODE\r\n   AND L1_TSD.COUNTRY_FLG='N'\r\n   \r\n    LEFT OUTER JOIN\r\n   (\r\n   SELECT CR.PL_CONVERSION_RT,CR.ANNUAL_BUDGET_CONV_RT,CR.FISCAL_YEAR_MONTH_NUM_INT,FX.SALES_TERRITORY_KEY\r\n   FROM $$FINLGLVWDB.MT_MONTHLY_CONVERSION_RATE CR,\r\n   $$SLSORDVWDB.MT_PROFITABILITY_FX_NORM FX,\r\n   (SELECT (PDATE.FISCAL_YEAR_NUMBER_INT-5)*100+PDATE.FISCAL_MONTH_NUMBER_INT AS START_DATE,       \r\n       CASE WHEN PDATE.FISCAL_MONTH_NUMBER_INT = 12 THEN (PDATE.FISCAL_YEAR_NUMBER_INT+1)*100+1 ELSE PDATE.FISCAL_YEAR_MTH_NUMBER_INT+1  END AS END_DATE\r\n       FROM $$ETLVWDB.BKG_PROCESS_DT_CNTRL PDATE\r\n       )PDATE\r\n   WHERE  CR.BK_FROM_CURRENCY_CD=FX.BK_CURRENCY_CD\r\n   AND CR.FISCAL_YEAR_MONTH_NUM_INT   BETWEEN PDATE.START_DATE AND PDATE.END_DATE  AND CR.BK_TO_CURRENCY_CD='USD'\r\n   )MCR   \r\n   ON POS_DETAIL.SALES_TERRITORY_KEY=MCR.SALES_TERRITORY_KEY\r\n   AND  POS_DETAIL.DV_FISCAL_YEAR_MTH_NUMBER_INT=MCR.FISCAL_YEAR_MONTH_NUM_INT \r\n   /*    BGM changes ends here*/\r\n   WHERE  POS_DETAIL.EDW_UPDATE_DATETIME > '$$LastExtractDate'\r\n   AND POS_DETAIL.DSV_OR_POS_TYPE_CD ='POS' \r\n   \r\n   /* Added this UNION as part of Q1FY15 DSV*/\r\n   UNION \r\n   \r\n   SELECT    \r\n   POS_DETAIL.ALLOCATED_POS_ADJ_KEY     ,\r\n    COALESCE(POS_DETAIL.BK_SALES_REP_NUMBER ,'-999')     AS BK_SALES_REP_NUM  ,\r\n   POS_DETAIL.SALES_CREDIT_TYPE_CODE       AS SALES_CREDIT_TYPE_CODE  ,\r\n   COALESCE(POS_DETAIL.SALES_COMMISSION_PERCENTAGE,CAST( 0.00 AS DECIMAL(18,6)))    AS  BOOKINGS_SPLIT_PCT  ,\r\n   COALESCE(POS_DETAIL.EXTENDED_LIST_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6)))      AS DD_COMP_US_LIST_PRICE_AMOUNT  ,\r\n   COALESCE(POS_DETAIL.EXTENDED_COST_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6)))    AS DD_COMP_US_COST_AMOUNT  ,\r\n   COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6)))          AS DD_COMP_US_NET_PRICE_AMOUNT  ,\r\n    COALESCE(POS_DETAIL.FORWARD_REVERSE_CODE  ,'=')            AS FORWARD_REVERSE_FLG  ,\r\n   COALESCE(POS_DETAIL.BK_POS_TRANSACTION_ID_INT ,CAST(-9999 AS INTEGER))  AS BK_POS_TRANSACTION_ID_INT  ,\r\n   COALESCE(POS_DETAIL.DISTRIBUTOR_OFFSET_FLAG  ,'=')      AS DISTRIBUTOR_OFFSET_FLG  ,\r\n     COALESCE(POS_DETAIL.SALES_TERRITORY_KEY  ,CAST(-999 AS INTEGER))     AS SALES_TERRITORY_KEY  ,\r\n   POS_DETAIL.ADJUSTMENT_CODE         AS ADJUSTMENT_CD  ,\r\n    COALESCE(POS_DETAIL.DESCRIPTION ,'UNKNOWN')   AS DESCRIPTION,\r\n   POS_DETAIL.SALES_CHANNEL_CODE        AS SALES_CHANNEL_CD  ,\r\n     COALESCE(POS_DETAIL.SALES_ADJUSTMENT_DATETIME ,CURRENT_TIMESTAMP(0))      AS TRANSACTION_DTM  ,\r\n   COALESCE(POS_DETAIL.SERVICE_BOOKING_FLAG ,'=')       AS SERVICE_FLG  ,\r\n   COALESCE(POS_DETAIL.DV_FISCAL_YEAR_MTH_NUMBER_INT ,CAST(-999 AS INTEGER))    AS DV_FISCAL_YEAR_MTH_NUMBER_INT  ,\r\n   COALESCE(POS_DETAIL.PRODUCT_KEY ,CAST(-999 AS INTEGER))       AS PRODUCT_KEY  ,\r\n   POS_DETAIL.PROCESS_DATE  AS  BOOKINGS_PROCESS_DT  ,\r\n   COALESCE(POS_DETAIL.DV_CORPORATE_BOOKING_FLG ,'=')    AS CORPORATE_BOOKINGS_FLG  ,\r\n   COALESCE(POS_DETAIL.ADJUSTMENT_QTY ,CAST ( 0.00 AS DECIMAL(18,6)))      AS DD_EXTENDED_QTY,\r\n   COALESCE(POS_DETAIL.BK_OFFER_ATTRIBUTION_ID_INT ,CAST(-9999 AS INTEGER ))   AS SK_OFFER_ATTRIBUTION_ID_INT,\r\n   COALESCE(POS_DETAIL.TOP_SKU_ATTRIBUTED_PRODUCT_KEY ,CAST(-999 AS INTEGER)) AS DV_PRODUCT_KEY  ,\r\n   COALESCE(POS_DETAIL.ATTRIBUTION_TYPE_CD ,'UNKNOWN')           AS DV_ATTRIBUTION_TYPE_CD,\r\n   COALESCE(BKG_TRANS.BK_WIPS_ORIGINATOR_ID_INT ,CAST(-999 AS INTEGER))   AS BK_WIPS_ORIGINATOR_ID_INT  ,\r\n   COALESCE(BKG_TRANS.BK_SHIP_TO_WIPS_SITE_USE_KEY,CAST(-999 AS INTEGER))  AS SHIP_TO_CUSTOMER_KEY  ,\r\n   COALESCE(BKG_TRANS.BK_BILL_TO_WIPS_SITE_USE_KEY,CAST(-999 AS INTEGER))  AS BILL_TO_CUSTOMER_KEY  ,\r\n   COALESCE(BKG_TRANS.BK_END_USER_WIPS_SITE_USE_KEY,CAST(-999 AS INTEGER))  AS END_CUSTOMER_KEY  ,\r\n   COALESCE(BKG_TRANS.BK_SOLD_TO_WIPS_SITE_USE_KEY,CAST(-999 AS INTEGER))  AS SOLD_TO_CUSTOMER_KEY  ,\r\n    CASE    WHEN POS_DETAIL.DISTRIBUTOR_OFFSET_FLAG = 'Y' THEN CAST (-888 AS INTEGER) \r\n            ELSE COALESCE(BKG_TRANS.BK_END_USER_WIPS_SITE_USE_KEY, CAST(-999 AS INTEGER))    \r\n    END AS DV_END_CUSTOMER_KEY  ,\r\n   POS_DETAIL.DV_REVENUE_RECOGNITION_FLG  ,\r\n   POS_DETAIL.DV_NET_SPREAD_FLG   ,\r\n   CURRENT_TIMESTAMP(0)        AS EDW_CREATE_DTM  ,\r\n    USER           AS EDW_CREATE_USER  ,\r\n   CURRENT_TIMESTAMP(0)        AS EDW_UPDATE_DTM  ,\r\n   USER           AS EDW_UPDATE_USER  ,\r\n   /*ADDED AS PART OF DSV Q1FY16 */\r\n   POS_DETAIL.DSV_OR_POS_TYPE_CD,\r\n   BKG_TRANS.RU_RSLR_TO_DISTI_PO_NUMBER,\r\n   BKG_TRANS.POS_TRX_LINE_POSTED_DATE,\r\n   BKG_TRANS.BK_DEAL_ID,\r\n   POS_DETAIL.POS_RETURN_ROLE,\r\n   BKG_TRANS.BK_TOP_BKGS_POS_TRX_ID_INT,\r\n   -9999 AS BK_BOOKING_POS_TRX_ID_INT,\r\n   POS_DETAIL.CHANNEL_BOOKING_FLAG AS CHANNEL_BOOKING_FLG\r\n   /*    BGM changes starts here*/\r\n   \r\n   ,CASE WHEN POS_DETAIL.SERVICE_BOOKING_FLAG = 'Y'  AND COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) <> 0 \r\n    THEN\r\n     CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n      THEN  \r\n       CAST( (COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) - (COALESCE(TSS.COST_FACTOR_PCT,TSS1.COST_FACTOR_PCT) * COALESCE(POS_DETAIL.EXTENDED_LIST_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) /100)    \r\n        )  AS DECIMAL(18,6) )   \r\n      WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL \r\n      THEN\r\n       CAST( (COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) *\r\n        (COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT)/100) )  AS DECIMAL(18,6) )  \r\n      ELSE 0\r\n     END \r\n    ELSE 0\r\n    END DV_BKG_GROSS_MGN_AMOUNT\r\n   \r\n   ,\r\n   CASE WHEN POS_DETAIL.SERVICE_BOOKING_FLAG = 'Y'  AND COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) <> 0  AND MCR.SALES_TERRITORY_KEY IS NOT NULL\r\n    THEN\r\n     CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n      THEN  \r\n       CAST( ( (COALESCE(TSS.COST_FACTOR_PCT,TSS1.COST_FACTOR_PCT)*COALESCE(POS_DETAIL.EXTENDED_LIST_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) /100)    \r\n       )  AS DECIMAL(18,6) )   \r\n      WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL \r\n      THEN\r\n       CAST( COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) *\r\n        (COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT))/100 \r\n       AS DECIMAL(18,6) )  \r\n      ELSE 0\r\n     END \r\n    ELSE 0\r\n    END DV_BGM_FX_COST_AMOUNT\r\n    \r\n    \r\n   ,CASE WHEN (POS_DETAIL.SERVICE_BOOKING_FLAG = 'Y' AND COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) <> 0 AND \r\n   COALESCE(COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY),L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL )\r\n   THEN COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))),0) \r\n   ELSE 0\r\n    END AS DV_FX_NET_PRICE_AMT\r\n     ,\r\n   CASE WHEN POS_DETAIL.SERVICE_BOOKING_FLAG = 'Y'  AND COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) <> 0 \r\n       THEN\r\n           CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  THEN     \r\n                   COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY)\r\n               WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL THEN\r\n                   COALESCE(L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY,-999) \r\n                   ELSE -999 \r\n           END \r\n   ELSE -999 END  TSS_COUNTRY_FACTOR_KEY,\r\n    /*    BGM changes ends here*/\r\n   COALESCE(POS_DETAIL.DV_EXTND_LIST_PRICE_LOCAL_AMT,CAST(0.0 AS DECIMAL(18,6))) AS DV_LOCAL_EXTND_LIST_PRICE_AMT,\r\n COALESCE(POS_DETAIL.UNIT_LIST_PRICE_LOCAL_AMT,CAST(0.0 AS DECIMAL(18,6))) AS LOCAL_UNIT_LIST_PRICE_AMT,\r\n COALESCE(POS_DETAIL.DV_UNIT_LIST_PRICE_USD_AMT,CAST(0.0 AS DECIMAL(18,6))) AS DV_UNIT_LIST_PRICE_USD_AMT ,\r\n 0 DV_BGM_NON_STANDARD_COST_AMT /*added as part product BGM - Q1FY18 release */\r\n,/*REBATE BGM NET START */\r\nCASE WHEN POS_DETAIL.SERVICE_BOOKING_FLAG = 'Y' AND COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) <> 0\r\n\tTHEN\r\n\t\tCASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n\t\t\tTHEN \t\r\n\t\t\t\tCAST( (COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6))) - (COALESCE(TSS.REBATE_FACTOR_PCT,TSS1.REBATE_FACTOR_PCT) * POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT /100)    \r\n\t\t\t\t\t)  AS DECIMAL(18,6) )   \r\n\t\t\tWHEN COALESCE(L4_TSD.REBATE_FACTOR_PCT,L3_TSD.REBATE_FACTOR_PCT,L2_TSD.REBATE_FACTOR_PCT,L1_TSD.REBATE_FACTOR_PCT,0) <> 0\r\n\t\t\tTHEN\r\n\t\t\t\tCAST( (COALESCE(POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT,CAST( 0.000000  AS DECIMAL(18,6)))*\r\n\t\t\t\t\t(COALESCE(L4_TSD.REBATE_FACTOR_PCT,L3_TSD.REBATE_FACTOR_PCT,L2_TSD.REBATE_FACTOR_PCT,L1_TSD.REBATE_FACTOR_PCT)/100) )  AS DECIMAL(18,6) )\t\t\r\n\t\t\tELSE  POS_DETAIL.EXTENDED_NET_PRICE_USD_AMOUNT\r\n\t\tEND \r\n\tELSE  0\r\n END DV_BKG_REBATE,\r\n\r\nCASE WHEN (POS_DETAIL.SERVICE_BOOKING_FLAG = 'Y' AND DV_BKG_REBATE <> 0 AND \r\nCOALESCE(COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY),L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL )\r\nTHEN COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*DV_BKG_REBATE,0) \r\nELSE 0\r\nEND AS DV_FX_REBATE_PRICE_AMT\r\n/*REBATE BGM NET END */\r\n,POS_DETAIL.POB_TYPE_CD\r\n,POS_DETAIL.RU_SERVICE_CONTRACT_START_DTM\r\n,POS_DETAIL.RU_SERVICE_CONTRACT_END_DTM\r\n,POS_DETAIL.DV_CONTRACT_DURATION\r\n,POS_DETAIL.DV_ANNUALIZED_FLG\r\n,POS_DETAIL.DV_ANNUALIZED_US_NET_AMT\r\n,POS_DETAIL.DV_MULTI_YEAR_US_NET_AMT\r\n,POS_DETAIL.POS_ANNUALIZED_BKG_TRX_KEY\r\n,POS_DETAIL.TRANSACTIONAL_ACV_FLG\r\n,POS_DETAIL.HISTORY_FLG\r\n,POS_DETAIL.ANNUAL_FLG\r\n,POS_DETAIL.ORIG_COMP_US_NET_PRICE_AMT\r\n,POS_DETAIL.ORIG_ANNUALIZED_US_NET_AMT\r\n,POS_DETAIL.ORIG_MULTIYEAR_US_NET_AMT\r\n,POS_DETAIL.DV_RUNNING_TOTAL_USD_AMT\r\n,POS_DETAIL.DV_ORDER_VALUE_USD_AMT AS DV_ORDER_VALUE_USD_AMOUNT\r\n,POS_DETAIL.BOOKINGS_POLICY_CD\r\n /* added below columns as part of AI Bookings Scope */\r\n, POS_DETAIL.TRANSACTION_AI_FLG\r\n, POS_DETAIL.AI_INTENT_TYPE_CD\r\n, POS_DETAIL.TRX_AI_PRODUCT_CLASS_NAME\r\n,POS_DETAIL.BUYING_TRANSACTION_TYPE_NAME  AS  BUYING_TRANSACTION_TYPE_NAME\r\n   FROM $$SLSORDVWDB.N_DRVD_SCA_POS_ADJ_DETAILS POS_DETAIL \r\n   LEFT OUTER JOIN $$SLSORDVWDB.N_BKG_POS_TRANSACTION_LINE BKG_TRANS \r\n   ON POS_DETAIL.BK_POS_TRANSACTION_ID_INT = BKG_TRANS.BK_POS_TRANSACTION_ID_INT\r\n       /*    BGM changes starts here*/\r\n   LEFT JOIN $$COMREFVWDB.MT_ENDCUST_CUSTOMER_PARTY_HIER ENDCUST\r\n   ON BKG_TRANS.BK_END_USER_WIPS_SITE_USE_KEY=ENDCUST.END_CUSTOMER_KEY      \r\n   \r\n   LEFT JOIN $$COMREFVWDB.R_SALES_HIERARCHY HIER\r\n   ON POS_DETAIL.SALES_TERRITORY_KEY=HIER.SALES_TERRITORY_KEY\r\n   \r\nLEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR TSS\r\nON TSS.PRODUCT_KEY                    = POS_DETAIL.PRODUCT_KEY\r\nAND TSS.BK_ISO_COUNTRY_CD = ENDCUST.BRANCH_ISO_COUNTRY_CD                    \r\nAND TSS.BKGS_MEASURE_TRANS_TYPE_CODE ='POS' \r\nAND TSS.SALES_TERRITORY_NAME=HIER.L2_SALES_TERRITORY_NAME_CODE\r\nAND TSS.COUNTRY_FLG='Y'\r\n\r\nLEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR TSS1\r\nON TSS1.PRODUCT_KEY                    = POS_DETAIL.PRODUCT_KEY\r\nAND TSS1.BK_ISO_COUNTRY_CD = ENDCUST.BRANCH_ISO_COUNTRY_CD                    \r\nAND TSS1.BKGS_MEASURE_TRANS_TYPE_CODE ='POS' \r\nAND TSS1.SALES_TERRITORY_NAME=HIER.L1_SALES_TERRITORY_NAME_CODE\r\nAND TSS1.COUNTRY_FLG='Y'\r\n   \r\n   LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L4_TSD\r\n   ON L4_TSD.SALES_TERRITORY_NAME=HIER.L4_SALES_TERRITORY_NAME_CODE\r\n   AND L4_TSD.COUNTRY_FLG='N'\r\n   \r\n   LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L3_TSD\r\n   ON L3_TSD.SALES_TERRITORY_NAME=HIER.L3_SALES_TERRITORY_NAME_CODE\r\n   AND L3_TSD.COUNTRY_FLG='N'\r\n   \r\n   \r\n   LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L2_TSD\r\n   ON L2_TSD.SALES_TERRITORY_NAME=HIER.L2_SALES_TERRITORY_NAME_CODE\r\n   AND L2_TSD.COUNTRY_FLG='N'\r\n   \r\n   LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L1_TSD\r\n   ON L1_TSD.SALES_TERRITORY_NAME=HIER.L1_SALES_TERRITORY_NAME_CODE\r\n   AND L1_TSD.COUNTRY_FLG='N'\r\n  \r\n    LEFT OUTER JOIN\r\n   (\r\n   SELECT CR.PL_CONVERSION_RT,CR.ANNUAL_BUDGET_CONV_RT,CR.FISCAL_YEAR_MONTH_NUM_INT,FX.SALES_TERRITORY_KEY\r\n   FROM $$FINLGLVWDB.MT_MONTHLY_CONVERSION_RATE CR,\r\n   $$SLSORDVWDB.MT_PROFITABILITY_FX_NORM FX,\r\n   (SELECT (PDATE.FISCAL_YEAR_NUMBER_INT-5)*100+PDATE.FISCAL_MONTH_NUMBER_INT AS START_DATE,       \r\n       CASE WHEN PDATE.FISCAL_MONTH_NUMBER_INT = 12 THEN (PDATE.FISCAL_YEAR_NUMBER_INT+1)*100+1 ELSE PDATE.FISCAL_YEAR_MTH_NUMBER_INT+1  END AS END_DATE\r\n       FROM $$ETLVWDB.BKG_PROCESS_DT_CNTRL PDATE\r\n       )PDATE\r\n   WHERE  CR.BK_FROM_CURRENCY_CD=FX.BK_CURRENCY_CD\r\n   AND CR.FISCAL_YEAR_MONTH_NUM_INT   BETWEEN PDATE.START_DATE AND PDATE.END_DATE  AND CR.BK_TO_CURRENCY_CD='USD'\r\n   )MCR   \r\n   ON POS_DETAIL.SALES_TERRITORY_KEY=MCR.SALES_TERRITORY_KEY\r\n   AND  POS_DETAIL.DV_FISCAL_YEAR_MTH_NUMBER_INT=MCR.FISCAL_YEAR_MONTH_NUM_INT                       \r\n    /*    BGM changes ends here*/\r\n   WHERE  POS_DETAIL.EDW_UPDATE_DATETIME > '$$LastExtractDate'\r\n   AND POS_DETAIL.DSV_OR_POS_TYPE_CD ='DSV_BKG'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ALLOCATED_POS_ADJ_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\tPOS_DETAIL.ALLOCATED_POS_ADJ_KEY,\r\n      POS_DETAIL.BK_POS_TRANSACTION_ID_INT,\r\n\tPOS_DETAIL.PROCESS_DATE,\r\n\tPOS_TRANS.BK_END_USER_WIPS_SITE_USE_KEY,\r\n\t'POS' BKGS_MEASURE_TRANS_TYPE_CODE\r\nFROM \t\r\n$$SLSORDVWDB.N_POS_TRANSACTION_LINE POS_TRANS,\r\n$$SLSORDVWDB.N_DRVD_SCA_POS_ADJ_DETAILS POS_DETAIL\r\nWHERE \r\n\tPOS_DETAIL.BK_POS_TRANSACTION_ID_INT = POS_TRANS.BK_POS_TRANSACTION_ID_INT AND \r\n\tPOS_TRANS.EDW_UPDATE_DATETIME > '$$LastExtractDate'\r\nAND POS_DETAIL.DSV_OR_POS_TYPE_CD ='POS'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ALLOCATED_POS_ADJ_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DSV_OR_POS_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSS_COUNTRY_FACTOR_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BKG_GROSS_MGN_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BGM_FX_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FX_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BKG_REBATE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FX_REBATE_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "/* INSERT FOR CAPTURING END COUNTRY CHANGES*/\r\n SELECT POS_TRX.ALLOCATED_POS_ADJ_KEY\r\n   ,POS_TRX.BK_POS_TRANSACTION_ID_INT\r\n   ,POS_TRX.DV_FISCAL_YEAR_MTH_NUMBER_INT\r\n   ,POS_TRX.BOOKINGS_PROCESS_DT\r\n   ,POS_TRX.DSV_OR_POS_TYPE_CD  ,\r\n  CASE WHEN POS_TRX.SERVICE_FLG = 'Y'  AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 \r\n      THEN\r\n          CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  THEN     \r\n                  COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY)\r\n              WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL THEN\r\n                  COALESCE(L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY,-999) \r\n                  ELSE -999 \r\n          END \r\n  ELSE -999 END TSS_COUNTRY_FACTOR_KEY\r\n  \r\n  ,CASE WHEN POS_TRX.SERVICE_FLG = 'Y'  AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 \r\n   THEN\r\n    CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n     THEN  \r\n      CAST( (POS_TRX.DD_COMP_US_NET_PRICE_AMT - (COALESCE(TSS.COST_FACTOR_PCT,TSS1.COST_FACTOR_PCT) * POS_TRX.DD_COMP_US_LIST_PRICE_AMT /100)    \r\n       )  AS DECIMAL(18,6) )   \r\n     WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL \r\n     THEN\r\n      CAST( (POS_TRX.DD_COMP_US_NET_PRICE_AMT *\r\n       (COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT)/100) )  AS DECIMAL(18,6) )  \r\n     ELSE 0\r\n    END \r\n   ELSE 0\r\n   END  DV_BKG_GROSS_MGN_AMOUNT\r\n  \r\n  ,\r\n  CASE WHEN POS_TRX.SERVICE_FLG = 'Y'  AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 AND MCR.SALES_TERRITORY_KEY IS NOT NULL\r\n   THEN\r\n    CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n     THEN  \r\n      CAST( ( (COALESCE(TSS.COST_FACTOR_PCT,TSS1.COST_FACTOR_PCT)*POS_TRX.DD_COMP_US_LIST_PRICE_AMT /100)    \r\n      )  AS DECIMAL(18,6) )   \r\n     WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL \r\n     THEN\r\n      CAST( COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*POS_TRX.DD_COMP_US_NET_PRICE_AMT,0) *\r\n       (COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT))/100 \r\n      AS DECIMAL(18,6) )  \r\n     ELSE 0\r\n    END \r\n   ELSE 0\r\n   END  DV_BGM_FX_COST_AMOUNT\r\n   \r\n   \r\n  , CASE WHEN (POS_TRX.SERVICE_FLG = 'Y' AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 AND \r\n  COALESCE(COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY),L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL )\r\n  THEN COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*POS_TRX.DD_COMP_US_NET_PRICE_AMT,0) \r\n  ELSE 0\r\n   END AS DV_FX_NET_PRICE_AMT,\r\n/*REBATE BGM NET START */\r\nCASE WHEN POS_TRX.SERVICE_FLG = 'Y' AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 \r\n\tTHEN\r\n\t\tCASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n\t\t\tTHEN \t\r\n\t\t\t\tCAST( (POS_TRX.DD_COMP_US_NET_PRICE_AMT - (COALESCE(TSS.REBATE_FACTOR_PCT,TSS1.REBATE_FACTOR_PCT) * POS_TRX.DD_COMP_US_NET_PRICE_AMT /100)    \r\n\t\t\t\t\t)  AS DECIMAL(18,6) )   \r\n\t\t\tWHEN COALESCE(L4_TSD.REBATE_FACTOR_PCT,L3_TSD.REBATE_FACTOR_PCT,L2_TSD.REBATE_FACTOR_PCT,L1_TSD.REBATE_FACTOR_PCT,0) <> 0\r\n\t\t\tTHEN\r\n\t\t\t\tCAST( (POS_TRX.DD_COMP_US_NET_PRICE_AMT *\r\n\t\t\t\t\t(COALESCE(L4_TSD.REBATE_FACTOR_PCT,L3_TSD.REBATE_FACTOR_PCT,L2_TSD.REBATE_FACTOR_PCT,L1_TSD.REBATE_FACTOR_PCT)/100) )  AS DECIMAL(18,6) )\t\t\r\n\t\t\tELSE  POS_TRX.DD_COMP_US_NET_PRICE_AMT\r\n\t\tEND \r\n\tELSE  0\r\n END DV_BKG_REBATE,\r\n\r\nCASE WHEN (POS_TRX.SERVICE_FLG = 'Y' AND DV_BKG_REBATE <> 0 AND \r\nCOALESCE(COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY),L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL )\r\nTHEN COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*DV_BKG_REBATE,0) \r\nELSE 0\r\nEND AS DV_FX_REBATE_PRICE_AMT\r\n/*REBATE BGM NET END */\r\n      FROM \r\n $$SLSORDVWDB.MT_DRVD_NRT_POS_TRX POS_TRX\r\n   INNER JOIN $$COMREFVWDB.MT_ENDCUST_CUSTOMER_PARTY_HIER END_CUST\r\n  ON POS_TRX.END_CUSTOMER_KEY=END_CUST.END_CUSTOMER_KEY  \r\n   INNER JOIN (     \r\n   SELECT FISCAL_YEAR_MONTH_INT FROM $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR WHERE CURRENT_FISCAL_QTR_FLAG = 'Y'      \r\n   UNION      \r\n   SELECT FISCAL_YEAR_MONTH_INT FROM $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR WHERE PREVIOUS_FISCAL_QTR_FLAG = 'Y'      \r\n   AND 1 =( SELECT COUNT(*) FROM $$COMREFVWDB.R_FISCAL_QUARTER_TO_YEAR WHERE DATE= FISCAL_QUARTER_START_DATE AND CURRENT_FISCAL_QTR_FLAG ='Y')     \r\n   ) FISC_MTH ON FISC_MTH.FISCAL_YEAR_MONTH_INT = POS_TRX.DV_FISCAL_YEAR_MTH_NUMBER_INT\r\n    \r\n      INNER JOIN $$STGDB.WI_PRDT_COST_FACT_EXTRT_DT  WIPCFED ON WIPCFED.JOB_STREAM_ID = 'wf_MT_ENDCUST_CUSTOMER_PARTY_HIER' \r\n      AND END_CUST.EDW_UPDATE_DTM > WIPCFED.LAST_EXTRACT_DATE  AND END_CUST.EDW_CREATE_DTM <=  WIPCFED.LAST_EXTRACT_DATE\r\n    \r\n  \r\n  LEFT JOIN $$COMREFVWDB.R_SALES_HIERARCHY HIER\r\n  ON POS_TRX.SALES_TERRITORY_KEY=HIER.SALES_TERRITORY_KEY\r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR TSS\r\nON TSS.PRODUCT_KEY                    = POS_TRX.PRODUCT_KEY\r\nAND TSS.BK_ISO_COUNTRY_CD = END_CUST.BRANCH_ISO_COUNTRY_CD                    \r\nAND TSS.BKGS_MEASURE_TRANS_TYPE_CODE ='POS' \r\nAND TSS.SALES_TERRITORY_NAME=HIER.L2_SALES_TERRITORY_NAME_CODE\r\nAND TSS.COUNTRY_FLG='Y'\r\n\r\nLEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR TSS1\r\nON TSS1.PRODUCT_KEY                    = POS_TRX.PRODUCT_KEY\r\nAND TSS1.BK_ISO_COUNTRY_CD = END_CUST.BRANCH_ISO_COUNTRY_CD                    \r\nAND TSS1.BKGS_MEASURE_TRANS_TYPE_CODE ='POS' \r\nAND TSS1.SALES_TERRITORY_NAME=HIER.L1_SALES_TERRITORY_NAME_CODE\r\nAND TSS1.COUNTRY_FLG='Y'\r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L4_TSD\r\n  ON L4_TSD.SALES_TERRITORY_NAME=HIER.L4_SALES_TERRITORY_NAME_CODE\r\n  AND L4_TSD.COUNTRY_FLG='N'\r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L3_TSD\r\n  ON L3_TSD.SALES_TERRITORY_NAME=HIER.L3_SALES_TERRITORY_NAME_CODE\r\n  AND L3_TSD.COUNTRY_FLG='N'\r\n  \r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L2_TSD\r\n  ON L2_TSD.SALES_TERRITORY_NAME=HIER.L2_SALES_TERRITORY_NAME_CODE\r\n  AND L2_TSD.COUNTRY_FLG='N'\r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L1_TSD\r\n  ON L1_TSD.SALES_TERRITORY_NAME=HIER.L1_SALES_TERRITORY_NAME_CODE\r\n  AND L1_TSD.COUNTRY_FLG='N'\r\n  \r\n   LEFT OUTER JOIN\r\n  (\r\n  SELECT CR.PL_CONVERSION_RT,CR.ANNUAL_BUDGET_CONV_RT,CR.FISCAL_YEAR_MONTH_NUM_INT,FX.SALES_TERRITORY_KEY\r\n  FROM $$FINLGLVWDB.MT_MONTHLY_CONVERSION_RATE CR,\r\n  $$SLSORDVWDB.MT_PROFITABILITY_FX_NORM FX,\r\n  (SELECT (PDATE.FISCAL_YEAR_NUMBER_INT-5)*100+PDATE.FISCAL_MONTH_NUMBER_INT AS START_DATE,       \r\n      CASE WHEN PDATE.FISCAL_MONTH_NUMBER_INT = 12 THEN (PDATE.FISCAL_YEAR_NUMBER_INT+1)*100+1 ELSE PDATE.FISCAL_YEAR_MTH_NUMBER_INT+1  END AS END_DATE\r\n      FROM $$ETLVWDB.BKG_PROCESS_DT_CNTRL PDATE\r\n      )PDATE\r\n  WHERE  CR.BK_FROM_CURRENCY_CD=FX.BK_CURRENCY_CD\r\n  AND CR.FISCAL_YEAR_MONTH_NUM_INT   BETWEEN PDATE.START_DATE AND PDATE.END_DATE  AND CR.BK_TO_CURRENCY_CD='USD'\r\n  )MCR   \r\n  ON POS_TRX.SALES_TERRITORY_KEY=MCR.SALES_TERRITORY_KEY\r\n  AND  POS_TRX.DV_FISCAL_YEAR_MTH_NUMBER_INT=MCR.FISCAL_YEAR_MONTH_NUM_INT\r\n  \r\n      WHERE\r\n      -- POS_TRX.BKGS_MEASURE_TRANS_TYPE_CODE = 'ERP'  AND \r\n      NOT EXISTS  (SELECT 1 FROM $$STGDB.WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM WINBAR\r\n      WHERE  POS_TRX.ALLOCATED_POS_ADJ_KEY = WINBAR.ALLOCATED_POS_ADJ_KEY AND\r\n      POS_TRX.BOOKINGS_PROCESS_DT = WINBAR.BOOKINGS_PROCESS_DT \r\n     )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ALLOCATED_POS_ADJ_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DSV_OR_POS_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSS_COUNTRY_FACTOR_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BKG_GROSS_MGN_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BGM_FX_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FX_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BKG_REBATE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FX_REBATE_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "/*INSERT FOR CAPTURING  END CUSTOMER CHANGE RECORDS */\r\n   SELECT POS_TRX.ALLOCATED_POS_ADJ_KEY\r\n   ,POS_TRX.BK_POS_TRANSACTION_ID_INT\r\n   ,POS_TRX.DV_FISCAL_YEAR_MTH_NUMBER_INT\r\n   ,POS_TRX.BOOKINGS_PROCESS_DT\r\n   ,POS_TRX.DSV_OR_POS_TYPE_CD  ,\r\n  CASE WHEN POS_TRX.SERVICE_FLG = 'Y'  AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 \r\n      THEN\r\n          CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  THEN     \r\n                  COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY)\r\n              WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL THEN\r\n                  COALESCE(L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY,-999) \r\n                  ELSE -999 \r\n          END \r\n  ELSE -999 END TSS_COUNTRY_FACTOR_KEY\r\n  \r\n  ,CASE WHEN POS_TRX.SERVICE_FLG = 'Y'  AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 \r\n   THEN\r\n    CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n     THEN  \r\n      CAST( (POS_TRX.DD_COMP_US_NET_PRICE_AMT - (COALESCE(TSS.COST_FACTOR_PCT,TSS1.COST_FACTOR_PCT) * POS_TRX.DD_COMP_US_LIST_PRICE_AMT /100)    \r\n       )  AS DECIMAL(18,6) )   \r\n     WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL \r\n     THEN\r\n      CAST( (POS_TRX.DD_COMP_US_NET_PRICE_AMT *\r\n       (COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT)/100) )  AS DECIMAL(18,6) )  \r\n     ELSE 0\r\n    END \r\n   ELSE 0\r\n   END  DV_BKG_GROSS_MGN_AMOUNT\r\n  \r\n  ,\r\n  CASE WHEN POS_TRX.SERVICE_FLG = 'Y'  AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 AND MCR.SALES_TERRITORY_KEY IS NOT NULL\r\n   THEN\r\n    CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n     THEN  \r\n      CAST( ( (COALESCE(TSS.COST_FACTOR_PCT,TSS1.COST_FACTOR_PCT)*POS_TRX.DD_COMP_US_LIST_PRICE_AMT /100)    \r\n      )  AS DECIMAL(18,6) )   \r\n     WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL \r\n     THEN\r\n      CAST( \r\n     COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*POS_TRX.DD_COMP_US_NET_PRICE_AMT,0) *\r\n       (COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT))/100 \r\n      AS DECIMAL(18,6) )  \r\n     ELSE 0\r\n    END \r\n   ELSE 0\r\n   END  DV_BGM_FX_COST_AMOUNT\r\n   \r\n   \r\n  , CASE WHEN (POS_TRX.SERVICE_FLG = 'Y' AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 AND \r\n  COALESCE(COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY),L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL )\r\n  THEN COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*POS_TRX.DD_COMP_US_NET_PRICE_AMT,0) \r\n  ELSE 0\r\n   END AS DV_FX_NET_PRICE_AMT\r\n, /*REBATE BGM NET START */\r\nCASE WHEN POS_TRX.SERVICE_FLG = 'Y' AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 \r\n\tTHEN\r\n\t\tCASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n\t\t\tTHEN \t\r\n\t\t\t\tCAST( (POS_TRX.DD_COMP_US_NET_PRICE_AMT - (COALESCE(TSS.REBATE_FACTOR_PCT,TSS1.REBATE_FACTOR_PCT) * POS_TRX.DD_COMP_US_NET_PRICE_AMT /100)    \r\n\t\t\t\t\t)  AS DECIMAL(18,6) )   \r\n\t\t\tWHEN COALESCE(L4_TSD.REBATE_FACTOR_PCT,L3_TSD.REBATE_FACTOR_PCT,L2_TSD.REBATE_FACTOR_PCT,L1_TSD.REBATE_FACTOR_PCT,0) <> 0\r\n\t\t\tTHEN\r\n\t\t\t\tCAST( (POS_TRX.DD_COMP_US_NET_PRICE_AMT *\r\n\t\t\t\t\t(COALESCE(L4_TSD.REBATE_FACTOR_PCT,L3_TSD.REBATE_FACTOR_PCT,L2_TSD.REBATE_FACTOR_PCT,L1_TSD.REBATE_FACTOR_PCT)/100) )  AS DECIMAL(18,6) )\t\t\r\n\t\t\tELSE  POS_TRX.DD_COMP_US_NET_PRICE_AMT\r\n\t\tEND \r\n\tELSE  0\r\n END DV_BKG_REBATE,\r\n\r\nCASE WHEN (POS_TRX.SERVICE_FLG = 'Y' AND DV_BKG_REBATE <> 0 AND \r\nCOALESCE(COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY),L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL )\r\nTHEN COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*DV_BKG_REBATE,0) \r\nELSE 0\r\nEND AS DV_FX_REBATE_PRICE_AMT\r\n/*REBATE BGM NET END */\r\n   FROM\r\n   $$SLSORDVWDB.MT_DRVD_NRT_POS_TRX POS_TRX\r\n   INNER JOIN\r\n $$STGDB.WI_MT_DRVD_NRT_POS_TRX_RETRO WI\r\n ON POS_TRX.ALLOCATED_POS_ADJ_KEY=WI.ALLOCATED_POS_ADJ_KEY\r\n  INNER JOIN (     \r\n   SELECT FISCAL_YEAR_MONTH_INT FROM $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR WHERE CURRENT_FISCAL_QTR_FLAG = 'Y'      \r\n   UNION      \r\n   SELECT FISCAL_YEAR_MONTH_INT FROM $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR WHERE PREVIOUS_FISCAL_QTR_FLAG = 'Y'      \r\n   AND 1 =( SELECT COUNT(*) FROM $$COMREFVWDB.R_FISCAL_QUARTER_TO_YEAR WHERE DATE= FISCAL_QUARTER_START_DATE AND CURRENT_FISCAL_QTR_FLAG ='Y')     \r\n   ) FISC_MTH ON FISC_MTH.FISCAL_YEAR_MONTH_INT = POS_TRX.DV_FISCAL_YEAR_MTH_NUMBER_INT\r\n   \r\n   LEFT JOIN $$COMREFVWDB.MT_ENDCUST_CUSTOMER_PARTY_HIER ENDCUST\r\n  ON WI.END_CUSTOMER_KEY=ENDCUST.END_CUSTOMER_KEY      \r\n  \r\n  LEFT JOIN $$COMREFVWDB.R_SALES_HIERARCHY HIER\r\n  ON POS_TRX.SALES_TERRITORY_KEY=HIER.SALES_TERRITORY_KEY\r\n   \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR TSS\r\nON TSS.PRODUCT_KEY                    = POS_TRX.PRODUCT_KEY\r\nAND TSS.BK_ISO_COUNTRY_CD = ENDCUST.BRANCH_ISO_COUNTRY_CD                    \r\nAND TSS.BKGS_MEASURE_TRANS_TYPE_CODE ='POS' \r\nAND TSS.SALES_TERRITORY_NAME=HIER.L2_SALES_TERRITORY_NAME_CODE\r\nAND TSS.COUNTRY_FLG='Y'\r\n\r\nLEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR TSS1\r\nON TSS1.PRODUCT_KEY                    = POS_TRX.PRODUCT_KEY\r\nAND TSS1.BK_ISO_COUNTRY_CD = ENDCUST.BRANCH_ISO_COUNTRY_CD                    \r\nAND TSS1.BKGS_MEASURE_TRANS_TYPE_CODE ='POS' \r\nAND TSS1.SALES_TERRITORY_NAME=HIER.L1_SALES_TERRITORY_NAME_CODE\r\nAND TSS1.COUNTRY_FLG='Y'\r\n\r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L4_TSD\r\n  ON L4_TSD.SALES_TERRITORY_NAME=HIER.L4_SALES_TERRITORY_NAME_CODE\r\n  AND L4_TSD.COUNTRY_FLG='N'\r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L3_TSD\r\n  ON L3_TSD.SALES_TERRITORY_NAME=HIER.L3_SALES_TERRITORY_NAME_CODE\r\n  AND L3_TSD.COUNTRY_FLG='N'\r\n  \r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L2_TSD\r\n  ON L2_TSD.SALES_TERRITORY_NAME=HIER.L2_SALES_TERRITORY_NAME_CODE\r\n  AND L2_TSD.COUNTRY_FLG='N'\r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L1_TSD\r\n  ON L1_TSD.SALES_TERRITORY_NAME=HIER.L1_SALES_TERRITORY_NAME_CODE\r\n  AND L1_TSD.COUNTRY_FLG='N'\r\n  \r\n   LEFT OUTER JOIN\r\n  (\r\n  SELECT CR.PL_CONVERSION_RT,CR.ANNUAL_BUDGET_CONV_RT,CR.FISCAL_YEAR_MONTH_NUM_INT,FX.SALES_TERRITORY_KEY\r\n  FROM $$FINLGLVWDB.MT_MONTHLY_CONVERSION_RATE CR,\r\n  $$SLSORDVWDB.MT_PROFITABILITY_FX_NORM FX,\r\n  (SELECT (PDATE.FISCAL_YEAR_NUMBER_INT-5)*100+PDATE.FISCAL_MONTH_NUMBER_INT AS START_DATE,       \r\n      CASE WHEN PDATE.FISCAL_MONTH_NUMBER_INT = 12 THEN (PDATE.FISCAL_YEAR_NUMBER_INT+1)*100+1 ELSE PDATE.FISCAL_YEAR_MTH_NUMBER_INT+1  END AS END_DATE\r\n      FROM $$ETLVWDB.BKG_PROCESS_DT_CNTRL PDATE\r\n      )PDATE\r\n  WHERE  CR.BK_FROM_CURRENCY_CD=FX.BK_CURRENCY_CD\r\n  AND CR.FISCAL_YEAR_MONTH_NUM_INT   BETWEEN PDATE.START_DATE AND PDATE.END_DATE  AND CR.BK_TO_CURRENCY_CD='USD'\r\n  )MCR   \r\n  ON POS_TRX.SALES_TERRITORY_KEY=MCR.SALES_TERRITORY_KEY\r\n  AND  POS_TRX.DV_FISCAL_YEAR_MTH_NUMBER_INT=MCR.FISCAL_YEAR_MONTH_NUM_INT\r\n   WHERE POS_TRX.END_CUSTOMER_KEY <> WI.END_CUSTOMER_KEY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ALLOCATED_POS_ADJ_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DSV_OR_POS_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSS_COUNTRY_FACTOR_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BKG_GROSS_MGN_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BGM_FX_COST_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FX_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BKG_REBATE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FX_REBATE_PRICE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "/*INSERT FOR CAPTURING  UPDATES FROM TSS TABLE CHANGES */\r\n \r\n SELECT POS_TRX.ALLOCATED_POS_ADJ_KEY\r\n   ,POS_TRX.BK_POS_TRANSACTION_ID_INT\r\n   ,POS_TRX.DV_FISCAL_YEAR_MTH_NUMBER_INT\r\n   ,POS_TRX.BOOKINGS_PROCESS_DT\r\n   ,POS_TRX.DSV_OR_POS_TYPE_CD  ,\r\n  CASE WHEN POS_TRX.SERVICE_FLG = 'Y'  AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 \r\n      THEN\r\n          CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  THEN     \r\n                  COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY)\r\n              WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL THEN\r\n                  COALESCE(L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY,-999) \r\n                  ELSE -999 \r\n          END \r\n  ELSE -999 END TSS_COUNTRY_FACTOR_KEY\r\n  \r\n  ,CASE WHEN POS_TRX.SERVICE_FLG = 'Y'  AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 \r\n   THEN\r\n    CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n     THEN  \r\n      CAST( (POS_TRX.DD_COMP_US_NET_PRICE_AMT - (COALESCE(TSS.COST_FACTOR_PCT,TSS1.COST_FACTOR_PCT) * POS_TRX.DD_COMP_US_LIST_PRICE_AMT /100)    \r\n       )  AS DECIMAL(18,6) )   \r\n     WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL \r\n     THEN\r\n      CAST( (POS_TRX.DD_COMP_US_NET_PRICE_AMT *\r\n       (COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT)/100) )  AS DECIMAL(18,6) )  \r\n     ELSE 0\r\n    END \r\n   ELSE 0\r\n   END  DV_BKG_GROSS_MGN_AMOUNT\r\n  \r\n  ,\r\n  CASE WHEN POS_TRX.SERVICE_FLG = 'Y'  AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 AND MCR.SALES_TERRITORY_KEY IS NOT NULL\r\n   THEN\r\n    CASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n     THEN  \r\n      CAST( ( (COALESCE(TSS.COST_FACTOR_PCT,TSS1.COST_FACTOR_PCT)*POS_TRX.DD_COMP_US_LIST_PRICE_AMT /100)    \r\n      )  AS DECIMAL(18,6) )   \r\n     WHEN COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT) IS NOT NULL \r\n     THEN\r\n      CAST( COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*POS_TRX.DD_COMP_US_NET_PRICE_AMT,0) *\r\n       (COALESCE(L4_TSD.COST_FACTOR_PCT,L3_TSD.COST_FACTOR_PCT,L2_TSD.COST_FACTOR_PCT,L1_TSD.COST_FACTOR_PCT))/100 \r\n      AS DECIMAL(18,6) )  \r\n     ELSE 0\r\n    END \r\n   ELSE 0\r\n   END  DV_BGM_FX_COST_AMOUNT\r\n   \r\n   \r\n  , CASE WHEN (POS_TRX.SERVICE_FLG = 'Y' AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 AND \r\n  COALESCE(COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY),L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL )\r\n  THEN COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*POS_TRX.DD_COMP_US_NET_PRICE_AMT,0) \r\n  ELSE 0\r\n   END AS DV_FX_NET_PRICE_AMT\r\n,/*REBATE BGM NET START */\r\nCASE WHEN POS_TRX.SERVICE_FLG = 'Y' AND POS_TRX.DD_COMP_US_NET_PRICE_AMT <> 0 \r\n\tTHEN\r\n\t\tCASE WHEN COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL  \r\n\t\t\tTHEN \t\r\n\t\t\t\tCAST( (POS_TRX.DD_COMP_US_NET_PRICE_AMT - (COALESCE(TSS.REBATE_FACTOR_PCT,TSS1.REBATE_FACTOR_PCT) * POS_TRX.DD_COMP_US_NET_PRICE_AMT /100)    \r\n\t\t\t\t\t)  AS DECIMAL(18,6) )   \r\n\t\t\tWHEN COALESCE(L4_TSD.REBATE_FACTOR_PCT,L3_TSD.REBATE_FACTOR_PCT,L2_TSD.REBATE_FACTOR_PCT,L1_TSD.REBATE_FACTOR_PCT,0) <> 0\r\n\t\t\tTHEN\r\n\t\t\t\tCAST( (POS_TRX.DD_COMP_US_NET_PRICE_AMT *\r\n\t\t\t\t\t(COALESCE(L4_TSD.REBATE_FACTOR_PCT,L3_TSD.REBATE_FACTOR_PCT,L2_TSD.REBATE_FACTOR_PCT,L1_TSD.REBATE_FACTOR_PCT)/100) )  AS DECIMAL(18,6) )\t\t\r\n\t\t\tELSE  POS_TRX.DD_COMP_US_NET_PRICE_AMT\r\n\t\tEND \r\n\tELSE  0\r\n END DV_BKG_REBATE,\r\n\r\nCASE WHEN (POS_TRX.SERVICE_FLG = 'Y' AND DV_BKG_REBATE <> 0 AND \r\nCOALESCE(COALESCE(TSS.TSS_COUNTRY_FACTOR_KEY, TSS1.TSS_COUNTRY_FACTOR_KEY),L4_TSD.TSS_COUNTRY_FACTOR_KEY,L3_TSD.TSS_COUNTRY_FACTOR_KEY,L2_TSD.TSS_COUNTRY_FACTOR_KEY,L1_TSD.TSS_COUNTRY_FACTOR_KEY) IS NOT NULL )\r\nTHEN COALESCE((COALESCE(MCR.ANNUAL_BUDGET_CONV_RT,0)/NULLIF(MCR.PL_CONVERSION_RT,0))*DV_BKG_REBATE,0) \r\nELSE 0\r\nEND AS DV_FX_REBATE_PRICE_AMT\r\n/*REBATE BGM NET END */\r\n      FROM \r\n $$SLSORDVWDB.MT_DRVD_NRT_POS_TRX POS_TRX\r\n      INNER JOIN  $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  NTPCF ON NTPCF.TSS_COUNTRY_FACTOR_KEY = POS_TRX.TSS_COUNTRY_FACTOR_KEY  \r\n  \r\n   INNER JOIN (     \r\n   SELECT FISCAL_YEAR_MONTH_INT FROM $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR WHERE CURRENT_FISCAL_QTR_FLAG = 'Y'      \r\n   UNION      \r\n   SELECT FISCAL_YEAR_MONTH_INT FROM $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR WHERE PREVIOUS_FISCAL_QTR_FLAG = 'Y'      \r\n   AND 1 =( SELECT COUNT(*) FROM $$COMREFVWDB.R_FISCAL_QUARTER_TO_YEAR WHERE DATE= FISCAL_QUARTER_START_DATE AND CURRENT_FISCAL_QTR_FLAG ='Y')     \r\n   ) FISC_MTH ON FISC_MTH.FISCAL_YEAR_MONTH_INT = POS_TRX.DV_FISCAL_YEAR_MTH_NUMBER_INT\r\n    \r\n      INNER JOIN $$STGDB.WI_PRDT_COST_FACT_EXTRT_DT  WIPCFED ON WIPCFED.JOB_STREAM_ID = 'wf_WI_DRVD_NRT_POS_TRX' \r\n      AND NTPCF.EDW_UPDATE_DTM > WIPCFED.LAST_EXTRACT_DATE  AND NTPCF.EDW_CREATE_DTM <=  WIPCFED.LAST_EXTRACT_DATE\r\n       \r\n   LEFT JOIN $$COMREFVWDB.MT_ENDCUST_CUSTOMER_PARTY_HIER ENDCUST\r\n  ON POS_TRX.END_CUSTOMER_KEY=ENDCUST.END_CUSTOMER_KEY      \r\n  \r\n  LEFT JOIN $$COMREFVWDB.R_SALES_HIERARCHY HIER\r\n  ON POS_TRX.SALES_TERRITORY_KEY=HIER.SALES_TERRITORY_KEY\r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR TSS\r\nON TSS.PRODUCT_KEY                    = POS_TRX.PRODUCT_KEY\r\nAND TSS.BK_ISO_COUNTRY_CD = ENDCUST.BRANCH_ISO_COUNTRY_CD                    \r\nAND TSS.BKGS_MEASURE_TRANS_TYPE_CODE ='POS' \r\nAND TSS.SALES_TERRITORY_NAME=HIER.L2_SALES_TERRITORY_NAME_CODE\r\nAND TSS.COUNTRY_FLG='Y'\r\n\r\nLEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR TSS1\r\nON TSS1.PRODUCT_KEY                    = POS_TRX.PRODUCT_KEY\r\nAND TSS1.BK_ISO_COUNTRY_CD = ENDCUST.BRANCH_ISO_COUNTRY_CD                    \r\nAND TSS1.BKGS_MEASURE_TRANS_TYPE_CODE ='POS' \r\nAND TSS1.SALES_TERRITORY_NAME=HIER.L1_SALES_TERRITORY_NAME_CODE\r\nAND TSS1.COUNTRY_FLG='Y'\r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L4_TSD\r\n  ON L4_TSD.SALES_TERRITORY_NAME=HIER.L4_SALES_TERRITORY_NAME_CODE\r\n  AND L4_TSD.COUNTRY_FLG='N'\r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L3_TSD\r\n  ON L3_TSD.SALES_TERRITORY_NAME=HIER.L3_SALES_TERRITORY_NAME_CODE\r\n  AND L3_TSD.COUNTRY_FLG='N'\r\n  \r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L2_TSD\r\n  ON L2_TSD.SALES_TERRITORY_NAME=HIER.L2_SALES_TERRITORY_NAME_CODE\r\n  AND L2_TSD.COUNTRY_FLG='N'\r\n  \r\n  LEFT JOIN $$SLSORDVWDB.N_TSS_PRODUCT_COST_FACTOR  L1_TSD\r\n  ON L1_TSD.SALES_TERRITORY_NAME=HIER.L1_SALES_TERRITORY_NAME_CODE\r\n  AND L1_TSD.COUNTRY_FLG='N'\r\n  \r\n   LEFT OUTER JOIN\r\n  (\r\n  SELECT CR.PL_CONVERSION_RT,CR.ANNUAL_BUDGET_CONV_RT,CR.FISCAL_YEAR_MONTH_NUM_INT,FX.SALES_TERRITORY_KEY\r\n  FROM $$FINLGLVWDB.MT_MONTHLY_CONVERSION_RATE CR,\r\n  $$SLSORDVWDB.MT_PROFITABILITY_FX_NORM FX,\r\n  (SELECT (PDATE.FISCAL_YEAR_NUMBER_INT-5)*100+PDATE.FISCAL_MONTH_NUMBER_INT AS START_DATE,       \r\n      CASE WHEN PDATE.FISCAL_MONTH_NUMBER_INT = 12 THEN (PDATE.FISCAL_YEAR_NUMBER_INT+1)*100+1 ELSE PDATE.FISCAL_YEAR_MTH_NUMBER_INT+1  END AS END_DATE\r\n      FROM $$ETLVWDB.BKG_PROCESS_DT_CNTRL PDATE\r\n      )PDATE\r\n  WHERE  CR.BK_FROM_CURRENCY_CD=FX.BK_CURRENCY_CD\r\n  AND CR.FISCAL_YEAR_MONTH_NUM_INT   BETWEEN PDATE.START_DATE AND PDATE.END_DATE  AND CR.BK_TO_CURRENCY_CD='USD'\r\n  )MCR   \r\n  ON POS_TRX.SALES_TERRITORY_KEY=MCR.SALES_TERRITORY_KEY\r\n  AND  POS_TRX.DV_FISCAL_YEAR_MTH_NUMBER_INT=MCR.FISCAL_YEAR_MONTH_NUM_INT\r\n  \r\n      WHERE\r\n      -- POS_TRX.BKGS_MEASURE_TRANS_TYPE_CODE = 'ERP'  AND \r\n      NOT EXISTS  (SELECT 1 FROM $$STGDB.WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM WINBAR\r\n      WHERE  POS_TRX.ALLOCATED_POS_ADJ_KEY = WINBAR.ALLOCATED_POS_ADJ_KEY AND\r\n      POS_TRX.BOOKINGS_PROCESS_DT = WINBAR.BOOKINGS_PROCESS_DT \r\n     )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "DV_ORDER_VALUE_USD_AMOUNT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_ORDER_VALUE_USD_AMOUNT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "BOOKINGS_POLICY_CD",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "BOOKINGS_POLICY_CD",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "POS_ANNUALIZED_BKG_TRX_KEY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "POS_ANNUALIZED_BKG_TRX_KEY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "TRANSACTIONAL_ACV_FLG",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "TRANSACTIONAL_ACV_FLG",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "HISTORY_FLG",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "HISTORY_FLG",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "ANNUAL_FLG",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "ANNUAL_FLG",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "BK_SALES_REP_NUM",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "BK_SALES_REP_NUM",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "SALES_CREDIT_TYPE_CD",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "SALES_CREDIT_TYPE_CD",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "SALES_COMMISSION_PCT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "SALES_COMMISSION_PCT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DD_COMP_US_LIST_PRICE_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DD_COMP_US_LIST_PRICE_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DD_COMP_US_COST_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DD_COMP_US_COST_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DD_COMP_US_NET_PRICE_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DD_COMP_US_NET_PRICE_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "FORWARD_REVERSE_CODE",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "FORWARD_REVERSE_CODE",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "POB_TYPE_CD",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "POB_TYPE_CD",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_LOCAL_EXTND_LIST_PRICE_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_LOCAL_EXTND_LIST_PRICE_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "LOCAL_UNIT_LIST_PRICE_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "LOCAL_UNIT_LIST_PRICE_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_UNIT_LIST_PRICE_USD_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_UNIT_LIST_PRICE_USD_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_BGM_NON_STANDARD_COST_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_BGM_NON_STANDARD_COST_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_BKG_REBATE_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_BKG_REBATE_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_FX_REBATE_PRICE_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_FX_REBATE_PRICE_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "RU_SERVICE_CONTRACT_START_DTM",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "RU_SERVICE_CONTRACT_START_DTM",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "RU_SERVICE_CONTRACT_END_DTM",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "RU_SERVICE_CONTRACT_END_DTM",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_CONTRACT_DURATION",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_CONTRACT_DURATION",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_BGM_FX_COST_AMOUNT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_BGM_FX_COST_AMOUNT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "BOOKINGS_PROCESS_DT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "CORPORATE_BOOKING_FLG",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "CORPORATE_BOOKING_FLG",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DD_EXTENDED_QTY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DD_EXTENDED_QTY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_TYPE_CD",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_ATTRIBUTION_TYPE_CD",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_NET_SPREAD_FLG",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_NET_SPREAD_FLG",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "CHANNEL_BOOKING_FLG",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "CHANNEL_BOOKING_FLG",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "BK_WIPS_ORIGINATOR_ID_INT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "BK_WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "TRANSACTION_AI_FLG",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "TRANSACTION_AI_FLG",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "AI_INTENT_TYPE_CD",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "AI_INTENT_TYPE_CD",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "TRX_AI_PRODUCT_CLASS_NAME",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "BUYING_TRANSACTION_TYPE_NAME",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "BUYING_TRANSACTION_TYPE_NAME",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_FX_NET_PRICE_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_FX_NET_PRICE_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_REVENUE_RECOGNITION_FLG",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_REVENUE_RECOGNITION_FLG",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_ANNUALIZED_FLG",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_ANNUALIZED_FLG",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_ANNUALIZED_US_NET_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_ANNUALIZED_US_NET_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_MULTIYEAR_US_NET_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_MULTIYEAR_US_NET_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "RU_RSLR_TO_DISTI_PO_NUMBER",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "RU_RSLR_TO_DISTI_PO_NUMBER",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "POS_TRX_LINE_POSTED_DATE",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "POS_TRX_LINE_POSTED_DATE",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DSV_OR_POS_TYPE_CD",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DSV_OR_POS_TYPE_CD",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "BK_DEAL_ID",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "BK_DEAL_ID",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "POS_RETURN_ROLE",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "POS_RETURN_ROLE",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DISTRIBUTOR_OFFSET_FLG",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DISTRIBUTOR_OFFSET_FLG",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "BK_TOP_BKGS_POS_TRX_ID_INT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "BK_TOP_BKGS_POS_TRX_ID_INT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "BK_BOOKING_POS_TRX_ID_INT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "BK_BOOKING_POS_TRX_ID_INT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "LINKED_ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "LINKED_ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "ADJUSTMENT_CD",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "ADJUSTMENT_CD",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DESCRIPTION",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "SALES_CHANNEL_CD",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "SALES_CHANNEL_CD",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "TSS_COUNTRY_FACTOR_KEY",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "TSS_COUNTRY_FACTOR_KEY",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "TRANSACTION_DTM",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "TRANSACTION_DTM",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "SERVICE_FLG",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "SERVICE_FLG",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "ORIG_COMP_US_NET_PRICE_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "ORIG_COMP_US_NET_PRICE_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "ORIG_ANNUALIZED_US_NET_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "ORIG_ANNUALIZED_US_NET_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "ORIG_MULTIYEAR_US_NET_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "ORIG_MULTIYEAR_US_NET_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_RUNNING_TOTAL_USD_AMT",
+      "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1",
+      "to_field": "DV_RUNNING_TOTAL_USD_AMT",
+      "to_instance": "WI_DRVD_NRT_POS_TRX"
+    },
+    {
+      "from_field": "DV_FX_REBATE_PRICE_AMT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1",
+      "to_field": "DV_FX_REBATE_PRICE_AMT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1",
+      "to_field": "ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1",
+      "to_field": "BOOKINGS_PROCESS_DT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "DSV_OR_POS_TYPE_CD",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1",
+      "to_field": "DSV_OR_POS_TYPE_CD",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "TSS_COUNTRY_FACTOR_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1",
+      "to_field": "TSS_COUNTRY_FACTOR_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1",
+      "to_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "DV_BGM_FX_COST_AMOUNT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1",
+      "to_field": "DV_BGM_FX_COST_AMOUNT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "DV_FX_NET_PRICE_AMT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1",
+      "to_field": "DV_FX_NET_PRICE_AMT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "DV_BKG_REBATE_AMT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1",
+      "to_field": "DV_BKG_REBATE_AMT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BKG"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BKG"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BKG"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3",
+      "to_field": "ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BKG"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BKG"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BKG"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BKG"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BKG"
+    },
+    {
+      "from_field": "TSS_COUNTRY_FACTOR_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2",
+      "to_field": "TSS_COUNTRY_FACTOR_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2",
+      "to_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "DV_BGM_FX_COST_AMOUNT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2",
+      "to_field": "DV_BGM_FX_COST_AMOUNT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2",
+      "to_field": "ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "DV_FX_REBATE_PRICE_AMT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2",
+      "to_field": "DV_FX_REBATE_PRICE_AMT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "DV_FX_NET_PRICE_AMT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2",
+      "to_field": "DV_FX_NET_PRICE_AMT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "DV_BKG_REBATE_AMT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2",
+      "to_field": "DV_BKG_REBATE_AMT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2",
+      "to_field": "BOOKINGS_PROCESS_DT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "DSV_OR_POS_TYPE_CD",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2",
+      "to_field": "DSV_OR_POS_TYPE_CD",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_POS"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_POS"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_POS"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_POS"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2",
+      "to_field": "ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_POS"
+    },
+    {
+      "from_field": "DSV_OR_POS_TYPE_CD",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "to_field": "DSV_OR_POS_TYPE_CD",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "TSS_COUNTRY_FACTOR_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "to_field": "TSS_COUNTRY_FACTOR_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "to_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "DV_BGM_FX_COST_AMOUNT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "to_field": "DV_BGM_FX_COST_AMOUNT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "DV_FX_NET_PRICE_AMT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "to_field": "DV_FX_NET_PRICE_AMT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "DV_BKG_REBATE_AMT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "to_field": "DV_BKG_REBATE_AMT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "DV_FX_REBATE_PRICE_AMT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "to_field": "DV_FX_REBATE_PRICE_AMT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "to_field": "BOOKINGS_PROCESS_DT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "to_field": "ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "BK_BILL_TO_WIPS_SITE_USE_KEY",
+      "from_instance": "N_BKG_POS_TRANSACTION_LINE",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+    },
+    {
+      "from_field": "DV_CUST_REQUESTED_SHIP_DT",
+      "from_instance": "N_BKG_POS_TRANSACTION_LINE",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "N_BKG_POS_TRANSACTION_LINE",
+      "to_field": "ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "N_BKG_POS_TRANSACTION_LINE",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+    },
+    {
+      "from_field": "DISTRIBUTOR_REPORTED_DEAL_ID",
+      "from_instance": "N_BKG_POS_TRANSACTION_LINE",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "N_BKG_POS_TRANSACTION_LINE",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+    },
+    {
+      "from_field": "BK_WIPS_ORIGINATOR_ID_INT",
+      "from_instance": "N_BKG_POS_TRANSACTION_LINE",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+    },
+    {
+      "from_field": "BK_SHIP_TO_WIPS_SITE_USE_KEY",
+      "from_instance": "N_BKG_POS_TRANSACTION_LINE",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+    },
+    {
+      "from_field": "ADJUSTMENT_QTY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DV_CONTRACT_DURATION",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "ADJUSTMENT_QTY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DV_ANNUALIZED_US_NET_AMT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "ADJUSTMENT_QTY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DV_MULTIYEAR_US_NET_AMT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "GLBL_LST_PRC_USD_AMT",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DD_COMP_US_STANDARD_PRICE_AMT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "DV_REVENUE_RECOGNITION_FLG",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DV_REVENUE_RECOGNITION_FLG",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "DV_NET_SPREAD_FLG",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DV_NET_SPREAD_FLG",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "DISTRIBUTOR_OFFSET_FLAG",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DISTRIBUTOR_OFFSET_FLG",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "ADJUSTMENT_CODE",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "ADJUSTMENT_CD",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "SALES_CHANNEL_CODE",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "SALES_CHANNEL_CD",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "SERVICE_BOOKING_FLAG",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DSV_OR_POS_TYPE_CD",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "POS_RETURN_ROLE",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "CHANNEL_BOOKING_FLG",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "BK_SALES_REP_NUMBER",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "BK_SALES_REP_NUM",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "EXTENDED_LIST_PRICE_USD_AMOUNT",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DD_COMP_US_LIST_PRICE_AMT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "EXTENDED_COST_PRICE_USD_AMOUNT",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DD_COMP_US_COST_AMT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "EXTENDED_NET_PRICE_USD_AMOUNT",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DD_COMP_US_NET_PRICE_AMT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "PROCESS_DATE",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "BOOKINGS_PROCESS_DT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "SALES_CREDIT_TYPE_CODE",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "SALES_CREDIT_TYPE_CD",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "SALES_COMMISSION_PERCENTAGE",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "SALES_COMMISSION_PCT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "BK_OFFER_ATTRIBUTION_ID_INT",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "ATTRIBUTION_TYPE_CD",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DV_ATTRIBUTION_TYPE_CD",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "SK_TRX_SALES_CREDIT_ID_INT",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "BK_TOP_BKGS_POS_TRX_ID_INT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "SK_TRX_SALES_CREDIT_ID_INT",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "BK_BOOKING_POS_TRX_ID_INT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "POS_OFFSET_FLG",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "CORPORATE_BOOKING_FLG",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "ADJUSTMENT_QTY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DD_EXTENDED_QTY",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "BK_WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "FORWARD_REVERSE_CODE",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "FORWARD_REVERSE_CODE",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "SALES_ADJUSTMENT_DATETIME",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "TRANSACTION_DTM",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "SERVICE_BOOKING_FLAG",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "SERVICE_FLG",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "DSV_OR_POS_TYPE_CD",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "POB_TYPE_CD",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "DSV_OR_POS_TYPE_CD",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "BK_DEAL_ID",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "DSV_OR_POS_TYPE_CD",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "RU_RSLR_TO_DISTI_PO_NUMBER",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "NET_CHANGE_PROCESS_DT",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "POS_TRX_LINE_POSTED_DATE",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "DSV_OR_POS_TYPE_CD",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "POS_RETURN_ROLE",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "DSV_OR_POS_TYPE_CD",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "DV_ANNUALIZED_FLG",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "LINKED_ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS",
+      "to_field": "LINKED_ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+    },
+    {
+      "from_field": "BK_END_USER_WIPS_SITE_USE_KEY",
+      "from_instance": "N_POS_TRANSACTION_LINE",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2"
+    },
+    {
+      "from_field": "BK_END_USER_WIPS_SITE_USE_KEY",
+      "from_instance": "N_POS_TRANSACTION_LINE",
+      "to_field": "ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2"
+    },
+    {
+      "from_field": "RU_SOLUTION_SOLD_DATE",
+      "from_instance": "N_POS_TRANSACTION_LINE",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2"
+    },
+    {
+      "from_field": "ELIG_FOR_SALES_CREDIT_TYPE",
+      "from_instance": "N_POS_TRANSACTION_LINE",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "N_POS_TRANSACTION_LINE",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM5",
+      "to_field": "ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM5",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM5",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM5",
+      "to_field": "BOOKINGS_PROCESS_DT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "DSV_OR_POS_TYPE_CD",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM5",
+      "to_field": "DSV_OR_POS_TYPE_CD",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "TSS_COUNTRY_FACTOR_KEY",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM5",
+      "to_field": "TSS_COUNTRY_FACTOR_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM5",
+      "to_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "DV_BGM_FX_COST_AMOUNT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM5",
+      "to_field": "DV_BGM_FX_COST_AMOUNT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "DV_FX_NET_PRICE_AMT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM5",
+      "to_field": "DV_FX_NET_PRICE_AMT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM3",
+      "to_field": "ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM3",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM3",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM3",
+      "to_field": "BOOKINGS_PROCESS_DT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "DSV_OR_POS_TYPE_CD",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM3",
+      "to_field": "DSV_OR_POS_TYPE_CD",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "TSS_COUNTRY_FACTOR_KEY",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM3",
+      "to_field": "TSS_COUNTRY_FACTOR_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM3",
+      "to_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "DV_BGM_FX_COST_AMOUNT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM3",
+      "to_field": "DV_BGM_FX_COST_AMOUNT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "DV_FX_NET_PRICE_AMT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM3",
+      "to_field": "DV_FX_NET_PRICE_AMT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+    },
+    {
+      "from_field": "ALLOCATED_POS_ADJ_KEY",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM4",
+      "to_field": "ALLOCATED_POS_ADJ_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM4",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM4",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM4",
+      "to_field": "BOOKINGS_PROCESS_DT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "DSV_OR_POS_TYPE_CD",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM4",
+      "to_field": "DSV_OR_POS_TYPE_CD",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "TSS_COUNTRY_FACTOR_KEY",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM4",
+      "to_field": "TSS_COUNTRY_FACTOR_KEY",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM4",
+      "to_field": "DV_BKG_GROSS_MGN_AMOUNT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "DV_BGM_FX_COST_AMOUNT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM4",
+      "to_field": "DV_BGM_FX_COST_AMOUNT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    },
+    {
+      "from_field": "DV_FX_NET_PRICE_AMT",
+      "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM4",
+      "to_field": "DV_FX_NET_PRICE_AMT",
+      "to_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ALLOCATED_POS_ADJ_KEY",
+      "source_path": [
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "N_BKG_POS_TRANSACTION_LINE"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS"
+        },
+        {
+          "from_field": "BK_END_USER_WIPS_SITE_USE_KEY",
+          "from_instance": "N_POS_TRANSACTION_LINE"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM5"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM3"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM4"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_POS_TRANSACTION_ID_INT",
+      "source_path": [
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM1"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM2"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "N_BKG_POS_TRANSACTION_LINE"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "N_POS_TRANSACTION_LINE"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM5"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM3"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "WI_MT_DRVD_NRT_POS_TRX_RETRO_BGM4"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BOOKINGS_PROCESS_DATE",
+      "source_path": [
+        {
+          "from_field": "BOOKINGS_PROCESS_DATE",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+        },
+        {
+          "from_field": "BOOKINGS_PROCESS_DATE",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2"
+        },
+        {
+          "from_field": "DV_CUST_REQUESTED_SHIP_DT",
+          "from_instance": "N_BKG_POS_TRANSACTION_LINE"
+        },
+        {
+          "from_field": "RU_SOLUTION_SOLD_DATE",
+          "from_instance": "N_POS_TRANSACTION_LINE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "END_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+        },
+        {
+          "from_field": "END_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+        },
+        {
+          "from_field": "END_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "N_BKG_POS_TRANSACTION_LINE"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS"
+        },
+        {
+          "from_field": "BK_END_USER_WIPS_SITE_USE_KEY",
+          "from_instance": "N_POS_TRANSACTION_LINE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BILL_TO_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "BILL_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+        },
+        {
+          "from_field": "BILL_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+        },
+        {
+          "from_field": "BK_WIPS_ORIGINATOR_ID_INT",
+          "from_instance": "N_BKG_POS_TRANSACTION_LINE"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIP_TO_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "SHIP_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+        },
+        {
+          "from_field": "SHIP_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+        },
+        {
+          "from_field": "BK_SHIP_TO_WIPS_SITE_USE_KEY",
+          "from_instance": "N_BKG_POS_TRANSACTION_LINE"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOLD_TO_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_DRVD_NRT_POS_TRX_1"
+        },
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+        },
+        {
+          "from_field": "BK_BILL_TO_WIPS_SITE_USE_KEY",
+          "from_instance": "N_BKG_POS_TRANSACTION_LINE"
+        },
+        {
+          "from_field": "ALLOCATED_POS_ADJ_KEY",
+          "from_instance": "N_DRVD_SCA_POS_ADJ_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "source_path": [
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_TRX_RETRO_3"
+        },
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "SQ_WI_MT_DRVD_NRT_POS_RETRO_2"
+        },
+        {
+          "from_field": "DISTRIBUTOR_REPORTED_DEAL_ID",
+          "from_instance": "N_BKG_POS_TRANSACTION_LINE"
+        },
+        {
+          "from_field": "ELIG_FOR_SALES_CREDIT_TYPE",
+          "from_instance": "N_POS_TRANSACTION_LINE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:22.671126+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,324 @@
+{
+  "workflow_name": "wf_m_ST_FIN_ACCOUNT_LDSG",
+  "mapping_name": "m_ST_FIN_ACCOUNT_LDSG",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "ST_FIN_ACCOUNT_LDSG",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_st_fin_account_ldsg_01_mart_st_fin_account_ldsg",
+  "source_tables": [
+    "LDSG_Custom_Account_Hierarchy"
+  ],
+  "sources": [
+    {
+      "name": "LDSG_Custom_Account_Hierarchy",
+      "database_type": "Flat File",
+      "owner": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_NUM",
+          "datatype": "number",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SPEND_ROLL_UP",
+          "datatype": "string",
+          "precision": "28",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SPEND_CATEGORY",
+          "datatype": "string",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SPEND_GROUP",
+          "datatype": "string",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_FIN_ACCOUNT_LDSG",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ACCOUNT_NUM",
+        "datatype": "char",
+        "precision": "5",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SPEND_ROLL_UP",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SPEND_CATEGORY",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SPEND_GROUP",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_NUM",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACCOUNT_NUM"
+        },
+        {
+          "name": "SPEND_ROLL_UP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SPEND_ROLL_UP"
+        },
+        {
+          "name": "SPEND_CATEGORY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SPEND_CATEGORY"
+        },
+        {
+          "name": "SPEND_GROUP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SPEND_GROUP"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_LDSG_Custom_Account_Hierarchy",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_NUM",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SPEND_ROLL_UP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SPEND_CATEGORY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SPEND_GROUP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACCOUNT_NUM",
+      "from_instance": "EXPTRANS",
+      "to_field": "ACCOUNT_NUM",
+      "to_instance": "ST_FIN_ACCOUNT_LDSG"
+    },
+    {
+      "from_field": "SPEND_ROLL_UP",
+      "from_instance": "EXPTRANS",
+      "to_field": "SPEND_ROLL_UP",
+      "to_instance": "ST_FIN_ACCOUNT_LDSG"
+    },
+    {
+      "from_field": "SPEND_CATEGORY",
+      "from_instance": "EXPTRANS",
+      "to_field": "SPEND_CATEGORY",
+      "to_instance": "ST_FIN_ACCOUNT_LDSG"
+    },
+    {
+      "from_field": "SPEND_GROUP",
+      "from_instance": "EXPTRANS",
+      "to_field": "SPEND_GROUP",
+      "to_instance": "ST_FIN_ACCOUNT_LDSG"
+    },
+    {
+      "from_field": "ACCOUNT_NUM",
+      "from_instance": "LDSG_Custom_Account_Hierarchy",
+      "to_field": "ACCOUNT_NUM",
+      "to_instance": "SQ_LDSG_Custom_Account_Hierarchy"
+    },
+    {
+      "from_field": "SPEND_ROLL_UP",
+      "from_instance": "LDSG_Custom_Account_Hierarchy",
+      "to_field": "SPEND_ROLL_UP",
+      "to_instance": "SQ_LDSG_Custom_Account_Hierarchy"
+    },
+    {
+      "from_field": "SPEND_CATEGORY",
+      "from_instance": "LDSG_Custom_Account_Hierarchy",
+      "to_field": "SPEND_CATEGORY",
+      "to_instance": "SQ_LDSG_Custom_Account_Hierarchy"
+    },
+    {
+      "from_field": "SPEND_GROUP",
+      "from_instance": "LDSG_Custom_Account_Hierarchy",
+      "to_field": "SPEND_GROUP",
+      "to_instance": "SQ_LDSG_Custom_Account_Hierarchy"
+    },
+    {
+      "from_field": "ACCOUNT_NUM",
+      "from_instance": "SQ_LDSG_Custom_Account_Hierarchy",
+      "to_field": "ACCOUNT_NUM",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "SPEND_ROLL_UP",
+      "from_instance": "SQ_LDSG_Custom_Account_Hierarchy",
+      "to_field": "SPEND_ROLL_UP",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "SPEND_CATEGORY",
+      "from_instance": "SQ_LDSG_Custom_Account_Hierarchy",
+      "to_field": "SPEND_CATEGORY",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "SPEND_GROUP",
+      "from_instance": "SQ_LDSG_Custom_Account_Hierarchy",
+      "to_field": "SPEND_GROUP",
+      "to_instance": "EXPTRANS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ACCOUNT_NUM",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_NUM",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "ACCOUNT_NUM",
+          "from_instance": "LDSG_Custom_Account_Hierarchy"
+        },
+        {
+          "from_field": "ACCOUNT_NUM",
+          "from_instance": "SQ_LDSG_Custom_Account_Hierarchy"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SPEND_ROLL_UP",
+      "source_path": [
+        {
+          "from_field": "SPEND_ROLL_UP",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "SPEND_ROLL_UP",
+          "from_instance": "LDSG_Custom_Account_Hierarchy"
+        },
+        {
+          "from_field": "SPEND_ROLL_UP",
+          "from_instance": "SQ_LDSG_Custom_Account_Hierarchy"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SPEND_CATEGORY",
+      "source_path": [
+        {
+          "from_field": "SPEND_CATEGORY",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "SPEND_CATEGORY",
+          "from_instance": "LDSG_Custom_Account_Hierarchy"
+        },
+        {
+          "from_field": "SPEND_CATEGORY",
+          "from_instance": "SQ_LDSG_Custom_Account_Hierarchy"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SPEND_GROUP",
+      "source_path": [
+        {
+          "from_field": "SPEND_GROUP",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "SPEND_GROUP",
+          "from_instance": "LDSG_Custom_Account_Hierarchy"
+        },
+        {
+          "from_field": "SPEND_GROUP",
+          "from_instance": "SQ_LDSG_Custom_Account_Hierarchy"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:10.232915+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

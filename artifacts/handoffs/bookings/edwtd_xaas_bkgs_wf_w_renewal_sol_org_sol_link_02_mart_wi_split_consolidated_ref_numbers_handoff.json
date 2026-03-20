@@ -1,0 +1,418 @@
+{
+  "workflow_name": "wf_m_W_RENEWAL_SOL_ORG_SOL_LINK",
+  "mapping_name": "m_W_RENEWAL_SOL_ORG_SOL_LINK",
+  "mapping_description": "",
+  "folder_name": "EDWTD_XAAS_BKGS",
+  "target_table": "WI_SPLIT_CONSOLIDATED_REF_NUMBERS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_xaas_bkgs_wf_w_renewal_sol_org_sol_link_02_mart_wi_split_consolidated_ref_numbers",
+  "source_tables": [
+    "W_RENEWAL_SOL_ORG_SOL_LINK",
+    "WI_SPLIT_CONCATENATED_REF_NUMBERS"
+  ],
+  "sources": [
+    {
+      "name": "W_RENEWAL_SOL_ORG_SOL_LINK",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV1",
+      "fields": [
+        {
+          "name": "ORG_SOL_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RENEWAL_SOL_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_SPLIT_CONCATENATED_REF_NUMBERS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "LINE_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LINE_REF_NUMBER",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_SPLIT_CONSOLIDATED_REF_NUMBERS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "LINE_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LINE_REF_NUMBER",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_SPLIT_CONCATENATED_REF_NUMBERS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "LINE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LINE_REF_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT  LINE_ID,  LINE_REF_NUMBER\r\n FROM    TABLE (STRTOK_SPLIT_TO_TABLE\r\n ($$STGDB.ST_CONSOLIDATED_LINE_REF_NUMBERS.LINE_ID, $$STGDB.ST_CONSOLIDATED_LINE_REF_NUMBERS.CONSOLIDATED_LINE_REF_NUMBER,\r\n         ',' \r\n         )    RETURNS (LINE_ID BIGINT  ,TOKEN_NUM INTEGER            ,LINE_REF_NUMBER VARCHAR(30) CHARACTER SET UNICODE)            \r\n         ) AS DT",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ORG_SOL_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_SOL_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nNSOL.SALES_ORDER_LINE_KEY ORG_SOL_KEY,\r\nNSOL_REF.SALES_ORDER_LINE_KEY RENEWAL_SOL_KEY,\r\nCURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\nCURRENT_USER EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) EDW_UPDATE_DTM,\r\nCURRENT_USER EDW_UPDATE_USER,\r\n'I' AS ACTION_CODE,\r\n 'I' AS DML_TYPE\r\nFROM\r\n$$STGDB.WI_SPLIT_CONSOLIDATED_REF_NUMBERS WI\r\nJOIN \r\n$$SLSORDVWDB.N_SALES_ORDER_LINE NSOL\r\nON\r\nWI.LINE_ID=NSOL.SK_OPL_LINE_ID_INT\r\nJOIN \r\n$$SLSORDVWDB.N_SALES_ORDER_LINE NSOL_REF\r\nON\r\nWI.LINE_REF_NUMBER=NSOL_REF.BK_LINE_REF_NUM\r\nWHERE NOT EXISTS\r\n(SELECT 1 FROM \r\n $$SLSORDVWDB.N_RENEWAL_SOL_ORG_SOL_LINK NRSO\r\n WHERE \r\n  NRSO.ORG_SOL_KEY=NSOL.SALES_ORDER_LINE_KEY\r\n  AND \r\n  NRSO.RENEWAL_SOL_KEY=NSOL_REF.SALES_ORDER_LINE_KEY)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "LINE_ID",
+      "from_instance": "SQ_WI_SPLIT_CONCATENATED_REF_NUMBERS",
+      "to_field": "LINE_ID",
+      "to_instance": "WI_SPLIT_CONSOLIDATED_REF_NUMBERS"
+    },
+    {
+      "from_field": "LINE_REF_NUMBER",
+      "from_instance": "SQ_WI_SPLIT_CONCATENATED_REF_NUMBERS",
+      "to_field": "LINE_REF_NUMBER",
+      "to_instance": "WI_SPLIT_CONSOLIDATED_REF_NUMBERS"
+    },
+    {
+      "from_field": "ORG_SOL_KEY",
+      "from_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "ORG_SOL_KEY",
+      "to_instance": "W_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "RENEWAL_SOL_KEY",
+      "from_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "RENEWAL_SOL_KEY",
+      "to_instance": "W_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "LINE_ID",
+      "from_instance": "WI_SPLIT_CONCATENATED_REF_NUMBERS",
+      "to_field": "LINE_ID",
+      "to_instance": "SQ_WI_SPLIT_CONCATENATED_REF_NUMBERS"
+    },
+    {
+      "from_field": "LINE_REF_NUMBER",
+      "from_instance": "WI_SPLIT_CONCATENATED_REF_NUMBERS",
+      "to_field": "LINE_REF_NUMBER",
+      "to_instance": "SQ_WI_SPLIT_CONCATENATED_REF_NUMBERS"
+    },
+    {
+      "from_field": "ORG_SOL_KEY",
+      "from_instance": "W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "ORG_SOL_KEY",
+      "to_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK"
+    },
+    {
+      "from_field": "RENEWAL_SOL_KEY",
+      "from_instance": "W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "RENEWAL_SOL_KEY",
+      "to_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "LINE_ID",
+      "source_path": [
+        {
+          "from_field": "LINE_ID",
+          "from_instance": "SQ_WI_SPLIT_CONCATENATED_REF_NUMBERS"
+        },
+        {
+          "from_field": "LINE_ID",
+          "from_instance": "WI_SPLIT_CONCATENATED_REF_NUMBERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LINE_REF_NUMBER",
+      "source_path": [
+        {
+          "from_field": "LINE_REF_NUMBER",
+          "from_instance": "SQ_WI_SPLIT_CONCATENATED_REF_NUMBERS"
+        },
+        {
+          "from_field": "LINE_REF_NUMBER",
+          "from_instance": "WI_SPLIT_CONCATENATED_REF_NUMBERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_W_RENEWAL_SOL_ORG_SOL_LINK"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "W_RENEWAL_SOL_ORG_SOL_LINK"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:26.717601+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,390 @@
+{
+  "workflow_name": "wf_m_WI_SUMMARY_QUOTE_CS_3",
+  "mapping_name": "m_WI_SUMMARY_QUOTE_CS_3",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "WI_SUMMARY_QUOTE_CS_3",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_wi_summary_quote_cs_3_01_mart_wi_summary_quote_cs_3",
+  "source_tables": [
+    "WI_SUMMARY_QUOTE_CS_3"
+  ],
+  "sources": [
+    {
+      "name": "WI_SUMMARY_QUOTE_CS_3",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "ITEM_CATEGORY_DESCR",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SO_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_MAINT_NET_LOCAL_TOTAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "11",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "11",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MAINT_NET_LOCAL_TTL_AMT_AGG",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "11",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AS_TS_FLAG",
+          "datatype": "varchar",
+          "precision": "2",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_SUMMARY_QUOTE_CS_3",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ITEM_CATEGORY_DESCR",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_SO_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_MAINT_NET_LOCAL_TOTAL_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "11",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_ALLOCATION_PCT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "11",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_MOTION_CD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MAINT_NET_LOCAL_TTL_AMT_AGG",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "11",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AS_TS_FLAG",
+        "datatype": "varchar",
+        "precision": "2",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_SUMMARY_QUOTE_CS_3",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ITEM_CATEGORY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SO_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_MAINT_NET_LOCAL_TOTAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MAINT_NET_LOCAL_TTL_AMT_AGG",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AS_TS_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nIB_SVC_LVL AS ITEM_CATEGORY_DESCR\r\n,CAST(MAINTENANCE_ORDER_NUM AS INTEGER) AS BK_SO_NUMBER_INT\r\n,SUM( MAINTENANCE_NET_LOCAL_AMT ) AS DV_MAINT_NET_LOCAL_TOTAL_AMT\r\n,0 AS DV_ALLOCATION_PCT\r\n,COALESCE(SALES_MOTION_CD,' ')\r\n,0 MAINT_NET_LOCAL_TTL_AMT_AGG\r\n,AS_TS_FLAG\r\nFROM\r\n$$STGDB.WI_SUMMARY_QUOTE_CS_2\r\nWHERE\r\nSERVICE_STATUS_CD IN ('ACTIVE','SIGNED') \r\nGROUP BY\r\nMAINTENANCE_ORDER_NUM\r\n,IB_SVC_LVL\r\n,SALES_MOTION_CD\r\n,AS_TS_FLAG",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ITEM_CATEGORY_DESCR",
+      "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "ITEM_CATEGORY_DESCR",
+      "to_instance": "WI_SUMMARY_QUOTE_CS_31"
+    },
+    {
+      "from_field": "BK_SO_NUMBER_INT",
+      "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "BK_SO_NUMBER_INT",
+      "to_instance": "WI_SUMMARY_QUOTE_CS_31"
+    },
+    {
+      "from_field": "DV_MAINT_NET_LOCAL_TOTAL_AMT",
+      "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "DV_MAINT_NET_LOCAL_TOTAL_AMT",
+      "to_instance": "WI_SUMMARY_QUOTE_CS_31"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "WI_SUMMARY_QUOTE_CS_31"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "WI_SUMMARY_QUOTE_CS_31"
+    },
+    {
+      "from_field": "MAINT_NET_LOCAL_TTL_AMT_AGG",
+      "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "MAINT_NET_LOCAL_TTL_AMT_AGG",
+      "to_instance": "WI_SUMMARY_QUOTE_CS_31"
+    },
+    {
+      "from_field": "AS_TS_FLAG",
+      "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "AS_TS_FLAG",
+      "to_instance": "WI_SUMMARY_QUOTE_CS_31"
+    },
+    {
+      "from_field": "ITEM_CATEGORY_DESCR",
+      "from_instance": "WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "ITEM_CATEGORY_DESCR",
+      "to_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+    },
+    {
+      "from_field": "BK_SO_NUMBER_INT",
+      "from_instance": "WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "BK_SO_NUMBER_INT",
+      "to_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+    },
+    {
+      "from_field": "DV_MAINT_NET_LOCAL_TOTAL_AMT",
+      "from_instance": "WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "DV_MAINT_NET_LOCAL_TOTAL_AMT",
+      "to_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+    },
+    {
+      "from_field": "MAINT_NET_LOCAL_TTL_AMT_AGG",
+      "from_instance": "WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "MAINT_NET_LOCAL_TTL_AMT_AGG",
+      "to_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+    },
+    {
+      "from_field": "AS_TS_FLAG",
+      "from_instance": "WI_SUMMARY_QUOTE_CS_3",
+      "to_field": "AS_TS_FLAG",
+      "to_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ITEM_CATEGORY_DESCR",
+      "source_path": [
+        {
+          "from_field": "ITEM_CATEGORY_DESCR",
+          "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+        },
+        {
+          "from_field": "ITEM_CATEGORY_DESCR",
+          "from_instance": "WI_SUMMARY_QUOTE_CS_3"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SO_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "BK_SO_NUMBER_INT",
+          "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+        },
+        {
+          "from_field": "BK_SO_NUMBER_INT",
+          "from_instance": "WI_SUMMARY_QUOTE_CS_3"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_MAINT_NET_LOCAL_TOTAL_AMT",
+      "source_path": [
+        {
+          "from_field": "DV_MAINT_NET_LOCAL_TOTAL_AMT",
+          "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+        },
+        {
+          "from_field": "DV_MAINT_NET_LOCAL_TOTAL_AMT",
+          "from_instance": "WI_SUMMARY_QUOTE_CS_3"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_ALLOCATION_PCT",
+      "source_path": [
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+        },
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "WI_SUMMARY_QUOTE_CS_3"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_MOTION_CD",
+      "source_path": [
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+        },
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "WI_SUMMARY_QUOTE_CS_3"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MAINT_NET_LOCAL_TTL_AMT_AGG",
+      "source_path": [
+        {
+          "from_field": "MAINT_NET_LOCAL_TTL_AMT_AGG",
+          "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+        },
+        {
+          "from_field": "MAINT_NET_LOCAL_TTL_AMT_AGG",
+          "from_instance": "WI_SUMMARY_QUOTE_CS_3"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AS_TS_FLAG",
+      "source_path": [
+        {
+          "from_field": "AS_TS_FLAG",
+          "from_instance": "SQ_WI_SUMMARY_QUOTE_CS_3"
+        },
+        {
+          "from_field": "AS_TS_FLAG",
+          "from_instance": "WI_SUMMARY_QUOTE_CS_3"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:24.140088+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

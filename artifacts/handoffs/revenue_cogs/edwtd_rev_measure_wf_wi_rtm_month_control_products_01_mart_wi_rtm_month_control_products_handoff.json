@@ -1,0 +1,249 @@
+{
+  "workflow_name": "wf_m_WI_RTM_MONTH_CONTROL_PRODUCTS",
+  "mapping_name": "m_WI_RTM_MONTH_CONTROL_PRODUCTS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_RTM_MONTH_CONTROL_PRODUCTS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_rtm_month_control_products_01_mart_wi_rtm_month_control_products",
+  "source_tables": [
+    "WI_RTM_MONTH_CONTROL_PRODUCTS"
+  ],
+  "sources": [
+    {
+      "name": "WI_RTM_MONTH_CONTROL_PRODUCTS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RUN_BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INC_FLAG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_RTM_MONTH_CONTROL_PRODUCTS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FISCAL_YEAR_MONTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RUN_BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INC_FLAG",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RUN_BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INC_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n FISCAL_YEAR_QUARTER_NUMBER_INT,\r\n FISCAL_YEAR_MONTH_INT,\r\n RUN_BATCH_ID,\r\n 'N' INC_FLAG\r\n FROM (\r\n SELECT\r\n FISCAL_YEAR_QUARTER_NUMBER_INT,\r\n FISCAL_YEAR_MONTH_INT,\r\n (RANK() OVER (  ORDER BY FISCAL_YEAR_MONTH_INT  DESC )-1)/3+1 RUN_BATCH_ID \r\n  FROM\r\n $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR FISCAL\r\n WHERE  FISCAL_MONTH_AGE >= 0 AND  FISCAL_YEAR_AGE IN(0,1,2,3)\r\n ) SUB_QRY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "from_instance": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS",
+      "to_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "to_instance": "WI_RTM_MONTH_CONTROL_PRODUCTS1"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "WI_RTM_MONTH_CONTROL_PRODUCTS1"
+    },
+    {
+      "from_field": "RUN_BATCH_ID",
+      "from_instance": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS",
+      "to_field": "RUN_BATCH_ID",
+      "to_instance": "WI_RTM_MONTH_CONTROL_PRODUCTS1"
+    },
+    {
+      "from_field": "INC_FLAG",
+      "from_instance": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS",
+      "to_field": "INC_FLAG",
+      "to_instance": "WI_RTM_MONTH_CONTROL_PRODUCTS1"
+    },
+    {
+      "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "from_instance": "WI_RTM_MONTH_CONTROL_PRODUCTS",
+      "to_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "to_instance": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "WI_RTM_MONTH_CONTROL_PRODUCTS",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS"
+    },
+    {
+      "from_field": "RUN_BATCH_ID",
+      "from_instance": "WI_RTM_MONTH_CONTROL_PRODUCTS",
+      "to_field": "RUN_BATCH_ID",
+      "to_instance": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS"
+    },
+    {
+      "from_field": "INC_FLAG",
+      "from_instance": "WI_RTM_MONTH_CONTROL_PRODUCTS",
+      "to_field": "INC_FLAG",
+      "to_instance": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "from_instance": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS"
+        },
+        {
+          "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "from_instance": "WI_RTM_MONTH_CONTROL_PRODUCTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FISCAL_YEAR_MONTH_INT",
+      "source_path": [
+        {
+          "from_field": "FISCAL_YEAR_MONTH_INT",
+          "from_instance": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS"
+        },
+        {
+          "from_field": "FISCAL_YEAR_MONTH_INT",
+          "from_instance": "WI_RTM_MONTH_CONTROL_PRODUCTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RUN_BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "RUN_BATCH_ID",
+          "from_instance": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS"
+        },
+        {
+          "from_field": "RUN_BATCH_ID",
+          "from_instance": "WI_RTM_MONTH_CONTROL_PRODUCTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INC_FLAG",
+      "source_path": [
+        {
+          "from_field": "INC_FLAG",
+          "from_instance": "SQ_WI_RTM_MONTH_CONTROL_PRODUCTS"
+        },
+        {
+          "from_field": "INC_FLAG",
+          "from_instance": "WI_RTM_MONTH_CONTROL_PRODUCTS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:33.271650+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

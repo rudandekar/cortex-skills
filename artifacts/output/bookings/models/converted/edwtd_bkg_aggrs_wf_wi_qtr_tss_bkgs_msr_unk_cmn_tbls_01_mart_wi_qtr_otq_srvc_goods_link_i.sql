@@ -1,0 +1,122 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_qtr_tss_bkgs_msr_unk_cmn_tbls', 'batch', 'edwtd_bkg_aggrs'],
+    meta={
+        'source_workflow': 'wf_m_WI_QTR_TSS_BKGS_MSR_UNK_CMN_TBLS',
+        'target_table': 'WI_QTR_OTQ_SRVC_GOODS_LINK_I',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:34.076200+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_qtr_otq_srvc_goods_link_i AS (
+    SELECT
+        service_product_key,
+        goods_product_key,
+        bk_so_number_int,
+        dd_comp_us_net_price_amount
+    FROM {{ source('raw', 'wi_qtr_otq_srvc_goods_link_i') }}
+),
+
+source_wi_qtr_quote_goods_products AS (
+    SELECT
+        bk_quote_num,
+        goods_product_key,
+        sq_ln_extndd_net_prc_trxl_amt,
+        dv_sq_ln_net_adj_pct,
+        total_quote_net_prc_trxl_amt,
+        total_quote_sq_ln_net_adj_pct,
+        quote_line_count
+    FROM {{ source('raw', 'wi_qtr_quote_goods_products') }}
+),
+
+source_wi_qtr_srvc_bkgs_tss AS (
+    SELECT
+        bookings_measure_key,
+        sales_order_key,
+        sales_order_line_key,
+        product_key,
+        ar_trx_line_key,
+        ar_trx_key,
+        end_customer_key,
+        bill_to_customer_key,
+        ship_to_customer_key,
+        sold_to_customer_key,
+        dv_end_customer_key,
+        transaction_datetime,
+        sales_territory_key,
+        sales_rep_number,
+        bookings_process_date,
+        dv_fiscal_year_mth_number_int,
+        bk_pos_transaction_id_int,
+        bk_sales_adj_line_number_int,
+        bk_sales_adj_number_int,
+        adjustment_type_code,
+        sales_channel_code,
+        sales_credit_type_code,
+        ide_adjustment_code,
+        adjustment_code,
+        bkgs_measure_trans_type_code,
+        cancelled_flg,
+        cancel_code,
+        acquisition_flg,
+        forward_reverse_flg,
+        distributor_offset_flg,
+        corporate_bookings_flg,
+        overlay_flg,
+        ic_revenue_flg,
+        charges_flg,
+        salesrep_flg,
+        misc_flg,
+        service_flg,
+        international_demo_flg,
+        replacement_demo_flg,
+        revenue_flg,
+        rma_flg,
+        trade_in_amount,
+        dd_comp_us_net_price_amount,
+        dd_comp_us_list_price_amount,
+        dd_comp_us_cost_amount,
+        dd_extended_quantity,
+        dd_comp_us_hold_net_price_amt,
+        dd_comp_us_hold_list_price_amt,
+        dd_comp_us_hold_cost_amount,
+        dd_extended_hold_quantity,
+        dd_comp_us_standard_price_amt,
+        wips_originator_id_int,
+        edw_create_user,
+        edw_update_user,
+        edw_create_datetime,
+        edw_update_datetime,
+        conversion_rt,
+        conversion_dt,
+        dd_bk_so_number_int,
+        dd_cisco_booked_dtm,
+        dd_sales_order_category_type,
+        dd_sls_ord_operating_unit_cd,
+        dd_trx_currency_cd,
+        dv_transaction_type,
+        adjustment_descr_key,
+        dv_transaction_name,
+        bookings_split_pct,
+        dv_source_order_num_int,
+        dv_deal_id,
+        dv_purchase_order_num,
+        dv_booked_dt
+    FROM {{ source('raw', 'wi_qtr_srvc_bkgs_tss') }}
+),
+
+final AS (
+    SELECT
+        fiscal_year_mth_number_int,
+        service_product_key,
+        goods_product_key,
+        bk_so_number_int,
+        dd_comp_us_net_price_amount
+    FROM source_wi_qtr_srvc_bkgs_tss
+)
+
+SELECT * FROM final

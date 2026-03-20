@@ -1,0 +1,390 @@
+{
+  "workflow_name": "wf_m_ST_OTM_GCT_EVENTS",
+  "mapping_name": "m_ST_OTM_GCT_EVENTS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "ST_OTM_GCT_EVENTS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_st_otm_gct_events_01_mart_st_otm_gct_events",
+  "source_tables": [
+    "FF_OTM_GCT_EVENTS"
+  ],
+  "sources": [
+    {
+      "name": "FF_OTM_GCT_EVENTS",
+      "database_type": "Flat File",
+      "owner": "FLATFILE",
+      "fields": [
+        {
+          "name": "EVENT_ID",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CLAIM_ID",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EVENT_DESCRIPTION",
+          "datatype": "string",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_OTM_GCT_EVENTS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "EVENT_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "CLAIM_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EVENT_DESCRIPTION",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_OTM_GCT_EVENTS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "EVENT_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CLAIM_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EVENT_DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "EVENT_ID",
+      "from_instance": "SQ_FF_OTM_GCT_EVENTS",
+      "to_field": "EVENT_ID",
+      "to_instance": "ST_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "CLAIM_ID",
+      "from_instance": "SQ_FF_OTM_GCT_EVENTS",
+      "to_field": "CLAIM_ID",
+      "to_instance": "ST_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_FF_OTM_GCT_EVENTS",
+      "to_field": "CREATED_BY",
+      "to_instance": "ST_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "SQ_FF_OTM_GCT_EVENTS",
+      "to_field": "CREATED_DATE",
+      "to_instance": "ST_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "EVENT_DESCRIPTION",
+      "from_instance": "SQ_FF_OTM_GCT_EVENTS",
+      "to_field": "EVENT_DESCRIPTION",
+      "to_instance": "ST_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_FF_OTM_GCT_EVENTS",
+      "to_field": "BATCH_ID",
+      "to_instance": "ST_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_FF_OTM_GCT_EVENTS",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "ST_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "EVENT_ID",
+      "from_instance": "FF_OTM_GCT_EVENTS",
+      "to_field": "EVENT_ID",
+      "to_instance": "SQ_FF_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "CLAIM_ID",
+      "from_instance": "FF_OTM_GCT_EVENTS",
+      "to_field": "CLAIM_ID",
+      "to_instance": "SQ_FF_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "FF_OTM_GCT_EVENTS",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_FF_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "FF_OTM_GCT_EVENTS",
+      "to_field": "CREATED_DATE",
+      "to_instance": "SQ_FF_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "EVENT_DESCRIPTION",
+      "from_instance": "FF_OTM_GCT_EVENTS",
+      "to_field": "EVENT_DESCRIPTION",
+      "to_instance": "SQ_FF_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "FF_OTM_GCT_EVENTS",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_FF_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "FF_OTM_GCT_EVENTS",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_FF_OTM_GCT_EVENTS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "EVENT_ID",
+      "source_path": [
+        {
+          "from_field": "EVENT_ID",
+          "from_instance": "SQ_FF_OTM_GCT_EVENTS"
+        },
+        {
+          "from_field": "EVENT_ID",
+          "from_instance": "FF_OTM_GCT_EVENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CLAIM_ID",
+      "source_path": [
+        {
+          "from_field": "CLAIM_ID",
+          "from_instance": "SQ_FF_OTM_GCT_EVENTS"
+        },
+        {
+          "from_field": "CLAIM_ID",
+          "from_instance": "FF_OTM_GCT_EVENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_FF_OTM_GCT_EVENTS"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "FF_OTM_GCT_EVENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "SQ_FF_OTM_GCT_EVENTS"
+        },
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "FF_OTM_GCT_EVENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EVENT_DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "EVENT_DESCRIPTION",
+          "from_instance": "SQ_FF_OTM_GCT_EVENTS"
+        },
+        {
+          "from_field": "EVENT_DESCRIPTION",
+          "from_instance": "FF_OTM_GCT_EVENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "SQ_FF_OTM_GCT_EVENTS"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "FF_OTM_GCT_EVENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "SQ_FF_OTM_GCT_EVENTS"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "FF_OTM_GCT_EVENTS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:21.582942+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

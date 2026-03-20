@@ -1,0 +1,105 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_st_cloud_gl_ledgers_pre', 'batch', 'edwtd_gl'],
+    meta={
+        'source_workflow': 'wf_m_ST_CLOUD_GL_LEDGERS_PRE',
+        'target_table': 'ST_CLOUD_GL_LEDGERS_PRE',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:05:28.644360+00:00'
+    }
+) }}
+
+WITH 
+
+source_pst_cloud_gl_ledgers AS (
+    SELECT
+        accounting_method_code,
+        accounting_method_type_code,
+        acct_method_name,
+        calendar_start_date,
+        period_type,
+        key_flex_name,
+        accounted_period_type,
+        allow_intercompany_post_flag,
+        bal_seg_column_name,
+        bal_seg_value_option_code,
+        chart_of_accounts_id,
+        complete_flag,
+        completion_status_code,
+        created_by,
+        creation_date,
+        currency_code,
+        description,
+        ledger_id,
+        last_update_date,
+        last_updated_by,
+        ledger_category_code,
+        name,
+        period_set_name,
+        short_name,
+        sla_accounting_method_code,
+        sla_accounting_method_type,
+        suspense_allowed_flag,
+        updated_by_kafka,
+        updated_on_kafka,
+        offset_number,
+        partition_number,
+        record_count
+    FROM {{ source('raw', 'pst_cloud_gl_ledgers') }}
+),
+
+final AS (
+    SELECT
+        ledger_id,
+        name,
+        short_name,
+        ledger_category_code,
+        alc_ledger_type_code,
+        object_type_code,
+        le_ledger_type_code,
+        chart_of_accounts_id,
+        currency_code,
+        period_set_name,
+        accounted_period_type,
+        first_ledger_period_name,
+        ret_earn_code_combination_id,
+        suspense_allowed_flag,
+        allow_intercompany_post_flag,
+        track_rounding_imbalance_flag,
+        enable_average_balances_flag,
+        enable_budgetary_control_flag,
+        require_budget_journals_flag,
+        enable_je_approval_flag,
+        enable_automatic_tax_flag,
+        consolidation_ledger_flag,
+        translate_eod_flag,
+        translate_qatd_flag,
+        translate_yatd_flag,
+        automatically_created_flag,
+        bal_seg_value_option_code,
+        bal_seg_column_name,
+        mgt_seg_value_option_code,
+        bal_seg_value_set_id,
+        future_enterable_periods_limit,
+        ledger_attributes,
+        last_update_date,
+        last_updated_by,
+        creation_date,
+        created_by,
+        enable_reconciliation_flag,
+        create_je_flag,
+        net_closing_bal_flag,
+        description,
+        daily_translation_rate_type,
+        period_average_rate_type,
+        period_end_rate_type,
+        budget_period_avg_rate_type,
+        budget_period_end_rate_type,
+        offset_number,
+        partition_number,
+        record_count
+    FROM source_pst_cloud_gl_ledgers
+)
+
+SELECT * FROM final

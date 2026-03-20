@@ -1,0 +1,202 @@
+{
+  "workflow_name": "wf_m_ST_CONSOLIDATED_LINE_REF_NUMBERS",
+  "mapping_name": "m_ST_CONSOLIDATED_LINE_REF_NUMBERS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_XAAS_BKGS",
+  "target_table": "ST_CONSOLIDATED_LINE_REF_NUMBERS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_xaas_bkgs_wf_st_consolidated_line_ref_numbers_01_mart_st_consolidated_line_ref_numbers",
+  "source_tables": [
+    "ST_CONSOLIDATED_LINE_REF_NUMBERS"
+  ],
+  "sources": [
+    {
+      "name": "ST_CONSOLIDATED_LINE_REF_NUMBERS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "LINE_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CONSOLIDATED_LINE_REF_NUMBER",
+          "datatype": "varchar",
+          "precision": "500",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_CONSOLIDATED_LINE_REF_NUMBERS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "LINE_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CONSOLIDATED_LINE_REF_NUMBER",
+        "datatype": "varchar",
+        "precision": "500",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_CONSOLIDATED_LINE_REF_NUMBERS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "LINE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONSOLIDATED_LINE_REF_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT LINE_ID,\r\n\t\tCONSOLIDATED_LINE_REF_NUMBERS, \r\n\t\tCAST(CAST(ST_SI_LINES.EDW_CREATE_DTM AS VARCHAR(19)) AS TIMESTAMP(0)) EDW_CREATE_DTM\r\n     FROM (SELECT * FROM $$ETLVWDB.ST_SI_XXOPL_ORDER_LINES_ALL    \r\n    QUALIFY ROW_NUMBER() OVER (PARTITION BY CAST(COALESCE(LINE_ID,LINE_REF_NUMBER) AS BIGINT) ORDER BY EDW_CREATE_DTM DESC)=1) ST_SI_LINES \r\n  WHERE  EDW_CREATE_DTM >CAST('$$LastExtractDate' AS TIMESTAMP(0))  \r\n    AND ST_SI_LINES.CONSOLIDATED_LINE_REF_NUMBERS IS NOT NULL",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "CONSOLIDATED_LINE_REF_NUMBER",
+      "from_instance": "SQ_ST_CONSOLIDATED_LINE_REF_NUMBERS",
+      "to_field": "CONSOLIDATED_LINE_REF_NUMBER",
+      "to_instance": "ST_CONSOLIDATED_LINE_REF_NUMBERS1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_CONSOLIDATED_LINE_REF_NUMBERS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "ST_CONSOLIDATED_LINE_REF_NUMBERS1"
+    },
+    {
+      "from_field": "LINE_ID",
+      "from_instance": "SQ_ST_CONSOLIDATED_LINE_REF_NUMBERS",
+      "to_field": "LINE_ID",
+      "to_instance": "ST_CONSOLIDATED_LINE_REF_NUMBERS1"
+    },
+    {
+      "from_field": "LINE_ID",
+      "from_instance": "ST_CONSOLIDATED_LINE_REF_NUMBERS",
+      "to_field": "LINE_ID",
+      "to_instance": "SQ_ST_CONSOLIDATED_LINE_REF_NUMBERS"
+    },
+    {
+      "from_field": "CONSOLIDATED_LINE_REF_NUMBER",
+      "from_instance": "ST_CONSOLIDATED_LINE_REF_NUMBERS",
+      "to_field": "CONSOLIDATED_LINE_REF_NUMBER",
+      "to_instance": "SQ_ST_CONSOLIDATED_LINE_REF_NUMBERS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "ST_CONSOLIDATED_LINE_REF_NUMBERS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_CONSOLIDATED_LINE_REF_NUMBERS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "LINE_ID",
+      "source_path": [
+        {
+          "from_field": "LINE_ID",
+          "from_instance": "SQ_ST_CONSOLIDATED_LINE_REF_NUMBERS"
+        },
+        {
+          "from_field": "LINE_ID",
+          "from_instance": "ST_CONSOLIDATED_LINE_REF_NUMBERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CONSOLIDATED_LINE_REF_NUMBER",
+      "source_path": [
+        {
+          "from_field": "CONSOLIDATED_LINE_REF_NUMBER",
+          "from_instance": "SQ_ST_CONSOLIDATED_LINE_REF_NUMBERS"
+        },
+        {
+          "from_field": "CONSOLIDATED_LINE_REF_NUMBER",
+          "from_instance": "ST_CONSOLIDATED_LINE_REF_NUMBERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_CONSOLIDATED_LINE_REF_NUMBERS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "ST_CONSOLIDATED_LINE_REF_NUMBERS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:26.361573+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

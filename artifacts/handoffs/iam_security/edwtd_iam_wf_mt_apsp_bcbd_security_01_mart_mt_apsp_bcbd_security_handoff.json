@@ -1,0 +1,227 @@
+{
+  "workflow_name": "wf_m_MT_APSP_BCBD_SECURITY",
+  "mapping_name": "m_MT_APSP_BCBD_SECURITY",
+  "mapping_description": "",
+  "folder_name": "EDWTD_IAM",
+  "target_table": "MT_APSP_BCBD_SECURITY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_iam_wf_mt_apsp_bcbd_security_01_mart_mt_apsp_bcbd_security",
+  "source_tables": [
+    "MT_APSP_BCBD_SECURITY"
+  ],
+  "sources": [
+    {
+      "name": "MT_APSP_BCBD_SECURITY",
+      "database_type": "Teradata",
+      "owner": "SECURITYDB_DV3",
+      "fields": [
+        {
+          "name": "DD_CEC_ID",
+          "datatype": "char",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SECURITY_COMPONENT_DESCR",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "MT_APSP_BCBD_SECURITY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "DD_CEC_ID",
+        "datatype": "char",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SECURITY_COMPONENT_DESCR",
+        "datatype": "varchar",
+        "precision": "250",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK_ACCESS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DD_CEC_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SECURITY_COMPONENT_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT DD_CEC_ID,  'ACCESS_DENIED' SECURITY_COMPONENT_DESCR \r\nFROM\r\n $$SECURITYVWDB.MT_APSP_BCBD_SECURITY\r\nGROUP BY 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DD_CEC_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SECURITY_COMPONENT_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SEL distinct ST.DD_CEC_ID, APP_CMP.BK_APPLICATION_COMPONENT_NAME  FROM \r\n(SELECT BK_BCBD_MAILER_ALIAS_ADDR DD_CEC_ID, CMP_LNK.IAM_APPLICATION_COMPONENT_KEY\r\nFROM\r\n $$SECURITYVWDB.N_APSP_BCBD_MLR_IAM_AP_CMP_LNK  CMP_LNK\r\n  INNER JOIN $$TRANSLATIONDB.SM_APSP_BCBD_USER SM\r\nON SM.BCBD_USER_KEY  = CMP_LNK.BCBD_USER_KEY  AND SM.BK_BCBD_USER_TYPE='MAILER ALIAS'\r\nUNION\r\nSELECT USR.DD_CEC_ID DD_CEC_ID, CMP_LNK.IAM_APPLICATION_COMPONENT_KEY\r\nFROM\r\n $$SECURITYVWDB.N_APSP_BCBD_MLR_IAM_AP_CMP_LNK  CMP_LNK\r\n  INNER JOIN $$TRANSLATIONDB.SM_APSP_BCBD_USER SM\r\nON SM.BCBD_USER_KEY  = CMP_LNK.BCBD_USER_KEY  AND SM.BK_BCBD_USER_TYPE='IAM USER'\r\nINNER JOIN $$SECURITYVWDB.N_IAM_USER USR\r\nON USR.IAM_USER_KEY=SM.IAM_USER_KEY  AND USR.SOURCE_DELETED_FLG='N'\r\n) ST\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION_COMPONENT APP_CMP\r\nON APP_CMP.IAM_APPLICATION_COMPONENT_KEY = ST.IAM_APPLICATION_COMPONENT_KEY\r\nWHERE ST.DD_CEC_ID IS NOT NULL\r\n\r\nUNION\r\n\r\n    SEL DD_CEC_ID,  SECURITY_COMPONENT_DESCR||MIN_LEVEL  \r\nFROM \r\n(sel DD_CEC_ID, SECURITY_COMPONENT_DESCR, MIN(TRIM(IAM_LEVEL_NUM_INT))  MIN_LEVEL, FISCAL_YEAR FROM \r\n(SEL ST. DD_CEC_ID,  CASE PARAMETER_STATUS_FLG WHEN  'Y'  THEN 'CY'|| BK_PARAMETER_CD  \r\nELSE BK_PARAMETER_CD END\r\nSECURITY_COMPONENT_DESCR,  IAM_LEVEL_NUM_INT, FISCAL_YEAR  FROM \r\n(select  DD_CEC_ID, BK_IAM_ROLE_NAME,  IAM_LEVEL_NUM_INT, bk_fiscal_year_num_int  fiscal_year from $$SECURITYVWDB.mt_apsp_bcbd_visibility  \r\nUNION \r\nselect  DD_CEC_ID,  trim(BK_IAM_ROLE_NAME) as BK_IAM_ROLE_NAME, 7 AS IAM_LEVEL_NUM_INT, bk_fiscal_year_num fiscal_year from \r\n$$SECURITYVWDB.N_APSP_BCBD_ERP_SLS_REP_LNK REP\r\ninner join $$TRANSLATIONDB.SM_APSP_BCBD_USER SM\r\non SM.BCBD_USER_KEY=REP.BCBD_USER_KEY  AND BK_BCBD_USER_TYPE='IAM USER'\r\nINNER JOIN $$SECURITYVWDB.N_IAM_USER USR\r\nON SM.IAM_USER_KEY=USR.IAM_USER_KEY)  ST  \r\nINNER JOIN $$SERVICEVWDB.N_BI_CAFE_AR_APP_CTRL_PARAMTR PARM\r\nON PARM.PARAMETER_DESCR=ST.BK_IAM_ROLE_NAME  \r\n) TT    GROUP BY  DD_CEC_ID, SECURITY_COMPONENT_DESCR, fiscal_year ) TT\r\nINNER  JOIN (SELECT BK_FISCAL_YEAR_NUMBER_INT,  DV_PREVIOUS_FISCAL_YEAR_NUMBER FROM $$COMREFVWDB.N_FISCAL_YEAR WHERE  DV_CURRENT_FISCAL_YEAR_FLAG ='Y') FYEAR\r\nON  BK_FISCAL_YEAR_NUMBER_INT = FISCAL_YEAR\r\n\r\nUNION\r\n\r\n    SEL DD_CEC_ID,  SECURITY_COMPONENT_DESCR||MIN_LEVEL  \r\nFROM \r\n(sel DD_CEC_ID, SECURITY_COMPONENT_DESCR, MIN(TRIM(IAM_LEVEL_NUM_INT))  MIN_LEVEL, FISCAL_YEAR FROM \r\n(SEL ST. DD_CEC_ID,  CASE PARAMETER_STATUS_FLG WHEN  'Y'  THEN 'PY'|| BK_PARAMETER_CD  \r\nELSE BK_PARAMETER_CD END\r\nSECURITY_COMPONENT_DESCR,  IAM_LEVEL_NUM_INT, FISCAL_YEAR  FROM \r\n(select  DD_CEC_ID, BK_IAM_ROLE_NAME,  IAM_LEVEL_NUM_INT, bk_fiscal_year_num_int  fiscal_year from $$SECURITYVWDB.mt_apsp_bcbd_visibility  \r\nUNION \r\nselect  DD_CEC_ID,  trim(BK_IAM_ROLE_NAME) as BK_IAM_ROLE_NAME, 7 AS IAM_LEVEL_NUM_INT, bk_fiscal_year_num fiscal_year from \r\n$$SECURITYVWDB.N_APSP_BCBD_ERP_SLS_REP_LNK REP\r\ninner join $$TRANSLATIONDB.SM_APSP_BCBD_USER SM\r\non SM.BCBD_USER_KEY=REP.BCBD_USER_KEY  AND BK_BCBD_USER_TYPE='IAM USER'\r\nINNER JOIN $$SECURITYVWDB.N_IAM_USER USR\r\nON SM.IAM_USER_KEY=USR.IAM_USER_KEY)  ST  \r\nINNER JOIN $$SERVICEVWDB.N_BI_CAFE_AR_APP_CTRL_PARAMTR PARM\r\nON PARM.PARAMETER_DESCR=ST.BK_IAM_ROLE_NAME  \r\n) TT    GROUP BY  DD_CEC_ID, SECURITY_COMPONENT_DESCR, fiscal_year ) TT\r\nINNER  JOIN (SELECT BK_FISCAL_YEAR_NUMBER_INT,  DV_PREVIOUS_FISCAL_YEAR_NUMBER FROM $$COMREFVWDB.N_FISCAL_YEAR WHERE  DV_CURRENT_FISCAL_YEAR_FLAG ='Y') FYEAR\r\nON DV_PREVIOUS_FISCAL_YEAR_NUMBER = FISCAL_YEAR",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "DD_CEC_ID",
+      "from_instance": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK_ACCESS",
+      "to_field": "DD_CEC_ID",
+      "to_instance": "MT_APSP_BCBD_SECURITY_ACCESS"
+    },
+    {
+      "from_field": "SECURITY_COMPONENT_DESCR",
+      "from_instance": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK_ACCESS",
+      "to_field": "SECURITY_COMPONENT_DESCR",
+      "to_instance": "MT_APSP_BCBD_SECURITY_ACCESS"
+    },
+    {
+      "from_field": "DD_CEC_ID",
+      "from_instance": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK",
+      "to_field": "DD_CEC_ID",
+      "to_instance": "MT_APSP_BCBD_SECURITY"
+    },
+    {
+      "from_field": "SECURITY_COMPONENT_DESCR",
+      "from_instance": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK",
+      "to_field": "SECURITY_COMPONENT_DESCR",
+      "to_instance": "MT_APSP_BCBD_SECURITY"
+    },
+    {
+      "from_field": "DD_CEC_ID",
+      "from_instance": "N_APSP_BCBD_MLR_IAM_AP_CMP_LNK_ACCESS",
+      "to_field": "DD_CEC_ID",
+      "to_instance": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK_ACCESS"
+    },
+    {
+      "from_field": "SECURITY_COMPONENT_DESCR",
+      "from_instance": "N_APSP_BCBD_MLR_IAM_AP_CMP_LNK_ACCESS",
+      "to_field": "SECURITY_COMPONENT_DESCR",
+      "to_instance": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK_ACCESS"
+    },
+    {
+      "from_field": "DD_CEC_ID",
+      "from_instance": "N_APSP_BCBD_MLR_IAM_AP_CMP_LNK",
+      "to_field": "DD_CEC_ID",
+      "to_instance": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK"
+    },
+    {
+      "from_field": "SECURITY_COMPONENT_DESCR",
+      "from_instance": "N_APSP_BCBD_MLR_IAM_AP_CMP_LNK",
+      "to_field": "SECURITY_COMPONENT_DESCR",
+      "to_instance": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "DD_CEC_ID",
+      "source_path": [
+        {
+          "from_field": "DD_CEC_ID",
+          "from_instance": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK_ACCESS"
+        },
+        {
+          "from_field": "DD_CEC_ID",
+          "from_instance": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK"
+        },
+        {
+          "from_field": "DD_CEC_ID",
+          "from_instance": "N_APSP_BCBD_MLR_IAM_AP_CMP_LNK_ACCESS"
+        },
+        {
+          "from_field": "DD_CEC_ID",
+          "from_instance": "N_APSP_BCBD_MLR_IAM_AP_CMP_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SECURITY_COMPONENT_DESCR",
+      "source_path": [
+        {
+          "from_field": "SECURITY_COMPONENT_DESCR",
+          "from_instance": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK_ACCESS"
+        },
+        {
+          "from_field": "SECURITY_COMPONENT_DESCR",
+          "from_instance": "SQ_N_APSP_BCBD_MLR_IAM_AP_CMP_LNK"
+        },
+        {
+          "from_field": "SECURITY_COMPONENT_DESCR",
+          "from_instance": "N_APSP_BCBD_MLR_IAM_AP_CMP_LNK_ACCESS"
+        },
+        {
+          "from_field": "SECURITY_COMPONENT_DESCR",
+          "from_instance": "N_APSP_BCBD_MLR_IAM_AP_CMP_LNK"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:25:36.288842+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

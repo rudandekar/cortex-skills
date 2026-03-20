@@ -1,0 +1,202 @@
+{
+  "workflow_name": "wf_m_WI_RPRTD_VERT_FOCUS_CD_RNK",
+  "mapping_name": "m_WI_RPRTD_VERT_FOCUS_CD_RNK",
+  "mapping_description": "",
+  "folder_name": "EDWTD_POS",
+  "target_table": "WI_RPRTD_VERT_FOCUS_CD_RNK",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_pos_wf_wi_rprtd_vert_focus_cd_rnk_01_mart_wi_rprtd_vert_focus_cd_rnk",
+  "source_tables": [
+    "WI_RPRTD_VERT_FOCUS_CD_RNK"
+  ],
+  "sources": [
+    {
+      "name": "WI_RPRTD_VERT_FOCUS_CD_RNK",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SRC_RPRTD_VERT_FOCUS_CD",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RNK",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_RPRTD_VERT_FOCUS_CD_RNK",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_POS_TRANSACTION_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_SRC_RPRTD_VERT_FOCUS_CD",
+        "datatype": "varchar",
+        "precision": "2000",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RNK",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_RPRTD_VERT_FOCUS_CD_RNK",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SRC_RPRTD_VERT_FOCUS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RNK",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n   NPTRV.BK_POS_TRANSACTION_ID_INT       ,\r\n   NPTRV.BK_SRC_RPRTD_VERT_FOCUS_CD      ,\r\n   RANK() OVER ( PARTITION BY NPTRV.BK_POS_TRANSACTION_ID_INT  ORDER BY  NPTRV.BK_SRC_RPRTD_VERT_FOCUS_CD )  AS RNK \r\n FROM $$SLSORDVWDB.N_POS_TRX_RSLLR_VERT_INDR_FOCS NPTRV\r\n WHERE NPTRV.BK_POS_TRANSACTION_ID_INT IN \r\n                            ( SELECT BK_POS_TRANSACTION_ID_INT \r\n                                FROM $$SLSORDVWDB.N_POS_TRX_RSLLR_VERT_INDR_FOCS \r\n                                WHERE EDW_UPDATE_DTM > (SELECT  LAST_EXTRACT_DATE \r\n                                                                                                         FROM $$ETLVWDB.DW_JOB_STREAMS \r\n                                                                                                          WHERE JOB_STREAM_ID = 'wf_WI_RPRTD_VERT_FOCUS_CD_RNK'))",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_SRC_RPRTD_VERT_FOCUS_CD",
+      "from_instance": "SQ_WI_RPRTD_VERT_FOCUS_CD_RNK",
+      "to_field": "BK_SRC_RPRTD_VERT_FOCUS_CD",
+      "to_instance": "WI_RPRTD_VERT_FOCUS_CD_RNK"
+    },
+    {
+      "from_field": "RNK",
+      "from_instance": "SQ_WI_RPRTD_VERT_FOCUS_CD_RNK",
+      "to_field": "RNK",
+      "to_instance": "WI_RPRTD_VERT_FOCUS_CD_RNK"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ_WI_RPRTD_VERT_FOCUS_CD_RNK",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "WI_RPRTD_VERT_FOCUS_CD_RNK"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "WI_RPRTD_VERT_FOCUS_CD_RNK",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ_WI_RPRTD_VERT_FOCUS_CD_RNK"
+    },
+    {
+      "from_field": "BK_SRC_RPRTD_VERT_FOCUS_CD",
+      "from_instance": "WI_RPRTD_VERT_FOCUS_CD_RNK",
+      "to_field": "BK_SRC_RPRTD_VERT_FOCUS_CD",
+      "to_instance": "SQ_WI_RPRTD_VERT_FOCUS_CD_RNK"
+    },
+    {
+      "from_field": "RNK",
+      "from_instance": "WI_RPRTD_VERT_FOCUS_CD_RNK",
+      "to_field": "RNK",
+      "to_instance": "SQ_WI_RPRTD_VERT_FOCUS_CD_RNK"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_POS_TRANSACTION_ID_INT",
+      "source_path": [
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "SQ_WI_RPRTD_VERT_FOCUS_CD_RNK"
+        },
+        {
+          "from_field": "BK_POS_TRANSACTION_ID_INT",
+          "from_instance": "WI_RPRTD_VERT_FOCUS_CD_RNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SRC_RPRTD_VERT_FOCUS_CD",
+      "source_path": [
+        {
+          "from_field": "BK_SRC_RPRTD_VERT_FOCUS_CD",
+          "from_instance": "SQ_WI_RPRTD_VERT_FOCUS_CD_RNK"
+        },
+        {
+          "from_field": "BK_SRC_RPRTD_VERT_FOCUS_CD",
+          "from_instance": "WI_RPRTD_VERT_FOCUS_CD_RNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RNK",
+      "source_path": [
+        {
+          "from_field": "RNK",
+          "from_instance": "SQ_WI_RPRTD_VERT_FOCUS_CD_RNK"
+        },
+        {
+          "from_field": "RNK",
+          "from_instance": "WI_RPRTD_VERT_FOCUS_CD_RNK"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:17.105574+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

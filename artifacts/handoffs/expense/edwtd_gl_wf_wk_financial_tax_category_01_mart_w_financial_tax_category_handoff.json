@@ -1,0 +1,596 @@
+{
+  "workflow_name": "wf_m_WK_FINANCIAL_TAX_CATEGORY",
+  "mapping_name": "m_WK_FINANCIAL_TAX_CATEGORY",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "W_FINANCIAL_TAX_CATEGORY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_wk_financial_tax_category_01_mart_w_financial_tax_category",
+  "source_tables": [
+    "ST_SI_TAX_CATEGORY"
+  ],
+  "sources": [
+    {
+      "name": "ST_SI_TAX_CATEGORY",
+      "database_type": "Teradata",
+      "owner": "STGDB_DEV",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TAX_CATEGORY_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TAX_CATEGORY_VALUE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TAX_CATEGORY_DESC",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_FINANCIAL_TAX_CATEGORY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_FINANCIAL_TAX_CATEGORY_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_TV_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_TV_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FINANCIAL_TAX_CATEGORY_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_TAX_CATEGORY_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXP_FINANCIAL_TAX_CATEGORY",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BATCH_ID"
+        },
+        {
+          "name": "FINANCIAL_TAX_CATEGORY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FINANCIAL_TAX_CATEGORY_DESCR"
+        },
+        {
+          "name": "FINANCIAL_TAX_CATEGORY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FINANCIAL_TAX_CATEGORY_ID"
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_DATE_ACTIVE"
+        },
+        {
+          "name": "SK_TAX_CATEGORY_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SK_TAX_CATEGORY_ID_INT"
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_DATE_ACTIVE"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RANK_INDEX"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_SI_TAX_CATEGORY",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FINANCIAL_TAX_CATEGORY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FINANCIAL_TAX_CATEGORY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_TAX_CATEGORY_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nTVOUTPUT.BATCH_ID,\r\nTVOUTPUT.BK_FINANCIAL_TAX_CATEGORY_ID,\r\nTVOUTPUT.START_TV_DT AS START_DATE_ACTIVE,\r\nTVOUTPUT.FINANCIAL_TAX_CATEGORY_DESCR,\r\nTVOUTPUT.SK_TAX_CATEGORY_ID_INT,\r\nCOALESCE (MAX (TVOUTPUT.START_TV_DT - INTERVAL '1' DAY)\r\nOVER (PARTITION BY TVOUTPUT.BK_FINANCIAL_TAX_CATEGORY_ID\r\nORDER\tBY TVOUTPUT.START_TV_DT ASC ROWS BETWEEN 1 FOLLOWING\r\n\tAND\t1 FOLLOWING), DATE '3500-01-01') AS END_DATE_ACTIVE,\r\nTVOUTPUT.ACTION_CODE,\r\nROW_NUMBER () OVER (PARTITION BY TVOUTPUT.BK_FINANCIAL_TAX_CATEGORY_ID ORDER\tBY TVOUTPUT.START_TV_DT ASC) AS RANK_INDEX,\r\n(\r\n\t\tCASE\r\n\t\t\tWHEN\tRANK_INDEX = 1\r\n\tAnd\tNFTC_OUT.BK_FINANCIAL_TAX_CATEGORY_ID IS NOT NULL \r\nTHEN 'U'\r\n\t\t\tELSE\t'I' END) As DML_TYPE\r\nFROM(\r\nSELECT\t\r\n\t\tBATCH_ID,\r\n\t\tBK_FINANCIAL_TAX_CATEGORY_ID,\r\n\t\tSTART_TV_DT,\r\n        FINANCIAL_TAX_CATEGORY_DESCR,\r\n        SK_TAX_CATEGORY_ID_INT,\r\n\t\tEDW_CREATE_DATETIME,\r\n\t\tACTION_CODE,\r\n\t\tEXCEPTION_TYPE,\r\n\t\tROW_NUMBER () OVER (PARTITION BY BK_FINANCIAL_TAX_CATEGORY_ID, FINANCIAL_TAX_CATEGORY_DESCR\r\n\t\tORDER\tBY EDW_CREATE_DATETIME DESC) AS ROW_NUM\r\n\tFROM(\r\nSELECT\t\r\n\t     STC.BATCH_ID,\r\n\t     STC.TAX_CATEGORY_VALUE BK_FINANCIAL_TAX_CATEGORY_ID,\r\n\t\tCAST(COALESCE(STC.LAST_UPDATE_DATE,STC.CREATE_DATETIME) AS DATE) START_TV_DT,\r\n\t     STC.TAX_CATEGORY_DESC FINANCIAL_TAX_CATEGORY_DESCR,\r\n\t     STC.TAX_CATEGORY_ID SK_TAX_CATEGORY_ID_INT,\r\n\t     STC.CREATE_DATETIME EDW_CREATE_DATETIME,\r\n         STC.ACTION_CODE ACTION_CODE,\r\n\t     'NE' EXCEPTION_TYPE\r\nFROM\t$$STGDB.ST_SI_TAX_CATEGORY STC\r\nUNION\tALL\r\nSELECT\r\n\t       -999 BATCH_ID, \r\n\t       NFTC.BK_FINANCIAL_TAX_CATEGORY_ID,\r\n\t       NFTC.START_TV_DT,\r\n\t       NFTC.FINANCIAL_TAX_CATEGORY_DESCR,\r\n           NFTC.SK_TAX_CATEGORY_ID_INT,\r\n           NFTC.EDW_UPDATE_DTM EDW_CREATE_DATETIME,\r\n           'X' ACTION_CODE,\r\n\t       'NE' EXCEPTION_TYPE\r\nFROM\t$$FINLGLVWDB.N_FINANCIAL_TAX_CATEGORY_TV NFTC\r\nWHERE\tEXISTS (\r\nSELECT\t1 FROM $$STGDB.ST_SI_TAX_CATEGORY STC\r\n\t\t\tWHERE\tSTC.TAX_CATEGORY_VALUE=NFTC.BK_FINANCIAL_TAX_CATEGORY_ID)\r\n\t\tAND\tEND_TV_DT=16000101\r\n\t\t) TVINPUT\r\n\t\tQUALIFY\tROW_NUMBER () OVER (PARTITION BY TVINPUT.BK_FINANCIAL_TAX_CATEGORY_ID, TVINPUT.START_TV_DT\r\n\t\tORDER\tBY TVINPUT.EDW_CREATE_DATETIME DESC) = 1\r\n\t) TVOUTPUT\r\nLEFT JOIN $$FINLGLVWDB.N_FINANCIAL_TAX_CATEGORY_TV NFTC_OUT\r\n\tON\tTVOUTPUT.BK_FINANCIAL_TAX_CATEGORY_ID=NFTC_OUT.BK_FINANCIAL_TAX_CATEGORY_ID\r\n\tAnd\tNFTC_OUT.END_TV_DT =16000101\r\nWHERE\tTVOUTPUT.ROW_NUM = 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "EXP_FINANCIAL_TAX_CATEGORY",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "FINANCIAL_TAX_CATEGORY_ID",
+      "from_instance": "EXP_FINANCIAL_TAX_CATEGORY",
+      "to_field": "BK_FINANCIAL_TAX_CATEGORY_ID",
+      "to_instance": "W_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "EXP_FINANCIAL_TAX_CATEGORY",
+      "to_field": "START_TV_DT",
+      "to_instance": "W_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "EXP_FINANCIAL_TAX_CATEGORY",
+      "to_field": "END_TV_DT",
+      "to_instance": "W_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_FINANCIAL_TAX_CATEGORY",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "FINANCIAL_TAX_CATEGORY_DESCR",
+      "from_instance": "EXP_FINANCIAL_TAX_CATEGORY",
+      "to_field": "FINANCIAL_TAX_CATEGORY_DESCR",
+      "to_instance": "W_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "SK_TAX_CATEGORY_ID_INT",
+      "from_instance": "EXP_FINANCIAL_TAX_CATEGORY",
+      "to_field": "SK_TAX_CATEGORY_ID_INT",
+      "to_instance": "W_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_ST_SI_TAX_CATEGORY",
+      "to_field": "BATCH_ID",
+      "to_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "FINANCIAL_TAX_CATEGORY_DESCR",
+      "from_instance": "SQ_ST_SI_TAX_CATEGORY",
+      "to_field": "FINANCIAL_TAX_CATEGORY_DESCR",
+      "to_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "SQ_ST_SI_TAX_CATEGORY",
+      "to_field": "START_DATE_ACTIVE",
+      "to_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_SI_TAX_CATEGORY",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_SI_TAX_CATEGORY",
+      "to_field": "DML_TYPE",
+      "to_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "SQ_ST_SI_TAX_CATEGORY",
+      "to_field": "END_DATE_ACTIVE",
+      "to_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "RANK_INDEX",
+      "from_instance": "SQ_ST_SI_TAX_CATEGORY",
+      "to_field": "RANK_INDEX",
+      "to_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "FINANCIAL_TAX_CATEGORY_ID",
+      "from_instance": "SQ_ST_SI_TAX_CATEGORY",
+      "to_field": "FINANCIAL_TAX_CATEGORY_ID",
+      "to_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "SK_TAX_CATEGORY_ID_INT",
+      "from_instance": "SQ_ST_SI_TAX_CATEGORY",
+      "to_field": "SK_TAX_CATEGORY_ID_INT",
+      "to_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_SI_TAX_CATEGORY",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_SI_TAX_CATEGORY"
+    },
+    {
+      "from_field": "TAX_CATEGORY_DESC",
+      "from_instance": "ST_SI_TAX_CATEGORY",
+      "to_field": "FINANCIAL_TAX_CATEGORY_DESCR",
+      "to_instance": "SQ_ST_SI_TAX_CATEGORY"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_SI_TAX_CATEGORY",
+      "to_field": "START_DATE_ACTIVE",
+      "to_instance": "SQ_ST_SI_TAX_CATEGORY"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_SI_TAX_CATEGORY",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_SI_TAX_CATEGORY"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "ST_SI_TAX_CATEGORY",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_ST_SI_TAX_CATEGORY"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_SI_TAX_CATEGORY",
+      "to_field": "END_DATE_ACTIVE",
+      "to_instance": "SQ_ST_SI_TAX_CATEGORY"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_SI_TAX_CATEGORY",
+      "to_field": "RANK_INDEX",
+      "to_instance": "SQ_ST_SI_TAX_CATEGORY"
+    },
+    {
+      "from_field": "TAX_CATEGORY_VALUE",
+      "from_instance": "ST_SI_TAX_CATEGORY",
+      "to_field": "FINANCIAL_TAX_CATEGORY_ID",
+      "to_instance": "SQ_ST_SI_TAX_CATEGORY"
+    },
+    {
+      "from_field": "TAX_CATEGORY_ID",
+      "from_instance": "ST_SI_TAX_CATEGORY",
+      "to_field": "SK_TAX_CATEGORY_ID_INT",
+      "to_instance": "SQ_ST_SI_TAX_CATEGORY"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_FINANCIAL_TAX_CATEGORY_ID",
+      "source_path": [
+        {
+          "from_field": "FINANCIAL_TAX_CATEGORY_ID",
+          "from_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DT",
+      "source_path": [
+        {
+          "from_field": "START_DATE_ACTIVE",
+          "from_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DT",
+      "source_path": [
+        {
+          "from_field": "END_DATE_ACTIVE",
+          "from_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FINANCIAL_TAX_CATEGORY_DESCR",
+      "source_path": [
+        {
+          "from_field": "FINANCIAL_TAX_CATEGORY_DESCR",
+          "from_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+        },
+        {
+          "from_field": "FINANCIAL_TAX_CATEGORY_DESCR",
+          "from_instance": "SQ_ST_SI_TAX_CATEGORY"
+        },
+        {
+          "from_field": "TAX_CATEGORY_DESC",
+          "from_instance": "ST_SI_TAX_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_TAX_CATEGORY_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_TAX_CATEGORY_ID_INT",
+          "from_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+        },
+        {
+          "from_field": "SK_TAX_CATEGORY_ID_INT",
+          "from_instance": "SQ_ST_SI_TAX_CATEGORY"
+        },
+        {
+          "from_field": "TAX_CATEGORY_ID",
+          "from_instance": "ST_SI_TAX_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_SI_TAX_CATEGORY"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_SI_TAX_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "EXP_FINANCIAL_TAX_CATEGORY"
+        },
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_ST_SI_TAX_CATEGORY"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "ST_SI_TAX_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:13.000075+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

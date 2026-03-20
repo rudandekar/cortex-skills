@@ -1,0 +1,343 @@
+{
+  "workflow_name": "wf_m_ST_XXCMF_SP_CRP_BUILD_DATA",
+  "mapping_name": "m_ST_XXCMF_SP_CRP_BUILD_DATA",
+  "mapping_description": "",
+  "folder_name": "EDWTD_MFG_SOP",
+  "target_table": "ST_XXCMF_SP_CRP_BUILD_DATA",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_mfg_sop_wf_st_xxcmf_sp_crp_build_data_01_mart_st_xxcmf_sp_crp_build_data",
+  "source_tables": [
+    "FF_XXCMF_SP_CRP_BUILD_DATA"
+  ],
+  "sources": [
+    {
+      "name": "FF_XXCMF_SP_CRP_BUILD_DATA",
+      "database_type": "Flat File",
+      "owner": "",
+      "fields": [
+        {
+          "name": "PRODUCT_FAMILY",
+          "datatype": "string",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_WEEK_START_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_CHANNEL",
+          "datatype": "string",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DELIVERY_TYPE",
+          "datatype": "string",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BUILD_PLAN",
+          "datatype": "number",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_XXCMF_SP_CRP_BUILD_DATA",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PRODUCT_FAMILY",
+        "datatype": "varchar",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FISCAL_WEEK_START_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_CHANNEL",
+        "datatype": "varchar",
+        "precision": "6",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DELIVERY_TYPE",
+        "datatype": "varchar",
+        "precision": "11",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BUILD_PLAN",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PRODUCT_FAMILY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_WEEK_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_CHANNEL",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DELIVERY_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUILD_PLAN",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "PRODUCT_FAMILY",
+      "from_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA",
+      "to_field": "PRODUCT_FAMILY",
+      "to_instance": "ST_XXCMF_SP_CRP_BUILD_DATA"
+    },
+    {
+      "from_field": "FISCAL_WEEK_START_DATE",
+      "from_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA",
+      "to_field": "FISCAL_WEEK_START_DATE",
+      "to_instance": "ST_XXCMF_SP_CRP_BUILD_DATA"
+    },
+    {
+      "from_field": "SALES_CHANNEL",
+      "from_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA",
+      "to_field": "SALES_CHANNEL",
+      "to_instance": "ST_XXCMF_SP_CRP_BUILD_DATA"
+    },
+    {
+      "from_field": "DELIVERY_TYPE",
+      "from_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA",
+      "to_field": "DELIVERY_TYPE",
+      "to_instance": "ST_XXCMF_SP_CRP_BUILD_DATA"
+    },
+    {
+      "from_field": "BUILD_PLAN",
+      "from_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA",
+      "to_field": "BUILD_PLAN",
+      "to_instance": "ST_XXCMF_SP_CRP_BUILD_DATA"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA",
+      "to_field": "CREATION_DATE",
+      "to_instance": "ST_XXCMF_SP_CRP_BUILD_DATA"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY",
+      "from_instance": "FF_XXCMF_SP_CRP_BUILD_DATA",
+      "to_field": "PRODUCT_FAMILY",
+      "to_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA"
+    },
+    {
+      "from_field": "FISCAL_WEEK_START_DATE",
+      "from_instance": "FF_XXCMF_SP_CRP_BUILD_DATA",
+      "to_field": "FISCAL_WEEK_START_DATE",
+      "to_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA"
+    },
+    {
+      "from_field": "SALES_CHANNEL",
+      "from_instance": "FF_XXCMF_SP_CRP_BUILD_DATA",
+      "to_field": "SALES_CHANNEL",
+      "to_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA"
+    },
+    {
+      "from_field": "DELIVERY_TYPE",
+      "from_instance": "FF_XXCMF_SP_CRP_BUILD_DATA",
+      "to_field": "DELIVERY_TYPE",
+      "to_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA"
+    },
+    {
+      "from_field": "BUILD_PLAN",
+      "from_instance": "FF_XXCMF_SP_CRP_BUILD_DATA",
+      "to_field": "BUILD_PLAN",
+      "to_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "FF_XXCMF_SP_CRP_BUILD_DATA",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PRODUCT_FAMILY",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_FAMILY",
+          "from_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA"
+        },
+        {
+          "from_field": "PRODUCT_FAMILY",
+          "from_instance": "FF_XXCMF_SP_CRP_BUILD_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FISCAL_WEEK_START_DATE",
+      "source_path": [
+        {
+          "from_field": "FISCAL_WEEK_START_DATE",
+          "from_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA"
+        },
+        {
+          "from_field": "FISCAL_WEEK_START_DATE",
+          "from_instance": "FF_XXCMF_SP_CRP_BUILD_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_CHANNEL",
+      "source_path": [
+        {
+          "from_field": "SALES_CHANNEL",
+          "from_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA"
+        },
+        {
+          "from_field": "SALES_CHANNEL",
+          "from_instance": "FF_XXCMF_SP_CRP_BUILD_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DELIVERY_TYPE",
+      "source_path": [
+        {
+          "from_field": "DELIVERY_TYPE",
+          "from_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA"
+        },
+        {
+          "from_field": "DELIVERY_TYPE",
+          "from_instance": "FF_XXCMF_SP_CRP_BUILD_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BUILD_PLAN",
+      "source_path": [
+        {
+          "from_field": "BUILD_PLAN",
+          "from_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA"
+        },
+        {
+          "from_field": "BUILD_PLAN",
+          "from_instance": "FF_XXCMF_SP_CRP_BUILD_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_FF_XXCMF_SP_CRP_BUILD_DATA"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "FF_XXCMF_SP_CRP_BUILD_DATA"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:14.286071+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

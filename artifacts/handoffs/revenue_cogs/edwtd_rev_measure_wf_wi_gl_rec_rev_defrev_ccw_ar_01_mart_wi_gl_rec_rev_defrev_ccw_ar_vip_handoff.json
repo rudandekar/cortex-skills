@@ -1,0 +1,409 @@
+{
+  "workflow_name": "wf_m_WI_GL_REC_REV_DEFREV_CCW_AR",
+  "mapping_name": "m_WI_GL_REC_REV_DEFREV_CCW_AR",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_gl_rec_rev_defrev_ccw_ar_01_mart_wi_gl_rec_rev_defrev_ccw_ar_vip",
+  "source_tables": [
+    "WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+    "WI_GL_REC_REV_DEFREV_CCW_AR"
+  ],
+  "sources": [
+    {
+      "name": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+      "database_type": "Teradata",
+      "owner": "STGDB_TS3",
+      "fields": [
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_GL_REC_REV_DEFREV_CCW_AR",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PRODUCT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_ATTRIBUTION_CD",
+        "datatype": "varchar",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_PRODUCT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_AR_TRX_LINE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n P.ITEM_KEY PRODUCT_KEY,\r\n SV.DV_ATTRIBUTION_CD,\r\n SV.DV_PRODUCT_KEY,\r\n SV.DV_AR_TRX_LINE_KEY\r\n FROM\r\n $$FINLGLVWDB.MT_DEFERRED_REVENUE_TRX SV\r\n INNER JOIN $$COMREFVWDB.R_PRODUCTS_FIN P\r\n ON SV.PRODUCT_KEY=P.ITEM_KEY  \r\n WHERE\r\n SV.DV_ATTRIBUTION_CD IN ('STANDALONE','ATTRIBUTED')\r\n AND SV.DV_UNEARN_FINANCIAL_ACCOUNT_CD  IN  ( '27029'  ) \r\n AND P.BK_TECHNOLOGY_GROUP_ID          NOT IN  ( 'SERVICE-TG'  )  \r\n AND P.GOODS_OR_SERVICE_TYPE  = 'GOODS'  /* Added as part of Q1FY19*/\r\n AND SV.DV_CORPORATE_REVENUE_FLG      ='Y'\r\n AND SV.PROCESSED_FISCAL_YEAR_MTH_INT  IN (SELECT PROCESSED_FISCAL_YEAR_MTH_INT FROM $$STGDB.WI_RR_MONTH_CNTL) /* (SELECT FISCAL_YEAR_MONTH_INT FROM  $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR WHERE PREVIOUS_FSCL_MONTH_FLAG='Y')*/\r\n GROUP BY 1,2,3,4\r\n \r\n UNION \r\n  \r\n SELECT \r\n P.ITEM_KEY PRODUCT_KEY,\r\n SV.DV_ATTRIBUTION_CD,\r\n SV.DV_PRODUCT_KEY,\r\n SV.DV_AR_TRX_LINE_KEY\r\n FROM\r\n $$FINLGLVWDB.MT_DEFERRED_REVENUE_TRX SV\r\n INNER JOIN $$COMREFVWDB.R_PRODUCTS_FIN P\r\n ON SV.PRODUCT_KEY=P.ITEM_KEY  \r\n INNER JOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RF \r\n ON RF.FISCAL_MONTH_AGO_MONTH_NUMBER=SV.PROCESSED_FISCAL_YEAR_MTH_INT\r\n  WHERE\r\n SV.DV_ATTRIBUTION_CD IN ('STANDALONE','ATTRIBUTED')\r\n AND SV.DV_UNEARN_FINANCIAL_ACCOUNT_CD  IN  ( '27029'  ) \r\n AND P.BK_TECHNOLOGY_GROUP_ID          NOT IN  ( 'SERVICE-TG'  )\r\n AND P.GOODS_OR_SERVICE_TYPE  = 'GOODS'  /* Added as part of Q1FY19*/\r\n AND SV.DV_CORPORATE_REVENUE_FLG      ='Y'\r\n AND RF.FISCAL_YEAR_MONTH_INT  IN (SELECT PROCESSED_FISCAL_YEAR_MTH_INT FROM $$STGDB.WI_RR_MONTH_CNTL) /* (SELECT FISCAL_YEAR_MONTH_INT FROM  $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR WHERE PREVIOUS_FSCL_MONTH_FLAG='Y')*/\r\n GROUP BY 1,2,3,4",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n  P.ITEM_KEY PRODUCT_KEY,\r\n  SV.DV_ATTRIBUTION_CD,\r\n  SV.DV_PRODUCT_KEY,\r\n  SV.SALES_ORDER_LINE_KEY AS DV_AR_TRX_LINE_KEY\r\n  FROM\r\n  $$FINLGLVWDB.MT_DEFERRED_REVENUE_TRX SV\r\n  INNER JOIN $$COMREFVWDB.R_PRODUCTS_FIN P\r\n  ON SV.PRODUCT_KEY=P.ITEM_KEY \r\n  INNER JOIN $$FINLGLVWDB.N_ROL_TRX_LINE_GL_DISTRI   NROL\r\n  ON NROL.ROL_TRX_LINE_GL_DISTRI_KEY = SV.DV_ADJ_REBATE_TRX_KEY\r\n  AND NROL.TRX_SRC_CD = 'VIP_XAAS_ADJ' AND NROL.REBATE_APPLIED_METHOD_CD = 'KICKERS'\r\n  WHERE\r\n  SV.DV_ATTRIBUTION_CD IN ('STANDALONE','ATTRIBUTED')\r\n  AND SV.DV_UNEARN_FINANCIAL_ACCOUNT_CD  IN  ( '27029'  ) \r\n  AND P.BK_TECHNOLOGY_GROUP_ID          NOT IN  ( 'SERVICE-TG')  \r\n  AND P.GOODS_OR_SERVICE_TYPE  = 'GOODS'  /* Added as part of Q1FY19*/\r\n  AND SV.DV_CORPORATE_REVENUE_FLG      ='Y'\r\n  AND SV.ADJUSTMENT_TRX_TYPE_CD = 'VIP_ANNUITY_ADJ'\r\n  AND SV.PROCESSED_FISCAL_YEAR_MTH_INT IN (SELECT PROCESSED_FISCAL_YEAR_MTH_INT FROM $$STGDB.WI_RR_MONTH_CNTL)\r\n  GROUP BY 1,2,3,4\r\n  \r\n  UNION \r\n   \r\n  SELECT \r\n  P.ITEM_KEY PRODUCT_KEY,\r\n  SV.DV_ATTRIBUTION_CD,\r\n  SV.DV_PRODUCT_KEY,\r\n  SV.SALES_ORDER_LINE_KEY AS DV_AR_TRX_LINE_KEY\r\n  FROM\r\n  $$FINLGLVWDB.MT_DEFERRED_REVENUE_TRX SV\r\n  INNER JOIN $$COMREFVWDB.R_PRODUCTS_FIN P\r\n  ON SV.PRODUCT_KEY=P.ITEM_KEY  \r\n  INNER JOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RF \r\n  ON RF.FISCAL_MONTH_AGO_MONTH_NUMBER=SV.PROCESSED_FISCAL_YEAR_MTH_INT\r\n  INNER JOIN $$FINLGLVWDB.N_ROL_TRX_LINE_GL_DISTRI NROL\r\n  ON NROL.ROL_TRX_LINE_GL_DISTRI_KEY = SV.DV_ADJ_REBATE_TRX_KEY\r\n  AND NROL.TRX_SRC_CD = 'VIP_XAAS_ADJ' AND NROL.REBATE_APPLIED_METHOD_CD = 'KICKERS'\r\n  WHERE\r\n  SV.DV_ATTRIBUTION_CD IN ('STANDALONE','ATTRIBUTED')\r\n  AND SV.DV_UNEARN_FINANCIAL_ACCOUNT_CD  IN  ( '27029'  ) \r\n  AND P.BK_TECHNOLOGY_GROUP_ID NOT IN  ( 'SERVICE-TG'  )\r\n  AND P.GOODS_OR_SERVICE_TYPE  = 'GOODS'  /* Added as part of Q1FY19*/\r\n  AND SV.DV_CORPORATE_REVENUE_FLG      ='Y'\r\n  AND SV.ADJUSTMENT_TRX_TYPE_CD = 'VIP_ANNUITY_ADJ'\r\n  AND RF.FISCAL_YEAR_MONTH_INT IN (SELECT PROCESSED_FISCAL_YEAR_MTH_INT FROM $$STGDB.WI_RR_MONTH_CNTL)\r\n  GROUP BY 1,2,3,4",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+    },
+    {
+      "from_field": "DV_AR_TRX_LINE_KEY",
+      "from_instance": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+      "to_field": "DV_AR_TRX_LINE_KEY",
+      "to_instance": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_GL_REC_REV_DEFREV_CCW_AR1"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "WI_GL_REC_REV_DEFREV_CCW_AR1"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "WI_GL_REC_REV_DEFREV_CCW_AR1"
+    },
+    {
+      "from_field": "DV_AR_TRX_LINE_KEY",
+      "from_instance": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR",
+      "to_field": "DV_AR_TRX_LINE_KEY",
+      "to_instance": "WI_GL_REC_REV_DEFREV_CCW_AR1"
+    },
+    {
+      "from_field": "DV_AR_TRX_LINE_KEY",
+      "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR",
+      "to_field": "DV_AR_TRX_LINE_KEY",
+      "to_instance": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+    },
+    {
+      "from_field": "DV_AR_TRX_LINE_KEY",
+      "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP",
+      "to_field": "DV_AR_TRX_LINE_KEY",
+      "to_instance": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PRODUCT_KEY",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_ATTRIBUTION_CD",
+      "source_path": [
+        {
+          "from_field": "DV_ATTRIBUTION_CD",
+          "from_instance": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+        },
+        {
+          "from_field": "DV_ATTRIBUTION_CD",
+          "from_instance": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR"
+        },
+        {
+          "from_field": "DV_ATTRIBUTION_CD",
+          "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR"
+        },
+        {
+          "from_field": "DV_ATTRIBUTION_CD",
+          "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_PRODUCT_KEY",
+      "source_path": [
+        {
+          "from_field": "DV_PRODUCT_KEY",
+          "from_instance": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+        },
+        {
+          "from_field": "DV_PRODUCT_KEY",
+          "from_instance": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR"
+        },
+        {
+          "from_field": "DV_PRODUCT_KEY",
+          "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR"
+        },
+        {
+          "from_field": "DV_PRODUCT_KEY",
+          "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_AR_TRX_LINE_KEY",
+      "source_path": [
+        {
+          "from_field": "DV_AR_TRX_LINE_KEY",
+          "from_instance": "SQ2_WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+        },
+        {
+          "from_field": "DV_AR_TRX_LINE_KEY",
+          "from_instance": "SQ_WI_GL_REC_REV_DEFREV_CCW_AR"
+        },
+        {
+          "from_field": "DV_AR_TRX_LINE_KEY",
+          "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR"
+        },
+        {
+          "from_field": "DV_AR_TRX_LINE_KEY",
+          "from_instance": "WI_GL_REC_REV_DEFREV_CCW_AR_VIP"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:29.155582+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

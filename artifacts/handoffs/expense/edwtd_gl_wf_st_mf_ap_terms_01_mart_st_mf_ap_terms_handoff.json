@@ -1,0 +1,296 @@
+{
+  "workflow_name": "wf_m_ST_MF_AP_TERMS",
+  "mapping_name": "m_ST_MF_AP_TERMS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "ST_MF_AP_TERMS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_st_mf_ap_terms_01_mart_st_mf_ap_terms",
+  "source_tables": [
+    "FF_MF_AP_TERMS"
+  ],
+  "sources": [
+    {
+      "name": "FF_MF_AP_TERMS",
+      "database_type": "Flat File",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TERM_ID",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_MF_AP_TERMS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "DESCRIPTION",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GES_UPDATE_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GLOBAL_NAME",
+        "datatype": "varchar",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TERM_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_MF_AP_TERMS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TERM_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SQ_FF_MF_AP_TERMS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "ST_MF_AP_TERMS"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "SQ_FF_MF_AP_TERMS",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "ST_MF_AP_TERMS"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_FF_MF_AP_TERMS",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "ST_MF_AP_TERMS"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "SQ_FF_MF_AP_TERMS",
+      "to_field": "NAME",
+      "to_instance": "ST_MF_AP_TERMS"
+    },
+    {
+      "from_field": "TERM_ID",
+      "from_instance": "SQ_FF_MF_AP_TERMS",
+      "to_field": "TERM_ID",
+      "to_instance": "ST_MF_AP_TERMS"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "FF_MF_AP_TERMS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "SQ_FF_MF_AP_TERMS"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "FF_MF_AP_TERMS",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "SQ_FF_MF_AP_TERMS"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "FF_MF_AP_TERMS",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_FF_MF_AP_TERMS"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "FF_MF_AP_TERMS",
+      "to_field": "NAME",
+      "to_instance": "SQ_FF_MF_AP_TERMS"
+    },
+    {
+      "from_field": "TERM_ID",
+      "from_instance": "FF_MF_AP_TERMS",
+      "to_field": "TERM_ID",
+      "to_instance": "SQ_FF_MF_AP_TERMS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "SQ_FF_MF_AP_TERMS"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "FF_MF_AP_TERMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GES_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "GES_UPDATE_DATE",
+          "from_instance": "SQ_FF_MF_AP_TERMS"
+        },
+        {
+          "from_field": "GES_UPDATE_DATE",
+          "from_instance": "FF_MF_AP_TERMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GLOBAL_NAME",
+      "source_path": [
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_FF_MF_AP_TERMS"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "FF_MF_AP_TERMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NAME",
+      "source_path": [
+        {
+          "from_field": "NAME",
+          "from_instance": "SQ_FF_MF_AP_TERMS"
+        },
+        {
+          "from_field": "NAME",
+          "from_instance": "FF_MF_AP_TERMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TERM_ID",
+      "source_path": [
+        {
+          "from_field": "TERM_ID",
+          "from_instance": "SQ_FF_MF_AP_TERMS"
+        },
+        {
+          "from_field": "TERM_ID",
+          "from_instance": "FF_MF_AP_TERMS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:11.432189+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

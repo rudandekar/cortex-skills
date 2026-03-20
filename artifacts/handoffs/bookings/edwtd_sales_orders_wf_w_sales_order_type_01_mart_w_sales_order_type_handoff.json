@@ -1,0 +1,890 @@
+{
+  "workflow_name": "wf_m_W_SALES_ORDER_TYPE",
+  "mapping_name": "m_W_SALES_ORDER_TYPE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "W_SALES_ORDER_TYPE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_w_sales_order_type_01_mart_w_sales_order_type",
+  "source_tables": [
+    "EL_SALES_ORDER_TYPES"
+  ],
+  "sources": [
+    {
+      "name": "EL_SALES_ORDER_TYPES",
+      "database_type": "Teradata",
+      "owner": "ETLVWDB_DV1",
+      "fields": [
+        {
+          "name": "SK_ORDER_TYPE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SO_TYPE_REVENUE_GEN_FLAG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "char",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATE_DATE_TIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DUTY_BILLING_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_SALES_ORDER_TYPE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_ORDER_TYPE_NAME",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "START_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "END_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SO_TYPE_REVENUE_GEN_FLAG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SO_TYPE_DESCRIPTION",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SO_TYPE_ACTIVE_START_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SO_TYPE_ACTIVE_END_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_SALES_ORDER_TYPE_ALT_NAME",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_OBSERVATION_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DUTY_BILLING_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_EL_SALES_ORDER_TYPES",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_ORDER_TYPE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_TYPE_DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_TYPE_REVENUE_GEN_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_TYPE_ACTIVE_START_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_TYPE_ACTIVE_END_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SALES_ORDER_TYPE_ALT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DUTY_BILLING_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nTVOUTPUT.BK_ORDER_TYPE_NAME,\r\nTVOUTPUT.SO_TYPE_DESCRIPTION,\r\nCOALESCE(TVOUTPUT.SO_TYPE_REVENUE_GEN_FLAG,'=') AS SO_TYPE_REVENUE_GEN_FLAG,\r\nTVOUTPUT.START_TV_DATE,\r\nCOALESCE( MAX(TVOUTPUT.START_TV_DATE - INTERVAL '1' DAY) \r\nOVER (PARTITION BY TVOUTPUT.BK_ORDER_TYPE_NAME ORDER BY TVOUTPUT.START_TV_DATE ASC \r\nROWS BETWEEN 1 FOLLOWING AND 1 FOLLOWING), DATE '3500-01-01') AS END_TV_DATE,\r\nCURRENT_TIMESTAMP(0) SO_TYPE_ACTIVE_START_DTM ,\r\nTVOUTPUT.SO_TYPE_ACTIVE_END_DTM,\r\nTVOUTPUT.DV_SALES_ORDER_TYPE_ALT_NAME,\r\nTVOUTPUT.CREATE_DATETIME,\r\nTVOUTPUT.UPDATE_DATE_TIME,\r\nTVOUTPUT.DUTY_BILLING_CD,\r\nROW_NUMBER() OVER (PARTITION BY TVOUTPUT.BK_ORDER_TYPE_NAME ORDER BY TVOUTPUT.START_TV_DATE ASC) AS RANK_INDEX,\r\n(CASE WHEN RANK_INDEX = 1 AND TT.BK_ORDER_TYPE_NAME IS NOT NULL THEN 'U' ELSE 'I' END) AS DML_TYPE\r\nFROM (  \r\nSELECT\r\n                BK_ORDER_TYPE_NAME,\r\n                SO_TYPE_DESCRIPTION,\r\n                SO_TYPE_REVENUE_GEN_FLAG, \r\n                START_TV_DATE,\r\n                SO_TYPE_ACTIVE_START_DTM,\r\n                SO_TYPE_ACTIVE_END_DTM,\r\n                DV_SALES_ORDER_TYPE_ALT_NAME,\r\n                CREATE_DATETIME,\r\n                UPDATE_DATE_TIME,\r\n                DUTY_BILLING_CD,\r\n        ROW_NUMBER() OVER (PARTITION BY                  \r\n\t\tBK_ORDER_TYPE_NAME,                    \r\n\t\tSO_TYPE_DESCRIPTION,                    \r\n\t\tSO_TYPE_REVENUE_GEN_FLAG\r\n        ORDER BY UPDATE_DATE_TIME DESC) AS ROW_NUM  \r\n                FROM \r\n                                                (\r\n                                SELECT\r\n                                                ELSOT.NAME BK_ORDER_TYPE_NAME,\r\n                                                ELSOT.DESCRIPTION SO_TYPE_DESCRIPTION,\r\n                                                ELSOT.SO_TYPE_REVENUE_GEN_FLAG SO_TYPE_REVENUE_GEN_FLAG,\r\n                                                CAST (ELSOT.UPDATE_DATE_TIME AS DATE) START_TV_DATE,\r\n                                                CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) SO_TYPE_ACTIVE_START_DTM,\r\n                                                ELSOT.END_DATE_ACTIVE SO_TYPE_ACTIVE_END_DTM,                                             \r\n                                                CASE WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-AUS'),4))='-AUS' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-AUS'))\r\n                                                                WHEN (SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- AUS'),5))='- AUS' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- AUS'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-JPN'),4))='-JPN' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-JPN'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- JPN'),5))='- JPN' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- JPN'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-CAN'),4))='-CAN' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-CAN'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- CAN'),5))='- CAN' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- CAN'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-NL'),3))='-NL' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-NL'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- NL'),4))='- NL' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- NL'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-US'),3))='-US' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-US'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- US'),4))='- US' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- US'))\r\n                                                                ELSE\r\n                                                                ELSOT.NAME         END DV_SALES_ORDER_TYPE_ALT_NAME,                                    \r\n                                                ELSOT.CREATE_DATETIME,\r\n                                                ELSOT.UPDATE_DATE_TIME,\r\n                                                ELSOT.DUTY_BILLING_CD\r\n                                                FROM $$ETLVWDB.EL_SALES_ORDER_TYPES ELSOT\r\n                                                    QUALIFY ROW_NUMBER() OVER (PARTITION BY \r\n\t\t\t\t\t\t\t\t\t\t\t\t\tELSOT.NAME \r\n\t\t\t\t\t\t\t\t\t\t\t\t\tORDER BY ELSOT.GLOBAL_NAME  DESC)=1\r\n\r\n                                                WHERE ELSOT.NAME IS NOT NULL AND                                     \r\n\t\t\t\t\t\t\t\t\t\t\t\tELSOT.GLOBAL_NAME = 'UO' \r\n\t\t\t\t\t\t\t\t\t\t\t\tAND ORG_ID NOT IN(SELECT SK_ORGANIZATION_ID_INT FROM $$COMREFVWDB.N_CISCO_OPERATING_UNIT   WHERE MOVED_TO_CG1_FLG='Y')\r\n                                                AND ELSOT.UPDATE_DATE_TIME > (SELECT LAST_EXTRACT_DATE FROM $$ETLVWDB.DW_JOB_STREAMS WHERE JOB_STREAM_ID = 'WF_W_SALES_ORDER_TYPE')\r\n                                                UNION ALL\r\n                                SELECT\r\n                                                ELSOT.NAME BK_ORDER_TYPE_NAME, \r\n                                                ELSOT.DESCRIPTION SO_TYPE_DESCRIPTION,\r\n                                                ELSOT.SO_TYPE_REVENUE_GEN_FLAG SO_TYPE_REVENUE_GEN_FLAG,\r\n                                                CAST (ELSOT.UPDATE_DATE_TIME AS DATE) START_TV_DATE,\r\n                                                CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) SO_TYPE_ACTIVE_START_DTM,\r\n                                                ELSOT.END_DATE_ACTIVE SO_TYPE_ACTIVE_END_DTM,                                             \r\n                                                CASE WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-AUS'),4))='-AUS' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-AUS'))\r\n                                                                WHEN (SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- AUS'),5))='- AUS' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- AUS'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-JPN'),4))='-JPN' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-JPN'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- JPN'),5))='- JPN' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- JPN'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-CAN'),4))='-CAN' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-CAN'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- CAN'),5))='- CAN' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- CAN'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-NL'),3))='-NL' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-NL'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- NL'),4))='- NL' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- NL'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-US'),3))='-US' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-US'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- US'),4))='- US' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- US'))\r\n                                                                ELSE\r\n                                                                ELSOT.NAME         END DV_SALES_ORDER_TYPE_ALT_NAME,                                    \r\n                                                ELSOT.CREATE_DATETIME,\r\n                                                ELSOT.UPDATE_DATE_TIME,\r\n                                                ELSOT.DUTY_BILLING_CD\r\n                                                FROM $$ETLVWDB.EL_SALES_ORDER_TYPES ELSOT\r\n                                                                QUALIFY ROW_NUMBER() OVER (PARTITION BY \r\n                                                                                                                                                ELSOT.NAME                                         \r\n                                                                ORDER BY ELSOT.GLOBAL_NAME  DESC)=1\r\n                                                WHERE                                                 \r\n\t\t\t\t\t\t\t\t\t\t\t\tELSOT.NAME IS NOT NULL AND                                     \r\n\t\t\t\t\t\t\t\t\t\t\t\tELSOT.GLOBAL_NAME = 'BO' AND \r\n\t\t\t\t\t\t\t\t\t\t\t\tORG_ID NOT IN(SELECT SK_ORGANIZATION_ID_INT FROM $$COMREFVWDB.N_CISCO_OPERATING_UNIT   WHERE MOVED_TO_CG1_FLG='Y') AND \r\n                                                NOT EXISTS \r\n                                                (SELECT 1 FROM $$ETLVWDB.EL_SALES_ORDER_TYPES ELSOT1 where ELSOT1.GLOBAL_NAME = 'UO' AND ELSOT1.NAME=ELSOT.NAME)             AND                      \r\n                                                ELSOT.UPDATE_DATE_TIME > (SELECT LAST_EXTRACT_DATE FROM $$ETLVWDB.DW_JOB_STREAMS WHERE JOB_STREAM_ID = 'WF_W_SALES_ORDER_TYPE')\r\n                                                \r\n                                                UNION   ALL         \r\n                                                \r\n                                                SELECT\r\n                                                ELSOT.NAME BK_ORDER_TYPE_NAME, \r\n                                                ELSOT.DESCRIPTION SO_TYPE_DESCRIPTION,\r\n                                                CASE WHEN ELSOT.TRANSACTION_TYPE_CODE ='ORDER'  AND NSOT.SO_TYPE_REVENUE_GEN_FLAG      IS NOT NULL \r\n                                                                THEN NSOT.SO_TYPE_REVENUE_GEN_FLAG                                                ELSE ELSOT.SO_TYPE_REVENUE_GEN_FLAG END SO_TYPE_REVENUE_GEN_FLAG,\r\n\r\n                                                CAST (ELSOT.UPDATE_DATE_TIME AS DATE) START_TV_DATE,\r\n                                                CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) SO_TYPE_ACTIVE_START_DTM,\r\n                                                ELSOT.END_DATE_ACTIVE SO_TYPE_ACTIVE_END_DTM,                                             \r\n                                                CASE WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-AUS'),4))='-AUS' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-AUS'))\r\n                                                                WHEN (SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- AUS'),5))='- AUS' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- AUS'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-JPN'),4))='-JPN' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-JPN'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- JPN'),5))='- JPN' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- JPN'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-CAN'),4))='-CAN' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-CAN'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- CAN'),5))='- CAN' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- CAN'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-NL'),3))='-NL' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-NL'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- NL'),4))='- NL' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- NL'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-US'),3))='-US' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-US'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- US'),4))='- US' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- US'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'-BR'),3))='-BR' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'-BR'))\r\n                                                                WHEN(SUBSTR(ELSOT.NAME,INDEX(ELSOT.NAME,'- BR'),4))='- BR' THEN\r\n                                                                                                SUBSTR(ELSOT.NAME,0,INDEX(ELSOT.NAME,'- BR'))\r\n                                                                ELSE\r\n                                                                ELSOT.NAME         END DV_SALES_ORDER_TYPE_ALT_NAME,                                    \r\n                                                ELSOT.CREATE_DATETIME,\r\n                                                ELSOT.UPDATE_DATE_TIME,\r\n                                                ELSOT.DUTY_BILLING_CD\r\n                                                FROM (SEL * FROM $$ETLVWDB.EL_SALES_ORDER_TYPES WHERE NAME IS NOT NULL AND                                                GLOBAL_NAME = 'CG' AND ORG_ID IN(SELECT SK_ORGANIZATION_ID_INT FROM $$COMREFVWDB.N_CISCO_OPERATING_UNIT   WHERE MOVED_TO_CG1_FLG='Y') )ELSOT\r\n                                                LEFT JOIN  $$SLSORDVWDB.N_SALES_ORDER_TYPE_TV NSOT                                                \r\n                                                ON ELSOT. NAME = NSOT. BK_ORDER_TYPE_NAME \r\n                                                QUALIFY ROW_NUMBER() OVER (PARTITION BY                                                                                                                                       ELSOT.NAME                                                                                                         ORDER BY ELSOT.GLOBAL_NAME  DESC)=1\r\n\r\n\r\n\r\n\r\n                                                WHERE\r\n\r\n\r\n\r\n\r\n                                                ELSOT.UPDATE_DATE_TIME > (SELECT LAST_EXTRACT_DATE FROM $$ETLVWDB.DW_JOB_STREAMS WHERE JOB_STREAM_ID = 'WF_W_SALES_ORDER_TYPE')\r\n                                                UNION ALL\r\n                                                SELECT                \r\n                                                NSAT.BK_ORDER_TYPE_NAME,\r\n                                                NSAT.SO_TYPE_DESCRIPTION,\r\n                                                NSAT.SO_TYPE_REVENUE_GEN_FLAG,\r\n                                                NSAT.START_TV_DATE,\r\n                                                NSAT.SO_TYPE_ACTIVE_START_DTM, \r\n                                                NSAT.SO_TYPE_ACTIVE_END_DTM,\r\n                                                NSAT.DV_SALES_ORDER_TYPE_ALT_NAME,\r\n                                                NSAT.EDW_CREATE_DATETIME CREATE_DATETIME,\r\n                                                NSAT.EDW_UPDATE_DATETIME UPDATE_DATE_TIME,\r\n                                                NSAT.DUTY_BILLING_CD\r\n                                                FROM $$SLSORDVWDB.N_SALES_ORDER_TYPE_TV NSAT\r\n                                                WHERE END_TV_DATE = CAST('3500-01-01' AS DATE)\r\n                                                AND BK_ORDER_TYPE_NAME IN\r\n                                                (SELECT NAME FROM $$ETLVWDB.EL_SALES_ORDER_TYPES  WHERE UPDATE_DATE_TIME >\r\n                                                (SELECT LAST_EXTRACT_DATE FROM $$ETLVWDB.DW_JOB_STREAMS WHERE JOB_STREAM_ID = 'WF_W_SALES_ORDER_TYPE') )\r\n                                                )\r\n                                                TVINPUT\r\n\t\t\t\t\t\t\t\t\t\tQUALIFY ROW_NUMBER() OVER (PARTITION BY                                       \r\n\t\t\t\t\t\t\t\t\t\tTVINPUT.BK_ORDER_TYPE_NAME,                                   \r\n\t\t\t\t\t\t\t\t\t\tTVINPUT.START_TV_DATE                                 \r\n\t\t\t\t\t\t\t\t\t\tORDER BY TVINPUT.UPDATE_DATE_TIME desc) = 1\r\n                ) TVOUTPUT\r\n                LEFT JOIN $$SLSORDVWDB.N_SALES_ORDER_TYPE_TV TT\r\n                                                ON TVOUTPUT.BK_ORDER_TYPE_NAME = TT.BK_ORDER_TYPE_NAME\r\n                                                AND TT.END_TV_DATE = CAST('3500-01-01' AS DATE)\r\n                WHERE TVOUTPUT.ROW_NUM = 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_W_SALES_ORDER_TYPE",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_ORDER_TYPE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_ORDER_TYPE_NAME"
+        },
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_TV_DATE"
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_TV_DATE"
+        },
+        {
+          "name": "SO_TYPE_REVENUE_GEN_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SO_TYPE_REVENUE_GEN_FLAG"
+        },
+        {
+          "name": "SO_TYPE_DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SO_TYPE_DESCRIPTION"
+        },
+        {
+          "name": "SO_TYPE_ACTIVE_START_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SO_TYPE_ACTIVE_START_DTM"
+        },
+        {
+          "name": "SO_TYPE_ACTIVE_END_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SO_TYPE_ACTIVE_END_DTM"
+        },
+        {
+          "name": "DV_SALES_ORDER_TYPE_ALT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DV_SALES_ORDER_TYPE_ALT_NAME"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_CREATE_DATETIME"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_UPDATE_DATETIME"
+        },
+        {
+          "name": "DUTY_BILLING_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DUTY_BILLING_CD"
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RANK_INDEX"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "Exp_W_SALES_ORDER_TYPE",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "Exp_W_SALES_ORDER_TYPE",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "Exp_W_SALES_ORDER_TYPE",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "BK_ORDER_TYPE_NAME",
+      "from_instance": "Exp_W_SALES_ORDER_TYPE",
+      "to_field": "BK_ORDER_TYPE_NAME",
+      "to_instance": "W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "Exp_W_SALES_ORDER_TYPE",
+      "to_field": "START_TV_DATE",
+      "to_instance": "W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "Exp_W_SALES_ORDER_TYPE",
+      "to_field": "END_TV_DATE",
+      "to_instance": "W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "SO_TYPE_REVENUE_GEN_FLAG",
+      "from_instance": "Exp_W_SALES_ORDER_TYPE",
+      "to_field": "SO_TYPE_REVENUE_GEN_FLAG",
+      "to_instance": "W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "SO_TYPE_DESCRIPTION",
+      "from_instance": "Exp_W_SALES_ORDER_TYPE",
+      "to_field": "SO_TYPE_DESCRIPTION",
+      "to_instance": "W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "SO_TYPE_ACTIVE_START_DTM",
+      "from_instance": "Exp_W_SALES_ORDER_TYPE",
+      "to_field": "SO_TYPE_ACTIVE_START_DTM",
+      "to_instance": "W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "SO_TYPE_ACTIVE_END_DTM",
+      "from_instance": "Exp_W_SALES_ORDER_TYPE",
+      "to_field": "SO_TYPE_ACTIVE_END_DTM",
+      "to_instance": "W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_TYPE_ALT_NAME",
+      "from_instance": "Exp_W_SALES_ORDER_TYPE",
+      "to_field": "DV_SALES_ORDER_TYPE_ALT_NAME",
+      "to_instance": "W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "DUTY_BILLING_CD",
+      "from_instance": "Exp_W_SALES_ORDER_TYPE",
+      "to_field": "DUTY_BILLING_CD",
+      "to_instance": "W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "SO_TYPE_ACTIVE_START_DTM",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "SO_TYPE_ACTIVE_END_DTM",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "SK_ORDER_TYPE_ID",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "RANK_INDEX",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "SO_TYPE_REVENUE_GEN_FLAG",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "END_TV_DATE",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "DV_SALES_ORDER_TYPE_ALT_NAME",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "UPDATE_DATE_TIME",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "DUTY_BILLING_CD",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "DUTY_BILLING_CD",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "BK_ORDER_TYPE_NAME",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "SO_TYPE_DESCRIPTION",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "SO_TYPE_REVENUE_GEN_FLAG",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "SO_TYPE_REVENUE_GEN_FLAG",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "UPDATE_DATE_TIME",
+      "from_instance": "EL_SALES_ORDER_TYPES",
+      "to_field": "START_TV_DATE",
+      "to_instance": "SQ_EL_SALES_ORDER_TYPES"
+    },
+    {
+      "from_field": "BK_ORDER_TYPE_NAME",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "BK_ORDER_TYPE_NAME",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "START_TV_DATE",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "END_TV_DATE",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "SO_TYPE_REVENUE_GEN_FLAG",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "SO_TYPE_REVENUE_GEN_FLAG",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "SO_TYPE_DESCRIPTION",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "SO_TYPE_DESCRIPTION",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "SO_TYPE_ACTIVE_START_DTM",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "SO_TYPE_ACTIVE_START_DTM",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "SO_TYPE_ACTIVE_END_DTM",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "SO_TYPE_ACTIVE_END_DTM",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_TYPE_ALT_NAME",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "DV_SALES_ORDER_TYPE_ALT_NAME",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "RANK_INDEX",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "RANK_INDEX",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "DML_TYPE",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    },
+    {
+      "from_field": "DUTY_BILLING_CD",
+      "from_instance": "SQ_EL_SALES_ORDER_TYPES",
+      "to_field": "DUTY_BILLING_CD",
+      "to_instance": "Exp_W_SALES_ORDER_TYPE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_ORDER_TYPE_NAME",
+      "source_path": [
+        {
+          "from_field": "BK_ORDER_TYPE_NAME",
+          "from_instance": "Exp_W_SALES_ORDER_TYPE"
+        },
+        {
+          "from_field": "NAME",
+          "from_instance": "EL_SALES_ORDER_TYPES"
+        },
+        {
+          "from_field": "BK_ORDER_TYPE_NAME",
+          "from_instance": "SQ_EL_SALES_ORDER_TYPES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "Exp_W_SALES_ORDER_TYPE"
+        },
+        {
+          "from_field": "UPDATE_DATE_TIME",
+          "from_instance": "EL_SALES_ORDER_TYPES"
+        },
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "SQ_EL_SALES_ORDER_TYPES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "Exp_W_SALES_ORDER_TYPE"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "EL_SALES_ORDER_TYPES"
+        },
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "SQ_EL_SALES_ORDER_TYPES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SO_TYPE_REVENUE_GEN_FLAG",
+      "source_path": [
+        {
+          "from_field": "SO_TYPE_REVENUE_GEN_FLAG",
+          "from_instance": "Exp_W_SALES_ORDER_TYPE"
+        },
+        {
+          "from_field": "SO_TYPE_REVENUE_GEN_FLAG",
+          "from_instance": "EL_SALES_ORDER_TYPES"
+        },
+        {
+          "from_field": "SO_TYPE_REVENUE_GEN_FLAG",
+          "from_instance": "SQ_EL_SALES_ORDER_TYPES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SO_TYPE_DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "SO_TYPE_DESCRIPTION",
+          "from_instance": "Exp_W_SALES_ORDER_TYPE"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "EL_SALES_ORDER_TYPES"
+        },
+        {
+          "from_field": "SO_TYPE_DESCRIPTION",
+          "from_instance": "SQ_EL_SALES_ORDER_TYPES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SO_TYPE_ACTIVE_START_DTM",
+      "source_path": [
+        {
+          "from_field": "SO_TYPE_ACTIVE_START_DTM",
+          "from_instance": "Exp_W_SALES_ORDER_TYPE"
+        },
+        {
+          "from_field": "START_DATE_ACTIVE",
+          "from_instance": "EL_SALES_ORDER_TYPES"
+        },
+        {
+          "from_field": "SO_TYPE_ACTIVE_START_DTM",
+          "from_instance": "SQ_EL_SALES_ORDER_TYPES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SO_TYPE_ACTIVE_END_DTM",
+      "source_path": [
+        {
+          "from_field": "SO_TYPE_ACTIVE_END_DTM",
+          "from_instance": "Exp_W_SALES_ORDER_TYPE"
+        },
+        {
+          "from_field": "END_DATE_ACTIVE",
+          "from_instance": "EL_SALES_ORDER_TYPES"
+        },
+        {
+          "from_field": "SO_TYPE_ACTIVE_END_DTM",
+          "from_instance": "SQ_EL_SALES_ORDER_TYPES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_SALES_ORDER_TYPE_ALT_NAME",
+      "source_path": [
+        {
+          "from_field": "DV_SALES_ORDER_TYPE_ALT_NAME",
+          "from_instance": "Exp_W_SALES_ORDER_TYPE"
+        },
+        {
+          "from_field": "NAME",
+          "from_instance": "EL_SALES_ORDER_TYPES"
+        },
+        {
+          "from_field": "DV_SALES_ORDER_TYPE_ALT_NAME",
+          "from_instance": "SQ_EL_SALES_ORDER_TYPES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "Exp_W_SALES_ORDER_TYPE"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "EL_SALES_ORDER_TYPES"
+        },
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "SQ_EL_SALES_ORDER_TYPES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "Exp_W_SALES_ORDER_TYPE"
+        },
+        {
+          "from_field": "UPDATE_DATE_TIME",
+          "from_instance": "EL_SALES_ORDER_TYPES"
+        },
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "SQ_EL_SALES_ORDER_TYPES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_OBSERVATION_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DUTY_BILLING_CD",
+      "source_path": [
+        {
+          "from_field": "DUTY_BILLING_CD",
+          "from_instance": "Exp_W_SALES_ORDER_TYPE"
+        },
+        {
+          "from_field": "DUTY_BILLING_CD",
+          "from_instance": "EL_SALES_ORDER_TYPES"
+        },
+        {
+          "from_field": "DUTY_BILLING_CD",
+          "from_instance": "SQ_EL_SALES_ORDER_TYPES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "Exp_W_SALES_ORDER_TYPE"
+        },
+        {
+          "from_field": "SO_TYPE_REVENUE_GEN_FLAG",
+          "from_instance": "EL_SALES_ORDER_TYPES"
+        },
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_EL_SALES_ORDER_TYPES"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:25.498815+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

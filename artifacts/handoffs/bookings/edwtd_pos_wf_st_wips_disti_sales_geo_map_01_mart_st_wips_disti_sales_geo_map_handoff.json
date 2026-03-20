@@ -1,0 +1,288 @@
+{
+  "workflow_name": "wf_m_ST_WIPS_DISTI_SALES_GEO_MAP",
+  "mapping_name": "m_ST_WIPS_DISTI_SALES_GEO_MAP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_POS",
+  "target_table": "ST_WIPS_DISTI_SALES_GEO_MAP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_pos_wf_st_wips_disti_sales_geo_map_01_mart_st_wips_disti_sales_geo_map",
+  "source_tables": [
+    "FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+  ],
+  "sources": [
+    {
+      "name": "FF_WIPS_DISTI_SALES_GEO_MAP_INTF",
+      "database_type": "Flat File",
+      "owner": "XXCHA_OPM_O",
+      "fields": [
+        {
+          "name": "SALES_LEVEL3",
+          "datatype": "string",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISTI_SALES_THEATRE",
+          "datatype": "string",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_SALES_GEO",
+          "datatype": "string",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_WIPS_DISTI_SALES_GEO_MAP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_LEVEL3",
+        "datatype": "varchar",
+        "precision": "200",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SALES_THEATER_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_GEO_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATED_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_LEVEL3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTI_SALES_THEATRE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTI_SALES_GEO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SALES_LEVEL3",
+      "from_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF",
+      "to_field": "SALES_LEVEL3",
+      "to_instance": "ST_WIPS_DISTI_SALES_GEO_MAP"
+    },
+    {
+      "from_field": "DISTI_SALES_THEATRE",
+      "from_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF",
+      "to_field": "SALES_THEATER_NAME",
+      "to_instance": "ST_WIPS_DISTI_SALES_GEO_MAP"
+    },
+    {
+      "from_field": "DISTI_SALES_GEO",
+      "from_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF",
+      "to_field": "SALES_GEO_NAME",
+      "to_instance": "ST_WIPS_DISTI_SALES_GEO_MAP"
+    },
+    {
+      "from_field": "LAST_UPDATED_DATE",
+      "from_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF",
+      "to_field": "LAST_UPDATED_DATE",
+      "to_instance": "ST_WIPS_DISTI_SALES_GEO_MAP"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF",
+      "to_field": "CREATED_DATE",
+      "to_instance": "ST_WIPS_DISTI_SALES_GEO_MAP"
+    },
+    {
+      "from_field": "SALES_LEVEL3",
+      "from_instance": "FF_WIPS_DISTI_SALES_GEO_MAP_INTF",
+      "to_field": "SALES_LEVEL3",
+      "to_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+    },
+    {
+      "from_field": "DISTI_SALES_THEATRE",
+      "from_instance": "FF_WIPS_DISTI_SALES_GEO_MAP_INTF",
+      "to_field": "DISTI_SALES_THEATRE",
+      "to_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+    },
+    {
+      "from_field": "DISTI_SALES_GEO",
+      "from_instance": "FF_WIPS_DISTI_SALES_GEO_MAP_INTF",
+      "to_field": "DISTI_SALES_GEO",
+      "to_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+    },
+    {
+      "from_field": "LAST_UPDATED_DATE",
+      "from_instance": "FF_WIPS_DISTI_SALES_GEO_MAP_INTF",
+      "to_field": "LAST_UPDATED_DATE",
+      "to_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "FF_WIPS_DISTI_SALES_GEO_MAP_INTF",
+      "to_field": "CREATED_DATE",
+      "to_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_LEVEL3",
+      "source_path": [
+        {
+          "from_field": "SALES_LEVEL3",
+          "from_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+        },
+        {
+          "from_field": "SALES_LEVEL3",
+          "from_instance": "FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_THEATER_NAME",
+      "source_path": [
+        {
+          "from_field": "DISTI_SALES_THEATRE",
+          "from_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_GEO_NAME",
+      "source_path": [
+        {
+          "from_field": "DISTI_SALES_GEO",
+          "from_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+        },
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATED_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATED_DATE",
+          "from_instance": "SQ_FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+        },
+        {
+          "from_field": "LAST_UPDATED_DATE",
+          "from_instance": "FF_WIPS_DISTI_SALES_GEO_MAP_INTF"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:16.841680+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

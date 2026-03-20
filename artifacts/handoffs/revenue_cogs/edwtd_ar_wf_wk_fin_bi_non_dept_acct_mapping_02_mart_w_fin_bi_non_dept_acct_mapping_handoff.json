@@ -1,0 +1,601 @@
+{
+  "workflow_name": "wf_m_WK_FIN_BI_NON_DEPT_ACCT_MAPPING",
+  "mapping_name": "m_WK_FIN_BI_NON_DEPT_ACCT_MAPPING",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "W_FIN_BI_NON_DEPT_ACCT_MAPPING",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_wk_fin_bi_non_dept_acct_mapping_02_mart_w_fin_bi_non_dept_acct_mapping",
+  "source_tables": [
+    "EL_CA_FIN_PROFIT_CENTER_MAP",
+    "ST_CA_FIN_ERP_GL_ACC_MAPPING"
+  ],
+  "sources": [
+    {
+      "name": "EL_CA_FIN_PROFIT_CENTER_MAP",
+      "database_type": "Teradata",
+      "owner": "ETLVWDB_DV9",
+      "fields": [
+        {
+          "name": "DEPARTMENT_NAME",
+          "datatype": "varchar",
+          "precision": "120",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROFIT_CENTER",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "ST_CA_FIN_ERP_GL_ACC_MAPPING",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV9",
+      "fields": [
+        {
+          "name": "ACCOUNT_NUM",
+          "datatype": "varchar",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LEVEL_1",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LEVEL_2",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LEVEL_3",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LEVEL_4",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_FIN_BI_NON_DEPT_ACCT_MAPPING",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_FINANCIAL_ACCOUNT_CD",
+        "datatype": "char",
+        "precision": "5",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_PROFIT_CENTER_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL_1_CD",
+        "datatype": "char",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL_2_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL_3_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL_4_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROFIT_CENTER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL_1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL_2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL_3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL_4",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSCFEGAM.ACCOUNT_NUM,\r\nECFPCM.PROFIT_CENTER,\r\nSCFEGAM.LEVEL_1 , \r\nSCFEGAM.LEVEL_2,\r\nSCFEGAM.LEVEL_3  ,                     \r\nSCFEGAM.LEVEL_4  ,\r\n'I' AS ACTION_CODE,\r\n'I' AS DML_TYPE\r\nFROM $$STGDB.ST_CA_FIN_ERP_GL_ACC_MAPPING SCFEGAM\r\nINNER JOIN $$ETLVWDB.EL_CA_FIN_PROFIT_CENTER_MAP ECFPCM\r\nON(SCFEGAM.LEVEL_2=ECFPCM.DEPARTMENT_NAME)\r\nUNION ALL\r\nSELECT \r\nECFEGAM.ACCOUNT_NUM,\r\nECFPCM.PROFIT_CENTER,\r\nECFEGAM.LEVEL_1 , \r\nECFEGAM.LEVEL_2,\r\nECFEGAM.LEVEL_3  ,                     \r\nECFEGAM.LEVEL_4   ,\r\n'I' AS ACTION_CODE,\r\n'I' AS DML_TYPE\r\nFROM $$EXCEPDB.EX_CA_FIN_ERP_GL_ACC_MAPPING ECFEGAM\r\nINNER JOIN $$ETLVWDB.EL_CA_FIN_PROFIT_CENTER_MAP ECFPCM\r\nON(ECFEGAM.LEVEL_2=ECFPCM.DEPARTMENT_NAME)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL_1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL_2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL_3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL_4",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nACCOUNT_NUM                   \r\n,DESCRIPTION                   \r\n,LEVEL_1                       \r\n,LEVEL_2                       \r\n,LEVEL_3                       \r\n,LEVEL_4                       \r\nFROM $$STGDB.ST_CA_FIN_ERP_GL_ACC_MAPPING SCFEGAM\r\nWHERE NOT EXISTS (SEL 1 FROM $$ETLVWDB.EL_CA_FIN_PROFIT_CENTER_MAP ECFPCM\r\nWHERE SCFEGAM.LEVEL_2=ECFPCM.DEPARTMENT_NAME)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACCOUNT_NUM",
+      "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING",
+      "to_field": "BK_FINANCIAL_ACCOUNT_CD",
+      "to_instance": "W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "PROFIT_CENTER",
+      "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING",
+      "to_field": "BK_PROFIT_CENTER_NAME",
+      "to_instance": "W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_1",
+      "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING",
+      "to_field": "LEVEL_1_CD",
+      "to_instance": "W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_2",
+      "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING",
+      "to_field": "LEVEL_2_CD",
+      "to_instance": "W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_3",
+      "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING",
+      "to_field": "LEVEL_3_CD",
+      "to_instance": "W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_4",
+      "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING",
+      "to_field": "LEVEL_4_CD",
+      "to_instance": "W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_2",
+      "from_instance": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "LEVEL_2",
+      "to_instance": "EX_CA_FIN_ERP_GL_ACC_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_3",
+      "from_instance": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "LEVEL_3",
+      "to_instance": "EX_CA_FIN_ERP_GL_ACC_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_4",
+      "from_instance": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "LEVEL_4",
+      "to_instance": "EX_CA_FIN_ERP_GL_ACC_MAPPING"
+    },
+    {
+      "from_field": "ACCOUNT_NUM",
+      "from_instance": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "ACCOUNT_NUM",
+      "to_instance": "EX_CA_FIN_ERP_GL_ACC_MAPPING"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EX_CA_FIN_ERP_GL_ACC_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_1",
+      "from_instance": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "LEVEL_1",
+      "to_instance": "EX_CA_FIN_ERP_GL_ACC_MAPPING"
+    },
+    {
+      "from_field": "ACCOUNT_NUM",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "ACCOUNT_NUM",
+      "to_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_1",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "LEVEL_1",
+      "to_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_2",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "LEVEL_2",
+      "to_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_3",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "LEVEL_3",
+      "to_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_4",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "LEVEL_4",
+      "to_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "PROFIT_CENTER",
+      "from_instance": "EL_CA_FIN_PROFIT_CENTER_MAP",
+      "to_field": "PROFIT_CENTER",
+      "to_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "ACCOUNT_NUM",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "ACCOUNT_NUM",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+    },
+    {
+      "from_field": "ACCOUNT_NUM",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING1",
+      "to_field": "ACCOUNT_NUM",
+      "to_instance": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING1",
+      "to_field": "DESCRIPTION",
+      "to_instance": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_1",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING1",
+      "to_field": "LEVEL_1",
+      "to_instance": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_2",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING1",
+      "to_field": "LEVEL_2",
+      "to_instance": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_3",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING1",
+      "to_field": "LEVEL_3",
+      "to_instance": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING"
+    },
+    {
+      "from_field": "LEVEL_4",
+      "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING1",
+      "to_field": "LEVEL_4",
+      "to_instance": "SQ_EX_CA_FIN_ERP_GL_ACC_MAPPING"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_FINANCIAL_ACCOUNT_CD",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_NUM",
+          "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_PROFIT_CENTER_NAME",
+      "source_path": [
+        {
+          "from_field": "PROFIT_CENTER",
+          "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL_1_CD",
+      "source_path": [
+        {
+          "from_field": "LEVEL_1",
+          "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL_2_CD",
+      "source_path": [
+        {
+          "from_field": "LEVEL_2",
+          "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL_3_CD",
+      "source_path": [
+        {
+          "from_field": "LEVEL_3",
+          "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL_4_CD",
+      "source_path": [
+        {
+          "from_field": "LEVEL_4",
+          "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+        },
+        {
+          "from_field": "ACCOUNT_NUM",
+          "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_W_FIN_BI_NON_DEPT_ACCT_MAPPING"
+        },
+        {
+          "from_field": "ACCOUNT_NUM",
+          "from_instance": "ST_CA_FIN_ERP_GL_ACC_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:09.820038+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

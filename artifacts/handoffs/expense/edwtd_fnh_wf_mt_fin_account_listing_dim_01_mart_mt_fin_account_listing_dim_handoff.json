@@ -1,0 +1,2056 @@
+{
+  "workflow_name": "wf_m_MT_FIN_ACCOUNT_LISTING_DIM",
+  "mapping_name": "m_MT_FIN_ACCOUNT_LISTING_DIM",
+  "mapping_description": "",
+  "folder_name": "EDWTD_FNH",
+  "target_table": "MT_FIN_ACCOUNT_LISTING_DIM",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_fnh_wf_mt_fin_account_listing_dim_01_mart_mt_fin_account_listing_dim",
+  "source_tables": [
+    "N_FINANCIAL_ACCT_HIER_NODE"
+  ],
+  "sources": [
+    {
+      "name": "N_FINANCIAL_ACCT_HIER_NODE",
+      "database_type": "Teradata",
+      "owner": "CCERTEMPVWDB_DV4",
+      "fields": [
+        {
+          "name": "ACCOUNT_GROUP_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "NODE_TYPE",
+          "datatype": "char",
+          "precision": "6",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PARENT_ACCOUNT_GROUP_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_GROUP_DESCR",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "MT_FIN_ACCOUNT_LISTING_DIM",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_FINANCIAL_ACCOUNT_CODE",
+        "datatype": "char",
+        "precision": "5",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_SUBACCOUNT_CD",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "LEVEL01_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL01_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL01_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL02_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL02_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL02_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL03_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL03_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL03_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL04_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL04_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL04_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL05_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL05_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL05_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL06_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL06_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL06_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL07_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL07_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL07_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL08_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL08_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL08_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL09_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL09_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL09_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL10_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL10_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL10_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL11_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL11_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL11_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL12_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL12_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL12_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL13_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL13_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL13_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL14_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL14_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL14_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL15_ACCT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEVEL15_ACCOUNT_GROUP_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_LEVEL15_SEQ_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_FINANCIAL_ACCOUNT_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SUBACCOUNT_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL01_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL01_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL01_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL02_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL02_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL02_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL03_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL03_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL03_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL04_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL04_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL04_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL05_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL05_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL05_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL06_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL06_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL06_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL07_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL07_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL07_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL08_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL08_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL08_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL09_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL09_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL09_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL10_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL10_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL10_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL11_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL11_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL11_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL12_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL12_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL12_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL13_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL13_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL13_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL14_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL14_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL14_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL15_ACCT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEVEL15_ACCOUNT_GROUP_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_LEVEL15_SEQ_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "select\r\n BK_FINANCIAL_ACCOUNT_CODE ,\r\nBK_SUBACCOUNT_CD ,\r\nlevel01_ID as LEVEL01_ACCT_GROUP_ID ,\r\nlevel01_GROUP_DESCR,\r\nLEVEL01_SEQ_NUM_INT,\r\nlevel02_ID as LEVEL02_ACCT_GROUP_ID ,\r\nlevel02_GROUP_DESCR,\r\nLEVEL02_SEQ_NUM_INT,\r\nlevel03_ID as LEVEL03_ACCT_GROUP_ID ,\r\nlevel03_GROUP_DESCR,\r\nLEVEL03_SEQ_NUM_INT,\r\nlevel04_ID as LEVEL04_ACCT_GROUP_ID ,\r\nlevel04_GROUP_DESCR,\r\nLEVEL04_SEQ_NUM_INT,\r\nlevel05_ID as LEVEL05_ACCT_GROUP_ID ,\r\nlevel05_GROUP_DESCR,\r\nLEVEL05_SEQ_NUM_INT,\r\nlevel06_ID as LEVEL06_ACCT_GROUP_ID ,\r\nlevel06_GROUP_DESCR,\r\nLEVEL06_SEQ_NUM_INT,\r\nlevel07_ID as LEVEL07_ACCT_GROUP_ID ,\r\nlevel07_GROUP_DESCR,\r\nLEVEL07_SEQ_NUM_INT,\r\nlevel08_ID as LEVEL08_ACCT_GROUP_ID ,\r\nlevel08_GROUP_DESCR,\r\nLEVEL08_SEQ_NUM_INT,\r\nlevel09_ID as LEVEL09_ACCT_GROUP_ID ,\r\nlevel09_GROUP_DESCR,\r\nLEVEL09_SEQ_NUM_INT,\r\nlevel10_ID as LEVEL10_ACCT_GROUP_ID ,\r\nlevel10_GROUP_DESCR,\r\nLEVEL10_SEQ_NUM_INT,\r\nlevel11_ID as LEVEL11_ACCT_GROUP_ID ,\r\nlevel11_GROUP_DESCR,\r\nLEVEL11_SEQ_NUM_INT,\r\nlevel12_ID as LEVEL12_ACCT_GROUP_ID ,\r\nlevel12_GROUP_DESCR,\r\nLEVEL12_SEQ_NUM_INT,\r\nlevel13_ID as LEVEL13_ACCT_GROUP_ID ,\r\nlevel13_GROUP_DESCR,\r\nLEVEL13_SEQ_NUM_INT,\r\nlevel14_ID as LEVEL14_ACCT_GROUP_ID ,\r\nlevel14_GROUP_DESCR,\r\nLEVEL14_SEQ_NUM_INT,\r\nlevel15_ID as LEVEL15_ACCT_GROUP_ID ,\r\nlevel15_GROUP_DESCR,\r\nLEVEL15_SEQ_NUM_INT\r\nfrom\r\n ( SELECT BK_FINANCIAL_ACCOUNT_CODE ,BK_SUBACCOUNT_CD ,\r\nnode_level01_ID as level01_ID , \r\ncase when LOWEST_LEVEL = 1 then BK_FINANCIAL_ACCOUNT_CODE else node_level02_ID end level02_ID ,\r\ncase when LOWEST_LEVEL = 2 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 1 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level03_ID end level03_ID ,\r\ncase when LOWEST_LEVEL = 3 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 2 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level04_ID end level04_ID ,\r\ncase when LOWEST_LEVEL = 4 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 3 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level05_ID end level05_ID ,\r\ncase when LOWEST_LEVEL = 5 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 4 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level06_ID end level06_ID ,\r\ncase when LOWEST_LEVEL = 6 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 5 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level07_ID end level07_ID ,\r\ncase when LOWEST_LEVEL = 7 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 6 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level08_ID end level08_ID ,\r\ncase when LOWEST_LEVEL = 8 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 7 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level09_ID end level09_ID ,\r\ncase when LOWEST_LEVEL = 9 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 8 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level10_ID end level10_ID ,\r\ncase when LOWEST_LEVEL = 10 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 9 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level11_ID end level11_ID ,\r\ncase when LOWEST_LEVEL = 11 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 10 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level12_ID end level12_ID ,\r\ncase when LOWEST_LEVEL = 12 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 11 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level13_ID end level13_ID ,\r\ncase when LOWEST_LEVEL = 13 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 12 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level14_ID end level14_ID ,\r\ncase when LOWEST_LEVEL = 14 then BK_FINANCIAL_ACCOUNT_CODE when LOWEST_LEVEL = 13 then BK_FINANCIAL_ACCOUNT_CODE||'-'||BK_SUBACCOUNT_CD else node_level15_ID end level15_ID,\r\nNODE_LEVEL01_GROUP_DESCR as LEVEL01_GROUP_DESCR,\r\ncase when LOWEST_LEVEL = 1 then FINANCIAL_ACCOUNT_DESCRIPTION else NODE_LEVEL02_GROUP_DESCR end as  level02_GROUP_DESCR,\r\ncase when LOWEST_LEVEL = 2 then FINANCIAL_ACCOUNT_DESCRIPTION else node_level03_GROUP_DESCR end level03_GROUP_DESCR ,\r\ncase when LOWEST_LEVEL = 3 then FINANCIAL_ACCOUNT_DESCRIPTION  else node_level04_GROUP_DESCR end level04_GROUP_DESCR ,\r\ncase when LOWEST_LEVEL = 4 then FINANCIAL_ACCOUNT_DESCRIPTION  else node_level05_GROUP_DESCR end level05_GROUP_DESCR ,\r\ncase when LOWEST_LEVEL = 5 then FINANCIAL_ACCOUNT_DESCRIPTION  else node_level06_GROUP_DESCR end level06_GROUP_DESCR ,\r\ncase when LOWEST_LEVEL = 6 then FINANCIAL_ACCOUNT_DESCRIPTION  else node_level07_GROUP_DESCR end level07_GROUP_DESCR ,\r\ncase when LOWEST_LEVEL = 7 then FINANCIAL_ACCOUNT_DESCRIPTION  else node_level08_GROUP_DESCR end level08_GROUP_DESCR ,\r\ncase when LOWEST_LEVEL = 8 then FINANCIAL_ACCOUNT_DESCRIPTION  else node_level09_GROUP_DESCR end level09_GROUP_DESCR ,\r\ncase when LOWEST_LEVEL = 9 then FINANCIAL_ACCOUNT_DESCRIPTION  else node_level10_GROUP_DESCR end level10_GROUP_DESCR ,\r\ncase when LOWEST_LEVEL = 10 then FINANCIAL_ACCOUNT_DESCRIPTION  else node_level11_GROUP_DESCR end level11_GROUP_DESCR ,\r\ncase when LOWEST_LEVEL = 11 then FINANCIAL_ACCOUNT_DESCRIPTION else node_level12_GROUP_DESCR end level12_GROUP_DESCR ,\r\ncase when LOWEST_LEVEL = 12 then FINANCIAL_ACCOUNT_DESCRIPTION else node_level13_GROUP_DESCR end level13_GROUP_DESCR ,\r\ncase when LOWEST_LEVEL = 13 then FINANCIAL_ACCOUNT_DESCRIPTION else node_level14_GROUP_DESCR end level14_GROUP_DESCR ,\r\ncase when LOWEST_LEVEL = 14 then FINANCIAL_ACCOUNT_DESCRIPTION else node_level15_GROUP_DESCR end level15_GROUP_DESCR ,\r\nNODE_LEVEL01_SEQ_NUM_INT as LEVEL01_SEQ_NUM_INT,\r\ncase when LOWEST_LEVEL = 1 then ACCT_REPORTING_SEQ_NUM_INT else NODE_LEVEL02_SEQ_NUM_INT end as  level02_SEQ_NUM_INT,\r\ncase when LOWEST_LEVEL = 2 then ACCT_REPORTING_SEQ_NUM_INT else node_level03_SEQ_NUM_INT end level03_SEQ_NUM_INT ,\r\ncase when LOWEST_LEVEL = 3 then ACCT_REPORTING_SEQ_NUM_INT  else node_level04_SEQ_NUM_INT end level04_SEQ_NUM_INT ,\r\ncase when LOWEST_LEVEL = 4 then ACCT_REPORTING_SEQ_NUM_INT  else node_level05_SEQ_NUM_INT end level05_SEQ_NUM_INT ,\r\ncase when LOWEST_LEVEL = 5 then ACCT_REPORTING_SEQ_NUM_INT  else node_level06_SEQ_NUM_INT end level06_SEQ_NUM_INT ,\r\ncase when LOWEST_LEVEL = 6 then ACCT_REPORTING_SEQ_NUM_INT  else node_level07_SEQ_NUM_INT end level07_SEQ_NUM_INT ,\r\ncase when LOWEST_LEVEL = 7 then ACCT_REPORTING_SEQ_NUM_INT  else node_level08_SEQ_NUM_INT end level08_SEQ_NUM_INT ,\r\ncase when LOWEST_LEVEL = 8 then ACCT_REPORTING_SEQ_NUM_INT  else node_level09_SEQ_NUM_INT end level09_SEQ_NUM_INT ,\r\ncase when LOWEST_LEVEL = 9 then ACCT_REPORTING_SEQ_NUM_INT  else node_level10_SEQ_NUM_INT end level10_SEQ_NUM_INT ,\r\ncase when LOWEST_LEVEL = 10 then ACCT_REPORTING_SEQ_NUM_INT  else node_level11_SEQ_NUM_INT end level11_SEQ_NUM_INT ,\r\ncase when LOWEST_LEVEL = 11 then ACCT_REPORTING_SEQ_NUM_INT else node_level12_SEQ_NUM_INT end level12_SEQ_NUM_INT ,\r\ncase when LOWEST_LEVEL = 12 then ACCT_REPORTING_SEQ_NUM_INT else node_level13_SEQ_NUM_INT end level13_SEQ_NUM_INT ,\r\ncase when LOWEST_LEVEL = 13 then ACCT_REPORTING_SEQ_NUM_INT else node_level14_SEQ_NUM_INT end level14_SEQ_NUM_INT ,\r\ncase when LOWEST_LEVEL = 14 then ACCT_REPORTING_SEQ_NUM_INT else node_level15_SEQ_NUM_INT end level15_SEQ_NUM_INT ,\r\n/* These case statements are to take data from n_financial_account_TV for the last level  , which is Account */\r\nLOWEST_LEVEL\r\nfrom \r\n( Select Coalesce( level15.account_group_id ,level14.account_group_id ,level13.account_group_id ,level12.account_group_id ,level11.account_group_id ,\r\n level10.account_group_id ,level09.account_group_id ,\r\nlevel08.account_group_id ,level07.account_group_id ,\r\nlevel06.account_group_id , level05.account_group_id ,\r\nlevel04.account_group_id ,level03.account_group_id ,\r\nlevel02.account_group_id ,level01.account_group_id ) As Financial_account_group_id ,\r\nnfatv.BK_FINANCIAL_ACCOUNT_CODE ,\r\nNFSA.BK_SUBACCOUNT_CODE as BK_SUBACCOUNT_CD ,\r\nnfatv.FINANCIAL_ACCOUNT_DESCRIPTION ,\r\nnfatv.FA_REPORTING_SEQUENCE_NUM_INT  as ACCT_REPORTING_SEQ_NUM_INT, /* From DRM Account */\r\nlevel01.account_group_id As node_level01_ID ,\r\nlevel02.account_group_id As node_level02_ID ,\r\nlevel03.account_group_id As node_level03_ID ,\r\nlevel04.account_group_id As node_level04_ID ,\r\nlevel05.account_group_id As node_level05_ID ,\r\nlevel06.account_group_id As node_level06_ID ,\r\nlevel07.account_group_id As node_level07_ID ,\r\nlevel08.account_group_id As node_level08_ID ,\r\nlevel09.account_group_id As node_level09_ID ,\r\nlevel10.account_group_id As node_level10_ID ,\r\nlevel11.account_group_id As node_level11_ID ,\r\nlevel12.account_group_id As node_level12_ID ,\r\nlevel13.account_group_id As node_level13_ID ,\r\nlevel14.account_group_id As node_level14_ID ,\r\nlevel15.account_group_id As node_level15_ID ,\r\ncase when NODE_LEVEL15_ID is not null then 15 \r\nwhen NODE_LEVEL14_ID is not null then 14 \r\nwhen NODE_LEVEL13_ID is not null then 13\r\n when NODE_LEVEL12_ID is not null then 12\r\n when NODE_LEVEL11_ID is not null then 11\r\n when NODE_LEVEL10_ID is not null then 10 \r\nwhen NODE_LEVEL09_ID is not null then 9 \r\nwhen NODE_LEVEL08_ID is not null then 8 \r\nwhen NODE_LEVEL07_ID is not null then 7 \r\nwhen NODE_LEVEL06_ID is not null then 6 \r\nwhen NODE_LEVEL05_ID is not null then 5 \r\nwhen NODE_LEVEL04_ID is not null then 4 \r\nwhen NODE_LEVEL03_ID is not null then 3 \r\nwhen NODE_LEVEL02_ID is not null then 2 \r\nwhen NODE_LEVEL01_ID is not null then 1 end as LOWEST_LEVEL \r\n,level01.ACCOUNT_GROUP_DESCR As node_level01_GROUP_DESCR\r\n,level02.ACCOUNT_GROUP_DESCR As node_level02_GROUP_DESCR\r\n,level03.ACCOUNT_GROUP_DESCR As node_level03_GROUP_DESCR\r\n,level04.ACCOUNT_GROUP_DESCR As node_level04_GROUP_DESCR\r\n,level05.ACCOUNT_GROUP_DESCR As node_level05_GROUP_DESCR\r\n,level06.ACCOUNT_GROUP_DESCR As node_level06_GROUP_DESCR\r\n,level07.ACCOUNT_GROUP_DESCR As node_level07_GROUP_DESCR\r\n,level08.ACCOUNT_GROUP_DESCR As node_level08_GROUP_DESCR\r\n,level09.ACCOUNT_GROUP_DESCR As node_level09_GROUP_DESCR\r\n,level10.ACCOUNT_GROUP_DESCR As node_level10_GROUP_DESCR\r\n,level11.ACCOUNT_GROUP_DESCR As node_level11_GROUP_DESCR\r\n,level12.ACCOUNT_GROUP_DESCR As node_level12_GROUP_DESCR\r\n,level13.ACCOUNT_GROUP_DESCR As node_level13_GROUP_DESCR\r\n,level14.ACCOUNT_GROUP_DESCR As node_level14_GROUP_DESCR\r\n,level15.ACCOUNT_GROUP_DESCR As node_level15_GROUP_DESCR  \r\n,level01.AH_REPORTING_SEQUENCE_NUM_INT As node_level01_SEQ_NUM_INT\r\n,level02.AH_REPORTING_SEQUENCE_NUM_INT As node_level02_SEQ_NUM_INT\r\n,level03.AH_REPORTING_SEQUENCE_NUM_INT As node_level03_SEQ_NUM_INT\r\n,level04.AH_REPORTING_SEQUENCE_NUM_INT As node_level04_SEQ_NUM_INT\r\n,level05.AH_REPORTING_SEQUENCE_NUM_INT As node_level05_SEQ_NUM_INT\r\n,level06.AH_REPORTING_SEQUENCE_NUM_INT As node_level06_SEQ_NUM_INT\r\n,level07.AH_REPORTING_SEQUENCE_NUM_INT As node_level07_SEQ_NUM_INT\r\n,level08.AH_REPORTING_SEQUENCE_NUM_INT As node_level08_SEQ_NUM_INT\r\n,level09.AH_REPORTING_SEQUENCE_NUM_INT As node_level09_SEQ_NUM_INT\r\n,level10.AH_REPORTING_SEQUENCE_NUM_INT As node_level10_SEQ_NUM_INT\r\n,level11.AH_REPORTING_SEQUENCE_NUM_INT As node_level11_SEQ_NUM_INT\r\n,level12.AH_REPORTING_SEQUENCE_NUM_INT As node_level12_SEQ_NUM_INT\r\n,level13.AH_REPORTING_SEQUENCE_NUM_INT As node_level13_SEQ_NUM_INT\r\n,level14.AH_REPORTING_SEQUENCE_NUM_INT As node_level14_SEQ_NUM_INT\r\n,level15.AH_REPORTING_SEQUENCE_NUM_INT As node_level15_SEQ_NUM_INT  \r\nFrom ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 1 ) level01 \r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 2 ) level02\r\n\tOn level01.account_group_id = level02.PARENT_ACCOUNT_GROUP_ID \r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 3 ) level03\r\n\tOn level02.account_group_id = level03.PARENT_ACCOUNT_GROUP_ID\r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 4 ) level04 \r\n\tOn level03.account_group_id = level04.PARENT_ACCOUNT_GROUP_ID \r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 5 ) level05 \r\n\tOn level04.account_group_id = level05.PARENT_ACCOUNT_GROUP_ID \r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 6 ) level06\r\n\tOn level05.account_group_id = level06.PARENT_ACCOUNT_GROUP_ID \r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 7 ) level07 \r\n\tOn level06.account_group_id = level07.PARENT_ACCOUNT_GROUP_ID \r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 8 ) level08 \r\n\tOn level07.account_group_id = level08.PARENT_ACCOUNT_GROUP_ID \r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 9 ) level09 \r\n\tOn level08.account_group_id = level09.PARENT_ACCOUNT_GROUP_ID \r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 10 ) level10 \r\n\tOn level09.account_group_id = level10.PARENT_ACCOUNT_GROUP_ID \r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 11 ) level11\r\n\tOn level10.account_group_id = level11.PARENT_ACCOUNT_GROUP_ID \r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 12 ) level12 \r\n\tOn level11.account_group_id = level12.PARENT_ACCOUNT_GROUP_ID \r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 13 ) level13\r\n\tOn level12.account_group_id = level13.PARENT_ACCOUNT_GROUP_ID \r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 14 ) level14 \r\n\tOn level13.account_group_id = level14.PARENT_ACCOUNT_GROUP_ID\r\nLeft Outer Join ( Select * From $$CCERTEMPVWDB.n_financial_Acct_hier_node Where ACCT_NODE_LEVEL_NUMBER_INT = 15 ) level15\r\n\tOn level14.account_group_id = level15.PARENT_ACCOUNT_GROUP_ID\r\nInner Join $$CCERTEMPVWDB.n_financial_account_TV nfatv\r\n\t On ( Financial_account_group_id = nfatv.ACCOUNT_GROUP_ID and nfatv.END_TV_DATE='3500-01-01' ) \r\nInner join ( select distinct BK_FINANCIAL_ACCOUNT_CODE , BK_SUBACCOUNT_CODE\r\n\t\t\t\t\t\t\t from $$FINLGLVWDB.N_FINANCIAL_SUBACCOUNT_TV where END_TV_DATE='3500-01-01' ) NFSA \r\n\ton NFSA.BK_FINANCIAL_ACCOUNT_CODE=nfatv.BK_FINANCIAL_ACCOUNT_CODE )A \r\n where not exists (select 1 from $$CCERTEMPVWDB.MT_FIN_ACCOUNT_LISTING_DIM RAH \r\n\t\t\t\t\t\t\t\t\t\t\twhere RAH.BK_FINANCIAL_ACCOUNT_CODE= A.BK_FINANCIAL_ACCOUNT_CODE \r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tand RAH.BK_SUBACCOUNT_CD = A.BK_SUBACCOUNT_CD\r\n\t\t\t\t\t\t\t\t ) \r\n\t)b",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_FINANCIAL_ACCOUNT_CODE",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "BK_FINANCIAL_ACCOUNT_CODE",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "BK_SUBACCOUNT_CD",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "BK_SUBACCOUNT_CD",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL01_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL01_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL01_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL01_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL02_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL02_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL02_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL02_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL03_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL03_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL03_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL03_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL04_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL04_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL04_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL04_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL05_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL05_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL05_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL05_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL06_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL06_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL06_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL06_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL07_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL07_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL07_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL07_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL08_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL08_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL08_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL08_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL09_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL09_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL09_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL09_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL10_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL10_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL10_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL10_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL11_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL11_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL11_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL11_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL12_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL12_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL12_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL12_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL13_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL13_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL13_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL13_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL14_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL14_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL14_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL14_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL15_ACCT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL15_ACCT_GROUP_ID",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "LEVEL15_ACCOUNT_GROUP_DESCR",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL15_ACCOUNT_GROUP_DESCR",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL01_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL01_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL02_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL02_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL03_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL03_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL04_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL04_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL05_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL05_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL06_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL06_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL07_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL07_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL08_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL08_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL09_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL09_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL10_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL10_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL11_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL11_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL12_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL12_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL13_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL13_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL14_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL14_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "NODE_LEVEL15_SEQ_NUM_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL15_SEQ_NUM_INT",
+      "to_instance": "MT_FIN_ACCOUNT_LISTING_DIM"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL13_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "BK_FINANCIAL_ACCOUNT_CODE",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "NODE_TYPE",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "BK_SUBACCOUNT_CD",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL01_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL02_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL03_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL04_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL05_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL06_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL07_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL08_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL09_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL10_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL11_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL14_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL15_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL01_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL02_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL03_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL04_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL05_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL06_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL07_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL08_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL09_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL10_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL11_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL12_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL13_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL14_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_DESCR",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL15_ACCOUNT_GROUP_DESCR",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL01_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL02_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL03_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL04_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL05_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL06_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL07_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL08_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL09_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL10_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL11_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL12_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL13_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL14_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_LEVEL15_SEQ_NUM_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "N_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "LEVEL12_ACCT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_FINANCIAL_ACCOUNT_CODE",
+      "source_path": [
+        {
+          "from_field": "BK_FINANCIAL_ACCOUNT_CODE",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SUBACCOUNT_CD",
+      "source_path": [
+        {
+          "from_field": "BK_SUBACCOUNT_CD",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "NODE_TYPE",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL01_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL01_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL01_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL01_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL01_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL01_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL02_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL02_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL02_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL02_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL02_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL02_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL03_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL03_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL03_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL03_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL03_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL03_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL04_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL04_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL04_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL04_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL04_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL04_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL05_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL05_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL05_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL05_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL05_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL05_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL06_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL06_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL06_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL06_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL06_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL06_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL07_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL07_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL07_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL07_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL07_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL07_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL08_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL08_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL08_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL08_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL08_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL08_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL09_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL09_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL09_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL09_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL09_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL09_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL10_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL10_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL10_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL10_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL10_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL10_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL11_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL11_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL11_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL11_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL11_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL11_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL12_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL12_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL12_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL12_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL12_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL12_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL13_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL13_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL13_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL13_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL13_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL13_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL14_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL14_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL14_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL14_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL14_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL14_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL15_ACCT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "LEVEL15_ACCT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEVEL15_ACCOUNT_GROUP_DESCR",
+      "source_path": [
+        {
+          "from_field": "LEVEL15_ACCOUNT_GROUP_DESCR",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_DESCR",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_LEVEL15_SEQ_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "NODE_LEVEL15_SEQ_NUM_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "N_FINANCIAL_ACCT_HIER_NODE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:04.862840+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

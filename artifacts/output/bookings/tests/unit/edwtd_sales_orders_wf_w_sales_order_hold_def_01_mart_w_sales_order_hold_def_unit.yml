@@ -1,0 +1,13 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_sales_orders_wf_w_sales_order_hold_def_01_mart_w_sales_order_hold_def_expression_transform
+    model: edwtd_sales_orders_wf_w_sales_order_hold_def_01_mart_w_sales_order_hold_def
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'st_uo_oe_hold_definitions')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

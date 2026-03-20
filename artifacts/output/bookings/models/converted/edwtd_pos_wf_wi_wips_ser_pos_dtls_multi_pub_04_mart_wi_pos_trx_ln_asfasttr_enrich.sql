@@ -1,0 +1,277 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_wips_ser_pos_dtls_multi_pub', 'batch', 'edwtd_pos'],
+    meta={
+        'source_workflow': 'wf_m_WI_WIPS_SER_POS_DTLS_MULTI_PUB',
+        'target_table': 'WI_POS_TRX_LN_ASFASTTR_ENRICH',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:33.865829+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_manual_pos_rtr_incr_data AS (
+    SELECT
+        pos_trx_ln_as_new_or_rnwl_key,
+        bk_pos_transaction_id_int,
+        sk_unique_id_int,
+        transaction_id_int,
+        dsv_bookings_flg,
+        active_flg,
+        src_created_dtm,
+        dv_src_created_dt,
+        src_created_process_name,
+        src_updated_dtm,
+        dv_src_updated_dt,
+        src_updated_process_name,
+        src_rptd_quote_num,
+        src_rptd_contract_num,
+        service_quote_line_key,
+        sk_so_line_id_int,
+        sales_order_line_key,
+        matching_mthd_for_tagging_name,
+        src_rptd_erp_so_header_id,
+        src_rptd_erp_quote_header_id,
+        src_rptd_revenue_src_cd,
+        sales_motion_cd,
+        confidence_flg,
+        split_pct,
+        start_tv_dtm,
+        po_exists_flg,
+        po_distri_exists_flg,
+        po_prdt_exists_flg,
+        quote_exists_flg,
+        quote_distri_exists_flg,
+        quote_prdt_exists_flg,
+        multiple_sales_motion_flg,
+        multiple_match_flg,
+        approved_erp_linkage_flg,
+        sales_motion_timing_cd,
+        manual_override_role,
+        requesting_csco_wrkr_prty_key,
+        sls_mtn_correction_case_num,
+        sls_mtn_correction_cmnt,
+        sls_mtn_correction_reason_desc,
+        bk_orig_pos_trx_id_int,
+        orig_pos_trx_ln_as_nw_rnwl_key,
+        sk_offer_attribution_id_int,
+        software_flg
+    FROM {{ source('raw', 'wi_manual_pos_rtr_incr_data') }}
+),
+
+source_wi_opl_dsv_pos_rtr_incr_data AS (
+    SELECT
+        pos_trx_ln_as_new_or_rnwl_key,
+        bk_pos_transaction_id_int,
+        sk_unique_id_int,
+        transaction_id_int,
+        dsv_bookings_flg,
+        active_flg,
+        src_created_dtm,
+        dv_src_created_dt,
+        src_created_process_name,
+        src_updated_dtm,
+        dv_src_updated_dt,
+        src_updated_process_name,
+        src_rptd_quote_num,
+        src_rptd_contract_num,
+        service_quote_line_key,
+        sales_order_line_key,
+        matching_mthd_for_tagging_name,
+        src_rptd_erp_so_header_id,
+        src_rptd_erp_quote_header_id,
+        src_rptd_revenue_src_cd,
+        sales_motion_cd,
+        confidence_flg,
+        split_pct,
+        start_tv_dtm,
+        po_exists_flg,
+        po_distri_exists_flg,
+        po_prdt_exists_flg,
+        quote_exists_flg,
+        quote_distri_exists_flg,
+        quote_prdt_exists_flg,
+        multiple_sales_motion_flg,
+        multiple_match_flg,
+        approved_erp_linkage_flg,
+        sales_motion_timing_cd,
+        manual_override_role,
+        requesting_csco_wrkr_prty_key,
+        sls_mtn_correction_case_num,
+        sls_mtn_correction_cmnt,
+        sls_mtn_correction_reason_desc,
+        bk_orig_pos_trx_id_int,
+        orig_pos_trx_ln_as_nw_rnwl_key,
+        sk_offer_attribution_id_int,
+        software_flg
+    FROM {{ source('raw', 'wi_opl_dsv_pos_rtr_incr_data') }}
+),
+
+source_wi_bkg_pos_sfp_trx AS (
+    SELECT
+        trans_id,
+        sales_order_line_key,
+        sales_motion_cd,
+        dv_allocation_pct
+    FROM {{ source('raw', 'wi_bkg_pos_sfp_trx') }}
+),
+
+source_wi_pos_trx_ret_ln_ovwrtn_org_ln AS (
+    SELECT
+        bk_pos_transaction_id_int,
+        sk_unique_id_int,
+        transaction_id_int,
+        dsv_bookings_flg,
+        active_flg,
+        src_created_dtm,
+        dv_src_created_dt,
+        src_created_process_name,
+        src_updated_dtm,
+        dv_src_updated_dt,
+        src_updated_process_name,
+        derived_quote_number,
+        derived_quote_line_id,
+        derived_order_line_id,
+        sales_order_line_key,
+        matching_mthd_for_tagging_name,
+        src_rptd_revenue_src_cd,
+        sales_motion_cd,
+        confidence_flg,
+        dv_allocation_pct,
+        start_tv_dtm,
+        po_exists_flg,
+        po_distri_exists_flg,
+        po_prdt_exists_flg,
+        quote_exists_flg,
+        quote_distri_exists_flg,
+        quote_prdt_exists_flg,
+        multiple_sales_motion_flg,
+        multiple_match_flg,
+        approved_erp_linkage_flg,
+        sales_motion_timing_cd,
+        manual_override_role,
+        requesting_csco_wrkr_prty_key,
+        sls_mtn_correction_case_num,
+        sls_mtn_correction_cmnt,
+        sls_mtn_correction_reason_desc
+    FROM {{ source('raw', 'wi_pos_trx_ret_ln_ovwrtn_org_ln') }}
+),
+
+source_el_pos_tran_so_def_allc AS (
+    SELECT
+        trans_id,
+        sales_order_line_key,
+        sales_motion_cd,
+        dv_allocation_pct,
+        match_type
+    FROM {{ source('raw', 'el_pos_tran_so_def_allc') }}
+),
+
+source_el_pos_tran_sol_def_allc AS (
+    SELECT
+        trans_id,
+        sales_order_line_key,
+        sales_motion_cd,
+        dv_allocation_pct
+    FROM {{ source('raw', 'el_pos_tran_sol_def_allc') }}
+),
+
+source_el_pos_trx_ln_as_new_or_rnwl_all AS (
+    SELECT
+        trans_id,
+        id,
+        booking_flag,
+        service_type,
+        active_flag,
+        created_date,
+        created_by,
+        last_updated_date,
+        last_updated_by,
+        action_code,
+        derived_quote_number,
+        derived_contract_number,
+        derived_quote_line_id,
+        derived_order_line_id,
+        match_type,
+        order_header_id,
+        quote_header_id,
+        revenue_source_code,
+        confidence_flag,
+        po_exists_flg,
+        po_distri_exists_flg,
+        po_prdt_exists_flg,
+        quote_exists_flg,
+        quote_distri_exists_flg,
+        quote_prdt_exists_flg,
+        multiple_sales_motion_flg,
+        sales_order_line_key,
+        sales_motion_cd,
+        dv_allocation_pct,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        start_tv_dtm,
+        end_tv_dtm,
+        multiple_match_flg,
+        approved_erp_linkage_flg,
+        sales_motion_timing_cd,
+        order_identifier,
+        ss_code,
+        net_price_flg
+    FROM {{ source('raw', 'el_pos_trx_ln_as_new_or_rnwl_all') }}
+),
+
+source_wi_wips_ser_pos_dtls_multi_pub AS (
+    SELECT
+        bk_pos_transaction_id_int,
+        sk_unique_id_int,
+        transaction_id_int,
+        dsv_bookings_flg,
+        active_flg,
+        src_created_dtm,
+        dv_src_created_dt,
+        src_created_process_name,
+        src_updated_dtm,
+        dv_src_updated_dt,
+        src_updated_process_name,
+        derived_quote_number,
+        derived_quote_line_id,
+        derived_order_line_id,
+        sales_order_line_key,
+        matching_mthd_for_tagging_name,
+        src_rptd_revenue_src_cd,
+        sales_motion_cd,
+        confidence_flg,
+        dv_allocation_pct,
+        start_tv_dtm,
+        po_exists_flg,
+        po_distri_exists_flg,
+        po_prdt_exists_flg,
+        quote_exists_flg,
+        quote_distri_exists_flg,
+        quote_prdt_exists_flg,
+        multiple_sales_motion_flg,
+        multiple_match_flg,
+        approved_erp_linkage_flg,
+        sales_motion_timing_cd,
+        manual_override_role,
+        requesting_csco_wrkr_prty_key,
+        sls_mtn_correction_case_num,
+        sls_mtn_correction_cmnt,
+        sls_mtn_correction_reason_desc
+    FROM {{ source('raw', 'wi_wips_ser_pos_dtls_multi_pub') }}
+),
+
+final AS (
+    SELECT
+        trans_id,
+        sales_order_line_key,
+        sales_motion_cd,
+        dv_allocation_pct
+    FROM source_wi_wips_ser_pos_dtls_multi_pub
+)
+
+SELECT * FROM final

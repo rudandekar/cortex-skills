@@ -1,0 +1,588 @@
+{
+  "workflow_name": "wf_m_ST_STRATEGIC_OFFERS_DETAILS",
+  "mapping_name": "m_ST_STRATEGIC_OFFERS_DETAILS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_XAAS_BKGS",
+  "target_table": "ST_STRATEGIC_OFFERS_DETAILS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_xaas_bkgs_wf_st_strategic_offers_details_01_mart_st_strategic_offers_details",
+  "source_tables": [
+    "EX_STRATEGIC_OFFERS_DETAILS",
+    "ST_STRATEGIC_OFFERS_DETAILS"
+  ],
+  "sources": [
+    {
+      "name": "EX_STRATEGIC_OFFERS_DETAILS",
+      "database_type": "Teradata",
+      "owner": "EXCEPDB_DV3",
+      "fields": [
+        {
+          "name": "LINE_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "HEADER_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STRATEGIC_OFFER_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STRATEGIC_OFFER_DISCOUNT_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STRATEGIC_OFFER_VERSION",
+          "datatype": "decimal",
+          "precision": "12",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "ST_STRATEGIC_OFFERS_DETAILS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "LINE_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "HEADER_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STRATEGIC_OFFER_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STRATEGIC_OFFER_DISCOUNT_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STRATEGIC_OFFER_VERSION",
+          "datatype": "decimal",
+          "precision": "12",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_STRATEGIC_OFFERS_DETAILS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "LINE_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "HEADER_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "STRATEGIC_OFFER_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "STRATEGIC_OFFER_DISCOUNT_PCT",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "STRATEGIC_OFFER_VERSION",
+        "datatype": "decimal",
+        "precision": "12",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_STRATEGIC_OFFERS_DETAILS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "LINE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HEADER_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STRATEGIC_OFFER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STRATEGIC_OFFER_DISCOUNT_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STRATEGIC_OFFER_VERSION",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\tSOD.LINE_ID,\r\n\tSOD.HEADER_ID,\r\n\tSOD.STRATEGIC_OFFER_NAME,\r\n\tSOD.STRATEGIC_OFFER_DISCOUNT_PCT,\r\n\tSOD.STRATEGIC_OFFER_VERSION,\r\n\tSOD.EDW_CREATE_DTM\r\n FROM \r\n  $$ETLVWDB_DV1.ST_SI_STRATEGIC_OFFERS_DETAILS SOD  \r\n  QUALIFY ROW_NUMBER() OVER (PARTITION BY SOD.LINE_ID, SOD.STRATEGIC_OFFER_NAME    \r\n  ORDER BY SOD.EDW_CREATE_DTM DESC)=1\r\n  WHERE SOD.EDW_CREATE_DTM > CAST('$$LastExtractDate' AS TIMESTAMP(0))",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_EX_STRATEGIC_OFFERS_DETAILS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "LINE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HEADER_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STRATEGIC_OFFER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STRATEGIC_OFFER_DISCOUNT_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STRATEGIC_OFFER_VERSION",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "LINE_ID",
+      "from_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "LINE_ID",
+      "to_instance": "ST_STRATEGIC_OFFERS_DETAILS2"
+    },
+    {
+      "from_field": "HEADER_ID",
+      "from_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "HEADER_ID",
+      "to_instance": "ST_STRATEGIC_OFFERS_DETAILS2"
+    },
+    {
+      "from_field": "STRATEGIC_OFFER_NAME",
+      "from_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "STRATEGIC_OFFER_NAME",
+      "to_instance": "ST_STRATEGIC_OFFERS_DETAILS2"
+    },
+    {
+      "from_field": "STRATEGIC_OFFER_DISCOUNT_PCT",
+      "from_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "STRATEGIC_OFFER_DISCOUNT_PCT",
+      "to_instance": "ST_STRATEGIC_OFFERS_DETAILS2"
+    },
+    {
+      "from_field": "STRATEGIC_OFFER_VERSION",
+      "from_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "STRATEGIC_OFFER_VERSION",
+      "to_instance": "ST_STRATEGIC_OFFERS_DETAILS2"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "ST_STRATEGIC_OFFERS_DETAILS2"
+    },
+    {
+      "from_field": "LINE_ID",
+      "from_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "LINE_ID",
+      "to_instance": "ST_STRATEGIC_OFFERS_DETAILS1"
+    },
+    {
+      "from_field": "HEADER_ID",
+      "from_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "HEADER_ID",
+      "to_instance": "ST_STRATEGIC_OFFERS_DETAILS1"
+    },
+    {
+      "from_field": "STRATEGIC_OFFER_NAME",
+      "from_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "STRATEGIC_OFFER_NAME",
+      "to_instance": "ST_STRATEGIC_OFFERS_DETAILS1"
+    },
+    {
+      "from_field": "STRATEGIC_OFFER_DISCOUNT_PCT",
+      "from_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "STRATEGIC_OFFER_DISCOUNT_PCT",
+      "to_instance": "ST_STRATEGIC_OFFERS_DETAILS1"
+    },
+    {
+      "from_field": "STRATEGIC_OFFER_VERSION",
+      "from_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "STRATEGIC_OFFER_VERSION",
+      "to_instance": "ST_STRATEGIC_OFFERS_DETAILS1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "ST_STRATEGIC_OFFERS_DETAILS1"
+    },
+    {
+      "from_field": "LINE_ID",
+      "from_instance": "ST_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "LINE_ID",
+      "to_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS"
+    },
+    {
+      "from_field": "HEADER_ID",
+      "from_instance": "ST_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "HEADER_ID",
+      "to_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS"
+    },
+    {
+      "from_field": "STRATEGIC_OFFER_NAME",
+      "from_instance": "ST_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "STRATEGIC_OFFER_NAME",
+      "to_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS"
+    },
+    {
+      "from_field": "STRATEGIC_OFFER_DISCOUNT_PCT",
+      "from_instance": "ST_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "STRATEGIC_OFFER_DISCOUNT_PCT",
+      "to_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS"
+    },
+    {
+      "from_field": "STRATEGIC_OFFER_VERSION",
+      "from_instance": "ST_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "STRATEGIC_OFFER_VERSION",
+      "to_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "ST_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS"
+    },
+    {
+      "from_field": "LINE_ID",
+      "from_instance": "EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "LINE_ID",
+      "to_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+    },
+    {
+      "from_field": "HEADER_ID",
+      "from_instance": "EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "HEADER_ID",
+      "to_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+    },
+    {
+      "from_field": "STRATEGIC_OFFER_NAME",
+      "from_instance": "EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "STRATEGIC_OFFER_NAME",
+      "to_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+    },
+    {
+      "from_field": "STRATEGIC_OFFER_DISCOUNT_PCT",
+      "from_instance": "EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "STRATEGIC_OFFER_DISCOUNT_PCT",
+      "to_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+    },
+    {
+      "from_field": "STRATEGIC_OFFER_VERSION",
+      "from_instance": "EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "STRATEGIC_OFFER_VERSION",
+      "to_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "EX_STRATEGIC_OFFERS_DETAILS",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "LINE_ID",
+      "source_path": [
+        {
+          "from_field": "LINE_ID",
+          "from_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "LINE_ID",
+          "from_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "LINE_ID",
+          "from_instance": "ST_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "LINE_ID",
+          "from_instance": "EX_STRATEGIC_OFFERS_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "HEADER_ID",
+      "source_path": [
+        {
+          "from_field": "HEADER_ID",
+          "from_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "HEADER_ID",
+          "from_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "HEADER_ID",
+          "from_instance": "ST_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "HEADER_ID",
+          "from_instance": "EX_STRATEGIC_OFFERS_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "STRATEGIC_OFFER_NAME",
+      "source_path": [
+        {
+          "from_field": "STRATEGIC_OFFER_NAME",
+          "from_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "STRATEGIC_OFFER_NAME",
+          "from_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "STRATEGIC_OFFER_NAME",
+          "from_instance": "ST_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "STRATEGIC_OFFER_NAME",
+          "from_instance": "EX_STRATEGIC_OFFERS_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "STRATEGIC_OFFER_DISCOUNT_PCT",
+      "source_path": [
+        {
+          "from_field": "STRATEGIC_OFFER_DISCOUNT_PCT",
+          "from_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "STRATEGIC_OFFER_DISCOUNT_PCT",
+          "from_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "STRATEGIC_OFFER_DISCOUNT_PCT",
+          "from_instance": "ST_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "STRATEGIC_OFFER_DISCOUNT_PCT",
+          "from_instance": "EX_STRATEGIC_OFFERS_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "STRATEGIC_OFFER_VERSION",
+      "source_path": [
+        {
+          "from_field": "STRATEGIC_OFFER_VERSION",
+          "from_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "STRATEGIC_OFFER_VERSION",
+          "from_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "STRATEGIC_OFFER_VERSION",
+          "from_instance": "ST_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "STRATEGIC_OFFER_VERSION",
+          "from_instance": "EX_STRATEGIC_OFFERS_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_EX_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "ST_STRATEGIC_OFFERS_DETAILS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EX_STRATEGIC_OFFERS_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:26.423577+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

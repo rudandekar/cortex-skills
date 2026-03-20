@@ -1,0 +1,561 @@
+{
+  "workflow_name": "wf_m_WI_CHNL_RET_DVAD_PART_COUNTRY",
+  "mapping_name": "m_WI_CHNL_RET_DVAD_PART_COUNTRY",
+  "mapping_description": "",
+  "folder_name": "EDWTD_BKG_AGGRS",
+  "target_table": "WI_CHNL_RET_DVAD_PART_COUNTRY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_bkg_aggrs_wf_wi_chnl_ret_dvad_part_country_01_mart_wi_chnl_ret_dvad_part_country",
+  "source_tables": [
+    "WI_CHNL_RET_DVAD_PARTNERS",
+    "WI_CHNL_RET_DVAD_PATTERNS"
+  ],
+  "sources": [
+    {
+      "name": "WI_CHNL_RET_DVAD_PARTNERS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV9",
+      "fields": [
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DEALS_PPSK",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_CHNL_RET_DVAD_PATTERNS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV9",
+      "fields": [
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_CHNL_RET_DVAD_PART_COUNTRY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SOLD_TO_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DV_END_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SALES_ORDER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DV_END_CUST_PARTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DEALS_PPSK",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_END_CUST_COUNTRY_CD",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DEALS_CNTRY_CD",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIP_TO_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_CHNL_RET_DVAD_PARTNERS2",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEALS_PPSK",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_COUNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEALS_CNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\tEDPI.SOLD_TO_CUSTOMER_KEY\t\t\tAS SOLD_TO_CUSTOMER_KEY,\r\n\tEDPI.DV_END_CUSTOMER_KEY\t\t\tAS DV_END_CUSTOMER_KEY,\r\n\tEDPI.SALES_ORDER_KEY\t\t\t\tAS SALES_ORDER_KEY, \r\n\tEDPI.DV_END_CUST_PARTY_KEY\t\t\tAS DV_END_CUST_PARTY_KEY, \r\n\tEDPI.DEALS_PPSK \t\t\t\tAS DEALS_PPSK,\r\n\tCOALESCE(END_CTRY.ISO_COUNTRY_CODE, 'UNK') \tAS DV_END_CUST_COUNTRY_CD,\r\n\tCOALESCE(DEALS_CTRY.ISO_COUNTRY_CODE, 'UNK') \tAS DEALS_CNTRY_CD,\r\n\tEDPI.SHIP_TO_CUSTOMER_KEY\t\t\tAS SHIP_TO_CUSTOMER_KEY\r\n\r\nFROM $$STGDB.WI_CHNL_RET_DVAD_PARTNERS  EDPI\r\n\r\nLEFT OUTER JOIN (\r\nSEL NPLA.PARTY_KEY, NPAL.ISO_COUNTRY_CODE\r\nFROM $$COMREFVWDB.N_PARTY_LOCATOR_ASGN NPLA\r\nINNER JOIN $$COMREFVWDB.N_LOCATOR  NL\r\n\tON NPLA.LOCATOR_KEY = NL.LOCATOR_KEY\r\n\tAND NL.SS_CODE = 'CR'\r\n\tAND NPLA.LOCATION_TYPE_CODE = 'POSTAL ADDRESS'\r\nINNER JOIN $$COMREFVWDB.N_POSTAL_ADDRESS_LOCATOR NPAL\r\n\tON NPLA.LOCATOR_KEY = NPAL.LOCATOR_KEY) DEALS_CTRY\r\n\t\r\n\tON EDPI.DEALS_PPSK = DEALS_CTRY.PARTY_KEY \r\n\r\nLEFT OUTER JOIN (\r\nSEL NPLA.PARTY_KEY, NPAL.ISO_COUNTRY_CODE\r\nFROM $$COMREFVWDB.N_PARTY_LOCATOR_ASGN NPLA\r\nINNER JOIN $$COMREFVWDB.N_LOCATOR  NL\r\n\tON NPLA.LOCATOR_KEY = NL.LOCATOR_KEY\r\n\tAND NL.SS_CODE = 'CR'\r\n\tAND NPLA.LOCATION_TYPE_CODE = 'POSTAL ADDRESS'\r\nINNER JOIN $$COMREFVWDB.N_POSTAL_ADDRESS_LOCATOR NPAL\r\n\tON NPLA.LOCATOR_KEY = NPAL.LOCATOR_KEY\t) END_CTRY\r\n\t\r\n\tON EDPI.DV_END_CUST_PARTY_KEY = END_CTRY.PARTY_KEY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_CHNL_RET_DVAD_PATTERNS1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEALS_PPSK",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n\tWDVAD.SOLD_TO_CUSTOMER_KEY \tSOLD_TO_CUSTOMER_KEY,\r\n\tWDVAD.DV_END_CUSTOMER_KEY \tDV_END_CUSTOMER_KEY,\r\n\tWDVAD.SALES_ORDER_KEY \t\tSALES_ORDER_KEY,\r\n\tEBT.DD_CUSTOMER_PARTY_KEY \tDV_END_CUST_PARTY_KEY,\r\n\tCASE WHEN COALESCE(NCPS.DD_GRNDPARNT_PARTNER_PARTY_KEY,-999) = -999 THEN \r\n    CASE WHEN NEP.ERP_PARTY_NAME LIKE ANY  ('%CS CAPITAL%','%CISCO SYSTEMS CAPITAL%', 'CISCO SYSTEMS FINANCE %','EXPEDIA INC')\r\n    THEN COALESCE(SHIPS.PARTNER_SITE_PARTY_KEY,-999) \r\n\tELSE -999 END\r\n\t\tELSE COALESCE(NP.PARTY_KEY,-999) \r\n\tEND \t\t\t\tDEALS_PPSK,\r\n\tWDVAD.SHIP_TO_CUSTOMER_KEY \tSHIP_TO_CUSTOMER_KEY\r\n\r\nFROM $$STGDB.WI_CHNL_RET_DVAD_PATTERNS WDVAD\r\n\r\nINNER JOIN $$ETLVWDB.BT_END_CUSTOMER_BRIDGE EBT\r\n\tON WDVAD.DV_END_CUSTOMER_KEY = EBT.END_CUSTOMER_KEY\r\n\t\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER NSO\r\n\tON WDVAD.SALES_ORDER_KEY = NSO.SALES_ORDER_KEY\t\r\n\t\r\nLEFT OUTER JOIN $$ETLVWDB.EL_DM_DEAL_PARTNER_VW STDEALS\t\r\n\tON NSO.BK_DEAL_ID = STDEALS.OPTY_NUMBER \r\n\t\t\r\nLEFT OUTER JOIN $$COMREFVWDB.N_PARTY NP\r\n\tON STDEALS.PARTNER_SITE_ID = NP.PARTY_SSOT_PARTY_ID_INT AND\r\n\tNP.SS_CODE = 'CR'\r\n\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CHANNEL_PARTNER_SITE NCPS\r\n\tON NCPS.PARTNER_SITE_PARTY_KEY = NP.PARTY_KEY\r\n\tAND NCPS.SOURCE_DELETED_FLG='N'\r\n\t\r\nLEFT OUTER JOIN ( $$COMREFVWDB.N_CUSTOMER_ACCOUNT NCA\r\n   INNER JOIN $$COMREFVWDB.N_ERP_PARTY NEP\r\n   ON(NEP.ERP_PARTY_NUMBER = NCA.ERP_CUSTOMER_NUMBER) \r\n     )\r\n  ON (NCA.CUSTOMER_ACCOUNT_KEY= WDVAD.SOLD_TO_CUSTOMER_KEY )\t\r\n\t\r\nLEFT OUTER JOIN $$COMREFVWDB.N_ERP_CUST_ACCT_LOC_USE STP\r\n  ON STP.ERP_CUST_ACCOUNT_LOCATION_KEY = WDVAD.SHIP_TO_CUSTOMER_KEY\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CHANNEL_PARTNER_SITE SHIPS\r\n  ON STP.CUSTOMER_PARTY_KEY=SHIPS.PARTNER_SITE_PARTY_KEY\r\n  AND SHIPS.SOURCE_DELETED_FLG='N'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY2"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY2"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY2"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY2"
+    },
+    {
+      "from_field": "DEALS_PPSK",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2",
+      "to_field": "DEALS_PPSK",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY2"
+    },
+    {
+      "from_field": "DV_END_CUST_COUNTRY_CD",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2",
+      "to_field": "DV_END_CUST_COUNTRY_CD",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY2"
+    },
+    {
+      "from_field": "DEALS_CNTRY_CD",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2",
+      "to_field": "DEALS_CNTRY_CD",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY2"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PART_COUNTRY2"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PARTNERS1"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PARTNERS1"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PARTNERS1"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PARTNERS1"
+    },
+    {
+      "from_field": "DEALS_PPSK",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1",
+      "to_field": "DEALS_PPSK",
+      "to_instance": "WI_CHNL_RET_DVAD_PARTNERS1"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RET_DVAD_PARTNERS1"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_CHNL_RET_DVAD_PATTERNS",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "WI_CHNL_RET_DVAD_PATTERNS",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "WI_CHNL_RET_DVAD_PATTERNS",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_CHNL_RET_DVAD_PARTNERS",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "WI_CHNL_RET_DVAD_PARTNERS",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "WI_CHNL_RET_DVAD_PARTNERS",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "WI_CHNL_RET_DVAD_PARTNERS",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+    },
+    {
+      "from_field": "DEALS_PPSK",
+      "from_instance": "WI_CHNL_RET_DVAD_PARTNERS",
+      "to_field": "DEALS_PPSK",
+      "to_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SOLD_TO_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+        },
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1"
+        },
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "WI_CHNL_RET_DVAD_PATTERNS"
+        },
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "WI_CHNL_RET_DVAD_PARTNERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_END_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "DV_END_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+        },
+        {
+          "from_field": "DV_END_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1"
+        },
+        {
+          "from_field": "DV_END_CUSTOMER_KEY",
+          "from_instance": "WI_CHNL_RET_DVAD_PATTERNS"
+        },
+        {
+          "from_field": "DV_END_CUSTOMER_KEY",
+          "from_instance": "WI_CHNL_RET_DVAD_PARTNERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_ORDER_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+        },
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1"
+        },
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "WI_CHNL_RET_DVAD_PATTERNS"
+        },
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "WI_CHNL_RET_DVAD_PARTNERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_END_CUST_PARTY_KEY",
+      "source_path": [
+        {
+          "from_field": "DV_END_CUST_PARTY_KEY",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+        },
+        {
+          "from_field": "DV_END_CUST_PARTY_KEY",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1"
+        },
+        {
+          "from_field": "DV_END_CUST_PARTY_KEY",
+          "from_instance": "WI_CHNL_RET_DVAD_PARTNERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DEALS_PPSK",
+      "source_path": [
+        {
+          "from_field": "DEALS_PPSK",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+        },
+        {
+          "from_field": "DEALS_PPSK",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1"
+        },
+        {
+          "from_field": "DEALS_PPSK",
+          "from_instance": "WI_CHNL_RET_DVAD_PARTNERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_END_CUST_COUNTRY_CD",
+      "source_path": [
+        {
+          "from_field": "DV_END_CUST_COUNTRY_CD",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DEALS_CNTRY_CD",
+      "source_path": [
+        {
+          "from_field": "DEALS_CNTRY_CD",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIP_TO_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "SHIP_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PARTNERS2"
+        },
+        {
+          "from_field": "SHIP_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_CHNL_RET_DVAD_PATTERNS1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:11.219084+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

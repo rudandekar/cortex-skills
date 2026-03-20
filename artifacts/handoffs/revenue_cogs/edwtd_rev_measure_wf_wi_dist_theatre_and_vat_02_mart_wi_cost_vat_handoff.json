@@ -1,0 +1,385 @@
+{
+  "workflow_name": "wf_m_WI_DIST_THEATRE_AND_VAT",
+  "mapping_name": "m_WI_DIST_THEATRE_AND_VAT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_COST_VAT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_dist_theatre_and_vat_02_mart_wi_cost_vat",
+  "source_tables": [
+    "WI_DIST_THEATRE",
+    "WI_COST_VAT",
+    "WI_SSC_ER"
+  ],
+  "sources": [
+    {
+      "name": "WI_DIST_THEATRE",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "THEATER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_COST_VAT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "THEATER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COST",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_SSC_ER",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "THEATER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COST_TYPE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SUB_COST_TYPE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COST",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_COST_VAT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "THEATER",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COST",
+        "datatype": "decimal",
+        "precision": "38",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_DIST_THEATRE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT DISTINCT THEATER \r\nFROM $$STGDB.WI_SSC_ALLOC_ER \r\nWHERE FISCAL_MONTH_ID IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID) \r\nAND UPPER (COST_TYPE) LIKE '%TPL%'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "DELETE FROM  $$STGDB.WI_DIST_THEATRE;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_COST_VAT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COST",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT DT.THEATER,WSAE.COST AS COST_VAT\r\nFROM $$STGDB.WI_SSC_ALLOC_ER WSAE\r\nJOIN $$STGDB.WI_DIST_THEATRE DT\r\nON WSAE.FISCAL_MONTH_ID IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)\r\nAND UPPER (WSAE.COST_TYPE) LIKE '%VAT%'\r\nAND UPPER(WSAE.THEATER)=UPPER(DT.THEATER)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "DELETE FROM $$STGDB.WI_COST_VAT;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_SSC_ER",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COST_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUB_COST_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COST",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT FISCAL_MONTH_ID,THEATER,COST_TYPE,SUB_COST_TYPE,COST\r\nFROM $$STGDB.WI_SSC_ALLOC_ER\r\nWHERE FISCAL_MONTH_ID IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "UPDATE WSAE \r\nFROM $$STGDB.WI_SSC_ALLOC_ER WSAE,\r\nWI_COST_VAT CVT\r\nSET COST = WSAE.COST+CVT.COST\r\nWHERE WSAE.FISCAL_MONTH_ID IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)\r\nAND UPPER (WSAE.COST_TYPE) LIKE '%TPL%'\r\nAND UPPER(WSAE.THEATER)=UPPER(CVT.THEATER); \r\n\r\n-- Fix to have cost_type as Supplementary Data and sub_cost_type as VAT / Duty\r\n\r\nupdate $$STGDB.WI_SSC_ALLOC_ER \r\nset COST_TYPE='Supplementary Data' ,  SUB_COST_TYPE='VAT / Duty'\r\nwhere fiscal_month_id IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID) \r\nand upper(cost_type) like'%VAT%';\r\n\r\nUPDATE $$STGDB.WI_SSC_ALLOC_ER\r\nSET THEATER = \r\nCASE WHEN THEATER= 'EM - EAST' THEN 'EME' \r\nWHEN THEATER= 'EM - LATAM' THEN 'LATAM' \r\nWHEN THEATER= 'US-CAN' THEN 'NAM' \r\nWHEN THEATER= 'EUROPEAN MKTST' THEN 'EMEA' \r\nELSE THEATER END \r\nWHERE FISCAL_MONTH_ID IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID);\r\n\r\nUPDATE $$STGDB.WI_SSC_ALLOC_ER\r\nSET COST_TYPE = 'Departmental - Global SSC Ops'\r\nWHERE FISCAL_MONTH_ID IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID) \r\nAND COST_TYPE='Departmental - Global SC Ops';\r\n\r\nUPDATE SSE\r\nFROM $$STGDB.WI_SSC_ALLOC_ER SSE, $$STGDB.WI_THEATER_MAP STM /* ST_THEATER_MAP changed to WI_THEATER_MAP*/\r\nSET THEATER = COALESCE(STM.THEATER_NAME,SSE.THEATER)\r\nWHERE STM.EXT_THEATER_NAME = UPPER(TRIM(SSE.THEATER)) \r\nAND SSE.FISCAL_MONTH_ID IN (SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID);\r\n\r\nDELETE $$STGDB.WI_SSC_ER\r\nWHERE FISCAL_MONTH_ID IN (\r\nSELECT FISCAL_MONTH_ID \r\nFROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID);",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_WI_SSC_ER",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "WI_SSC_ER1"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "SQ_WI_SSC_ER",
+      "to_field": "THEATER",
+      "to_instance": "WI_SSC_ER1"
+    },
+    {
+      "from_field": "COST_TYPE",
+      "from_instance": "SQ_WI_SSC_ER",
+      "to_field": "COST_TYPE",
+      "to_instance": "WI_SSC_ER1"
+    },
+    {
+      "from_field": "SUB_COST_TYPE",
+      "from_instance": "SQ_WI_SSC_ER",
+      "to_field": "SUB_COST_TYPE",
+      "to_instance": "WI_SSC_ER1"
+    },
+    {
+      "from_field": "COST",
+      "from_instance": "SQ_WI_SSC_ER",
+      "to_field": "COST",
+      "to_instance": "WI_SSC_ER1"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "SQ_WI_COST_VAT",
+      "to_field": "THEATER",
+      "to_instance": "WI_COST_VAT1"
+    },
+    {
+      "from_field": "COST",
+      "from_instance": "SQ_WI_COST_VAT",
+      "to_field": "COST",
+      "to_instance": "WI_COST_VAT1"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "SQ_WI_DIST_THEATRE",
+      "to_field": "THEATER",
+      "to_instance": "WI_DIST_THEATRE1"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "WI_DIST_THEATRE",
+      "to_field": "THEATER",
+      "to_instance": "SQ_WI_DIST_THEATRE"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "WI_COST_VAT",
+      "to_field": "THEATER",
+      "to_instance": "SQ_WI_COST_VAT"
+    },
+    {
+      "from_field": "COST",
+      "from_instance": "WI_COST_VAT",
+      "to_field": "COST",
+      "to_instance": "SQ_WI_COST_VAT"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "WI_SSC_ER",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_WI_SSC_ER"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "WI_SSC_ER",
+      "to_field": "THEATER",
+      "to_instance": "SQ_WI_SSC_ER"
+    },
+    {
+      "from_field": "COST_TYPE",
+      "from_instance": "WI_SSC_ER",
+      "to_field": "COST_TYPE",
+      "to_instance": "SQ_WI_SSC_ER"
+    },
+    {
+      "from_field": "SUB_COST_TYPE",
+      "from_instance": "WI_SSC_ER",
+      "to_field": "SUB_COST_TYPE",
+      "to_instance": "SQ_WI_SSC_ER"
+    },
+    {
+      "from_field": "COST",
+      "from_instance": "WI_SSC_ER",
+      "to_field": "COST",
+      "to_instance": "SQ_WI_SSC_ER"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "THEATER",
+      "source_path": [
+        {
+          "from_field": "THEATER",
+          "from_instance": "SQ_WI_SSC_ER"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "SQ_WI_COST_VAT"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "SQ_WI_DIST_THEATRE"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "WI_DIST_THEATRE"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "WI_COST_VAT"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "WI_SSC_ER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COST",
+      "source_path": [
+        {
+          "from_field": "COST",
+          "from_instance": "SQ_WI_SSC_ER"
+        },
+        {
+          "from_field": "COST",
+          "from_instance": "SQ_WI_COST_VAT"
+        },
+        {
+          "from_field": "COST",
+          "from_instance": "WI_COST_VAT"
+        },
+        {
+          "from_field": "COST",
+          "from_instance": "WI_SSC_ER"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:28.470842+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,249 @@
+{
+  "workflow_name": "wf_m_N_ER_REIMBURSMNT_TYPE_INV_LINE",
+  "mapping_name": "m_N_ER_REIMBURSMNT_TYPE_INV_LINE",
+  "mapping_description": "This mapping is to load data from Work table to 3NF table.",
+  "folder_name": "EDWTD_GL",
+  "target_table": "N_ER_REIMBURSMNT_TYPE_INV_LINE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_n_er_reimbursmnt_type_inv_line_01_mart_n_er_reimbursmnt_type_inv_line",
+  "source_tables": [
+    "W_ER_REIMBURSMNT_TYPE_INV_LINE"
+  ],
+  "sources": [
+    {
+      "name": "W_ER_REIMBURSMNT_TYPE_INV_LINE",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV1",
+      "fields": [
+        {
+          "name": "BK_EXPENSE_REIMBURSMNT_TYP_CD",
+          "datatype": "char",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EXPENSE_REPORT_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_ER_REIMBURSMNT_TYPE_INV_LINE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_EXPENSE_REIMBURSMNT_TYP_CD",
+        "datatype": "char",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EXPENSE_REPORT_LINE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_ER_REIMBURSMNT_TYPE_INV_LINE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_EXPENSE_REIMBURSMNT_TYP_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXPENSE_REPORT_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT W_ER_REIMBURSMNT_TYPE_INV_LINE.BK_EXPENSE_REIMBURSMNT_TYP_CD, W_ER_REIMBURSMNT_TYPE_INV_LINE.EXPENSE_REPORT_LINE_KEY\r\nFROM\r\n$$WORKDB.W_ER_REIMBURSMNT_TYPE_INV_LINE\r\nWHERE\r\nNOT EXISTS ( SELECT 1 \r\nFROM $$FINLGLVWDB.N_ER_REIMBURSMNT_TYPE_INV_LINE \r\nWHERE \r\nN_ER_REIMBURSMNT_TYPE_INV_LINE.BK_EXPENSE_REIMBURSMNT_TYP_CD = \r\nW_ER_REIMBURSMNT_TYPE_INV_LINE.BK_EXPENSE_REIMBURSMNT_TYP_CD\r\nAND \r\nN_ER_REIMBURSMNT_TYPE_INV_LINE.EXPENSE_REPORT_LINE_KEY = W_ER_REIMBURSMNT_TYPE_INV_LINE.EXPENSE_REPORT_LINE_KEY\r\n)",
+        "User Defined Join": "",
+        "Source Filter": "NOT EXISTS ( SELECT 1 \r\nFROM $$FINLGLVWDB.N_ER_REIMBURSMNT_TYPE_INV_LINE \r\nWHERE \r\nN_ER_REIMBURSMNT_TYPE_INV_LINE.BK_EXPENSE_REIMBURSMNT_TYP_CD = \r\nW_ER_REIMBURSMNT_TYPE_INV_LINE.BK_EXPENSE_REIMBURSMNT_TYP_CD\r\nAND \r\nN_ER_REIMBURSMNT_TYPE_INV_LINE.EXPENSE_REPORT_LINE_KEY = W_ER_REIMBURSMNT_TYPE_INV_LINE.EXPENSE_REPORT_LINE_KEY)",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_EXPENSE_REIMBURSMNT_TYP_CD",
+      "from_instance": "SQ_W_ER_REIMBURSMNT_TYPE_INV_LINE",
+      "to_field": "BK_EXPENSE_REIMBURSMNT_TYP_CD",
+      "to_instance": "N_ER_REIMBURSMNT_TYPE_INV_LINE"
+    },
+    {
+      "from_field": "EXPENSE_REPORT_LINE_KEY",
+      "from_instance": "SQ_W_ER_REIMBURSMNT_TYPE_INV_LINE",
+      "to_field": "EXPENSE_REPORT_LINE_KEY",
+      "to_instance": "N_ER_REIMBURSMNT_TYPE_INV_LINE"
+    },
+    {
+      "from_field": "BK_EXPENSE_REIMBURSMNT_TYP_CD",
+      "from_instance": "W_ER_REIMBURSMNT_TYPE_INV_LINE",
+      "to_field": "BK_EXPENSE_REIMBURSMNT_TYP_CD",
+      "to_instance": "SQ_W_ER_REIMBURSMNT_TYPE_INV_LINE"
+    },
+    {
+      "from_field": "EXPENSE_REPORT_LINE_KEY",
+      "from_instance": "W_ER_REIMBURSMNT_TYPE_INV_LINE",
+      "to_field": "EXPENSE_REPORT_LINE_KEY",
+      "to_instance": "SQ_W_ER_REIMBURSMNT_TYPE_INV_LINE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_EXPENSE_REIMBURSMNT_TYP_CD",
+      "source_path": [
+        {
+          "from_field": "BK_EXPENSE_REIMBURSMNT_TYP_CD",
+          "from_instance": "SQ_W_ER_REIMBURSMNT_TYPE_INV_LINE"
+        },
+        {
+          "from_field": "BK_EXPENSE_REIMBURSMNT_TYP_CD",
+          "from_instance": "W_ER_REIMBURSMNT_TYPE_INV_LINE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EXPENSE_REPORT_LINE_KEY",
+      "source_path": [
+        {
+          "from_field": "EXPENSE_REPORT_LINE_KEY",
+          "from_instance": "SQ_W_ER_REIMBURSMNT_TYPE_INV_LINE"
+        },
+        {
+          "from_field": "EXPENSE_REPORT_LINE_KEY",
+          "from_instance": "W_ER_REIMBURSMNT_TYPE_INV_LINE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:08.254673+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,390 @@
+{
+  "workflow_name": "wf_m_EDWTD_REPLIC_SWAP",
+  "mapping_name": "m_EDWTD_REPLIC_SWAP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_OPS",
+  "target_table": "EDW_OBJECT_SWAP_INFO",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ops_wf_edwtd_rev_me_frz_wd5_swap_01_mart_edw_object_swap_info",
+  "source_tables": [
+    "EDW_OBJECT_SWAP_INFO"
+  ],
+  "sources": [
+    {
+      "name": "EDW_OBJECT_SWAP_INFO",
+      "database_type": "Teradata",
+      "owner": "STGDB_DEV",
+      "fields": [
+        {
+          "name": "JOB_GROUP_ID",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REP_VIEW",
+          "datatype": "varchar",
+          "precision": "61",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ETL_VIEW",
+          "datatype": "varchar",
+          "precision": "61",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TEMP_VIEW",
+          "datatype": "varchar",
+          "precision": "61",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENT_VIEW",
+          "datatype": "varchar",
+          "precision": "61",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTIVE_INDICATOR",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_SWAP_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EDW_OBJECT_SWAP_INFO",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "JOB_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "32",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "REP_VIEW",
+        "datatype": "varchar",
+        "precision": "61",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "ETL_VIEW",
+        "datatype": "varchar",
+        "precision": "61",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TEMP_VIEW",
+        "datatype": "varchar",
+        "precision": "61",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CURRENT_VIEW",
+        "datatype": "varchar",
+        "precision": "61",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTIVE_INDICATOR",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_SWAP_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_EDW_OBJECT_SWAP_INFO",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "JOB_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REP_VIEW",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ETL_VIEW",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TEMP_VIEW",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURRENT_VIEW",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTIVE_INDICATOR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_SWAP_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "1=2",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACTIVE_INDICATOR",
+      "from_instance": "SQ_EDW_OBJECT_SWAP_INFO",
+      "to_field": "ACTIVE_INDICATOR",
+      "to_instance": "EDW_OBJECT_SWAP_INFO1"
+    },
+    {
+      "from_field": "LAST_SWAP_DATE",
+      "from_instance": "SQ_EDW_OBJECT_SWAP_INFO",
+      "to_field": "LAST_SWAP_DATE",
+      "to_instance": "EDW_OBJECT_SWAP_INFO1"
+    },
+    {
+      "from_field": "JOB_GROUP_ID",
+      "from_instance": "SQ_EDW_OBJECT_SWAP_INFO",
+      "to_field": "JOB_GROUP_ID",
+      "to_instance": "EDW_OBJECT_SWAP_INFO1"
+    },
+    {
+      "from_field": "REP_VIEW",
+      "from_instance": "SQ_EDW_OBJECT_SWAP_INFO",
+      "to_field": "REP_VIEW",
+      "to_instance": "EDW_OBJECT_SWAP_INFO1"
+    },
+    {
+      "from_field": "ETL_VIEW",
+      "from_instance": "SQ_EDW_OBJECT_SWAP_INFO",
+      "to_field": "ETL_VIEW",
+      "to_instance": "EDW_OBJECT_SWAP_INFO1"
+    },
+    {
+      "from_field": "TEMP_VIEW",
+      "from_instance": "SQ_EDW_OBJECT_SWAP_INFO",
+      "to_field": "TEMP_VIEW",
+      "to_instance": "EDW_OBJECT_SWAP_INFO1"
+    },
+    {
+      "from_field": "CURRENT_VIEW",
+      "from_instance": "SQ_EDW_OBJECT_SWAP_INFO",
+      "to_field": "CURRENT_VIEW",
+      "to_instance": "EDW_OBJECT_SWAP_INFO1"
+    },
+    {
+      "from_field": "JOB_GROUP_ID",
+      "from_instance": "EDW_OBJECT_SWAP_INFO",
+      "to_field": "JOB_GROUP_ID",
+      "to_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+    },
+    {
+      "from_field": "REP_VIEW",
+      "from_instance": "EDW_OBJECT_SWAP_INFO",
+      "to_field": "REP_VIEW",
+      "to_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+    },
+    {
+      "from_field": "ETL_VIEW",
+      "from_instance": "EDW_OBJECT_SWAP_INFO",
+      "to_field": "ETL_VIEW",
+      "to_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+    },
+    {
+      "from_field": "TEMP_VIEW",
+      "from_instance": "EDW_OBJECT_SWAP_INFO",
+      "to_field": "TEMP_VIEW",
+      "to_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+    },
+    {
+      "from_field": "CURRENT_VIEW",
+      "from_instance": "EDW_OBJECT_SWAP_INFO",
+      "to_field": "CURRENT_VIEW",
+      "to_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+    },
+    {
+      "from_field": "ACTIVE_INDICATOR",
+      "from_instance": "EDW_OBJECT_SWAP_INFO",
+      "to_field": "ACTIVE_INDICATOR",
+      "to_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+    },
+    {
+      "from_field": "LAST_SWAP_DATE",
+      "from_instance": "EDW_OBJECT_SWAP_INFO",
+      "to_field": "LAST_SWAP_DATE",
+      "to_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "JOB_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "JOB_GROUP_ID",
+          "from_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+        },
+        {
+          "from_field": "JOB_GROUP_ID",
+          "from_instance": "EDW_OBJECT_SWAP_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REP_VIEW",
+      "source_path": [
+        {
+          "from_field": "REP_VIEW",
+          "from_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+        },
+        {
+          "from_field": "REP_VIEW",
+          "from_instance": "EDW_OBJECT_SWAP_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ETL_VIEW",
+      "source_path": [
+        {
+          "from_field": "ETL_VIEW",
+          "from_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+        },
+        {
+          "from_field": "ETL_VIEW",
+          "from_instance": "EDW_OBJECT_SWAP_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TEMP_VIEW",
+      "source_path": [
+        {
+          "from_field": "TEMP_VIEW",
+          "from_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+        },
+        {
+          "from_field": "TEMP_VIEW",
+          "from_instance": "EDW_OBJECT_SWAP_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CURRENT_VIEW",
+      "source_path": [
+        {
+          "from_field": "CURRENT_VIEW",
+          "from_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+        },
+        {
+          "from_field": "CURRENT_VIEW",
+          "from_instance": "EDW_OBJECT_SWAP_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTIVE_INDICATOR",
+      "source_path": [
+        {
+          "from_field": "ACTIVE_INDICATOR",
+          "from_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+        },
+        {
+          "from_field": "ACTIVE_INDICATOR",
+          "from_instance": "EDW_OBJECT_SWAP_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_SWAP_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_SWAP_DATE",
+          "from_instance": "SQ_EDW_OBJECT_SWAP_INFO"
+        },
+        {
+          "from_field": "LAST_SWAP_DATE",
+          "from_instance": "EDW_OBJECT_SWAP_INFO"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:21.373249+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,1100 @@
+{
+  "workflow_name": "wf_m_WK_CM_ITEM_SUPPLY_COMMIT",
+  "mapping_name": "m_WK_CM_ITEM_SUPPLY_COMMIT",
+  "mapping_description": "This ETL mapping extracts data from ST_EM_COMMITMENT & ST_EM_COMMITMENT_DETAIL table from Stage table to Work & Exception table",
+  "folder_name": "EDWTD_MFG_PRODUCTS",
+  "target_table": "EX_EM_COMMITMENT_DETAIL",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_mfg_products_wf_wk_cm_item_supply_commit_02_mart_ex_em_commitment_detail",
+  "source_tables": [
+    "ST_EM_COMMITMENT_DETAIL",
+    "ST_EM_COMMITMENT"
+  ],
+  "sources": [
+    {
+      "name": "ST_EM_COMMITMENT_DETAIL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "COMMITMENT_DETAIL_ID",
+          "datatype": "decimal",
+          "precision": "9",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COMMITMENT_ID",
+          "datatype": "decimal",
+          "precision": "9",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PERIOD_START",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PERIOD_END",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMITMENT_QTY",
+          "datatype": "decimal",
+          "precision": "9",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COMMIT_MESSAGE",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "ST_EM_COMMITMENT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "COMMITMENT_ID",
+          "datatype": "decimal",
+          "precision": "9",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_ID",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PLANNING_DIVISION",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PLAN_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PARTNER_ID",
+          "datatype": "varchar",
+          "precision": "13",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PIP_PARTNER_ID",
+          "datatype": "varchar",
+          "precision": "13",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_ID_TYPE",
+          "datatype": "decimal",
+          "precision": "2",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EX_EM_COMMITMENT_DETAIL",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PRODUCT_ID",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARTNER_ID",
+        "datatype": "varchar",
+        "precision": "13",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PIP_PARTNER_ID",
+        "datatype": "varchar",
+        "precision": "13",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PLAN_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMMITMENT_DETAIL_ID",
+        "datatype": "decimal",
+        "precision": "9",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMMITMENT_ID",
+        "datatype": "decimal",
+        "precision": "9",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PERIOD_START",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PERIOD_END",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMMITMENT_QTY",
+        "datatype": "decimal",
+        "precision": "9",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMMIT_MESSAGE",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EXCEPTION_TYPE",
+        "datatype": "char",
+        "precision": "2",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ITEM_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_ORGN_NAME_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SUPPLY_COMMIT_PLANNED_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUPPLY_COMMIT_START_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUPPLY_COMMIT_END_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMIT_MESSAGE_TXT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMITTED_ITEM_QTY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PIP_INVENTORY_ORG_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\t\r\n       EM_CMT_DTL.ITEM_KEY,\r\n       EM_CMT_DTL.INVENTORY_ORGN_NAME_KEY,\r\n       EM_CMT_DTL.BK_SUPPLY_COMMIT_PLANNED_DT  AS BK_SUPPLY_COMMIT_PLANNED_DT,\r\n       EM_CMT_DTL.SUPPLY_COMMIT_START_DT AS SUPPLY_COMMIT_START_DT,\r\n       EM_CMT_DTL.SUPPLY_COMMIT_END_DT AS SUPPLY_COMMIT_END_DT,\r\n       EM_CMT_DTL.COMMIT_MESSAGE_TXT,\r\n       EM_CMT_DTL.COMMITTED_ITEM_QTY,\r\n       EM_CMT_DTL.PIP_INVENTORY_ORG_KEY,\r\n       CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) AS EDW_CREATE_DTM,\r\n       CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) AS EDW_UPDATE_DTM,\r\n       EM_CMT_DTL.ACTION_CODE,\r\n       (\r\n\t\tCASE\r\n\t\t\tWHEN\tNCISC.ITEM_KEY IS NULL\r\n\tAND\r\n                    NCISC.INVENTORY_ORGN_NAME_KEY IS NULL\r\n\tAND\r\n                   NCISC.BK_SUPPLY_COMMIT_PLANNED_DT IS NULL\r\n\tAND\r\n                    NCISC.SUPPLY_COMMIT_START_DT IS NULL THEN 'I' ELSE'U' END) AS DML_TYPE                   \r\nFROM\r\n(\r\nSELECT\t\r\n       NP.ITEM_KEY,\r\n       NCIO1.INVENTORY_ORGN_NAME_KEY,\r\n       SEC.PLAN_DATE AS BK_SUPPLY_COMMIT_PLANNED_DT,\r\n       SECD.PERIOD_START AS SUPPLY_COMMIT_START_DT,\r\n       SECD.PERIOD_END AS SUPPLY_COMMIT_END_DT,\r\n       SECD.COMMIT_MESSAGE AS COMMIT_MESSAGE_TXT,\r\n       SECD.COMMITMENT_QTY AS COMMITTED_ITEM_QTY,\r\n       NCIO2.INVENTORY_ORGN_NAME_KEY AS PIP_INVENTORY_ORG_KEY,\r\n       SECD.ACTION_CODE\r\nFROM\r\n   $$STGDB.ST_EM_COMMITMENT AS SEC,\r\n   $$STGDB.ST_EM_COMMITMENT_DETAIL AS SECD,\r\n   $$COMREFVWDB.N_PRODUCT NP,\r\n   $$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO1,\r\n   $$STGDB.ST_CG1_MTL_PARAMETER SMMP1, /* Replaced ST_MF_MTL_PARAMETERS SMMP1 as part of Q1FY14 SJPROD Sunset*/\r\n   $$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO2,\r\n   $$STGDB.ST_CG1_MTL_PARAMETER SMMP2 /* Replaced ST_MF_MTL_PARAMETERS SMMP2 as part of Q1FY14 SJPROD Sunset*/\r\nWHERE\r\n  NCIO1.INV_ORG_EFFECTIVE_END_DATE = '3500-01-01'\r\n\tAND\tNCIO2.INV_ORG_EFFECTIVE_END_DATE = '3500-01-01'\r\n\tAND\tSEC.COMMITMENT_ID = SECD.COMMITMENT_ID\r\n\tAND\t SMMP1.ATTRIBUTE13 = SEC.PARTNER_ID\r\n\tAND\tSMMP2.ATTRIBUTE13 = SEC.PIP_PARTNER_ID\r\n\tAND\tNP.BK_PRODUCT_ID = SEC.PRODUCT_ID\r\n\tAND\tNCIO1.SK_ORGANIZATION_ID_INT = SMMP1.ORGANIZATION_ID\r\n\tAND\tNCIO2.SK_ORGANIZATION_ID_INT = SMMP2.ORGANIZATION_ID\r\nUNION\tALL\r\nSELECT\t\r\n       NP.ITEM_KEY AS ITEM_KEY,\r\n       NCIO1.INVENTORY_ORGN_NAME_KEY AS INVENTORY_ORGN_NAME_KEY,\r\n       EXCEP.PLAN_DATE AS BK_SUPPLY_COMMIT_PLANNED_DT,\r\n       EXCEP.PERIOD_START AS SUPPLY_COMMIT_START_DT,\r\n       EXCEP.PERIOD_END AS SUPPLY_COMMIT_END_DT,\r\n       EXCEP.COMMIT_MESSAGE AS COMMIT_MESSAGE_TXT,\r\n       EXCEP.COMMITMENT_QTY AS COMMITTED_ITEM_QTY,\r\n       NCIO2.INVENTORY_ORGN_NAME_KEY AS PIP_INVENTORY_ORG_KEY,\r\n       EXCEP.ACTION_CODE\r\nFROM\r\n   $$EXCEPDB.EX_EM_COMMITMENT_DETAIL EXCEP,\r\n   $$COMREFVWDB.N_PRODUCT NP,\r\n   $$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO1,\r\n   $$STGDB.ST_CG1_MTL_PARAMETER SMMP1, /* Replaced ST_MF_MTL_PARAMETERS SMMP1 as part of Q1FY14 SJPROD Sunset*/\r\n   $$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO2,\r\n   $$STGDB.ST_CG1_MTL_PARAMETER SMMP2 /* Replaced ST_MF_MTL_PARAMETERS SMMP2 as part of Q1FY14 SJPROD Sunset*/\r\nWHERE\r\n NCIO1.INV_ORG_EFFECTIVE_END_DATE = '3500-01-01'\r\n\tAND\tNCIO2.INV_ORG_EFFECTIVE_END_DATE = '3500-01-01'\r\n\tAND\tSMMP1.ATTRIBUTE13 = EXCEP.PARTNER_ID\r\n\tAND\tSMMP2.ATTRIBUTE13 = EXCEP.PIP_PARTNER_ID\r\n\tAND\tNP.BK_PRODUCT_ID = EXCEP.PRODUCT_ID\r\n\tAND\tNCIO1.SK_ORGANIZATION_ID_INT = SMMP1.ORGANIZATION_ID\r\n\tAND\tNCIO2.SK_ORGANIZATION_ID_INT = SMMP2.ORGANIZATION_ID\r\n) EM_CMT_DTL\r\nLEFT OUTER JOIN $$INVFLMTVWDB.N_CM_ITEM_SUPPLY_COMMIT NCISC\r\n\tON\t          NCISC.ITEM_KEY = EM_CMT_DTL.ITEM_KEY\r\n\tAND\tNCISC.INVENTORY_ORGN_NAME_KEY = EM_CMT_DTL.INVENTORY_ORGN_NAME_KEY\r\n\tAND\tNCISC.BK_SUPPLY_COMMIT_PLANNED_DT = EM_CMT_DTL.BK_SUPPLY_COMMIT_PLANNED_DT \r\n\tAND\tNCISC.SUPPLY_COMMIT_START_DT=EM_CMT_DTL.SUPPLY_COMMIT_START_DT",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PLAN_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMITMENT_DETAIL_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMITMENT_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_START",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_END",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMIT_MESSAGE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMITMENT_QTY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PIP_PARTNER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n      SECD.BATCH_ID,\r\n      SEC.PRODUCT_ID,\r\n      SEC.PARTNER_ID,\r\n      SEC.PLAN_DATE,\r\n      SEC.CREATION_DATE,\r\n      SEC.LAST_UPDATE,\r\n      SECD.COMMITMENT_DETAIL_ID,\r\n      SECD.COMMITMENT_ID,\r\n      SECD.PERIOD_START,\r\n      SECD.PERIOD_END,\r\n      SECD.COMMIT_MESSAGE,\r\n      SECD.COMMITMENT_QTY,\r\n      SEC.PIP_PARTNER_ID,\r\n      SECD.CREATE_DATETIME,\r\n      'RI' AS EXCEPTION_TYPE,\r\n      SECD.ACTION_CODE\r\n   FROM $$STGDB.ST_EM_COMMITMENT  SEC\r\n\tINNER JOIN\r\n        $$STGDB.ST_EM_COMMITMENT_DETAIL  SECD\r\n ON\r\n      SEC.COMMITMENT_ID = SECD.COMMITMENT_ID     \r\n     WHERE NOT EXISTS \r\n                        (SELECT 1\r\n                            FROM \r\n                                    $$COMREFVWDB.N_PRODUCT NP\r\n                                WHERE NP.BK_PRODUCT_ID = SEC.PRODUCT_ID)\r\n\r\nUNION\r\n \r\nSELECT\r\n      SECD.BATCH_ID, \r\n      SEC.PRODUCT_ID,\r\n      SEC.PARTNER_ID,\r\n      SEC.PLAN_DATE,\r\n      SEC.CREATION_DATE,\r\n      SEC.LAST_UPDATE,\r\n      SECD.COMMITMENT_DETAIL_ID,\r\n      SECD.COMMITMENT_ID,\r\n      SECD.PERIOD_START,\r\n      SECD.PERIOD_END,\r\n      SECD.COMMIT_MESSAGE,\r\n      SECD.COMMITMENT_QTY,\r\n      SEC.PIP_PARTNER_ID,\r\n      SECD.CREATE_DATETIME,\r\n      'RI' AS EXCEPTION_TYPE,\r\n      SECD.ACTION_CODE\r\n   FROM $$STGDB.ST_EM_COMMITMENT SEC\r\n\tINNER JOIN\r\n        $$STGDB.ST_EM_COMMITMENT_DETAIL SECD\r\n ON\r\n      SEC.COMMITMENT_ID = SECD.COMMITMENT_ID\r\n     WHERE NOT EXISTS \r\n                        (SELECT 1\r\n                            FROM \r\n                                    $$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO\r\n                                WHERE NCIO.INV_ORG_EFFECTIVE_END_DATE = '3500-01-01'\r\n  AND NCIO.SK_ORGANIZATION_ID_INT  IN (SELECT SMMP.ORGANIZATION_ID\r\n                                                                       FROM $$STGDB.ST_CG1_MTL_PARAMETER SMMP /* Replaced ST_MF_MTL_PARAMETERS SMMP as part of Q1FY14 SJPROD Sunset*/\r\n                                                                       WHERE SMMP.ATTRIBUTE13=SEC.PARTNER_ID))\r\nUNION\r\n\r\nSELECT \r\n      SECD.BATCH_ID,\r\n      SEC.PRODUCT_ID,\r\n      SEC.PARTNER_ID,\r\n      SEC.PLAN_DATE,\r\n      SEC.CREATION_DATE,\r\n      SEC.LAST_UPDATE,\r\n      SECD.COMMITMENT_DETAIL_ID,\r\n      SECD.COMMITMENT_ID,\r\n      SECD.PERIOD_START,\r\n      SECD.PERIOD_END AS SUPPLY_COMMIT_END_DT,\r\n      SECD.COMMIT_MESSAGE AS COMMIT_MESSAGE_TXT,\r\n      SECD.COMMITMENT_QTY,\r\n      SEC.PIP_PARTNER_ID,\r\n      SECD.CREATE_DATETIME,\r\n      'RI' AS EXCEPTION_TYPE,\r\n      SECD.ACTION_CODE\r\n   FROM $$STGDB.ST_EM_COMMITMENT SEC\r\n\tINNER JOIN\r\n        $$STGDB.ST_EM_COMMITMENT_DETAIL SECD\r\n ON\r\n      SEC.COMMITMENT_ID = SECD.COMMITMENT_ID\r\n     WHERE NOT EXISTS \r\n                        (SELECT 1\r\n                            FROM \r\n                                    $$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO_PIP\r\n                                WHERE NCIO_PIP.INV_ORG_EFFECTIVE_END_DATE = '3500-01-01' \r\nAND NCIO_PIP.SK_ORGANIZATION_ID_INT IN (SELECT SMMP.ORGANIZATION_ID\r\n                                                                       FROM $$STGDB.ST_CG1_MTL_PARAMETER SMMP /* Replaced ST_MF_MTL_PARAMETERS SMMP as part of Q1FY14 SJPROD Sunset*/\r\n                                                                         WHERE SMMP.ATTRIBUTE13=SEC.PIP_PARTNER_ID))",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PRODUCT_ID",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "PRODUCT_ID",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PARTNER_ID",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "PARTNER_ID",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PLAN_DATE",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "PLAN_DATE",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PERIOD_START",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "PERIOD_START",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PERIOD_END",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "PERIOD_END",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMIT_MESSAGE",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "COMMIT_MESSAGE",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMITMENT_QTY",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "COMMITMENT_QTY",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PIP_PARTNER_ID",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "PIP_PARTNER_ID",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "LAST_UPDATE",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "LAST_UPDATE",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMITMENT_DETAIL_ID",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "COMMITMENT_DETAIL_ID",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMITMENT_ID",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "COMMITMENT_ID",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EX_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMIT_MESSAGE_TXT",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "to_field": "COMMIT_MESSAGE_TXT",
+      "to_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "COMMITTED_ITEM_QTY",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "to_field": "COMMITTED_ITEM_QTY",
+      "to_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "PIP_INVENTORY_ORG_KEY",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "to_field": "PIP_INVENTORY_ORG_KEY",
+      "to_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "ITEM_KEY",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "to_field": "ITEM_KEY",
+      "to_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "INVENTORY_ORGN_NAME_KEY",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "to_field": "INVENTORY_ORGN_NAME_KEY",
+      "to_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "BK_SUPPLY_COMMIT_PLANNED_DT",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "to_field": "BK_SUPPLY_COMMIT_PLANNED_DT",
+      "to_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "SUPPLY_COMMIT_START_DT",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "to_field": "SUPPLY_COMMIT_START_DT",
+      "to_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "SUPPLY_COMMIT_END_DT",
+      "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL",
+      "to_field": "SUPPLY_COMMIT_END_DT",
+      "to_instance": "W_CM_ITEM_SUPPLY_COMMIT"
+    },
+    {
+      "from_field": "PLAN_DATE",
+      "from_instance": "ST_EM_COMMITMENT",
+      "to_field": "BK_SUPPLY_COMMIT_PLANNED_DT",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_EM_COMMITMENT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_EM_COMMITMENT",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_EM_COMMITMENT",
+      "to_field": "INVENTORY_ORGN_NAME_KEY",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_EM_COMMITMENT",
+      "to_field": "PIP_INVENTORY_ORG_KEY",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_EM_COMMITMENT",
+      "to_field": "DML_TYPE",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PERIOD_START",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL",
+      "to_field": "SUPPLY_COMMIT_START_DT",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PERIOD_END",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL",
+      "to_field": "SUPPLY_COMMIT_END_DT",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMITMENT_QTY",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL",
+      "to_field": "COMMITTED_ITEM_QTY",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMIT_MESSAGE",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL",
+      "to_field": "COMMIT_MESSAGE_TXT",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL",
+      "to_field": "ITEM_KEY",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PLAN_DATE",
+      "from_instance": "ST_EM_COMMITMENT1",
+      "to_field": "PLAN_DATE",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "PIP_PARTNER_ID",
+      "from_instance": "ST_EM_COMMITMENT1",
+      "to_field": "PIP_PARTNER_ID",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "PRODUCT_ID",
+      "from_instance": "ST_EM_COMMITMENT1",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_EM_COMMITMENT1",
+      "to_field": "CREATION_DATE",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "LAST_UPDATE",
+      "from_instance": "ST_EM_COMMITMENT1",
+      "to_field": "LAST_UPDATE",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "COMMIT_MESSAGE",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "COMMIT_MESSAGE",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "COMMITMENT_QTY",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "COMMITMENT_QTY",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "PERIOD_END",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "PERIOD_END",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "PERIOD_START",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "PERIOD_START",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "BATCH_ID",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "COMMITMENT_DETAIL_ID",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "COMMITMENT_DETAIL_ID",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "COMMITMENT_ID",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "COMMITMENT_ID",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_EM_COMMITMENT_DETAIL1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "PRODUCT_ID",
+      "from_instance": "ST_EM_COMMITMENT1",
+      "to_field": "PRODUCT_ID",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    },
+    {
+      "from_field": "PARTNER_ID",
+      "from_instance": "ST_EM_COMMITMENT1",
+      "to_field": "PARTNER_ID",
+      "to_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PRODUCT_ID",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_ID",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "PRODUCT_ID",
+          "from_instance": "ST_EM_COMMITMENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTNER_ID",
+      "source_path": [
+        {
+          "from_field": "PARTNER_ID",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "PARTNER_ID",
+          "from_instance": "ST_EM_COMMITMENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PIP_PARTNER_ID",
+      "source_path": [
+        {
+          "from_field": "PIP_PARTNER_ID",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "PIP_PARTNER_ID",
+          "from_instance": "ST_EM_COMMITMENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PLAN_DATE",
+      "source_path": [
+        {
+          "from_field": "PLAN_DATE",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "PLAN_DATE",
+          "from_instance": "ST_EM_COMMITMENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "ST_EM_COMMITMENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "LAST_UPDATE",
+          "from_instance": "ST_EM_COMMITMENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMMITMENT_DETAIL_ID",
+      "source_path": [
+        {
+          "from_field": "COMMITMENT_DETAIL_ID",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "COMMITMENT_DETAIL_ID",
+          "from_instance": "ST_EM_COMMITMENT_DETAIL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMMITMENT_ID",
+      "source_path": [
+        {
+          "from_field": "COMMITMENT_ID",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "COMMITMENT_ID",
+          "from_instance": "ST_EM_COMMITMENT_DETAIL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PERIOD_START",
+      "source_path": [
+        {
+          "from_field": "PERIOD_START",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "PERIOD_START",
+          "from_instance": "ST_EM_COMMITMENT_DETAIL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PERIOD_END",
+      "source_path": [
+        {
+          "from_field": "PERIOD_END",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "PERIOD_END",
+          "from_instance": "ST_EM_COMMITMENT_DETAIL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMMITMENT_QTY",
+      "source_path": [
+        {
+          "from_field": "COMMITMENT_QTY",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "COMMITMENT_QTY",
+          "from_instance": "ST_EM_COMMITMENT_DETAIL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMMIT_MESSAGE",
+      "source_path": [
+        {
+          "from_field": "COMMIT_MESSAGE",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "COMMIT_MESSAGE",
+          "from_instance": "ST_EM_COMMITMENT_DETAIL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "ST_EM_COMMITMENT_DETAIL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_EM_COMMITMENT_DETAIL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_EM_COMMITMENT_DETAIL"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_EM_COMMITMENT_DETAIL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EXCEPTION_TYPE",
+      "source_path": [
+        {
+          "from_field": "EXCEPTION_TYPE",
+          "from_instance": "Sq_ST_EM_COMMITMENT_DETAIL1"
+        },
+        {
+          "from_field": "PRODUCT_ID",
+          "from_instance": "ST_EM_COMMITMENT1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:17.373346+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

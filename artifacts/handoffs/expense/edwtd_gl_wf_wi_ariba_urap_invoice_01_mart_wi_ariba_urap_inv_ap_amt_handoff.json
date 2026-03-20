@@ -1,0 +1,327 @@
+{
+  "workflow_name": "wf_m_WI_ARIBA_URAP_INVOICE",
+  "mapping_name": "m_WI_ARIBA_URAP_INVOICE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "WI_ARIBA_URAP_INV_AP_AMT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_wi_ariba_urap_invoice_01_mart_wi_ariba_urap_inv_ap_amt",
+  "source_tables": [
+    "WI_ARIBA_URAP_INV_PAID_AMT",
+    "WI_ARIBA_URAP_INV_ARIBA_AMT",
+    "WI_ARIBA_URAP_INV_AP_AMT"
+  ],
+  "sources": [
+    {
+      "name": "WI_ARIBA_URAP_INV_PAID_AMT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "PO_DISTRIBUTION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PAID_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_ARIBA_URAP_INV_ARIBA_AMT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "PO_DISTRIBUTION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ARIBA_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_ARIBA_URAP_INV_AP_AMT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "PO_DISTRIBUTION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AP_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_ARIBA_URAP_INV_AP_AMT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PO_DISTRIBUTION_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AP_AMOUNT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_ARIBA_URAP_INV_AP_AMT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PO_DISTRIBUTION_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AP_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT NPOSD.SK_PO_DISTRIBUTION_ID_INT, \r\nSUM((COALESCE (NVID.VNDR_INV_DISTRIB_INVOICED_QTY,0 ) *  COALESCE (NVID.VNDR_INV_DISTRIB_UNIT_PRC_AMT,0 ) )  )AP_AMOUNT\r\nFROM $$FINLGLVWDB.N_VENDOR_INVOICE_DISTRIBUTION  NVID\r\nINNER JOIN $$FINLGLVWDB.N_PO_SHIPMENT_DISTRIBUTION NPOSD\r\nON NVID.PO_SHIPMENT_DISTRIBUTION_KEY=NPOSD.PO_SHIPMENT_DISTRIBUTION_KEY\r\nINNER JOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR  RFMY\r\nON  RFMY.FISCAL_YEAR_MONTH_INT=(NVID.FISCAL_YEAR_NUMBER_INT *100 + NVID.FISCAL_MONTH_NUMBER_INT)\r\nAND CURRENT_FISCAL_MONTH_FLAG='Y'\r\nAND NVID.SS_CD='EMEA'\r\nGROUP BY 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_ARIBA_URAP_INV_ARIBA_AMT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PO_DISTRIBUTION_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ARIBA_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT PDIST.SK_PO_DISTRIBUTION_ID_INT     ,\r\n SUM (COALESCE (UNIT_PRICE,0) * COALESCE(XAU.INVOICE_QUANTITY,0))  ARIBA_AMOUNT\r\n        FROM $$ETLVWDB.EL_ARIBA_URAP_INVOICE XAU\r\n        INNER JOIN $$FINLGLVWDB.N_PO_SHIPMENT_DISTRIBUTION PDIST\r\nON XAU.CFN_PO_NUMBER = PDIST.BK_PURCHASE_ORDER_NUM         \r\n             AND XAU.PO_LINE_NUMBER = PDIST.BK_PURCHASE_ORDER_LINE_NUM_INT\r\n       WHERE     XAU.STATUS = 'ACTIVE'\r\n             AND XAU.TRANSACTION_TYPE = 'UAUR_PO_INV'\r\n             AND XAU.INACTIVE_DATE IS NULL \r\n\t\t\t AND PDIST.SS_CD                         ='EMEA'\r\n             AND XAU.STAGE_ACCOUNTING_DATE <= (SELECT FISCAL_MONTH_END_DATE FROM $$COMREFVWDB.N_FISCAL_MONTH \r\n WHERE DV_CURRENT_FISCAL_MONTH_FLAG = 'Y') \r\nAND NOT EXISTS (SELECT 1\r\n                       FROM $$FINLGLVWDB.N_VENDOR_INVOICE     AIA,\r\n                           $$FINLGLVWDB.N_VENDOR_INVOICE_LINE AILA\r\n                             WHERE     AIA.VENDOR_INVOICE_SOURCE_CD       LIKE 'ARIBA%'\r\n                            AND AIA.BK_VENDOR_INVOICE_NUM          = XAU.INVOICE_NUMBER\r\n                            AND AILA.SK_INVOICE_ID_INT              = AIA.SK_INVOICE_ID_INT\r\n                            AND AILA.SK_VENDOR_INVOICE_LINE_NUM_INT = XAU.INVOICE_LINE_NUMBER\r\n                            AND AILA.POSTING_DT                     <= (SELECT FISCAL_MONTH_END_DATE FROM $$COMREFVWDB.N_FISCAL_MONTH  WHERE DV_CURRENT_FISCAL_MONTH_FLAG = 'Y')) \r\n\t\t\t\t\t\t\tGROUP BY 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_ARIBA_URAP_INV_PAID_AMT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PO_DISTRIBUTION_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PAID_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT ARIBA.PO_DISTRIBUTION_ID, \r\n  COALESCE(AP.AP_AMOUNT, 0) + COALESCE (ARIBA.ARIBA_AMOUNT, 0) PAID_AMOUNT\r\nFROM $$STGDB.WI_ARIBA_URAP_INV_ARIBA_AMT ARIBA\r\nLEFT OUTER JOIN $$STGDB.WI_ARIBA_URAP_INV_AP_AMT AP\r\nON AP.PO_DISTRIBUTION_ID = ARIBA.PO_DISTRIBUTION_ID\r\nGROUP BY 1,2",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "PO_DISTRIBUTION_ID",
+      "from_instance": "SQ_WI_ARIBA_URAP_INV_PAID_AMT",
+      "to_field": "PO_DISTRIBUTION_ID",
+      "to_instance": "WI_ARIBA_URAP_INV_PAID_AMT1"
+    },
+    {
+      "from_field": "PAID_AMOUNT",
+      "from_instance": "SQ_WI_ARIBA_URAP_INV_PAID_AMT",
+      "to_field": "PAID_AMOUNT",
+      "to_instance": "WI_ARIBA_URAP_INV_PAID_AMT1"
+    },
+    {
+      "from_field": "PO_DISTRIBUTION_ID",
+      "from_instance": "SQ_WI_ARIBA_URAP_INV_ARIBA_AMT",
+      "to_field": "PO_DISTRIBUTION_ID",
+      "to_instance": "WI_ARIBA_URAP_INV_ARIBA_AMT1"
+    },
+    {
+      "from_field": "ARIBA_AMOUNT",
+      "from_instance": "SQ_WI_ARIBA_URAP_INV_ARIBA_AMT",
+      "to_field": "ARIBA_AMOUNT",
+      "to_instance": "WI_ARIBA_URAP_INV_ARIBA_AMT1"
+    },
+    {
+      "from_field": "PO_DISTRIBUTION_ID",
+      "from_instance": "SQ_WI_ARIBA_URAP_INV_AP_AMT",
+      "to_field": "PO_DISTRIBUTION_ID",
+      "to_instance": "WI_ARIBA_URAP_INV_AP_AMT1"
+    },
+    {
+      "from_field": "AP_AMOUNT",
+      "from_instance": "SQ_WI_ARIBA_URAP_INV_AP_AMT",
+      "to_field": "AP_AMOUNT",
+      "to_instance": "WI_ARIBA_URAP_INV_AP_AMT1"
+    },
+    {
+      "from_field": "PO_DISTRIBUTION_ID",
+      "from_instance": "WI_ARIBA_URAP_INV_AP_AMT",
+      "to_field": "PO_DISTRIBUTION_ID",
+      "to_instance": "SQ_WI_ARIBA_URAP_INV_AP_AMT"
+    },
+    {
+      "from_field": "AP_AMOUNT",
+      "from_instance": "WI_ARIBA_URAP_INV_AP_AMT",
+      "to_field": "AP_AMOUNT",
+      "to_instance": "SQ_WI_ARIBA_URAP_INV_AP_AMT"
+    },
+    {
+      "from_field": "PO_DISTRIBUTION_ID",
+      "from_instance": "WI_ARIBA_URAP_INV_ARIBA_AMT",
+      "to_field": "PO_DISTRIBUTION_ID",
+      "to_instance": "SQ_WI_ARIBA_URAP_INV_ARIBA_AMT"
+    },
+    {
+      "from_field": "ARIBA_AMOUNT",
+      "from_instance": "WI_ARIBA_URAP_INV_ARIBA_AMT",
+      "to_field": "ARIBA_AMOUNT",
+      "to_instance": "SQ_WI_ARIBA_URAP_INV_ARIBA_AMT"
+    },
+    {
+      "from_field": "PO_DISTRIBUTION_ID",
+      "from_instance": "WI_ARIBA_URAP_INV_PAID_AMT",
+      "to_field": "PO_DISTRIBUTION_ID",
+      "to_instance": "SQ_WI_ARIBA_URAP_INV_PAID_AMT"
+    },
+    {
+      "from_field": "PAID_AMOUNT",
+      "from_instance": "WI_ARIBA_URAP_INV_PAID_AMT",
+      "to_field": "PAID_AMOUNT",
+      "to_instance": "SQ_WI_ARIBA_URAP_INV_PAID_AMT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PO_DISTRIBUTION_ID",
+      "source_path": [
+        {
+          "from_field": "PO_DISTRIBUTION_ID",
+          "from_instance": "SQ_WI_ARIBA_URAP_INV_PAID_AMT"
+        },
+        {
+          "from_field": "PO_DISTRIBUTION_ID",
+          "from_instance": "SQ_WI_ARIBA_URAP_INV_ARIBA_AMT"
+        },
+        {
+          "from_field": "PO_DISTRIBUTION_ID",
+          "from_instance": "SQ_WI_ARIBA_URAP_INV_AP_AMT"
+        },
+        {
+          "from_field": "PO_DISTRIBUTION_ID",
+          "from_instance": "WI_ARIBA_URAP_INV_AP_AMT"
+        },
+        {
+          "from_field": "PO_DISTRIBUTION_ID",
+          "from_instance": "WI_ARIBA_URAP_INV_ARIBA_AMT"
+        },
+        {
+          "from_field": "PO_DISTRIBUTION_ID",
+          "from_instance": "WI_ARIBA_URAP_INV_PAID_AMT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AP_AMOUNT",
+      "source_path": [
+        {
+          "from_field": "AP_AMOUNT",
+          "from_instance": "SQ_WI_ARIBA_URAP_INV_AP_AMT"
+        },
+        {
+          "from_field": "AP_AMOUNT",
+          "from_instance": "WI_ARIBA_URAP_INV_AP_AMT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:12.423049+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

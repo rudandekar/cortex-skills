@@ -1,0 +1,84 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_w_item_clsftn_gc_hts_rslt_pool', 'batch', 'edwtd_gtc'],
+    meta={
+        'source_workflow': 'wf_m_W_ITEM_CLSFTN_GC_HTS_RSLT_POOL',
+        'target_table': 'EX_XXCFI_CB_AUDT_POOL_RULE_RES',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:44.591122+00:00'
+    }
+) }}
+
+WITH 
+
+source_ex_xxcfi_cb_audt_pool_rule_res AS (
+    SELECT
+        audit_result_id,
+        audit_query_id,
+        rule_id,
+        specific_name,
+        pid_count,
+        rule_comment,
+        commit_status,
+        rule_rank,
+        pool_target_flag,
+        audit_month,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        specific_id,
+        create_datetime,
+        action_code,
+        exception_type
+    FROM {{ source('raw', 'ex_xxcfi_cb_audt_pool_rule_res') }}
+),
+
+source_w_item_clsftn_gc_hts_rslt_pool AS (
+    SELECT
+        bk_audit_name,
+        bk_rule_id_int,
+        commit_status_flg,
+        rule_cmt,
+        rule_rank_int,
+        product_cnt,
+        src_created_dtm,
+        src_updated_dtm,
+        src_crtd_by_csco_wrkr_prty_key,
+        src_updt_by_csco_wrkr_prty_key,
+        pool_target_cd,
+        customs_item_specific_key,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        action_code,
+        dml_type
+    FROM {{ source('raw', 'w_item_clsftn_gc_hts_rslt_pool') }}
+),
+
+final AS (
+    SELECT
+        audit_result_id,
+        audit_query_id,
+        rule_id,
+        specific_name,
+        pid_count,
+        rule_comment,
+        commit_status,
+        rule_rank,
+        pool_target_flag,
+        audit_month,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        specific_id,
+        create_datetime,
+        action_code,
+        exception_type
+    FROM source_w_item_clsftn_gc_hts_rslt_pool
+)
+
+SELECT * FROM final

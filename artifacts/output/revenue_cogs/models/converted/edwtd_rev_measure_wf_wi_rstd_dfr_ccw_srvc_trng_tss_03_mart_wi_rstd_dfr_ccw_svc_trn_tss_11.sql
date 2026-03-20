@@ -1,0 +1,202 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_rstd_dfr_ccw_srvc_trng_tss', 'batch', 'edwtd_rev_measure'],
+    meta={
+        'source_workflow': 'wf_m_WI_RSTD_DFR_CCW_SRVC_TRNG_TSS',
+        'target_table': 'WI_RSTD_DFR_CCW_SVC_TRN_TSS_11',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:46.361218+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_rstd_dfr_ccw_srvc_off_tss_9 AS (
+    SELECT
+        processed_fiscal_year_mth_int,
+        bk_measure_name,
+        sales_territory_key,
+        product_key,
+        fiscal_year_month_int,
+        bk_deal_id,
+        erp_deal_id,
+        recognized_rev_usd_amt,
+        balance_rev_usd_amt,
+        projected_rev_usd_amt,
+        projected_balance_rev_usd_amt,
+        sales_order_key,
+        dv_attribution_cd,
+        dv_product_key,
+        xcat_flg,
+        recurring_offer_flg,
+        bk_offer_type_name,
+        ela_flg,
+        dv_bridge_balance_rev_usd_amt,
+        remaining_balance_rev_usd_amt,
+        dv_beginning_blnce_rev_usd_amt,
+        sk_offer_attribution_id_int,
+        pob_type_cd,
+        restated_sls_crdt_split_pct,
+        ar_trx_line_key,
+        dv_ar_trx_line_key,
+        sales_order_line_key,
+        dv_sales_order_line_key
+    FROM {{ source('raw', 'wi_rstd_dfr_ccw_srvc_off_tss_9') }}
+),
+
+source_wi_rstd_dfr_ccw_srvc_flt_tss_8 AS (
+    SELECT
+        processed_fiscal_year_mth_int,
+        bk_measure_name,
+        sales_territory_key,
+        product_key,
+        fiscal_year_month_int,
+        bk_deal_id,
+        sales_order_key,
+        dv_attribution_cd,
+        dv_product_key,
+        recognized_rev_usd_amt,
+        balance_rev_usd_amt,
+        projected_rev_usd_amt,
+        projected_balance_rev_usd_amt,
+        dv_bridge_balance_rev_usd_amt,
+        remaining_balance_rev_usd_amt,
+        dv_beginning_blnce_rev_usd_amt,
+        sk_offer_attribution_id_int,
+        pob_type_cd,
+        restated_sls_crdt_split_pct,
+        ar_trx_line_key,
+        dv_ar_trx_line_key,
+        sales_order_line_key,
+        dv_sales_order_line_key
+    FROM {{ source('raw', 'wi_rstd_dfr_ccw_srvc_flt_tss_8') }}
+),
+
+source_wi_rstd_ccw_srvc_off_inv_tss_15 AS (
+    SELECT
+        processed_fiscal_year_mth_int,
+        bk_measure_name,
+        sales_territory_key,
+        product_key,
+        fiscal_year_month_int,
+        bk_deal_id,
+        erp_deal_id,
+        sales_order_key,
+        dv_attribution_cd,
+        dv_product_key,
+        xcat_flg,
+        recurring_offer_flg,
+        bk_offer_type_name,
+        ela_flg,
+        dv_bridge_balance_rev_usd_amt,
+        sk_offer_attribution_id_int,
+        pob_type_cd,
+        restated_sls_crdt_split_pct,
+        ar_trx_line_key,
+        dv_ar_trx_line_key,
+        sales_order_line_key,
+        dv_sales_order_line_key
+    FROM {{ source('raw', 'wi_rstd_ccw_srvc_off_inv_tss_15') }}
+),
+
+source_wi_rstd_ccw_svc_off_amt_tss_10 AS (
+    SELECT
+        processed_fiscal_year_mth_int,
+        bk_measure_name,
+        sales_territory_key,
+        product_key,
+        fiscal_year_month_int,
+        bk_deal_id,
+        erp_deal_id,
+        recognized_rev_usd_amt,
+        balance_rev_usd_amt,
+        projected_rev_usd_amt,
+        projected_balance_rev_usd_amt,
+        sales_order_key,
+        dv_attribution_cd,
+        dv_product_key,
+        xcat_flg,
+        recurring_offer_flg,
+        bk_offer_type_name,
+        ela_flg,
+        dv_bridge_balance_rev_usd_amt,
+        remaining_balance_rev_usd_amt,
+        dv_beginning_blnce_rev_usd_amt,
+        sk_offer_attribution_id_int,
+        pob_type_cd,
+        restated_sls_crdt_split_pct,
+        ar_trx_line_key,
+        dv_ar_trx_line_key,
+        sales_order_line_key,
+        dv_sales_order_line_key
+    FROM {{ source('raw', 'wi_rstd_ccw_svc_off_amt_tss_10') }}
+),
+
+source_wi_rstd_dfr_ccw_svc_trn_tss_11 AS (
+    SELECT
+        processed_fiscal_year_mth_int,
+        bk_measure_name,
+        sales_territory_key,
+        product_key,
+        fiscal_year_month_int,
+        bk_deal_id,
+        erp_deal_id,
+        recognized_rev_usd_amt,
+        balance_rev_usd_amt,
+        projected_rev_usd_amt,
+        projected_balance_rev_usd_amt,
+        sales_order_key,
+        dv_attribution_cd,
+        dv_product_key,
+        xcat_flg,
+        recurring_offer_flg,
+        bk_offer_type_name,
+        ela_flg,
+        dv_bridge_balance_rev_usd_amt,
+        remaining_balance_rev_usd_amt,
+        dv_beginning_blnce_rev_usd_amt,
+        sk_offer_attribution_id_int,
+        pob_type_cd,
+        restated_sls_crdt_split_pct,
+        ar_trx_line_key,
+        dv_ar_trx_line_key,
+        sales_order_line_key,
+        dv_sales_order_line_key
+    FROM {{ source('raw', 'wi_rstd_dfr_ccw_svc_trn_tss_11') }}
+),
+
+final AS (
+    SELECT
+        processed_fiscal_year_mth_int,
+        bk_measure_name,
+        sales_territory_key,
+        product_key,
+        fiscal_year_month_int,
+        bk_deal_id,
+        erp_deal_id,
+        recognized_rev_usd_amt,
+        balance_rev_usd_amt,
+        projected_rev_usd_amt,
+        projected_balance_rev_usd_amt,
+        sales_order_key,
+        dv_attribution_cd,
+        dv_product_key,
+        xcat_flg,
+        recurring_offer_flg,
+        bk_offer_type_name,
+        ela_flg,
+        dv_bridge_balance_rev_usd_amt,
+        remaining_balance_rev_usd_amt,
+        dv_beginning_blnce_rev_usd_amt,
+        sk_offer_attribution_id_int,
+        pob_type_cd,
+        restated_sls_crdt_split_pct,
+        ar_trx_line_key,
+        dv_ar_trx_line_key,
+        sales_order_line_key,
+        dv_sales_order_line_key
+    FROM source_wi_rstd_dfr_ccw_svc_trn_tss_11
+)
+
+SELECT * FROM final

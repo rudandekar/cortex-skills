@@ -1,0 +1,393 @@
+{
+  "workflow_name": "wf_m_AUDIT_UNBILLED_DEFER_REV_RPO",
+  "mapping_name": "m_AUDIT_UNBILLED_DEFER_REV_RPO",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "AUDIT_UNBILLED_DEFER_REV_RPO",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_audit_unbilled_defer_rev_rpo_01_mart_audit_unbilled_defer_rev_rpo",
+  "source_tables": [
+    "AUDIT_UNBILLED_DEFER_REV_RPO"
+  ],
+  "sources": [
+    {
+      "name": "AUDIT_UNBILLED_DEFER_REV_RPO",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV2",
+      "fields": [
+        {
+          "name": "PROCESSED_FISCAL_MTH",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RPO_MISMATCH_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUDIT_TRXN_TYPE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "AUDIT_UNBILLED_DEFER_REV_RPO",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PROCESSED_FISCAL_MTH",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RPO_MISMATCH_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_TRXN_TYPE",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_TABLE",
+        "datatype": "varchar",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PROCESSED_FISCAL_MTH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RPO_MISMATCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TRXN_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT SRC.PROCESSED_FISCAL_MTH,\r\nABS(ROUND(SRC.REV_RPO_AMT+TGT.UNB_AMT)) AS REV_RPO_MISMATCH ,\r\n'REV_RPO' AS AUDIT_TRXN_TYPE,\r\n'MT_RSTD_UNBILLED_DEFERRED_REV_RPO' AS AUDIT_TABLE,\r\n   Current_Date AS AUDIT_DATE\r\n   FROM \r\n(SELECT         \r\nPROCESSED_FISCAL_MTH                     ,       \r\nSUM( UNBILLED_REVENUE_AMT + DV_NONREC_REV_AMT + BALANCE_REV_USD_AMT ) AS REV_RPO_AMT\r\nFROM $$FINLGLVWDB.MT_RSTD_UNBILLED_DEFERRED_REV_RPO RPO\r\nINNER JOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RFM\r\nON RFM.FISCAL_YEAR_MONTH_INT = RPO.PROCESSED_FISCAL_MTH\r\nWHERE PREVIOUS_FSCL_MONTH_FLAG = 'Y'\r\nGROUP BY 1) SRC\r\nLEFT JOIN\r\n(\r\nSELECT INNER_QUERY.PROCESSED_FISCAL_MTH,SUM(INNER_QUERY.UNB_AMT) AS UNB_AMT  FROM \r\n(SELECT PROCESSED_FISCAL_MTH,\r\nCAST(SUM(UNBILLED_REVENUE_AMT) AS DECIMAL (26,7))*-1 AS UNB_AMT\r\nFROM $$FINLGLVWDB.MT_RSTD_UNBILLED_REVENUE UNB\r\nINNER JOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RFM\r\nON RFM.FISCAL_YEAR_MONTH_INT = UNB.PROCESSED_FISCAL_MTH\r\nWHERE PREVIOUS_FSCL_MONTH_FLAG = 'Y'\r\nGROUP BY 1\r\nUNION ALL\r\nSELECT \r\n  PROCESSED_FISCAL_YEAR_MTH_INT AS  PROCESSED_FISCAL_MTH,\r\n  CAST(SUM(BALANCE_REV_USD_AMT ) AS DECIMAL(26,7))*-1 AS UNB_AMT\r\n  FROM \r\n  $$FINLGLVWDB.MT_RSTD_FIN_DEFERRED_REVENUE DEF\r\n  INNER JOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RFM\r\nON RFM.FISCAL_YEAR_MONTH_INT = DEF.PROCESSED_FISCAL_YEAR_MTH_INT\r\nWHERE PREVIOUS_FSCL_MONTH_FLAG = 'Y'\r\nGROUP BY 1)INNER_QUERY\r\nGROUP BY 1) TGT\r\nON SRC.PROCESSED_FISCAL_MTH=TGT.PROCESSED_FISCAL_MTH",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_trans_audit_def",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "PROCESSED_FISCAL_MTH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PROCESSED_FISCAL_MTH"
+        },
+        {
+          "name": "RPO_MISMATCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TRXN_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TRXN_TYPE"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TABLE"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_DATE"
+        },
+        {
+          "name": "REV_AUDIT_CHK",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": "IIF(RPO_MISMATCH_AMT>1000,ABORT('RPO_MISMATCH_AMT >1000 in MT_UNBILLED_DEFERRED_REV_RPO'),RPO_MISMATCH_AMT)"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "PROCESSED_FISCAL_MTH",
+      "from_instance": "Exp_trans_audit_def",
+      "to_field": "PROCESSED_FISCAL_MTH",
+      "to_instance": "AUDIT_UNBILLED_DEFER_REV_RPO1"
+    },
+    {
+      "from_field": "AUDIT_TRXN_TYPE",
+      "from_instance": "Exp_trans_audit_def",
+      "to_field": "AUDIT_TRXN_TYPE",
+      "to_instance": "AUDIT_UNBILLED_DEFER_REV_RPO1"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "Exp_trans_audit_def",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "AUDIT_UNBILLED_DEFER_REV_RPO1"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "Exp_trans_audit_def",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "AUDIT_UNBILLED_DEFER_REV_RPO1"
+    },
+    {
+      "from_field": "REV_AUDIT_CHK",
+      "from_instance": "Exp_trans_audit_def",
+      "to_field": "RPO_MISMATCH_AMT",
+      "to_instance": "AUDIT_UNBILLED_DEFER_REV_RPO1"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_MTH",
+      "from_instance": "AUDIT_UNBILLED_DEFER_REV_RPO",
+      "to_field": "PROCESSED_FISCAL_MTH",
+      "to_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO"
+    },
+    {
+      "from_field": "RPO_MISMATCH_AMT",
+      "from_instance": "AUDIT_UNBILLED_DEFER_REV_RPO",
+      "to_field": "RPO_MISMATCH_AMT",
+      "to_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO"
+    },
+    {
+      "from_field": "AUDIT_TRXN_TYPE",
+      "from_instance": "AUDIT_UNBILLED_DEFER_REV_RPO",
+      "to_field": "AUDIT_TRXN_TYPE",
+      "to_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "AUDIT_UNBILLED_DEFER_REV_RPO",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "AUDIT_UNBILLED_DEFER_REV_RPO",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "Exp_trans_audit_def"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "Exp_trans_audit_def"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_MTH",
+      "from_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO",
+      "to_field": "PROCESSED_FISCAL_MTH",
+      "to_instance": "Exp_trans_audit_def"
+    },
+    {
+      "from_field": "RPO_MISMATCH_AMT",
+      "from_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO",
+      "to_field": "RPO_MISMATCH_AMT",
+      "to_instance": "Exp_trans_audit_def"
+    },
+    {
+      "from_field": "AUDIT_TRXN_TYPE",
+      "from_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO",
+      "to_field": "AUDIT_TRXN_TYPE",
+      "to_instance": "Exp_trans_audit_def"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PROCESSED_FISCAL_MTH",
+      "source_path": [
+        {
+          "from_field": "PROCESSED_FISCAL_MTH",
+          "from_instance": "Exp_trans_audit_def"
+        },
+        {
+          "from_field": "PROCESSED_FISCAL_MTH",
+          "from_instance": "AUDIT_UNBILLED_DEFER_REV_RPO"
+        },
+        {
+          "from_field": "PROCESSED_FISCAL_MTH",
+          "from_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RPO_MISMATCH_AMT",
+      "source_path": [
+        {
+          "from_field": "REV_AUDIT_CHK",
+          "from_instance": "Exp_trans_audit_def"
+        },
+        {
+          "from_field": "RPO_MISMATCH_AMT",
+          "from_instance": "AUDIT_UNBILLED_DEFER_REV_RPO"
+        },
+        {
+          "from_field": "RPO_MISMATCH_AMT",
+          "from_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_TRXN_TYPE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_TRXN_TYPE",
+          "from_instance": "Exp_trans_audit_def"
+        },
+        {
+          "from_field": "AUDIT_TRXN_TYPE",
+          "from_instance": "AUDIT_UNBILLED_DEFER_REV_RPO"
+        },
+        {
+          "from_field": "AUDIT_TRXN_TYPE",
+          "from_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_TABLE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "Exp_trans_audit_def"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "AUDIT_UNBILLED_DEFER_REV_RPO"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_DATE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "Exp_trans_audit_def"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "AUDIT_UNBILLED_DEFER_REV_RPO"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "SQ_AUDIT_UNBILLED_DEFER_REV_RPO"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:21.468563+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

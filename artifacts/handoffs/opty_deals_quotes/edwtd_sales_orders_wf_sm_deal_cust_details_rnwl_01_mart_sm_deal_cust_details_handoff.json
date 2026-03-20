@@ -1,0 +1,343 @@
+{
+  "workflow_name": "wf_m_SM_DEAL_CUST_DETAILS_RNWL",
+  "mapping_name": "m_SM_DEAL_CUST_DETAILS_RNWL",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "SM_DEAL_CUST_DETAILS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_sm_deal_cust_details_rnwl_01_mart_sm_deal_cust_details",
+  "source_tables": [
+    "SM_DEAL_CUST_DETAILS"
+  ],
+  "sources": [
+    {
+      "name": "SM_DEAL_CUST_DETAILS",
+      "database_type": "Teradata",
+      "owner": "TRANSLATIONDB_DV4",
+      "fields": [
+        {
+          "name": "DEAL_CUST_DETAILS_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_DEAL_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CR_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "SM_DEAL_CUST_DETAILS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "DEAL_CUST_DETAILS_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_DEAL_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CR_ID",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SS_CODE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_SM_DEAL_CUST_DETAILS_RNWL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DEAL_CUST_DETAILS_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_DEAL_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CR_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nRANK() OVER \r\n/*(ORDER BY STDEAL_BK.SK_DEAL_CUST_OBJECT_ID_INT,STDEAL_BK.SS_CODE) + SMDEAL_MAX.MAX_DEAL_SGK_VAL DEAL_CUST_DETAILS_KEY,*/\r\n(ORDER BY STDEAL_BK.CUST_REGISTRY_ID,STDEAL_BK.SS_CODE,STDEAL_BK.BK_DEAL_ID) + SMDEAL_MAX.MAX_DEAL_SGK_VAL DEAL_CUST_DETAILS_KEY, /*ADDING BK_DEAL_ID AND CR_ID TO DERIVE SM KEY AS PART OF CCW DATA FIX AUG REL*/\r\n/*STDEAL_BK.SK_DEAL_CUST_OBJECT_ID_INT SK_DEAL_CUST_OBJECT_ID_INT, COMMENTED AS PART OF CCW DATA FIX AUG REL*/\r\nSTDEAL_BK.BK_DEAL_ID,\r\nSTDEAL_BK.CUST_REGISTRY_ID,\r\nSTDEAL_BK.SS_CODE,\r\nCURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\nUSER EDW_CREATE_USER\r\nFROM \r\n( \r\nSELECT \r\nDISTINCT \r\n/*OBJECT_ID SK_DEAL_CUST_OBJECT_ID_INT, COMMENTED AS PART OF CCW DATA FIX AUG REL*/\r\n'CCWR' AS SS_CODE,\r\nCR_ID AS CUST_REGISTRY_ID,\r\nOPTY_NUMBER AS BK_DEAL_ID\r\nFROM \r\n$$STGDB.ST_INT_RAW_DM_CUSTOMER_RNWL ) STDEAL_BK,\r\n(SELECT COALESCE(MAX(DEAL_CUST_DETAILS_KEY),0) MAX_DEAL_SGK_VAL \r\n    FROM $$ETLVWDB.SM_DEAL_CUST_DETAILS) SMDEAL_MAX\r\nWHERE NOT EXISTS\r\n       ( SELECT 1 FROM $$ETLVWDB.SM_DEAL_CUST_DETAILS SDC\r\n\t     WHERE SDC.BK_DEAL_ID = STDEAL_BK.BK_DEAL_ID\r\n\t\t   AND COALESCE(SDC.CR_ID,-999) = COALESCE(STDEAL_BK.CUST_REGISTRY_ID,-999)\r\n\t\t  AND SDC.SS_CODE=STDEAL_BK.SS_CODE\r\n           /* --Commented and added above conditions as part of CCW data fix Aug rel\r\n\t\t  WHERE SDC.SK_DEAL_CUST_OBJECT_ID_INT = STDEAL_BK.SK_DEAL_CUST_OBJECT_ID_INT\r\n\t\t  \t\t  AND SDC.SS_CODE=STDEAL_BK.SS_CODE*/\r\n\t\t  )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "DEAL_CUST_DETAILS_KEY",
+      "from_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL",
+      "to_field": "DEAL_CUST_DETAILS_KEY",
+      "to_instance": "SM_DEAL_CUST_DETAILS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_DEAL_CUST_DETAILS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_DEAL_CUST_DETAILS"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL",
+      "to_field": "SS_CODE",
+      "to_instance": "SM_DEAL_CUST_DETAILS"
+    },
+    {
+      "from_field": "CR_ID",
+      "from_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL",
+      "to_field": "CR_ID",
+      "to_instance": "SM_DEAL_CUST_DETAILS"
+    },
+    {
+      "from_field": "BK_DEAL_ID",
+      "from_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL",
+      "to_field": "BK_DEAL_ID",
+      "to_instance": "SM_DEAL_CUST_DETAILS"
+    },
+    {
+      "from_field": "DEAL_CUST_DETAILS_KEY",
+      "from_instance": "SM_DEAL_CUST_DETAILS",
+      "to_field": "DEAL_CUST_DETAILS_KEY",
+      "to_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SM_DEAL_CUST_DETAILS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SM_DEAL_CUST_DETAILS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SM_DEAL_CUST_DETAILS",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL"
+    },
+    {
+      "from_field": "BK_DEAL_ID",
+      "from_instance": "SM_DEAL_CUST_DETAILS",
+      "to_field": "BK_DEAL_ID",
+      "to_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL"
+    },
+    {
+      "from_field": "CR_ID",
+      "from_instance": "SM_DEAL_CUST_DETAILS",
+      "to_field": "CR_ID",
+      "to_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "DEAL_CUST_DETAILS_KEY",
+      "source_path": [
+        {
+          "from_field": "DEAL_CUST_DETAILS_KEY",
+          "from_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL"
+        },
+        {
+          "from_field": "DEAL_CUST_DETAILS_KEY",
+          "from_instance": "SM_DEAL_CUST_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_DEAL_ID",
+      "source_path": [
+        {
+          "from_field": "BK_DEAL_ID",
+          "from_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL"
+        },
+        {
+          "from_field": "BK_DEAL_ID",
+          "from_instance": "SM_DEAL_CUST_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CR_ID",
+      "source_path": [
+        {
+          "from_field": "CR_ID",
+          "from_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL"
+        },
+        {
+          "from_field": "CR_ID",
+          "from_instance": "SM_DEAL_CUST_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CODE",
+      "source_path": [
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SM_DEAL_CUST_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SM_DEAL_CUST_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_SM_DEAL_CUST_DETAILS_RNWL"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SM_DEAL_CUST_DETAILS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:26:47.274228+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

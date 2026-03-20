@@ -1,0 +1,783 @@
+{
+  "workflow_name": "wf_m_MT_APSP_BCBD_VISIBILITY",
+  "mapping_name": "m_MT_APSP_BCBD_VISIBILITY",
+  "mapping_description": "",
+  "folder_name": "EDWTD_IAM",
+  "target_table": "MT_APSP_BCBD_VISIBILITY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_iam_wf_mt_apsp_bcbd_visibility_01_mart_mt_apsp_bcbd_visibility",
+  "source_tables": [
+    "WI_SALES_TERR_LNK_LVL0"
+  ],
+  "sources": [
+    {
+      "name": "WI_SALES_TERR_LNK_LVL0",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "IAM_USER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_IAM_ROLE_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IAM_APPLICATION_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STANDARD_OR_EXCEPTION_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IAM_LEVEL_NUM_INT",
+          "datatype": "byteint",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BICAFE_ROLE_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_FISCAL_YEAR_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TERRITORY_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "MT_APSP_BCBD_VISIBILITY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "DD_CEC_ID",
+        "datatype": "char",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "IAM_LEVEL_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_IAM_ROLE_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BICAFE_ROLE_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_TERRITORY_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_FISCAL_YEAR_NUM_INT",
+        "datatype": "char",
+        "precision": "4",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DATA_SOURCE_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_TERRITORY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_SALES_TERR_LNK_LVL0",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "IAM_USER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_IAM_ROLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IAM_APPLICATION_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STANDARD_OR_EXCEPTION_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IAM_LEVEL_NUM_INT",
+          "datatype": "small integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BICAFE_ROLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FISCAL_YEAR_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TERRITORY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME, IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG,IAM_LEVEL_NUM_INT,\r\n BICAFE_ROLE_NAME,BK_FISCAL_YEAR_NUMBER_INT ,  L1_SALES_TERRITORY_DESCR,BK_SALES_TERR_ASSGNMNT_TYPE_CD  FROM \r\n( SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME , BK_IAM_ROLE_NAME BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT\r\n,  CURRENT_DATE CURR_DATE,1  territory_code ,BK_SALES_TERR_ASSGNMNT_TYPE_CD FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\nUNION\r\nSELECT IAM_USER_KEY, BK_IAM_ROLE_NAME ,BK_IAM_ROLE_NAME  BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT\r\n, CURRENT_DATE CURR_DATE,2  territory_code,BK_SALES_TERR_ASSGNMNT_TYPE_CD  FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n UNION\r\n SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME , BK_IAM_ROLE_NAME BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT\r\n, CURRENT_DATE CURR_DATE,3  territory_code,BK_SALES_TERR_ASSGNMNT_TYPE_CD  FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK LNK\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY \r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n UNION\r\n SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME ,BK_IAM_ROLE_NAME BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT\r\n, CURRENT_DATE CURR_DATE,4  territory_code,BK_SALES_TERR_ASSGNMNT_TYPE_CD  FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n UNION\r\n SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME ,BK_IAM_ROLE_NAME BICAFE_ROLE_NAME , APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT\r\n, CURRENT_DATE CURR_DATE,5  territory_code,BK_SALES_TERR_ASSGNMNT_TYPE_CD  FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n UNION\r\n SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME ,BK_IAM_ROLE_NAME  BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT\r\n, CURRENT_DATE CURR_DATE,6  territory_code ,BK_SALES_TERR_ASSGNMNT_TYPE_CD FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n UNION\r\n SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME ,BK_IAM_ROLE_NAME  BK_IAM_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT\r\n, CURRENT_DATE CURR_DATE,7  territory_code ,BK_SALES_TERR_ASSGNMNT_TYPE_CD FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n UNION\r\n SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME , BK_IAM_ROLE_NAME  BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT,\r\n CURRENT_DATE CURR_DATE,8  territory_code ,BK_SALES_TERR_ASSGNMNT_TYPE_CD FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\n INNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n  UNION\r\n SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME , BK_IAM_ROLE_NAME  BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT,\r\n CURRENT_DATE CURR_DATE,9  territory_code ,BK_SALES_TERR_ASSGNMNT_TYPE_CD FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\n INNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE SOURCE_DELETED_FLG='N'   AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n UNION\r\n SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME ,BK_IAM_ROLE_NAME  BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT,\r\n CURRENT_DATE CURR_DATE,10  territory_code ,BK_SALES_TERR_ASSGNMNT_TYPE_CD FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\n INNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n UNION\r\n SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME ,BK_IAM_ROLE_NAME  BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT,\r\n CURRENT_DATE CURR_DATE,11  territory_code ,BK_SALES_TERR_ASSGNMNT_TYPE_CD  FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\n INNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n UNION\r\n SELECT  IAM_USER_KEY, BK_IAM_ROLE_NAME , BK_IAM_ROLE_NAME  BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT,\r\nCURRENT_DATE CURR_DATE,12  territory_code ,BK_SALES_TERR_ASSGNMNT_TYPE_CD  FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n UNION\r\n SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME ,BK_IAM_ROLE_NAME  BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT,\r\nCURRENT_DATE CURR_DATE,13  territory_code ,BK_SALES_TERR_ASSGNMNT_TYPE_CD FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n UNION\r\n SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME ,BK_IAM_ROLE_NAME BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT,\r\nCURRENT_DATE CURR_DATE,14  territory_code ,BK_SALES_TERR_ASSGNMNT_TYPE_CD FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n UNION\r\n SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME ,BK_IAM_ROLE_NAME  BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT,\r\nCURRENT_DATE CURR_DATE,15  territory_code  ,BK_SALES_TERR_ASSGNMNT_TYPE_CD FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND( (IAM_LEVEL_NUM_INT = 0)  or (IAM_LEVEL_NUM_INT = 0 and STANDARD_OR_EXCEPTION_FLG='E' and BK_IAM_ROLE_NAME LIKE '%IBOT%'))\r\n)  ST\r\n INNER JOIN $$COMREFVWDB.N_FISCAL_YEAR\r\nON CURR_DATE BETWEEN FISCAL_YEAR_START_DATE AND FISCAL_YEAR_END_DATE\r\nINNER JOIN \r\n(SELECT RANK() OVER \r\n\t\t\t(ORDER BY \r\n\t\t\t\tL1_SALES_TERRITORY_DESCR)   TERRITORY_RANK,\r\nL1_SALES_TERRITORY_DESCR FROM \r\n(SELECT DISTINCT  L1_SALES_TERRITORY_DESCR   L1_SALES_TERRITORY_DESCR\r\nFROM $$COMREFVWDB.R_SALES_HIERARCHY  WHERE SALES_TERRITORY_TYPE_CODE ='CORP. REVENUE')  SLS_HIER) SLS_HIER\r\nON ST.TERRITORY_CODE=SLS_HIER.TERRITORY_RANK\r\nUNION\r\nSELECT IAM_USER_KEY, BK_IAM_ROLE_NAME, IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG,IAM_LEVEL_NUM_INT,\r\n BICAFE_ROLE_NAME,BK_FISCAL_YEAR_NUMBER_INT ,  territory_code,BK_SALES_TERR_ASSGNMNT_TYPE_CD FROM \r\n( SELECT IAM_USER_KEY, BK_IAM_ROLE_NAME ,BK_IAM_ROLE_NAME  BICAFE_ROLE_NAME, APP.IAM_APPLICATION_KEY, SALES_TERRITORY_KEY, STANDARD_OR_EXCEPTION_FLG, 1 IAM_LEVEL_NUM_INT,\r\nCURRENT_DATE CURR_DATE,'WW'  territory_code ,BK_SALES_TERR_ASSGNMNT_TYPE_CD FROM $$SECURITYVWDB.N_IAM_SALES_TERR_LNK  LNK\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP ON\tAPP.SK_APPLICATION_ID_INT=1388 AND LNK.IAM_APPLICATION_KEY=APP.IAM_APPLICATION_KEY\r\n WHERE  SOURCE_DELETED_FLG='N'     AND IAM_LEVEL_NUM_INT = 0    AND  BK_IAM_ROLE_NAME = 'GFO'\r\n)  ST\r\nINNER JOIN $$COMREFVWDB.N_FISCAL_YEAR\r\nON CURR_DATE BETWEEN FISCAL_YEAR_START_DATE AND FISCAL_YEAR_END_DATE",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_SALES_TERR_LNK_LVL01",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DD_CEC_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IAM_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_IAM_ROLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BICAFE_ROLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_TERRITORY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FISCAL_YEAR_NUM_INT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DATA_SOURCE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SEL  \r\nDD_CEC_ID, \r\nIAM_LEVEL_NUM_INT, \r\nBK_IAM_ROLE_NAME, \r\nBI_CAFE_ROLE_NAME,\r\nTERRITORY_CODE,\r\nBK_FISCAL_YEAR_NUM, \r\nDATA_SOURCE_NAME,\r\nSALES_TERRITORY_KEY,\r\nCOALESCE(BK_SALES_TERR_ASSGNMNT_TYPE_CD,'DR')\r\nFROM\r\n(SEL  \r\nDD_CEC_ID, \r\nIAM_LEVEL_NUM_INT, \r\nBK_IAM_ROLE_NAME, \r\nBI_CAFE_ROLE_NAME,\r\nTERRITORY_CODE,\r\nBK_FISCAL_YEAR_NUM, \r\nSALES_TERRITORY_KEY,\r\nBK_SALES_TERR_ASSGNMNT_TYPE_CD,\r\nDATA_SOURCE_NAME,\r\nMIN(OUTPUT.IAM_LEVEL_NUM_INT)  OVER (PARTITION BY OUTPUT.DD_CEC_ID,OUTPUT.TERRITORY_CODE,\r\nOUTPUT.BK_IAM_ROLE_NAME, OUTPUT.BK_FISCAL_YEAR_NUM ORDER BY OUTPUT.IAM_LEVEL_NUM_INT )  as MIN_IAM_LEVEL\r\nFROM (\r\nSEL  \r\nSM.BK_BCBD_MAILER_ALIAS_ADDR DD_CEC_ID, \r\nST.IAM_LEVEL_NUM_INT, \r\nST.BK_IAM_ROLE_NAME, \r\nST.BI_CAFE_ROLE_NAME,\r\nSALES.SALES_TERRITORY_DESCR TERRITORY_CODE,\r\nST.BK_FISCAL_YEAR_NUM, \r\nCASE ST.STANDARD_OR_EXCEPTION_FLG WHEN 'S' THEN 'SHARE'\r\nWHEN 'E' THEN 'IAM' END DATA_SOURCE_NAME,\r\nST.SALES_TERRITORY_KEY,\r\nST.BK_SALES_TERR_ASSGNMNT_TYPE_CD  FROM\r\n$$SECURITYVWDB.N_APSP_BCBD_SALES_TERR_LNK ST\r\nINNER JOIN $$TRANSLATIONDB.SM_APSP_BCBD_USER SM\r\nON ST.BCBD_USER_KEY = SM.BCBD_USER_KEY AND SM.BK_BCBD_USER_TYPE='MAILER ALIAS'\r\nINNER JOIN $$COMREFVWDB.N_SALES_TERRITORY SALES\r\nON SALES.SALES_TERRITORY_KEY=ST.SALES_TERRITORY_KEY\r\nUNION\r\nSELECT \r\nUSR.DD_CEC_ID, \r\nST.IAM_LEVEL_NUM_INT, \r\nST.BK_IAM_ROLE_NAME, \r\nST.BICAFE_ROLE_NAME, \r\nST.TERRITORY_CODE, \r\nCAST(ST.BK_FISCAL_YEAR_NUMBER_INT AS VARCHAR(4))  BK_FISCAL_YEAR_NUM, \r\nCASE ST.STANDARD_OR_EXCEPTION_FLG WHEN 'S' THEN 'SHARE'\r\nWHEN 'E' THEN 'IAM' END DATA_SOURCE_NAME, \r\nST.SALES_TERRITORY_KEY,\r\nST.BK_SALES_TERR_ASSGNMNT_TYPE_CD \r\nFROM\r\n$$STGDB.WI_SALES_TERR_LNK_LVL0 ST\r\nINNER JOIN $$SECURITYVWDB.N_IAM_USER USR\r\nON ST.IAM_USER_KEY=USR.IAM_USER_KEY  AND USR.SOURCE_DELETED_FLG='N'\r\nUNION\r\nSEL \r\nUSR.DD_CEC_ID, \r\nST.IAM_LEVEL_NUM_INT, \r\nST.BK_IAM_ROLE_NAME, \r\nST.BI_CAFE_ROLE_NAME,\r\nSALES.SALES_TERRITORY_DESCR TERRITORY_CODE,\r\nST.BK_FISCAL_YEAR_NUM, \r\nCASE ST.STANDARD_OR_EXCEPTION_FLG WHEN 'S' THEN 'SHARE'\r\nWHEN 'E' THEN 'IAM' END DATA_SOURCE_NAME, \r\nST.SALES_TERRITORY_KEY,\r\nST.BK_SALES_TERR_ASSGNMNT_TYPE_CD   FROM\r\n$$SECURITYVWDB.N_APSP_BCBD_SALES_TERR_LNK ST\r\nINNER JOIN $$TRANSLATIONDB.SM_APSP_BCBD_USER SM\r\nON ST.BCBD_USER_KEY = SM.BCBD_USER_KEY AND SM.BK_BCBD_USER_TYPE='IAM USER'\r\nINNER JOIN $$SECURITYVWDB.N_IAM_USER USR\r\nON SM.IAM_USER_KEY=USR.IAM_USER_KEY AND USR.SOURCE_DELETED_FLG='N'\r\nINNER JOIN $$COMREFVWDB.N_SALES_TERRITORY_TV  SALES\r\nON SALES.SALES_TERRITORY_KEY=ST.SALES_TERRITORY_KEY \r\nINNER JOIN  $$COMREFVWDB.N_FISCAL_MONTH  FIS_MTH\r\nON BK_FISCAL_YEAR_NUMBER_INT=ST.BK_FISCAL_YEAR_NUM AND \r\nFISCAL_MONTH_END_DATE BETWEEN SALES.START_TV_DATE AND SALES.END_TV_DATE  AND BK_FISCAL_MONTH_NUMBER_INT=12\r\n\r\nUNION\r\n\r\nSEL \r\nUSR.DD_CEC_ID, \r\nST.IAM_LEVEL_NUM_INT, \r\nST.BK_IAM_ROLE_NAME, \r\nST.BI_CAFE_ROLE_NAME,\r\nSALES.SALES_TERRITORY_DESCR TERRITORY_CODE,\r\nST.BK_FISCAL_YEAR_NUM, \r\nCASE ST.STANDARD_OR_EXCEPTION_FLG WHEN 'S' THEN 'SHARE'\r\nWHEN 'E' THEN 'IAM' END DATA_SOURCE_NAME, \r\nST.SALES_TERRITORY_KEY,\r\nST.BK_SALES_TERR_ASSGNMNT_TYPE_CD  FROM\r\n$$SECURITYVWDB.N_APSP_BCBD_SALES_TERR_LNK ST\r\nINNER JOIN $$TRANSLATIONDB.SM_APSP_BCBD_USER SM\r\nON ST.BCBD_USER_KEY = SM.BCBD_USER_KEY AND SM.BK_BCBD_USER_TYPE='IAM USER'\r\nINNER JOIN $$SECURITYVWDB.N_IAM_USER USR\r\nON SM.IAM_USER_KEY=USR.IAM_USER_KEY AND USR.SOURCE_DELETED_FLG='N'\r\nINNER JOIN $$COMREFVWDB.N_SALES_TERRITORY_TV  SALES\r\nON SALES.SALES_TERRITORY_KEY=ST.SALES_TERRITORY_KEY \r\nINNER JOIN  $$COMREFVWDB.N_FISCAL_MONTH  FIS_MTH\r\nON BK_FISCAL_YEAR_NUMBER_INT=ST.BK_FISCAL_YEAR_NUM AND \r\nFISCAL_MONTH_END_DATE BETWEEN SALES.START_TV_DATE AND SALES.END_TV_DATE  AND \r\nDV_CURRENT_FISCAL_MONTH_FLAG='Y'\r\n\r\n) OUTPUT ) MIN_LVL\r\nwhere\r\nMIN_LVL.IAM_LEVEL_NUM_INT=MIN_LVL.MIN_IAM_LEVEL\r\nQUALIFY ROW_NUMBER() OVER(PARTITION BY DD_CEC_ID,IAM_LEVEL_NUM_INT,\r\nBK_IAM_ROLE_NAME,SALES_TERRITORY_KEY,TERRITORY_CODE,\r\nBK_FISCAL_YEAR_NUM,BK_SALES_TERR_ASSGNMNT_TYPE_CD ORDER BY IAM_LEVEL_NUM_INT ASC) =1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "IAM_USER_KEY",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0",
+      "to_field": "IAM_USER_KEY",
+      "to_instance": "WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "BK_IAM_ROLE_NAME",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0",
+      "to_field": "BK_IAM_ROLE_NAME",
+      "to_instance": "WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "STANDARD_OR_EXCEPTION_FLG",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0",
+      "to_field": "STANDARD_OR_EXCEPTION_FLG",
+      "to_instance": "WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "IAM_LEVEL_NUM_INT",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0",
+      "to_field": "IAM_LEVEL_NUM_INT",
+      "to_instance": "WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "BICAFE_ROLE_NAME",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0",
+      "to_field": "BICAFE_ROLE_NAME",
+      "to_instance": "WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "IAM_APPLICATION_KEY",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0",
+      "to_field": "IAM_APPLICATION_KEY",
+      "to_instance": "WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "BK_FISCAL_YEAR_NUMBER_INT",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0",
+      "to_field": "BK_FISCAL_YEAR_NUMBER_INT",
+      "to_instance": "WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "TERRITORY_CODE",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0",
+      "to_field": "TERRITORY_CODE",
+      "to_instance": "WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0",
+      "to_field": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+      "to_instance": "WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "DD_CEC_ID",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01",
+      "to_field": "DD_CEC_ID",
+      "to_instance": "MT_APSP_BCBD_VISIBILITY"
+    },
+    {
+      "from_field": "IAM_LEVEL_NUM_INT",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01",
+      "to_field": "IAM_LEVEL_NUM_INT",
+      "to_instance": "MT_APSP_BCBD_VISIBILITY"
+    },
+    {
+      "from_field": "BK_IAM_ROLE_NAME",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01",
+      "to_field": "BK_IAM_ROLE_NAME",
+      "to_instance": "MT_APSP_BCBD_VISIBILITY"
+    },
+    {
+      "from_field": "BICAFE_ROLE_NAME",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01",
+      "to_field": "BICAFE_ROLE_NAME",
+      "to_instance": "MT_APSP_BCBD_VISIBILITY"
+    },
+    {
+      "from_field": "SALES_TERRITORY_DESCR",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01",
+      "to_field": "SALES_TERRITORY_DESCR",
+      "to_instance": "MT_APSP_BCBD_VISIBILITY"
+    },
+    {
+      "from_field": "BK_FISCAL_YEAR_NUM_INT",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01",
+      "to_field": "BK_FISCAL_YEAR_NUM_INT",
+      "to_instance": "MT_APSP_BCBD_VISIBILITY"
+    },
+    {
+      "from_field": "DATA_SOURCE_NAME",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01",
+      "to_field": "DATA_SOURCE_NAME",
+      "to_instance": "MT_APSP_BCBD_VISIBILITY"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "MT_APSP_BCBD_VISIBILITY"
+    },
+    {
+      "from_field": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+      "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01",
+      "to_field": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+      "to_instance": "MT_APSP_BCBD_VISIBILITY"
+    },
+    {
+      "from_field": "IAM_USER_KEY",
+      "from_instance": "WI_SALES_TERR_LNK_LVL0",
+      "to_field": "IAM_USER_KEY",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+    },
+    {
+      "from_field": "BK_IAM_ROLE_NAME",
+      "from_instance": "WI_SALES_TERR_LNK_LVL0",
+      "to_field": "BK_IAM_ROLE_NAME",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+    },
+    {
+      "from_field": "IAM_APPLICATION_KEY",
+      "from_instance": "WI_SALES_TERR_LNK_LVL0",
+      "to_field": "IAM_APPLICATION_KEY",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_SALES_TERR_LNK_LVL0",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+    },
+    {
+      "from_field": "STANDARD_OR_EXCEPTION_FLG",
+      "from_instance": "WI_SALES_TERR_LNK_LVL0",
+      "to_field": "STANDARD_OR_EXCEPTION_FLG",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+    },
+    {
+      "from_field": "IAM_LEVEL_NUM_INT",
+      "from_instance": "WI_SALES_TERR_LNK_LVL0",
+      "to_field": "IAM_LEVEL_NUM_INT",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+    },
+    {
+      "from_field": "BICAFE_ROLE_NAME",
+      "from_instance": "WI_SALES_TERR_LNK_LVL0",
+      "to_field": "BICAFE_ROLE_NAME",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+    },
+    {
+      "from_field": "BK_FISCAL_YEAR_NUMBER_INT",
+      "from_instance": "WI_SALES_TERR_LNK_LVL0",
+      "to_field": "BK_FISCAL_YEAR_NUMBER_INT",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+    },
+    {
+      "from_field": "TERRITORY_CODE",
+      "from_instance": "WI_SALES_TERR_LNK_LVL0",
+      "to_field": "TERRITORY_CODE",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+    },
+    {
+      "from_field": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+      "from_instance": "WI_SALES_TERR_LNK_LVL0",
+      "to_field": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+    },
+    {
+      "from_field": "BK_IAM_ROLE_NAME",
+      "from_instance": "WI_SALES_TERR_LNK_LVL02",
+      "to_field": "DD_CEC_ID",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "IAM_APPLICATION_KEY",
+      "from_instance": "WI_SALES_TERR_LNK_LVL02",
+      "to_field": "IAM_LEVEL_NUM_INT",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "BICAFE_ROLE_NAME",
+      "from_instance": "WI_SALES_TERR_LNK_LVL02",
+      "to_field": "BK_IAM_ROLE_NAME",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "BICAFE_ROLE_NAME",
+      "from_instance": "WI_SALES_TERR_LNK_LVL02",
+      "to_field": "BICAFE_ROLE_NAME",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "BK_IAM_ROLE_NAME",
+      "from_instance": "WI_SALES_TERR_LNK_LVL02",
+      "to_field": "SALES_TERRITORY_DESCR",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "TERRITORY_CODE",
+      "from_instance": "WI_SALES_TERR_LNK_LVL02",
+      "to_field": "BK_FISCAL_YEAR_NUM_INT",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+      "from_instance": "WI_SALES_TERR_LNK_LVL02",
+      "to_field": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "TERRITORY_CODE",
+      "from_instance": "WI_SALES_TERR_LNK_LVL02",
+      "to_field": "DATA_SOURCE_NAME",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+    },
+    {
+      "from_field": "BK_FISCAL_YEAR_NUMBER_INT",
+      "from_instance": "WI_SALES_TERR_LNK_LVL02",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "DD_CEC_ID",
+      "source_path": [
+        {
+          "from_field": "DD_CEC_ID",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+        },
+        {
+          "from_field": "BK_IAM_ROLE_NAME",
+          "from_instance": "WI_SALES_TERR_LNK_LVL02"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "IAM_LEVEL_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "IAM_LEVEL_NUM_INT",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+        },
+        {
+          "from_field": "IAM_LEVEL_NUM_INT",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+        },
+        {
+          "from_field": "IAM_LEVEL_NUM_INT",
+          "from_instance": "WI_SALES_TERR_LNK_LVL0"
+        },
+        {
+          "from_field": "IAM_APPLICATION_KEY",
+          "from_instance": "WI_SALES_TERR_LNK_LVL02"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_IAM_ROLE_NAME",
+      "source_path": [
+        {
+          "from_field": "BK_IAM_ROLE_NAME",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+        },
+        {
+          "from_field": "BK_IAM_ROLE_NAME",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+        },
+        {
+          "from_field": "BK_IAM_ROLE_NAME",
+          "from_instance": "WI_SALES_TERR_LNK_LVL0"
+        },
+        {
+          "from_field": "BICAFE_ROLE_NAME",
+          "from_instance": "WI_SALES_TERR_LNK_LVL02"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BICAFE_ROLE_NAME",
+      "source_path": [
+        {
+          "from_field": "BICAFE_ROLE_NAME",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+        },
+        {
+          "from_field": "BICAFE_ROLE_NAME",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+        },
+        {
+          "from_field": "BICAFE_ROLE_NAME",
+          "from_instance": "WI_SALES_TERR_LNK_LVL0"
+        },
+        {
+          "from_field": "BICAFE_ROLE_NAME",
+          "from_instance": "WI_SALES_TERR_LNK_LVL02"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_TERRITORY_DESCR",
+      "source_path": [
+        {
+          "from_field": "SALES_TERRITORY_DESCR",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+        },
+        {
+          "from_field": "BK_IAM_ROLE_NAME",
+          "from_instance": "WI_SALES_TERR_LNK_LVL02"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_FISCAL_YEAR_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "BK_FISCAL_YEAR_NUM_INT",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+        },
+        {
+          "from_field": "TERRITORY_CODE",
+          "from_instance": "WI_SALES_TERR_LNK_LVL02"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DATA_SOURCE_NAME",
+      "source_path": [
+        {
+          "from_field": "DATA_SOURCE_NAME",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+        },
+        {
+          "from_field": "TERRITORY_CODE",
+          "from_instance": "WI_SALES_TERR_LNK_LVL02"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_TERRITORY_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_TERRITORY_KEY",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+        },
+        {
+          "from_field": "SALES_TERRITORY_KEY",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+        },
+        {
+          "from_field": "SALES_TERRITORY_KEY",
+          "from_instance": "WI_SALES_TERR_LNK_LVL0"
+        },
+        {
+          "from_field": "BK_FISCAL_YEAR_NUMBER_INT",
+          "from_instance": "WI_SALES_TERR_LNK_LVL02"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL0"
+        },
+        {
+          "from_field": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+          "from_instance": "SQ_WI_SALES_TERR_LNK_LVL01"
+        },
+        {
+          "from_field": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+          "from_instance": "WI_SALES_TERR_LNK_LVL0"
+        },
+        {
+          "from_field": "BK_SALES_TERR_ASSGNMNT_TYPE_CD",
+          "from_instance": "WI_SALES_TERR_LNK_LVL02"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:25:36.293477+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

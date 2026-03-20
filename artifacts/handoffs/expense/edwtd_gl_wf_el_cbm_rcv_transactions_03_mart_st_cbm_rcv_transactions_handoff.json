@@ -1,0 +1,5494 @@
+{
+  "workflow_name": "wf_m_EL_CBM_RCV_TRANSACTIONS",
+  "mapping_name": "m_EL_CBM_RCV_TRANSACTIONS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "ST_CBM_RCV_TRANSACTIONS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_el_cbm_rcv_transactions_03_mart_st_cbm_rcv_transactions",
+  "source_tables": [
+    "EL_CBM_RCV_SHIPMENT_LINES",
+    "EL_CBM_RCV_SHIPMENT_HEADERS",
+    "EL_CBM_RCV_TRANSACTIONS"
+  ],
+  "sources": [
+    {
+      "name": "EL_CBM_RCV_SHIPMENT_LINES",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_TS1",
+      "fields": [
+        {
+          "name": "SHIPMENT_LINE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_LINE_NUM",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PO_LINE_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_HEADER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DELIVER_TO_PERSON_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_LINE_STATUS_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PO_LINE_LOCATION_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_LINE_CREATION_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_ON_KAFKA",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OFFSET_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTITION_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRIMARY_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PO_UNIT_PRICE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CONVERSION_RATE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "17",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DOC_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRIMARY_UOM_CODE",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_DOC_UOM_CODE",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_TYPE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_TS1",
+      "fields": [
+        {
+          "name": "SHIPMENT_HEADER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FREIGHT_CARRIER_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORGANIZATION_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WAYBILL_AIRBILL_NUM",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXPECTED_RECEIPT_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RECEIPT_NUM",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_ON_KAFKA",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OFFSET_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTITION_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "EL_CBM_RCV_TRANSACTIONS",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_TS1",
+      "fields": [
+        {
+          "name": "TRANSACTION_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SEGMENT1",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINE_LOCATION_QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_TYPE",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PO_LINE_ITEM_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PO_LINE_NUM",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINE_UNIT_PRICE",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_OF_LADING",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RA_NOTE_TO_RECEIVER",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RECEIPT_NUM",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RECEIPT_SOURCE_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_HEADER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPPED_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WAYBILL_AIRBILL_NUM",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AMOUNT_RECEIVED",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_COMMENTS",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONSUMED_QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ITEM_DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ITEM_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_LINE_NUM",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PACKING_SLIP",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUANTITY_ACCEPTED",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUANTITY_DELIVERED",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUANTITY_RECEIVED",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUANTITY_REJECTED",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUANTITY_RETURNED",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ROUTING_HEADER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_LINE_STATUS_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VENDOR_ITEM_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCRUAL_STATUS_CODE",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AMOUNT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_COMMENTS",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONSIGNED_FLAG",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CONVERSION_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CONVERSION_RATE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "17",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CONVERSION_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DELIVER_TO_PERSON_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DESTINATION_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EMPLOYEE_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INSPECTION_QUALITY_CODE",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INV_TRANSACTION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVOICE_STATUS_CODE",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LOCATION_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORGANIZATION_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARENT_TRANSACTION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PO_DISTRIBUTION_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PO_HEADER_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PO_LINE_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PO_LINE_LOCATION_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PO_UNIT_PRICE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRIMARY_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRIMARY_UOM_CODE",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PROJECT_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REASON_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RECEIPT_EXCEPTION_FLAG",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RMA_REFERENCE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_LINE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DOC_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_DOC_UOM_CODE",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DOCUMENT_CODE",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_TYPE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "UOM_CODE",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "VENDOR_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VENDOR_SITE_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_LINE_CREATION_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIPMENT_HEADER_CREATION_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXPECTED_RECEIPT_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FREIGHT_CARRIER_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_BY_KAFKA",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_ON_KAFKA",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OFFSET_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTITION_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_CBM_RCV_TRANSACTIONS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "TRANSACTION_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SEGMENT1",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LINE_LOCATION_QUANTITY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIPMENT_TYPE",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PO_LINE_ITEM_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PO_LINE_NUM",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LINE_UNIT_PRICE",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BILL_OF_LADING",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RA_NOTE_TO_RECEIVER",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RECEIPT_NUM",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RECEIPT_SOURCE_CODE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIPMENT_HEADER_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIPMENT_NUM",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIPPED_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "WAYBILL_AIRBILL_NUM",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AMOUNT_RECEIVED",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CATEGORY_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIPMENT_COMMENTS",
+        "datatype": "varchar",
+        "precision": "250",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CONSUMED_QUANTITY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ITEM_DESCRIPTION",
+        "datatype": "varchar",
+        "precision": "2000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ITEM_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIPMENT_LINE_NUM",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PACKING_SLIP",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "QUANTITY_ACCEPTED",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "QUANTITY_DELIVERED",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "QUANTITY_RECEIVED",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "QUANTITY_REJECTED",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "QUANTITY_RETURNED",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ROUTING_HEADER_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIPMENT_LINE_STATUS_CODE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "VENDOR_ITEM_NUM",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCRUAL_STATUS_CODE",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AMOUNT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TRANSACTION_COMMENTS",
+        "datatype": "varchar",
+        "precision": "150",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CONSIGNED_FLAG",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CURRENCY_CODE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CURRENCY_CONVERSION_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CURRENCY_CONVERSION_RATE",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "17",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CURRENCY_CONVERSION_TYPE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DELIVER_TO_PERSON_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DESTINATION_TYPE_CODE",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EMPLOYEE_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INSPECTION_QUALITY_CODE",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INV_TRANSACTION_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INVOICE_STATUS_CODE",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATED_BY",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LOCATION_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ORGANIZATION_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARENT_TRANSACTION_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PO_DISTRIBUTION_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PO_HEADER_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PO_LINE_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PO_LINE_LOCATION_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PO_UNIT_PRICE",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PRIMARY_QUANTITY",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "6",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PRIMARY_UOM_CODE",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROJECT_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "QUANTITY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REASON_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RECEIPT_EXCEPTION_FLAG",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RMA_REFERENCE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIPMENT_LINE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOURCE_DOC_QUANTITY",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "6",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOURCE_DOC_UOM_CODE",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOURCE_DOCUMENT_CODE",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TRANSACTION_TYPE",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UOM_CODE",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "VENDOR_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "VENDOR_SITE_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TRANSACTION_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIPMENT_LINE_CREATION_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIPMENT_HEADER_CREATION_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EXPECTED_RECEIPT_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FREIGHT_CARRIER_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SS_CODE",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GLOBAL_NAME",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATED_BY_KAFKA",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATED_ON_KAFKA",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "OFFSET_NUMBER",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARTITION_NUMBER",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "TRANSACTION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SEGMENT1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LINE_LOCATION_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PO_LINE_ITEM_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PO_LINE_NUM",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LINE_UNIT_PRICE",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_OF_LADING",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RA_NOTE_TO_RECEIVER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RECEIPT_NUM",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RECEIPT_SOURCE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_HEADER_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPPED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WAYBILL_AIRBILL_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AMOUNT_RECEIVED",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_COMMENTS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONSUMED_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ITEM_DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ITEM_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_LINE_NUM",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PACKING_SLIP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUANTITY_ACCEPTED",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUANTITY_DELIVERED",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUANTITY_RECEIVED",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUANTITY_REJECTED",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUANTITY_RETURNED",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ROUTING_HEADER_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_LINE_STATUS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VENDOR_ITEM_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCRUAL_STATUS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AMOUNT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_COMMENTS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONSIGNED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURRENCY_CONVERSION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURRENCY_CONVERSION_RATE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURRENCY_CONVERSION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DELIVER_TO_PERSON_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESTINATION_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EMPLOYEE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INSPECTION_QUALITY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INV_TRANSACTION_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVOICE_STATUS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOCATION_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORGANIZATION_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARENT_TRANSACTION_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PO_DISTRIBUTION_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PO_HEADER_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PO_LINE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PO_LINE_LOCATION_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PO_UNIT_PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRIMARY_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRIMARY_UOM_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROJECT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REASON_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RECEIPT_EXCEPTION_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RMA_REFERENCE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_LINE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DOC_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DOC_UOM_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DOCUMENT_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UOM_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VENDOR_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VENDOR_SITE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_LINE_CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_HEADER_CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXPECTED_RECEIPT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FREIGHT_CARRIER_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_BY_KAFKA",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_ON_KAFKA",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OFFSET_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTITION_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SHIPMENT_HEADER_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FREIGHT_CARRIER_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORGANIZATION_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WAYBILL_AIRBILL_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXPECTED_RECEIPT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RECEIPT_NUM",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_ON_KAFKA",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OFFSET_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTITION_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SHIPMENT_LINE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_LINE_NUM",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PO_LINE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_HEADER_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DELIVER_TO_PERSON_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_LINE_STATUS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PO_LINE_LOCATION_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIPMENT_LINE_CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_ON_KAFKA",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OFFSET_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTITION_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRIMARY_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PO_UNIT_PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURRENCY_CONVERSION_RATE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DOC_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRIMARY_UOM_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DOC_UOM_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SHIPMENT_HEADER_ID",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "SHIPMENT_HEADER_ID",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "FREIGHT_CARRIER_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "FREIGHT_CARRIER_CODE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "ORGANIZATION_ID",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "ORGANIZATION_ID",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "WAYBILL_AIRBILL_NUM",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "WAYBILL_AIRBILL_NUM",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "EXPECTED_RECEIPT_DATE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "EXPECTED_RECEIPT_DATE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "RECEIPT_NUM",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "RECEIPT_NUM",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "SHIPMENT_NUM",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "SHIPMENT_NUM",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "SS_CODE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "UPDATED_ON_KAFKA",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "UPDATED_ON_KAFKA",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "OFFSET_NUMBER",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "OFFSET_NUMBER",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "PARTITION_NUMBER",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "PARTITION_NUMBER",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "SOURCE_DOC_QUANTITY",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SOURCE_DOC_QUANTITY",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SOURCE_DOC_UOM_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SOURCE_DOC_UOM_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SOURCE_DOCUMENT_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SOURCE_DOCUMENT_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "TRANSACTION_TYPE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "TRANSACTION_TYPE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "UOM_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "UOM_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "VENDOR_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "VENDOR_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "VENDOR_SITE_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "VENDOR_SITE_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "TRANSACTION_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "TRANSACTION_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_CREATION_DATE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_LINE_CREATION_DATE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_HEADER_CREATION_DATE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_HEADER_CREATION_DATE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "EXPECTED_RECEIPT_DATE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "EXPECTED_RECEIPT_DATE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "FREIGHT_CARRIER_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "FREIGHT_CARRIER_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SS_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "UPDATED_BY_KAFKA",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "UPDATED_BY_KAFKA",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "UPDATED_ON_KAFKA",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "UPDATED_ON_KAFKA",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "OFFSET_NUMBER",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "OFFSET_NUMBER",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PARTITION_NUMBER",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PARTITION_NUMBER",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "TRANSACTION_DATE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "TRANSACTION_DATE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SEGMENT1",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SEGMENT1",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "LINE_LOCATION_QUANTITY",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "LINE_LOCATION_QUANTITY",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_TYPE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_TYPE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_LINE_ITEM_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_LINE_ITEM_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_LINE_NUM",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_LINE_NUM",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "LINE_UNIT_PRICE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "LINE_UNIT_PRICE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "BILL_OF_LADING",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "BILL_OF_LADING",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "RA_NOTE_TO_RECEIVER",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "RA_NOTE_TO_RECEIVER",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "RECEIPT_NUM",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "RECEIPT_NUM",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "RECEIPT_SOURCE_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "RECEIPT_SOURCE_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_HEADER_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_HEADER_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_NUM",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_NUM",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPPED_DATE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPPED_DATE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "WAYBILL_AIRBILL_NUM",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "WAYBILL_AIRBILL_NUM",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "AMOUNT_RECEIVED",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "AMOUNT_RECEIVED",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CATEGORY_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CATEGORY_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_COMMENTS",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_COMMENTS",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CONSUMED_QUANTITY",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CONSUMED_QUANTITY",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "ITEM_DESCRIPTION",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "ITEM_DESCRIPTION",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "ITEM_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "ITEM_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_NUM",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_LINE_NUM",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PACKING_SLIP",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PACKING_SLIP",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "QUANTITY_ACCEPTED",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "QUANTITY_ACCEPTED",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "QUANTITY_DELIVERED",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "QUANTITY_DELIVERED",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "QUANTITY_RECEIVED",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "QUANTITY_RECEIVED",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "QUANTITY_REJECTED",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "QUANTITY_REJECTED",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "QUANTITY_RETURNED",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "QUANTITY_RETURNED",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "ROUTING_HEADER_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "ROUTING_HEADER_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_STATUS_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_LINE_STATUS_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "VENDOR_ITEM_NUM",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "VENDOR_ITEM_NUM",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "ACCRUAL_STATUS_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "ACCRUAL_STATUS_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "AMOUNT",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "AMOUNT",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "TRANSACTION_COMMENTS",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "TRANSACTION_COMMENTS",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CONSIGNED_FLAG",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CONSIGNED_FLAG",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CREATED_BY",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CURRENCY_CONVERSION_DATE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CURRENCY_CONVERSION_DATE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CURRENCY_CONVERSION_RATE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CURRENCY_CONVERSION_RATE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CURRENCY_CONVERSION_TYPE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CURRENCY_CONVERSION_TYPE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "DELIVER_TO_PERSON_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "DELIVER_TO_PERSON_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "DESTINATION_TYPE_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "DESTINATION_TYPE_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "EMPLOYEE_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "EMPLOYEE_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "INSPECTION_QUALITY_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "INSPECTION_QUALITY_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "INV_TRANSACTION_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "INV_TRANSACTION_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "INVOICE_STATUS_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "INVOICE_STATUS_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "LOCATION_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "LOCATION_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "ORGANIZATION_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "ORGANIZATION_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PARENT_TRANSACTION_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PARENT_TRANSACTION_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_DISTRIBUTION_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_DISTRIBUTION_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_HEADER_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_HEADER_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_LINE_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_LINE_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_LINE_LOCATION_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_LINE_LOCATION_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_UNIT_PRICE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_UNIT_PRICE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PRIMARY_QUANTITY",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PRIMARY_QUANTITY",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PRIMARY_UOM_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PRIMARY_UOM_CODE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PROJECT_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PROJECT_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "QUANTITY",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "QUANTITY",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "REASON_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "REASON_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "RECEIPT_EXCEPTION_FLAG",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "RECEIPT_EXCEPTION_FLAG",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "RMA_REFERENCE",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "RMA_REFERENCE",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_ID",
+      "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_LINE_ID",
+      "to_instance": "ST_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_ID",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SHIPMENT_LINE_ID",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_NUM",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SHIPMENT_LINE_NUM",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PO_LINE_ID",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "PO_LINE_ID",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SHIPMENT_HEADER_ID",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SHIPMENT_HEADER_ID",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "DELIVER_TO_PERSON_ID",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "DELIVER_TO_PERSON_ID",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_STATUS_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SHIPMENT_LINE_STATUS_CODE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PO_LINE_LOCATION_ID",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "PO_LINE_LOCATION_ID",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_CREATION_DATE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SHIPMENT_LINE_CREATION_DATE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SS_CODE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "UPDATED_ON_KAFKA",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "UPDATED_ON_KAFKA",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "OFFSET_NUMBER",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "OFFSET_NUMBER",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PARTITION_NUMBER",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "PARTITION_NUMBER",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "TRANSACTION_DATE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "TRANSACTION_DATE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PRIMARY_QUANTITY",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "PRIMARY_QUANTITY",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SOURCE_DOC_QUANTITY",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SOURCE_DOC_QUANTITY",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PO_UNIT_PRICE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "PO_UNIT_PRICE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "CURRENCY_CONVERSION_RATE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "CURRENCY_CONVERSION_RATE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PRIMARY_UOM_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "PRIMARY_UOM_CODE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SOURCE_DOC_UOM_CODE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SOURCE_DOC_UOM_CODE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "TRANSACTION_TYPE",
+      "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "TRANSACTION_TYPE",
+      "to_instance": "ST_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PARENT_TRANSACTION_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PARENT_TRANSACTION_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_DISTRIBUTION_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_DISTRIBUTION_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_HEADER_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_HEADER_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_LINE_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_LINE_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_LINE_LOCATION_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_LINE_LOCATION_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_UNIT_PRICE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_UNIT_PRICE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PRIMARY_QUANTITY",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PRIMARY_QUANTITY",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PRIMARY_UOM_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PRIMARY_UOM_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PROJECT_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PROJECT_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "QUANTITY",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "QUANTITY",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "REASON_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "REASON_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "RECEIPT_EXCEPTION_FLAG",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "RECEIPT_EXCEPTION_FLAG",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "RMA_REFERENCE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "RMA_REFERENCE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_LINE_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SOURCE_DOC_QUANTITY",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SOURCE_DOC_QUANTITY",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SOURCE_DOC_UOM_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SOURCE_DOC_UOM_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SOURCE_DOCUMENT_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SOURCE_DOCUMENT_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "TRANSACTION_TYPE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "TRANSACTION_TYPE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "UOM_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "UOM_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "VENDOR_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "VENDOR_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "VENDOR_SITE_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "VENDOR_SITE_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "TRANSACTION_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "TRANSACTION_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_CREATION_DATE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_LINE_CREATION_DATE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_HEADER_CREATION_DATE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_HEADER_CREATION_DATE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "EXPECTED_RECEIPT_DATE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "EXPECTED_RECEIPT_DATE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "FREIGHT_CARRIER_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "FREIGHT_CARRIER_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "UPDATED_BY_KAFKA",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "UPDATED_BY_KAFKA",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "UPDATED_ON_KAFKA",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "UPDATED_ON_KAFKA",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "OFFSET_NUMBER",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "OFFSET_NUMBER",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PARTITION_NUMBER",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PARTITION_NUMBER",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "TRANSACTION_DATE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "TRANSACTION_DATE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SEGMENT1",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SEGMENT1",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "LINE_LOCATION_QUANTITY",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "LINE_LOCATION_QUANTITY",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_TYPE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_TYPE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_LINE_ITEM_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_LINE_ITEM_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PO_LINE_NUM",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PO_LINE_NUM",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "LINE_UNIT_PRICE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "LINE_UNIT_PRICE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "BILL_OF_LADING",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "BILL_OF_LADING",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "RA_NOTE_TO_RECEIVER",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "RA_NOTE_TO_RECEIVER",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "RECEIPT_NUM",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "RECEIPT_NUM",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "RECEIPT_SOURCE_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "RECEIPT_SOURCE_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_HEADER_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_HEADER_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_NUM",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_NUM",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPPED_DATE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPPED_DATE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "WAYBILL_AIRBILL_NUM",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "WAYBILL_AIRBILL_NUM",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "AMOUNT_RECEIVED",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "AMOUNT_RECEIVED",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CATEGORY_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CATEGORY_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_COMMENTS",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_COMMENTS",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CONSUMED_QUANTITY",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CONSUMED_QUANTITY",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "ITEM_DESCRIPTION",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "ITEM_DESCRIPTION",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "ITEM_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "ITEM_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_NUM",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_LINE_NUM",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "PACKING_SLIP",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "PACKING_SLIP",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "QUANTITY_ACCEPTED",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "QUANTITY_ACCEPTED",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "QUANTITY_DELIVERED",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "QUANTITY_DELIVERED",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "QUANTITY_RECEIVED",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "QUANTITY_RECEIVED",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "QUANTITY_REJECTED",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "QUANTITY_REJECTED",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "QUANTITY_RETURNED",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "QUANTITY_RETURNED",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "ROUTING_HEADER_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "ROUTING_HEADER_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_STATUS_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "SHIPMENT_LINE_STATUS_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "VENDOR_ITEM_NUM",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "VENDOR_ITEM_NUM",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "ACCRUAL_STATUS_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "ACCRUAL_STATUS_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "AMOUNT",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "AMOUNT",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "TRANSACTION_COMMENTS",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "TRANSACTION_COMMENTS",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CONSIGNED_FLAG",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CONSIGNED_FLAG",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CURRENCY_CONVERSION_DATE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CURRENCY_CONVERSION_DATE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CURRENCY_CONVERSION_RATE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CURRENCY_CONVERSION_RATE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "CURRENCY_CONVERSION_TYPE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "CURRENCY_CONVERSION_TYPE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "DELIVER_TO_PERSON_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "DELIVER_TO_PERSON_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "DESTINATION_TYPE_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "DESTINATION_TYPE_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "EMPLOYEE_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "EMPLOYEE_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "INSPECTION_QUALITY_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "INSPECTION_QUALITY_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "INV_TRANSACTION_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "INV_TRANSACTION_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "INVOICE_STATUS_CODE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "INVOICE_STATUS_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "LOCATION_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "LOCATION_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "ORGANIZATION_ID",
+      "from_instance": "EL_CBM_RCV_TRANSACTIONS",
+      "to_field": "ORGANIZATION_ID",
+      "to_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+    },
+    {
+      "from_field": "SHIPMENT_HEADER_ID",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "SHIPMENT_HEADER_ID",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "FREIGHT_CARRIER_CODE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "FREIGHT_CARRIER_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "ORGANIZATION_ID",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "ORGANIZATION_ID",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "WAYBILL_AIRBILL_NUM",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "WAYBILL_AIRBILL_NUM",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "EXPECTED_RECEIPT_DATE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "EXPECTED_RECEIPT_DATE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "RECEIPT_NUM",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "RECEIPT_NUM",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "SHIPMENT_NUM",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "SHIPMENT_NUM",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "UPDATED_ON_KAFKA",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "UPDATED_ON_KAFKA",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "OFFSET_NUMBER",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "OFFSET_NUMBER",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "PARTITION_NUMBER",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "PARTITION_NUMBER",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+    },
+    {
+      "from_field": "DELIVER_TO_PERSON_ID",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "DELIVER_TO_PERSON_ID",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_STATUS_CODE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SHIPMENT_LINE_STATUS_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PO_LINE_LOCATION_ID",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "PO_LINE_LOCATION_ID",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_CREATION_DATE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SHIPMENT_LINE_CREATION_DATE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "UPDATED_ON_KAFKA",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "UPDATED_ON_KAFKA",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "OFFSET_NUMBER",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "OFFSET_NUMBER",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PARTITION_NUMBER",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "PARTITION_NUMBER",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "TRANSACTION_DATE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "TRANSACTION_DATE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PRIMARY_QUANTITY",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "PRIMARY_QUANTITY",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PO_UNIT_PRICE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "PO_UNIT_PRICE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "CURRENCY_CONVERSION_RATE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "CURRENCY_CONVERSION_RATE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SOURCE_DOC_QUANTITY",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SOURCE_DOC_QUANTITY",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PRIMARY_UOM_CODE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "PRIMARY_UOM_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SOURCE_DOC_UOM_CODE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SOURCE_DOC_UOM_CODE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "TRANSACTION_TYPE",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "TRANSACTION_TYPE",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "PO_LINE_ID",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "PO_LINE_ID",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SHIPMENT_HEADER_ID",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SHIPMENT_HEADER_ID",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_ID",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SHIPMENT_LINE_ID",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    },
+    {
+      "from_field": "SHIPMENT_LINE_NUM",
+      "from_instance": "EL_CBM_RCV_SHIPMENT_LINES",
+      "to_field": "SHIPMENT_LINE_NUM",
+      "to_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "TRANSACTION_DATE",
+      "source_path": [
+        {
+          "from_field": "TRANSACTION_DATE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "TRANSACTION_DATE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "TRANSACTION_DATE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "TRANSACTION_DATE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SEGMENT1",
+      "source_path": [
+        {
+          "from_field": "SEGMENT1",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SEGMENT1",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LINE_LOCATION_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "LINE_LOCATION_QUANTITY",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "LINE_LOCATION_QUANTITY",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIPMENT_TYPE",
+      "source_path": [
+        {
+          "from_field": "SHIPMENT_TYPE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_TYPE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PO_LINE_ITEM_ID",
+      "source_path": [
+        {
+          "from_field": "PO_LINE_ITEM_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PO_LINE_ITEM_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PO_LINE_NUM",
+      "source_path": [
+        {
+          "from_field": "PO_LINE_NUM",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PO_LINE_NUM",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LINE_UNIT_PRICE",
+      "source_path": [
+        {
+          "from_field": "LINE_UNIT_PRICE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "LINE_UNIT_PRICE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BILL_OF_LADING",
+      "source_path": [
+        {
+          "from_field": "BILL_OF_LADING",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "BILL_OF_LADING",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RA_NOTE_TO_RECEIVER",
+      "source_path": [
+        {
+          "from_field": "RA_NOTE_TO_RECEIVER",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "RA_NOTE_TO_RECEIVER",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RECEIPT_NUM",
+      "source_path": [
+        {
+          "from_field": "RECEIPT_NUM",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "RECEIPT_NUM",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "RECEIPT_NUM",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "RECEIPT_NUM",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RECEIPT_SOURCE_CODE",
+      "source_path": [
+        {
+          "from_field": "RECEIPT_SOURCE_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "RECEIPT_SOURCE_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIPMENT_HEADER_ID",
+      "source_path": [
+        {
+          "from_field": "SHIPMENT_HEADER_ID",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "SHIPMENT_HEADER_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_HEADER_ID",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "SHIPMENT_HEADER_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_HEADER_ID",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "SHIPMENT_HEADER_ID",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIPMENT_NUM",
+      "source_path": [
+        {
+          "from_field": "SHIPMENT_NUM",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "SHIPMENT_NUM",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_NUM",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_NUM",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIPPED_DATE",
+      "source_path": [
+        {
+          "from_field": "SHIPPED_DATE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPPED_DATE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "WAYBILL_AIRBILL_NUM",
+      "source_path": [
+        {
+          "from_field": "WAYBILL_AIRBILL_NUM",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "WAYBILL_AIRBILL_NUM",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "WAYBILL_AIRBILL_NUM",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "WAYBILL_AIRBILL_NUM",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AMOUNT_RECEIVED",
+      "source_path": [
+        {
+          "from_field": "AMOUNT_RECEIVED",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "AMOUNT_RECEIVED",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CATEGORY_ID",
+      "source_path": [
+        {
+          "from_field": "CATEGORY_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "CATEGORY_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIPMENT_COMMENTS",
+      "source_path": [
+        {
+          "from_field": "SHIPMENT_COMMENTS",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_COMMENTS",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CONSUMED_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "CONSUMED_QUANTITY",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "CONSUMED_QUANTITY",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ITEM_DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "ITEM_DESCRIPTION",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "ITEM_DESCRIPTION",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ITEM_ID",
+      "source_path": [
+        {
+          "from_field": "ITEM_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "ITEM_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIPMENT_LINE_NUM",
+      "source_path": [
+        {
+          "from_field": "SHIPMENT_LINE_NUM",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_LINE_NUM",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "SHIPMENT_LINE_NUM",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_LINE_NUM",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PACKING_SLIP",
+      "source_path": [
+        {
+          "from_field": "PACKING_SLIP",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PACKING_SLIP",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "QUANTITY_ACCEPTED",
+      "source_path": [
+        {
+          "from_field": "QUANTITY_ACCEPTED",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "QUANTITY_ACCEPTED",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "QUANTITY_DELIVERED",
+      "source_path": [
+        {
+          "from_field": "QUANTITY_DELIVERED",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "QUANTITY_DELIVERED",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "QUANTITY_RECEIVED",
+      "source_path": [
+        {
+          "from_field": "QUANTITY_RECEIVED",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "QUANTITY_RECEIVED",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "QUANTITY_REJECTED",
+      "source_path": [
+        {
+          "from_field": "QUANTITY_REJECTED",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "QUANTITY_REJECTED",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "QUANTITY_RETURNED",
+      "source_path": [
+        {
+          "from_field": "QUANTITY_RETURNED",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "QUANTITY_RETURNED",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ROUTING_HEADER_ID",
+      "source_path": [
+        {
+          "from_field": "ROUTING_HEADER_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "ROUTING_HEADER_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIPMENT_LINE_STATUS_CODE",
+      "source_path": [
+        {
+          "from_field": "SHIPMENT_LINE_STATUS_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_LINE_STATUS_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "SHIPMENT_LINE_STATUS_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_LINE_STATUS_CODE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "VENDOR_ITEM_NUM",
+      "source_path": [
+        {
+          "from_field": "VENDOR_ITEM_NUM",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "VENDOR_ITEM_NUM",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCRUAL_STATUS_CODE",
+      "source_path": [
+        {
+          "from_field": "ACCRUAL_STATUS_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "ACCRUAL_STATUS_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AMOUNT",
+      "source_path": [
+        {
+          "from_field": "AMOUNT",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "AMOUNT",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TRANSACTION_COMMENTS",
+      "source_path": [
+        {
+          "from_field": "TRANSACTION_COMMENTS",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "TRANSACTION_COMMENTS",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CONSIGNED_FLAG",
+      "source_path": [
+        {
+          "from_field": "CONSIGNED_FLAG",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "CONSIGNED_FLAG",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CURRENCY_CODE",
+      "source_path": [
+        {
+          "from_field": "CURRENCY_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "CURRENCY_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "CURRENCY_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "CURRENCY_CODE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CURRENCY_CONVERSION_DATE",
+      "source_path": [
+        {
+          "from_field": "CURRENCY_CONVERSION_DATE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "CURRENCY_CONVERSION_DATE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CURRENCY_CONVERSION_RATE",
+      "source_path": [
+        {
+          "from_field": "CURRENCY_CONVERSION_RATE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "CURRENCY_CONVERSION_RATE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "CURRENCY_CONVERSION_RATE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "CURRENCY_CONVERSION_RATE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CURRENCY_CONVERSION_TYPE",
+      "source_path": [
+        {
+          "from_field": "CURRENCY_CONVERSION_TYPE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "CURRENCY_CONVERSION_TYPE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DELIVER_TO_PERSON_ID",
+      "source_path": [
+        {
+          "from_field": "DELIVER_TO_PERSON_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "DELIVER_TO_PERSON_ID",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "DELIVER_TO_PERSON_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "DELIVER_TO_PERSON_ID",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DESTINATION_TYPE_CODE",
+      "source_path": [
+        {
+          "from_field": "DESTINATION_TYPE_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "DESTINATION_TYPE_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EMPLOYEE_ID",
+      "source_path": [
+        {
+          "from_field": "EMPLOYEE_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "EMPLOYEE_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INSPECTION_QUALITY_CODE",
+      "source_path": [
+        {
+          "from_field": "INSPECTION_QUALITY_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "INSPECTION_QUALITY_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INV_TRANSACTION_ID",
+      "source_path": [
+        {
+          "from_field": "INV_TRANSACTION_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "INV_TRANSACTION_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INVOICE_STATUS_CODE",
+      "source_path": [
+        {
+          "from_field": "INVOICE_STATUS_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "INVOICE_STATUS_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATED_BY",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LOCATION_ID",
+      "source_path": [
+        {
+          "from_field": "LOCATION_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "LOCATION_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ORGANIZATION_ID",
+      "source_path": [
+        {
+          "from_field": "ORGANIZATION_ID",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "ORGANIZATION_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "ORGANIZATION_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "ORGANIZATION_ID",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARENT_TRANSACTION_ID",
+      "source_path": [
+        {
+          "from_field": "PARENT_TRANSACTION_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PARENT_TRANSACTION_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PO_DISTRIBUTION_ID",
+      "source_path": [
+        {
+          "from_field": "PO_DISTRIBUTION_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PO_DISTRIBUTION_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PO_HEADER_ID",
+      "source_path": [
+        {
+          "from_field": "PO_HEADER_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PO_HEADER_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PO_LINE_ID",
+      "source_path": [
+        {
+          "from_field": "PO_LINE_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PO_LINE_ID",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "PO_LINE_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PO_LINE_ID",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PO_LINE_LOCATION_ID",
+      "source_path": [
+        {
+          "from_field": "PO_LINE_LOCATION_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PO_LINE_LOCATION_ID",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "PO_LINE_LOCATION_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PO_LINE_LOCATION_ID",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PO_UNIT_PRICE",
+      "source_path": [
+        {
+          "from_field": "PO_UNIT_PRICE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PO_UNIT_PRICE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "PO_UNIT_PRICE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PO_UNIT_PRICE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRIMARY_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "PRIMARY_QUANTITY",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PRIMARY_QUANTITY",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "PRIMARY_QUANTITY",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PRIMARY_QUANTITY",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRIMARY_UOM_CODE",
+      "source_path": [
+        {
+          "from_field": "PRIMARY_UOM_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PRIMARY_UOM_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "PRIMARY_UOM_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PRIMARY_UOM_CODE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROJECT_ID",
+      "source_path": [
+        {
+          "from_field": "PROJECT_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PROJECT_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "QUANTITY",
+      "source_path": [
+        {
+          "from_field": "QUANTITY",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "QUANTITY",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REASON_ID",
+      "source_path": [
+        {
+          "from_field": "REASON_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "REASON_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RECEIPT_EXCEPTION_FLAG",
+      "source_path": [
+        {
+          "from_field": "RECEIPT_EXCEPTION_FLAG",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "RECEIPT_EXCEPTION_FLAG",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RMA_REFERENCE",
+      "source_path": [
+        {
+          "from_field": "RMA_REFERENCE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "RMA_REFERENCE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIPMENT_LINE_ID",
+      "source_path": [
+        {
+          "from_field": "SHIPMENT_LINE_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_LINE_ID",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "SHIPMENT_LINE_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_LINE_ID",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_DOC_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "SOURCE_DOC_QUANTITY",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SOURCE_DOC_QUANTITY",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "SOURCE_DOC_QUANTITY",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SOURCE_DOC_QUANTITY",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_DOC_UOM_CODE",
+      "source_path": [
+        {
+          "from_field": "SOURCE_DOC_UOM_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SOURCE_DOC_UOM_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "SOURCE_DOC_UOM_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SOURCE_DOC_UOM_CODE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_DOCUMENT_CODE",
+      "source_path": [
+        {
+          "from_field": "SOURCE_DOCUMENT_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SOURCE_DOCUMENT_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TRANSACTION_TYPE",
+      "source_path": [
+        {
+          "from_field": "TRANSACTION_TYPE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "TRANSACTION_TYPE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "TRANSACTION_TYPE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "TRANSACTION_TYPE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UOM_CODE",
+      "source_path": [
+        {
+          "from_field": "UOM_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "UOM_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "VENDOR_ID",
+      "source_path": [
+        {
+          "from_field": "VENDOR_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "VENDOR_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "VENDOR_SITE_ID",
+      "source_path": [
+        {
+          "from_field": "VENDOR_SITE_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "VENDOR_SITE_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TRANSACTION_ID",
+      "source_path": [
+        {
+          "from_field": "TRANSACTION_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "TRANSACTION_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIPMENT_LINE_CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "SHIPMENT_LINE_CREATION_DATE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_LINE_CREATION_DATE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "SHIPMENT_LINE_CREATION_DATE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_LINE_CREATION_DATE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIPMENT_HEADER_CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "SHIPMENT_HEADER_CREATION_DATE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SHIPMENT_HEADER_CREATION_DATE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EXPECTED_RECEIPT_DATE",
+      "source_path": [
+        {
+          "from_field": "EXPECTED_RECEIPT_DATE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "EXPECTED_RECEIPT_DATE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "EXPECTED_RECEIPT_DATE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "EXPECTED_RECEIPT_DATE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FREIGHT_CARRIER_ID",
+      "source_path": [
+        {
+          "from_field": "FREIGHT_CARRIER_ID",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "FREIGHT_CARRIER_ID",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CODE",
+      "source_path": [
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GLOBAL_NAME",
+      "source_path": [
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATED_BY_KAFKA",
+      "source_path": [
+        {
+          "from_field": "UPDATED_BY_KAFKA",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "UPDATED_BY_KAFKA",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATED_ON_KAFKA",
+      "source_path": [
+        {
+          "from_field": "UPDATED_ON_KAFKA",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "UPDATED_ON_KAFKA",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "UPDATED_ON_KAFKA",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "UPDATED_ON_KAFKA",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "UPDATED_ON_KAFKA",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "UPDATED_ON_KAFKA",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "OFFSET_NUMBER",
+      "source_path": [
+        {
+          "from_field": "OFFSET_NUMBER",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "OFFSET_NUMBER",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "OFFSET_NUMBER",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "OFFSET_NUMBER",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "OFFSET_NUMBER",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "OFFSET_NUMBER",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTITION_NUMBER",
+      "source_path": [
+        {
+          "from_field": "PARTITION_NUMBER",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "PARTITION_NUMBER",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PARTITION_NUMBER",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "PARTITION_NUMBER",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "PARTITION_NUMBER",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "PARTITION_NUMBER",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_EL_CBM_RCV_SHIPMENT_LINES"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EL_CBM_RCV_TRANSACTIONS"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_HEADERS"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EL_CBM_RCV_SHIPMENT_LINES"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:05.275582+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

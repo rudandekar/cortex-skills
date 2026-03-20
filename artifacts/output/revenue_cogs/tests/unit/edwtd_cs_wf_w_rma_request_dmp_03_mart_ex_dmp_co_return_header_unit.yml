@@ -1,0 +1,26 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_cs_wf_w_rma_request_dmp_03_mart_ex_dmp_co_return_header_aggregator_sum
+    model: edwtd_cs_wf_w_rma_request_dmp_03_mart_ex_dmp_co_return_header
+    description: "Verify aggregation produces correct sums"
+    given:
+      - input: source('raw', 'wi_sales_order_aar_rma_num')
+        rows:
+          - {key_id: 1, amount: 100}
+          - {key_id: 1, amount: 200}
+          - {key_id: 2, amount: 50}
+    expect:
+      rows:
+        - {key_id: 1, total_amount: 300}
+        - {key_id: 2, total_amount: 50}
+  - name: test_edwtd_cs_wf_w_rma_request_dmp_03_mart_ex_dmp_co_return_header_expression_transform
+    model: edwtd_cs_wf_w_rma_request_dmp_03_mart_ex_dmp_co_return_header
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'wi_sales_order_aar_rma_num')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

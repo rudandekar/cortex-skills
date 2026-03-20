@@ -1,0 +1,249 @@
+{
+  "workflow_name": "wf_m_WI_PSS_BKGS_SO_END_CUST_PRTNR",
+  "mapping_name": "m_WI_PSS_BKGS_SO_END_CUST_PRTNR",
+  "mapping_description": "",
+  "folder_name": "EDWTD_BKG_AGGRS",
+  "target_table": "WI_PSS_BKGS_SO_END_CUST_PRTNR",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_bkg_aggrs_wf_wi_pss_bkgs_so_end_cust_prtnr_01_mart_wi_pss_bkgs_so_end_cust_prtnr",
+  "source_tables": [
+    "WI_PSS_BKGS_SO_END_CUST_PRTNR"
+  ],
+  "sources": [
+    {
+      "name": "WI_PSS_BKGS_SO_END_CUST_PRTNR",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CD",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SO_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SO_PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_SOURCE_ORDER_NUM_INT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_PSS_BKGS_SO_END_CUST_PRTNR",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BKGS_MEASURE_TRANS_TYPE_CD",
+        "datatype": "char",
+        "precision": "7",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SO_END_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SO_PARTNER_SITE_PARTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_SOURCE_ORDER_NUM_INT",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SOURCE_ORDER_NUM_INT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nRBF.BKGS_MEASURE_TRANS_TYPE_CODE AS BKGS_MEASURE_TRANS_TYPE_CD , \r\nMAX(CASE WHEN RSEC.END_CUSTOMER_KEY IS NOT NULL THEN RSEC.END_CUSTOMER_KEY     ELSE RBF.DV_END_CUSTOMER_KEY END  )AS SO_END_CUSTOMER_KEY,\r\nMAX(RBCMF.PARTNER_SITE_PARTY_KEY) AS                SO_PARTNER_SITE_PARTY_KEY                       ,\r\nRBF.DV_SOURCE_ORDER_NUM_INT AS DV_SOURCE_ORDER_NUM_INT\r\nFROM $$SLSORDVWDB.N_BKGS_MEASURE RBF\r\nINNER JOIN  $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR SFDTY\r\n            ON(RBF.BOOKINGS_PROCESS_DATE=SFDTY.CALENDAR_DATE\r\n            AND SFDTY.FISCAL_YEAR_AGE IN (0,1))\r\nINNER JOIN $$SLSORDVWDB.N_BKGS_CHNL_MEASURE RBCMF\r\n            ON ( RBCMF.BOOKINGS_MEASURE_KEY=RBF.BOOKINGS_MEASURE_KEY\r\n            AND RBCMF.BOOKINGS_PROCESS_DATE=RBF.BOOKINGS_PROCESS_DATE\r\n            AND RBCMF.BKGS_MEASURE_TRANS_TYPE_CODE=RBF.BKGS_MEASURE_TRANS_TYPE_CODE)\r\nLEFT OUTER JOIN $$SLSORDVWDB.N_SO_END_CUSTOMER RSEC\r\n            ON ( RSEC.SALES_ORDER_KEY=RBF.SALES_ORDER_KEY\r\n            AND RBF.SALES_ORDER_KEY>0)\r\nWHERE RBF.DV_SOURCE_ORDER_NUM_INT IS NOT NULL  \r\n GROUP BY 1,4",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CD",
+      "from_instance": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CD",
+      "to_instance": "WI_PSS_BKGS_SO_END_CUST_PRTNR"
+    },
+    {
+      "from_field": "SO_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR",
+      "to_field": "SO_END_CUSTOMER_KEY",
+      "to_instance": "WI_PSS_BKGS_SO_END_CUST_PRTNR"
+    },
+    {
+      "from_field": "SO_PARTNER_SITE_PARTY_KEY",
+      "from_instance": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR",
+      "to_field": "SO_PARTNER_SITE_PARTY_KEY",
+      "to_instance": "WI_PSS_BKGS_SO_END_CUST_PRTNR"
+    },
+    {
+      "from_field": "DV_SOURCE_ORDER_NUM_INT",
+      "from_instance": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR",
+      "to_field": "DV_SOURCE_ORDER_NUM_INT",
+      "to_instance": "WI_PSS_BKGS_SO_END_CUST_PRTNR"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CD",
+      "from_instance": "WI_PSS_BKGS_SO_END_CUST_PRTNR1",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CD",
+      "to_instance": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR"
+    },
+    {
+      "from_field": "SO_END_CUSTOMER_KEY",
+      "from_instance": "WI_PSS_BKGS_SO_END_CUST_PRTNR1",
+      "to_field": "SO_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR"
+    },
+    {
+      "from_field": "SO_PARTNER_SITE_PARTY_KEY",
+      "from_instance": "WI_PSS_BKGS_SO_END_CUST_PRTNR1",
+      "to_field": "SO_PARTNER_SITE_PARTY_KEY",
+      "to_instance": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR"
+    },
+    {
+      "from_field": "DV_SOURCE_ORDER_NUM_INT",
+      "from_instance": "WI_PSS_BKGS_SO_END_CUST_PRTNR1",
+      "to_field": "DV_SOURCE_ORDER_NUM_INT",
+      "to_instance": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BKGS_MEASURE_TRANS_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CD",
+          "from_instance": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR"
+        },
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CD",
+          "from_instance": "WI_PSS_BKGS_SO_END_CUST_PRTNR1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SO_END_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "SO_END_CUSTOMER_KEY",
+          "from_instance": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR"
+        },
+        {
+          "from_field": "SO_END_CUSTOMER_KEY",
+          "from_instance": "WI_PSS_BKGS_SO_END_CUST_PRTNR1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SO_PARTNER_SITE_PARTY_KEY",
+      "source_path": [
+        {
+          "from_field": "SO_PARTNER_SITE_PARTY_KEY",
+          "from_instance": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR"
+        },
+        {
+          "from_field": "SO_PARTNER_SITE_PARTY_KEY",
+          "from_instance": "WI_PSS_BKGS_SO_END_CUST_PRTNR1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_SOURCE_ORDER_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "DV_SOURCE_ORDER_NUM_INT",
+          "from_instance": "SQ_WI_PSS_BKGS_SO_END_CUST_PRTNR"
+        },
+        {
+          "from_field": "DV_SOURCE_ORDER_NUM_INT",
+          "from_instance": "WI_PSS_BKGS_SO_END_CUST_PRTNR1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:11.865034+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

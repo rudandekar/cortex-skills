@@ -1,0 +1,381 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wk_sales_cr_asgmt_nonapld', 'batch', 'edwtd_ar'],
+    meta={
+        'source_workflow': 'wf_m_WK_SALES_CR_ASGMT_NONAPLD',
+        'target_table': 'SM_SALES_CR_ASGMT_NONAPLD',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:45.883326+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_sca_for_all_trx_nrt_hist_tv AS (
+    SELECT
+        sales_credit_assignment_key,
+        ep_source_line_id_int,
+        ru_ar_transaction_line_key,
+        start_tv_datetime,
+        start_ssp_date,
+        bk_sales_credit_type_code,
+        sales_rep_number,
+        end_tv_datetime,
+        end_ssp_date,
+        sca_sales_commission_pct,
+        sales_territory_key,
+        sk_line_seq_id_int,
+        ss_cd,
+        edw_create_user,
+        edw_create_dtm,
+        edw_update_user,
+        edw_update_dtm,
+        action_code,
+        dml_type
+    FROM {{ source('raw', 'wi_sca_for_all_trx_nrt_hist_tv') }}
+),
+
+source_sm_sales_cr_asgmt_nonapld AS (
+    SELECT
+        sales_cr_asgn_nonapld_key,
+        ss_code,
+        sk_line_sequence_id_lint,
+        edw_create_user,
+        edw_create_dtm
+    FROM {{ source('raw', 'sm_sales_cr_asgmt_nonapld') }}
+),
+
+source_wi_om_ra_cust_trx_lines_nad AS (
+    SELECT
+        batch_id,
+        global_name,
+        interface_line_attribute11,
+        interface_line_attribute12,
+        interface_line_attribute14,
+        interface_line_attribute15,
+        org_id,
+        global_attribute7,
+        customer_trx_line_id,
+        customer_trx_id,
+        reason_code,
+        inventory_item_id,
+        quantity_credited,
+        quantity_invoiced,
+        unit_standard_price,
+        unit_selling_price,
+        accounting_rule_id,
+        line_type,
+        rule_start_date,
+        interface_line_context,
+        interface_line_attribute1,
+        interface_line_attribute2,
+        interface_line_attribute6,
+        extended_amount,
+        link_to_cust_trx_line_id,
+        attribute15,
+        accounting_rule_duration,
+        amount_includes_tax_flag,
+        created_by,
+        description,
+        global_attribute_category,
+        interface_line_attribute10,
+        interface_line_attribute13,
+        interface_line_attribute3,
+        interface_line_attribute4,
+        interface_line_attribute8,
+        interface_line_attribute9,
+        last_update_date,
+        last_updated_by,
+        line_number,
+        payment_set_id,
+        quantity_ordered,
+        tax_exempt_flag,
+        tax_precedence,
+        tax_rate,
+        taxable_amount,
+        uom_code,
+        warehouse_id,
+        creation_date,
+        ges_update_date,
+        create_datetime,
+        action_code
+    FROM {{ source('raw', 'wi_om_ra_cust_trx_lines_nad') }}
+),
+
+source_el_sales_credit_types AS (
+    SELECT
+        sk_credit_type_id,
+        name,
+        description,
+        quota_flag,
+        enabled_flag,
+        global_name,
+        create_datetime,
+        update_date_time
+    FROM {{ source('raw', 'el_sales_credit_types') }}
+),
+
+source_st_om_ra_cust_trx_lines AS (
+    SELECT
+        batch_id,
+        global_name,
+        interface_line_attribute11,
+        interface_line_attribute12,
+        interface_line_attribute14,
+        interface_line_attribute15,
+        org_id,
+        global_attribute7,
+        customer_trx_line_id,
+        customer_trx_id,
+        reason_code,
+        inventory_item_id,
+        quantity_credited,
+        quantity_invoiced,
+        unit_standard_price,
+        unit_selling_price,
+        accounting_rule_id,
+        line_type,
+        rule_start_date,
+        interface_line_context,
+        interface_line_attribute1,
+        interface_line_attribute2,
+        interface_line_attribute6,
+        extended_amount,
+        link_to_cust_trx_line_id,
+        attribute15,
+        accounting_rule_duration,
+        amount_includes_tax_flag,
+        created_by,
+        description,
+        global_attribute_category,
+        interface_line_attribute10,
+        interface_line_attribute13,
+        interface_line_attribute3,
+        interface_line_attribute4,
+        interface_line_attribute8,
+        interface_line_attribute9,
+        last_update_date,
+        last_updated_by,
+        line_number,
+        payment_set_id,
+        quantity_ordered,
+        tax_exempt_flag,
+        tax_precedence,
+        tax_rate,
+        taxable_amount,
+        uom_code,
+        warehouse_id,
+        creation_date,
+        ges_update_date,
+        create_datetime,
+        action_code,
+        interface_line_attribute7,
+        attribute3,
+        attribute4,
+        previous_customer_trx_id,
+        previous_customer_trx_line_id,
+        attribute1,
+        attribute2
+    FROM {{ source('raw', 'st_om_ra_cust_trx_lines') }}
+),
+
+source_ex_om_ra_cust_trx_lines_nad AS (
+    SELECT
+        batch_id,
+        global_name,
+        interface_line_attribute11,
+        interface_line_attribute12,
+        interface_line_attribute14,
+        interface_line_attribute15,
+        org_id,
+        global_attribute7,
+        customer_trx_line_id,
+        customer_trx_id,
+        reason_code,
+        inventory_item_id,
+        quantity_credited,
+        quantity_invoiced,
+        unit_standard_price,
+        unit_selling_price,
+        accounting_rule_id,
+        line_type,
+        rule_start_date,
+        interface_line_context,
+        interface_line_attribute1,
+        interface_line_attribute2,
+        interface_line_attribute6,
+        extended_amount,
+        link_to_cust_trx_line_id,
+        attribute15,
+        accounting_rule_duration,
+        amount_includes_tax_flag,
+        created_by,
+        description,
+        global_attribute_category,
+        interface_line_attribute10,
+        interface_line_attribute13,
+        interface_line_attribute3,
+        interface_line_attribute4,
+        interface_line_attribute8,
+        interface_line_attribute9,
+        last_update_date,
+        last_updated_by,
+        line_number,
+        payment_set_id,
+        quantity_ordered,
+        tax_exempt_flag,
+        tax_precedence,
+        tax_rate,
+        taxable_amount,
+        uom_code,
+        warehouse_id,
+        creation_date,
+        ges_update_date,
+        create_datetime,
+        action_code,
+        exception_type
+    FROM {{ source('raw', 'ex_om_ra_cust_trx_lines_nad') }}
+),
+
+source_el_sales_rep AS (
+    SELECT
+        sales_rep_id,
+        global_name,
+        sales_rep_number,
+        sales_rep_name,
+        sales_rep_status,
+        sales_rep_number_int,
+        attribute1,
+        email_address
+    FROM {{ source('raw', 'el_sales_rep') }}
+),
+
+source_sm_ar_trx_line AS (
+    SELECT
+        ar_trx_line_key,
+        sk_customer_trx_line_id_lint,
+        ss_code,
+        edw_create_user,
+        edw_create_dtm
+    FROM {{ source('raw', 'sm_ar_trx_line') }}
+),
+
+source_el_sales_territory AS (
+    SELECT
+        territory_id,
+        global_name,
+        hierarchy_type_code,
+        territory_code,
+        territory_name,
+        territory_status,
+        territory_description,
+        territory_node_level1_code,
+        creation_date,
+        updated_date,
+        sales_territory_key
+    FROM {{ source('raw', 'el_sales_territory') }}
+),
+
+source_wi_om_ra_cust_trx_lines_nad AS (
+    SELECT
+        batch_id,
+        global_name,
+        interface_line_attribute11,
+        interface_line_attribute12,
+        interface_line_attribute14,
+        interface_line_attribute15,
+        org_id,
+        global_attribute7,
+        customer_trx_line_id,
+        customer_trx_id,
+        reason_code,
+        inventory_item_id,
+        quantity_credited,
+        quantity_invoiced,
+        unit_standard_price,
+        unit_selling_price,
+        accounting_rule_id,
+        line_type,
+        rule_start_date,
+        interface_line_context,
+        interface_line_attribute1,
+        interface_line_attribute2,
+        interface_line_attribute6,
+        extended_amount,
+        link_to_cust_trx_line_id,
+        attribute15,
+        accounting_rule_duration,
+        amount_includes_tax_flag,
+        created_by,
+        description,
+        global_attribute_category,
+        interface_line_attribute10,
+        interface_line_attribute13,
+        interface_line_attribute3,
+        interface_line_attribute4,
+        interface_line_attribute8,
+        interface_line_attribute9,
+        last_update_date,
+        last_updated_by,
+        line_number,
+        payment_set_id,
+        quantity_ordered,
+        tax_exempt_flag,
+        tax_precedence,
+        tax_rate,
+        taxable_amount,
+        uom_code,
+        warehouse_id,
+        creation_date,
+        ges_update_date,
+        create_datetime,
+        action_code
+    FROM {{ source('raw', 'wi_om_ra_cust_trx_lines_nad') }}
+),
+
+source_el_om_csm_line_sales_cr_ar AS (
+    SELECT
+        line_seq_id,
+        source_type,
+        source_header_id,
+        source_line_id,
+        salesrep_id,
+        territory_id,
+        sales_credit_type_id,
+        split_percent,
+        creation_date,
+        created_by,
+        last_updated_by,
+        last_update_date,
+        global_name
+    FROM {{ source('raw', 'el_om_csm_line_sales_cr_ar') }}
+),
+
+source_n_source_system_codes AS (
+    SELECT
+        source_system_code,
+        source_system_name,
+        database_name,
+        company,
+        edw_create_date,
+        edw_create_user,
+        edw_update_date,
+        edw_update_user,
+        global_name,
+        gmt_offset
+    FROM {{ source('raw', 'n_source_system_codes') }}
+),
+
+final AS (
+    SELECT
+        sales_cr_asgn_nonapld_key,
+        ss_code,
+        sk_line_sequence_id_lint,
+        sk_sc_agent_id_int,
+        edw_create_user,
+        edw_create_dtm
+    FROM source_n_source_system_codes
+)
+
+SELECT * FROM final

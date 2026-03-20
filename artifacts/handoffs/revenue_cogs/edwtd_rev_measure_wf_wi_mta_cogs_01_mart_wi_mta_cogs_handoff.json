@@ -1,0 +1,999 @@
+{
+  "workflow_name": "wf_m_WI_MTA_COGS",
+  "mapping_name": "m_WI_MTA_COGS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_MTA_COGS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_mta_cogs_01_mart_wi_mta_cogs",
+  "source_tables": [
+    "N_MATERIAL_TRANSACTION"
+  ],
+  "sources": [
+    {
+      "name": "N_MATERIAL_TRANSACTION",
+      "database_type": "Teradata",
+      "owner": "APIUSER",
+      "fields": [
+        {
+          "name": "MATERIAL_TRANSACTION_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRANSACTION_REFERENCE_DESCR",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_PURCHASE_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_TYPE",
+          "datatype": "char",
+          "precision": "14",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTUAL_COST_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRANSACTION_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SS_CD",
+          "datatype": "char",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INVENTORY_ORGANIZATION_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ITEM_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_TRANSACTION_TYPE_NAME",
+          "datatype": "varchar",
+          "precision": "80",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_MTA_COGS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_ORDER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_ORDER_LINE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_PARNT_SLS_ORDER_LINE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_SO_NUMBER_INT",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_SO_LINE_ID_INT",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_INVENTORY_ITEM_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SS_CODE",
+        "datatype": "varchar",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ITEM_TYPE_CODE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TRANSACTION_DTM",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MTA_BASE_TRANSACTION_VALUE",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_COMP_US_MTA_COST_AMT",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_MATERIAL_TRANSACTION",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_PARNT_SLS_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SO_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_SO_LINE_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_INVENTORY_ITEM_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ITEM_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MTA_BASE_TRANSACTION_VALUE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_COMP_US_MTA_COST_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nNSOL.SALES_ORDER_KEY\r\n, NSOL.SALES_ORDER_LINE_KEY\r\n, NSOL.RU_PARNT_SLS_ORDER_LINE_KEY\r\n, NSOL.BK_SO_NUMBER_INT \r\n, NSOL.SK_SO_LINE_ID_INT\r\n, NMT.RU_PRODUCT_ITEM_KEY  AS SK_INVENTORY_ITEM_ID_INT\r\n, NMT.SS_CD AS SS_CODE\r\n, NSOL.ITEM_TYPE_CODE\r\n, FISCMTH.FISCAL_YEAR_MONTH_INT  AS DV_FISCAL_YEAR_MTH_NUMBER_INT\r\n, NMT.TRANSACTION_DTM\r\n, SUM(CAST(COALESCE(NMTD.RU_CR_USD_AMT, 0)  AS DECIMAL(18, 6))) AS MTA_BASE_TRANSACTION_VALUE\r\n, SUM(CAST(COALESCE(NMTD.RU_CR_USD_AMT, 0)  AS DECIMAL(18, 6))) AS DV_COMP_US_MTA_COST_AMT\r\nFROM   $$INVFLMTVWDB.N_MATERIAL_TRANSACTION NMT\r\nJOIN  $$INVFLMTVWDB.N_MATERIAL_TRANSACTION_DETAIL NMTD ON  NMTD.BK_MATERIAL_TRANSACTION_KEY = NMT.MATERIAL_TRANSACTION_KEY\r\nJOIN $$ETLVWDB.EV_N_GENERAL_LEDGER_ACCOUNT  GL ON NMTD.BK_GENERAL_LEDGER_ACCOUNT_KEY  = GL.GENERAL_LEDGER_ACCOUNT_KEY \r\n\t\t\t AND GL.GLOBAL_NAME = 'US' \r\n\t\t\tAND TRIM(GL.BK_FINANCIAL_ACCOUNT_CODE) = '50100' \r\nJOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL ON NMT.RU_SALES_ORDER_LINE_KEY = NSOL.SALES_ORDER_LINE_KEY \r\n\t\tAND NMT.RU_SALES_ORDER_KEY = NSOL.SALES_ORDER_KEY               \r\nJOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR FISCMTH ON  CAST( (CURRENT_DATE  - 1) AS DATE)  BETWEEN FISCAL_MONTH_START_DATE       AND  FISCAL_MONTH_END_DATE\r\n\t\tAND CAST(TRANSACTION_DTM  AS DATE)  BETWEEN  CAST( FISCAL_MONTH_START_DATE AS DATE)  AND  CAST( FISCAL_MONTH_END_DATE AS DATE)   \r\nWHERE NMT.BK_SOURCE_TYPE_NAME = 'SALES ORDER'\t\t  \r\nAND NMT.SS_CD = 'MFG' \r\n AND  NOT EXISTS (\r\n SELECT  NMTCG.RU_SALES_ORDER_LINE_KEY FROM  $$INVFLMTVWDB.N_MATERIAL_TRANSACTION NMTCG\r\nJOIN  $$INVFLMTVWDB.N_MATERIAL_TRANSACTION_DETAIL NMTDCG\r\n ON  NMTDCG.BK_MATERIAL_TRANSACTION_KEY = NMTCG.MATERIAL_TRANSACTION_KEY\r\nJOIN $$ETLVWDB.EV_N_GENERAL_LEDGER_ACCOUNT  GLCG\r\nON NMTDCG.BK_GENERAL_LEDGER_ACCOUNT_KEY  = GLCG.GENERAL_LEDGER_ACCOUNT_KEY \r\nAND GLCG.GLOBAL_NAME = 'CG' \r\nAND TRIM(GLCG.BK_FINANCIAL_ACCOUNT_CODE) = '50100' \r\nWHERE   NMTCG.SS_CD = 'CG' AND  NMT.RU_SALES_ORDER_LINE_KEY = NMTCG.RU_SALES_ORDER_LINE_KEY\r\n)\r\nGROUP BY \tNSOL.SALES_ORDER_KEY\r\n, NSOL.SALES_ORDER_LINE_KEY\r\n, NSOL.RU_PARNT_SLS_ORDER_LINE_KEY\r\n, NSOL.BK_SO_NUMBER_INT\r\n, NSOL.SK_SO_LINE_ID_INT\r\n, NMT.RU_PRODUCT_ITEM_KEY\r\n, NMT.SS_CD \r\n, NSOL.ITEM_TYPE_CODE\r\n, FISCMTH.FISCAL_YEAR_MONTH_INT  \r\n, NMT.TRANSACTION_DTM",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_N_MATERIAL_TRANSACTION1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_PARNT_SLS_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SO_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_SO_LINE_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_INVENTORY_ITEM_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ITEM_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MTA_BASE_TRANSACTION_VALUE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_COMP_US_MTA_COST_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nNSOL.SALES_ORDER_KEY\r\n, NSOL.SALES_ORDER_LINE_KEY\r\n, NSOL.RU_PARNT_SLS_ORDER_LINE_KEY\r\n, NSOL.BK_SO_NUMBER_INT \r\n, NSOL.SK_SO_LINE_ID_INT\r\n, NMT.RU_PRODUCT_ITEM_KEY  AS SK_INVENTORY_ITEM_ID_INT\r\n, NMT.SS_CD AS SS_CODE\r\n, NSOL.ITEM_TYPE_CODE\r\n, FISCMTH.FISCAL_YEAR_MONTH_INT  AS DV_FISCAL_YEAR_MTH_NUMBER_INT\r\n, NMT.TRANSACTION_DTM\r\n, SUM(CAST(COALESCE(NMTD.RU_CR_USD_AMT, 0)  AS DECIMAL(18, 6))) AS MTA_BASE_TRANSACTION_VALUE\r\n, SUM(CAST(COALESCE(NMTD.RU_CR_USD_AMT, 0)  AS DECIMAL(18, 6))) AS DV_COMP_US_MTA_COST_AMT\r\nFROM   $$INVFLMTVWDB.N_MATERIAL_TRANSACTION NMT\r\nJOIN  $$INVFLMTVWDB.N_MATERIAL_TRANSACTION_DETAIL NMTD ON  NMTD.BK_MATERIAL_TRANSACTION_KEY = NMT.MATERIAL_TRANSACTION_KEY\r\nJOIN $$ETLVWDB.EV_N_GENERAL_LEDGER_ACCOUNT  GL ON NMTD.BK_GENERAL_LEDGER_ACCOUNT_KEY  = GL.GENERAL_LEDGER_ACCOUNT_KEY \r\n\t\t\t AND GL.GLOBAL_NAME = 'CG' \r\n\t\t\tAND TRIM(GL.BK_FINANCIAL_ACCOUNT_CODE) = '50100' \r\nJOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL ON NMT.RU_SALES_ORDER_LINE_KEY = NSOL.SALES_ORDER_LINE_KEY \r\n\t\tAND NMT.RU_SALES_ORDER_KEY = NSOL.SALES_ORDER_KEY               \r\nJOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR FISCMTH ON  CAST( (CURRENT_DATE  - 1) AS DATE)  BETWEEN FISCAL_MONTH_START_DATE       AND  FISCAL_MONTH_END_DATE\r\n\t\tAND CAST(TRANSACTION_DTM  AS DATE)  BETWEEN  CAST( FISCAL_MONTH_START_DATE AS DATE)  AND  CAST( FISCAL_MONTH_END_DATE AS DATE)   \r\nWHERE NMT.BK_SOURCE_TYPE_NAME = 'SALES ORDER'\r\nAND NMT.SS_CD = 'CG' \r\nGROUP BY \tNSOL.SALES_ORDER_KEY\r\n, NSOL.SALES_ORDER_LINE_KEY\r\n, NSOL.RU_PARNT_SLS_ORDER_LINE_KEY\r\n, NSOL.BK_SO_NUMBER_INT\r\n, NSOL.SK_SO_LINE_ID_INT\r\n, NMT.RU_PRODUCT_ITEM_KEY\r\n, NMT.SS_CD \r\n, NSOL.ITEM_TYPE_CODE\r\n, FISCMTH.FISCAL_YEAR_MONTH_INT  \r\n, NMT.TRANSACTION_DTM\r\n\r\nUNION ALL\r\n\r\nSELECT\r\nNSOL.SALES_ORDER_KEY\r\n, NSOL.SALES_ORDER_LINE_KEY\r\n, NSOL.RU_PARNT_SLS_ORDER_LINE_KEY\r\n, NSOL.BK_SO_NUMBER_INT \r\n, NSOL.SK_SO_LINE_ID_INT\r\n, NMT.RU_PRODUCT_ITEM_KEY  AS SK_INVENTORY_ITEM_ID_INT\r\n, NMT.SS_CD AS SS_CODE\r\n, NSOL.ITEM_TYPE_CODE\r\n, FISCMTH.FISCAL_YEAR_MONTH_INT  AS DV_FISCAL_YEAR_MTH_NUMBER_INT\r\n, NMT.TRANSACTION_DTM\r\n, SUM(CAST(COALESCE(NMTD.RU_CR_USD_AMT, 0)  AS DECIMAL(18, 6))) AS MTA_BASE_TRANSACTION_VALUE\r\n, SUM(CAST(COALESCE(NMTD.RU_CR_USD_AMT, 0)  AS DECIMAL(18, 6))) AS DV_COMP_US_MTA_COST_AMT\r\nFROM   $$INVFLMTVWDB.N_MATERIAL_TRANSACTION NMT\r\nJOIN  $$INVFLMTVWDB.N_MATERIAL_TRANSACTION_DETAIL NMTD ON  NMTD.BK_MATERIAL_TRANSACTION_KEY = NMT.MATERIAL_TRANSACTION_KEY\r\nJOIN $$ETLVWDB.EV_N_GENERAL_LEDGER_ACCOUNT  GL ON NMTD.BK_GENERAL_LEDGER_ACCOUNT_KEY  = GL.GENERAL_LEDGER_ACCOUNT_KEY \r\nINNER JOIN $$ETLVWDB.EL_GL_CODE_COMBINATIONS EOOGCC on   /*CBM CHANGES*/\r\n(EOOGCC.CODE_COMBINATION_ID = GL.CODE_COMBINATION_ID \r\nAND EOOGCC.SEGMENT1=GL.BK_COMPANY_CODE\r\nAND EOOGCC.SEGMENT2=GL.BK_FINANCIAL_LOCATION_CODE\r\nAND EOOGCC.SEGMENT3=GL.BK_DEPARTMENT_CODE\r\nAND EOOGCC.SEGMENT4=GL.BK_FINANCIAL_ACCOUNT_CODE\r\nAND EOOGCC.SEGMENT5=GL.BK_SUBACCOUNT_CODE\r\nAND EOOGCC.SEGMENT6=GL.BK_PROJECT_CODE\r\n)\r\n\tAND EOOGCC.GLOBAL_NAME = 'ERPCLOUD' \r\n\tAND TRIM(GL.BK_FINANCIAL_ACCOUNT_CODE) = '50100' \r\n AND GL.BK_COMPANY_CODE='020'\r\nJOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL ON NMT.RU_SALES_ORDER_LINE_KEY = NSOL.SALES_ORDER_LINE_KEY \r\n\t\tAND NMT.RU_SALES_ORDER_KEY = NSOL.SALES_ORDER_KEY               \r\nJOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR FISCMTH ON  CAST( (CURRENT_DATE  - 1) AS DATE)  BETWEEN FISCAL_MONTH_START_DATE       AND  FISCAL_MONTH_END_DATE\r\n\t\tAND CAST(TRANSACTION_DTM  AS DATE)  BETWEEN  CAST( FISCAL_MONTH_START_DATE AS DATE)  AND  CAST( FISCAL_MONTH_END_DATE AS DATE)   \r\nWHERE NMT.BK_SOURCE_TYPE_NAME = 'SALES ORDER'\r\nAND NMT.SS_CD = 'ERPCLOUD'  /*CBM CHANGES*/\r\nGROUP BY \tNSOL.SALES_ORDER_KEY\r\n, NSOL.SALES_ORDER_LINE_KEY\r\n, NSOL.RU_PARNT_SLS_ORDER_LINE_KEY\r\n, NSOL.BK_SO_NUMBER_INT\r\n, NSOL.SK_SO_LINE_ID_INT\r\n, NMT.RU_PRODUCT_ITEM_KEY\r\n, NMT.SS_CD \r\n, NSOL.ITEM_TYPE_CODE\r\n, FISCMTH.FISCAL_YEAR_MONTH_INT  \r\n, NMT.TRANSACTION_DTM",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SK_SO_LINE_ID_INT",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION",
+      "to_field": "SK_SO_LINE_ID_INT",
+      "to_instance": "WI_MTA_COGS"
+    },
+    {
+      "from_field": "DV_COMP_US_MTA_COST_AMT",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION",
+      "to_field": "DV_COMP_US_MTA_COST_AMT",
+      "to_instance": "WI_MTA_COGS"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION",
+      "to_field": "SS_CODE",
+      "to_instance": "WI_MTA_COGS"
+    },
+    {
+      "from_field": "RU_PARNT_SLS_ORDER_LINE_KEY",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION",
+      "to_field": "RU_PARNT_SLS_ORDER_LINE_KEY",
+      "to_instance": "WI_MTA_COGS"
+    },
+    {
+      "from_field": "BK_SO_NUMBER_INT",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION",
+      "to_field": "BK_SO_NUMBER_INT",
+      "to_instance": "WI_MTA_COGS"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_MTA_COGS"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_MTA_COGS"
+    },
+    {
+      "from_field": "TRANSACTION_DTM",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION",
+      "to_field": "TRANSACTION_DTM",
+      "to_instance": "WI_MTA_COGS"
+    },
+    {
+      "from_field": "SK_INVENTORY_ITEM_ID_INT",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION",
+      "to_field": "SK_INVENTORY_ITEM_ID_INT",
+      "to_instance": "WI_MTA_COGS"
+    },
+    {
+      "from_field": "ITEM_TYPE_CODE",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION",
+      "to_field": "ITEM_TYPE_CODE",
+      "to_instance": "WI_MTA_COGS"
+    },
+    {
+      "from_field": "MTA_BASE_TRANSACTION_VALUE",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION",
+      "to_field": "MTA_BASE_TRANSACTION_VALUE",
+      "to_instance": "WI_MTA_COGS"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_MTA_COGS"
+    },
+    {
+      "from_field": "SK_SO_LINE_ID_INT",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION1",
+      "to_field": "SK_SO_LINE_ID_INT",
+      "to_instance": "WI_MTA_COGS1"
+    },
+    {
+      "from_field": "DV_COMP_US_MTA_COST_AMT",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION1",
+      "to_field": "DV_COMP_US_MTA_COST_AMT",
+      "to_instance": "WI_MTA_COGS1"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION1",
+      "to_field": "SS_CODE",
+      "to_instance": "WI_MTA_COGS1"
+    },
+    {
+      "from_field": "RU_PARNT_SLS_ORDER_LINE_KEY",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION1",
+      "to_field": "RU_PARNT_SLS_ORDER_LINE_KEY",
+      "to_instance": "WI_MTA_COGS1"
+    },
+    {
+      "from_field": "BK_SO_NUMBER_INT",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION1",
+      "to_field": "BK_SO_NUMBER_INT",
+      "to_instance": "WI_MTA_COGS1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION1",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_MTA_COGS1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_MTA_COGS1"
+    },
+    {
+      "from_field": "TRANSACTION_DTM",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION1",
+      "to_field": "TRANSACTION_DTM",
+      "to_instance": "WI_MTA_COGS1"
+    },
+    {
+      "from_field": "SK_INVENTORY_ITEM_ID_INT",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION1",
+      "to_field": "SK_INVENTORY_ITEM_ID_INT",
+      "to_instance": "WI_MTA_COGS1"
+    },
+    {
+      "from_field": "ITEM_TYPE_CODE",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION1",
+      "to_field": "ITEM_TYPE_CODE",
+      "to_instance": "WI_MTA_COGS1"
+    },
+    {
+      "from_field": "MTA_BASE_TRANSACTION_VALUE",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION1",
+      "to_field": "MTA_BASE_TRANSACTION_VALUE",
+      "to_instance": "WI_MTA_COGS1"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_N_MATERIAL_TRANSACTION1",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_MTA_COGS1"
+    },
+    {
+      "from_field": "RU_SALES_ORDER_KEY",
+      "from_instance": "N_MATERIAL_TRANSACTION",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION"
+    },
+    {
+      "from_field": "RU_SALES_ORDER_LINE_KEY",
+      "from_instance": "N_MATERIAL_TRANSACTION",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION"
+    },
+    {
+      "from_field": "RU_SALES_ORDER_KEY",
+      "from_instance": "N_MATERIAL_TRANSACTION",
+      "to_field": "RU_PARNT_SLS_ORDER_LINE_KEY",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION"
+    },
+    {
+      "from_field": "RU_SALES_ORDER_LINE_KEY",
+      "from_instance": "N_MATERIAL_TRANSACTION",
+      "to_field": "SK_SO_LINE_ID_INT",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION"
+    },
+    {
+      "from_field": "RU_SALES_ORDER_KEY",
+      "from_instance": "N_MATERIAL_TRANSACTION",
+      "to_field": "BK_SO_NUMBER_INT",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION"
+    },
+    {
+      "from_field": "INVENTORY_ORGANIZATION_KEY",
+      "from_instance": "N_MATERIAL_TRANSACTION",
+      "to_field": "SK_INVENTORY_ITEM_ID_INT",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "N_MATERIAL_TRANSACTION",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_MATERIAL_TRANSACTION",
+      "to_field": "ITEM_TYPE_CODE",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION"
+    },
+    {
+      "from_field": "TRANSACTION_QTY",
+      "from_instance": "N_MATERIAL_TRANSACTION",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION"
+    },
+    {
+      "from_field": "TRANSACTION_DTM",
+      "from_instance": "N_MATERIAL_TRANSACTION",
+      "to_field": "TRANSACTION_DTM",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION"
+    },
+    {
+      "from_field": "ACTUAL_COST_USD_AMT",
+      "from_instance": "N_MATERIAL_TRANSACTION",
+      "to_field": "MTA_BASE_TRANSACTION_VALUE",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION"
+    },
+    {
+      "from_field": "ACTUAL_COST_USD_AMT",
+      "from_instance": "N_MATERIAL_TRANSACTION",
+      "to_field": "DV_COMP_US_MTA_COST_AMT",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION"
+    },
+    {
+      "from_field": "RU_SALES_ORDER_KEY",
+      "from_instance": "N_MATERIAL_TRANSACTION1",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION1"
+    },
+    {
+      "from_field": "RU_SALES_ORDER_LINE_KEY",
+      "from_instance": "N_MATERIAL_TRANSACTION1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION1"
+    },
+    {
+      "from_field": "RU_SALES_ORDER_KEY",
+      "from_instance": "N_MATERIAL_TRANSACTION1",
+      "to_field": "RU_PARNT_SLS_ORDER_LINE_KEY",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION1"
+    },
+    {
+      "from_field": "RU_SALES_ORDER_LINE_KEY",
+      "from_instance": "N_MATERIAL_TRANSACTION1",
+      "to_field": "SK_SO_LINE_ID_INT",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION1"
+    },
+    {
+      "from_field": "RU_SALES_ORDER_KEY",
+      "from_instance": "N_MATERIAL_TRANSACTION1",
+      "to_field": "BK_SO_NUMBER_INT",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION1"
+    },
+    {
+      "from_field": "INVENTORY_ORGANIZATION_KEY",
+      "from_instance": "N_MATERIAL_TRANSACTION1",
+      "to_field": "SK_INVENTORY_ITEM_ID_INT",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION1"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "N_MATERIAL_TRANSACTION1",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_MATERIAL_TRANSACTION1",
+      "to_field": "ITEM_TYPE_CODE",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION1"
+    },
+    {
+      "from_field": "TRANSACTION_QTY",
+      "from_instance": "N_MATERIAL_TRANSACTION1",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION1"
+    },
+    {
+      "from_field": "TRANSACTION_DTM",
+      "from_instance": "N_MATERIAL_TRANSACTION1",
+      "to_field": "TRANSACTION_DTM",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION1"
+    },
+    {
+      "from_field": "ACTUAL_COST_USD_AMT",
+      "from_instance": "N_MATERIAL_TRANSACTION1",
+      "to_field": "MTA_BASE_TRANSACTION_VALUE",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION1"
+    },
+    {
+      "from_field": "ACTUAL_COST_USD_AMT",
+      "from_instance": "N_MATERIAL_TRANSACTION1",
+      "to_field": "DV_COMP_US_MTA_COST_AMT",
+      "to_instance": "SQ_N_MATERIAL_TRANSACTION1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_ORDER_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION1"
+        },
+        {
+          "from_field": "RU_SALES_ORDER_KEY",
+          "from_instance": "N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "RU_SALES_ORDER_KEY",
+          "from_instance": "N_MATERIAL_TRANSACTION1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_ORDER_LINE_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION1"
+        },
+        {
+          "from_field": "RU_SALES_ORDER_LINE_KEY",
+          "from_instance": "N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "RU_SALES_ORDER_LINE_KEY",
+          "from_instance": "N_MATERIAL_TRANSACTION1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_PARNT_SLS_ORDER_LINE_KEY",
+      "source_path": [
+        {
+          "from_field": "RU_PARNT_SLS_ORDER_LINE_KEY",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "RU_PARNT_SLS_ORDER_LINE_KEY",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION1"
+        },
+        {
+          "from_field": "RU_SALES_ORDER_KEY",
+          "from_instance": "N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "RU_SALES_ORDER_KEY",
+          "from_instance": "N_MATERIAL_TRANSACTION1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SO_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "BK_SO_NUMBER_INT",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "BK_SO_NUMBER_INT",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION1"
+        },
+        {
+          "from_field": "RU_SALES_ORDER_KEY",
+          "from_instance": "N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "RU_SALES_ORDER_KEY",
+          "from_instance": "N_MATERIAL_TRANSACTION1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_SO_LINE_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_SO_LINE_ID_INT",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "SK_SO_LINE_ID_INT",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION1"
+        },
+        {
+          "from_field": "RU_SALES_ORDER_LINE_KEY",
+          "from_instance": "N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "RU_SALES_ORDER_LINE_KEY",
+          "from_instance": "N_MATERIAL_TRANSACTION1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_INVENTORY_ITEM_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_INVENTORY_ITEM_ID_INT",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "SK_INVENTORY_ITEM_ID_INT",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION1"
+        },
+        {
+          "from_field": "INVENTORY_ORGANIZATION_KEY",
+          "from_instance": "N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "INVENTORY_ORGANIZATION_KEY",
+          "from_instance": "N_MATERIAL_TRANSACTION1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CODE",
+      "source_path": [
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION1"
+        },
+        {
+          "from_field": "SS_CD",
+          "from_instance": "N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "SS_CD",
+          "from_instance": "N_MATERIAL_TRANSACTION1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ITEM_TYPE_CODE",
+      "source_path": [
+        {
+          "from_field": "ITEM_TYPE_CODE",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "ITEM_TYPE_CODE",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION1"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_MATERIAL_TRANSACTION1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION1"
+        },
+        {
+          "from_field": "TRANSACTION_QTY",
+          "from_instance": "N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "TRANSACTION_QTY",
+          "from_instance": "N_MATERIAL_TRANSACTION1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TRANSACTION_DTM",
+      "source_path": [
+        {
+          "from_field": "TRANSACTION_DTM",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "TRANSACTION_DTM",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION1"
+        },
+        {
+          "from_field": "TRANSACTION_DTM",
+          "from_instance": "N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "TRANSACTION_DTM",
+          "from_instance": "N_MATERIAL_TRANSACTION1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MTA_BASE_TRANSACTION_VALUE",
+      "source_path": [
+        {
+          "from_field": "MTA_BASE_TRANSACTION_VALUE",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "MTA_BASE_TRANSACTION_VALUE",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION1"
+        },
+        {
+          "from_field": "ACTUAL_COST_USD_AMT",
+          "from_instance": "N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "ACTUAL_COST_USD_AMT",
+          "from_instance": "N_MATERIAL_TRANSACTION1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_COMP_US_MTA_COST_AMT",
+      "source_path": [
+        {
+          "from_field": "DV_COMP_US_MTA_COST_AMT",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "DV_COMP_US_MTA_COST_AMT",
+          "from_instance": "SQ_N_MATERIAL_TRANSACTION1"
+        },
+        {
+          "from_field": "ACTUAL_COST_USD_AMT",
+          "from_instance": "N_MATERIAL_TRANSACTION"
+        },
+        {
+          "from_field": "ACTUAL_COST_USD_AMT",
+          "from_instance": "N_MATERIAL_TRANSACTION1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:30.717382+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

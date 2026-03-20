@@ -1,0 +1,592 @@
+{
+  "workflow_name": "wf_m_SM_SALES_ORDER_LINE_ERROR_MSG",
+  "mapping_name": "m_SM_SALES_ORDER_LINE_ERROR_MSG",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "SM_SALES_ORDER_LINE_ERROR_MSG",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_sm_sales_order_line_error_msg_01_mart_sm_sales_order_line_error_msg",
+  "source_tables": [
+    "SM_SALES_ORDER_LINE_ERROR_MSG"
+  ],
+  "sources": [
+    {
+      "name": "SM_SALES_ORDER_LINE_ERROR_MSG",
+      "database_type": "Teradata",
+      "owner": "TRANSLATIONDB_DV2",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_ENTITLEMENT_ERROR_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_LINE_ERROR_ID_INT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_BATCH_ID_INT",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SS_CD",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "SM_SALES_ORDER_LINE_ERROR_MSG",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_ENTITLEMENT_ERROR_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SK_LINE_ERROR_ID_INT",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SK_BATCH_ID_INT",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SS_CD",
+        "datatype": "varchar",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_ENTITLEMENT_ERROR_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_LINE_ERROR_ID_INT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_BATCH_ID_INT",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nRANK() OVER \r\n\t\t\t(ORDER BY \r\n\t\t\t\tSTSVC.SK_LINE_ERROR_ID_INT, \r\n\t\t\t\tSTSVC.SK_ENTITLEMENT_ERROR_ID_INT,STSVC.SK_BATCH_ID_INT,\r\n\t\t\t\tSTSVC.SS_CODE)  +  SM_MAX.MAX_KEY_VAL  SALES_ORDER_LINE_ERROR_MSG_KEY,\r\nSTSVC.SK_ENTITLEMENT_ERROR_ID_INT,\r\nSTSVC.SK_LINE_ERROR_ID_INT,\r\nSTSVC.SK_BATCH_ID_INT,\r\nSTSVC.SS_CODE  AS SS_CD,\r\nCURRENT_TIMESTAMP(0),\r\nUSER \r\nFROM \r\n(\r\nSELECT \r\n LERS.LINE_ERROR_ID AS SK_LINE_ERROR_ID_INT,\r\n ENER.ENTL_ERROR_ID AS SK_ENTITLEMENT_ERROR_ID_INT,\r\n -999 AS SK_BATCH_ID_INT,\r\n NSSC.SOURCE_SYSTEM_CODE AS SS_CODE\r\nFROM $$STGDB.WI_OM_XXCCA_SVC_CTRT_LINE_ERRS LERS\r\nINNER JOIN $$ETLVWDB.EL_OM_XXCCA_SVC_CTRT_ENTL_ERRS ENER\r\nON LERS.ERROR_MESSAGE_CODE=ENER.ERROR_MESSAGE_CODE\r\nAND ENER.GLOBAL_NAME=LERS.GLOBAL_NAME\r\nINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC\r\nON NSSC.GLOBAL_NAME=LERS.GLOBAL_NAME \r\nWHERE NOT EXISTS\r\n(SELECT 1 FROM $$ETLVWDB.SM_SALES_ORDER_LINE_ERROR_MSG SSCE \r\n\tWHERE \tSSCE.SK_LINE_ERROR_ID_INT =LERS.LINE_ERROR_ID  AND\r\n\t\t\tSSCE.SK_ENTITLEMENT_ERROR_ID_INT=ENER.ENTL_ERROR_ID AND\r\n\t\t\tSSCE.SS_CD=NSSC.SOURCE_SYSTEM_CODE\r\n\t\t\t\r\n)\r\n) STSVC,\r\n(SELECT COALESCE(MAX(SALES_ORDER_LINE_ERROR_MSG_KEY),0) MAX_KEY_VAL  \r\n\t\tFROM $$ETLVWDB.SM_SALES_ORDER_LINE_ERROR_MSG ) SM_MAX",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_ENTITLEMENT_ERROR_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_LINE_ERROR_ID_INT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_BATCH_ID_INT",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nRANK() OVER \r\n\t\t\t(ORDER BY \r\n\t\t\t\tSTSVC.SRC_BATCH_ID, STSVC.SK_LINE_ERROR_ID_INT,STSVC.SK_ENTITLEMENT_ERROR_ID_INT,\r\n\t\t\t\tSTSVC.SS_CODE)  +  SM_MAX.MAX_KEY_VAL  SALES_ORDER_LINE_ERROR_MSG_KEY,\r\nSTSVC.SK_ENTITLEMENT_ERROR_ID_INT,\r\nSTSVC.SK_LINE_ERROR_ID_INT,\r\nSTSVC.SRC_BATCH_ID,\r\nSTSVC.SS_CODE AS SS_CD,\r\nCURRENT_TIMESTAMP(0),\r\nUSER \r\nFROM \r\n(\r\nSELECT \r\n -999 AS SK_LINE_ERROR_ID_INT,\r\n -999 AS SK_ENTITLEMENT_ERROR_ID_INT,\r\n LERS.SRC_BATCH_ID, \r\n NSSC.SOURCE_SYSTEM_CODE AS SS_CODE\r\nFROM $$STGDB.ST_CG1_XXGCO_SRVC_ERRS_IN_INTF LERS\r\nINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC\r\nON NSSC.GLOBAL_NAME=LERS.GLOBAL_NAME \r\nWHERE NOT EXISTS\r\n(\r\nSELECT 1 FROM $$ETLVWDB.SM_SALES_ORDER_LINE_ERROR_MSG SSCE \r\n\tWHERE \tSSCE.SK_BATCH_ID_INT =LERS.SRC_BATCH_ID  AND\r\n\t\t\tSSCE.SS_CD=NSSC.SOURCE_SYSTEM_CODE\r\n)\r\n) STSVC,\r\n(SELECT COALESCE(MAX(SALES_ORDER_LINE_ERROR_MSG_KEY),0) MAX_KEY_VAL  \r\n\t\tFROM $$ETLVWDB.SM_SALES_ORDER_LINE_ERROR_MSG ) SM_MAX",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC",
+      "to_field": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "SK_ENTITLEMENT_ERROR_ID_INT",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC",
+      "to_field": "SK_ENTITLEMENT_ERROR_ID_INT",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "SK_LINE_ERROR_ID_INT",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC",
+      "to_field": "SK_LINE_ERROR_ID_INT",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "SK_BATCH_ID_INT",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC",
+      "to_field": "SK_BATCH_ID_INT",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC",
+      "to_field": "SS_CD",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1",
+      "to_field": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "SK_ENTITLEMENT_ERROR_ID_INT",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1",
+      "to_field": "SK_ENTITLEMENT_ERROR_ID_INT",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "SK_LINE_ERROR_ID_INT",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1",
+      "to_field": "SK_LINE_ERROR_ID_INT",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "SK_BATCH_ID_INT",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1",
+      "to_field": "SK_BATCH_ID_INT",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1",
+      "to_field": "SS_CD",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1",
+      "to_field": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "SK_ENTITLEMENT_ERROR_ID_INT",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1",
+      "to_field": "SK_ENTITLEMENT_ERROR_ID_INT",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "SK_LINE_ERROR_ID_INT",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1",
+      "to_field": "SK_LINE_ERROR_ID_INT",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "SK_BATCH_ID_INT",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1",
+      "to_field": "SK_BATCH_ID_INT",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1",
+      "to_field": "SS_CD",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+    },
+    {
+      "from_field": "SK_BATCH_ID_INT",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG",
+      "to_field": "SK_BATCH_ID_INT",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG",
+      "to_field": "SS_CD",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG",
+      "to_field": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "SK_ENTITLEMENT_ERROR_ID_INT",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG",
+      "to_field": "SK_ENTITLEMENT_ERROR_ID_INT",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    },
+    {
+      "from_field": "SK_LINE_ERROR_ID_INT",
+      "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG",
+      "to_field": "SK_LINE_ERROR_ID_INT",
+      "to_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_ERROR_MSG_KEY",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_ENTITLEMENT_ERROR_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_ENTITLEMENT_ERROR_ID_INT",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+        },
+        {
+          "from_field": "SK_ENTITLEMENT_ERROR_ID_INT",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+        },
+        {
+          "from_field": "SK_ENTITLEMENT_ERROR_ID_INT",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1"
+        },
+        {
+          "from_field": "SK_ENTITLEMENT_ERROR_ID_INT",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_LINE_ERROR_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_LINE_ERROR_ID_INT",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+        },
+        {
+          "from_field": "SK_LINE_ERROR_ID_INT",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+        },
+        {
+          "from_field": "SK_LINE_ERROR_ID_INT",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1"
+        },
+        {
+          "from_field": "SK_LINE_ERROR_ID_INT",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_BATCH_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_BATCH_ID_INT",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+        },
+        {
+          "from_field": "SK_BATCH_ID_INT",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+        },
+        {
+          "from_field": "SK_BATCH_ID_INT",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1"
+        },
+        {
+          "from_field": "SK_BATCH_ID_INT",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CD",
+      "source_path": [
+        {
+          "from_field": "SS_CD",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+        },
+        {
+          "from_field": "SS_CD",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+        },
+        {
+          "from_field": "SS_CD",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1"
+        },
+        {
+          "from_field": "SS_CD",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_BV_QTC"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_SM_SALES_ORDER_LINE_ERROR_MSG_CG1"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG1"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SM_SALES_ORDER_LINE_ERROR_MSG"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:20.822020+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

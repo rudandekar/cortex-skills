@@ -1,0 +1,105 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_mt_tss_hwsw_be', 'batch', 'edwtd_bkg_aggrs'],
+    meta={
+        'source_workflow': 'wf_m_MT_TSS_HWSW_BE',
+        'target_table': 'MT_TSS_HWSW_BE',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:33.841381+00:00'
+    }
+) }}
+
+WITH 
+
+source_mt_tss_hwsw_be AS (
+    SELECT
+        fiscal_year_quarter_number_int,
+        fiscal_year_month_int,
+        l1_sales_territory_descr,
+        l2_sales_territory_descr,
+        l3_sales_territory_descr,
+        l4_sales_territory_descr,
+        l5_sales_territory_descr,
+        l6_sales_territory_descr,
+        dv_tss_discount_match_cd,
+        hw_sw_business_entity_descr,
+        hw_sw_sub_business_entity_desc,
+        tss_excl_flg,
+        bk_prdt_allctn_clsfctn_cd,
+        dv_adj_comp_us_net_price_amt,
+        dv_adj_comp_us_std_price_amt,
+        bk_product_subgroup_id,
+        product_family_id,
+        dv_deal_id,
+        contract_number,
+        dv_source_order_num_int,
+        dv_route_to_market_cd,
+        sales_coverage_cd,
+        ru_service_contract_end_dtm,
+        ru_service_contract_start_dtm,
+        bk_service_category_id,
+        sales_subcoverage_cd,
+        dv_bookings_adjustments_type,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        dv_purchase_adj_dscnt_usd_amt,
+        base_product_id,
+        monetization_type_cd,
+        xcat_flg,
+        ela_flg,
+        bk_offer_type_name,
+        gu_company_target_id_int,
+        end_cust_global_ultimate_name,
+        allocated_servc_group_id
+    FROM {{ source('raw', 'mt_tss_hwsw_be') }}
+),
+
+final AS (
+    SELECT
+        fiscal_year_quarter_number_int,
+        fiscal_year_month_int,
+        l1_sales_territory_descr,
+        l2_sales_territory_descr,
+        l3_sales_territory_descr,
+        l4_sales_territory_descr,
+        l5_sales_territory_descr,
+        l6_sales_territory_descr,
+        dv_tss_discount_match_cd,
+        hw_sw_business_entity_descr,
+        hw_sw_sub_business_entity_desc,
+        tss_excl_flg,
+        bk_prdt_allctn_clsfctn_cd,
+        dv_adj_comp_us_net_price_amt,
+        dv_adj_comp_us_std_price_amt,
+        bk_product_subgroup_id,
+        product_family_id,
+        dv_deal_id,
+        contract_number,
+        dv_source_order_num_int,
+        dv_route_to_market_cd,
+        sales_coverage_cd,
+        ru_service_contract_end_dtm,
+        ru_service_contract_start_dtm,
+        bk_service_category_id,
+        sales_subcoverage_cd,
+        dv_bookings_adjustments_type,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        dv_purchase_adj_dscnt_usd_amt,
+        base_product_id,
+        monetization_type_cd,
+        xcat_flg,
+        ela_flg,
+        bk_offer_type_name,
+        gu_company_target_id_int,
+        end_cust_global_ultimate_name,
+        allocated_servc_group_id
+    FROM source_mt_tss_hwsw_be
+)
+
+SELECT * FROM final

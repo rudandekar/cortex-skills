@@ -1,0 +1,202 @@
+{
+  "workflow_name": "wf_m_WI_PF_BE",
+  "mapping_name": "m_WI_PF_BE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_PF_BE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_pf_be_01_mart_wi_pf_be",
+  "source_tables": [
+    "WI_PF_BE"
+  ],
+  "sources": [
+    {
+      "name": "WI_PF_BE",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "HYBRID_PRODUCT_FAMILY",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BUSINESS_ENTITY_DESCR",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PF",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_PF_BE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "HYBRID_PRODUCT_FAMILY",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BUSINESS_ENTITY_DESCR",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PF",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_PF_BE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "HYBRID_PRODUCT_FAMILY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUSINESS_ENTITY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PF",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nBK_PRODUCT_FAMILY_ID AS HYBRID_PRODUCT_FAMILY\r\n,BUSINESS_ENTITY_DESCR AS BUSINESS_ENTITY_DESCR\r\n,BK_PRODUCT_ID AS PF\r\nFROM $$COMREFVWDB.MT_BE_HIER_PRDT_FAMILY_ALLOC \r\nWHERE BK_BUSINESS_ENTITY_TYPE_CD='I' \r\nAND BK_PRODUCT_ID NOT LIKE '%ADJ%'\r\nGROUP BY 1,2,3",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "HYBRID_PRODUCT_FAMILY",
+      "from_instance": "SQ_WI_PF_BE",
+      "to_field": "HYBRID_PRODUCT_FAMILY",
+      "to_instance": "WI_PF_BE1"
+    },
+    {
+      "from_field": "PF",
+      "from_instance": "SQ_WI_PF_BE",
+      "to_field": "PF",
+      "to_instance": "WI_PF_BE1"
+    },
+    {
+      "from_field": "BUSINESS_ENTITY_DESCR",
+      "from_instance": "SQ_WI_PF_BE",
+      "to_field": "BUSINESS_ENTITY_DESCR",
+      "to_instance": "WI_PF_BE1"
+    },
+    {
+      "from_field": "HYBRID_PRODUCT_FAMILY",
+      "from_instance": "WI_PF_BE",
+      "to_field": "HYBRID_PRODUCT_FAMILY",
+      "to_instance": "SQ_WI_PF_BE"
+    },
+    {
+      "from_field": "PF",
+      "from_instance": "WI_PF_BE",
+      "to_field": "PF",
+      "to_instance": "SQ_WI_PF_BE"
+    },
+    {
+      "from_field": "BUSINESS_ENTITY_DESCR",
+      "from_instance": "WI_PF_BE",
+      "to_field": "BUSINESS_ENTITY_DESCR",
+      "to_instance": "SQ_WI_PF_BE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "HYBRID_PRODUCT_FAMILY",
+      "source_path": [
+        {
+          "from_field": "HYBRID_PRODUCT_FAMILY",
+          "from_instance": "SQ_WI_PF_BE"
+        },
+        {
+          "from_field": "HYBRID_PRODUCT_FAMILY",
+          "from_instance": "WI_PF_BE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BUSINESS_ENTITY_DESCR",
+      "source_path": [
+        {
+          "from_field": "BUSINESS_ENTITY_DESCR",
+          "from_instance": "SQ_WI_PF_BE"
+        },
+        {
+          "from_field": "BUSINESS_ENTITY_DESCR",
+          "from_instance": "WI_PF_BE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PF",
+      "source_path": [
+        {
+          "from_field": "PF",
+          "from_instance": "SQ_WI_PF_BE"
+        },
+        {
+          "from_field": "PF",
+          "from_instance": "WI_PF_BE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:30.753571+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

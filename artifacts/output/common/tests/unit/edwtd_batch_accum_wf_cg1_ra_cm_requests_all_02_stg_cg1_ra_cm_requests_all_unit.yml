@@ -1,0 +1,13 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_batch_accum_wf_cg1_ra_cm_requests_all_02_stg_cg1_ra_cm_requests_all_expression_transform
+    model: edwtd_batch_accum_wf_cg1_ra_cm_requests_all_02_stg_cg1_ra_cm_requests_all
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'stg_cg1_ra_cm_requests_all')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

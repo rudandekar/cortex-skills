@@ -1,0 +1,348 @@
+{
+  "workflow_name": "wf_m_ST_TSS_CUST_SITE_REF_D",
+  "mapping_name": "m_ST_TSS_CUST_SITE_REF_D",
+  "mapping_description": "",
+  "folder_name": "EDWTD_CA_SERVICES",
+  "target_table": "ST_TSS_CUST_SITE_REF_D",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ca_services_wf_st_tss_cust_site_ref_01_mart_st_tss_cust_site_ref_d",
+  "source_tables": [
+    "FF_TSS_CUST_SITE_REF_D"
+  ],
+  "sources": [
+    {
+      "name": "FF_TSS_CUST_SITE_REF_D",
+      "database_type": "Flat File",
+      "owner": "",
+      "fields": [
+        {
+          "name": "CUSTOMER_ID",
+          "datatype": "string",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADDRESS_LOCATION_ID",
+          "datatype": "string",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CUST_MARKET_SEG_NAME",
+          "datatype": "string",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BL_LAST_UPDATE_DATE",
+          "datatype": "string",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_TSS_CUST_SITE_REF_D",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "CUSTOMER_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ADDRESS_LOCATION_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CUST_MARKET_SEG_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BL_LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_TSS_CUST_SITE_REF_D",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CUSTOMER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADDRESS_LOCATION_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUST_MARKET_SEG_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BL_LAST_UPDATE_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "CUSTOMER_ID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_CUSTOMER_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(CUSTOMER_ID)) = '\\N',NULL,TO_INTEGER(CUSTOMER_ID))"
+        },
+        {
+          "name": "ADDRESS_LOCATION_ID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_ADDRESS_LOCATION_ID",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(ADDRESS_LOCATION_ID)) = '\\N',NULL,ADDRESS_LOCATION_ID)"
+        },
+        {
+          "name": "CUST_MARKET_SEG_NAME",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_CUST_MARKET_SEG_NAME",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(CUST_MARKET_SEG_NAME)) = '\\N',NULL,CUST_MARKET_SEG_NAME)"
+        },
+        {
+          "name": "BL_LAST_UPDATE_DATE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_BL_LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(BL_LAST_UPDATE_DATE)) = '\\N',NULL,TO_DATE(BL_LAST_UPDATE_DATE,'YYYY-MM-DD HH24:MI:SS'))"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "O_CUSTOMER_ID",
+      "from_instance": "EXPTRANS",
+      "to_field": "CUSTOMER_ID",
+      "to_instance": "ST_TSS_CUST_SITE_REF_D"
+    },
+    {
+      "from_field": "O_ADDRESS_LOCATION_ID",
+      "from_instance": "EXPTRANS",
+      "to_field": "ADDRESS_LOCATION_ID",
+      "to_instance": "ST_TSS_CUST_SITE_REF_D"
+    },
+    {
+      "from_field": "O_CUST_MARKET_SEG_NAME",
+      "from_instance": "EXPTRANS",
+      "to_field": "CUST_MARKET_SEG_NAME",
+      "to_instance": "ST_TSS_CUST_SITE_REF_D"
+    },
+    {
+      "from_field": "O_BL_LAST_UPDATE_DATE",
+      "from_instance": "EXPTRANS",
+      "to_field": "BL_LAST_UPDATE_DATE",
+      "to_instance": "ST_TSS_CUST_SITE_REF_D"
+    },
+    {
+      "from_field": "CUSTOMER_ID",
+      "from_instance": "FF_TSS_CUST_SITE_REF_D",
+      "to_field": "CUSTOMER_ID",
+      "to_instance": "SQ_FF_TSS_CUST_SITE_REF_D"
+    },
+    {
+      "from_field": "ADDRESS_LOCATION_ID",
+      "from_instance": "FF_TSS_CUST_SITE_REF_D",
+      "to_field": "ADDRESS_LOCATION_ID",
+      "to_instance": "SQ_FF_TSS_CUST_SITE_REF_D"
+    },
+    {
+      "from_field": "CUST_MARKET_SEG_NAME",
+      "from_instance": "FF_TSS_CUST_SITE_REF_D",
+      "to_field": "CUST_MARKET_SEG_NAME",
+      "to_instance": "SQ_FF_TSS_CUST_SITE_REF_D"
+    },
+    {
+      "from_field": "BL_LAST_UPDATE_DATE",
+      "from_instance": "FF_TSS_CUST_SITE_REF_D",
+      "to_field": "BL_LAST_UPDATE_DATE",
+      "to_instance": "SQ_FF_TSS_CUST_SITE_REF_D"
+    },
+    {
+      "from_field": "CUSTOMER_ID",
+      "from_instance": "SQ_FF_TSS_CUST_SITE_REF_D",
+      "to_field": "CUSTOMER_ID",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "ADDRESS_LOCATION_ID",
+      "from_instance": "SQ_FF_TSS_CUST_SITE_REF_D",
+      "to_field": "ADDRESS_LOCATION_ID",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "CUST_MARKET_SEG_NAME",
+      "from_instance": "SQ_FF_TSS_CUST_SITE_REF_D",
+      "to_field": "CUST_MARKET_SEG_NAME",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "BL_LAST_UPDATE_DATE",
+      "from_instance": "SQ_FF_TSS_CUST_SITE_REF_D",
+      "to_field": "BL_LAST_UPDATE_DATE",
+      "to_instance": "EXPTRANS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "CUSTOMER_ID",
+      "source_path": [
+        {
+          "from_field": "O_CUSTOMER_ID",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "CUSTOMER_ID",
+          "from_instance": "FF_TSS_CUST_SITE_REF_D"
+        },
+        {
+          "from_field": "CUSTOMER_ID",
+          "from_instance": "SQ_FF_TSS_CUST_SITE_REF_D"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ADDRESS_LOCATION_ID",
+      "source_path": [
+        {
+          "from_field": "O_ADDRESS_LOCATION_ID",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "ADDRESS_LOCATION_ID",
+          "from_instance": "FF_TSS_CUST_SITE_REF_D"
+        },
+        {
+          "from_field": "ADDRESS_LOCATION_ID",
+          "from_instance": "SQ_FF_TSS_CUST_SITE_REF_D"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CUST_MARKET_SEG_NAME",
+      "source_path": [
+        {
+          "from_field": "O_CUST_MARKET_SEG_NAME",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "CUST_MARKET_SEG_NAME",
+          "from_instance": "FF_TSS_CUST_SITE_REF_D"
+        },
+        {
+          "from_field": "CUST_MARKET_SEG_NAME",
+          "from_instance": "SQ_FF_TSS_CUST_SITE_REF_D"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BL_LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "O_BL_LAST_UPDATE_DATE",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "BL_LAST_UPDATE_DATE",
+          "from_instance": "FF_TSS_CUST_SITE_REF_D"
+        },
+        {
+          "from_field": "BL_LAST_UPDATE_DATE",
+          "from_instance": "SQ_FF_TSS_CUST_SITE_REF_D"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:11.458492+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

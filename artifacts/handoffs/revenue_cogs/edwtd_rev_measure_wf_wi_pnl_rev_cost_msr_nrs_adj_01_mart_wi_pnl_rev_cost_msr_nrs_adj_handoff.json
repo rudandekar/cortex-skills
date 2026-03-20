@@ -1,0 +1,390 @@
+{
+  "workflow_name": "wf_m_WI_PNL_REV_COST_MSR_NRS_ADJ",
+  "mapping_name": "m_WI_PNL_REV_COST_MSR_NRS_ADJ",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_PNL_REV_COST_MSR_NRS_ADJ",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_pnl_rev_cost_msr_nrs_adj_01_mart_wi_pnl_rev_cost_msr_nrs_adj",
+  "source_tables": [
+    "WI_PNL_REV_COST_MSR_NRS_ADJ"
+  ],
+  "sources": [
+    {
+      "name": "WI_PNL_REV_COST_MSR_NRS_ADJ",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV2",
+      "fields": [
+        {
+          "name": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_REVENUE_OR_COGS_TYPE_CD",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COMP_US_NET_REV_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PNL_LINE_ITEM_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_OFFER_TYPE_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_PNL_REV_COST_MSR_NRS_ADJ",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_REVENUE_OR_COGS_TYPE_CD",
+        "datatype": "char",
+        "precision": "7",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_PRODUCT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_SALES_TERRITORY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMP_US_NET_REV_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_PNL_LINE_ITEM_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_OFFER_TYPE_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_REVENUE_OR_COGS_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMP_US_NET_REV_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PNL_LINE_ITEM_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_OFFER_TYPE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n\tEANMA.DV_FISCAL_YEAR_MTH_NUMBER_INT  BK_FISCAL_YEAR_MTH_NUMBER_INT,\r\n\r\n\tCASE \r\n\t\tWHEN ELSMP.MEASURE_ID = 1 THEN 'REVENUE' \r\n\t\tWHEN ELSMP.MEASURE_ID IN (2,3,4,5,6,22) THEN 'COGS'  \r\n\tEND BK_REVENUE_OR_COGS_TYPE_CD ,\r\n\t\r\n\tEANMA.PRODUCT_KEY BK_PRODUCT_KEY, \r\n\r\n\tSALES_TERRITORY_KEY   BK_SALES_TERRITORY_KEY,\r\n\r\n\tCASE WHEN BK_REVENUE_OR_COGS_TYPE_CD = 'COGS' THEN ( \tSUM(ZEROIFNULL(EANMA.ADJUSTMENT_ALLOCATION_USD_AMT)  ) * -1) \r\n\t\t\tELSE SUM(ZEROIFNULL(EANMA.ADJUSTMENT_ALLOCATION_USD_AMT))  END AS COMP_US_NET_REV_AMT, \r\n\r\n\tEANMA.BK_ADJ_SUB_MEASURE_TYPE_CD DV_PNL_LINE_ITEM_NAME,\r\n\tEANMA.OFFER_TYPE_LEVEL_2 AS  BK_OFFER_TYPE_NAME \r\n\r\nFROM   $$ETLVWDB.EL_AE_NRS_MANUAL_ADJ   EANMA \r\nINNER JOIN $$STGDB.WI_PNL_MTH_CNTL_NRS_ADJ WIPMCNA ON WIPMCNA.FISCAL_MONTH_ID = EANMA.DV_FISCAL_YEAR_MTH_NUMBER_INT \r\nINNER JOIN $$ETLVWDB.EL_AE_SUB_MEASURE_PUB ELSMP ON ELSMP.SUB_MEASURE_NAME = EANMA.BK_ADJ_SUB_MEASURE_TYPE_CD \r\nGROUP BY 1, 2, 3, 4, 6  ,7",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ",
+      "to_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ",
+      "to_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "to_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "BK_PRODUCT_KEY",
+      "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ",
+      "to_field": "BK_PRODUCT_KEY",
+      "to_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "BK_SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ",
+      "to_field": "BK_SALES_TERRITORY_KEY",
+      "to_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "COMP_US_NET_REV_AMT",
+      "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ",
+      "to_field": "COMP_US_NET_REV_AMT",
+      "to_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "DV_PNL_LINE_ITEM_NAME",
+      "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ",
+      "to_field": "DV_PNL_LINE_ITEM_NAME",
+      "to_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "BK_OFFER_TYPE_NAME",
+      "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ",
+      "to_field": "BK_OFFER_TYPE_NAME",
+      "to_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "DV_PNL_LINE_ITEM_NAME",
+      "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1",
+      "to_field": "DV_PNL_LINE_ITEM_NAME",
+      "to_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "BK_OFFER_TYPE_NAME",
+      "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1",
+      "to_field": "BK_OFFER_TYPE_NAME",
+      "to_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1",
+      "to_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1",
+      "to_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "to_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "BK_PRODUCT_KEY",
+      "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1",
+      "to_field": "BK_PRODUCT_KEY",
+      "to_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "BK_SALES_TERRITORY_KEY",
+      "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1",
+      "to_field": "BK_SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+    },
+    {
+      "from_field": "COMP_US_NET_REV_AMT",
+      "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1",
+      "to_field": "COMP_US_NET_REV_AMT",
+      "to_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+        },
+        {
+          "from_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+          "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+        },
+        {
+          "from_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+          "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_PRODUCT_KEY",
+      "source_path": [
+        {
+          "from_field": "BK_PRODUCT_KEY",
+          "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+        },
+        {
+          "from_field": "BK_PRODUCT_KEY",
+          "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SALES_TERRITORY_KEY",
+      "source_path": [
+        {
+          "from_field": "BK_SALES_TERRITORY_KEY",
+          "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+        },
+        {
+          "from_field": "BK_SALES_TERRITORY_KEY",
+          "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMP_US_NET_REV_AMT",
+      "source_path": [
+        {
+          "from_field": "COMP_US_NET_REV_AMT",
+          "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+        },
+        {
+          "from_field": "COMP_US_NET_REV_AMT",
+          "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_PNL_LINE_ITEM_NAME",
+      "source_path": [
+        {
+          "from_field": "DV_PNL_LINE_ITEM_NAME",
+          "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+        },
+        {
+          "from_field": "DV_PNL_LINE_ITEM_NAME",
+          "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_OFFER_TYPE_NAME",
+      "source_path": [
+        {
+          "from_field": "BK_OFFER_TYPE_NAME",
+          "from_instance": "SQ_WI_PNL_REV_COST_MSR_NRS_ADJ"
+        },
+        {
+          "from_field": "BK_OFFER_TYPE_NAME",
+          "from_instance": "WI_PNL_REV_COST_MSR_NRS_ADJ1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:30.979538+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

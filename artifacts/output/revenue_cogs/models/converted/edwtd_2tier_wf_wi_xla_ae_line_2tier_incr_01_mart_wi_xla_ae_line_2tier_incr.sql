@@ -1,0 +1,105 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_xla_ae_line_2tier_incr', 'batch', 'edwtd_2tier'],
+    meta={
+        'source_workflow': 'wf_m_WI_XLA_AE_LINE_2TIER_INCR',
+        'target_table': 'WI_XLA_AE_LINE_2TIER_INCR',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:46.158380+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_xla_ae_line_2tier_incr AS (
+    SELECT
+        ae_header_id,
+        ae_line_num,
+        application_id,
+        code_combination_id,
+        gl_sl_link_id,
+        account_class,
+        party_id,
+        party_site_id,
+        party_type_code,
+        entered_dr,
+        entered_cr,
+        accounted_dr,
+        accounted_cr,
+        currency_code,
+        attribute_category,
+        order_number,
+        order_line_id,
+        trx_number,
+        trx_line_id,
+        trx_date,
+        transaction_dist_id,
+        dist_type,
+        quantity_invoiced,
+        transaction_id,
+        gl_sl_link_table,
+        unrounded_accounted_dr,
+        unrounded_accounted_cr,
+        unrounded_entered_dr,
+        unrounded_entered_cr,
+        accounting_date,
+        ledger_id,
+        source_table,
+        source_id,
+        creation_date,
+        last_update_date,
+        global_name,
+        edw_create_datetime,
+        edw_create_user,
+        edw_update_datetime,
+        edw_update_user
+    FROM {{ source('raw', 'wi_xla_ae_line_2tier_incr') }}
+),
+
+final AS (
+    SELECT
+        ae_header_id,
+        ae_line_num,
+        application_id,
+        code_combination_id,
+        gl_sl_link_id,
+        account_class,
+        party_id,
+        party_site_id,
+        party_type_code,
+        entered_dr,
+        entered_cr,
+        accounted_dr,
+        accounted_cr,
+        currency_code,
+        attribute_category,
+        order_number,
+        order_line_id,
+        trx_number,
+        trx_line_id,
+        trx_date,
+        transaction_dist_id,
+        dist_type,
+        quantity_invoiced,
+        transaction_id,
+        gl_sl_link_table,
+        unrounded_accounted_dr,
+        unrounded_accounted_cr,
+        unrounded_entered_dr,
+        unrounded_entered_cr,
+        accounting_date,
+        ledger_id,
+        source_table,
+        source_id,
+        creation_date,
+        last_update_date,
+        global_name,
+        edw_create_datetime,
+        edw_create_user,
+        edw_update_datetime,
+        edw_update_user
+    FROM source_wi_xla_ae_line_2tier_incr
+)
+
+SELECT * FROM final

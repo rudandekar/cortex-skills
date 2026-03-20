@@ -1,0 +1,669 @@
+{
+  "workflow_name": "wf_m_EDWTD_Build_Parm_File",
+  "mapping_name": "m_EDWTD_Build_Parm_File",
+  "mapping_description": "",
+  "folder_name": "Templates_Guidelines",
+  "target_table": "Parameter_File",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_inv_revenue_measure_pos_alloc_04_mart_parameter_file",
+  "source_tables": [
+    "DUAL_id",
+    "DW_JOB_STREAMS"
+  ],
+  "sources": [
+    {
+      "name": "DUAL_id",
+      "database_type": "Oracle",
+      "owner": "SYS",
+      "fields": [
+        {
+          "name": "DUMMY",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "DW_JOB_STREAMS",
+      "database_type": "Teradata",
+      "owner": "CTLDB",
+      "fields": [
+        {
+          "name": "JOB_STREAM_ID",
+          "datatype": "varchar",
+          "precision": "120",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "JOB_STREAM_NAME",
+          "datatype": "varchar",
+          "precision": "120",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "JOB_GROUP_ID",
+          "datatype": "varchar",
+          "precision": "120",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "JOB_STREAM_SEQ_NUM",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTIVE_IND",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "JOB_STREAM_STATUS_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DESCN",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SYSTEM_CALL",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RUN_FREQUENCY",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DOLLARU_UPROC_NAME",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_EXTRACT_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ESTIMATE_START_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ESTIMATE_END_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AVERAGE_RUN_TIME",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WEIGHTAGE_PERCENT",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_TABLE_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_EXTRACT_DATE_COL_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TARGET_TABLE_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "last_extract_id",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "Parameter_File",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "Parm_String",
+        "datatype": "string",
+        "precision": "500",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_DW_JOB_STREAMS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "JOB_STREAM_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "JOB_STREAM_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "JOB_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "JOB_STREAM_SEQ_NUM",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTIVE_IND",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "JOB_STREAM_STATUS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCN",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SYSTEM_CALL",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RUN_FREQUENCY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DOLLARU_UPROC_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_EXTRACT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ESTIMATE_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ESTIMATE_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AVERAGE_RUN_TIME",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WEIGHTAGE_PERCENT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_EXTRACT_DATE_COL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TARGET_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "last_extract_id",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "JOB_STREAM_ID='$$job_stream_id'",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_DW_JOB_STREAMS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "JOB_STREAM_ID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "JOB_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_EXTRACT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "BATCH_ID_new",
+          "datatype": "string",
+          "porttype": "LOCAL VARIABLE",
+          "expression": "BATCH_ID+1"
+        },
+        {
+          "name": "target_EXTRACT_DATE_COL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "target_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_EXTRACT_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "vParmString",
+          "datatype": "string",
+          "porttype": "LOCAL VARIABLE",
+          "expression": "$$parm_heading||chr(10)||\r\n'$$LastExtractDate='||to_char(LAST_EXTRACT_DATE,'MM/DD/YYYY HH24:MI:SS')||chr(10)||\r\n'$$LastExtractId='||to_char(LAST_EXTRACT_ID)||chr(10)||\r\n'$$BatchId='||to_char(BATCH_ID_new)||chr(10)||\r\n'$$target_table_name='||target_TABLE_NAME||chr(10)||\r\n'$$target_extract_date_col_name='||to_char(target_EXTRACT_DATE_COL_NAME)||chr(10)||\r\n'$$source_file_name='||target_TABLE_NAME||'.out'||chr(10)||\r\n'$$job_stream_id='||$$job_stream_id||chr(10)\r\n-- '$$source_file_name='||to_char(LAST_EXTRACT_DATE,'YYYYMMDD_HH24:MI:SS')||chr(10)||"
+        },
+        {
+          "name": "ParmString_out",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "RTRIM(vParmString)"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "ParmString_out",
+      "from_instance": "Exp_DW_JOB_STREAMS",
+      "to_field": "Parm_String",
+      "to_instance": "Parameter_File"
+    },
+    {
+      "from_field": "WEIGHTAGE_PERCENT",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "WEIGHTAGE_PERCENT",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "JOB_STREAM_ID",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "JOB_STREAM_ID",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "JOB_STREAM_NAME",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "JOB_STREAM_NAME",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "JOB_GROUP_ID",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "JOB_GROUP_ID",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "JOB_STREAM_SEQ_NUM",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "JOB_STREAM_SEQ_NUM",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "SOURCE_TABLE_NAME",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "SOURCE_TABLE_NAME",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "SOURCE_EXTRACT_DATE_COL_NAME",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "SOURCE_EXTRACT_DATE_COL_NAME",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "TARGET_TABLE_NAME",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "TARGET_TABLE_NAME",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "last_extract_id",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "last_extract_id",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "LAST_EXTRACT_DATE",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "LAST_EXTRACT_DATE",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "ACTIVE_IND",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "ACTIVE_IND",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "JOB_STREAM_STATUS_CODE",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "JOB_STREAM_STATUS_CODE",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "DESCN",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "DESCN",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "SYSTEM_CALL",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "SYSTEM_CALL",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "RUN_FREQUENCY",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "RUN_FREQUENCY",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "DOLLARU_UPROC_NAME",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "DOLLARU_UPROC_NAME",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "ESTIMATE_START_DATE",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "ESTIMATE_START_DATE",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "ESTIMATE_END_DATE",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "ESTIMATE_END_DATE",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "AVERAGE_RUN_TIME",
+      "from_instance": "DW_JOB_STREAMS",
+      "to_field": "AVERAGE_RUN_TIME",
+      "to_instance": "SQ_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "JOB_STREAM_ID",
+      "from_instance": "SQ_DW_JOB_STREAMS",
+      "to_field": "JOB_STREAM_ID",
+      "to_instance": "Exp_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "JOB_GROUP_ID",
+      "from_instance": "SQ_DW_JOB_STREAMS",
+      "to_field": "JOB_GROUP_ID",
+      "to_instance": "Exp_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "LAST_EXTRACT_DATE",
+      "from_instance": "SQ_DW_JOB_STREAMS",
+      "to_field": "LAST_EXTRACT_DATE",
+      "to_instance": "Exp_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_DW_JOB_STREAMS",
+      "to_field": "BATCH_ID",
+      "to_instance": "Exp_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "SOURCE_EXTRACT_DATE_COL_NAME",
+      "from_instance": "SQ_DW_JOB_STREAMS",
+      "to_field": "target_EXTRACT_DATE_COL_NAME",
+      "to_instance": "Exp_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "TARGET_TABLE_NAME",
+      "from_instance": "SQ_DW_JOB_STREAMS",
+      "to_field": "target_TABLE_NAME",
+      "to_instance": "Exp_DW_JOB_STREAMS"
+    },
+    {
+      "from_field": "last_extract_id",
+      "from_instance": "SQ_DW_JOB_STREAMS",
+      "to_field": "LAST_EXTRACT_ID",
+      "to_instance": "Exp_DW_JOB_STREAMS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "Parm_String",
+      "source_path": [
+        {
+          "from_field": "ParmString_out",
+          "from_instance": "Exp_DW_JOB_STREAMS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:29.814441+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

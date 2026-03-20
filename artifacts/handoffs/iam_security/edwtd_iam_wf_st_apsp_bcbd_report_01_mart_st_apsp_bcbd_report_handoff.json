@@ -1,0 +1,470 @@
+{
+  "workflow_name": "wf_m_ST_APSP_BCBD_REPORT",
+  "mapping_name": "m_ST_APSP_BCBD_REPORT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_IAM",
+  "target_table": "ST_APSP_BCBD_REPORT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_iam_wf_st_apsp_bcbd_report_01_mart_st_apsp_bcbd_report",
+  "source_tables": [
+    "FF_S_CA_FIN_REPORT_DIM"
+  ],
+  "sources": [
+    {
+      "name": "FF_S_CA_FIN_REPORT_DIM",
+      "database_type": "Flat File",
+      "owner": "",
+      "fields": [
+        {
+          "name": "REPORT_ID",
+          "datatype": "string",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REPORT_NAME",
+          "datatype": "string",
+          "precision": "70",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ROLE_NAME",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "METRICS",
+          "datatype": "string",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUBJECT_AREA_NAME",
+          "datatype": "string",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_APSP_BCBD_REPORT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_REPORT_CD",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_REPORT_ROLE_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "REPORT_NAME",
+        "datatype": "varchar",
+        "precision": "70",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REPORT_METRIC_NAME",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SUBJECT_AREA_NAME",
+        "datatype": "char",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REPORT_CREATED_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_S_CA_FIN_REPORT_DIM",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "REPORT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPORT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ROLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "METRICS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBJECT_AREA_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "exp_report_dim_load",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "REPORT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "REPORT_ID"
+        },
+        {
+          "name": "REPORT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "REPORT_NAME"
+        },
+        {
+          "name": "ROLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ROLE_NAME"
+        },
+        {
+          "name": "METRICS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "METRICS"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATED_DATE"
+        },
+        {
+          "name": "SUBJECT_AREA_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SUBJECT_AREA_NAME"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "REPORT_ID",
+      "from_instance": "exp_report_dim_load",
+      "to_field": "BK_REPORT_CD",
+      "to_instance": "ST_APSP_BCBD_REPORT"
+    },
+    {
+      "from_field": "REPORT_NAME",
+      "from_instance": "exp_report_dim_load",
+      "to_field": "REPORT_NAME",
+      "to_instance": "ST_APSP_BCBD_REPORT"
+    },
+    {
+      "from_field": "ROLE_NAME",
+      "from_instance": "exp_report_dim_load",
+      "to_field": "BK_REPORT_ROLE_NAME",
+      "to_instance": "ST_APSP_BCBD_REPORT"
+    },
+    {
+      "from_field": "METRICS",
+      "from_instance": "exp_report_dim_load",
+      "to_field": "REPORT_METRIC_NAME",
+      "to_instance": "ST_APSP_BCBD_REPORT"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "exp_report_dim_load",
+      "to_field": "REPORT_CREATED_DT",
+      "to_instance": "ST_APSP_BCBD_REPORT"
+    },
+    {
+      "from_field": "SUBJECT_AREA_NAME",
+      "from_instance": "exp_report_dim_load",
+      "to_field": "SUBJECT_AREA_NAME",
+      "to_instance": "ST_APSP_BCBD_REPORT"
+    },
+    {
+      "from_field": "REPORT_ID",
+      "from_instance": "FF_S_CA_FIN_REPORT_DIM",
+      "to_field": "REPORT_ID",
+      "to_instance": "SQ_FF_S_CA_FIN_REPORT_DIM"
+    },
+    {
+      "from_field": "REPORT_NAME",
+      "from_instance": "FF_S_CA_FIN_REPORT_DIM",
+      "to_field": "REPORT_NAME",
+      "to_instance": "SQ_FF_S_CA_FIN_REPORT_DIM"
+    },
+    {
+      "from_field": "ROLE_NAME",
+      "from_instance": "FF_S_CA_FIN_REPORT_DIM",
+      "to_field": "ROLE_NAME",
+      "to_instance": "SQ_FF_S_CA_FIN_REPORT_DIM"
+    },
+    {
+      "from_field": "METRICS",
+      "from_instance": "FF_S_CA_FIN_REPORT_DIM",
+      "to_field": "METRICS",
+      "to_instance": "SQ_FF_S_CA_FIN_REPORT_DIM"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "FF_S_CA_FIN_REPORT_DIM",
+      "to_field": "CREATED_DATE",
+      "to_instance": "SQ_FF_S_CA_FIN_REPORT_DIM"
+    },
+    {
+      "from_field": "SUBJECT_AREA_NAME",
+      "from_instance": "FF_S_CA_FIN_REPORT_DIM",
+      "to_field": "SUBJECT_AREA_NAME",
+      "to_instance": "SQ_FF_S_CA_FIN_REPORT_DIM"
+    },
+    {
+      "from_field": "REPORT_ID",
+      "from_instance": "SQ_FF_S_CA_FIN_REPORT_DIM",
+      "to_field": "REPORT_ID",
+      "to_instance": "exp_report_dim_load"
+    },
+    {
+      "from_field": "REPORT_NAME",
+      "from_instance": "SQ_FF_S_CA_FIN_REPORT_DIM",
+      "to_field": "REPORT_NAME",
+      "to_instance": "exp_report_dim_load"
+    },
+    {
+      "from_field": "ROLE_NAME",
+      "from_instance": "SQ_FF_S_CA_FIN_REPORT_DIM",
+      "to_field": "ROLE_NAME",
+      "to_instance": "exp_report_dim_load"
+    },
+    {
+      "from_field": "METRICS",
+      "from_instance": "SQ_FF_S_CA_FIN_REPORT_DIM",
+      "to_field": "METRICS",
+      "to_instance": "exp_report_dim_load"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "SQ_FF_S_CA_FIN_REPORT_DIM",
+      "to_field": "CREATED_DATE",
+      "to_instance": "exp_report_dim_load"
+    },
+    {
+      "from_field": "SUBJECT_AREA_NAME",
+      "from_instance": "SQ_FF_S_CA_FIN_REPORT_DIM",
+      "to_field": "SUBJECT_AREA_NAME",
+      "to_instance": "exp_report_dim_load"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_REPORT_CD",
+      "source_path": [
+        {
+          "from_field": "REPORT_ID",
+          "from_instance": "exp_report_dim_load"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_REPORT_ROLE_NAME",
+      "source_path": [
+        {
+          "from_field": "ROLE_NAME",
+          "from_instance": "exp_report_dim_load"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REPORT_NAME",
+      "source_path": [
+        {
+          "from_field": "REPORT_NAME",
+          "from_instance": "exp_report_dim_load"
+        },
+        {
+          "from_field": "REPORT_NAME",
+          "from_instance": "FF_S_CA_FIN_REPORT_DIM"
+        },
+        {
+          "from_field": "REPORT_NAME",
+          "from_instance": "SQ_FF_S_CA_FIN_REPORT_DIM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REPORT_METRIC_NAME",
+      "source_path": [
+        {
+          "from_field": "METRICS",
+          "from_instance": "exp_report_dim_load"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SUBJECT_AREA_NAME",
+      "source_path": [
+        {
+          "from_field": "SUBJECT_AREA_NAME",
+          "from_instance": "exp_report_dim_load"
+        },
+        {
+          "from_field": "SUBJECT_AREA_NAME",
+          "from_instance": "FF_S_CA_FIN_REPORT_DIM"
+        },
+        {
+          "from_field": "SUBJECT_AREA_NAME",
+          "from_instance": "SQ_FF_S_CA_FIN_REPORT_DIM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REPORT_CREATED_DT",
+      "source_path": [
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "exp_report_dim_load"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:25:36.666496+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

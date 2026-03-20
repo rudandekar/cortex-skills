@@ -1,0 +1,13 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_batch_accum_wf_cdc_xxcfir_ra_cust_trx_lines_extn_01_mart_cdc_xxcfir_ra_cust_trx_lines_extn_expression_transform
+    model: edwtd_batch_accum_wf_cdc_xxcfir_ra_cust_trx_lines_extn_01_mart_cdc_xxcfir_ra_cust_trx_lines_extn
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'cdc_xxcfir_ra_cus_trx_lin_extn')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

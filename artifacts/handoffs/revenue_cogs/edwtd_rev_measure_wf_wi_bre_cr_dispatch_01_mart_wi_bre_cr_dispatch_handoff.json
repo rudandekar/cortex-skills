@@ -1,0 +1,390 @@
+{
+  "workflow_name": "wf_m_WI_BRE_CR_DISPATCH",
+  "mapping_name": "m_WI_BRE_CR_DISPATCH",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_BRE_CR_DISPATCH",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_bre_cr_dispatch_01_mart_wi_bre_cr_dispatch",
+  "source_tables": [
+    "WI_BRE_CR_DISPATCH"
+  ],
+  "sources": [
+    {
+      "name": "WI_BRE_CR_DISPATCH",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "BRE_TRX_LOG_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EVENTDATETIMEC",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COLLABORATIONEXTIDC",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EVENTTYPEC",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EVENT_YEARMONTH",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_BRE_CR_DISPATCH",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BRE_TRX_LOG_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TRANSACTION_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EVENTDATETIMEC",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COLLABORATIONEXTIDC",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EVENTTYPEC",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EVENT_YEARMONTH",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_BRE_CR_DISPATCH",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BRE_TRX_LOG_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EVENTDATETIMEC",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COLLABORATIONEXTIDC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EVENTTYPEC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EVENT_YEARMONTH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT BRE_TRX_LOG_ID,CREATION_DATE,TRANSACTION_ID,EVENTDATETIMEC,COLLABORATIONEXTIDC,EVENTTYPEC,B.FISCAL_MONTH_ID\r\nFROM $$ETLVWDB.EL_TSS_SRM_CBEBRE_LOGS A , (SELECT * FROM $$STGDB.WI_ACTS_CTRL WHERE FISCAL_MONTH_STATUS_IND='WIP')  B,\r\n$$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR C\r\nWHERE  UPPER(EVENTTYPEC) LIKE 'CR DISPATCH%'\r\nAND B.FISCAL_MONTH_ID = C.FISCAL_YEAR_MONTH_INT\r\nAND A.CREATION_DATE BETWEEN C.FISCAL_MONTH_START_DATE AND C.FISCAL_MONTH_END_DATE",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BRE_TRX_LOG_ID",
+      "from_instance": "SQ_WI_BRE_CR_DISPATCH",
+      "to_field": "BRE_TRX_LOG_ID",
+      "to_instance": "WI_BRE_CR_DISPATCH1"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_WI_BRE_CR_DISPATCH",
+      "to_field": "CREATION_DATE",
+      "to_instance": "WI_BRE_CR_DISPATCH1"
+    },
+    {
+      "from_field": "TRANSACTION_ID",
+      "from_instance": "SQ_WI_BRE_CR_DISPATCH",
+      "to_field": "TRANSACTION_ID",
+      "to_instance": "WI_BRE_CR_DISPATCH1"
+    },
+    {
+      "from_field": "EVENTDATETIMEC",
+      "from_instance": "SQ_WI_BRE_CR_DISPATCH",
+      "to_field": "EVENTDATETIMEC",
+      "to_instance": "WI_BRE_CR_DISPATCH1"
+    },
+    {
+      "from_field": "COLLABORATIONEXTIDC",
+      "from_instance": "SQ_WI_BRE_CR_DISPATCH",
+      "to_field": "COLLABORATIONEXTIDC",
+      "to_instance": "WI_BRE_CR_DISPATCH1"
+    },
+    {
+      "from_field": "EVENTTYPEC",
+      "from_instance": "SQ_WI_BRE_CR_DISPATCH",
+      "to_field": "EVENTTYPEC",
+      "to_instance": "WI_BRE_CR_DISPATCH1"
+    },
+    {
+      "from_field": "EVENT_YEARMONTH",
+      "from_instance": "SQ_WI_BRE_CR_DISPATCH",
+      "to_field": "EVENT_YEARMONTH",
+      "to_instance": "WI_BRE_CR_DISPATCH1"
+    },
+    {
+      "from_field": "BRE_TRX_LOG_ID",
+      "from_instance": "WI_BRE_CR_DISPATCH",
+      "to_field": "BRE_TRX_LOG_ID",
+      "to_instance": "SQ_WI_BRE_CR_DISPATCH"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "WI_BRE_CR_DISPATCH",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_WI_BRE_CR_DISPATCH"
+    },
+    {
+      "from_field": "TRANSACTION_ID",
+      "from_instance": "WI_BRE_CR_DISPATCH",
+      "to_field": "TRANSACTION_ID",
+      "to_instance": "SQ_WI_BRE_CR_DISPATCH"
+    },
+    {
+      "from_field": "EVENTDATETIMEC",
+      "from_instance": "WI_BRE_CR_DISPATCH",
+      "to_field": "EVENTDATETIMEC",
+      "to_instance": "SQ_WI_BRE_CR_DISPATCH"
+    },
+    {
+      "from_field": "COLLABORATIONEXTIDC",
+      "from_instance": "WI_BRE_CR_DISPATCH",
+      "to_field": "COLLABORATIONEXTIDC",
+      "to_instance": "SQ_WI_BRE_CR_DISPATCH"
+    },
+    {
+      "from_field": "EVENTTYPEC",
+      "from_instance": "WI_BRE_CR_DISPATCH",
+      "to_field": "EVENTTYPEC",
+      "to_instance": "SQ_WI_BRE_CR_DISPATCH"
+    },
+    {
+      "from_field": "EVENT_YEARMONTH",
+      "from_instance": "WI_BRE_CR_DISPATCH",
+      "to_field": "EVENT_YEARMONTH",
+      "to_instance": "SQ_WI_BRE_CR_DISPATCH"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BRE_TRX_LOG_ID",
+      "source_path": [
+        {
+          "from_field": "BRE_TRX_LOG_ID",
+          "from_instance": "SQ_WI_BRE_CR_DISPATCH"
+        },
+        {
+          "from_field": "BRE_TRX_LOG_ID",
+          "from_instance": "WI_BRE_CR_DISPATCH"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_WI_BRE_CR_DISPATCH"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "WI_BRE_CR_DISPATCH"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TRANSACTION_ID",
+      "source_path": [
+        {
+          "from_field": "TRANSACTION_ID",
+          "from_instance": "SQ_WI_BRE_CR_DISPATCH"
+        },
+        {
+          "from_field": "TRANSACTION_ID",
+          "from_instance": "WI_BRE_CR_DISPATCH"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EVENTDATETIMEC",
+      "source_path": [
+        {
+          "from_field": "EVENTDATETIMEC",
+          "from_instance": "SQ_WI_BRE_CR_DISPATCH"
+        },
+        {
+          "from_field": "EVENTDATETIMEC",
+          "from_instance": "WI_BRE_CR_DISPATCH"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COLLABORATIONEXTIDC",
+      "source_path": [
+        {
+          "from_field": "COLLABORATIONEXTIDC",
+          "from_instance": "SQ_WI_BRE_CR_DISPATCH"
+        },
+        {
+          "from_field": "COLLABORATIONEXTIDC",
+          "from_instance": "WI_BRE_CR_DISPATCH"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EVENTTYPEC",
+      "source_path": [
+        {
+          "from_field": "EVENTTYPEC",
+          "from_instance": "SQ_WI_BRE_CR_DISPATCH"
+        },
+        {
+          "from_field": "EVENTTYPEC",
+          "from_instance": "WI_BRE_CR_DISPATCH"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EVENT_YEARMONTH",
+      "source_path": [
+        {
+          "from_field": "EVENT_YEARMONTH",
+          "from_instance": "SQ_WI_BRE_CR_DISPATCH"
+        },
+        {
+          "from_field": "EVENT_YEARMONTH",
+          "from_instance": "WI_BRE_CR_DISPATCH"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:27.525382+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

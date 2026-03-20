@@ -1,0 +1,2862 @@
+{
+  "workflow_name": "wf_m_WI_RETRO_BKGS_CHNL_MSR_XAAS",
+  "mapping_name": "m_WI_RETRO_BKGS_CHNL_MSR_XAAS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_BKG_AGGRS",
+  "target_table": "WI_BKGS_CHNL_RET_MSR_XAAS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_bkg_aggrs_wf_wi_retro_bkgs_chnl_msr_xaas_05_mart_wi_bkgs_chnl_ret_msr_xaas",
+  "source_tables": [
+    "WI_CHNL_RET_DATES_XAAS",
+    "WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+    "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+    "WI_SALES_CHANNEL_RET_XAAS",
+    "WI_SLS_CHNL_RET_CNTRY_XAAS",
+    "N_BKGS_MEASURE"
+  ],
+  "sources": [
+    {
+      "name": "WI_CHNL_RET_DATES_XAAS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "CALENDAR_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_TYPE_CODE",
+          "datatype": "char",
+          "precision": "16",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRTN_CNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_CUST_CNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DROP_SHIP_PARTY_SITE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CHANNEL_DROP_SHIP_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_TYPE_CODE",
+          "datatype": "char",
+          "precision": "16",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PROCESS_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_SALES_CHANNEL_RET_XAAS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CHANNEL_DROP_SHIP_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_CHANNEL_BOOKING_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_TYPE_CODE",
+          "datatype": "char",
+          "precision": "16",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRTN_CNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_CUST_CNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "N_BKGS_MEASURE",
+      "database_type": "Teradata",
+      "owner": "SLSORDVWDB",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AR_TRX_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SALES_ADJ_LINE_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SALES_ADJ_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_TYPE_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_CREDIT_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IDE_ADJUSTMENT_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CANCELLED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CANCEL_CODE",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACQUISITION_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FORWARD_REVERSE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISTRIBUTOR_OFFSET_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CORPORATE_BOOKINGS_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "OVERLAY_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "IC_REVENUE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CHARGES_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALESREP_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MISC_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INTERNATIONAL_DEMO_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REPLACEMENT_DEMO_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REVENUE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RMA_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRADE_IN_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_LIST_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_COST_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_EXTENDED_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_COST_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_EXTENDED_HOLD_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_COMP_US_STANDARD_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CONVERSION_RT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "17",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CONVERSION_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_BK_SO_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_CISCO_BOOKED_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_SALES_ORDER_CATEGORY_TYPE",
+          "datatype": "char",
+          "precision": "6",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_SLS_ORD_OPERATING_UNIT_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_TRX_CURRENCY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_TRANSACTION_TYPE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_DESCR_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_TRANSACTION_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BOOKINGS_SPLIT_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SOURCE_ORDER_NUM_INT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_DEAL_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PURCHASE_ORDER_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BOOKED_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_BKGS_CHNL_RET_MSR_XAAS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BOOKINGS_MEASURE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BOOKINGS_PROCESS_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+        "datatype": "char",
+        "precision": "7",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "PARTNER_SITE_PARTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CHANNEL_BOOKINGS_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CHANNEL_DROP_SHIP_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_DRCT_VAL_ADDED_DSTI_ORD_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_ROUTE_TO_MARKET_CD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BOOKING_CHANNEL_TYPE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_DROP_SHIP_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_CHANNEL_BOOKING_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRTN_CNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_CNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DROP_SHIP_PARTY_SITE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n   WCMI.SALES_TERRITORY_KEY SALES_TERRITORY_KEY,\r\n   WCMI.SOLD_TO_CUSTOMER_KEY SOLD_TO_CUSTOMER_KEY,\r\n   WCMI.END_CUSTOMER_KEY  END_CUSTOMER_KEY,\r\n   WCMI.SALES_CHANNEL_CODE  SALES_CHANNEL_CODE, /*ADDED AS PART OF Q3FY17*/\r\n   WCMI.DV_END_CUSTOMER_KEY  DV_END_CUSTOMER_KEY,\r\n   WCMI.BILL_TO_CUSTOMER_KEY BILL_TO_CUSTOMER_KEY,\r\n   WCMI.PARTNER_SITE_PARTY_KEY  PARTNER_SITE_PARTY_KEY, \r\n   WCMI.CHANNEL_DROP_SHIP_FLAG  CHANNEL_DROP_SHIP_FLG,\r\n   CASE \r\n\t\tWHEN WCMI.SALES_CHANNEL_CODE IN \r\n\t\t/* DVAD ADDED AS PART OF SOT XAAS AUG-10 CDR RELEASE*/\r\n\t\t ('TWO TIER DISTRIBUTOR','2-TIER DISTRIBUTOR','Two Tier Distributor','DVAD')  THEN 'Y'\r\n\t\t /*KGUVVALA ADDED AS PART OF Q3FY17*/\r\n\t\tWHEN WCMI.PARTNER_SITE_PARTY_KEY = -999 THEN 'N'\r\n        WHEN WCMI.LEVEL_1_SLS_HIERARCHY='WW Distribution' THEN 'N' \r\n        WHEN WCMI.PARTNER_TYPE_CODE ='DVAR' THEN 'Y'\r\n        WHEN WCMI.PARTNER_TYPE_CODE ='SP' \r\n             THEN\r\n        CASE WHEN WCMI.RULE_CD='PARTNER_TYPE_SP_CHECK' THEN 'N'\r\n      WHEN WCMI.RULE_CD='CHK_GU_PARTY'  \r\n           THEN\r\n               CASE WHEN WCMI.SOLD_TO_GUK = WCMI.END_CUST_GUK THEN 'N'\r\n                    ELSE 'Y' \r\n               END\r\n          ELSE 'Y' \r\n        END\r\n   ELSE 'N'  \r\n   END     SALES_CHANNEL_BOOKING_FLAG,\r\n  USER EDW_CREATE_USER,\r\n  CURRENT_TIMESTAMP(0) EDW_CREATE_DATETIME,\r\n  WCMI.SHIP_TO_CUSTOMER_KEY SHIP_TO_CUSTOMER_KEY\r\n  FROM\r\n(SELECT \r\n  WCMP.SALES_TERRITORY_KEY,\r\n  WCMP.SOLD_TO_CUSTOMER_KEY,\r\n  WCMP.END_CUSTOMER_KEY, \r\n  WCMP.SALES_CHANNEL_CODE, \r\n  WCMP.DV_END_CUSTOMER_KEY,\r\n  WCMP.END_CUSTOMER_TYPE_CODE,\r\n  WCMP.BILL_TO_CUSTOMER_KEY,\r\n  WCMP.SOLD_TO_PARTY_KEY,\r\n  WCMP.BILL_TO_PARTY_KEY,\r\n  WCMP.DV_END_CUST_PARTY_KEY,\r\n  WCMP.PARTNER_SITE_PARTY_KEY_INT,\r\n  WCMP.PARTNER,\r\n  WCMP.SOLD_TO_GRAND_PRNT_PTY_KEY,\r\n  WCMP.BILL_TO_GRAND_PRNT_PTY_KEY,\r\n  WCMP.PARTNER_SITE_PARTY_KEY,\r\n  WCMP.CHANNEL_DROP_SHIP_FLAG,\r\n  WCMP.END_CUST_PARTY_KEY, \r\n  RSH.L1_SALES_TERRITORY_NAME_CODE LEVEL_1_SLS_HIERARCHY,\r\n  COALESCE(NCPCT.PARTNER_TYPE_CODE,'UNKNOWN') PARTNER_TYPE_CODE,\r\n  COALESCE(ECSN.RULE_CD,'UNKNOWN')  RULE_CD,\r\n  /*RCPH_BILL_TO.GU_PARTY_KEY  BILL_TO_GUK,*/\r\n  RCPH_SOLD_TO.GU_PARTY_KEY  SOLD_TO_GUK, /*SOT XAAS AUG-10 CDR*/\r\n  RCPH_END_CUST.GU_PARTY_KEY  END_CUST_GUK,\r\n  WCMP.SHIP_TO_CUSTOMER_KEY\r\n FROM   $$STGDB.WI_SLS_CHNL_RET_DROP_SHIP_XAAS WCMP\r\n LEFT OUTER JOIN  ($$COMREFVWDB.N_CHANNEL_PARTNER_SITE NCPST \r\n     INNER JOIN $$COMREFVWDB.N_CHNL_PTNR_COUNTRY NCPCT\r\n    ON   (NCPCT.PARTNER_COUNTRY_PARTY_KEY= NCPST.PARTNER_COUNTRY_PARTY_KEY\r\n    AND     NCPST.SOURCE_DELETED_FLG='N'\r\n    AND     NCPCT.SOURCE_DELETED_FLG='N')) \r\n ON (NCPST.PARTNER_SITE_PARTY_KEY=WCMP.PARTNER_SITE_PARTY_KEY)\r\n  /*LEFT OUTER JOIN  $$COMREFVWDB.N_CUSTOMER_PARTY RCPH_BILL_TO\r\n  ON (RCPH_BILL_TO.CUSTOMER_PARTY_KEY=WCMP.BILL_TO_PARTY_KEY)*/\r\n /*SOT XAAS AUG-10 CDR*/\r\n LEFT OUTER JOIN  $$COMREFVWDB.N_CUSTOMER_PARTY RCPH_SOLD_TO\r\n ON (RCPH_SOLD_TO.CUSTOMER_PARTY_KEY=WCMP.SOLD_TO_PARTY_KEY)\r\n /*END SOT XAAS AUG-10 CDR*/\r\n  \r\n LEFT OUTER JOIN  $$COMREFVWDB.N_CUSTOMER_PARTY RCPH_END_CUST\r\n ON (RCPH_END_CUST.CUSTOMER_PARTY_KEY=WCMP.END_CUST_PARTY_KEY)\r\n LEFT OUTER JOIN $$ETLVWDB.EL_CHN_SP_NODES  ECSN\r\n ON ( WCMP.SALES_TERRITORY_KEY =ECSN.SALES_TERRITORY_KEY) \r\n LEFT OUTER JOIN  $$COMREFVWDB.R_SALES_HIERARCHY  RSH\r\n  ON (WCMP.SALES_TERRITORY_KEY = RSH.SALES_TERRITORY_KEY ))WCMI",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRTN_CNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_CNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DROP_SHIP_PARTY_SITE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_DROP_SHIP_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n   WCMDSI.SALES_TERRITORY_KEY \r\n  ,WCMDSI.SOLD_TO_CUSTOMER_KEY \r\n  ,WCMDSI.END_CUSTOMER_KEY\r\n  ,WCMDSI.SALES_CHANNEL_CODE /*KGUVVALA ADDED AS PART OF Q3FY17*/\r\n  ,WCMDSI.DV_END_CUSTOMER_KEY  \r\n  ,WCMDSI.END_CUSTOMER_TYPE_CODE \r\n  ,WCMDSI.BILL_TO_CUSTOMER_KEY \r\n  ,WCMDSI.SOLD_TO_PARTY_KEY  \r\n  ,WCMDSI.BILL_TO_PARTY_KEY \r\n  ,WCMDSI.DV_END_CUST_PARTY_KEY \r\n  ,WCMDSI.PARTNER_SITE_PARTY_KEY_INT\r\n  ,WCMDSI.PARTNER   \r\n  ,WCMDSI.SOLD_TO_GRAND_PRNT_PTY_KEY\r\n  ,WCMDSI.BILL_TO_GRAND_PRNT_PTY_KEY\r\n  ,WCMDSI.EDW_CREATE_USER  \r\n  ,WCMDSI.EDW_CREATE_DATETIME \r\n  ,WCMDSI.PRTN_CNTRY_CD  \r\n  ,WCMDSI.DV_END_CUST_CNTRY_CD  \r\n  ,WCMDSI.DROP_SHIP_PARTY_SITE_KEY \r\n  ,CASE WHEN WCMDSI.PARTNER_SITE_PARTY_KEY_INT = -999 THEN -999 \r\n          ELSE \r\n              CASE   WHEN WCMDSI.PARTNER_SITE_PARTY_KEY_INT = WCMDSI.DV_END_CUST_PARTY_KEY   THEN WCMDSI.PARTNER_SITE_PARTY_KEY_INT \r\n       ELSE \r\n                         CASE WHEN WCMDSI.PRTN_CNTRY_CD = WCMDSI.DV_END_CUST_CNTRY_CD  THEN  WCMDSI.PARTNER_SITE_PARTY_KEY_INT \r\n          ELSE \r\n             CASE WHEN WCMDSI.DROP_SHIP_PARTY_SITE_KEY  = -999 THEN WCMDSI.PARTNER_SITE_PARTY_KEY_INT \r\n           ELSE WCMDSI.DROP_SHIP_PARTY_SITE_KEY \r\n                                  END \r\n      END\r\n          END\r\n  END PARTNER_SITE_PARTY_KEY\r\n  ,CASE  WHEN WCMDSI.PARTNER_SITE_PARTY_KEY_INT = -999 THEN 'N' \r\n             ELSE  \r\n                      CASE WHEN  WCMDSI.PARTNER_SITE_PARTY_KEY_INT = WCMDSI.DV_END_CUST_PARTY_KEY  THEN 'N' \r\n                             ELSE\r\n                     CASE WHEN WCMDSI.DV_END_CUST_CNTRY_CD = 'UNK' THEN 'N'\r\n                           ELSE  \r\n              CASE WHEN WCMDSI.PRTN_CNTRY_CD  =  WCMDSI.DV_END_CUST_CNTRY_CD   THEN  'N' \r\n            ELSE 'Y' \r\n          END\r\n                     END\r\n           END\r\n  END CHANNEL_DROP_SHIP_FLAG\r\n  ,COALESCE(NECAL_END_CUST_LOC.CUSTOMER_PARTY_KEY,-999) END_CUST_PARTY_KEY\r\n  ,WCMDSI.SHIP_TO_CUSTOMER_KEY  \r\nFROM\r\n(SELECT \r\n   WCMC.SALES_TERRITORY_KEY\r\n  ,WCMC.SOLD_TO_CUSTOMER_KEY\r\n  ,WCMC.END_CUSTOMER_KEY\r\n  ,WCMC.SALES_CHANNEL_CODE /*KGUVVALA ADDED AS PART OF Q3FY17*/\r\n  ,WCMC.DV_END_CUSTOMER_KEY\r\n  ,WCMC.END_CUSTOMER_TYPE_CODE\r\n  ,WCMC.BILL_TO_CUSTOMER_KEY\r\n  ,WCMC.SOLD_TO_PARTY_KEY\r\n  ,WCMC.BILL_TO_PARTY_KEY\r\n  ,WCMC.DV_END_CUST_PARTY_KEY\r\n  ,WCMC.PARTNER_SITE_PARTY_KEY_INT\r\n  ,WCMC.PARTNER\r\n  ,WCMC.SOLD_TO_GRAND_PRNT_PTY_KEY\r\n  ,WCMC.BILL_TO_GRAND_PRNT_PTY_KEY\r\n  ,WCMC.EDW_CREATE_USER  \r\n  ,WCMC.EDW_CREATE_DATETIME \r\n  ,WCMC.PRTN_CNTRY_CD  \r\n  ,WCMC.DV_END_CUST_CNTRY_CD \r\n  ,COALESCE(DSHIP.PARTNER_SITE_PARTY_KEY,-999) AS DROP_SHIP_PARTY_SITE_KEY\r\n  ,WCMC.SHIP_TO_CUSTOMER_KEY\r\n FROM $$STGDB.WI_SLS_CHNL_RET_CNTRY_XAAS WCMC \r\n LEFT OUTER JOIN  (SELECT PS.PARTNER_SITE_PARTY_KEY, \r\n    COALESCE(PS.BK_PARTY_ID_INT,-999) PARTY_ID,\r\n    COALESCE(DD_GRNDPARNT_PARTNER_PARTY_KEY,-999) GRNDPARNT_PARTNER_PARTY_KEY,\r\n    COALESCE (BK_ISO_COUNTRY_CODE,'UNK')  ISO_COUNTRY_CODE\r\n     FROM \r\n    $$COMREFVWDB.N_CHANNEL_PARTNER_SITE PS,\r\n    $$COMREFVWDB.N_CHNL_PTNR_COUNTRY PC\r\n     WHERE 1=1\r\n     AND   PS.PARTNER_COUNTRY_PARTY_KEY = PC.PARTNER_COUNTRY_PARTY_KEY\r\n       AND   PS.SOURCE_DELETED_FLG='N'\r\n     AND   PC.SOURCE_DELETED_FLG='N'\r\n     QUALIFY ROW_NUMBER () OVER (PARTITION BY GRNDPARNT_PARTNER_PARTY_KEY,ISO_COUNTRY_CODE \r\n        ORDER BY PARTY_ID ASC) =1)  DSHIP\r\n  /*ON WCMC.BILL_TO_GRAND_PRNT_PTY_KEY = DSHIP.GRNDPARNT_PARTNER_PARTY_KEY*/\r\n  ON WCMC.SOLD_TO_GRAND_PRNT_PTY_KEY = DSHIP.GRNDPARNT_PARTNER_PARTY_KEY /* SOT XAAS AUG-10 CDR */\r\n AND WCMC.DV_END_CUST_CNTRY_CD = DSHIP.ISO_COUNTRY_CODE\r\n) WCMDSI\r\n LEFT OUTER JOIN $$COMREFVWDB.N_ERP_CUST_ACCT_LOC_USE NECAL_END_CUST_LOC\r\n  ON(NECAL_END_CUST_LOC.ERP_CUST_ACCOUNT_LOCATION_KEY = WCMDSI.END_CUSTOMER_KEY )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_GRAND_PRNT_PTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRTN_CNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUST_CNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n   WCMP.SALES_TERRITORY_KEY,\r\n   WCMP.SOLD_TO_CUSTOMER_KEY,\r\n   WCMP.END_CUSTOMER_KEY,\r\n   WCMP.SALES_CHANNEL_CODE, /*ADDED AS PART OF Q3FY17*/\r\n   WCMP.DV_END_CUSTOMER_KEY, \r\n   WCMP.END_CUSTOMER_TYPE_CODE,\r\n   WCMP.BILL_TO_CUSTOMER_KEY,\r\n   WCMP.SOLD_TO_PARTY_KEY,\r\n   WCMP.BILL_TO_PARTY_KEY,\r\n   WCMP.DV_END_CUST_PARTY_KEY,\r\n   WCMP.PARTNER_PARTY_KEY AS PARTNER_SITE_PARTY_KEY_INT,\r\n   WCMP.PARTNER,\r\n   WCMP.SOLD_TO_GRAND_PRNT_PTY_KEY ,\r\n   WCMP.BILL_TO_GRAND_PRNT_PTY_KEY ,\r\n   WCMP.EDW_CREATE_USER,\r\n   WCMP.EDW_CREATE_DATETIME,\r\n   COALESCE(PART_CTRY.ISO_COUNTRY_CODE, 'UNK') PRTN_CNTRY_CD,\r\n   COALESCE(END_CTRY.ISO_COUNTRY_CODE, 'UNK') DV_END_CUST_CNTRY_CD,\r\n   WCMP.SHIP_TO_CUSTOMER_KEY\r\n FROM\r\n (SELECT  \r\n   WCMP.SALES_TERRITORY_KEY      SALES_TERRITORY_KEY,\r\n   WCMP.SOLD_TO_CUSTOMER_KEY      SOLD_TO_CUSTOMER_KEY,\r\n   WCMP.END_CUSTOMER_KEY       END_CUSTOMER_KEY,\r\n   WCMP.SALES_CHANNEL_CODE SALES_CHANNEL_CODE, /*ADDED AS PART OF Q3FY17*/\r\n   WCMP.DV_END_CUSTOMER_KEY    DV_END_CUSTOMER_KEY,\r\n   WCMP.END_CUSTOMER_TYPE_CODE      END_CUSTOMER_TYPE_CODE,\r\n   WCMP.BILL_TO_CUSTOMER_KEY      BILL_TO_CUSTOMER_KEY,\r\n   /*-999      SOLD_TO_PARTY_KEY,*/\r\n   NEP.PARTY_KEY SOLD_TO_PARTY_KEY,  /*SOT XAAS AUG-10 CDR*/ \r\n   NECAL.CUSTOMER_PARTY_KEY     BILL_TO_PARTY_KEY,\r\n   COALESCE(NECAL_END_CUST_LOC.CUSTOMER_PARTY_KEY,-999) DV_END_CUST_PARTY_KEY , \r\n   \r\n  /* COALESCE(BILL_TO_PARENT.PARTNER_SITE_PARTY_KEY,-999) PARTNER_PARTY_KEY,\r\n   'BILL_TO'     PARTNER,\r\n   -999 SOLD_TO_GRAND_PRNT_PTY_KEY ,*/\r\n \r\n /* SOT XAAS AUG-10 CDR RELEASE*/\r\n          CASE WHEN SOLD_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY IS NULL \r\n    THEN -999\r\n            WHEN BILL_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY IS NULL\r\n         THEN COALESCE(SOLD_TO_PARENT.PARTNER_SITE_PARTY_KEY ,-999)\r\n            WHEN  SOLD_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY =BILL_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY \r\n         THEN BILL_TO_PARENT.PARTNER_SITE_PARTY_KEY\r\n              WHEN  SOLD_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY  <> BILL_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY \r\n         THEN SOLD_TO_PARENT.PARTNER_SITE_PARTY_KEY\r\n       ELSE  -999\r\n        END         PARTNER_PARTY_KEY_AS_IS,\r\n\t\t  CASE WHEN PARTNER_PARTY_KEY_AS_IS =-999 AND NEP.ERP_PARTY_NAME LIKE ANY  ('%CS CAPITAL%','%CISCO SYSTEMS CAPITAL%', 'CISCO SYSTEMS FINANCE %','EXPEDIA INC')\r\n  THEN COALESCE(SHIPS.PARTNER_SITE_PARTY_KEY,-999) \r\n  ELSE PARTNER_PARTY_KEY_AS_IS END AS PARTNER_PARTY_KEY,\r\n  CASE WHEN SOLD_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY IS NULL \r\n    THEN 'SOLD_TO'\r\n       WHEN BILL_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY IS NULL  \r\n         THEN 'SOLD_TO' \r\n       WHEN  SOLD_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY =BILL_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY \r\n         THEN 'BILL_TO'\r\n       WHEN  SOLD_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY  <> BILL_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY \r\n         THEN 'SOLD_TO'\r\n       ELSE 'SOLD_TO'\r\n  END         PARTNER,\r\n  COALESCE(SOLD_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY,-999) SOLD_TO_GRAND_PRNT_PTY_KEY ,\r\n /* END SOT XAAS AUG-10 CDR RELEASE*/\r\n \r\n   COALESCE(BILL_TO_PARENT.DD_GRNDPARNT_PARTNER_PARTY_KEY,-999) BILL_TO_GRAND_PRNT_PTY_KEY,\r\n   USER               EDW_CREATE_USER,\r\n   CURRENT_TIMESTAMP(0)       EDW_CREATE_DATETIME,\r\n   WCMP.SHIP_TO_CUSTOMER_KEY\r\n  FROM  $$STGDB.WI_CHNL_RETRO_BKG_MSR_FOR_XAAS WCMP \r\n/*  INNER JOIN $$COMREFVWDB.N_ERP_CUST_ACCT_LOC_USE NECAL\r\n   ON(NECAL.ERP_CUST_ACCOUNT_LOCATION_KEY = WCMP.BILL_TO_CUSTOMER_KEY )\r\n    LEFT JOIN ( $$COMREFVWDB.N_CUSTOMER_ACCOUNT NCA\r\n    INNER JOIN $$COMREFVWDB.N_ERP_PARTY NEP\r\n    ON(NEP.ERP_PARTY_NUMBER = NCA.ERP_CUSTOMER_NUMBER) \r\n      )\r\n   ON NECAL.CUSTOMER_ACCOUNT_KEY=NCA.CUSTOMER_ACCOUNT_KEY\r\n  LEFT OUTER JOIN $$COMREFVWDB.N_ERP_CUST_ACCT_LOC_USE NECAL_END_CUST_LOC\r\n   ON(NECAL_END_CUST_LOC.ERP_CUST_ACCOUNT_LOCATION_KEY = WCMP.DV_END_CUSTOMER_KEY )\r\n  LEFT OUTER JOIN $$COMREFVWDB.N_CHANNEL_PARTNER_SITE  BILL_TO_PARENT\r\n   ON(NEP.PARTY_KEY=BILL_TO_PARENT.PARTNER_SITE_PARTY_KEY)\r\n   AND BILL_TO_PARENT.SOURCE_DELETED_FLG='N') WCMP*/\r\n \r\n/* SOT XAAS AUG-10 CDR RELEASE*/\r\n  INNER JOIN ( $$COMREFVWDB.N_CUSTOMER_ACCOUNT NCA\r\n                                INNER JOIN $$COMREFVWDB.N_ERP_PARTY NEP\r\n                                ON(NEP.ERP_PARTY_NUMBER = NCA.ERP_CUSTOMER_NUMBER) \r\n                                                                )\r\n                ON (NCA.CUSTOMER_ACCOUNT_KEY= WCMP.SOLD_TO_CUSTOMER_KEY )\r\nINNER JOIN $$COMREFVWDB.N_ERP_CUST_ACCT_LOC_USE NECAL\r\n                ON(NECAL.ERP_CUST_ACCOUNT_LOCATION_KEY = WCMP.BILL_TO_CUSTOMER_KEY )\r\nLEFT OUTER JOIN ( $$COMREFVWDB.N_CUSTOMER_ACCOUNT NCA_END_CUST\r\n                                  INNER JOIN $$COMREFVWDB.N_ERP_PARTY NEP_END_CUST\r\n                                  ON(NEP_END_CUST.ERP_PARTY_NUMBER = NCA_END_CUST.ERP_CUSTOMER_NUMBER) \r\n                                                                )\r\n                ON (NCA_END_CUST.CUSTOMER_ACCOUNT_KEY= WCMP.DV_END_CUSTOMER_KEY )\r\nLEFT OUTER JOIN $$COMREFVWDB.N_ERP_CUST_ACCT_LOC_USE NECAL_END_CUST_LOC\r\n                ON(NECAL_END_CUST_LOC.ERP_CUST_ACCOUNT_LOCATION_KEY = WCMP.DV_END_CUSTOMER_KEY )\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CHANNEL_PARTNER_SITE  SOLD_TO_PARENT\r\n                ON(NEP.PARTY_KEY=SOLD_TO_PARENT.PARTNER_SITE_PARTY_KEY)\r\n                AND SOLD_TO_PARENT.SOURCE_DELETED_FLG='N'\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CHANNEL_PARTNER_SITE  BILL_TO_PARENT\r\n                ON(NECAL.CUSTOMER_PARTY_KEY=BILL_TO_PARENT.PARTNER_SITE_PARTY_KEY)\r\n                AND BILL_TO_PARENT.SOURCE_DELETED_FLG='N'\r\nLEFT OUTER JOIN $$COMREFVWDB.N_ERP_CUST_ACCT_LOC_USE STP\r\n                ON STP.ERP_CUST_ACCOUNT_LOCATION_KEY = WCMP.SHIP_TO_CUSTOMER_KEY\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CHANNEL_PARTNER_SITE SHIPS\r\n                ON STP.CUSTOMER_PARTY_KEY=SHIPS.PARTNER_SITE_PARTY_KEY\r\n                AND SHIPS.SOURCE_DELETED_FLG='N' \r\n\t\t\t\t)WCMP\r\n /* END SOT XAAS AUG-10 CDR RELEASE*/\r\n\r\n  LEFT OUTER JOIN ( SELECT  \r\n          NPAL.ISO_COUNTRY_CODE,NPLA.PARTY_KEY\r\n      FROM       $$COMREFVWDB.N_PARTY_LOCATOR_ASGN NPLA\r\n      INNER JOIN $$COMREFVWDB.N_LOCATOR NLOC\r\n      ON       NPLA.LOCATOR_KEY=NLOC.LOCATOR_KEY\r\n      AND       NLOC.SS_CODE='CR'\r\n      AND       NPLA.LOCATION_TYPE_CODE='POSTAL ADDRESS'\r\n      INNER JOIN $$COMREFVWDB.N_POSTAL_ADDRESS_LOCATOR NPAL\r\n      ON       NLOC.LOCATOR_KEY=NPAL.LOCATOR_KEY \r\n     ) PART_CTRY\r\n  ON       WCMP.PARTNER_PARTY_KEY = PART_CTRY.PARTY_KEY \r\n  LEFT OUTER JOIN ( SELECT     NPAL.ISO_COUNTRY_CODE, NPLA.PARTY_KEY\r\n       FROM       $$COMREFVWDB.N_PARTY_LOCATOR_ASGN NPLA\r\n       INNER JOIN $$COMREFVWDB.N_LOCATOR NLOC\r\n      ON       NPLA.LOCATOR_KEY=NLOC.LOCATOR_KEY\r\n      AND       NLOC.SS_CODE='CR'\r\n      AND       NPLA.LOCATION_TYPE_CODE='POSTAL ADDRESS'\r\n      INNER JOIN $$COMREFVWDB.N_POSTAL_ADDRESS_LOCATOR NPAL\r\n      ON       NLOC.LOCATOR_KEY=NPAL.LOCATOR_KEY \r\n    ) END_CTRY\r\n  ON       WCMP.DV_END_CUST_PARTY_KEY = END_CTRY.PARTY_KEY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_SALES_CHANNEL_RET_XAAS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_BOOKINGS_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_DROP_SHIP_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_DRCT_VAL_ADDED_DSTI_ORD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ROUTE_TO_MARKET_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BOOKING_CHANNEL_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n   BKG_TRX.BOOKINGS_MEASURE_KEY    AS BOOKINGS_MEASURE_KEY,\r\n   BKG_TRX.BOOKINGS_PROCESS_DATE     AS BOOKINGS_PROCESS_DATE,\r\n   BKG_TRX.BKGS_MEASURE_TRANS_TYPE_CODE  AS BKGS_MEASURE_TRANS_TYPE_CODE,\r\n   CHNL_MTRX.PARTNER_SITE_PARTY_KEY   AS PARTNER_SITE_PARTY_KEY,\r\n   --CHNL_MTRX.SALES_CHANNEL_BOOKING_FLG   AS \r\n   CASE \r\n    --WHEN BKG_TRX.ADJUSTMENT_CODE = 'RB' THEN 'N' \r\n            WHEN RSH.L1_SALES_TERRITORY_NAME_CODE = 'WW Distribution' THEN 'N' \r\n            WHEN BKG_TRX.SALES_CHANNEL_CODE= 'DVAD' THEN 'Y'\r\n            --WHEN BKG_TRX.BKGS_MEASURE_TRANS_TYPE_CODE = 'POS' THEN 'Y'\r\n            WHEN CHNL_MTRX.PARTNER_SITE_PARTY_KEY = -999 THEN 'N'\r\n            WHEN MPH.DV_PARTNER_PRIMARY_PRACTICE_L1 = 'PROVIDER' THEN\r\n\t\t   CASE WHEN --MPH.PARTNER_TYPE_CD='SP' AND \r\n\t\t   RSH.SALES_COVERAGE_CODE <> 'SERVICE PROVIDER' THEN 'Y'\r\n           ELSE CASE WHEN PSH.GU_PARTY_SSOT_PARTY_ID_INT = PEH.GU_PARTY_SSOT_PARTY_ID_INT  THEN 'N'\r\n           ELSE 'Y' END END      \r\n\t\t   WHEN (MPH.DV_PARTNER_PRIMARY_PRACTICE_L1 = 'RESELLER' OR MPH.DV_PARTNER_PRIMARY_PRACTICE_L1='DISTRIBUTOR') THEN 'Y'\r\n\t\t   WHEN MPH.DV_PARTNER_PRIMARY_PRACTICE_L1 = 'NON-RESELLER' THEN 'N' \r\n\t\t   WHEN MPH.DV_PARTNER_PRIMARY_PRACTICE_L1 = 'UNREGISTERED' AND MPH.PARTNER_TIER_CD = '1-TIER' THEN 'Y'\r\nELSE 'N'\r\n       END AS CHANNEL_BOOKINGS_FLG,\r\n   CHNL_MTRX.CHANNEL_DROP_SHIP_FLG   AS CHANNEL_DROP_SHIP_FLG,\r\n   /*SOT XAAS AUG-10 CDR*/\r\n                CASE \r\n                WHEN CHNL_MTRX.SALES_CHANNEL_CODE = 'DVAD' THEN 'Y'\r\n                ELSE 'N' \r\n    END   AS DV_DRCT_VAL_ADDED_DSTI_ORD_FLG\r\n    /*END SOT XAAS AUG-10 CDR*/\r\n   ,USER       AS EDW_UPDATE_USER\r\n   ,CURRENT_TIMESTAMP(0)    AS EDW_UPDATE_DATETIME,\r\n   /*ADDED AS A PART OF ICPM Q2FY16*/\r\n    CASE WHEN CHANNEL_BOOKINGS_FLG='N' AND SOL.BK_SO_NUMBER_INT < 0 THEN 'OTHERS'\r\n                WHEN CHANNEL_BOOKINGS_FLG='N' AND SOL.BK_SO_NUMBER_INT > 0  THEN 'DIRECT'\r\n                WHEN CHANNEL_BOOKINGS_FLG='Y'   THEN '1-TIER'\r\n                ELSE 'OTHERS'\r\n                END  DV_ROUTE_TO_MARKET_CD ,\r\nCASE \r\n    --WHEN BKG_TRX.ADJUSTMENT_CODE = 'RB' THEN 'REBATES' \r\n            WHEN RSH.L1_SALES_TERRITORY_NAME_CODE = 'WW Distribution' THEN 'NON CHANNEL' \r\n            WHEN BKG_TRX.SALES_CHANNEL_CODE= 'DVAD' THEN 'CHANNEL'\r\n            --WHEN BKG_TRX.BKGS_MEASURE_TRANS_TYPE_CODE = 'POS' THEN 'CHANNEL'\r\n            WHEN CHNL_MTRX.PARTNER_SITE_PARTY_KEY = -999 THEN 'NON CHANNEL'\r\n            WHEN MPH.DV_PARTNER_PRIMARY_PRACTICE_L1 = 'PROVIDER' THEN\r\n\t\t   CASE WHEN --MPH.PARTNER_TYPE_CD='SP' AND \r\n\t\t   RSH.SALES_COVERAGE_CODE <> 'SERVICE PROVIDER' THEN 'CHANNEL'\r\n           ELSE CASE WHEN PSH.GU_PARTY_SSOT_PARTY_ID_INT = PEH.GU_PARTY_SSOT_PARTY_ID_INT  THEN 'NON CHANNEL'\r\n           ELSE 'CHANNEL' END END      \r\n\t\t   WHEN (MPH.DV_PARTNER_PRIMARY_PRACTICE_L1 = 'RESELLER' OR MPH.DV_PARTNER_PRIMARY_PRACTICE_L1='DISTRIBUTOR') THEN 'CHANNEL'\r\n\t\t   WHEN MPH.DV_PARTNER_PRIMARY_PRACTICE_L1 = 'NON-RESELLER' THEN 'NON CHANNEL' \r\n\t\t   WHEN MPH.DV_PARTNER_PRIMARY_PRACTICE_L1 = 'UNREGISTERED' AND MPH.PARTNER_TIER_CD = '1-TIER' THEN 'CHANNEL'\r\nELSE 'NON CHANNEL'\r\n       END BOOKING_CHANNEL_TYPE\t\t\t\t\r\n  FROM \r\n  (SELECT\r\n  BOOKINGS_MEASURE_KEY,\r\nSOLD_TO_CUSTOMER_KEY,\r\nBILL_TO_CUSTOMER_KEY,\r\nSHIP_TO_CUSTOMER_KEY,\r\nSALES_TERRITORY_KEY,\r\nEND_CUSTOMER_KEY,\r\nSALES_CHANNEL_CODE,\r\nBOOKINGS_PROCESS_DATE,\r\nBKGS_MEASURE_TRANS_TYPE_CODE ,\r\nSALES_ORDER_KEY       \r\n FROM $$SLSORDVWDB.N_BOOKINGS_MEASURE NBKM\r\nWHERE BKGS_MEASURE_TRANS_TYPE_CODE ='XAAS'\r\n\r\n  ) BKG_TRX\r\n  \r\n  INNER JOIN  $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR FD\r\n  ON BKG_TRX.BOOKINGS_PROCESS_DATE = FD.CALENDAR_DATE\r\n  INNER JOIN $$STGDB.WI_CHNL_RET_DATES_XAAS ETL\r\n   ON (ETL.CALENDAR_DATE = FD.CALENDAR_DATE AND \r\n   BKG_TRX.BOOKINGS_PROCESS_DATE <> '1900-01-01')\r\n  INNER JOIN $$STGDB.WI_SALES_CHANNEL_RET_XAAS CHNL_MTRX\r\n   ON ( BKG_TRX.SALES_TERRITORY_KEY  = CHNL_MTRX.SALES_TERRITORY_KEY AND\r\n       BKG_TRX.SOLD_TO_CUSTOMER_KEY  = CHNL_MTRX.SOLD_TO_CUSTOMER_KEY AND\r\n       BKG_TRX.BILL_TO_CUSTOMER_KEY  = CHNL_MTRX.BILL_TO_CUSTOMER_KEY AND\r\n\t   BKG_TRX.SHIP_TO_CUSTOMER_KEY  = CHNL_MTRX.SHIP_TO_CUSTOMER_KEY AND\r\n       COALESCE(BKG_TRX.END_CUSTOMER_KEY,-999) = CHNL_MTRX.END_CUSTOMER_KEY AND\r\n       CASE \r\n    WHEN BKG_TRX.SALES_CHANNEL_CODE  IN ('TWO TIER DISTRIBUTOR','2-TIER DISTRIBUTOR','Two Tier Distributor') \r\n    THEN CAST(-777 AS Integer)\r\n    ELSE COALESCE(BKG_TRX.END_CUSTOMER_KEY,-999) \r\n       END     = CHNL_MTRX.DV_END_CUSTOMER_KEY)\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_TV SOL\r\n  ON BKG_TRX.SALES_ORDER_KEY = SOL.SALES_ORDER_KEY\r\n   LEFT JOIN $$COMREFVWDB.R_SALES_HIERARCHY RSH \r\n  ON BKG_TRX.SALES_TERRITORY_KEY=RSH.SALES_TERRITORY_KEY \t\r\n  LEFT JOIN $$COMREFVWDB.MT_PARTNER_HIERARCHY MPH \r\n  ON CHNL_MTRX.PARTNER_SITE_PARTY_KEY=MPH.PARTNER_SITE_PARTY_KEY\r\n  AND MPH.PARTNER_SITE_PARTY_KEY > 0\r\n  LEFT JOIN $$COMREFVWDB.MT_ENDCUST_CUSTOMER_PARTY_HIER PEH \r\n  ON PEH.END_CUSTOMER_KEY=COALESCE(BKG_TRX.END_CUSTOMER_KEY,-999)\r\n  LEFT JOIN $$COMREFVWDB.MT_SOLDTO_CUSTOMER_PARTY_HIER PSH \r\n  ON PSH.SOLD_TO_CUSTOMER_KEY=BKG_TRX.SOLD_TO_CUSTOMER_KEY\r\n/*  LEFT JOIN  $$COMREFVWDB.N_CHNL_PRTNR_GLBL_RPRTG_PRFL PTNR\r\n  ON PTNR.PARTNER_CNTRY_PRTY_KEY = MPH.PARTNER_COUNTRY_PARTY_KEY     \r\n  AND PTNR.BK_RPRTG_PROFILE_TYPE_NAME    ='PARTNER PRIMARY PRACTICE L1'\r\n  AND PTNR.EFFECTIVE_END_DT='3500-01-01'\r\n  AND MPH.PARTNER_COUNTRY_PARTY_KEY  > 0 */\r\n  WHERE BKG_TRX.SALES_CHANNEL_CODE <> 'DVAD' \r\n  AND CHNL_MTRX.SALES_CHANNEL_CODE <> 'DVAD'\r\n /* AND CHNL_MTRX.SALES_CHANNEL_CODE=BKG_TRX.SALES_CHANNEL_CODE */ /* COMMENTED AS PROD FIX */\r\n  \r\n  UNION ALL\r\n  \r\n SELECT \r\n   BKG_TRX.BOOKINGS_MEASURE_KEY    AS BOOKINGS_MEASURE_KEY,\r\n   BKG_TRX.BOOKINGS_PROCESS_DATE     AS BOOKINGS_PROCESS_DATE,\r\n   BKG_TRX.BKGS_MEASURE_TRANS_TYPE_CODE  AS BKGS_MEASURE_TRANS_TYPE_CODE,\r\n   /* Added by sounsubr part of ECR # CHG0114234 on 07/14/2019 */\r\n   CASE WHEN CHNL_MTRX.CHANNEL_DROP_SHIP_FLG ='Y' THEN CHNL_MTRX.PARTNER_SITE_PARTY_KEY\r\n\tWHEN CHNL_MTRX.CHANNEL_DROP_SHIP_FLG ='N' AND  CASE WHEN COALESCE(NCPS.DD_GRNDPARNT_PARTNER_PARTY_KEY,-999) = -999 THEN -999\r\n\t\tELSE COALESCE(NP.PARTY_KEY,-999) \r\n\tEND = -999 THEN CHNL_MTRX.PARTNER_SITE_PARTY_KEY\r\n\tELSE CASE WHEN COALESCE(NCPS.DD_GRNDPARNT_PARTNER_PARTY_KEY,-999) = -999 THEN -999\r\n\t\tELSE COALESCE(NP.PARTY_KEY,-999) \r\n\tEND  END PARTNER_SITE_PARTY_KEY,\r\n   --CHNL_MTRX.SALES_CHANNEL_BOOKING_FLG   AS CHANNEL_BOOKINGS_FLG,\r\n   CASE \r\n    --WHEN BKG_TRX.ADJUSTMENT_CODE = 'RB' THEN 'REBATES' \r\n            WHEN RSH.L1_SALES_TERRITORY_NAME_CODE = 'WW Distribution' THEN 'N' \r\n\t  ELSE 'Y'\r\n       END AS CHANNEL_BOOKINGS_FLG ,\r\n   CHNL_MTRX.CHANNEL_DROP_SHIP_FLG   AS CHANNEL_DROP_SHIP_FLG,\r\n   /*SOT XAAS AUG-10 CDR*/\r\n                CASE \r\n                WHEN CHNL_MTRX.SALES_CHANNEL_CODE = 'DVAD' THEN 'Y'\r\n                ELSE 'N' \r\n    END   AS DV_DRCT_VAL_ADDED_DSTI_ORD_FLG\r\n    /*END SOT XAAS AUG-10 CDR*/\r\n   ,USER       AS EDW_UPDATE_USER\r\n   ,CURRENT_TIMESTAMP(0)    AS EDW_UPDATE_DATETIME,\r\n   /*ADDED AS A PART OF ICPM Q2FY16*/\r\n    CASE WHEN CHANNEL_BOOKINGS_FLG='N' AND SOL.BK_SO_NUMBER_INT < 0 THEN 'OTHERS'\r\n                WHEN CHANNEL_BOOKINGS_FLG='N' AND SOL.BK_SO_NUMBER_INT > 0  THEN 'DIRECT'\r\n                WHEN CHANNEL_BOOKINGS_FLG='Y'   THEN '1-TIER'\r\n                ELSE 'OTHERS'\r\n                END  DV_ROUTE_TO_MARKET_CD ,\r\nCASE \r\n    --WHEN BKG_TRX.ADJUSTMENT_CODE = 'RB' THEN 'REBATES' \r\n            WHEN RSH.L1_SALES_TERRITORY_NAME_CODE = 'WW Distribution' THEN 'NON CHANNEL' \r\n\t  ELSE 'CHANNEL'\r\n       END BOOKING_CHANNEL_TYPE\t\t\t\t\r\n  FROM \r\n  (SELECT\r\n  BOOKINGS_MEASURE_KEY,\r\nSOLD_TO_CUSTOMER_KEY,\r\nBILL_TO_CUSTOMER_KEY,\r\nSHIP_TO_CUSTOMER_KEY,\r\nSALES_TERRITORY_KEY,\r\nEND_CUSTOMER_KEY,\r\nSALES_CHANNEL_CODE,\r\nBOOKINGS_PROCESS_DATE,\r\nBKGS_MEASURE_TRANS_TYPE_CODE ,\r\nSALES_ORDER_KEY  ,\r\nDV_DEAL_ID     \r\n FROM $$SLSORDVWDB.N_BOOKINGS_MEASURE NBKM\r\nWHERE BKGS_MEASURE_TRANS_TYPE_CODE ='XAAS'\r\n\r\n  ) BKG_TRX\r\n  \r\n  INNER JOIN  $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR FD\r\n  ON BKG_TRX.BOOKINGS_PROCESS_DATE = FD.CALENDAR_DATE\r\n  INNER JOIN $$STGDB.WI_CHNL_RET_DATES_XAAS ETL\r\n   ON (ETL.CALENDAR_DATE = FD.CALENDAR_DATE AND \r\n   BKG_TRX.BOOKINGS_PROCESS_DATE <> '1900-01-01')\r\n  INNER JOIN $$STGDB.WI_SALES_CHANNEL_RET_XAAS CHNL_MTRX\r\n   ON ( BKG_TRX.SALES_TERRITORY_KEY  = CHNL_MTRX.SALES_TERRITORY_KEY AND\r\n       BKG_TRX.SOLD_TO_CUSTOMER_KEY  = CHNL_MTRX.SOLD_TO_CUSTOMER_KEY AND\r\n       BKG_TRX.BILL_TO_CUSTOMER_KEY  = CHNL_MTRX.BILL_TO_CUSTOMER_KEY AND\r\n\t   BKG_TRX.SHIP_TO_CUSTOMER_KEY  = CHNL_MTRX.SHIP_TO_CUSTOMER_KEY AND\r\n       COALESCE(BKG_TRX.END_CUSTOMER_KEY,-999) = CHNL_MTRX.END_CUSTOMER_KEY AND\r\n       CASE \r\n    WHEN BKG_TRX.SALES_CHANNEL_CODE  IN ('TWO TIER DISTRIBUTOR','2-TIER DISTRIBUTOR','Two Tier Distributor') \r\n    THEN CAST(-777 AS Integer)\r\n    ELSE COALESCE(BKG_TRX.END_CUSTOMER_KEY,-999) \r\n       END     = CHNL_MTRX.DV_END_CUSTOMER_KEY)\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_TV SOL\r\n  ON BKG_TRX.SALES_ORDER_KEY = SOL.SALES_ORDER_KEY\r\n  LEFT OUTER JOIN $$ETLVWDB.EL_DM_DEAL_PARTNER_VW STDEALS\t\r\n\tON BKG_TRX.DV_DEAL_ID = STDEALS.OPTY_NUMBER \r\nLEFT OUTER JOIN $$COMREFVWDB.N_PARTY NP\r\n\tON STDEALS.PARTNER_SITE_ID = NP.PARTY_SSOT_PARTY_ID_INT AND\r\n\tNP.SS_CODE = 'CR'\r\n\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CHANNEL_PARTNER_SITE NCPS\r\n\tON NCPS.PARTNER_SITE_PARTY_KEY = NP.PARTY_KEY\r\n\tAND NCPS.SOURCE_DELETED_FLG='N'\r\n\tLEFT JOIN $$COMREFVWDB.R_SALES_HIERARCHY RSH \r\n  ON BKG_TRX.SALES_TERRITORY_KEY=RSH.SALES_TERRITORY_KEY\r\n  WHERE BKG_TRX.SALES_CHANNEL_CODE = 'DVAD' \r\n  AND CHNL_MTRX.SALES_CHANNEL_CODE=BKG_TRX.SALES_CHANNEL_CODE",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_CHNL_RET_DATES_XAAS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CALENDAR_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT CALENDAR_DATE \r\n FROM $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR RFDTY\r\n WHERE RFDTY.FISCAL_YEAR_AGE IN (0,1,2) AND\r\n NOT EXISTS ( SEL 1 FROM $$STGDB.WI_PROCESS_DATES_CHANNEL_MTX OPNMTH\r\n WHERE OPNMTH.BK_CALENDAR_DATE = RFDTY.CALENDAR_DATE )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_N_BKGS_MEASURE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n  NDNBT.SALES_TERRITORY_KEY      SALES_TERRITORY_KEY,\r\n  NDNBT.SOLD_TO_CUSTOMER_KEY      SOLD_TO_CUSTOMER_KEY,\r\n  NDNBT.END_CUSTOMER_KEY,\r\n  NDNBT.SALES_CHANNEL_CODE, /*KGUVVALA ADDED AS PART OF Q3FY17*/\r\n  CASE WHEN NDNBT.SALES_CHANNEL_CODE IN ('TWO TIER DISTRIBUTOR','2-TIER DISTRIBUTOR','Two Tier Distributor') \r\n   THEN -777\r\n       ELSE COALESCE(NDNBT.END_CUSTOMER_KEY,-999)  \r\n  END AS            DV_END_CUSTOMER_KEY,\r\n  'ACCOUNT_LOCATION'   END_CUSTOMER_TYPE_CODE,\r\n  NDNBT.BILL_TO_CUSTOMER_KEY      BILL_TO_CUSTOMER_KEY,\r\n  /*NDNBT.PROCESS_DATE       PROCESS_DATE,*/\r\n  NDNBT.BOOKINGS_PROCESS_DATE   PROCESS_DATE,\r\n  USER,\r\n  CURRENT_TIMESTAMP(0),\r\n  NDNBT.SHIP_TO_CUSTOMER_KEY AS SHIP_TO_CUSTOMER_KEY\r\n  \r\n FROM  \r\n (SELECT\r\nSOLD_TO_CUSTOMER_KEY,\r\nBILL_TO_CUSTOMER_KEY,\r\nSALES_TERRITORY_KEY,\r\nEND_CUSTOMER_KEY,\r\nSALES_CHANNEL_CODE,\r\nSHIP_TO_CUSTOMER_KEY,\r\nBOOKINGS_PROCESS_DATE\r\nFROM $$SLSORDVWDB.N_BOOKINGS_MEASURE NBKM\r\n  INNER JOIN $$STGDB.WI_CHNL_RET_DATES_XAAS NFM_CURR\r\n  /*ON NDNBT.PROCESS_DATE = BK_CALENDAR_DATE */\r\n  ON NBKM.BOOKINGS_PROCESS_DATE = NFM_CURR.CALENDAR_DATE \r\n WHERE BKGS_MEASURE_TRANS_TYPE_CODE ='XAAS'\r\n) NDNBT\r\nWHERE NDNBT.SALES_CHANNEL_CODE <> 'DVAD' \r\n  QUALIFY ROW_NUMBER () OVER (PARTITION BY \r\n      NDNBT.SOLD_TO_CUSTOMER_KEY,\r\n      COALESCE(NDNBT.END_CUSTOMER_KEY,-999),\r\n      CASE WHEN NDNBT.SALES_CHANNEL_CODE IN ('TWO TIER DISTRIBUTOR','2-TIER DISTRIBUTOR','Two Tier Distributor') \r\n         THEN -777\r\n           ELSE COALESCE(NDNBT.END_CUSTOMER_KEY,-999)  \r\n      END,\r\n      BILL_TO_CUSTOMER_KEY,\r\n      SALES_TERRITORY_KEY ,\r\n      SHIP_TO_CUSTOMER_KEY\t  \r\n   ORDER BY NDNBT.BOOKINGS_PROCESS_DATE DESC \r\n   )  =1\r\n   \r\n  UNION ALL \r\n  \r\n   SELECT\r\n  NDNBT.SALES_TERRITORY_KEY      SALES_TERRITORY_KEY,\r\n  NDNBT.SOLD_TO_CUSTOMER_KEY      SOLD_TO_CUSTOMER_KEY,\r\n  NDNBT.END_CUSTOMER_KEY,\r\n  NDNBT.SALES_CHANNEL_CODE, /*KGUVVALA ADDED AS PART OF Q3FY17*/\r\n  CASE WHEN NDNBT.SALES_CHANNEL_CODE IN ('TWO TIER DISTRIBUTOR','2-TIER DISTRIBUTOR','Two Tier Distributor') \r\n   THEN -777\r\n       ELSE COALESCE(NDNBT.END_CUSTOMER_KEY,-999)  \r\n  END AS            DV_END_CUSTOMER_KEY,\r\n  'ACCOUNT_LOCATION'   END_CUSTOMER_TYPE_CODE,\r\n  NDNBT.BILL_TO_CUSTOMER_KEY      BILL_TO_CUSTOMER_KEY,\r\n  /*NDNBT.PROCESS_DATE       PROCESS_DATE,*/\r\n  NDNBT.BOOKINGS_PROCESS_DATE   PROCESS_DATE,\r\n  USER,\r\n  CURRENT_TIMESTAMP(0),\r\n  NDNBT.SHIP_TO_CUSTOMER_KEY AS SHIP_TO_CUSTOMER_KEY\r\n FROM  \r\n (SELECT\r\nSOLD_TO_CUSTOMER_KEY,\r\nBILL_TO_CUSTOMER_KEY,\r\nSALES_TERRITORY_KEY,\r\nEND_CUSTOMER_KEY,\r\nSALES_CHANNEL_CODE,\r\nSHIP_TO_CUSTOMER_KEY,\r\nBOOKINGS_PROCESS_DATE\r\nFROM $$SLSORDVWDB.N_BOOKINGS_MEASURE NBKM\r\n  INNER JOIN $$STGDB.WI_CHNL_RET_DATES_XAAS NFM_CURR\r\n  /*ON NDNBT.PROCESS_DATE = BK_CALENDAR_DATE */\r\n  ON NBKM.BOOKINGS_PROCESS_DATE = NFM_CURR.CALENDAR_DATE \r\n WHERE BKGS_MEASURE_TRANS_TYPE_CODE ='XAAS'\r\n) NDNBT\r\nWHERE NDNBT.SALES_CHANNEL_CODE = 'DVAD' \r\n  QUALIFY ROW_NUMBER () OVER (PARTITION BY \r\n      NDNBT.SOLD_TO_CUSTOMER_KEY,\r\n      COALESCE(NDNBT.END_CUSTOMER_KEY,-999),\r\n      CASE WHEN NDNBT.SALES_CHANNEL_CODE IN ('TWO TIER DISTRIBUTOR','2-TIER DISTRIBUTOR','Two Tier Distributor') \r\n         THEN -777\r\n           ELSE COALESCE(NDNBT.END_CUSTOMER_KEY,-999)  \r\n      END,\r\n      BILL_TO_CUSTOMER_KEY,\r\n      SALES_TERRITORY_KEY,\r\n      SHIP_TO_CUSTOMER_KEY\t  \r\n   ORDER BY NDNBT.BOOKINGS_PROCESS_DATE DESC \r\n   )  =1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BILL_TO_PARTY_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "BILL_TO_PARTY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "PARTNER",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "PARTNER",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUST_CNTRY_CD",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "DV_END_CUST_CNTRY_CD",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "SALES_CHANNEL_CODE",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "SALES_CHANNEL_CODE",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "END_CUSTOMER_TYPE_CODE",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_PARTY_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "SOLD_TO_PARTY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "PRTN_CNTRY_CD",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "PRTN_CNTRY_CD",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "CHANNEL_DROP_SHIP_FLAG",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "CHANNEL_DROP_SHIP_FLAG",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "END_CUST_PARTY_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "END_CUST_PARTY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "CHANNEL_DROP_SHIP_FLAG",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "to_field": "CHANNEL_DROP_SHIP_FLG",
+      "to_instance": "WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "SALES_CHANNEL_CODE",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "to_field": "SALES_CHANNEL_CODE",
+      "to_instance": "WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "SALES_CHANNEL_BOOKING_FLG",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "to_field": "SALES_CHANNEL_BOOKING_FLG",
+      "to_instance": "WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "WI_BKGS_CHNL_RET_MSR_XAAS2"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "WI_BKGS_CHNL_RET_MSR_XAAS2"
+    },
+    {
+      "from_field": "DV_ROUTE_TO_MARKET_CD",
+      "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS",
+      "to_field": "DV_ROUTE_TO_MARKET_CD",
+      "to_instance": "WI_BKGS_CHNL_RET_MSR_XAAS2"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "WI_BKGS_CHNL_RET_MSR_XAAS2"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "WI_BKGS_CHNL_RET_MSR_XAAS2"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "WI_BKGS_CHNL_RET_MSR_XAAS2"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "WI_BKGS_CHNL_RET_MSR_XAAS2"
+    },
+    {
+      "from_field": "CHANNEL_BOOKINGS_FLG",
+      "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS",
+      "to_field": "CHANNEL_BOOKINGS_FLG",
+      "to_instance": "WI_BKGS_CHNL_RET_MSR_XAAS2"
+    },
+    {
+      "from_field": "CHANNEL_DROP_SHIP_FLG",
+      "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS",
+      "to_field": "CHANNEL_DROP_SHIP_FLG",
+      "to_instance": "WI_BKGS_CHNL_RET_MSR_XAAS2"
+    },
+    {
+      "from_field": "DV_DRCT_VAL_ADDED_DSTI_ORD_FLG",
+      "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS",
+      "to_field": "DV_DRCT_VAL_ADDED_DSTI_ORD_FLG",
+      "to_instance": "WI_BKGS_CHNL_RET_MSR_XAAS2"
+    },
+    {
+      "from_field": "BOOKING_CHANNEL_TYPE",
+      "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS",
+      "to_field": "BOOKING_CHANNEL_TYPE",
+      "to_instance": "WI_BKGS_CHNL_RET_MSR_XAAS2"
+    },
+    {
+      "from_field": "CALENDAR_DATE",
+      "from_instance": "SQ_WI_CHNL_RET_DATES_XAAS",
+      "to_field": "CALENDAR_DATE",
+      "to_instance": "WI_CHNL_RET_DATES_XAAS1"
+    },
+    {
+      "from_field": "DV_END_CUST_CNTRY_CD",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "DV_END_CUST_CNTRY_CD",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "PRTN_CNTRY_CD",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "PRTN_CNTRY_CD",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "END_CUSTOMER_TYPE_CODE",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "SALES_CHANNEL_CODE",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "SALES_CHANNEL_CODE",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_PARTY_KEY",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "SOLD_TO_PARTY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_PARTY_KEY",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "BILL_TO_PARTY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "PARTNER",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "PARTNER",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_N_BKGS_MEASURE",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS1"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_N_BKGS_MEASURE",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS1"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_N_BKGS_MEASURE",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS1"
+    },
+    {
+      "from_field": "SALES_CHANNEL_CODE",
+      "from_instance": "SQ_N_BKGS_MEASURE",
+      "to_field": "SALES_CHANNEL_CODE",
+      "to_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS1"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "SQ_N_BKGS_MEASURE",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS1"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "SQ_N_BKGS_MEASURE",
+      "to_field": "END_CUSTOMER_TYPE_CODE",
+      "to_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS1"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_N_BKGS_MEASURE",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS1"
+    },
+    {
+      "from_field": "PROCESS_DATE",
+      "from_instance": "SQ_N_BKGS_MEASURE",
+      "to_field": "PROCESS_DATE",
+      "to_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_BKGS_MEASURE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS1"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_N_BKGS_MEASURE",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS1"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_N_BKGS_MEASURE",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS1"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "N_BKGS_MEASURE",
+      "to_field": "DV_ROUTE_TO_MARKET_CD",
+      "to_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "BOOKINGS_MEASURE_KEY",
+      "from_instance": "N_BKGS_MEASURE",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_N_BKGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "N_BKGS_MEASURE",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_N_BKGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "N_BKGS_MEASURE",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_N_BKGS_MEASURE"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "N_BKGS_MEASURE",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_N_BKGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "N_BKGS_MEASURE",
+      "to_field": "END_CUSTOMER_TYPE_CODE",
+      "to_instance": "SQ_N_BKGS_MEASURE"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "N_BKGS_MEASURE",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_N_BKGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "N_BKGS_MEASURE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_BKGS_MEASURE"
+    },
+    {
+      "from_field": "BOOKINGS_PROCESS_DATE",
+      "from_instance": "N_BKGS_MEASURE",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_N_BKGS_MEASURE"
+    },
+    {
+      "from_field": "DV_BOOKED_DT",
+      "from_instance": "N_BKGS_MEASURE",
+      "to_field": "PROCESS_DATE",
+      "to_instance": "SQ_N_BKGS_MEASURE"
+    },
+    {
+      "from_field": "SOLD_TO_PARTY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "SOLD_TO_PARTY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_PARTY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "BILL_TO_PARTY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "PARTNER",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "PARTNER",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "PRTN_CNTRY_CD",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "PRTN_CNTRY_CD",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUST_CNTRY_CD",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "DV_END_CUST_CNTRY_CD",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "SALES_CHANNEL_CODE",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "SALES_CHANNEL_CODE",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "END_CUSTOMER_TYPE_CODE",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_CNTRY_XAAS1",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "WI_SALES_CHANNEL_RET_XAAS1",
+      "to_field": "BOOKINGS_PROCESS_DATE",
+      "to_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "WI_SALES_CHANNEL_RET_XAAS1",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_SALES_CHANNEL_RET_XAAS1",
+      "to_field": "BOOKINGS_MEASURE_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SALES_CHANNEL_RET_XAAS1",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "CHANNEL_DROP_SHIP_FLG",
+      "from_instance": "WI_SALES_CHANNEL_RET_XAAS1",
+      "to_field": "CHANNEL_DROP_SHIP_FLG",
+      "to_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "SALES_CHANNEL_BOOKING_FLG",
+      "from_instance": "WI_SALES_CHANNEL_RET_XAAS1",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "SALES_CHANNEL_BOOKING_FLG",
+      "from_instance": "WI_SALES_CHANNEL_RET_XAAS1",
+      "to_field": "CHANNEL_BOOKINGS_FLG",
+      "to_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "SALES_CHANNEL_BOOKING_FLG",
+      "from_instance": "WI_SALES_CHANNEL_RET_XAAS1",
+      "to_field": "DV_DRCT_VAL_ADDED_DSTI_ORD_FLG",
+      "to_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_SALES_CHANNEL_RET_XAAS1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "PARTNER",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "PRTN_CNTRY_CD",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "DV_END_CUST_CNTRY_CD",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "END_CUSTOMER_TYPE_CODE",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "PROCESS_DATE",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "PROCESS_DATE",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "SALES_CHANNEL_CODE",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "SALES_CHANNEL_CODE",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "SOLD_TO_PARTY_KEY",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "BILL_TO_PARTY_KEY",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_CHNL_RETRO_BKG_MSR_FOR_XAAS",
+      "to_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "to_instance": "SQ_WI_CHNL_RETRO_BKG_MSR_FOR_XAAS"
+    },
+    {
+      "from_field": "PARTNER",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "PARTNER",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "PARTNER_SITE_PARTY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "SALES_CHANNEL_CODE",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "SALES_CHANNEL_CODE",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "SOLD_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "BILL_TO_GRAND_PRNT_PTY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "PRTN_CNTRY_CD",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "PRTN_CNTRY_CD",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUST_CNTRY_CD",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "DV_END_CUST_CNTRY_CD",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "DROP_SHIP_PARTY_SITE_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "DV_END_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "END_CUSTOMER_TYPE_CODE",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "END_CUSTOMER_TYPE_CODE",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "CHANNEL_DROP_SHIP_FLAG",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "CHANNEL_DROP_SHIP_FLAG",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "END_CUST_PARTY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "END_CUST_PARTY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "SOLD_TO_PARTY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "SOLD_TO_PARTY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "BILL_TO_PARTY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "BILL_TO_PARTY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "DV_END_CUST_PARTY_KEY",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "DV_END_CUST_PARTY_KEY",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1",
+      "to_field": "PARTNER_SITE_PARTY_KEY_INT",
+      "to_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+    },
+    {
+      "from_field": "CALENDAR_DATE",
+      "from_instance": "WI_CHNL_RET_DATES_XAAS",
+      "to_field": "CALENDAR_DATE",
+      "to_instance": "SQ_WI_CHNL_RET_DATES_XAAS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BOOKINGS_MEASURE_KEY",
+      "source_path": [
+        {
+          "from_field": "BOOKINGS_MEASURE_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+        },
+        {
+          "from_field": "SALES_TERRITORY_KEY",
+          "from_instance": "WI_SALES_CHANNEL_RET_XAAS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BOOKINGS_PROCESS_DATE",
+      "source_path": [
+        {
+          "from_field": "BOOKINGS_PROCESS_DATE",
+          "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+        },
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "WI_SALES_CHANNEL_RET_XAAS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "source_path": [
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+        },
+        {
+          "from_field": "SALES_CHANNEL_BOOKING_FLG",
+          "from_instance": "WI_SALES_CHANNEL_RET_XAAS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTNER_SITE_PARTY_KEY",
+      "source_path": [
+        {
+          "from_field": "PARTNER_SITE_PARTY_KEY",
+          "from_instance": "SQ_WI_SLS_CHNL_RET_CNTRY_XAAS"
+        },
+        {
+          "from_field": "PARTNER_SITE_PARTY_KEY_INT",
+          "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+        },
+        {
+          "from_field": "PARTNER_SITE_PARTY_KEY",
+          "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+        },
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "WI_SALES_CHANNEL_RET_XAAS1"
+        },
+        {
+          "from_field": "PARTNER_SITE_PARTY_KEY",
+          "from_instance": "WI_SLS_CHNL_RET_DROP_SHIP_XAAS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CHANNEL_BOOKINGS_FLG",
+      "source_path": [
+        {
+          "from_field": "CHANNEL_BOOKINGS_FLG",
+          "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+        },
+        {
+          "from_field": "SALES_CHANNEL_BOOKING_FLG",
+          "from_instance": "WI_SALES_CHANNEL_RET_XAAS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CHANNEL_DROP_SHIP_FLG",
+      "source_path": [
+        {
+          "from_field": "CHANNEL_DROP_SHIP_FLAG",
+          "from_instance": "SQ_WI_SLS_CHNL_RET_DROP_SHIP_XAAS"
+        },
+        {
+          "from_field": "CHANNEL_DROP_SHIP_FLG",
+          "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+        },
+        {
+          "from_field": "CHANNEL_DROP_SHIP_FLG",
+          "from_instance": "WI_SALES_CHANNEL_RET_XAAS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_DRCT_VAL_ADDED_DSTI_ORD_FLG",
+      "source_path": [
+        {
+          "from_field": "DV_DRCT_VAL_ADDED_DSTI_ORD_FLG",
+          "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+        },
+        {
+          "from_field": "SALES_CHANNEL_BOOKING_FLG",
+          "from_instance": "WI_SALES_CHANNEL_RET_XAAS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "WI_SALES_CHANNEL_RET_XAAS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+        },
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "WI_SALES_CHANNEL_RET_XAAS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_ROUTE_TO_MARKET_CD",
+      "source_path": [
+        {
+          "from_field": "DV_ROUTE_TO_MARKET_CD",
+          "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+        },
+        {
+          "from_field": "SALES_REP_NUMBER",
+          "from_instance": "N_BKGS_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BOOKING_CHANNEL_TYPE",
+      "source_path": [
+        {
+          "from_field": "BOOKING_CHANNEL_TYPE",
+          "from_instance": "SQ_WI_SALES_CHANNEL_RET_XAAS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:11.984698+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

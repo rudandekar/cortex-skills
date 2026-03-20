@@ -1,0 +1,343 @@
+{
+  "workflow_name": "wf_m_WI_CST_SUBCRIPTION_REF_DATA",
+  "mapping_name": "m_WI_CST_SUBCRIPTION_REF_DATA",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_CST_SUBCRIPTION_REF_DATA",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_cst_subcription_ref_data_01_mart_wi_cst_subcription_ref_data",
+  "source_tables": [
+    "WI_CST_SUBCRIPTION_REF_DATA"
+  ],
+  "sources": [
+    {
+      "name": "WI_CST_SUBCRIPTION_REF_DATA",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "FISCAL_QUARTER_NAME",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TS_FETCH_AMT",
+          "datatype": "decimal",
+          "precision": "27",
+          "scale": "8",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TS_COA_AMT",
+          "datatype": "decimal",
+          "precision": "27",
+          "scale": "8",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NET_TS_FETCH_COA_AMT",
+          "datatype": "decimal",
+          "precision": "27",
+          "scale": "8",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SSC_WARRANTY_CREDIT_AMT",
+          "datatype": "decimal",
+          "precision": "27",
+          "scale": "8",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TAC_WARRANTY_CREDIT_AMT",
+          "datatype": "decimal",
+          "precision": "27",
+          "scale": "8",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_CST_SUBCRIPTION_REF_DATA",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_QUARTER_NAME",
+        "datatype": "varchar",
+        "precision": "32",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TS_FETCH_AMT",
+        "datatype": "decimal",
+        "precision": "27",
+        "scale": "8",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TS_COA_AMT",
+        "datatype": "decimal",
+        "precision": "27",
+        "scale": "8",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NET_TS_FETCH_COA_AMT",
+        "datatype": "decimal",
+        "precision": "27",
+        "scale": "8",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SSC_WARRANTY_CREDIT_AMT",
+        "datatype": "decimal",
+        "precision": "27",
+        "scale": "8",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TAC_WARRANTY_CREDIT_AMT",
+        "datatype": "decimal",
+        "precision": "27",
+        "scale": "8",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_CST_SUBCRIPTION_REF_DATA",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_QUARTER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TS_FETCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TS_COA_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NET_TS_FETCH_COA_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SSC_WARRANTY_CREDIT_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TAC_WARRANTY_CREDIT_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nFETCHAMT.FISCAL_QUARTER_NAME,\r\nFETCHAMT.TS_FETCH_AMT,\r\nCOAAMT.TS_COA_AMT,\r\nFETCHAMT.TS_FETCH_AMT+COAAMT.TS_COA_AMT NET_TS_FETCH_COA_AMT ,\r\nSWAMT.SSC_WARRANTY_CREDIT_AMT * -1 AS SSC_WARRANTY_CREDIT_AMT,\r\nTWAMT.TAC_WARRANTY_CREDIT_AMT* -1 AS TAC_WARRANTY_CREDIT_AMT\r\nFROM\r\n(\r\nSELECT \r\nTS_DCD.FISCAL_QUARTER_NAME,SUM(TS_DCD.TS_FETCH_AMT) AS TS_FETCH_AMT\r\nFROM \r\n(\r\nSELECT\r\nRFM.FISCAL_QUARTER_NAME,\r\nTRIM(SUM(ZEROIFNULL(NJEL.RU_DV_USD_DEBIT_AMT ) -ZEROIFNULL(NJEL.RU_DV_USD_CREDIT_AMT))) TS_FETCH_AMT\r\nFROM $$FINLGLVWDB.N_JOURNAL_ENTRY_LINE NJEL\r\nINNER JOIN  $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID      RFM\r\nON (NJEL.DV_FISCAL_YEAR_MONTH_NUM_INT  =RFM.FISCAL_YEAR_MONTH_INT )\r\nINNER JOIN  $$FINLGLVWDB.N_JOURNAL_ENTRY NJE\r\nON  (NJEL.BK_JOURNAL_ENTRY_NUMBER_INT = NJE.BK_JOURNAL_ENTRY_NUMBER_INT\r\nAND NJEL.SET_OF_BOOKS_KEY = NJE.SET_OF_BOOKS_KEY)\r\nINNER JOIN  $$FINLGLVWDB.N_SET_OF_BOOKS_TV NSOB\r\nON (NJEL.SET_OF_BOOKS_KEY = NSOB.SET_OF_BOOKS_KEY\r\nAND NSOB.END_TV_DT='3500-01-01')\r\nINNER JOIN  $$FINLGLVWDB.R_PL_HIERARCHY NPLH\r\nON ( NJEL.BK_COMPANY_CODE = NPLH.FINANCIAL_COMPANY_CODE\r\nAND NJEL.DD_BK_DEPT_CD = NPLH.FINANCIAL_DEPARTMENT_CODE\r\nAND NPLH.NODE_LEVEL05_NAME ='TSS (SUPPORT)')\r\nINNER JOIN  $$FINLGLVWDB.R_FINANCIAL_ACCOUNT_HIERARCHY NFAH\r\nON (NJEL.DD_FINANCIAL_ACCOUNT_CD = NFAH.BK_FINANCIAL_ACCOUNT_CODE\r\nAND NFAH.LEVEL03_ACCT_GROUP_ID ='EXPENSE'\r\nAND NFAH.LEVEL04_ACCT_GROUP_ID <> 'NON EXPENSE SSOT OTHER')\r\nWHERE (  NJEL.DD_FINANCIAL_COMPANY_MAPPED_CD  IN ( 'MO' , 'MC' )\r\nOR ( NJEL.DD_FINANCIAL_COMPANY_MAPPED_CD = 'UO'\r\nAND NJE.BK_JOURNAL_ENTRY_CATEGORY_NAME =  'REVALUATION'\r\nAND NJE.BK_JOURNAL_ENTRY_SOURCE_NAME = 'REVALUATION'\r\nAND NSOB.PUSH_TO_GLBL_CONSOL_BOOKS_FLG ='Y' ) )\r\nGROUP BY RFM.FISCAL_QUARTER_NAME\r\n\r\nUNION ALL /* DCD Elimination inclusion*/\r\nSELECT RFM.FISCAL_QUARTER_NAME           \r\n,TRIM(SUM(ZEROIFNULL(EXM.RU_DV_USD_DEBIT_AMT)-ZEROIFNULL(EXM.RU_DV_USD_CREDIT_AMT))) TS_FETCH_AMT\r\nFROM $$FINLGLVWDB.MT_EXPENSE_MEASURE EXM\r\nINNER JOIN  $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID  RFM ON (EXM.DV_FISCAL_YEAR_MONTH_NUM_INT  =RFM.FISCAL_YEAR_MONTH_INT \r\n AND  EXM.DD_FINANCIAL_COMPANY_MAPPED_CD IN ('MO','MC')) AND EXM.TRANSACTION_TYPE='FA_ELIM'  \r\nINNER JOIN  $$FINLGLVWDB.N_SET_OF_BOOKS_TV SOB\r\nON  (EXM.SET_OF_BOOKS_KEY = SOB.SET_OF_BOOKS_KEY AND SOB.END_TV_DT = '3500-01-01')\r\nINNER JOIN   $$FINLGLVWDB.R_PL_HIERARCHY PLH\r\nON  (EXM.BK_COMPANY_CODE=PLH.FINANCIAL_COMPANY_CODE\r\nAND EXM.DD_BK_DEPT_CD = PLH.FINANCIAL_DEPARTMENT_CODE\r\nAND PLH.NODE_LEVEL05_NAME ='TSS (SUPPORT)')\r\nINNER JOIN  $$FINLGLVWDB.R_FINANCIAL_ACCOUNT_HIERARCHY FAH\r\nON  (EXM.DD_FINANCIAL_ACCOUNT_CD = FAH.BK_FINANCIAL_ACCOUNT_CODE\r\nAND FAH.LEVEL03_ACCT_GROUP_ID='Expense'  AND FAH.LEVEL04_ACCT_GROUP_ID <> 'Non Expense SSOT Other')\r\nGROUP BY RFM.FISCAL_QUARTER_NAME           /* DCD Elimination inclusion*/\r\n ) TS_DCD GROUP BY 1\r\n)  FETCHAMT\r\nINNER JOIN\r\n(\r\nSELECT FISCAL_QUARTER_NAME, CAST(SUM(USD_UNIT_NAT_NET) AS DECIMAL(26,\r\n7)) TS_COA_AMT\r\nFROM\r\n(\r\nSELECT\r\nBK_FINANCE_REPORT_LINE_ITEM_CD                                                                                                                                ,\r\nFISCAL_QUARTER_NAME\r\n,DD_FINANCIAL_ACCOUNT_CD\r\n,BK_COMPANY_CODE\r\n,DD_BK_DEPT_CD\r\n,SUM(USD_NAT_NET)/SUM(NO_OF_TIMES) USD_UNIT_NAT_NET\r\nFROM\r\n(\r\nSELECT\r\nPARM.BK_FINANCE_REPORT_LINE_ITEM_CD\r\n,BK_COMPANY_CODE\r\n,DD_BK_DEPT_CD\r\n,DD_FINANCIAL_ACCOUNT_CD\r\n,FISCAL_QUARTER_NAME\r\n,SUM(ZEROIFNULL(USD_REV_NET)) USD_REV_NET\r\n,SUM(ZEROIFNULL(USD_NAT_NET)) USD_NAT_NET\r\n,COUNT(*) NO_OF_TIMES\r\nFROM\r\n(\r\nSELECT\r\nJEL.BK_COMPANY_CODE\r\n,JEL.DD_BK_DEPT_CD\r\n,JEL.DD_FINANCIAL_ACCOUNT_CD\r\n,FMY.FISCAL_QUARTER_NAME\r\n,SUM((ZEROIFNULL(JEL.RU_DV_USD_DEBIT_AMT) - ZEROIFNULL(JEL.RU_DV_USD_CREDIT_AMT)) *-1) USD_REV_NET\r\n,SUM((ZEROIFNULL(JEL.RU_DV_USD_DEBIT_AMT) - ZEROIFNULL(JEL.RU_DV_USD_CREDIT_AMT)) ) USD_NAT_NET\r\nFROM $$FINLGLVWDB.N_JOURNAL_ENTRY_LINE JEL\r\n,$$STGDB.WI_TSS_COST_CNTRL_MONTH_ID    FMY\r\nWHERE JEL.DV_FISCAL_YEAR_MONTH_NUM_INT=FMY.FISCAL_YEAR_MONTH_INT\r\nAND JEL.DD_FINANCIAL_COMPANY_MAPPED_CD IN ('MO','MC')\r\nAND JEL.DD_FINANCIAL_ACCOUNT_CD BETWEEN '50000' AND '59999'\r\n\r\nGROUP BY\r\nJEL.BK_COMPANY_CODE\r\n,JEL.DD_BK_DEPT_CD\r\n,JEL.DD_FINANCIAL_ACCOUNT_CD\r\n,FMY.FISCAL_QUARTER_NAME\r\n\r\nUNION\r\nALL\r\n\r\nSELECT\r\nBK_COMPANY_CD  AS BK_COMPANY_CODE   ,\r\nBK_HFM_REPORTED_DEPARTMENT_CD ,\r\nBK_FINANCIAL_ACCOUNT_CD   ,\r\nNFM.FISCAL_QUARTER_NAME,\r\n/*NFM.FISCAL_YEAR_MONTH_INT ,*/\r\nSUM((CONSOLIDATED_BALANCE_USD_AMT  ) * -1 )AS USD_REV_NET,\r\nSUM(CONSOLIDATED_BALANCE_USD_AMT )AS USD_NAT_NET\r\nFROM\r\n$$FINLGLVWDB.N_HFM_ACCOUNT_BALANCE NHB,\r\n/*$$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR  NFM*/\r\n$$STGDB.WI_TSS_COST_CNTRL_MONTH_ID NFM\r\n\r\nWHERE NFM.FISCAL_YEAR_MONTH_INT=NHB.BK_FISCAL_YEAR_NUM_INT*100+NHB. BK_FISCAL_MONTH_NUM_INT\r\n\r\nAND    NHB.SOURCE_DELETED_FLG ='N'\r\n\r\nAND NHB.BK_ROLLUP_CATEGORY_CD ='USD TOTAL'\r\nAND NHB.DEPARTMENT_TYPE<> 'FINANCIAL DEPARTMENT'\r\n\r\nAND NHB.BK_COMPANY_CD = '010'\r\n\r\nAND BK_FINANCIAL_ACCOUNT_CD  BETWEEN '50000' AND '59999'\r\n\r\nAND NFM.FISCAL_YEAR_MONTH_INT>=201302\r\n\r\nGROUP BY 1,2,3,4\r\n)C\r\n,$$FINLGLVWDB.N_FIN_REPORT_LN_ITEM_PARAMETER PARM\r\n\r\nWHERE PARM.INCLUSION_FLG='Y'\r\n\r\nAND PARM.BK_FINANCE_REPORT_LINE_ITEM_CD='SUPPTMATLCOSTS'\r\n\r\nAND DD_FINANCIAL_ACCOUNT_CD BETWEEN PARM.BK_ACCOUNT_RANGE_LOW_CD AND PARM.BK_ACCOUNT_RANGE_HIGH_CD\r\n\r\nAND DD_BK_DEPT_CD  BETWEEN PARM.BK_DEPARTMENT_RANGE_LOW_CD AND PARM.BK_DEPARTMENT_RANGE_HIGH_CD\r\n\r\nAND BK_COMPANY_CODE BETWEEN PARM.BK_COMPANY_RANGE_LOW_CD AND PARM.BK_COMPANY_RANGE_HIGH_CD\r\n\r\nGROUP BY\r\nPARM.BK_FINANCE_REPORT_LINE_ITEM_CD\r\n,BK_COMPANY_CODE\r\n,DD_BK_DEPT_CD\r\n,DD_FINANCIAL_ACCOUNT_CD\r\n,FISCAL_QUARTER_NAME\r\n\r\nUNION\r\nALL\r\n\r\nSELECT\r\nPARM.BK_FINANCE_REPORT_LINE_ITEM_CD\r\n,BK_COMPANY_CODE\r\n,DD_BK_DEPT_CD\r\n,DD_FINANCIAL_ACCOUNT_CD\r\n,FISCAL_QUARTER_NAME\r\n,SUM(ZEROIFNULL(USD_REV_NET)) USD_REV_NET\r\n,SUM(ZEROIFNULL(USD_NAT_NET)) USD_NAT_NET\r\n,COUNT(*) NO_OF_TIMES\r\n\r\nFROM\r\n(\r\nSELECT\r\nJEL.BK_COMPANY_CODE\r\n,JEL.DD_BK_DEPT_CD\r\n,JEL.DD_FINANCIAL_ACCOUNT_CD\r\n,FMY.FISCAL_QUARTER_NAME\r\n,SUM((ZEROIFNULL(JEL.RU_DV_USD_DEBIT_AMT) - ZEROIFNULL(JEL.RU_DV_USD_CREDIT_AMT)) ) USD_REV_NET\r\n,SUM((ZEROIFNULL(JEL.RU_DV_USD_DEBIT_AMT) - ZEROIFNULL(JEL.RU_DV_USD_CREDIT_AMT)) ) USD_NAT_NET\r\nFROM $$FINLGLVWDB.N_JOURNAL_ENTRY_LINE JEL\r\n,$$STGDB.WI_TSS_COST_CNTRL_MONTH_ID   FMY\r\n\r\nWHERE JEL.DV_FISCAL_YEAR_MONTH_NUM_INT=FMY.FISCAL_YEAR_MONTH_INT\r\n\r\nAND JEL.DD_FINANCIAL_COMPANY_MAPPED_CD IN ('MO','MC')\r\n\r\nAND JEL.DD_FINANCIAL_ACCOUNT_CD BETWEEN '50000' AND '59999'\r\n\r\nGROUP BY\r\nJEL.BK_COMPANY_CODE\r\n,JEL.DD_BK_DEPT_CD\r\n,JEL.DD_FINANCIAL_ACCOUNT_CD\r\n,FMY.FISCAL_QUARTER_NAME\r\n\r\nUNION\r\nALL\r\n\r\nSELECT\r\nBK_COMPANY_CD  AS BK_COMPANY_CODE   ,\r\nBK_HFM_REPORTED_DEPARTMENT_CD ,\r\nBK_FINANCIAL_ACCOUNT_CD   ,\r\nNFM.FISCAL_QUARTER_NAME,\r\n/*  NFM.FISCAL_YEAR_MONTH_INT,*/\r\nSUM((CONSOLIDATED_BALANCE_USD_AMT  ) )AS USD_REV_NET,\r\nSUM(CONSOLIDATED_BALANCE_USD_AMT )AS USD_NAT_NET\r\nFROM\r\n$$FINLGLVWDB.N_HFM_ACCOUNT_BALANCE NHB,\r\n/*$$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR  NFM*/\r\n$$STGDB.WI_TSS_COST_CNTRL_MONTH_ID NFM\r\n\r\nWHERE NFM.FISCAL_YEAR_MONTH_INT=NHB.BK_FISCAL_YEAR_NUM_INT*100+NHB. BK_FISCAL_MONTH_NUM_INT\r\n\r\nAND    NHB.SOURCE_DELETED_FLG ='N'\r\n\r\nAND NHB.BK_ROLLUP_CATEGORY_CD ='USD TOTAL'\r\n\r\nAND NHB.DEPARTMENT_TYPE<> 'FINANCIAL DEPARTMENT'\r\n\r\nAND NHB.BK_COMPANY_CD = '010'\r\n\r\nAND BK_FINANCIAL_ACCOUNT_CD  BETWEEN '50000' AND '59999'\r\n\r\nAND NFM.FISCAL_YEAR_MONTH_INT>=201302\r\n\r\nGROUP BY 1,2,3,4\r\n)C\r\n,$$FINLGLVWDB.N_FIN_REPORT_LN_ITEM_PARAMETER PARM\r\n\r\nWHERE PARM.INCLUSION_FLG='N'\r\n\r\nAND PARM.BK_FINANCE_REPORT_LINE_ITEM_CD='SUPPTMATLCOSTS'\r\n\r\nAND DD_FINANCIAL_ACCOUNT_CD BETWEEN PARM.BK_ACCOUNT_RANGE_LOW_CD AND PARM.BK_ACCOUNT_RANGE_HIGH_CD\r\nAND DD_BK_DEPT_CD  BETWEEN PARM.BK_DEPARTMENT_RANGE_LOW_CD AND PARM.BK_DEPARTMENT_RANGE_HIGH_CD\r\nAND BK_COMPANY_CODE BETWEEN PARM.BK_COMPANY_RANGE_LOW_CD AND PARM.BK_COMPANY_RANGE_HIGH_CD\r\nGROUP BY\r\nPARM.BK_FINANCE_REPORT_LINE_ITEM_CD\r\n,BK_COMPANY_CODE\r\n,DD_BK_DEPT_CD\r\n,DD_FINANCIAL_ACCOUNT_CD\r\n,FISCAL_QUARTER_NAME\r\n) B\r\nGROUP BY\r\nBK_FINANCE_REPORT_LINE_ITEM_CD\r\n,FISCAL_QUARTER_NAME\r\n,DD_FINANCIAL_ACCOUNT_CD\r\n,BK_COMPANY_CODE\r\n,DD_BK_DEPT_CD\r\nHAVING SUM(USD_REV_NET) <> 0\r\n) G\r\nGROUP BY FISCAL_QUARTER_NAME\r\n)  COAAMT\r\nON FETCHAMT.FISCAL_QUARTER_NAME=COAAMT.FISCAL_QUARTER_NAME\r\nINNER JOIN\r\n(\r\nSELECT M.FISCAL_QUARTER_NAME,\r\nTRIM(SUM(ZEROIFNULL(A.RU_DV_USD_DEBIT_AMT)-ZEROIFNULL(A.RU_DV_USD_CREDIT_AMT)))  SSC_WARRANTY_CREDIT_AMT\r\nFROM $$FINLGLVWDB.N_JOURNAL_ENTRY_LINE A\r\nINNER JOIN  $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR M\r\nON (A.DV_FISCAL_YEAR_MONTH_NUM_INT = M.FISCAL_YEAR_MONTH_INT )\r\nINNER JOIN  $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID  TACMC\r\nON  TACMC.FISCAL_YEAR_MONTH_INT = M.FISCAL_YEAR_MONTH_INT\r\nINNER JOIN  $$FINLGLVWDB.N_JOURNAL_ENTRY J\r\nON  (A.BK_JOURNAL_ENTRY_NUMBER_INT =J.BK_JOURNAL_ENTRY_NUMBER_INT\r\nAND A.SET_OF_BOOKS_KEY =J.SET_OF_BOOKS_KEY )\r\nINNER JOIN  $$FINLGLVWDB.N_SET_OF_BOOKS_TV SOB\r\nON (A.SET_OF_BOOKS_KEY = SOB.SET_OF_BOOKS_KEY\r\nAND SOB.END_TV_DT='3500-01-01')\r\nINNER JOIN  $$FINLGLVWDB.R_PL_HIERARCHY F\r\nON ( A.BK_COMPANY_CODE=F.FINANCIAL_COMPANY_CODE\r\nAND A.DD_BK_DEPT_CD=F.FINANCIAL_DEPARTMENT_CODE )\r\nINNER JOIN  $$FINLGLVWDB.N_FINANCIAL_ACCOUNT G\r\nON (A.DD_FINANCIAL_ACCOUNT_CD = G.BK_FINANCIAL_ACCOUNT_CODE\r\nAND G.BK_FINANCIAL_ACCOUNT_CODE ='68106' )\r\nINNER JOIN  $$FINLGLVWDB.MT_ACCOUNT_SUB_ACCOUNT S\r\nON (A.DD_FINANCIAL_ACCOUNT_CD||'-'||A.DD_BK_SUBACCOUNT_CD = S.BK_FINANCIAL_ACCOUNT_CD||'-'||S.BK_SUBACCOUNT_CD\r\nAND  S.BK_SUBACCOUNT_CD IN ('002','003')\r\nAND S.BK_FINANCIAL_ACCOUNT_CD='68106')\r\nINNER JOIN  $$FINLGLVWDB.N_FINANCIAL_ACCOUNT NFA\r\nON S.BK_FINANCIAL_ACCOUNT_CD = NFA.BK_FINANCIAL_ACCOUNT_CODE\r\nWHERE  (  A.DD_FINANCIAL_COMPANY_MAPPED_CD  IN ( 'MO' , 'MC' )\r\nOR (  A.DD_FINANCIAL_COMPANY_MAPPED_CD =  'UO'\r\nAND J.BK_JOURNAL_ENTRY_CATEGORY_NAME =  'REVALUATION'\r\nAND J.BK_JOURNAL_ENTRY_SOURCE_NAME = 'REVALUATION'\r\nAND SOB.PUSH_TO_GLBL_CONSOL_BOOKS_FLG ='Y' )  )\r\nGROUP BY M.FISCAL_QUARTER_NAME ) SWAMT\r\nON SWAMT.FISCAL_QUARTER_NAME=COAAMT.FISCAL_QUARTER_NAME\r\nINNER JOIN\r\n(\r\nSELECT M.FISCAL_QUARTER_NAME,\r\nTRIM(SUM(ZEROIFNULL(A.RU_DV_USD_DEBIT_AMT)-ZEROIFNULL(A.RU_DV_USD_CREDIT_AMT)))  TAC_WARRANTY_CREDIT_AMT\r\nFROM $$FINLGLVWDB.N_JOURNAL_ENTRY_LINE A\r\nINNER JOIN  $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR M\r\nON (A.DV_FISCAL_YEAR_MONTH_NUM_INT=M.FISCAL_YEAR_MONTH_INT )\r\nINNER JOIN  $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID  TACMC\r\nON  TACMC.FISCAL_YEAR_MONTH_INT = M.FISCAL_YEAR_MONTH_INT\r\nINNER JOIN  $$FINLGLVWDB.N_JOURNAL_ENTRY J\r\nON  (A.BK_JOURNAL_ENTRY_NUMBER_INT    =J.BK_JOURNAL_ENTRY_NUMBER_INT\r\nAND A.SET_OF_BOOKS_KEY        =J.SET_OF_BOOKS_KEY)\r\nINNER JOIN  $$FINLGLVWDB.N_SET_OF_BOOKS_TV SOB\r\nON (A.SET_OF_BOOKS_KEY = SOB.SET_OF_BOOKS_KEY\r\nAND SOB.END_TV_DT='3500-01-01')\r\nINNER JOIN  $$FINLGLVWDB.R_PL_HIERARCHY F\r\nON ( A.BK_COMPANY_CODE=F.FINANCIAL_COMPANY_CODE\r\nAND A.DD_BK_DEPT_CD=F.FINANCIAL_DEPARTMENT_CODE)\r\nINNER JOIN  $$FINLGLVWDB.N_FINANCIAL_ACCOUNT G\r\nON (A.DD_FINANCIAL_ACCOUNT_CD = G.BK_FINANCIAL_ACCOUNT_CODE\r\nAND G.BK_FINANCIAL_ACCOUNT_CODE ='68106' )\r\nINNER JOIN  $$FINLGLVWDB.MT_ACCOUNT_SUB_ACCOUNT S\r\nON (A.DD_FINANCIAL_ACCOUNT_CD||'-'||A.DD_BK_SUBACCOUNT_CD = S.BK_FINANCIAL_ACCOUNT_CD||'-'||S.BK_SUBACCOUNT_CD\r\nAND  S.BK_SUBACCOUNT_CD IN ('001','004')\r\nAND S.BK_FINANCIAL_ACCOUNT_CD='68106')\r\nINNER JOIN  $$FINLGLVWDB.N_FINANCIAL_ACCOUNT NFA\r\nON S.BK_FINANCIAL_ACCOUNT_CD = NFA.BK_FINANCIAL_ACCOUNT_CODE\r\nWHERE  ( A.DD_FINANCIAL_COMPANY_MAPPED_CD  IN ( 'MO' , 'MC' )\r\nOR ( A.DD_FINANCIAL_COMPANY_MAPPED_CD =  'UO'\r\nAND J.BK_JOURNAL_ENTRY_CATEGORY_NAME = 'REVALUATION'\r\nAND J.BK_JOURNAL_ENTRY_SOURCE_NAME = 'REVALUATION'\r\nAND SOB.PUSH_TO_GLBL_CONSOL_BOOKS_FLG ='Y' ) )\r\nGROUP BY M.FISCAL_QUARTER_NAME ) TWAMT\r\nON TWAMT.FISCAL_QUARTER_NAME=SWAMT.FISCAL_QUARTER_NAME",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "FISCAL_QUARTER_NAME",
+      "from_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA",
+      "to_field": "FISCAL_QUARTER_NAME",
+      "to_instance": "WI_CST_SUBCRIPTION_REF_DATA1"
+    },
+    {
+      "from_field": "TS_FETCH_AMT",
+      "from_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA",
+      "to_field": "TS_FETCH_AMT",
+      "to_instance": "WI_CST_SUBCRIPTION_REF_DATA1"
+    },
+    {
+      "from_field": "TS_COA_AMT",
+      "from_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA",
+      "to_field": "TS_COA_AMT",
+      "to_instance": "WI_CST_SUBCRIPTION_REF_DATA1"
+    },
+    {
+      "from_field": "NET_TS_FETCH_COA_AMT",
+      "from_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA",
+      "to_field": "NET_TS_FETCH_COA_AMT",
+      "to_instance": "WI_CST_SUBCRIPTION_REF_DATA1"
+    },
+    {
+      "from_field": "SSC_WARRANTY_CREDIT_AMT",
+      "from_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA",
+      "to_field": "SSC_WARRANTY_CREDIT_AMT",
+      "to_instance": "WI_CST_SUBCRIPTION_REF_DATA1"
+    },
+    {
+      "from_field": "TAC_WARRANTY_CREDIT_AMT",
+      "from_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA",
+      "to_field": "TAC_WARRANTY_CREDIT_AMT",
+      "to_instance": "WI_CST_SUBCRIPTION_REF_DATA1"
+    },
+    {
+      "from_field": "FISCAL_QUARTER_NAME",
+      "from_instance": "WI_CST_SUBCRIPTION_REF_DATA",
+      "to_field": "FISCAL_QUARTER_NAME",
+      "to_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA"
+    },
+    {
+      "from_field": "TS_FETCH_AMT",
+      "from_instance": "WI_CST_SUBCRIPTION_REF_DATA",
+      "to_field": "TS_FETCH_AMT",
+      "to_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA"
+    },
+    {
+      "from_field": "TS_COA_AMT",
+      "from_instance": "WI_CST_SUBCRIPTION_REF_DATA",
+      "to_field": "TS_COA_AMT",
+      "to_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA"
+    },
+    {
+      "from_field": "NET_TS_FETCH_COA_AMT",
+      "from_instance": "WI_CST_SUBCRIPTION_REF_DATA",
+      "to_field": "NET_TS_FETCH_COA_AMT",
+      "to_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA"
+    },
+    {
+      "from_field": "SSC_WARRANTY_CREDIT_AMT",
+      "from_instance": "WI_CST_SUBCRIPTION_REF_DATA",
+      "to_field": "SSC_WARRANTY_CREDIT_AMT",
+      "to_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA"
+    },
+    {
+      "from_field": "TAC_WARRANTY_CREDIT_AMT",
+      "from_instance": "WI_CST_SUBCRIPTION_REF_DATA",
+      "to_field": "TAC_WARRANTY_CREDIT_AMT",
+      "to_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_QUARTER_NAME",
+      "source_path": [
+        {
+          "from_field": "FISCAL_QUARTER_NAME",
+          "from_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA"
+        },
+        {
+          "from_field": "FISCAL_QUARTER_NAME",
+          "from_instance": "WI_CST_SUBCRIPTION_REF_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TS_FETCH_AMT",
+      "source_path": [
+        {
+          "from_field": "TS_FETCH_AMT",
+          "from_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA"
+        },
+        {
+          "from_field": "TS_FETCH_AMT",
+          "from_instance": "WI_CST_SUBCRIPTION_REF_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TS_COA_AMT",
+      "source_path": [
+        {
+          "from_field": "TS_COA_AMT",
+          "from_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA"
+        },
+        {
+          "from_field": "TS_COA_AMT",
+          "from_instance": "WI_CST_SUBCRIPTION_REF_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NET_TS_FETCH_COA_AMT",
+      "source_path": [
+        {
+          "from_field": "NET_TS_FETCH_COA_AMT",
+          "from_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA"
+        },
+        {
+          "from_field": "NET_TS_FETCH_COA_AMT",
+          "from_instance": "WI_CST_SUBCRIPTION_REF_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SSC_WARRANTY_CREDIT_AMT",
+      "source_path": [
+        {
+          "from_field": "SSC_WARRANTY_CREDIT_AMT",
+          "from_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA"
+        },
+        {
+          "from_field": "SSC_WARRANTY_CREDIT_AMT",
+          "from_instance": "WI_CST_SUBCRIPTION_REF_DATA"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TAC_WARRANTY_CREDIT_AMT",
+      "source_path": [
+        {
+          "from_field": "TAC_WARRANTY_CREDIT_AMT",
+          "from_instance": "SQ_WI_CST_SUBCRIPTION_REF_DATA"
+        },
+        {
+          "from_field": "TAC_WARRANTY_CREDIT_AMT",
+          "from_instance": "WI_CST_SUBCRIPTION_REF_DATA"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:27.992959+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

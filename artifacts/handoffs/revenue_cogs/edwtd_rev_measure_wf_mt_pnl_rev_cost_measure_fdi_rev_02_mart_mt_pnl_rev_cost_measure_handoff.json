@@ -1,0 +1,2042 @@
+{
+  "workflow_name": "wf_m_MT_PNL_REV_COST_MEASURE_FDI_REV",
+  "mapping_name": "m_MT_PNL_REV_COST_MEASURE_FDI_REV",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "MT_PNL_REV_COST_MEASURE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_mt_pnl_rev_cost_measure_fdi_rev_02_mart_mt_pnl_rev_cost_measure",
+  "source_tables": [
+    "MT_PNL_REV_COST_MSR_RTM",
+    "MT_PNL_REV_COST_MEASURE"
+  ],
+  "sources": [
+    {
+      "name": "MT_PNL_REV_COST_MSR_RTM",
+      "database_type": "Teradata",
+      "owner": "FINLGLVWDB_DV3",
+      "fields": [
+        {
+          "name": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PNL_REV_COST_TYPE",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_REVENUE_OR_COGS_TYPE_CD",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ORIGINAL_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PNL_LINE_ITEM_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARTNER_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CHANNEL_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AS_OF_FSC_MTH_PARTNER_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AS_OF_FSC_MTH_CHANNEL_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_ROUTE_TO_MARKET_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_AS_OF_FSC_MTH_RTM_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "STK_RTM_RATIO",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "10",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "MT_PNL_REV_COST_MEASURE",
+      "database_type": "Teradata",
+      "owner": "FINLGLDB_DV1",
+      "fields": [
+        {
+          "name": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_REVENUE_OR_COGS_TYPE_CD",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GOODS_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_FINANCIAL_ACCOUNT_CD",
+          "datatype": "char",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_REV_MEASURE_TRNSCTN_TYPE_CD",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_TRIANGULATION_TYPE_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_PRDT_SUBGROUP_ALLOC_SRC_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ORIGINAL_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_TRNGLTD_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SRC_RPRTD_SRVC_CONTRACT_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COMP_US_NET_REV_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_COMPANY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_ISO_COUNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PRODUCT_TYPE",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PNL_LINE_ITEM_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CE_COUNTRY_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PNL_REV_COST_TYPE",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_DEAL_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "MT_PNL_REV_COST_MEASURE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_REVENUE_OR_COGS_TYPE_CD",
+        "datatype": "char",
+        "precision": "7",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_PRODUCT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GOODS_PRODUCT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_FINANCIAL_ACCOUNT_CD",
+        "datatype": "char",
+        "precision": "5",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_REV_MEASURE_TRNSCTN_TYPE_CD",
+        "datatype": "char",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_TRIANGULATION_TYPE_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_PRDT_SUBGROUP_ALLOC_SRC_CD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_SALES_TERRITORY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ORIGINAL_SALES_TERRITORY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_TRNGLTD_SALES_TERRITORY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_ORDER_LINE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_SRC_RPRTD_SRVC_CONTRACT_NUM",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMP_US_NET_REV_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_COMPANY_CD",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_ISO_COUNTRY_CD",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_PRODUCT_TYPE",
+        "datatype": "char",
+        "precision": "7",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_PNL_LINE_ITEM_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CE_COUNTRY_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BILL_TO_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHIP_TO_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOLD_TO_CUSTOMER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_PNL_REV_COST_TYPE",
+        "datatype": "varchar",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DEAL_SS_CD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_DEAL_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "XCAT_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_OFFER_TYPE_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RECURRING_OFFER_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ELA_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_RECURRING_OFFER_CD",
+        "datatype": "varchar",
+        "precision": "70",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TSV_ACCRUALS_CD",
+        "datatype": "varchar",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_REVENUE_OR_COGS_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GOODS_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FINANCIAL_ACCOUNT_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_REV_MEASURE_TRNSCTN_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_TRIANGULATION_TYPE_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_PRDT_SUBGROUP_ALLOC_SRC_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORIGINAL_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_TRNGLTD_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SRC_RPRTD_SRVC_CONTRACT_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMP_US_NET_REV_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_COMPANY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ISO_COUNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PRODUCT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PNL_LINE_ITEM_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CE_COUNTRY_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PNL_REV_COST_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_DEAL_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_RECURRING_OFFER_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n COALESCE(BK_FISCAL_YEAR_MTH_NUMBER_INT, -999),\r\n COALESCE(BK_REVENUE_OR_COGS_TYPE_CD,'UNKNOWN'),\r\n COALESCE(BK_PRODUCT_KEY,-999),\r\n COALESCE(GOODS_PRODUCT_KEY,-999),\r\n COALESCE(BK_FINANCIAL_ACCOUNT_CD,'UNKNW'),\r\n COALESCE(BK_REV_MEASURE_TRNSCTN_TYPE_CD,'UNKNOWN   '),\r\n DV_TRIANGULATION_TYPE_ID_INT,\r\n COALESCE(BK_PRDT_SUBGROUP_ALLOC_SRC_CD,'UNKNOWN'),\r\n COALESCE(BK_SALES_TERRITORY_KEY,-999),\r\n COALESCE(BK_SALES_TERRITORY_KEY,-999)  ORIGINAL_SALES_TERRITORY_KEY,\r\n COALESCE(BK_TRNGLTD_SALES_TERRITORY_KEY,-999),\r\n COALESCE(SALES_ORDER_LINE_KEY,-9999),\r\n COALESCE(BK_SRC_RPRTD_SRVC_CONTRACT_NUM,'UNKNOWN'),\r\n COALESCE(COMP_US_NET_REV_AMT,0),\r\n BK_COMPANY_CD, \r\n COALESCE(BK_ISO_COUNTRY_CD,'UNK'),\r\n COALESCE(DV_PRODUCT_TYPE,'UNKNOWN'),\r\n COALESCE(DV_PNL_LINE_ITEM_NAME,'UNKNOWN'),\r\n COALESCE(CE_COUNTRY_NAME,'CISCO'),\r\n COALESCE(END_CUSTOMER_KEY,-999),\r\n COALESCE(BILL_TO_CUSTOMER_KEY,-999),\r\n COALESCE(SHIP_TO_CUSTOMER_KEY,-999),\r\n COALESCE(SOLD_TO_CUSTOMER_KEY,-999),\r\n CURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\n USER EDW_CREATE_USER,\r\n CURRENT_TIMESTAMP(0) EDW_UPDATE_DTM,\r\n USER EDW_UPDATE_USER,\r\n 'FDI_REV' DV_PNL_REV_COST_TYPE,\r\n '-999' AS DV_DEAL_ID,\r\n DV_RECURRING_OFFER_CD\r\n FROM \r\n $$STGDB.WI_PNL_REV_COST_MSR_FDI_REV",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PNL_REV_COST_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_REVENUE_OR_COGS_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORIGINAL_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PNL_LINE_ITEM_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AS_OF_FSC_MTH_PARTNER_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AS_OF_FSC_MTH_CHANNEL_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ROUTE_TO_MARKET_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_AS_OF_FSC_MTH_RTM_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STK_RTM_RATIO",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n  COALESCE(BK_FISCAL_YEAR_MTH_NUMBER_INT, -999),\r\n  'FDI_REV' DV_PNL_REV_COST_TYPE,\r\n  COALESCE(BK_REVENUE_OR_COGS_TYPE_CD,'UNKNOWN'),\r\n  COALESCE(BK_SALES_TERRITORY_KEY,-999)  ORIGINAL_SALES_TERRITORY_KEY,\r\n  COALESCE(DV_PNL_LINE_ITEM_NAME,'UNKNOWN'),\r\n  'UNKNOWN' PARTNER_TYPE_CD, \r\n  '=' CHANNEL_FLG              ,\r\n  'UNKNOWN' AS_OF_FSC_MTH_PARTNER_TYPE_CD,\r\n  '=' AS_OF_FSC_MTH_CHANNEL_FLG,\r\n  'OTHERS' DV_ROUTE_TO_MARKET_CD,\r\n  'OTHERS' DV_AS_OF_FSC_MTH_RTM_CD,  \r\n  1 STK_RTM_RATIO,\r\n  CURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\n  USER EDW_CREATE_USER,\r\n  CURRENT_TIMESTAMP(0) EDW_UPDATE_DTM,\r\n  USER EDW_UPDATE_USER   \r\n  FROM \r\n  $$STGDB.WI_PNL_REV_COST_MSR_FDI_REV\r\nGROUP BY 1,3,4,5",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "DV_PNL_REV_COST_TYPE",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "DV_PNL_REV_COST_TYPE",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "ORIGINAL_SALES_TERRITORY_KEY",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "ORIGINAL_SALES_TERRITORY_KEY",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "PARTNER_TYPE_CD",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "PARTNER_TYPE_CD",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "CHANNEL_FLG",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "CHANNEL_FLG",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "AS_OF_FSC_MTH_PARTNER_TYPE_CD",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "AS_OF_FSC_MTH_PARTNER_TYPE_CD",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "AS_OF_FSC_MTH_CHANNEL_FLG",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "AS_OF_FSC_MTH_CHANNEL_FLG",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "DV_ROUTE_TO_MARKET_CD",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "DV_ROUTE_TO_MARKET_CD",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "DV_AS_OF_FSC_MTH_RTM_CD",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "DV_AS_OF_FSC_MTH_RTM_CD",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "STK_RTM_RATIO",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "STK_RTM_RATIO",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "DV_PNL_LINE_ITEM_NAME",
+      "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV",
+      "to_field": "DV_PNL_LINE_ITEM_NAME",
+      "to_instance": "MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "BK_PRDT_SUBGROUP_ALLOC_SRC_CD",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_PRDT_SUBGROUP_ALLOC_SRC_CD",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "BK_SALES_TERRITORY_KEY",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_SALES_TERRITORY_KEY",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "BK_TRNGLTD_SALES_TERRITORY_KEY",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_TRNGLTD_SALES_TERRITORY_KEY",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "BK_SRC_RPRTD_SRVC_CONTRACT_NUM",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_SRC_RPRTD_SRVC_CONTRACT_NUM",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "COMP_US_NET_REV_AMT",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "COMP_US_NET_REV_AMT",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "ORIGINAL_SALES_TERRITORY_KEY",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "ORIGINAL_SALES_TERRITORY_KEY",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "DV_PNL_REV_COST_TYPE",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "DV_PNL_REV_COST_TYPE",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "DV_PRODUCT_TYPE",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "DV_PRODUCT_TYPE",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "DV_PNL_LINE_ITEM_NAME",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "DV_PNL_LINE_ITEM_NAME",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "CE_COUNTRY_NAME",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "CE_COUNTRY_NAME",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "DV_DEAL_ID",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "DV_DEAL_ID",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "BK_PRODUCT_KEY",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_PRODUCT_KEY",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "GOODS_PRODUCT_KEY",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "GOODS_PRODUCT_KEY",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "BK_FINANCIAL_ACCOUNT_CD",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_FINANCIAL_ACCOUNT_CD",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "BK_REV_MEASURE_TRNSCTN_TYPE_CD",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_REV_MEASURE_TRNSCTN_TYPE_CD",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "DV_TRIANGULATION_TYPE_ID_INT",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "DV_TRIANGULATION_TYPE_ID_INT",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "BK_COMPANY_CD",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_COMPANY_CD",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "BK_ISO_COUNTRY_CD",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_ISO_COUNTRY_CD",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "DV_RECURRING_OFFER_CD",
+      "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE",
+      "to_field": "DV_RECURRING_OFFER_CD",
+      "to_instance": "MT_PNL_REV_COST_MEASURE_FDI_REV"
+    },
+    {
+      "from_field": "BK_PRDT_SUBGROUP_ALLOC_SRC_CD",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_PRDT_SUBGROUP_ALLOC_SRC_CD",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "BK_SALES_TERRITORY_KEY",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_SALES_TERRITORY_KEY",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "BK_TRNGLTD_SALES_TERRITORY_KEY",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_TRNGLTD_SALES_TERRITORY_KEY",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "BK_SRC_RPRTD_SRVC_CONTRACT_NUM",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_SRC_RPRTD_SRVC_CONTRACT_NUM",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "COMP_US_NET_REV_AMT",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "COMP_US_NET_REV_AMT",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "BK_COMPANY_CD",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_COMPANY_CD",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "BK_ISO_COUNTRY_CD",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_ISO_COUNTRY_CD",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "DV_PRODUCT_TYPE",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "DV_PRODUCT_TYPE",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "DV_PNL_LINE_ITEM_NAME",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "DV_PNL_LINE_ITEM_NAME",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "CE_COUNTRY_NAME",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "CE_COUNTRY_NAME",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "END_CUSTOMER_KEY",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "END_CUSTOMER_KEY",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "BILL_TO_CUSTOMER_KEY",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "BILL_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "SHIP_TO_CUSTOMER_KEY",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "SHIP_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "SOLD_TO_CUSTOMER_KEY",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "SOLD_TO_CUSTOMER_KEY",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "DV_DEAL_ID",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "DV_DEAL_ID",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "ORIGINAL_SALES_TERRITORY_KEY",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "ORIGINAL_SALES_TERRITORY_KEY",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "DV_PNL_REV_COST_TYPE",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "DV_PNL_REV_COST_TYPE",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "BK_PRODUCT_KEY",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_PRODUCT_KEY",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "GOODS_PRODUCT_KEY",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "GOODS_PRODUCT_KEY",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "BK_FINANCIAL_ACCOUNT_CD",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_FINANCIAL_ACCOUNT_CD",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "BK_REV_MEASURE_TRNSCTN_TYPE_CD",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "BK_REV_MEASURE_TRNSCTN_TYPE_CD",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "DV_TRIANGULATION_TYPE_ID_INT",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "DV_TRIANGULATION_TYPE_ID_INT",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "DV_DEAL_ID",
+      "from_instance": "MT_PNL_REV_COST_MEASURE",
+      "to_field": "DV_RECURRING_OFFER_CD",
+      "to_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+    },
+    {
+      "from_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "DV_PNL_REV_COST_TYPE",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "DV_PNL_REV_COST_TYPE",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "ORIGINAL_SALES_TERRITORY_KEY",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "ORIGINAL_SALES_TERRITORY_KEY",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "PARTNER_TYPE_CD",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "PARTNER_TYPE_CD",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "CHANNEL_FLG",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "CHANNEL_FLG",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "AS_OF_FSC_MTH_PARTNER_TYPE_CD",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "AS_OF_FSC_MTH_PARTNER_TYPE_CD",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "AS_OF_FSC_MTH_CHANNEL_FLG",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "AS_OF_FSC_MTH_CHANNEL_FLG",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "DV_ROUTE_TO_MARKET_CD",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "DV_ROUTE_TO_MARKET_CD",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "DV_AS_OF_FSC_MTH_RTM_CD",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "DV_AS_OF_FSC_MTH_RTM_CD",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "STK_RTM_RATIO",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "STK_RTM_RATIO",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    },
+    {
+      "from_field": "DV_PNL_LINE_ITEM_NAME",
+      "from_instance": "MT_PNL_REV_COST_MSR_RTM",
+      "to_field": "DV_PNL_LINE_ITEM_NAME",
+      "to_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+        },
+        {
+          "from_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "MT_PNL_REV_COST_MSR_RTM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_REVENUE_OR_COGS_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+          "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+        },
+        {
+          "from_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_REVENUE_OR_COGS_TYPE_CD",
+          "from_instance": "MT_PNL_REV_COST_MSR_RTM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_PRODUCT_KEY",
+      "source_path": [
+        {
+          "from_field": "BK_PRODUCT_KEY",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_PRODUCT_KEY",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GOODS_PRODUCT_KEY",
+      "source_path": [
+        {
+          "from_field": "GOODS_PRODUCT_KEY",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "GOODS_PRODUCT_KEY",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_FINANCIAL_ACCOUNT_CD",
+      "source_path": [
+        {
+          "from_field": "BK_FINANCIAL_ACCOUNT_CD",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_FINANCIAL_ACCOUNT_CD",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_REV_MEASURE_TRNSCTN_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "BK_REV_MEASURE_TRNSCTN_TYPE_CD",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_REV_MEASURE_TRNSCTN_TYPE_CD",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_TRIANGULATION_TYPE_ID_INT",
+      "source_path": [
+        {
+          "from_field": "DV_TRIANGULATION_TYPE_ID_INT",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "DV_TRIANGULATION_TYPE_ID_INT",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_PRDT_SUBGROUP_ALLOC_SRC_CD",
+      "source_path": [
+        {
+          "from_field": "BK_PRDT_SUBGROUP_ALLOC_SRC_CD",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_PRDT_SUBGROUP_ALLOC_SRC_CD",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SALES_TERRITORY_KEY",
+      "source_path": [
+        {
+          "from_field": "BK_SALES_TERRITORY_KEY",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_SALES_TERRITORY_KEY",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ORIGINAL_SALES_TERRITORY_KEY",
+      "source_path": [
+        {
+          "from_field": "ORIGINAL_SALES_TERRITORY_KEY",
+          "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+        },
+        {
+          "from_field": "ORIGINAL_SALES_TERRITORY_KEY",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "ORIGINAL_SALES_TERRITORY_KEY",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "ORIGINAL_SALES_TERRITORY_KEY",
+          "from_instance": "MT_PNL_REV_COST_MSR_RTM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_TRNGLTD_SALES_TERRITORY_KEY",
+      "source_path": [
+        {
+          "from_field": "BK_TRNGLTD_SALES_TERRITORY_KEY",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_TRNGLTD_SALES_TERRITORY_KEY",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_ORDER_LINE_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SRC_RPRTD_SRVC_CONTRACT_NUM",
+      "source_path": [
+        {
+          "from_field": "BK_SRC_RPRTD_SRVC_CONTRACT_NUM",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_SRC_RPRTD_SRVC_CONTRACT_NUM",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMP_US_NET_REV_AMT",
+      "source_path": [
+        {
+          "from_field": "COMP_US_NET_REV_AMT",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "COMP_US_NET_REV_AMT",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_COMPANY_CD",
+      "source_path": [
+        {
+          "from_field": "BK_COMPANY_CD",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_COMPANY_CD",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_ISO_COUNTRY_CD",
+      "source_path": [
+        {
+          "from_field": "BK_ISO_COUNTRY_CD",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BK_ISO_COUNTRY_CD",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_PRODUCT_TYPE",
+      "source_path": [
+        {
+          "from_field": "DV_PRODUCT_TYPE",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "DV_PRODUCT_TYPE",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_PNL_LINE_ITEM_NAME",
+      "source_path": [
+        {
+          "from_field": "DV_PNL_LINE_ITEM_NAME",
+          "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+        },
+        {
+          "from_field": "DV_PNL_LINE_ITEM_NAME",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "DV_PNL_LINE_ITEM_NAME",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "DV_PNL_LINE_ITEM_NAME",
+          "from_instance": "MT_PNL_REV_COST_MSR_RTM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CE_COUNTRY_NAME",
+      "source_path": [
+        {
+          "from_field": "CE_COUNTRY_NAME",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "CE_COUNTRY_NAME",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "END_CUSTOMER_KEY",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "END_CUSTOMER_KEY",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BILL_TO_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "BILL_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "BILL_TO_CUSTOMER_KEY",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHIP_TO_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "SHIP_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "SHIP_TO_CUSTOMER_KEY",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOLD_TO_CUSTOMER_KEY",
+      "source_path": [
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "SOLD_TO_CUSTOMER_KEY",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "MT_PNL_REV_COST_MSR_RTM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "MT_PNL_REV_COST_MSR_RTM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "MT_PNL_REV_COST_MSR_RTM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "MT_PNL_REV_COST_MSR_RTM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_PNL_REV_COST_TYPE",
+      "source_path": [
+        {
+          "from_field": "DV_PNL_REV_COST_TYPE",
+          "from_instance": "SQ_2_MT_PNL_REV_COST_MSR_RTM_FDI_REV"
+        },
+        {
+          "from_field": "DV_PNL_REV_COST_TYPE",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "DV_PNL_REV_COST_TYPE",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "DV_PNL_REV_COST_TYPE",
+          "from_instance": "MT_PNL_REV_COST_MSR_RTM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DEAL_SS_CD",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_DEAL_ID",
+      "source_path": [
+        {
+          "from_field": "DV_DEAL_ID",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "DV_DEAL_ID",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "XCAT_FLG",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_OFFER_TYPE_NAME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RECURRING_OFFER_FLG",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ELA_FLG",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_RECURRING_OFFER_CD",
+      "source_path": [
+        {
+          "from_field": "DV_RECURRING_OFFER_CD",
+          "from_instance": "SQ_1_MT_PNL_REV_COST_MEASURE"
+        },
+        {
+          "from_field": "DV_DEAL_ID",
+          "from_instance": "MT_PNL_REV_COST_MEASURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TSV_ACCRUALS_CD",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:23.817108+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

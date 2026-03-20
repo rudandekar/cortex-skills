@@ -1,0 +1,310 @@
+{
+  "workflow_name": "wf_m_N_ACCOUNTING_SCOPE",
+  "mapping_name": "m_N_ACCOUNTING_SCOPE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_NGCCRM",
+  "target_table": "N_ACCOUNTING_SCOPE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ngccrm_wf_n_accounting_scope_01_mart_n_accounting_scope",
+  "source_tables": [
+    "W_ACCOUNTING_SCOPE"
+  ],
+  "sources": [
+    {
+      "name": "W_ACCOUNTING_SCOPE",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV5",
+      "fields": [
+        {
+          "name": "BK_ACCOUNTING_SCOPE_CD",
+          "datatype": "char",
+          "precision": "11",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_ACCOUNTING_SCOPE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_ACCOUNTING_SCOPE_CD",
+        "datatype": "char",
+        "precision": "11",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_ACCOUNTING_SCOPE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_ACCOUNTING_SCOPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nWAS.BK_ACCOUNTING_SCOPE_CD, \r\nWAS.EDW_CREATE_DTM, \r\nWAS.EDW_CREATE_USER, \r\nWAS.EDW_UPDATE_DTM, \r\nWAS.EDW_UPDATE_USER \r\nFROM\r\n$$WORKDB.W_ACCOUNTING_SCOPE WAS\r\nWHERE NOT EXISTS\r\n(SELECT 1 FROM $$FINLGLVWDB.N_ACCOUNTING_SCOPE NAS\r\nWHERE WAS.BK_ACCOUNTING_SCOPE_CD = NAS.BK_ACCOUNTING_SCOPE_CD)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_ACCOUNTING_SCOPE_CD",
+      "from_instance": "SQ_W_ACCOUNTING_SCOPE",
+      "to_field": "BK_ACCOUNTING_SCOPE_CD",
+      "to_instance": "N_ACCOUNTING_SCOPE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_W_ACCOUNTING_SCOPE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_ACCOUNTING_SCOPE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_ACCOUNTING_SCOPE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_ACCOUNTING_SCOPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_W_ACCOUNTING_SCOPE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_ACCOUNTING_SCOPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_ACCOUNTING_SCOPE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_ACCOUNTING_SCOPE"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_SCOPE_CD",
+      "from_instance": "W_ACCOUNTING_SCOPE",
+      "to_field": "BK_ACCOUNTING_SCOPE_CD",
+      "to_instance": "SQ_W_ACCOUNTING_SCOPE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "W_ACCOUNTING_SCOPE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_W_ACCOUNTING_SCOPE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_ACCOUNTING_SCOPE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_ACCOUNTING_SCOPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "W_ACCOUNTING_SCOPE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_W_ACCOUNTING_SCOPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_ACCOUNTING_SCOPE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_ACCOUNTING_SCOPE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_ACCOUNTING_SCOPE_CD",
+      "source_path": [
+        {
+          "from_field": "BK_ACCOUNTING_SCOPE_CD",
+          "from_instance": "SQ_W_ACCOUNTING_SCOPE"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_SCOPE_CD",
+          "from_instance": "W_ACCOUNTING_SCOPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_W_ACCOUNTING_SCOPE"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "W_ACCOUNTING_SCOPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_W_ACCOUNTING_SCOPE"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "W_ACCOUNTING_SCOPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_W_ACCOUNTING_SCOPE"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "W_ACCOUNTING_SCOPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_W_ACCOUNTING_SCOPE"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "W_ACCOUNTING_SCOPE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:18.905004+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

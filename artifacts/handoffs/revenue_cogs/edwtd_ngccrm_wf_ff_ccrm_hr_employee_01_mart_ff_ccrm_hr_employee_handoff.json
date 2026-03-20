@@ -1,0 +1,414 @@
+{
+  "workflow_name": "wf_m_FF_CCRM_HR_EMPLOYEE",
+  "mapping_name": "m_FF_CCRM_HR_EMPLOYEE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_NGCCRM",
+  "target_table": "FF_CCRM_HR_EMPLOYEE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ngccrm_wf_ff_ccrm_hr_employee_01_mart_ff_ccrm_hr_employee",
+  "source_tables": [
+    "CCRM_HR_EMPLOYEE"
+  ],
+  "sources": [
+    {
+      "name": "CCRM_HR_EMPLOYEE",
+      "database_type": "Oracle",
+      "owner": "QTCADMIN",
+      "fields": [
+        {
+          "name": "USER_ID",
+          "datatype": "nvarchar2",
+          "precision": "75",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INIT_CAP_FNAME",
+          "datatype": "nvarchar2",
+          "precision": "450",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INIT_CAP_LNAME",
+          "datatype": "nvarchar2",
+          "precision": "450",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEPT_NAME",
+          "datatype": "nvarchar2",
+          "precision": "720",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_CCRM_HR_EMPLOYEE",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BATCH_ID",
+        "datatype": "int",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "USER_ID",
+        "datatype": "nstring",
+        "precision": "75",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "INIT_CAP_FNAME",
+        "datatype": "nstring",
+        "precision": "450",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INIT_CAP_LNAME",
+        "datatype": "nstring",
+        "precision": "450",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DEPT_NAME",
+        "datatype": "nstring",
+        "precision": "720",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_TIMESTAMP",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "nstring",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_CCRM_HR_EMPLOYEE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "USER_ID",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INIT_CAP_FNAME",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INIT_CAP_LNAME",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEPT_NAME",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nUSER_ID,                       \r\nINIT_CAP_FNAME,                \r\nINIT_CAP_LNAME,                \r\nDEPT_NAME                                                                                                           \r\nFROM CCRM_HR_EMPLOYEE_MV",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_CCRM_HR_EMPLOYEE",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "$$BATCH_ID"
+        },
+        {
+          "name": "USER_ID",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "USER_ID"
+        },
+        {
+          "name": "INIT_CAP_FNAME",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "INIT_CAP_FNAME"
+        },
+        {
+          "name": "INIT_CAP_LNAME",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "INIT_CAP_LNAME"
+        },
+        {
+          "name": "DEPT_NAME",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DEPT_NAME"
+        },
+        {
+          "name": "CREATE_TIMESTAMP",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "nstring",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "EXP_CCRM_HR_EMPLOYEE",
+      "to_field": "BATCH_ID",
+      "to_instance": "FF_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "USER_ID",
+      "from_instance": "EXP_CCRM_HR_EMPLOYEE",
+      "to_field": "USER_ID",
+      "to_instance": "FF_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "INIT_CAP_FNAME",
+      "from_instance": "EXP_CCRM_HR_EMPLOYEE",
+      "to_field": "INIT_CAP_FNAME",
+      "to_instance": "FF_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "INIT_CAP_LNAME",
+      "from_instance": "EXP_CCRM_HR_EMPLOYEE",
+      "to_field": "INIT_CAP_LNAME",
+      "to_instance": "FF_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "DEPT_NAME",
+      "from_instance": "EXP_CCRM_HR_EMPLOYEE",
+      "to_field": "DEPT_NAME",
+      "to_instance": "FF_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "CREATE_TIMESTAMP",
+      "from_instance": "EXP_CCRM_HR_EMPLOYEE",
+      "to_field": "CREATE_TIMESTAMP",
+      "to_instance": "FF_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_CCRM_HR_EMPLOYEE",
+      "to_field": "ACTION_CODE",
+      "to_instance": "FF_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "USER_ID",
+      "from_instance": "CCRM_HR_EMPLOYEE",
+      "to_field": "USER_ID",
+      "to_instance": "SQ_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "INIT_CAP_FNAME",
+      "from_instance": "CCRM_HR_EMPLOYEE",
+      "to_field": "INIT_CAP_FNAME",
+      "to_instance": "SQ_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "INIT_CAP_LNAME",
+      "from_instance": "CCRM_HR_EMPLOYEE",
+      "to_field": "INIT_CAP_LNAME",
+      "to_instance": "SQ_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "DEPT_NAME",
+      "from_instance": "CCRM_HR_EMPLOYEE",
+      "to_field": "DEPT_NAME",
+      "to_instance": "SQ_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "USER_ID",
+      "from_instance": "SQ_CCRM_HR_EMPLOYEE",
+      "to_field": "USER_ID",
+      "to_instance": "EXP_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "INIT_CAP_FNAME",
+      "from_instance": "SQ_CCRM_HR_EMPLOYEE",
+      "to_field": "INIT_CAP_FNAME",
+      "to_instance": "EXP_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "INIT_CAP_LNAME",
+      "from_instance": "SQ_CCRM_HR_EMPLOYEE",
+      "to_field": "INIT_CAP_LNAME",
+      "to_instance": "EXP_CCRM_HR_EMPLOYEE"
+    },
+    {
+      "from_field": "DEPT_NAME",
+      "from_instance": "SQ_CCRM_HR_EMPLOYEE",
+      "to_field": "DEPT_NAME",
+      "to_instance": "EXP_CCRM_HR_EMPLOYEE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "EXP_CCRM_HR_EMPLOYEE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "USER_ID",
+      "source_path": [
+        {
+          "from_field": "USER_ID",
+          "from_instance": "EXP_CCRM_HR_EMPLOYEE"
+        },
+        {
+          "from_field": "USER_ID",
+          "from_instance": "CCRM_HR_EMPLOYEE"
+        },
+        {
+          "from_field": "USER_ID",
+          "from_instance": "SQ_CCRM_HR_EMPLOYEE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INIT_CAP_FNAME",
+      "source_path": [
+        {
+          "from_field": "INIT_CAP_FNAME",
+          "from_instance": "EXP_CCRM_HR_EMPLOYEE"
+        },
+        {
+          "from_field": "INIT_CAP_FNAME",
+          "from_instance": "CCRM_HR_EMPLOYEE"
+        },
+        {
+          "from_field": "INIT_CAP_FNAME",
+          "from_instance": "SQ_CCRM_HR_EMPLOYEE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INIT_CAP_LNAME",
+      "source_path": [
+        {
+          "from_field": "INIT_CAP_LNAME",
+          "from_instance": "EXP_CCRM_HR_EMPLOYEE"
+        },
+        {
+          "from_field": "INIT_CAP_LNAME",
+          "from_instance": "CCRM_HR_EMPLOYEE"
+        },
+        {
+          "from_field": "INIT_CAP_LNAME",
+          "from_instance": "SQ_CCRM_HR_EMPLOYEE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DEPT_NAME",
+      "source_path": [
+        {
+          "from_field": "DEPT_NAME",
+          "from_instance": "EXP_CCRM_HR_EMPLOYEE"
+        },
+        {
+          "from_field": "DEPT_NAME",
+          "from_instance": "CCRM_HR_EMPLOYEE"
+        },
+        {
+          "from_field": "DEPT_NAME",
+          "from_instance": "SQ_CCRM_HR_EMPLOYEE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_TIMESTAMP",
+      "source_path": [
+        {
+          "from_field": "CREATE_TIMESTAMP",
+          "from_instance": "EXP_CCRM_HR_EMPLOYEE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_CCRM_HR_EMPLOYEE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:18.648820+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

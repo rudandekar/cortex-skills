@@ -1,0 +1,249 @@
+{
+  "workflow_name": "wf_m_WI_GL_RTM_POS_ALLOCATION_MTH",
+  "mapping_name": "m_WI_GL_RTM_POS_ALLOCATION_MTH",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_GL_RTM_POS_ALLOCATION_MTH",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_gl_rtm_pos_allocation_mth_01_mart_wi_gl_rtm_pos_allocation_mth",
+  "source_tables": [
+    "WI_GL_RTM_POS_ALLOCATION_MTH"
+  ],
+  "sources": [
+    {
+      "name": "WI_GL_RTM_POS_ALLOCATION_MTH",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "REVENUE_MEASURE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REV_MEASURE_TRANS_TYPE_CD",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_COMP_US_NET_REV_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_GL_RTM_POS_ALLOCATION_MTH",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "REVENUE_MEASURE_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REV_MEASURE_TRANS_TYPE_CD",
+        "datatype": "char",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_COMP_US_NET_REV_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "REVENUE_MEASURE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REV_MEASURE_TRANS_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_COMP_US_NET_REV_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nREVENUE_MEASURE_KEY,\r\nDV_FISCAL_YEAR_MTH_NUMBER_INT,\r\nREV_MEASURE_TRANS_TYPE_CD,\r\nSUM(ZEROIFNULL(ACTL.DV_COMP_US_NET_REV_AMT))\r\nFROM \r\n$$FINLGLVWDB.N_GL_REV_MEASURE ACTL\r\nINNER JOIN $$STGDB.WI_GL_CHNL_REV_MONTH_CNTL_MTH CNTL\r\nON ACTL.DV_FISCAL_YEAR_MTH_NUMBER_INT =CNTL.FISCAL_YEAR_MONTH_INT\r\nINNER JOIN $$FINLGLVWDB.MT_DIRECT_INDIRECT_ADJ_TYPE ADJ\r\nON ACTL.DD_BK_DIRECT_CORP_ADJ_TYPE_CD =ADJ.BK_DIRECT_CORP_ADJ_TYPE_CD      \r\nAND ACTL.BK_ADJUSTMENT_TYPE_CD         =ADJ.BK_ADJUSTMENT_TYPE_CD          \r\nAND ACTL.BK_REVENUE_OR_COGS_TYPE_CD    =ADJ.BK_REVENUE_OR_COGS_TYPE_CD      \r\nWHERE \r\nACTL.DV_CORPORATE_REVENUE_FLG  =  'Y' \r\nAND ACTL.DV_SERVICE_FLG   =  'N'  \r\nAND ADJ.L3_HIERARCHY_NODE_TYPE_ID = 'POS ALLOCATION' \r\nAND ACTL.DV_2T_DISTI_REVENUE_FLG =  'N'  \r\nGROUP BY 1,2,3",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "REVENUE_MEASURE_KEY",
+      "from_instance": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH",
+      "to_field": "REVENUE_MEASURE_KEY",
+      "to_instance": "WI_GL_RTM_POS_ALLOCATION_MTH"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_GL_RTM_POS_ALLOCATION_MTH"
+    },
+    {
+      "from_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "from_instance": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH",
+      "to_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "to_instance": "WI_GL_RTM_POS_ALLOCATION_MTH"
+    },
+    {
+      "from_field": "DV_COMP_US_NET_REV_AMT",
+      "from_instance": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH",
+      "to_field": "DV_COMP_US_NET_REV_AMT",
+      "to_instance": "WI_GL_RTM_POS_ALLOCATION_MTH"
+    },
+    {
+      "from_field": "REVENUE_MEASURE_KEY",
+      "from_instance": "WI_GL_RTM_POS_ALLOCATION_MTH1",
+      "to_field": "REVENUE_MEASURE_KEY",
+      "to_instance": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_GL_RTM_POS_ALLOCATION_MTH1",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH"
+    },
+    {
+      "from_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "from_instance": "WI_GL_RTM_POS_ALLOCATION_MTH1",
+      "to_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "to_instance": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH"
+    },
+    {
+      "from_field": "DV_COMP_US_NET_REV_AMT",
+      "from_instance": "WI_GL_RTM_POS_ALLOCATION_MTH1",
+      "to_field": "DV_COMP_US_NET_REV_AMT",
+      "to_instance": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "REVENUE_MEASURE_KEY",
+      "source_path": [
+        {
+          "from_field": "REVENUE_MEASURE_KEY",
+          "from_instance": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH"
+        },
+        {
+          "from_field": "REVENUE_MEASURE_KEY",
+          "from_instance": "WI_GL_RTM_POS_ALLOCATION_MTH1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH"
+        },
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "WI_GL_RTM_POS_ALLOCATION_MTH1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REV_MEASURE_TRANS_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "REV_MEASURE_TRANS_TYPE_CD",
+          "from_instance": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH"
+        },
+        {
+          "from_field": "REV_MEASURE_TRANS_TYPE_CD",
+          "from_instance": "WI_GL_RTM_POS_ALLOCATION_MTH1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_COMP_US_NET_REV_AMT",
+      "source_path": [
+        {
+          "from_field": "DV_COMP_US_NET_REV_AMT",
+          "from_instance": "SQ_WI_GL_RTM_POS_ALLOCATION_MTH"
+        },
+        {
+          "from_field": "DV_COMP_US_NET_REV_AMT",
+          "from_instance": "WI_GL_RTM_POS_ALLOCATION_MTH1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:29.725184+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

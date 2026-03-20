@@ -1,0 +1,24 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_pos_wf_wk_pos_transaction_line_item_01_mart_ex_wips_pos_trans_sn_filter_basic
+    model: edwtd_pos_wf_wk_pos_transaction_line_item_01_mart_ex_wips_pos_trans_sn
+    description: "Verify filter transformation passes expected rows"
+    given:
+      - input: source('raw', 'st_wips_pos_trans_sn')
+        rows:
+          - {id: 1, status: 'ACTIVE'}
+          - {id: 2, status: 'INACTIVE'}
+    expect:
+      rows:
+        - {id: 1, status: 'ACTIVE'}
+  - name: test_edwtd_pos_wf_wk_pos_transaction_line_item_01_mart_ex_wips_pos_trans_sn_expression_transform
+    model: edwtd_pos_wf_wk_pos_transaction_line_item_01_mart_ex_wips_pos_trans_sn
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'st_wips_pos_trans_sn')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

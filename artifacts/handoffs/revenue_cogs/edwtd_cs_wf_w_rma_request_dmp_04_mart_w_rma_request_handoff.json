@@ -1,0 +1,3267 @@
+{
+  "workflow_name": "wf_m_W_RMA_REQUEST_DMP",
+  "mapping_name": "m_W_RMA_REQUEST_DMP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_CS",
+  "target_table": "W_RMA_REQUEST",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_cs_wf_w_rma_request_dmp_04_mart_w_rma_request",
+  "source_tables": [
+    "WI_SALES_ORDER_AAR_RMA_NUM",
+    "W_RMA_REQUEST",
+    "GG_DMP_CO_RETURN_CONTACT",
+    "EX_DMP_CO_RETURN_HEADER"
+  ],
+  "sources": [
+    {
+      "name": "WI_SALES_ORDER_AAR_RMA_NUM",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_RMA_AAR_NUM",
+          "datatype": "varchar",
+          "precision": "12",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "W_RMA_REQUEST",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV1",
+      "fields": [
+        {
+          "name": "BK_AWAITING_AUTHORIZATION_NUM",
+          "datatype": "varchar",
+          "precision": "12",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RMA_REQUEST_APPROVAL_REQD_ROLE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RMA_REQUEST_SUBMIT_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_RMA_REQUEST_SUBMIT_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RMA_REQUEST_TYPE_CD",
+          "datatype": "char",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RMA_REQUEST_STATUS_CD",
+          "datatype": "char",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RMA_REQUESTOR_EMAIL_ADDR",
+          "datatype": "varchar",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RMA_REQUESTOR_CCO_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORIGINAL_SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CUSTOMER_RETURN_CMT_TXT",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUEUE_ADMIN_CMT_TXT",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_CUSTOMER_RETURN_REASON_CD",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "APPROVED_RMA_SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_APPRVR_AREA_CTRLR_PRTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_APPRVR_RGNL_MGR_PRTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_APPRVR_DIRECTOR_PRTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_RMA_REQ_DENIAL_REASON_CD",
+          "datatype": "varchar",
+          "precision": "80",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_MODIFIED_DTM",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_LAST_MODIFIED_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RESTOCKING_FEE_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RMA_APPROVED_DTM",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_RMA_APPROVED_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CRM_CASE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RQST_CREATED_BY_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EXPEDITE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "HOLD_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "XX_APPROVER_ID",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "XX_APPROVED_BY_PROXY_ID",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DENIAL_REASON_CODE",
+          "datatype": "varchar",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_APPRVR_FIN_VP_PRTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "GG_DMP_CO_RETURN_CONTACT",
+      "database_type": "Teradata",
+      "owner": "GGSRCDB_DV1",
+      "fields": [
+        {
+          "name": "CONTACT_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RETURN_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REFERENCE_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTACT_FIRST_NAME",
+          "datatype": "varchar",
+          "precision": "256",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTACT_LAST_NAME",
+          "datatype": "varchar",
+          "precision": "256",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTACT_EMAIL",
+          "datatype": "varchar",
+          "precision": "4000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTACT_PHONE",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTACT_FAX",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRAIL_FILE_NAME",
+          "datatype": "varchar",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DML_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REFRESH_DATETIME",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROCESSED_FLAG",
+          "datatype": "varchar",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "EX_DMP_CO_RETURN_HEADER",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RETURN_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AAR_NUMBER",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RETURN_STATUS",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTIVE",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RETURN_REASON",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RETURN_FROM_COUNTRY_CD",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RETURN_TYPE",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORIG_DEAL_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORIG_WEB_ORDER_ID",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORIG_SALES_ORDER_NUMBER",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORIG_ERP_HEADER_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORIG_PURCHASE_ORDER_NUMBER",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORIG_SALES_ORDER_BOOKED_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INVOICE_TO_SITE_USE_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIP_TO_SITE_USE_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRICE_LIST_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "APPLICATION_FLOW",
+          "datatype": "varchar",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RESTOCKING_FEE_PERCENTAGE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "17",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADDITIONAL_RETURN_NOTES",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORDER_TOTAL",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "17",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUBMITTED_ON",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUBMITTED_BY",
+          "datatype": "varchar",
+          "precision": "360",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUBMITTED_BY_PROXY",
+          "datatype": "varchar",
+          "precision": "360",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_ON",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY_PROXY",
+          "datatype": "varchar",
+          "precision": "360",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "360",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_ON",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "varchar",
+          "precision": "360",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CSOPS_CASE_NUMBER",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CSOPS_NOTES",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CSOPS_CUSTOMER_NOTES",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHARE_NODE_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "APPLICATION_SUB_FLOW",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REFRESH_DATETIME",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "char",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXPEDITE_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "HOLD_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_RMA_REQUEST",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_AWAITING_AUTHORIZATION_NUM",
+        "datatype": "varchar",
+        "precision": "12",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RMA_REQUEST_APPROVAL_REQD_ROLE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RMA_REQUEST_SUBMIT_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_RMA_REQUEST_SUBMIT_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RMA_REQUEST_TYPE_CD",
+        "datatype": "char",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RMA_REQUEST_STATUS_CD",
+        "datatype": "char",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RMA_REQUESTOR_EMAIL_ADDR",
+        "datatype": "varchar",
+        "precision": "200",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RMA_REQUESTOR_CCO_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ORIGINAL_SALES_ORDER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CUSTOMER_RETURN_CMT_TXT",
+        "datatype": "varchar",
+        "precision": "2000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "QUEUE_ADMIN_CMT_TXT",
+        "datatype": "varchar",
+        "precision": "2000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_CUSTOMER_RETURN_REASON_CD",
+        "datatype": "varchar",
+        "precision": "60",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "APPROVED_RMA_SALES_ORDER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_APPRVR_AREA_CTRLR_PRTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_APPRVR_RGNL_MGR_PRTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_APPRVR_DIRECTOR_PRTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_RMA_REQ_DENIAL_REASON_CD",
+        "datatype": "varchar",
+        "precision": "80",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_MODIFIED_DTM",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_LAST_MODIFIED_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RESTOCKING_FEE_PCT",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "2",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RMA_APPROVED_DTM",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_RMA_APPROVED_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CRM_CASE_NUM",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RQST_CREATED_BY_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EXPEDITE_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "HOLD_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "XX_APPROVER_ID",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "XX_APPROVED_BY_PROXY_ID",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DENIAL_REASON_CODE",
+        "datatype": "varchar",
+        "precision": "200",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_APPRVR_FIN_VP_PRTY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_RMA_REQUEST",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_AWAITING_AUTHORIZATION_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RMA_REQUEST_APPROVAL_REQD_ROLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RMA_REQUEST_SUBMIT_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_RMA_REQUEST_SUBMIT_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RMA_REQUEST_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RMA_REQUEST_STATUS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RMA_REQUESTOR_EMAIL_ADDR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RMA_REQUESTOR_CCO_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORIGINAL_SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUSTOMER_RETURN_CMT_TXT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUEUE_ADMIN_CMT_TXT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_CUSTOMER_RETURN_REASON_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "APPROVED_RMA_SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_APPRVR_AREA_CTRLR_PRTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_APPRVR_RGNL_MGR_PRTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_APPRVR_DIRECTOR_PRTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_RMA_REQ_DENIAL_REASON_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_MODIFIED_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_LAST_MODIFIED_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RESTOCKING_FEE_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RMA_APPROVED_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_RMA_APPROVED_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CRM_CASE_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RQST_CREATED_BY_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXPEDITE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HOLD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "XX_APPROVER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "XX_APPROVED_BY_PROXY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DENIAL_REASON_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_APPRVR_FIN_VP_PRTY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n*\r\nFROM\r\n(\r\nSELECT \r\nSCRH.AAR_NUMBER AS BK_AWAITING_AUTHORIZATION_NUM,\r\n(CASE WHEN\r\nNCWP_C.CISCO_WORKER_PARTY_KEY IS NOT NULL\r\nOR \r\nNCWP_RM.CISCO_WORKER_PARTY_KEY IS NOT NULL\r\nOR\r\nNCWP_FD.CISCO_WORKER_PARTY_KEY IS NOT NULL\r\nOR\r\nNCWP_VP.CISCO_WORKER_PARTY_KEY IS NOT NULL\r\nTHEN 'Y'\r\nELSE \r\n'N'\r\nEND)                RMA_REQUEST_APPROVAL_REQD_ROLE,\r\nCOALESCE(SCRH.SUBMITTED_ON , CAST('3500-01-01 00:00:00' AS TIMESTAMP(0)))\t\tRMA_REQUEST_SUBMIT_DTM,\r\nCAST(RMA_REQUEST_SUBMIT_DTM AS DATE) DV_RMA_REQUEST_SUBMIT_DT,\r\nCOALESCE(EVCRD.RETURN_TYPE, 'UNKNOWN') RMA_REQUEST_TYPE_CD,\r\nCOALESCE(EVCRD.RETURN_STATUS, 'UNKNOWN') RMA_REQUEST_STATUS_CD,\r\nWICI.CONTACT_EMAIL RMA_REQUESTOR_EMAIL_ADDR,\r\nSCRH.CREATED_BY\t\tRMA_REQUESTOR_CCO_ID,\r\nCOALESCE(NSO_ORIG.SALES_ORDER_KEY,-9999)                  \tORIGINAL_SALES_ORDER_KEY,\r\nSCRH.ADDITIONAL_RETURN_NOTES\t\tCUSTOMER_RETURN_CMT_TXT,\r\nSCRH.CSOPS_NOTES\t\t\t\t\tQUEUE_ADMIN_CMT_TXT,\r\nCOALESCE(EVCRD.RETURN_REASON,'UNKNOWN') BK_CUSTOMER_RETURN_REASON_CD,\r\nCOALESCE(NSO_RMA.SALES_ORDER_KEY,-9999)                \t\t\tAPPROVED_RMA_SALES_ORDER_KEY,\r\nCOALESCE(NCWP_C.CISCO_WORKER_PARTY_KEY,-999)        \tRU_APPRVR_AREA_CTRLR_PRTY_KEY,\r\nCOALESCE(NCWP_RM.CISCO_WORKER_PARTY_KEY,-999)       \tRU_APPRVR_RGNL_MGR_PRTY_KEY,\r\nCOALESCE(NCWP_FD.CISCO_WORKER_PARTY_KEY,-999)       \tRU_APPRVR_DIRECTOR_PRTY_KEY,\r\nEVCRD.DENIAL_REASON RU_RMA_REQ_DENIAL_REASON_CD, \r\nCURRENT_TIMESTAMP(0)                 \t\t\tEDW_CREATE_DTM,\r\nUSER                                 \t\t\tEDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0)                 \t\t\tEDW_UPDATE_DTM,\r\nUSER                \t\t\tEDW_UPDATE_USER, \r\nCOALESCE(SCRH.UPDATED_ON,CAST('3500-01-01 00:00:00.000000' AS TIMESTAMP(6))) AS LAST_MODIFIED_DTM,\r\nCAST (LAST_MODIFIED_DTM AS DATE ) DV_LAST_MODIFIED_DT,\r\nCOALESCE (SCRH.RESTOCKING_FEE_PERCENTAGE , -999.00) RESTOCKING_FEE_PCT,\r\n(CASE WHEN SCRH.RETURN_STATUS =13 THEN SCRH.UPDATED_ON  ELSE  CAST('3500-01-01 00:00:00.000000' AS TIMESTAMP(6)) END   )  AS RMA_APPROVED_DTM,\r\nCAST (RMA_APPROVED_DTM AS DATE ) AS DV_RMA_APPROVED_DT ,\r\nCOALESCE(SCRH.CSOPS_CASE_NUMBER, 'UNKNOWN')   CRM_CASE_NUM,\r\nSCRH.CREATED_BY AS RQST_CREATED_BY_NAME,\r\nSCRH.EXPEDITE_FLAG AS EXPEDITE_FLG,\r\nCOALESCE(SCRH.HOLD_FLAG,'N') AS HOLD_FLG,\r\n'UNKNOWN' AS XX_APPROVER_ID,\r\nCOALESCE(APPROVED_BY_PROXY,'UNKNOWN') AS XX_APPROVED_BY_PROXY_ID,\r\n'I'  ACTION_CODE,\r\n'I'  DML_TYPE,\r\nEVCRD.DENIAL_REASON_CODE DENIAL_REASON_CODE,\r\nCOALESCE(NCWP_VP.CISCO_WORKER_PARTY_KEY,-999)       \tRU_APPRVR_VICE_PRES_PRTY_KEY\r\nFROM $$STGDB.ST_DMP_CO_RETURN_HEADER SCRH\r\nLEFT OUTER JOIN $$ETLVWDB.EV_DMP_CO_RETURN_DETAILS EVCRD \r\nON EVCRD.RETURN_ID = SCRH.RETURN_ID\r\nLEFT OUTER JOIN $$STGDB.WI_CO_RETURN_CONTACT_DTLS WICI\r\nON WICI.RETURN_ID = EVCRD.RETURN_ID\r\nLEFT OUTER  JOIN $$COMREFVWDB.N_CISCO_WORKER_PARTY NCWP_FD\r\n ON (EVCRD.FIN_DIR_EMAIL_ADDR=NCWP_FD.CISCO_EMAIL_ADDRESS)\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CISCO_WORKER_PARTY NCWP_RM\r\n ON (EVCRD.REGIONAL_MNGR_EMAIL_ADDR=NCWP_RM.CISCO_EMAIL_ADDRESS)\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CISCO_WORKER_PARTY NCWP_C\r\n ON (EVCRD.AREA_CNTRLR_EMAIL_ADDR=NCWP_C.CISCO_EMAIL_ADDRESS)\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CISCO_WORKER_PARTY NCWP_VP\r\n ON (EVCRD.FIN_VC_PRES_EMAIL_ADDR=NCWP_VP.CISCO_EMAIL_ADDRESS)\r\nLEFT OUTER  JOIN  $$STGDB.WI_SALES_ORDER_AAR_RMA_NUM NSO_RMA\r\nON (SCRH.AAR_NUMBER=NSO_RMA.SALES_ORDER_LINE_RMA_AAR_NUM) \r\nLEFT OUTER JOIN $$SLSORDVWDB.N_SALES_ORDER_TV NSO_ORIG\r\nON (SCRH.ORIG_SALES_ORDER_NUMBER=NSO_ORIG.BK_SO_NUMBER_INT\r\nAND NSO_ORIG.END_TV_DATETIME ='3500-01-01 00:00:00')\r\n \r\n UNION ALL\r\n\r\nSELECT \r\nECRH.AAR_NUMBER AS BK_AWAITING_AUTHORIZATION_NUM,\r\n(CASE WHEN\r\nNCWP_C.CISCO_WORKER_PARTY_KEY IS NOT NULL\r\nOR \r\nNCWP_RM.CISCO_WORKER_PARTY_KEY IS NOT NULL\r\nOR\r\nNCWP_FD.CISCO_WORKER_PARTY_KEY IS NOT NULL\r\nOR\r\nNCWP_VP.CISCO_WORKER_PARTY_KEY IS NOT NULL\r\nTHEN 'Y'\r\nELSE \r\n'N'\r\nEND)                RMA_REQUEST_APPROVAL_REQD_ROLE,\r\nCOALESCE(ECRH.SUBMITTED_ON , CAST('3500-01-01 00:00:00' AS TIMESTAMP(0)))\t\tRMA_REQUEST_SUBMIT_DTM,\r\nCAST(RMA_REQUEST_SUBMIT_DTM AS DATE) DV_RMA_REQUEST_SUBMIT_DT,\r\nCOALESCE(EVCRD.RETURN_TYPE , 'UNKNOWN') RMA_REQUEST_TYPE_CD,\r\nCOALESCE(EVCRD.RETURN_STATUS , 'UNKNOWN') RMA_REQUEST_STATUS_CD,\r\nWICI.CONTACT_EMAIL RMA_REQUESTOR_EMAIL_ADDR,\r\nECRH.CREATED_BY\t\tRMA_REQUESTOR_CCO_ID,\r\nCOALESCE(NSO_ORIG.SALES_ORDER_KEY,-9999)                  \tORIGINAL_SALES_ORDER_KEY,\r\nECRH.ADDITIONAL_RETURN_NOTES\t\tCUSTOMER_RETURN_CMT_TXT,\r\nECRH.CSOPS_NOTES\t\t\t\t\tQUEUE_ADMIN_CMT_TXT,\r\nCOALESCE(EVCRD.RETURN_REASON,'UNKNOWN') BK_CUSTOMER_RETURN_REASON_CD,\r\nCOALESCE(NSO_RMA.SALES_ORDER_KEY,-9999)                \t\t\tAPPROVED_RMA_SALES_ORDER_KEY,\r\nCOALESCE(NCWP_C.CISCO_WORKER_PARTY_KEY,-999)        \tRU_APPRVR_AREA_CTRLR_PRTY_KEY,\r\nCOALESCE(NCWP_RM.CISCO_WORKER_PARTY_KEY,-999)       \tRU_APPRVR_RGNL_MGR_PRTY_KEY,\r\nCOALESCE(NCWP_FD.CISCO_WORKER_PARTY_KEY,-999)       \tRU_APPRVR_DIRECTOR_PRTY_KEY,\r\nEVCRD.DENIAL_REASON RU_RMA_REQ_DENIAL_REASON_CD, \r\nCURRENT_TIMESTAMP(0)                 \t\t\tEDW_CREATE_DTM,\r\nUSER                                 \t\t\tEDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0)                 \t\t\tEDW_UPDATE_DTM,\r\nUSER                \t\t\tEDW_UPDATE_USER, \r\nCOALESCE(ECRH.UPDATED_ON,CAST('3500-01-01 00:00:00.000000' AS TIMESTAMP(6))) AS LAST_MODIFIED_DTM,\r\nCAST (LAST_MODIFIED_DTM AS DATE ) DV_LAST_MODIFIED_DT,\r\nCOALESCE (ECRH.RESTOCKING_FEE_PERCENTAGE , -999.00)  RESTOCKING_FEE_PCT,\r\n(CASE WHEN ECRH.RETURN_STATUS =13 THEN ECRH.UPDATED_ON  ELSE  CAST('3500-01-01 00:00:00.000000' AS TIMESTAMP(6)) END   )  AS RMA_APPROVED_DTM,\r\nCAST (RMA_APPROVED_DTM AS DATE ) AS DV_RMA_APPROVED_DT ,\r\nCOALESCE(ECRH.CSOPS_CASE_NUMBER, 'UNKNOWN')   CRM_CASE_NUM,\r\nECRH.CREATED_BY AS RQST_CREATED_BY_NAME,\r\nECRH.EXPEDITE_FLAG AS EXPEDITE_FLG,\r\nCOALESCE(ECRH.HOLD_FLAG,'N') AS HOLD_FLG,\r\n'UNKNOWN' AS XX_APPROVER_ID,\r\nCOALESCE(APPROVED_BY_PROXY,'UNKNOWN') AS XX_APPROVED_BY_PROXY_ID,\r\n'I'  ACTION_CODE,\r\n'I'  DML_TYPE ,\r\nEVCRD.DENIAL_REASON_CODE DENIAL_REASON_CODE,\r\nCOALESCE(NCWP_VP.CISCO_WORKER_PARTY_KEY,-999)       \tRU_APPRVR_VICE_PRES_PRTY_KEY\r\nFROM $$EXCEPDB.EX_DMP_CO_RETURN_HEADER ECRH\r\nLEFT OUTER JOIN $$ETLVWDB.EV_DMP_CO_RETURN_DETAILS EVCRD \r\nON EVCRD.RETURN_ID = ECRH.RETURN_ID\r\nLEFT OUTER JOIN $$STGDB.WI_CO_RETURN_CONTACT_DTLS WICI\r\nON WICI.RETURN_ID = EVCRD.RETURN_ID\r\nLEFT OUTER  JOIN $$COMREFVWDB.N_CISCO_WORKER_PARTY NCWP_FD\r\n ON (EVCRD.FIN_DIR_EMAIL_ADDR=NCWP_FD.CISCO_EMAIL_ADDRESS)\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CISCO_WORKER_PARTY NCWP_RM\r\n ON (EVCRD.REGIONAL_MNGR_EMAIL_ADDR=NCWP_RM.CISCO_EMAIL_ADDRESS)\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CISCO_WORKER_PARTY NCWP_C\r\n ON (EVCRD.AREA_CNTRLR_EMAIL_ADDR=NCWP_C.CISCO_EMAIL_ADDRESS)\r\nLEFT OUTER JOIN $$COMREFVWDB.N_CISCO_WORKER_PARTY NCWP_VP\r\n ON (EVCRD.FIN_VC_PRES_EMAIL_ADDR=NCWP_VP.CISCO_EMAIL_ADDRESS)\r\nLEFT OUTER  JOIN  $$STGDB.WI_SALES_ORDER_AAR_RMA_NUM NSO_RMA\r\nON (ECRH.AAR_NUMBER=NSO_RMA.SALES_ORDER_LINE_RMA_AAR_NUM) \r\nLEFT OUTER JOIN $$SLSORDVWDB.N_SALES_ORDER_TV NSO_ORIG\r\nON (ECRH.ORIG_SALES_ORDER_NUMBER=NSO_ORIG.BK_SO_NUMBER_INT\r\nAND NSO_ORIG.END_TV_DATETIME ='3500-01-01 00:00:00' )\r\n)RMAH\r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY RMAH.BK_AWAITING_AUTHORIZATION_NUM ORDER BY RMAH.RMA_REQUEST_SUBMIT_DTM DESC)=1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "CALL COLLECT_STATS_WRAP('$$GGSRCDB','GG_DMP_CO_RETURN_APPROVAL','D');\r\nCALL COLLECT_STATS_WRAP('$$GGSRCDB','GG_DMP_CO_RETURN_LOOKUP','D');\r\nCALL COLLECT_STATS_WRAP('$$GGSRCDB','GG_DMP_CO_RETURN_HEADER','D');\r\n\r\nDELETE FROM $$EXCEPDB.EX_DMP_CO_RETURN_HEADER  EXCRH\r\nWHERE EXISTS\r\n(\r\nSELECT 1 FROM $$STGDB.ST_DMP_CO_RETURN_HEADER STCRH\r\nWHERE EXCRH.RETURN_ID = STCRH.RETURN_ID);\r\n\r\nCALL COLLECT_STATS_WRAP('$$EXCEPDB','EX_DMP_CO_RETURN_HEADER','D');",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SRTTRANS",
+      "type": "Sorter",
+      "description": "",
+      "fields": [
+        {
+          "name": "CONTACT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RETURN_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONTACT_EMAIL",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sorter Cache Size": "Auto",
+        "Case Sensitive": "YES",
+        "Work Directory": "$PMTempDir",
+        "Distinct": "NO",
+        "Tracing Level": "Normal",
+        "Null Treated Low": "NO",
+        "Merge Only": "NO",
+        "Partitioning": "Order records for individual partitions",
+        "Transformation Scope": "All Input"
+      }
+    },
+    {
+      "name": "SQ_WI_SALES_ORDER_AAR_RMA_NUM",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_RMA_AAR_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SEL SALES_ORDER_KEY,\r\nSALES_ORDER_LINE_RMA_AAR_NUM FROM $$SLSORDVWDB.N_SALES_ORDER_LINE_TV\r\nWHERE END_TV_DATETIME='3500-01-01 00:00:00'\r\nAND SS_CODE='CG'\r\nAND SALES_ORDER_LINE_RMA_AAR_NUM LIKE 'AAR%'\r\nGROUP BY 1,2\r\n/*UNION\r\nSEL SALES_ORDER_KEY,SALES_ORDER_RMA_AA_NUM as SALES_ORDER_LINE_RMA_AAR_NUM\r\nFROM $$SLSORDVWDB.N_SALES_ORDER_V1_TV  \r\nWHERE END_TV_DTM='3500-01-01 00:00:00'\r\nAND SS_CD<>'CG'\r\nGROUP BY 1,2*/",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "AGGTRANS",
+      "type": "Aggregator",
+      "description": "",
+      "fields": [
+        {
+          "name": "RETURN_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RETURN_ID"
+        },
+        {
+          "name": "EMAIL",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "AGGR_EMAIL",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "MAX(EMAIL)"
+        }
+      ],
+      "attributes": {
+        "Cache Directory": "$PMCacheDir",
+        "Tracing Level": "Normal",
+        "Sorted Input": "NO",
+        "Aggregator Data Cache Size": "Auto",
+        "Aggregator Index Cache Size": "Auto",
+        "Transformation Scope": "All Input"
+      }
+    },
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "RETURN_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RETURN_ID"
+        },
+        {
+          "name": "CONTACT_EMAIL",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "OUTPUT_EMAIL",
+          "datatype": "string",
+          "porttype": "LOCAL VARIABLE",
+          "expression": "IIF(RETURN_ID=OLD_RETURN_ID,OUTPUT_EMAIL||','||CONTACT_EMAIL,CONTACT_EMAIL)"
+        },
+        {
+          "name": "OLD_RETURN_ID",
+          "datatype": "integer",
+          "porttype": "LOCAL VARIABLE",
+          "expression": "RETURN_ID"
+        },
+        {
+          "name": "EMAIL",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "OUTPUT_EMAIL"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RETURN_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AAR_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RETURN_STATUS",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTIVE",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RETURN_REASON",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RETURN_FROM_COUNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RETURN_TYPE",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORIG_DEAL_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORIG_WEB_ORDER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORIG_SALES_ORDER_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORIG_ERP_HEADER_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORIG_PURCHASE_ORDER_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORIG_SALES_ORDER_BOOKED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVOICE_TO_SITE_USE_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO_SITE_USE_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRICE_LIST_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "APPLICATION_FLOW",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RESTOCKING_FEE_PERCENTAGE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADDITIONAL_RETURN_NOTES",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORDER_TOTAL",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBMITTED_ON",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBMITTED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBMITTED_BY_PROXY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_ON",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY_PROXY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_ON",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CSOPS_CASE_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CSOPS_NOTES",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CSOPS_CUSTOMER_NOTES",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHARE_NODE_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "APPLICATION_SUB_FLOW",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REFRESH_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXPEDITE_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HOLD_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n*\r\nFROM\r\n(\r\nSELECT \r\n SCRH.BATCH_ID, \r\n SCRH.RETURN_ID, \r\n SCRH.AAR_NUMBER, \r\n SCRH.RETURN_STATUS, \r\n SCRH.ACTIVE, \r\n SCRH.RETURN_REASON, \r\n SCRH.RETURN_FROM_COUNTRY_CD, \r\n SCRH.RETURN_TYPE, \r\n SCRH.ORIG_DEAL_ID, \r\n SCRH.ORIG_WEB_ORDER_ID, \r\n SCRH.ORIG_SALES_ORDER_NUMBER, \r\n SCRH.ORIG_ERP_HEADER_ID, \r\n SCRH.ORIG_PURCHASE_ORDER_NUMBER, \r\n SCRH.ORIG_SALES_ORDER_BOOKED_DATE, \r\n SCRH.ORG_ID, \r\n SCRH.INVOICE_TO_SITE_USE_ID, \r\n SCRH.SHIP_TO_SITE_USE_ID, \r\n SCRH.PRICE_LIST_ID, \r\n SCRH.CURRENCY_CODE, \r\n SCRH.APPLICATION_FLOW, \r\n SCRH.RESTOCKING_FEE_PERCENTAGE, \r\n SCRH.ADDITIONAL_RETURN_NOTES, \r\n SCRH.ORDER_TOTAL, \r\n SCRH.SUBMITTED_ON, \r\n SCRH.SUBMITTED_BY, \r\n SCRH.SUBMITTED_BY_PROXY, \r\n SCRH.CREATED_ON, \r\n SCRH.CREATED_BY_PROXY, \r\n SCRH.CREATED_BY, \r\n SCRH.UPDATED_ON, \r\n SCRH.UPDATED_BY, \r\n SCRH.CSOPS_CASE_NUMBER, \r\n SCRH.CSOPS_NOTES, \r\n SCRH.CSOPS_CUSTOMER_NOTES, \r\n SCRH.SHARE_NODE_ID, \r\n SCRH.APPLICATION_SUB_FLOW, \r\n SCRH.CREATE_DATETIME, \r\n SCRH.SOURCE_COMMIT_TIME, \r\n SCRH.REFRESH_DATETIME, \r\n SCRH.ACTION_CODE, \r\n 'RI' AS EXCEPTION_TYPE,\r\n SCRH.EXPEDITE_FLAG,\r\n SCRH.HOLD_FLAG\r\nFROM\r\n \r\n $$STGDB.ST_DMP_CO_RETURN_HEADER  SCRH\r\n LEFT OUTER JOIN $$ETLVWDB.EV_DMP_CO_RETURN_DETAILS EVCRD1\r\n ON SCRH.RETURN_ID = EVCRD1.RETURN_ID\r\n WHERE NOT EXISTS \r\n (\r\n SELECT 1 FROM $$ETLVWDB.EV_DMP_CO_RETURN_DETAILS EVCRD\r\n WHERE EVCRD.RETURN_ID = SCRH.RETURN_ID\r\n )\r\n OR NOT EXISTS \r\n (\r\n SELECT 1 FROM $$STGDB.WI_CO_RETURN_CONTACT_DTLS WICI\r\n WHERE WICI.RETURN_ID = SCRH.RETURN_ID\r\n )\r\n OR NOT EXISTS\r\n( \r\nSELECT 1 FROM \r\n $$STGDB.WI_SALES_ORDER_AAR_RMA_NUM  NSOV1\r\n WHERE SCRH.AAR_NUMBER=NSOV1.SALES_ORDER_LINE_RMA_AAR_NUM\r\n)\r\nOR \r\n(NOT EXISTS\r\n(\r\n SELECT 1 FROM\r\n $$SLSORDVWDB.N_SALES_ORDER_TV NSO\r\n WHERE SCRH.ORIG_SALES_ORDER_NUMBER=NSO.BK_SO_NUMBER_INT\r\n AND NSO.END_TV_DATETIME='3500-01-01 00:00:00'\r\n)\r\n AND SCRH.ORIG_SALES_ORDER_NUMBER IS NOT NULL    /* Modified for Q3FY15   */\r\n)\r\nOR NOT EXISTS\r\n(\r\n SELECT 1 FROM \r\n $$COMREFVWDB.N_CISCO_WORKER_PARTY NCWP_FD\r\n WHERE  (EVCRD1.FIN_DIR_EMAIL_ADDR=NCWP_FD.CISCO_EMAIL_ADDRESS)\r\n)\r\nOR NOT EXISTS\r\n(\r\n SELECT 1 FROM\r\n $$COMREFVWDB.N_CISCO_WORKER_PARTY NCWP_RM\r\n WHERE (EVCRD1.REGIONAL_MNGR_EMAIL_ADDR=NCWP_RM.CISCO_EMAIL_ADDRESS)\r\n)\r\nOR NOT EXISTS\r\n(\r\n SELECT 1 FROM\r\n $$COMREFVWDB.N_CISCO_WORKER_PARTY NCWP_C\r\n WHERE  (EVCRD1.AREA_CNTRLR_EMAIL_ADDR=NCWP_C.CISCO_EMAIL_ADDRESS) \r\n \r\n ))EXRMA\r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY EXRMA.AAR_NUMBER  ORDER BY EXRMA.SUBMITTED_ON DESC)=1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_GG_DMP_CO_RETURN_CONTACT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CONTACT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RETURN_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONTACT_EMAIL",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT GCRC.CONTACT_ID, GCRC.RETURN_ID, GCRC.CONTACT_EMAIL \r\nFROM\r\n $$GGSRCVWDB.GG_DMP_CO_RETURN_CONTACT GCRC\r\n WHERE EXISTS(\r\n SELECT 1 FROM $$STGDB.ST_DMP_CO_RETURN_HEADER SCRH\r\n WHERE SCRH.RETURN_ID =GCRC.RETURN_ID\r\n )\r\n OR EXISTS(\r\n  SELECT 1 FROM $$EXCEPDB.EX_DMP_CO_RETURN_HEADER ECRH\r\n WHERE ECRH.RETURN_ID =GCRC.RETURN_ID\r\n )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "CALL COLLECT_STATS_WRAP('$$GGSRCDB','GG_DMP_CO_RETURN_CONTACT','D');",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Sorter",
+    "Aggregator",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "HOLD_FLAG",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "HOLD_FLAG",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "ORDER_TOTAL",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORDER_TOTAL",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "SUBMITTED_ON",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "SUBMITTED_ON",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "SUBMITTED_BY",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "SUBMITTED_BY",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "SUBMITTED_BY_PROXY",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "SUBMITTED_BY_PROXY",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "CREATED_ON",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CREATED_ON",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "CREATED_BY_PROXY",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CREATED_BY_PROXY",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "SOURCE_COMMIT_TIME",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "SOURCE_COMMIT_TIME",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "REFRESH_DATETIME",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "REFRESH_DATETIME",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "INVOICE_TO_SITE_USE_ID",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "INVOICE_TO_SITE_USE_ID",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "SHIP_TO_SITE_USE_ID",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "SHIP_TO_SITE_USE_ID",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "PRICE_LIST_ID",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "PRICE_LIST_ID",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "CSOPS_NOTES",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CSOPS_NOTES",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "CSOPS_CUSTOMER_NOTES",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CSOPS_CUSTOMER_NOTES",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "SHARE_NODE_ID",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "SHARE_NODE_ID",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "APPLICATION_SUB_FLOW",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "APPLICATION_SUB_FLOW",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "RETURN_ID",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "RETURN_ID",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "AAR_NUMBER",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "AAR_NUMBER",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "ORIG_WEB_ORDER_ID",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORIG_WEB_ORDER_ID",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "ORIG_SALES_ORDER_NUMBER",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORIG_SALES_ORDER_NUMBER",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "ORIG_ERP_HEADER_ID",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORIG_ERP_HEADER_ID",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "ORIG_PURCHASE_ORDER_NUMBER",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORIG_PURCHASE_ORDER_NUMBER",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "ORIG_SALES_ORDER_BOOKED_DATE",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORIG_SALES_ORDER_BOOKED_DATE",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORG_ID",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "APPLICATION_FLOW",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "APPLICATION_FLOW",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "RESTOCKING_FEE_PERCENTAGE",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "RESTOCKING_FEE_PERCENTAGE",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "ADDITIONAL_RETURN_NOTES",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ADDITIONAL_RETURN_NOTES",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CREATED_BY",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "UPDATED_ON",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "UPDATED_ON",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "UPDATED_BY",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "UPDATED_BY",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "CSOPS_CASE_NUMBER",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CSOPS_CASE_NUMBER",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "RETURN_STATUS",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "RETURN_STATUS",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "ACTIVE",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ACTIVE",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "RETURN_REASON",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "RETURN_REASON",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "RETURN_FROM_COUNTRY_CD",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "RETURN_FROM_COUNTRY_CD",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "RETURN_TYPE",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "RETURN_TYPE",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "ORIG_DEAL_ID",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORIG_DEAL_ID",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "EXPEDITE_FLG",
+      "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER",
+      "to_field": "EXPEDITE_FLAG",
+      "to_instance": "EX_DMP_CO_RETURN_HEADER1"
+    },
+    {
+      "from_field": "RETURN_ID",
+      "from_instance": "AGGTRANS",
+      "to_field": "RETURN_ID",
+      "to_instance": "WI_CO_RETURN_CONTACT_DTLS"
+    },
+    {
+      "from_field": "AGGR_EMAIL",
+      "from_instance": "AGGTRANS",
+      "to_field": "CONTACT_EMAIL",
+      "to_instance": "WI_CO_RETURN_CONTACT_DTLS"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_WI_SALES_ORDER_AAR_RMA_NUM",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_SALES_ORDER_AAR_RMA_NUM1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_RMA_AAR_NUM",
+      "from_instance": "SQ_WI_SALES_ORDER_AAR_RMA_NUM",
+      "to_field": "SALES_ORDER_LINE_RMA_AAR_NUM",
+      "to_instance": "WI_SALES_ORDER_AAR_RMA_NUM1"
+    },
+    {
+      "from_field": "RMA_APPROVED_DTM",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RMA_APPROVED_DTM",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "DV_RMA_APPROVED_DT",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "DV_RMA_APPROVED_DT",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "CRM_CASE_NUM",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "CRM_CASE_NUM",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RQST_CREATED_BY_NAME",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RQST_CREATED_BY_NAME",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "EXPEDITE_FLG",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "EXPEDITE_FLG",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "BK_AWAITING_AUTHORIZATION_NUM",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "BK_AWAITING_AUTHORIZATION_NUM",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RMA_REQUEST_APPROVAL_REQD_ROLE",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RMA_REQUEST_APPROVAL_REQD_ROLE",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RMA_REQUEST_SUBMIT_DTM",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RMA_REQUEST_SUBMIT_DTM",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "DV_RMA_REQUEST_SUBMIT_DT",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "DV_RMA_REQUEST_SUBMIT_DT",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RMA_REQUEST_TYPE_CD",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RMA_REQUEST_TYPE_CD",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RMA_REQUEST_STATUS_CD",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RMA_REQUEST_STATUS_CD",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RMA_REQUESTOR_EMAIL_ADDR",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RMA_REQUESTOR_EMAIL_ADDR",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RMA_REQUESTOR_CCO_ID",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RMA_REQUESTOR_CCO_ID",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "ORIGINAL_SALES_ORDER_KEY",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "ORIGINAL_SALES_ORDER_KEY",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "CUSTOMER_RETURN_CMT_TXT",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "CUSTOMER_RETURN_CMT_TXT",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "QUEUE_ADMIN_CMT_TXT",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "QUEUE_ADMIN_CMT_TXT",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "BK_CUSTOMER_RETURN_REASON_CD",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "BK_CUSTOMER_RETURN_REASON_CD",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "APPROVED_RMA_SALES_ORDER_KEY",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "APPROVED_RMA_SALES_ORDER_KEY",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RU_APPRVR_AREA_CTRLR_PRTY_KEY",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RU_APPRVR_AREA_CTRLR_PRTY_KEY",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RU_APPRVR_RGNL_MGR_PRTY_KEY",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RU_APPRVR_RGNL_MGR_PRTY_KEY",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RU_APPRVR_DIRECTOR_PRTY_KEY",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RU_APPRVR_DIRECTOR_PRTY_KEY",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RU_RMA_REQ_DENIAL_REASON_CD",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RU_RMA_REQ_DENIAL_REASON_CD",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "LAST_MODIFIED_DTM",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "LAST_MODIFIED_DTM",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "DV_LAST_MODIFIED_DT",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "DV_LAST_MODIFIED_DT",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RESTOCKING_FEE_PCT",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RESTOCKING_FEE_PCT",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "HOLD_FLG",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "HOLD_FLG",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "XX_APPROVER_ID",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "XX_APPROVER_ID",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "XX_APPROVED_BY_PROXY_ID",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "XX_APPROVED_BY_PROXY_ID",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "DENIAL_REASON_CODE",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "DENIAL_REASON_CODE",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "RU_APPRVR_FIN_VP_PRTY_KEY",
+      "from_instance": "SQ_W_RMA_REQUEST",
+      "to_field": "RU_APPRVR_FIN_VP_PRTY_KEY",
+      "to_instance": "W_RMA_REQUEST1"
+    },
+    {
+      "from_field": "DV_RMA_REQUEST_SUBMIT_DT",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "DV_RMA_REQUEST_SUBMIT_DT",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RMA_REQUEST_TYPE_CD",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RMA_REQUEST_TYPE_CD",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RMA_REQUEST_STATUS_CD",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RMA_REQUEST_STATUS_CD",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RMA_REQUESTOR_EMAIL_ADDR",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RMA_REQUESTOR_EMAIL_ADDR",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RMA_REQUESTOR_CCO_ID",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RMA_REQUESTOR_CCO_ID",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "ORIGINAL_SALES_ORDER_KEY",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "ORIGINAL_SALES_ORDER_KEY",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "CUSTOMER_RETURN_CMT_TXT",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "CUSTOMER_RETURN_CMT_TXT",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "QUEUE_ADMIN_CMT_TXT",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "QUEUE_ADMIN_CMT_TXT",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "BK_CUSTOMER_RETURN_REASON_CD",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "BK_CUSTOMER_RETURN_REASON_CD",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "APPROVED_RMA_SALES_ORDER_KEY",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "APPROVED_RMA_SALES_ORDER_KEY",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RU_APPRVR_AREA_CTRLR_PRTY_KEY",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RU_APPRVR_AREA_CTRLR_PRTY_KEY",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "DV_RMA_APPROVED_DT",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "DV_RMA_APPROVED_DT",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "CRM_CASE_NUM",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "CRM_CASE_NUM",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RQST_CREATED_BY_NAME",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RQST_CREATED_BY_NAME",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "BK_AWAITING_AUTHORIZATION_NUM",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "BK_AWAITING_AUTHORIZATION_NUM",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RMA_REQUEST_APPROVAL_REQD_ROLE",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RMA_REQUEST_APPROVAL_REQD_ROLE",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RMA_REQUEST_SUBMIT_DTM",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RMA_REQUEST_SUBMIT_DTM",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RU_APPRVR_RGNL_MGR_PRTY_KEY",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RU_APPRVR_RGNL_MGR_PRTY_KEY",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RU_APPRVR_DIRECTOR_PRTY_KEY",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RU_APPRVR_DIRECTOR_PRTY_KEY",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RU_RMA_REQ_DENIAL_REASON_CD",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RU_RMA_REQ_DENIAL_REASON_CD",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "LAST_MODIFIED_DTM",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "LAST_MODIFIED_DTM",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "DV_LAST_MODIFIED_DT",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "DV_LAST_MODIFIED_DT",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "EXPEDITE_FLG",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "EXPEDITE_FLG",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "HOLD_FLG",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "HOLD_FLG",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RESTOCKING_FEE_PCT",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RESTOCKING_FEE_PCT",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RMA_APPROVED_DTM",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RMA_APPROVED_DTM",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "XX_APPROVER_ID",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "XX_APPROVER_ID",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "XX_APPROVED_BY_PROXY_ID",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "XX_APPROVED_BY_PROXY_ID",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RQST_CREATED_BY_NAME",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "DENIAL_REASON_CODE",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RU_APPRVR_FIN_VP_PRTY_KEY",
+      "from_instance": "W_RMA_REQUEST",
+      "to_field": "RU_APPRVR_FIN_VP_PRTY_KEY",
+      "to_instance": "SQ_W_RMA_REQUEST"
+    },
+    {
+      "from_field": "RETURN_ID",
+      "from_instance": "SRTTRANS",
+      "to_field": "RETURN_ID",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "CONTACT_EMAIL",
+      "from_instance": "SRTTRANS",
+      "to_field": "CONTACT_EMAIL",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "CONTACT_ID",
+      "from_instance": "SQ_GG_DMP_CO_RETURN_CONTACT",
+      "to_field": "CONTACT_ID",
+      "to_instance": "SRTTRANS"
+    },
+    {
+      "from_field": "RETURN_ID",
+      "from_instance": "SQ_GG_DMP_CO_RETURN_CONTACT",
+      "to_field": "RETURN_ID",
+      "to_instance": "SRTTRANS"
+    },
+    {
+      "from_field": "CONTACT_EMAIL",
+      "from_instance": "SQ_GG_DMP_CO_RETURN_CONTACT",
+      "to_field": "CONTACT_EMAIL",
+      "to_instance": "SRTTRANS"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "WI_SALES_ORDER_AAR_RMA_NUM",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_WI_SALES_ORDER_AAR_RMA_NUM"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_RMA_AAR_NUM",
+      "from_instance": "WI_SALES_ORDER_AAR_RMA_NUM",
+      "to_field": "SALES_ORDER_LINE_RMA_AAR_NUM",
+      "to_instance": "SQ_WI_SALES_ORDER_AAR_RMA_NUM"
+    },
+    {
+      "from_field": "SHIP_TO_SITE_USE_ID",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "SHIP_TO_SITE_USE_ID",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "PRICE_LIST_ID",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "PRICE_LIST_ID",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "APPLICATION_FLOW",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "APPLICATION_FLOW",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "RESTOCKING_FEE_PERCENTAGE",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "RESTOCKING_FEE_PERCENTAGE",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "ADDITIONAL_RETURN_NOTES",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ADDITIONAL_RETURN_NOTES",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "ORDER_TOTAL",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORDER_TOTAL",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "SUBMITTED_ON",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "SUBMITTED_ON",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "SUBMITTED_BY",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "SUBMITTED_BY",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "SUBMITTED_BY_PROXY",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "SUBMITTED_BY_PROXY",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "HOLD_FLAG",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "HOLD_FLAG",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "ORIG_WEB_ORDER_ID",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORIG_WEB_ORDER_ID",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "UPDATED_BY",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "UPDATED_BY",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "CSOPS_CASE_NUMBER",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CSOPS_CASE_NUMBER",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "CSOPS_NOTES",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CSOPS_NOTES",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "CSOPS_CUSTOMER_NOTES",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CSOPS_CUSTOMER_NOTES",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "SHARE_NODE_ID",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "SHARE_NODE_ID",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "APPLICATION_SUB_FLOW",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "APPLICATION_SUB_FLOW",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "SOURCE_COMMIT_TIME",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "SOURCE_COMMIT_TIME",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "ORIG_ERP_HEADER_ID",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORIG_ERP_HEADER_ID",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "EXPEDITE_FLAG",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "EXPEDITE_FLG",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "ORIG_PURCHASE_ORDER_NUMBER",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORIG_PURCHASE_ORDER_NUMBER",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "ORIG_SALES_ORDER_BOOKED_DATE",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORIG_SALES_ORDER_BOOKED_DATE",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORG_ID",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "INVOICE_TO_SITE_USE_ID",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "INVOICE_TO_SITE_USE_ID",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "RETURN_ID",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "RETURN_ID",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "AAR_NUMBER",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "AAR_NUMBER",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "RETURN_STATUS",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "RETURN_STATUS",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "ACTIVE",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ACTIVE",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "RETURN_REASON",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "RETURN_REASON",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "RETURN_FROM_COUNTRY_CD",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "RETURN_FROM_COUNTRY_CD",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "REFRESH_DATETIME",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "REFRESH_DATETIME",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "ORIG_SALES_ORDER_NUMBER",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORIG_SALES_ORDER_NUMBER",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "CREATED_ON",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CREATED_ON",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "CREATED_BY_PROXY",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CREATED_BY_PROXY",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "UPDATED_ON",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "UPDATED_ON",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "RETURN_TYPE",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "RETURN_TYPE",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "ORIG_DEAL_ID",
+      "from_instance": "EX_DMP_CO_RETURN_HEADER",
+      "to_field": "ORIG_DEAL_ID",
+      "to_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+    },
+    {
+      "from_field": "CONTACT_ID",
+      "from_instance": "GG_DMP_CO_RETURN_CONTACT",
+      "to_field": "CONTACT_ID",
+      "to_instance": "SQ_GG_DMP_CO_RETURN_CONTACT"
+    },
+    {
+      "from_field": "RETURN_ID",
+      "from_instance": "GG_DMP_CO_RETURN_CONTACT",
+      "to_field": "RETURN_ID",
+      "to_instance": "SQ_GG_DMP_CO_RETURN_CONTACT"
+    },
+    {
+      "from_field": "CONTACT_EMAIL",
+      "from_instance": "GG_DMP_CO_RETURN_CONTACT",
+      "to_field": "CONTACT_EMAIL",
+      "to_instance": "SQ_GG_DMP_CO_RETURN_CONTACT"
+    },
+    {
+      "from_field": "RETURN_ID",
+      "from_instance": "EXPTRANS",
+      "to_field": "RETURN_ID",
+      "to_instance": "AGGTRANS"
+    },
+    {
+      "from_field": "EMAIL",
+      "from_instance": "EXPTRANS",
+      "to_field": "EMAIL",
+      "to_instance": "AGGTRANS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_AWAITING_AUTHORIZATION_NUM",
+      "source_path": [
+        {
+          "from_field": "BK_AWAITING_AUTHORIZATION_NUM",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "BK_AWAITING_AUTHORIZATION_NUM",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RMA_REQUEST_APPROVAL_REQD_ROLE",
+      "source_path": [
+        {
+          "from_field": "RMA_REQUEST_APPROVAL_REQD_ROLE",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RMA_REQUEST_APPROVAL_REQD_ROLE",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RMA_REQUEST_SUBMIT_DTM",
+      "source_path": [
+        {
+          "from_field": "RMA_REQUEST_SUBMIT_DTM",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RMA_REQUEST_SUBMIT_DTM",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_RMA_REQUEST_SUBMIT_DT",
+      "source_path": [
+        {
+          "from_field": "DV_RMA_REQUEST_SUBMIT_DT",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "DV_RMA_REQUEST_SUBMIT_DT",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RMA_REQUEST_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "RMA_REQUEST_TYPE_CD",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RMA_REQUEST_TYPE_CD",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RMA_REQUEST_STATUS_CD",
+      "source_path": [
+        {
+          "from_field": "RMA_REQUEST_STATUS_CD",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RMA_REQUEST_STATUS_CD",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RMA_REQUESTOR_EMAIL_ADDR",
+      "source_path": [
+        {
+          "from_field": "RMA_REQUESTOR_EMAIL_ADDR",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RMA_REQUESTOR_EMAIL_ADDR",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RMA_REQUESTOR_CCO_ID",
+      "source_path": [
+        {
+          "from_field": "RMA_REQUESTOR_CCO_ID",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RMA_REQUESTOR_CCO_ID",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ORIGINAL_SALES_ORDER_KEY",
+      "source_path": [
+        {
+          "from_field": "ORIGINAL_SALES_ORDER_KEY",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "ORIGINAL_SALES_ORDER_KEY",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CUSTOMER_RETURN_CMT_TXT",
+      "source_path": [
+        {
+          "from_field": "CUSTOMER_RETURN_CMT_TXT",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "CUSTOMER_RETURN_CMT_TXT",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "QUEUE_ADMIN_CMT_TXT",
+      "source_path": [
+        {
+          "from_field": "QUEUE_ADMIN_CMT_TXT",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "QUEUE_ADMIN_CMT_TXT",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_CUSTOMER_RETURN_REASON_CD",
+      "source_path": [
+        {
+          "from_field": "BK_CUSTOMER_RETURN_REASON_CD",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "BK_CUSTOMER_RETURN_REASON_CD",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "APPROVED_RMA_SALES_ORDER_KEY",
+      "source_path": [
+        {
+          "from_field": "APPROVED_RMA_SALES_ORDER_KEY",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "APPROVED_RMA_SALES_ORDER_KEY",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_APPRVR_AREA_CTRLR_PRTY_KEY",
+      "source_path": [
+        {
+          "from_field": "RU_APPRVR_AREA_CTRLR_PRTY_KEY",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RU_APPRVR_AREA_CTRLR_PRTY_KEY",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_APPRVR_RGNL_MGR_PRTY_KEY",
+      "source_path": [
+        {
+          "from_field": "RU_APPRVR_RGNL_MGR_PRTY_KEY",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RU_APPRVR_RGNL_MGR_PRTY_KEY",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_APPRVR_DIRECTOR_PRTY_KEY",
+      "source_path": [
+        {
+          "from_field": "RU_APPRVR_DIRECTOR_PRTY_KEY",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RU_APPRVR_DIRECTOR_PRTY_KEY",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_RMA_REQ_DENIAL_REASON_CD",
+      "source_path": [
+        {
+          "from_field": "RU_RMA_REQ_DENIAL_REASON_CD",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RU_RMA_REQ_DENIAL_REASON_CD",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_MODIFIED_DTM",
+      "source_path": [
+        {
+          "from_field": "LAST_MODIFIED_DTM",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "LAST_MODIFIED_DTM",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_LAST_MODIFIED_DT",
+      "source_path": [
+        {
+          "from_field": "DV_LAST_MODIFIED_DT",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "DV_LAST_MODIFIED_DT",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RESTOCKING_FEE_PCT",
+      "source_path": [
+        {
+          "from_field": "RESTOCKING_FEE_PCT",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RESTOCKING_FEE_PCT",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RMA_APPROVED_DTM",
+      "source_path": [
+        {
+          "from_field": "RMA_APPROVED_DTM",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RMA_APPROVED_DTM",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_RMA_APPROVED_DT",
+      "source_path": [
+        {
+          "from_field": "DV_RMA_APPROVED_DT",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "DV_RMA_APPROVED_DT",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CRM_CASE_NUM",
+      "source_path": [
+        {
+          "from_field": "CRM_CASE_NUM",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "CRM_CASE_NUM",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RQST_CREATED_BY_NAME",
+      "source_path": [
+        {
+          "from_field": "RQST_CREATED_BY_NAME",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RQST_CREATED_BY_NAME",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EXPEDITE_FLG",
+      "source_path": [
+        {
+          "from_field": "EXPEDITE_FLG",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "EXPEDITE_FLG",
+          "from_instance": "W_RMA_REQUEST"
+        },
+        {
+          "from_field": "EXPEDITE_FLAG",
+          "from_instance": "EX_DMP_CO_RETURN_HEADER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "HOLD_FLG",
+      "source_path": [
+        {
+          "from_field": "HOLD_FLG",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "HOLD_FLG",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "XX_APPROVER_ID",
+      "source_path": [
+        {
+          "from_field": "XX_APPROVER_ID",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "XX_APPROVER_ID",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "XX_APPROVED_BY_PROXY_ID",
+      "source_path": [
+        {
+          "from_field": "XX_APPROVED_BY_PROXY_ID",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "XX_APPROVED_BY_PROXY_ID",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_EX_DMP_CO_RETURN_HEADER"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "W_RMA_REQUEST"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EX_DMP_CO_RETURN_HEADER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DENIAL_REASON_CODE",
+      "source_path": [
+        {
+          "from_field": "DENIAL_REASON_CODE",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RQST_CREATED_BY_NAME",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_APPRVR_FIN_VP_PRTY_KEY",
+      "source_path": [
+        {
+          "from_field": "RU_APPRVR_FIN_VP_PRTY_KEY",
+          "from_instance": "SQ_W_RMA_REQUEST"
+        },
+        {
+          "from_field": "RU_APPRVR_FIN_VP_PRTY_KEY",
+          "from_instance": "W_RMA_REQUEST"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "thin",
+  "generated_timestamp": "2026-03-19T18:33:11.798866+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,1261 @@
+{
+  "workflow_name": "wf_m_EL_FA_CATEGORIES_TL_SRC2EL",
+  "mapping_name": "m_EL_FA_CATEGORIES_TL_SRC2EL",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "EL_FA_CATEGORIES_TL",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_el_fa_categories_tl_src2el_01_mart_el_fa_categories_tl",
+  "source_tables": [
+    "MF_FA_CATEGORIES_TL"
+  ],
+  "sources": [
+    {
+      "name": "MF_FA_CATEGORIES_TL",
+      "database_type": "Oracle",
+      "owner": "OPS$ODSADM",
+      "fields": [
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar2",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar2",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LANGUAGE",
+          "datatype": "varchar2",
+          "precision": "4",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_LOGIN",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_LANG",
+          "datatype": "varchar2",
+          "precision": "4",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_FA_CATEGORIES_TL",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "CATEGORY_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DESCRIPTION",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GLOBAL_NAME",
+        "datatype": "varchar",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "LANGUAGE_CODE",
+        "datatype": "varchar",
+        "precision": "4",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SOURCE_LANG",
+        "datatype": "varchar",
+        "precision": "4",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "out_CATEGORY_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "TO_INTEGER(CATEGORY_ID)"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DESCRIPTION"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GLOBAL_NAME"
+        },
+        {
+          "name": "LANGUAGE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LANGUAGE"
+        },
+        {
+          "name": "SOURCE_LANG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SOURCE_LANG"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "UPD_UPDATE",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LANGUAGE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_LANG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_UPDATE",
+        "Forward Rejected Rows": "YES",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "LKPTRANS",
+      "type": "Lookup Procedure",
+      "description": "",
+      "fields": [
+        {
+          "name": "in_CATEGORY_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "in_GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "in_LANGUAGE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "integer",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LANGUAGE_CODE",
+          "datatype": "string",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_LANG",
+          "datatype": "string",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Lookup Sql Override": "SELECT \r\nEL_FA_CATEGORIES_TL.CATEGORY_ID as CATEGORY_ID,\r\nCOALESCE(EL_FA_CATEGORIES_TL.DESCRIPTION,'UNK') as DESCRIPTION, \r\nEL_FA_CATEGORIES_TL.GLOBAL_NAME as GLOBAL_NAME, \r\nEL_FA_CATEGORIES_TL.LANGUAGE_CODE as LANGUAGE_CODE,\r\nCOALESCE(EL_FA_CATEGORIES_TL.SOURCE_LANG,'UNK') as SOURCE_LANG  FROM $$ETLVWDB.EL_FA_CATEGORIES_TL",
+        "Lookup table name": "EL_FA_CATEGORIES_TL",
+        "Lookup Source Filter": "",
+        "Lookup caching enabled": "YES",
+        "Lookup policy on multiple match": "Use Any Value",
+        "Lookup condition": "GLOBAL_NAME = in_GLOBAL_NAME AND LANGUAGE_CODE = in_LANGUAGE AND CATEGORY_ID = in_CATEGORY_ID",
+        "Connection Information": "$Target",
+        "Source Type": "Database",
+        "Recache if Stale": "NO",
+        "Tracing Level": "Normal",
+        "Lookup cache directory name": "$PMCacheDir",
+        "Lookup cache initialize": "NO",
+        "Lookup cache persistent": "NO",
+        "Lookup Data Cache Size": "Auto",
+        "Lookup Index Cache Size": "Auto",
+        "Dynamic Lookup Cache": "NO",
+        "Synchronize Dynamic Cache": "NO",
+        "Output Old Value On Update": "NO",
+        "Update Dynamic Cache Condition": "TRUE",
+        "Cache File Name Prefix": "",
+        "Re-cache from lookup source": "NO",
+        "Insert Else Update": "NO",
+        "Update Else Insert": "NO",
+        "Datetime Format": "",
+        "Thousand Separator": "None",
+        "Decimal Separator": ".",
+        "Case Sensitive String Comparison": "NO",
+        "Null ordering": "Null Is Highest Value",
+        "Sorted Input": "NO",
+        "Lookup source is static": "NO",
+        "Pre-build lookup cache": "Auto",
+        "Subsecond Precision": "6"
+      }
+    },
+    {
+      "name": "RTR_EL_FA_CATEGORIES_TL",
+      "type": "Router",
+      "description": "",
+      "fields": [
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "integer",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LANGUAGE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_LANG",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_CATEGORY_ID",
+          "datatype": "integer",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_LANGUAGE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_SOURCE_LANG",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "CATEGORY_ID1",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LANGUAGE1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_LANG1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_CATEGORY_ID1",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_GLOBAL_NAME1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_LANGUAGE_CODE1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_DESCRIPTION1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_SOURCE_LANG1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CATEGORY_ID3",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LANGUAGE3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_LANG3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_CATEGORY_ID3",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_GLOBAL_NAME3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_LANGUAGE_CODE3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_DESCRIPTION3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_SOURCE_LANG3",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CATEGORY_ID2",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LANGUAGE2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_LANG2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_CATEGORY_ID2",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_GLOBAL_NAME2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_LANGUAGE_CODE2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_DESCRIPTION2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LKP_SOURCE_LANG2",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      },
+      "groups": [
+        {
+          "name": "INSERT",
+          "expression": "IIF(ISNULL(LKP_CATEGORY_ID) AND\r\nISNULL(LKP_GLOBAL_NAME) AND \r\nISNULL(LKP_LANGUAGE_CODE),TRUE,FALSE)"
+        },
+        {
+          "name": "DEFAULT1",
+          "expression": ""
+        },
+        {
+          "name": "UPDATE",
+          "expression": "IIF((NOT ISNULL(LKP_CATEGORY_ID) AND \r\nNOT ISNULL(LKP_GLOBAL_NAME) AND \r\nNOT ISNULL(LKP_LANGUAGE_CODE)) AND \r\n(IIF(ISNULL(LKP_DESCRIPTION),'UNK',LKP_DESCRIPTION)  != IIF(ISNULL(DESCRIPTION),'UNK',DESCRIPTION)  OR\r\nIIF(ISNULL(LKP_SOURCE_LANG),'UNK',LKP_SOURCE_LANG)  != IIF(ISNULL(SOURCE_LANG),'UNK',SOURCE_LANG) ),TRUE,FALSE)"
+        },
+        {
+          "name": "INPUT",
+          "expression": ""
+        }
+      ]
+    },
+    {
+      "name": "SQ_MF_FA_CATEGORIES_TL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LANGUAGE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_LANG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_EL_FA_CATEGORIES_TL",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CATEGORY_ID"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DESCRIPTION"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GLOBAL_NAME"
+        },
+        {
+          "name": "LANGUAGE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LANGUAGE"
+        },
+        {
+          "name": "SOURCE_LANG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SOURCE_LANG"
+        },
+        {
+          "name": "LKP_CATEGORY_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LKP_CATEGORY_ID"
+        },
+        {
+          "name": "LKP_GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LKP_GLOBAL_NAME"
+        },
+        {
+          "name": "LKP_LANGUAGE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LKP_LANGUAGE_CODE"
+        },
+        {
+          "name": "LKP_DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LKP_DESCRIPTION"
+        },
+        {
+          "name": "LKP_SOURCE_LANG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LKP_SOURCE_LANG"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "UPD_INSERT",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LANGUAGE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_LANG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_INSERT",
+        "Forward Rejected Rows": "YES",
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Update Strategy",
+    "Router",
+    "Lookup Procedure",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "CATEGORY_ID",
+      "from_instance": "UPD_INSERT",
+      "to_field": "CATEGORY_ID",
+      "to_instance": "EL_FA_CATEGORIES_TL_INSERT"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "UPD_INSERT",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EL_FA_CATEGORIES_TL_INSERT"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "UPD_INSERT",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EL_FA_CATEGORIES_TL_INSERT"
+    },
+    {
+      "from_field": "LANGUAGE_CODE",
+      "from_instance": "UPD_INSERT",
+      "to_field": "LANGUAGE_CODE",
+      "to_instance": "EL_FA_CATEGORIES_TL_INSERT"
+    },
+    {
+      "from_field": "SOURCE_LANG",
+      "from_instance": "UPD_INSERT",
+      "to_field": "SOURCE_LANG",
+      "to_instance": "EL_FA_CATEGORIES_TL_INSERT"
+    },
+    {
+      "from_field": "CATEGORY_ID",
+      "from_instance": "UPD_UPDATE",
+      "to_field": "CATEGORY_ID",
+      "to_instance": "EL_FA_CATEGORIES_TL_UPDATE"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "UPD_UPDATE",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EL_FA_CATEGORIES_TL_UPDATE"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "UPD_UPDATE",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EL_FA_CATEGORIES_TL_UPDATE"
+    },
+    {
+      "from_field": "LANGUAGE_CODE",
+      "from_instance": "UPD_UPDATE",
+      "to_field": "LANGUAGE_CODE",
+      "to_instance": "EL_FA_CATEGORIES_TL_UPDATE"
+    },
+    {
+      "from_field": "SOURCE_LANG",
+      "from_instance": "UPD_UPDATE",
+      "to_field": "SOURCE_LANG",
+      "to_instance": "EL_FA_CATEGORIES_TL_UPDATE"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SQ_MF_FA_CATEGORIES_TL",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_MF_FA_CATEGORIES_TL",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "LANGUAGE",
+      "from_instance": "SQ_MF_FA_CATEGORIES_TL",
+      "to_field": "LANGUAGE",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "SOURCE_LANG",
+      "from_instance": "SQ_MF_FA_CATEGORIES_TL",
+      "to_field": "SOURCE_LANG",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "CATEGORY_ID",
+      "from_instance": "SQ_MF_FA_CATEGORIES_TL",
+      "to_field": "CATEGORY_ID",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "EXPTRANS",
+      "to_field": "in_GLOBAL_NAME",
+      "to_instance": "LKPTRANS"
+    },
+    {
+      "from_field": "LANGUAGE",
+      "from_instance": "EXPTRANS",
+      "to_field": "in_LANGUAGE",
+      "to_instance": "LKPTRANS"
+    },
+    {
+      "from_field": "out_CATEGORY_ID",
+      "from_instance": "EXPTRANS",
+      "to_field": "in_CATEGORY_ID",
+      "to_instance": "LKPTRANS"
+    },
+    {
+      "from_field": "LANGUAGE",
+      "from_instance": "EXPTRANS",
+      "to_field": "LANGUAGE",
+      "to_instance": "EXP_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "SOURCE_LANG",
+      "from_instance": "EXPTRANS",
+      "to_field": "SOURCE_LANG",
+      "to_instance": "EXP_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "out_CATEGORY_ID",
+      "from_instance": "EXPTRANS",
+      "to_field": "CATEGORY_ID",
+      "to_instance": "EXP_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EXPTRANS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EXP_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "EXPTRANS",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EXP_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "LKP_CATEGORY_ID3",
+      "from_instance": "RTR_EL_FA_CATEGORIES_TL",
+      "to_field": "CATEGORY_ID",
+      "to_instance": "UPD_UPDATE"
+    },
+    {
+      "from_field": "SOURCE_LANG3",
+      "from_instance": "RTR_EL_FA_CATEGORIES_TL",
+      "to_field": "SOURCE_LANG",
+      "to_instance": "UPD_UPDATE"
+    },
+    {
+      "from_field": "LKP_LANGUAGE_CODE3",
+      "from_instance": "RTR_EL_FA_CATEGORIES_TL",
+      "to_field": "LANGUAGE_CODE",
+      "to_instance": "UPD_UPDATE"
+    },
+    {
+      "from_field": "DESCRIPTION3",
+      "from_instance": "RTR_EL_FA_CATEGORIES_TL",
+      "to_field": "DESCRIPTION",
+      "to_instance": "UPD_UPDATE"
+    },
+    {
+      "from_field": "LKP_GLOBAL_NAME3",
+      "from_instance": "RTR_EL_FA_CATEGORIES_TL",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "UPD_UPDATE"
+    },
+    {
+      "from_field": "CATEGORY_ID",
+      "from_instance": "LKPTRANS",
+      "to_field": "LKP_CATEGORY_ID",
+      "to_instance": "EXP_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "LKPTRANS",
+      "to_field": "LKP_GLOBAL_NAME",
+      "to_instance": "EXP_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "LANGUAGE_CODE",
+      "from_instance": "LKPTRANS",
+      "to_field": "LKP_LANGUAGE_CODE",
+      "to_instance": "EXP_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "LKPTRANS",
+      "to_field": "LKP_DESCRIPTION",
+      "to_instance": "EXP_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "SOURCE_LANG",
+      "from_instance": "LKPTRANS",
+      "to_field": "LKP_SOURCE_LANG",
+      "to_instance": "EXP_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "CATEGORY_ID",
+      "from_instance": "EXP_EL_FA_CATEGORIES_TL",
+      "to_field": "CATEGORY_ID",
+      "to_instance": "RTR_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EXP_EL_FA_CATEGORIES_TL",
+      "to_field": "DESCRIPTION",
+      "to_instance": "RTR_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "EXP_EL_FA_CATEGORIES_TL",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "RTR_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "LANGUAGE",
+      "from_instance": "EXP_EL_FA_CATEGORIES_TL",
+      "to_field": "LANGUAGE",
+      "to_instance": "RTR_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "SOURCE_LANG",
+      "from_instance": "EXP_EL_FA_CATEGORIES_TL",
+      "to_field": "SOURCE_LANG",
+      "to_instance": "RTR_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "LKP_CATEGORY_ID",
+      "from_instance": "EXP_EL_FA_CATEGORIES_TL",
+      "to_field": "LKP_CATEGORY_ID",
+      "to_instance": "RTR_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "LKP_GLOBAL_NAME",
+      "from_instance": "EXP_EL_FA_CATEGORIES_TL",
+      "to_field": "LKP_GLOBAL_NAME",
+      "to_instance": "RTR_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "LKP_LANGUAGE_CODE",
+      "from_instance": "EXP_EL_FA_CATEGORIES_TL",
+      "to_field": "LKP_LANGUAGE_CODE",
+      "to_instance": "RTR_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "LKP_DESCRIPTION",
+      "from_instance": "EXP_EL_FA_CATEGORIES_TL",
+      "to_field": "LKP_DESCRIPTION",
+      "to_instance": "RTR_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "LKP_SOURCE_LANG",
+      "from_instance": "EXP_EL_FA_CATEGORIES_TL",
+      "to_field": "LKP_SOURCE_LANG",
+      "to_instance": "RTR_EL_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "CATEGORY_ID1",
+      "from_instance": "RTR_EL_FA_CATEGORIES_TL",
+      "to_field": "CATEGORY_ID",
+      "to_instance": "UPD_INSERT"
+    },
+    {
+      "from_field": "DESCRIPTION1",
+      "from_instance": "RTR_EL_FA_CATEGORIES_TL",
+      "to_field": "DESCRIPTION",
+      "to_instance": "UPD_INSERT"
+    },
+    {
+      "from_field": "GLOBAL_NAME1",
+      "from_instance": "RTR_EL_FA_CATEGORIES_TL",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "UPD_INSERT"
+    },
+    {
+      "from_field": "LANGUAGE1",
+      "from_instance": "RTR_EL_FA_CATEGORIES_TL",
+      "to_field": "LANGUAGE_CODE",
+      "to_instance": "UPD_INSERT"
+    },
+    {
+      "from_field": "SOURCE_LANG1",
+      "from_instance": "RTR_EL_FA_CATEGORIES_TL",
+      "to_field": "SOURCE_LANG",
+      "to_instance": "UPD_INSERT"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "MF_FA_CATEGORIES_TL",
+      "to_field": "DESCRIPTION",
+      "to_instance": "SQ_MF_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "MF_FA_CATEGORIES_TL",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_MF_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "LANGUAGE",
+      "from_instance": "MF_FA_CATEGORIES_TL",
+      "to_field": "LANGUAGE",
+      "to_instance": "SQ_MF_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "SOURCE_LANG",
+      "from_instance": "MF_FA_CATEGORIES_TL",
+      "to_field": "SOURCE_LANG",
+      "to_instance": "SQ_MF_FA_CATEGORIES_TL"
+    },
+    {
+      "from_field": "CATEGORY_ID",
+      "from_instance": "MF_FA_CATEGORIES_TL",
+      "to_field": "CATEGORY_ID",
+      "to_instance": "SQ_MF_FA_CATEGORIES_TL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "CATEGORY_ID",
+      "source_path": [
+        {
+          "from_field": "CATEGORY_ID",
+          "from_instance": "UPD_INSERT"
+        },
+        {
+          "from_field": "CATEGORY_ID",
+          "from_instance": "UPD_UPDATE"
+        },
+        {
+          "from_field": "CATEGORY_ID",
+          "from_instance": "SQ_MF_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "out_CATEGORY_ID",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "LKP_CATEGORY_ID3",
+          "from_instance": "RTR_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "CATEGORY_ID",
+          "from_instance": "EXP_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "CATEGORY_ID1",
+          "from_instance": "RTR_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "CATEGORY_ID",
+          "from_instance": "MF_FA_CATEGORIES_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "UPD_INSERT"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "UPD_UPDATE"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "SQ_MF_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "DESCRIPTION3",
+          "from_instance": "RTR_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "EXP_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "DESCRIPTION1",
+          "from_instance": "RTR_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "MF_FA_CATEGORIES_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GLOBAL_NAME",
+      "source_path": [
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "UPD_INSERT"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "UPD_UPDATE"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_MF_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "LKP_GLOBAL_NAME3",
+          "from_instance": "RTR_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "EXP_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "GLOBAL_NAME1",
+          "from_instance": "RTR_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "MF_FA_CATEGORIES_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LANGUAGE_CODE",
+      "source_path": [
+        {
+          "from_field": "LANGUAGE_CODE",
+          "from_instance": "UPD_INSERT"
+        },
+        {
+          "from_field": "LANGUAGE_CODE",
+          "from_instance": "UPD_UPDATE"
+        },
+        {
+          "from_field": "LKP_LANGUAGE_CODE3",
+          "from_instance": "RTR_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "LANGUAGE1",
+          "from_instance": "RTR_EL_FA_CATEGORIES_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_LANG",
+      "source_path": [
+        {
+          "from_field": "SOURCE_LANG",
+          "from_instance": "UPD_INSERT"
+        },
+        {
+          "from_field": "SOURCE_LANG",
+          "from_instance": "UPD_UPDATE"
+        },
+        {
+          "from_field": "SOURCE_LANG",
+          "from_instance": "SQ_MF_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "SOURCE_LANG",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "SOURCE_LANG3",
+          "from_instance": "RTR_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "SOURCE_LANG",
+          "from_instance": "EXP_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "SOURCE_LANG1",
+          "from_instance": "RTR_EL_FA_CATEGORIES_TL"
+        },
+        {
+          "from_field": "SOURCE_LANG",
+          "from_instance": "MF_FA_CATEGORIES_TL"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "thin",
+  "generated_timestamp": "2026-03-19T18:05:05.371736+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

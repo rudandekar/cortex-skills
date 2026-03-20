@@ -1,0 +1,616 @@
+{
+  "workflow_name": "wf_m_N_EAC_RULE_LOOKUP",
+  "mapping_name": "m_N_EAC_RULE_LOOKUP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_PARTY_SAV",
+  "target_table": "N_EAC_RULE_ATTRIB_LOOKUP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_party_sav_wf_n_eac_rule_lookup_01_mart_n_eac_rule_attrib_lookup",
+  "source_tables": [
+    "W_EAC_RULE_ATTRIB_LOOKUP"
+  ],
+  "sources": [
+    {
+      "name": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV3",
+      "fields": [
+        {
+          "name": "EAC_RULE_ATTRIB_LOOKUP_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_EAC_ORG_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ATTRIBUTE_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ATTRIBUTE_VALUE_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ATTRIBUTE_VALUE_TEXT",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EFFECTIVE_END_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EFFECTIVE_START_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_EAC_RULE_ATTRIB_LOOKUP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "EAC_RULE_ATTRIB_LOOKUP_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_EAC_ORG_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "ATTRIBUTE_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE_VALUE_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTE_VALUE_TEXT",
+        "datatype": "varchar",
+        "precision": "150",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EFFECTIVE_END_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EFFECTIVE_START_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_EAC_RULE_ATTRIB_LOOKUP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "EAC_RULE_ATTRIB_LOOKUP_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_EAC_ORG_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE_VALUE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE_VALUE_TEXT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EFFECTIVE_END_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EFFECTIVE_START_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nW.EAC_RULE_ATTRIB_LOOKUP_ID,\r\nW.BK_EAC_ORG_ID,\r\nW.ATTRIBUTE_NAME,\r\nW.ATTRIBUTE_VALUE_NAME,\r\nW.ATTRIBUTE_VALUE_TEXT,\r\nW.EFFECTIVE_END_DT,\r\nW.EFFECTIVE_START_DT,\r\nW.EDW_CREATE_USER,\r\nW.EDW_UPDATE_USER,\r\nW.EDW_CREATE_DATETIME,\r\nW.EDW_UPDATE_DATETIME\r\nFROM $$WORKDB.W_EAC_RULE_ATTRIB_LOOKUP W",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "EAC_RULE_ATTRIB_LOOKUP_ID",
+      "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EAC_RULE_ATTRIB_LOOKUP_ID",
+      "to_instance": "N_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "BK_EAC_ORG_ID",
+      "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "BK_EAC_ORG_ID",
+      "to_instance": "N_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "ATTRIBUTE_NAME",
+      "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "ATTRIBUTE_NAME",
+      "to_instance": "N_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "ATTRIBUTE_VALUE_NAME",
+      "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "ATTRIBUTE_VALUE_NAME",
+      "to_instance": "N_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "ATTRIBUTE_VALUE_TEXT",
+      "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "ATTRIBUTE_VALUE_TEXT",
+      "to_instance": "N_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EFFECTIVE_END_DT",
+      "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EFFECTIVE_END_DT",
+      "to_instance": "N_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EFFECTIVE_START_DT",
+      "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EFFECTIVE_START_DT",
+      "to_instance": "N_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "N_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "N_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EAC_RULE_ATTRIB_LOOKUP_ID",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EAC_RULE_ATTRIB_LOOKUP_ID",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "BK_EAC_ORG_ID",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "BK_EAC_ORG_ID",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "ATTRIBUTE_NAME",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "ATTRIBUTE_NAME",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "ATTRIBUTE_VALUE_NAME",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "ATTRIBUTE_VALUE_NAME",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "ATTRIBUTE_VALUE_TEXT",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "ATTRIBUTE_VALUE_TEXT",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EFFECTIVE_END_DT",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EFFECTIVE_END_DT",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EFFECTIVE_START_DT",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EFFECTIVE_START_DT",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "EAC_RULE_ATTRIB_LOOKUP_ID",
+      "source_path": [
+        {
+          "from_field": "EAC_RULE_ATTRIB_LOOKUP_ID",
+          "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+        },
+        {
+          "from_field": "EAC_RULE_ATTRIB_LOOKUP_ID",
+          "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_EAC_ORG_ID",
+      "source_path": [
+        {
+          "from_field": "BK_EAC_ORG_ID",
+          "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+        },
+        {
+          "from_field": "BK_EAC_ORG_ID",
+          "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE_NAME",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE_NAME",
+          "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+        },
+        {
+          "from_field": "ATTRIBUTE_NAME",
+          "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE_VALUE_NAME",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE_VALUE_NAME",
+          "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+        },
+        {
+          "from_field": "ATTRIBUTE_VALUE_NAME",
+          "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTE_VALUE_TEXT",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE_VALUE_TEXT",
+          "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+        },
+        {
+          "from_field": "ATTRIBUTE_VALUE_TEXT",
+          "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EFFECTIVE_END_DT",
+      "source_path": [
+        {
+          "from_field": "EFFECTIVE_END_DT",
+          "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+        },
+        {
+          "from_field": "EFFECTIVE_END_DT",
+          "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EFFECTIVE_START_DT",
+      "source_path": [
+        {
+          "from_field": "EFFECTIVE_START_DT",
+          "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+        },
+        {
+          "from_field": "EFFECTIVE_START_DT",
+          "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+        },
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "SQ_W_EAC_RULE_ATTRIB_LOOKUP"
+        },
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "W_EAC_RULE_ATTRIB_LOOKUP"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:14.992298+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

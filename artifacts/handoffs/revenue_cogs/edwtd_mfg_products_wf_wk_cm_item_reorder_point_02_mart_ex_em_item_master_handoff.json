@@ -1,0 +1,1246 @@
+{
+  "workflow_name": "wf_m_WK_CM_ITEM_REORDER_POINT",
+  "mapping_name": "m_WK_CM_ITEM_REORDER_POINT",
+  "mapping_description": "This ETL mapping extracts data from ST_EM_ITEM_MASTER  table from Stage table to Work & Exception table\r\n\r\nsdande : Logic has been changed in sync with the KINAXIS logic to populate REORDER_POINT_QTY,\r\nSTATISTICAL_INV_SIZING_QTY,\r\nCT2R_DAYS_CNT,",
+  "folder_name": "EDWTD_MFG_PRODUCTS",
+  "target_table": "EX_EM_ITEM_MASTER",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_mfg_products_wf_wk_cm_item_reorder_point_02_mart_ex_em_item_master",
+  "source_tables": [
+    "ST_EM_ITEM_MASTER"
+  ],
+  "sources": [
+    {
+      "name": "ST_EM_ITEM_MASTER",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "ITEM_MASTER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PARTNER_ID",
+          "datatype": "varchar",
+          "precision": "13",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_ID",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REORDER_POINT_QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ROP_SAFETY_STOCK_QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SINGLE_USE_KANBAN_QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CYCLE_TIME_TO_REPLENISH",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MINIMUM_ORDER_QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MINIMUM_PACKAGE_QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EX_EM_ITEM_MASTER",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ITEM_MASTER_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARTNER_ID",
+        "datatype": "varchar",
+        "precision": "13",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PRODUCT_ID",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REORDER_POINT_QUANTITY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ROP_SAFETY_STOCK_QUANTITY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SINGLE_USE_KANBAN_QUANTITY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CYCLE_TIME_TO_REPLENISH",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MINIMUM_ORDER_QUANTITY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MINIMUM_PACKAGE_QUANTITY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EXCEPTION_TYPE",
+        "datatype": "char",
+        "precision": "2",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "Sq_ST_EM_ITEM_MASTER",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ITEM_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_ORGN_NAME_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REORDER_POINT_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADDITIONAL_REORDER_POINT_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MINIMUM_ORDER_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MINIMUM_PACKAGE_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STATISTICAL_INV_SIZING_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CT2R_DAYS_CNT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n      TVOUTPUT.ITEM_KEY AS ITEM_KEY,\r\n      TVOUTPUT.INVENTORY_ORGN_NAME_KEY AS INVENTORY_ORGN_NAME_KEY,\r\n      CAST(TVOUTPUT.START_TV_DT AS DATE) AS START_TV_DT,\r\n      COALESCE (MAX (CAST (TVOUTPUT.START_TV_DT AS DATE) - INTERVAL '1' DAY) \r\n                   OVER (PARTITION BY TVOUTPUT.ITEM_KEY,TVOUTPUT.INVENTORY_ORGN_NAME_KEY\r\nORDER\tBY TVOUTPUT.START_TV_DT ASC ROWS BETWEEN 1 \r\n                           FOLLOWING\r\n\tAND\t1 FOLLOWING), DATE '3500-01-01') AS END_TV_DT,\r\n     TVOUTPUT.REORDER_POINT_QTY AS REORDER_POINT_QTY,\r\n     TVOUTPUT.ADDITIONAL_REORDER_POINT_QTY AS ADDITIONAL_REORDER_POINT_QTY,\r\n     TVOUTPUT.MINIMUM_ORDER_QTY AS MINIMUM_ORDER_QTY,\r\n     TVOUTPUT.MINIMUM_PACKAGE_QTY AS MINIMUM_PACKAGE_QTY,\r\n     TVOUTPUT.STATISTICAL_INV_SIZING_QTY AS STATISTICAL_INV_SIZING_QTY, \r\n     TVOUTPUT.CT2R_DAYS_CNT AS CT2R_DAYS_CNT,\r\n     TVOUTPUT.ACTION_CODE AS ACTION_CODE,\r\n     CAST(TVOUTPUT.CREATE_DATETIME  AS TIMESTAMP(0)) AS CREATE_DATETIME,\r\n     CAST(TVOUTPUT.CREATE_DATETIME  AS TIMESTAMP(0)) AS UPDATE_DATETIME,\r\n     ROW_NUMBER () OVER (PARTITION BY TVOUTPUT.ITEM_KEY,\r\n                                       TVOUTPUT.INVENTORY_ORGN_NAME_KEY                                 \r\nORDER\tBY TVOUTPUT.START_TV_DT ASC) AS RANK_INDEX,\r\n     (\r\n\t\tCASE\r\n\t\t\tWHEN\tRANK_INDEX = 1\r\n\tAND\tTT.INVENTORY_ORGN_NAME_KEY IS NOT NULL\r\n\tAND\tTT.ITEM_KEY IS NOT NULL \r\n\tAND TT.START_TV_DT IS NOT NULL\r\n      THEN 'U'\r\n\t\t\tELSE\t'I' END) AS DML_TYPE \r\nFROM\r\n (\r\nSELECT\t\r\n         ITEM_KEY,\r\n         INVENTORY_ORGN_NAME_KEY,\r\n         CAST(START_TV_DT AS DATE) AS START_TV_DT,\r\n         REORDER_POINT_QTY,\r\n         ADDITIONAL_REORDER_POINT_QTY,\r\n         MINIMUM_ORDER_QTY,\r\n         MINIMUM_PACKAGE_QTY,\r\n         STATISTICAL_INV_SIZING_QTY,\r\n         CT2R_DAYS_CNT,\r\n         ACTION_CODE,\r\n         CAST(CREATE_DATETIME AS TIMESTAMP(0) ) AS CREATE_DATETIME,\r\n         EXCEPTION_TYPE,\r\n         ROW_NUMBER () OVER (PARTITION BY ITEM_KEY, INVENTORY_ORGN_NAME_KEY,\r\n                                          REORDER_POINT_QTY, ADDITIONAL_REORDER_POINT_QTY,\r\n                                          MINIMUM_ORDER_QTY, MINIMUM_PACKAGE_QTY,\r\n                                          STATISTICAL_INV_SIZING_QTY,  CT2R_DAYS_CNT\r\nORDER\tBY CREATE_DATETIME DESC ) AS ROW_NUM\r\nFROM\t\r\n (\r\nSELECT\t\r\n         NII.ITEM_KEY,\r\n         NCIO.INVENTORY_ORGN_NAME_KEY,\r\n         CAST(EIMO.CREATION_DATE AS DATE) AS START_TV_DT,\r\n         EIMO.REORDER_POINT_QUANTITY AS REORDER_POINT_QTY,\r\n         EIMO.SINGLE_USE_KANBAN_QUANTITY AS ADDITIONAL_REORDER_POINT_QTY,\r\n         EIMO.MINIMUM_ORDER_QUANTITY AS MINIMUM_ORDER_QTY,\r\n         EIMO.MINIMUM_PACKAGE_QUANTITY AS MINIMUM_PACKAGE_QTY,\r\n         EIMO.ROP_SAFETY_STOCK_QUANTITY AS STATISTICAL_INV_SIZING_QTY,\r\n         CT2R.CYCLE_TIME_TO_REPLENISH AS CT2R_DAYS_CNT,\r\n         EIMO.ACTION_CODE,\r\n         CAST(EIMO.CREATE_DATETIME AS TIMESTAMP(0) ) AS CREATE_DATETIME,\r\n         'NE' EXCEPTION_TYPE\r\nFROM\r\n                                $$STGDB.ST_EM_ITEM_MASTER EIMO ,\r\n                                $$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO ,\r\n                                $$COMREFVWDB.N_INVENTORY_ITEM NII , \r\n                                 $$ETLVWDB.EL_FND_LOOKUP_VALUES FLV,\r\n                                (SELECT  \r\n                                                MAX(EIM.CYCLE_TIME_TO_REPLENISH) AS CYCLE_TIME_TO_REPLENISH,\r\n                                                EIM.PRODUCT_ID ,\r\n                                                MP.INVENTORY_ORGN_NAME_KEY\r\n                                                FROM \r\n                                                $$STGDB.ST_EM_ITEM_MASTER EIM ,\r\n                                                $$COMREFVWDB.N_CISCO_INVENTORY_ORG MP ,\r\n                                                $$ETLVWDB.EL_FND_LOOKUP_VALUES FLV\r\n                                                where 1=1\r\n                                                AND FLV.GLOBAL_NAME = 'CG'\r\n                                                AND FLV.LOOKUP_TYPE = 'XXSCM_PARTNER_DUNS_NUMBER'\r\n                                                AND FLV.LANG = 'US' \r\n                                                AND MP.INVENTORY_ORGANIZATION_CODE = FLV.LOOKUP_CODE \r\n                                                AND COALESCE( FLV.ENABLED_FLAG , 'Y' ) = 'Y' \r\n                                                AND FLV.ATTRIBUTE15 = EIM.PARTNER_ID\r\n                                                GROUP BY 2,3\r\n                                ) CT2R\r\nWHERE\r\n                                1=1\r\n                                AND FLV.GLOBAL_NAME = 'CG'\r\n                                AND FLV.LOOKUP_TYPE = 'XXSCM_PARTNER_DUNS_NUMBER'\r\n                                AND FLV.LANG = 'US' \r\n                                 AND NCIO.INVENTORY_ORGANIZATION_CODE = FLV.LOOKUP_CODE \r\n                                 AND FLV.ATTRIBUTE15 IS NOT NULL\r\n                                AND FLV.ATTRIBUTE15 <>'153804570'\r\n                                AND COALESCE( FLV.ENABLED_FLAG , 'Y' ) = 'Y' \r\n                                 AND FLV.ATTRIBUTE15 = EIMO.PARTNER_ID\r\n                                AND NII.BK_PRODUCT_ID = EIMO.PRODUCT_ID \r\n                                 AND NII.INVENTORY_ORGN_NAME_KEY = NCIO.INVENTORY_ORGN_NAME_KEY\r\n                                AND CT2R.PRODUCT_ID = NII.BK_PRODUCT_ID\r\n                                AND CT2R.INVENTORY_ORGN_NAME_KEY = NII.INVENTORY_ORGN_NAME_KEY\r\n\r\n\r\n\r\nUNION\tALL\r\n\r\nSELECT\t\r\n       NII2.ITEM_KEY,\r\n       NCIO2.INVENTORY_ORGN_NAME_KEY,\r\n       CAST(EX.CREATION_DATE AS DATE) AS START_TV_DT,\r\n       EX.REORDER_POINT_QUANTITY AS REORDER_POINT_QTY,\r\n       EX.SINGLE_USE_KANBAN_QUANTITY AS ADDITIONAL_REORDER_POINT_QTY,\r\n       EX.MINIMUM_ORDER_QUANTITY AS MINIMUM_ORDER_QTY,\r\n       EX.MINIMUM_PACKAGE_QUANTITY AS MINIMUM_PACKAGE_QTY,\r\n       EX.ROP_SAFETY_STOCK_QUANTITY AS STATISTICAL_INV_SIZING_QTY,\r\n       EX.CYCLE_TIME_TO_REPLENISH AS CT2R_DAYS_CNT,\r\n       EX.ACTION_CODE,\r\n       CAST(EX.CREATE_DATETIME AS TIMESTAMP(0) ) AS CREATE_DATETIME,\r\n       EX.EXCEPTION_TYPE\r\nFROM\r\n     $$EXCEPDB.EX_EM_ITEM_MASTER EX,\r\n                                  $$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO2 ,\r\n                                $$COMREFVWDB.N_INVENTORY_ITEM NII2 , \r\n                                 $$ETLVWDB.EL_FND_LOOKUP_VALUES FLV2,\r\n                                (SELECT  \r\n                                                MAX(EIM.CYCLE_TIME_TO_REPLENISH) AS CYCLE_TIME_TO_REPLENISH,\r\n                                                EIM.PRODUCT_ID ,\r\n                                                MP.INVENTORY_ORGN_NAME_KEY\r\n                                                FROM \r\n                                                $$STGDB.ST_EM_ITEM_MASTER EIM ,\r\n                                                $$COMREFVWDB.N_CISCO_INVENTORY_ORG MP ,\r\n                                                $$ETLVWDB.EL_FND_LOOKUP_VALUES FLV\r\n                                                where 1=1\r\n                                                AND FLV.GLOBAL_NAME = 'CG'\r\n                                                AND FLV.LOOKUP_TYPE = 'XXSCM_PARTNER_DUNS_NUMBER'\r\n                                                AND FLV.LANG = 'US' \r\n                                                AND MP.INVENTORY_ORGANIZATION_CODE = FLV.LOOKUP_CODE \r\n                                                AND COALESCE( FLV.ENABLED_FLAG , 'Y' ) = 'Y' \r\n                                                AND FLV.ATTRIBUTE15 = EIM.PARTNER_ID\r\n                                                GROUP BY 2,3\r\n                                ) CT2R2\r\nWHERE\r\n                                1=1\r\n                                AND FLV2.GLOBAL_NAME = 'CG'\r\n                                AND FLV2.LOOKUP_TYPE = 'XXSCM_PARTNER_DUNS_NUMBER'\r\n                                AND FLV2.LANG = 'US' \r\n                                 AND NCIO2.INVENTORY_ORGANIZATION_CODE = FLV2.LOOKUP_CODE \r\n                                 AND FLV2.ATTRIBUTE15 IS NOT NULL\r\n                                AND FLV2.ATTRIBUTE15 <>'153804570'\r\n                                AND COALESCE( FLV2.ENABLED_FLAG , 'Y' ) = 'Y' \r\n                                 AND FLV2.ATTRIBUTE15 = EX.PARTNER_ID\r\n                                AND NII2.BK_PRODUCT_ID = EX.PRODUCT_ID \r\n                                 AND NII2.INVENTORY_ORGN_NAME_KEY = NCIO2.INVENTORY_ORGN_NAME_KEY\r\n                                AND CT2R2.PRODUCT_ID = NII2.BK_PRODUCT_ID\r\n                                AND CT2R2.INVENTORY_ORGN_NAME_KEY = NII2.INVENTORY_ORGN_NAME_KEY\r\n\r\nUNION\tALL\r\n\r\nSELECT\t\r\n       TTV.ITEM_KEY,\r\n       TTV.INVENTORY_ORGN_NAME_KEY,\r\n       CAST(TTV.START_TV_DT AS DATE) AS START_TV_DT,\r\n       TTV.REORDER_POINT_QTY AS REORDER_POINT_QTY,\r\n       TTV.ADDITIONAL_REORDER_POINT_QTY AS ADDITIONAL_REORDER_POINT_QTY,\r\n       TTV.MINIMUM_ORDER_QTY AS MINIMUM_ORDER_QTY,\r\n       TTV.MINIMUM_PACKAGE_QTY AS MINIMUM_PACKAGE_QTY,\r\n       TTV.STATISTICAL_INV_SIZING_QTY AS STATISTICAL_INV_SIZING_QTY, \r\n       TTV.CT2R_DAYS_CNT AS CT2R_DAYS_CNT,\r\n       'X' ACTION_CODE,\r\n       CAST(TTV.EDW_UPDATE_DTM AS TIMESTAMP(0) ) AS CREATE_DATETIME,\r\n       'NE' EXCEPTION_TYPE\r\nFROM\r\n    $$INVFLMTVWdb.N_CM_ITEM_REORDER_POINT_TV TTV\r\nWHERE\r\n    TTV.END_TV_DT = CAST ('3500-01-01' AS DATE) \r\n\tAND\r\n    (ITEM_KEY, INVENTORY_ORGN_NAME_KEY) IN\r\n       (\r\nSELECT\tDISTINCT NP1.ITEM_KEY,NCIO1.INVENTORY_ORGN_NAME_KEY\r\nFROM\r\n                                $$STGDB.ST_EM_ITEM_MASTER EIMO ,\r\n                                $$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO1 ,\r\n                                $$COMREFVWDB.N_INVENTORY_ITEM NP1 , \r\n                                 $$ETLVWDB.EL_FND_LOOKUP_VALUES FLV,\r\n                                (SELECT  \r\n                                                MAX(EIM.CYCLE_TIME_TO_REPLENISH) AS CYCLE_TIME_TO_REPLENISH,\r\n                                                EIM.PRODUCT_ID ,\r\n                                                MP.INVENTORY_ORGN_NAME_KEY\r\n                                                FROM \r\n                                                $$STGDB.ST_EM_ITEM_MASTER EIM ,\r\n                                                $$COMREFVWDB.N_CISCO_INVENTORY_ORG MP ,\r\n                                                $$ETLVWDB.EL_FND_LOOKUP_VALUES FLV\r\n                                                where 1=1\r\n                                                AND FLV.GLOBAL_NAME = 'CG'\r\n                                                AND FLV.LOOKUP_TYPE = 'XXSCM_PARTNER_DUNS_NUMBER'\r\n                                                AND FLV.LANG = 'US' \r\n                                                AND MP.INVENTORY_ORGANIZATION_CODE = FLV.LOOKUP_CODE \r\n                                                AND COALESCE( FLV.ENABLED_FLAG , 'Y' ) = 'Y' \r\n                                                AND FLV.ATTRIBUTE15 = EIM.PARTNER_ID\r\n                                                GROUP BY 2,3\r\n                                ) CT2R\r\nWHERE\r\n                                1=1\r\n                                AND FLV.GLOBAL_NAME = 'CG'\r\n                                AND FLV.LOOKUP_TYPE = 'XXSCM_PARTNER_DUNS_NUMBER'\r\n                                AND FLV.LANG = 'US' \r\n                                 AND NCIO1.INVENTORY_ORGANIZATION_CODE = FLV.LOOKUP_CODE \r\n                                 AND FLV.ATTRIBUTE15 IS NOT NULL\r\n                                AND FLV.ATTRIBUTE15 <>'153804570'\r\n                                AND COALESCE( FLV.ENABLED_FLAG , 'Y' ) = 'Y' \r\n                                 AND FLV.ATTRIBUTE15 = EIMO.PARTNER_ID\r\n                                AND NP1.BK_PRODUCT_ID = EIMO.PRODUCT_ID \r\n                                 AND NP1.INVENTORY_ORGN_NAME_KEY = NCIO1.INVENTORY_ORGN_NAME_KEY\r\n                                AND CT2R.PRODUCT_ID = NP1.BK_PRODUCT_ID\r\n                                AND CT2R.INVENTORY_ORGN_NAME_KEY = NP1.INVENTORY_ORGN_NAME_KEY\r\n\tAND\tNCIO1.INV_ORG_EFFECTIVE_END_DATE = '3500-01-01'\r\n\r\n\r\n\r\nUNION\t  \r\n\r\nSELECT\tDISTINCT NP2.ITEM_KEY,NCIO2.INVENTORY_ORGN_NAME_KEY\r\nFROM\r\n \r\n   $$EXCEPDB.EX_EM_ITEM_MASTER EX2,\r\n$$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO2 ,\r\n                                $$COMREFVWDB.N_INVENTORY_ITEM NP2 , \r\n                                $$ETLVWDB.EL_FND_LOOKUP_VALUES FLV,\r\n                                (SELECT  \r\n                                                MAX(EIM.CYCLE_TIME_TO_REPLENISH) AS CYCLE_TIME_TO_REPLENISH,\r\n                                                EIM.PRODUCT_ID ,\r\n                                                MP.INVENTORY_ORGN_NAME_KEY\r\n                                                FROM \r\n                                                $$STGDB.ST_EM_ITEM_MASTER EIM ,\r\n                                                $$COMREFVWDB.N_CISCO_INVENTORY_ORG MP ,\r\n                                                $$ETLVWDB.EL_FND_LOOKUP_VALUES FLV\r\n                                                where 1=1\r\n                                                AND FLV.GLOBAL_NAME = 'CG'\r\n                                                AND FLV.LOOKUP_TYPE = 'XXSCM_PARTNER_DUNS_NUMBER'\r\n                                                AND FLV.LANG = 'US' \r\n                                                AND MP.INVENTORY_ORGANIZATION_CODE = FLV.LOOKUP_CODE \r\n                                                AND COALESCE( FLV.ENABLED_FLAG , 'Y' ) = 'Y' \r\n                                                AND FLV.ATTRIBUTE15 = EIM.PARTNER_ID\r\n                                                GROUP BY 2,3\r\n                                ) CT2R\r\nWHERE\r\n                                1=1\r\n                                AND FLV.GLOBAL_NAME = 'CG'\r\n                                AND FLV.LOOKUP_TYPE = 'XXSCM_PARTNER_DUNS_NUMBER'\r\n                                AND FLV.LANG = 'US' \r\n                                 AND NCIO2.INVENTORY_ORGANIZATION_CODE = FLV.LOOKUP_CODE \r\n                                 AND FLV.ATTRIBUTE15 IS NOT NULL\r\n                                AND FLV.ATTRIBUTE15 <>'153804570'\r\n                                AND COALESCE( FLV.ENABLED_FLAG , 'Y' ) = 'Y' \r\n                                 AND FLV.ATTRIBUTE15 = EX2.PARTNER_ID\r\n                                AND NP2.BK_PRODUCT_ID = EX2.PRODUCT_ID \r\n                                 AND NP2.INVENTORY_ORGN_NAME_KEY = NCIO2.INVENTORY_ORGN_NAME_KEY\r\n                                AND CT2R.PRODUCT_ID = NP2.BK_PRODUCT_ID\r\n                                AND CT2R.INVENTORY_ORGN_NAME_KEY = NP2.INVENTORY_ORGN_NAME_KEY\r\n\tAND\tNCIO2.INV_ORG_EFFECTIVE_END_DATE = '3500-01-01'\r\n\tAND\tEX2.EXCEPTION_TYPE = 'RI' )\r\n ) TVINPUT\r\nQUALIFY\tROW_NUMBER() OVER ( PARTITION BY TVINPUT.ITEM_KEY,TVINPUT.INVENTORY_ORGN_NAME_KEY,\r\nTVINPUT.REORDER_POINT_QTY, TVINPUT.ADDITIONAL_REORDER_POINT_QTY,\r\n                                          TVINPUT.MINIMUM_ORDER_QTY, TVINPUT.MINIMUM_PACKAGE_QTY,\r\n                                          TVINPUT.STATISTICAL_INV_SIZING_QTY,  TVINPUT.CT2R_DAYS_CNT\r\n                                        ,TVINPUT.START_TV_DT\r\nORDER\tBY TVINPUT.CREATE_DATETIME DESC ) = 1\r\n)  TVOUTPUT\r\nLEFT OUTER JOIN $$INVFLMTVWdb.N_CM_ITEM_REORDER_POINT_TV AS TT\r\n\tON\t  TVOUTPUT.ITEM_KEY = TT.ITEM_KEY\r\n\tAND\tTVOUTPUT.INVENTORY_ORGN_NAME_KEY = TT.INVENTORY_ORGN_NAME_KEY\r\n\tAND\tTT.END_TV_DT = CAST('3500-01-01' AS DATE)\r\n\tWHERE\tTVOUTPUT.ROW_NUM =1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_W_CM_ITEM_REORDER_POINT",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "ITEM_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ITEM_KEY"
+        },
+        {
+          "name": "INVENTORY_ORGN_NAME_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "INVENTORY_ORGN_NAME_KEY"
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_TV_DT"
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_TV_DT"
+        },
+        {
+          "name": "REORDER_POINT_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "REORDER_POINT_QTY"
+        },
+        {
+          "name": "ADDITIONAL_REORDER_POINT_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ADDITIONAL_REORDER_POINT_QTY"
+        },
+        {
+          "name": "MINIMUM_ORDER_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "MINIMUM_ORDER_QTY"
+        },
+        {
+          "name": "MINIMUM_PACKAGE_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "MINIMUM_PACKAGE_QTY"
+        },
+        {
+          "name": "STATISTICAL_INV_SIZING_QTY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "STATISTICAL_INV_SIZING_QTY"
+        },
+        {
+          "name": "CT2R_DAYS_CNT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CT2R_DAYS_CNT"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_CREATE_DTM"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_UPDATE_DTM"
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RANK_INDEX"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "Sq_ST_EM_ITEM_MASTER1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ITEM_MASTER_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REORDER_POINT_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SINGLE_USE_KANBAN_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MINIMUM_ORDER_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MINIMUM_PACKAGE_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ROP_SAFETY_STOCK_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CYCLE_TIME_TO_REPLENISH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n      SEIM.ITEM_MASTER_ID, \r\n      SEIM.BATCH_ID,\r\n      SEIM.PRODUCT_ID,\r\n      SEIM.PARTNER_ID,\r\n      SEIM.REORDER_POINT_QUANTITY,\r\n      SEIM.SINGLE_USE_KANBAN_QUANTITY,\r\n      SEIM.MINIMUM_ORDER_QUANTITY,\r\n      SEIM.MINIMUM_PACKAGE_QUANTITY,\r\n      SEIM.ROP_SAFETY_STOCK_QUANTITY,\r\n      SEIM.CYCLE_TIME_TO_REPLENISH,\r\n      'RI' EXCEPTION_TYPE,\r\n      SEIM.ACTION_CODE,\r\n      SEIM.CREATION_DATE,\r\n      SEIM.CREATE_DATETIME,\r\n      SEIM.LAST_UPDATE\r\nFROM\r\n    $$STGDB.ST_EM_ITEM_MASTER SEIM\r\nWHERE NOT EXISTS\r\n         (\r\nSELECT 1 \r\nFROM\r\n$$COMREFVWDB.N_INVENTORY_ITEM NII,\r\n$$ETLVWDB.EL_FND_LOOKUP_VALUES FLV,\r\n$$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO\r\nWHERE \r\n NII.INVENTORY_ORGN_NAME_KEY = NCIO.INVENTORY_ORGN_NAME_KEY\r\nAND NCIO.INVENTORY_ORGANIZATION_CODE = FLV.LOOKUP_CODE\r\nAND NCIO.INV_ORG_EFFECTIVE_END_DATE ='3500-01-01'\r\nAND FLV.GLOBAL_NAME = 'CG'\r\nAND FLV.LOOKUP_TYPE = 'XXSCM_PARTNER_DUNS_NUMBER'\r\nAND FLV.LANG = 'US' \r\nAND FLV.ATTRIBUTE15 <>'153804570'\r\nAND COALESCE( FLV.ENABLED_FLAG , 'Y' ) = 'Y' \r\nAND NII.BK_PRODUCT_ID = SEIM.PRODUCT_ID\r\nAND SEIM.PARTNER_ID = FLV.ATTRIBUTE15)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "SINGLE_USE_KANBAN_QUANTITY",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "SINGLE_USE_KANBAN_QUANTITY",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "MINIMUM_ORDER_QUANTITY",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "MINIMUM_ORDER_QUANTITY",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "MINIMUM_PACKAGE_QUANTITY",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "MINIMUM_PACKAGE_QUANTITY",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ROP_SAFETY_STOCK_QUANTITY",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "ROP_SAFETY_STOCK_QUANTITY",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "CYCLE_TIME_TO_REPLENISH",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "CYCLE_TIME_TO_REPLENISH",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "LAST_UPDATE",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "LAST_UPDATE",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ITEM_MASTER_ID",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "ITEM_MASTER_ID",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "REORDER_POINT_QUANTITY",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "REORDER_POINT_QUANTITY",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "PRODUCT_ID",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "PRODUCT_ID",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "PARTNER_ID",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER1",
+      "to_field": "PARTNER_ID",
+      "to_instance": "EX_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "MINIMUM_PACKAGE_QTY",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "MINIMUM_PACKAGE_QTY",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "STATISTICAL_INV_SIZING_QTY",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "STATISTICAL_INV_SIZING_QTY",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "CT2R_DAYS_CNT",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "CT2R_DAYS_CNT",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "ITEM_KEY",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "ITEM_KEY",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "INVENTORY_ORGN_NAME_KEY",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "INVENTORY_ORGN_NAME_KEY",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "START_TV_DT",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "END_TV_DT",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "REORDER_POINT_QTY",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "REORDER_POINT_QTY",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "MINIMUM_ORDER_QTY",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "MINIMUM_ORDER_QTY",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "ADDITIONAL_REORDER_POINT_QTY",
+      "from_instance": "Exp_W_CM_ITEM_REORDER_POINT",
+      "to_field": "ADDITIONAL_REORDER_POINT_QTY",
+      "to_instance": "W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "START_TV_DT",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "REORDER_POINT_QUANTITY",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "REORDER_POINT_QTY",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "SINGLE_USE_KANBAN_QUANTITY",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "ADDITIONAL_REORDER_POINT_QTY",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "MINIMUM_ORDER_QUANTITY",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "MINIMUM_ORDER_QTY",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "MINIMUM_PACKAGE_QUANTITY",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "MINIMUM_PACKAGE_QTY",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ROP_SAFETY_STOCK_QUANTITY",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "STATISTICAL_INV_SIZING_QTY",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "CYCLE_TIME_TO_REPLENISH",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "CT2R_DAYS_CNT",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "LAST_UPDATE",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "END_TV_DT",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "DML_TYPE",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "ITEM_KEY",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ITEM_MASTER_ID",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "RANK_INDEX",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "REORDER_POINT_QUANTITY",
+      "from_instance": "ST_EM_ITEM_MASTER",
+      "to_field": "INVENTORY_ORGN_NAME_KEY",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "END_TV_DT",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "REORDER_POINT_QTY",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "REORDER_POINT_QTY",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "ADDITIONAL_REORDER_POINT_QTY",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "ADDITIONAL_REORDER_POINT_QTY",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "MINIMUM_ORDER_QTY",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "MINIMUM_ORDER_QTY",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "MINIMUM_PACKAGE_QTY",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "MINIMUM_PACKAGE_QTY",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "STATISTICAL_INV_SIZING_QTY",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "STATISTICAL_INV_SIZING_QTY",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "CT2R_DAYS_CNT",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "CT2R_DAYS_CNT",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "RANK_INDEX",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "RANK_INDEX",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "DML_TYPE",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "ITEM_KEY",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "ITEM_KEY",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "INVENTORY_ORGN_NAME_KEY",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "INVENTORY_ORGN_NAME_KEY",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "Sq_ST_EM_ITEM_MASTER",
+      "to_field": "START_TV_DT",
+      "to_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+    },
+    {
+      "from_field": "MINIMUM_PACKAGE_QUANTITY",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "MINIMUM_PACKAGE_QUANTITY",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "PRODUCT_ID",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "PRODUCT_ID",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "PARTNER_ID",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "PARTNER_ID",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "REORDER_POINT_QUANTITY",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "REORDER_POINT_QUANTITY",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "SINGLE_USE_KANBAN_QUANTITY",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "SINGLE_USE_KANBAN_QUANTITY",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "MINIMUM_ORDER_QUANTITY",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "MINIMUM_ORDER_QUANTITY",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "ROP_SAFETY_STOCK_QUANTITY",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "ROP_SAFETY_STOCK_QUANTITY",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "BATCH_ID",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "LAST_UPDATE",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "LAST_UPDATE",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "ITEM_MASTER_ID",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "ITEM_MASTER_ID",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "CYCLE_TIME_TO_REPLENISH",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "CYCLE_TIME_TO_REPLENISH",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_EM_ITEM_MASTER1",
+      "to_field": "CREATION_DATE",
+      "to_instance": "Sq_ST_EM_ITEM_MASTER1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ITEM_MASTER_ID",
+      "source_path": [
+        {
+          "from_field": "ITEM_MASTER_ID",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "ITEM_MASTER_ID",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTNER_ID",
+      "source_path": [
+        {
+          "from_field": "PARTNER_ID",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "PARTNER_ID",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRODUCT_ID",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_ID",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "PRODUCT_ID",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REORDER_POINT_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "REORDER_POINT_QUANTITY",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "REORDER_POINT_QUANTITY",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ROP_SAFETY_STOCK_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "ROP_SAFETY_STOCK_QUANTITY",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "ROP_SAFETY_STOCK_QUANTITY",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SINGLE_USE_KANBAN_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "SINGLE_USE_KANBAN_QUANTITY",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "SINGLE_USE_KANBAN_QUANTITY",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CYCLE_TIME_TO_REPLENISH",
+      "source_path": [
+        {
+          "from_field": "CYCLE_TIME_TO_REPLENISH",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "CYCLE_TIME_TO_REPLENISH",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MINIMUM_ORDER_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "MINIMUM_ORDER_QUANTITY",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "MINIMUM_ORDER_QUANTITY",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MINIMUM_PACKAGE_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "MINIMUM_PACKAGE_QUANTITY",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "MINIMUM_PACKAGE_QUANTITY",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "LAST_UPDATE",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_W_CM_ITEM_REORDER_POINT"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EXCEPTION_TYPE",
+      "source_path": [
+        {
+          "from_field": "EXCEPTION_TYPE",
+          "from_instance": "Sq_ST_EM_ITEM_MASTER1"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_EM_ITEM_MASTER1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:17.364666+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

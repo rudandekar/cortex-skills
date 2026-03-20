@@ -1,0 +1,108 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wk_vendor_invoice_payment', 'batch', 'edwtd_gl'],
+    meta={
+        'source_workflow': 'wf_m_WK_VENDOR_INVOICE_PAYMENT',
+        'target_table': 'W_VENDOR_INVOICE_PAYMENT',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:05:28.773957+00:00'
+    }
+) }}
+
+WITH 
+
+source_st_mf_ap_invoice_paymen_all AS (
+    SELECT
+        batch_id,
+        accounting_date,
+        accounting_event_id,
+        accrual_posted_flag,
+        accts_pay_code_combination_id,
+        amount,
+        asset_code_combination_id,
+        assets_addition_flag,
+        attribute1,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        bank_account_num,
+        bank_account_type,
+        bank_num,
+        cash_je_batch_id,
+        cash_posted_flag,
+        check_id,
+        created_by,
+        creation_date,
+        discount_lost,
+        discount_taken,
+        exchange_date,
+        exchange_rate,
+        exchange_rate_type,
+        external_bank_account_id,
+        gain_code_combination_id,
+        ges_update_date,
+        global_name,
+        invoice_base_amount,
+        invoice_id,
+        invoice_payment_id,
+        invoice_payment_type,
+        last_update_date,
+        last_updated_by,
+        loss_code_combination_id,
+        org_id,
+        payment_base_amount,
+        payment_num,
+        period_name,
+        posted_flag,
+        reversal_flag,
+        reversal_inv_pmt_id,
+        set_of_books_id,
+        create_datetime,
+        action_code
+    FROM {{ source('raw', 'st_mf_ap_invoice_paymen_all') }}
+),
+
+final AS (
+    SELECT
+        vendor_invoice_payment_key,
+        vendor_invoice_key,
+        vndr_inv_pymt_instrument_key,
+        vndr_inv_pymt_cross_rt,
+        vndr_inv_pymt_paid_dt,
+        vndr_inv_pymt_num_int,
+        vndr_inv_pymt_cross_rate_dt,
+        liability_gl_account_key,
+        asset_gl_account_key,
+        vndr_inv_pymt_amt,
+        vndr_inv_pymt_posted_flg,
+        fx_loss_gl_account_key,
+        fx_gain_gl_account_key,
+        discount_taken_functional_amt,
+        discount_lost_functional_amt,
+        operating_unit_name_cd,
+        source_deleted_flg,
+        vndr_inv_pymt_hold_flg,
+        sk_invoice_payment_id_int,
+        ss_cd,
+        edw_create_user,
+        edw_create_dtm,
+        edw_update_user,
+        edw_update_dtm,
+        vndr_inv_payment_created_dtm,
+        reversal_flg,
+        action_code,
+        dml_type
+    FROM source_st_mf_ap_invoice_paymen_all
+)
+
+SELECT * FROM final

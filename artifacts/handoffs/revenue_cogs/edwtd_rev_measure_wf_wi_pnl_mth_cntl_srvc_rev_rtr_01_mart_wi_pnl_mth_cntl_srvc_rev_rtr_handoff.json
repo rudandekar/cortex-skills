@@ -1,0 +1,155 @@
+{
+  "workflow_name": "wf_m_WI_PNL_MTH_CNTL_SRVC_REV_RTR",
+  "mapping_name": "m_WI_PNL_MTH_CNTL_SRVC_REV_RTR",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_PNL_MTH_CNTL_SRVC_REV_RTR",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_pnl_mth_cntl_srvc_rev_rtr_01_mart_wi_pnl_mth_cntl_srvc_rev_rtr",
+  "source_tables": [
+    "WI_PNL_MTH_CNTL_SRVC_REV_RTR"
+  ],
+  "sources": [
+    {
+      "name": "WI_PNL_MTH_CNTL_SRVC_REV_RTR",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RUN_BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_PNL_MTH_CNTL_SRVC_REV_RTR",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_YEAR_MONTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "RUN_BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_PNL_MTH_CNTL_SRVC_REV_RTR",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RUN_BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nWI.FISCAL_YEAR_MONTH_INT,\r\n(RANK() OVER (  ORDER BY WI.FISCAL_YEAR_MONTH_INT  DESC )-1)/3+1 RUN_BATCH_ID_IN \r\nFROM\r\n$$STGDB.WI_RTM_MONTH_CONTROL_SERVC_REV WI\r\nINNER JOIN  $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR FISCAL\r\nON WI.FISCAL_YEAR_MONTH_INT=FISCAL.FISCAL_YEAR_MONTH_INT\r\nWHERE \r\nWI.INC_FLAG = 'Y' AND FISCAL.FISCAL_MONTH_AGE >= 0\r\nQUALIFY RANK () OVER ( ORDER BY RUN_BATCH_ID ASC ) = 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "SQ_WI_PNL_MTH_CNTL_SRVC_REV_RTR",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "WI_PNL_MTH_CNTL_SRVC_REV_RTR1"
+    },
+    {
+      "from_field": "RUN_BATCH_ID",
+      "from_instance": "SQ_WI_PNL_MTH_CNTL_SRVC_REV_RTR",
+      "to_field": "RUN_BATCH_ID",
+      "to_instance": "WI_PNL_MTH_CNTL_SRVC_REV_RTR1"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "WI_PNL_MTH_CNTL_SRVC_REV_RTR",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "SQ_WI_PNL_MTH_CNTL_SRVC_REV_RTR"
+    },
+    {
+      "from_field": "RUN_BATCH_ID",
+      "from_instance": "WI_PNL_MTH_CNTL_SRVC_REV_RTR",
+      "to_field": "RUN_BATCH_ID",
+      "to_instance": "SQ_WI_PNL_MTH_CNTL_SRVC_REV_RTR"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_YEAR_MONTH_INT",
+      "source_path": [
+        {
+          "from_field": "FISCAL_YEAR_MONTH_INT",
+          "from_instance": "SQ_WI_PNL_MTH_CNTL_SRVC_REV_RTR"
+        },
+        {
+          "from_field": "FISCAL_YEAR_MONTH_INT",
+          "from_instance": "WI_PNL_MTH_CNTL_SRVC_REV_RTR"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RUN_BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "RUN_BATCH_ID",
+          "from_instance": "SQ_WI_PNL_MTH_CNTL_SRVC_REV_RTR"
+        },
+        {
+          "from_field": "RUN_BATCH_ID",
+          "from_instance": "WI_PNL_MTH_CNTL_SRVC_REV_RTR"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:30.882291+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

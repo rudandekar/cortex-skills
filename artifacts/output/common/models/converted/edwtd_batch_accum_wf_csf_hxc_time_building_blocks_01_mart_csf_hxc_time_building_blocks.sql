@@ -1,0 +1,157 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_csf_hxc_time_building_blocks', 'batch', 'edwtd_batch_accum'],
+    meta={
+        'source_workflow': 'wf_m_CSF_HXC_TIME_BUILDING_BLOCKS',
+        'target_table': 'CSF_HXC_TIME_BUILDING_BLOCKS',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:22:01.098834+00:00'
+    }
+) }}
+
+WITH 
+
+source_csf_hxc_time_building_blocks AS (
+    SELECT
+        source_dml_type,
+        fully_qualified_table_name,
+        source_commit_time,
+        refresh_datetime,
+        trail_position,
+        token,
+        refresh_day,
+        time_building_block_id,
+        type,
+        measure,
+        unit_of_measure,
+        start_time,
+        stop_time,
+        parent_building_block_id,
+        parent_building_block_ovn,
+        scope,
+        object_version_number,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        last_update_login,
+        approval_status,
+        resource_id,
+        resource_type,
+        approval_style_id,
+        date_from,
+        date_to,
+        comment_text,
+        application_set_id,
+        data_set_id,
+        translation_display_key
+    FROM {{ source('raw', 'csf_hxc_time_building_blocks') }}
+),
+
+source_stg_csf_hxc_time_building_blocks AS (
+    SELECT
+        time_building_block_id,
+        type_,
+        measure,
+        unit_of_measure,
+        start_time,
+        stop_time,
+        parent_building_block_id,
+        parent_building_block_ovn,
+        scope,
+        object_version_number,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        last_update_login,
+        approval_status,
+        resource_id,
+        resource_type,
+        approval_style_id,
+        date_from,
+        date_to,
+        comment_text,
+        application_set_id,
+        data_set_id,
+        translation_display_key,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime
+    FROM {{ source('raw', 'stg_csf_hxc_time_building_blocks') }}
+),
+
+transformed_exp_csf_hxc_time_building_blocks AS (
+    SELECT
+    source_dml_type,
+    fully_qualified_table_name,
+    source_commit_time,
+    refresh_datetime,
+    trail_position,
+    token,
+    refresh_day,
+    time_building_block_id,
+    type,
+    measure,
+    unit_of_measure,
+    start_time,
+    stop_time,
+    parent_building_block_id,
+    parent_building_block_ovn,
+    scope,
+    object_version_number,
+    created_by,
+    creation_date,
+    last_updated_by,
+    last_update_date,
+    last_update_login,
+    approval_status,
+    resource_id,
+    resource_type,
+    approval_style_id,
+    date_from,
+    date_to,
+    comment_text,
+    application_set_id,
+    data_set_id,
+    translation_display_key
+    FROM source_stg_csf_hxc_time_building_blocks
+),
+
+final AS (
+    SELECT
+        time_building_block_id,
+        type_,
+        measure,
+        unit_of_measure,
+        start_time,
+        stop_time,
+        parent_building_block_id,
+        parent_building_block_ovn,
+        scope,
+        object_version_number,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        last_update_login,
+        approval_status,
+        resource_id,
+        resource_type,
+        approval_style_id,
+        date_from,
+        date_to,
+        comment_text,
+        application_set_id,
+        data_set_id,
+        translation_display_key,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime
+    FROM transformed_exp_csf_hxc_time_building_blocks
+)
+
+SELECT * FROM final

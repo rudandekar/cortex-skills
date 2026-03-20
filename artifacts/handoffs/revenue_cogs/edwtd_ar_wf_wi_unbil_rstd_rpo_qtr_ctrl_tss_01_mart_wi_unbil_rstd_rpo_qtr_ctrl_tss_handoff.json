@@ -1,0 +1,155 @@
+{
+  "workflow_name": "wf_m_WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS",
+  "mapping_name": "m_WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_wi_unbil_rstd_rpo_qtr_ctrl_tss_01_mart_wi_unbil_rstd_rpo_qtr_ctrl_tss",
+  "source_tables": [
+    "WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS"
+  ],
+  "sources": [
+    {
+      "name": "WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS",
+      "database_type": "Teradata",
+      "owner": "STGDB_TS3",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n CASE \r\n  WHEN ((FISCAL_MONTH_AGO_MONTH_NUMBER MOD 100) MOD 3) = 0 THEN (\r\n  SEL FISCAL_YEAR_QUARTER_NUMBER_INT    \r\n  FROM $$COMREFVWDB.R_FISCAL_QUARTER_TO_YEAR RFM \r\n  WHERE PREVIOUS_FISCAL_QTR_FLAG IN 'Y')  \r\n    ELSE FISCAL_YEAR_QUARTER_NUMBER_INT \r\n   END  AS FISCAL_YEAR_QUARTER_NUMBER_INT,\r\n   CURRENT_TIMESTAMP(0)\r\n FROM $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RFM\r\n WHERE FISCAL_month_AGE =0\r\n QUALIFY Row_Number() Over (PARTITION BY FISCAL_YEAR_QUARTER_NUMBER_INT ORDER BY FISCAL_YEAR_MONTH_INT DESC )  =1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "from_instance": "SQ_WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS",
+      "to_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "to_instance": "WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS"
+    },
+    {
+      "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "from_instance": "WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS1",
+      "to_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "to_instance": "SQ_WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "from_instance": "SQ_WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS"
+        },
+        {
+          "from_field": "FISCAL_YEAR_QUARTER_NUMBER_INT",
+          "from_instance": "WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "WI_UNBIL_RSTD_RPO_QTR_CTRL_TSS1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:07.829225+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

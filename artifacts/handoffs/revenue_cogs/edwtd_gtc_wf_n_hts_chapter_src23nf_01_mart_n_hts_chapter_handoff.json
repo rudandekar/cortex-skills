@@ -1,0 +1,770 @@
+{
+  "workflow_name": "wf_m_N_HTS_CHAPTER_SRC23NF",
+  "mapping_name": "m_N_HTS_CHAPTER_SRC23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GTC",
+  "target_table": "N_HTS_CHAPTER",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gtc_wf_n_hts_chapter_src23nf_01_mart_n_hts_chapter",
+  "source_tables": [
+    "N_HTS_CHAPTER",
+    "XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+  ],
+  "sources": [
+    {
+      "name": "N_HTS_CHAPTER",
+      "database_type": "Teradata",
+      "owner": "FINLGLVWDB_DV3",
+      "fields": [
+        {
+          "name": "BK_HTS_CHAPTER_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+      "database_type": "Oracle",
+      "owner": "CUBE",
+      "fields": [
+        {
+          "name": "CONTENT_FILTER_DETAILS_ID",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CONTENT_FILTER_ID",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "HTS_CHAPTER_NO",
+          "datatype": "varchar2",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar2",
+          "precision": "4000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IS_NEW",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar2",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MODIFIED_BY",
+          "datatype": "varchar2",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MODIFIED_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_HTS_CHAPTER",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_HTS_CHAPTER_NUM",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SOURCE_DELETED_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "fltr_N_HTS_CHAPTER_UPD",
+      "type": "Filter",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_HTS_CHAPTER_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Filter Condition": "SOURCE_DELETED_FLG ='Y'",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "HTS_CHAPTER_NO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "lkp_N_HTS_CHAPTER",
+      "type": "Lookup Procedure",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_HTS_CHAPTER_NUM",
+          "datatype": "string",
+          "porttype": "LOOKUP/RETURN/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IN_HTS_CHAPTER_NO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Lookup Sql Override": "",
+        "Lookup table name": "N_HTS_CHAPTER",
+        "Lookup Source Filter": "",
+        "Lookup caching enabled": "YES",
+        "Lookup policy on multiple match": "Use Any Value",
+        "Lookup condition": "BK_HTS_CHAPTER_NUM = IN_HTS_CHAPTER_NO",
+        "Connection Information": "$Target",
+        "Source Type": "Database",
+        "Recache if Stale": "NO",
+        "Tracing Level": "Normal",
+        "Lookup cache directory name": "$PMCacheDir",
+        "Lookup cache initialize": "NO",
+        "Lookup cache persistent": "NO",
+        "Lookup Data Cache Size": "Auto",
+        "Lookup Index Cache Size": "Auto",
+        "Dynamic Lookup Cache": "NO",
+        "Synchronize Dynamic Cache": "NO",
+        "Output Old Value On Update": "NO",
+        "Update Dynamic Cache Condition": "TRUE",
+        "Cache File Name Prefix": "",
+        "Re-cache from lookup source": "NO",
+        "Insert Else Update": "NO",
+        "Update Else Insert": "NO",
+        "Datetime Format": "",
+        "Thousand Separator": "None",
+        "Decimal Separator": ".",
+        "Case Sensitive String Comparison": "NO",
+        "Null ordering": "Null Is Highest Value",
+        "Sorted Input": "NO",
+        "Lookup source is static": "NO",
+        "Pre-build lookup cache": "Auto",
+        "Subsecond Precision": "6"
+      }
+    },
+    {
+      "name": "EXP_N_HTS_CHAPTER_insert",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "HTS_CHAPTER_NO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "HTS_CHAPTER_NO"
+        },
+        {
+          "name": "INSERT_FLG",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(ISNULL(:LKP.LKP_N_HTS_CHAPTER(HTS_CHAPTER_NO)),'I','N')"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'N'"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "fltr_N_HTS_CHAPTER",
+      "type": "Filter",
+      "description": "",
+      "fields": [
+        {
+          "name": "HTS_CHAPTER_NO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INSERT_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Filter Condition": "INSERT_FLG='I'",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_N_HTS_CHAPTER",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_HTS_CHAPTER_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query2",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "lkp_XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+      "type": "Lookup Procedure",
+      "description": "",
+      "fields": [
+        {
+          "name": "HTS_CHAPTER_NO",
+          "datatype": "string",
+          "porttype": "LOOKUP/RETURN/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IN_HTS_CHAPTER_NO",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Lookup Sql Override": "SELECT DISTINCT HTS_CHAPTER_NO  AS HTS_CHAPTER_NO\r\nFROM CUBE.XXCFI_CB_HTS_CNTNT_FLTR_DTLS\r\nWHERE HTS_CHAPTER_NO IS NOT NULL",
+        "Lookup table name": "XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+        "Lookup Source Filter": "",
+        "Lookup caching enabled": "YES",
+        "Lookup policy on multiple match": "Use Any Value",
+        "Lookup condition": "HTS_CHAPTER_NO = IN_HTS_CHAPTER_NO",
+        "Connection Information": "$Source",
+        "Source Type": "Database",
+        "Recache if Stale": "NO",
+        "Tracing Level": "Normal",
+        "Lookup cache directory name": "$PMCacheDir",
+        "Lookup cache initialize": "NO",
+        "Lookup cache persistent": "NO",
+        "Lookup Data Cache Size": "Auto",
+        "Lookup Index Cache Size": "Auto",
+        "Dynamic Lookup Cache": "NO",
+        "Synchronize Dynamic Cache": "NO",
+        "Output Old Value On Update": "NO",
+        "Update Dynamic Cache Condition": "TRUE",
+        "Cache File Name Prefix": "",
+        "Re-cache from lookup source": "NO",
+        "Insert Else Update": "NO",
+        "Update Else Insert": "NO",
+        "Datetime Format": "",
+        "Thousand Separator": "None",
+        "Decimal Separator": ".",
+        "Case Sensitive String Comparison": "NO",
+        "Null ordering": "Null Is Highest Value",
+        "Sorted Input": "NO",
+        "Lookup source is static": "NO",
+        "Pre-build lookup cache": "Auto",
+        "Subsecond Precision": "6"
+      }
+    },
+    {
+      "name": "exp_N_HTS_CHAPTER_update",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_HTS_CHAPTER_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_HTS_CHAPTER_NUM"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(ISNULL(:LKP.LKP_XXCFI_CB_HTS_CNTNT_FLTR_DTLS(BK_HTS_CHAPTER_NUM)),'Y','N')"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "UPD_N_HTS_CHAPTER",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_HTS_CHAPTER_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_UPDATE",
+        "Forward Rejected Rows": "NO",
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Update Strategy",
+    "Lookup Procedure",
+    "Source Qualifier",
+    "Filter"
+  ],
+  "connectors": [
+    {
+      "from_field": "HTS_CHAPTER_NO",
+      "from_instance": "fltr_N_HTS_CHAPTER",
+      "to_field": "BK_HTS_CHAPTER_NUM",
+      "to_instance": "N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "fltr_N_HTS_CHAPTER",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "fltr_N_HTS_CHAPTER",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "fltr_N_HTS_CHAPTER",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "BK_HTS_CHAPTER_NUM",
+      "from_instance": "UPD_N_HTS_CHAPTER",
+      "to_field": "BK_HTS_CHAPTER_NUM",
+      "to_instance": "N_HTS_CHAPTER2"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "UPD_N_HTS_CHAPTER",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_HTS_CHAPTER2"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "UPD_N_HTS_CHAPTER",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "N_HTS_CHAPTER2"
+    },
+    {
+      "from_field": "BK_HTS_CHAPTER_NUM",
+      "from_instance": "exp_N_HTS_CHAPTER_update",
+      "to_field": "BK_HTS_CHAPTER_NUM",
+      "to_instance": "fltr_N_HTS_CHAPTER_UPD"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "exp_N_HTS_CHAPTER_update",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "fltr_N_HTS_CHAPTER_UPD"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "exp_N_HTS_CHAPTER_update",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "fltr_N_HTS_CHAPTER_UPD"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "fltr_N_HTS_CHAPTER_UPD",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "UPD_N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "BK_HTS_CHAPTER_NUM",
+      "from_instance": "fltr_N_HTS_CHAPTER_UPD",
+      "to_field": "BK_HTS_CHAPTER_NUM",
+      "to_instance": "UPD_N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "fltr_N_HTS_CHAPTER_UPD",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "UPD_N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "HTS_CHAPTER_NO",
+      "from_instance": "XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+      "to_field": "HTS_CHAPTER_NO",
+      "to_instance": "SQ_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+    },
+    {
+      "from_field": "HTS_CHAPTER_NO",
+      "from_instance": "SQ_XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+      "to_field": "HTS_CHAPTER_NO",
+      "to_instance": "EXP_N_HTS_CHAPTER_insert"
+    },
+    {
+      "from_field": "HTS_CHAPTER_NO",
+      "from_instance": "EXP_N_HTS_CHAPTER_insert",
+      "to_field": "HTS_CHAPTER_NO",
+      "to_instance": "fltr_N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "INSERT_FLG",
+      "from_instance": "EXP_N_HTS_CHAPTER_insert",
+      "to_field": "INSERT_FLG",
+      "to_instance": "fltr_N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EXP_N_HTS_CHAPTER_insert",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "fltr_N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EXP_N_HTS_CHAPTER_insert",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "fltr_N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "EXP_N_HTS_CHAPTER_insert",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "fltr_N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "BK_HTS_CHAPTER_NUM",
+      "from_instance": "N_HTS_CHAPTER1",
+      "to_field": "BK_HTS_CHAPTER_NUM",
+      "to_instance": "SQ_N_HTS_CHAPTER"
+    },
+    {
+      "from_field": "BK_HTS_CHAPTER_NUM",
+      "from_instance": "SQ_N_HTS_CHAPTER",
+      "to_field": "BK_HTS_CHAPTER_NUM",
+      "to_instance": "exp_N_HTS_CHAPTER_update"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_HTS_CHAPTER_NUM",
+      "source_path": [
+        {
+          "from_field": "HTS_CHAPTER_NO",
+          "from_instance": "fltr_N_HTS_CHAPTER"
+        },
+        {
+          "from_field": "BK_HTS_CHAPTER_NUM",
+          "from_instance": "UPD_N_HTS_CHAPTER"
+        },
+        {
+          "from_field": "BK_HTS_CHAPTER_NUM",
+          "from_instance": "exp_N_HTS_CHAPTER_update"
+        },
+        {
+          "from_field": "BK_HTS_CHAPTER_NUM",
+          "from_instance": "fltr_N_HTS_CHAPTER_UPD"
+        },
+        {
+          "from_field": "BK_HTS_CHAPTER_NUM",
+          "from_instance": "N_HTS_CHAPTER1"
+        },
+        {
+          "from_field": "BK_HTS_CHAPTER_NUM",
+          "from_instance": "SQ_N_HTS_CHAPTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_DELETED_FLG",
+      "source_path": [
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "fltr_N_HTS_CHAPTER"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "UPD_N_HTS_CHAPTER"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "exp_N_HTS_CHAPTER_update"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "fltr_N_HTS_CHAPTER_UPD"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "EXP_N_HTS_CHAPTER_insert"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "fltr_N_HTS_CHAPTER"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EXP_N_HTS_CHAPTER_insert"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "fltr_N_HTS_CHAPTER"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "UPD_N_HTS_CHAPTER"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "exp_N_HTS_CHAPTER_update"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "fltr_N_HTS_CHAPTER_UPD"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EXP_N_HTS_CHAPTER_insert"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "thin",
+  "generated_timestamp": "2026-03-19T18:33:12.927382+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

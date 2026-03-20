@@ -1,0 +1,324 @@
+{
+  "workflow_name": "wf_m_EL_CCRM_SHARE_HIERARCHY",
+  "mapping_name": "m_EL_CCRM_SHARE_HIERARCHY",
+  "mapping_description": "",
+  "folder_name": "EDWTD_NGCCRM",
+  "target_table": "EL_CCRM_SHARE_HIERARCHY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ngccrm_wf_el_ccrm_share_hierarchy_01_mart_el_ccrm_share_hierarchy",
+  "source_tables": [
+    "ST_CCRM_SHARE_HIERARCHY"
+  ],
+  "sources": [
+    {
+      "name": "ST_CCRM_SHARE_HIERARCHY",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV5",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NODE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STRUCTURE_NODE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARENT_STRUCTURE_NODE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STRUCTURE_NODE_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LEVEL_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NODE_TYPE",
+          "datatype": "varchar",
+          "precision": "256",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_CCRM_SHARE_HIERARCHY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "NODE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "STRUCTURE_NODE_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "varchar",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATED_BY",
+        "datatype": "varchar",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATED_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_CCRM_SHARE_HIERARCHY",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "NODE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STRUCTURE_NODE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT SCSH.NODE_ID NODE_ID,\r\n SCSH.STRUCTURE_NODE_NAME STRUCTURE_NODE_NAME\r\nFROM\r\n$$STGDB.ST_CCRM_SHARE_HIERARCHY SCSH\r\nWHERE NOT EXISTS (\r\nSELECT 1 FROM $$ETLVWDB.EL_CCRM_SHARE_HIERARCHY ECSH WHERE \r\nSCSH.NODE_ID = ECSH.NODE_ID)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "NODE_ID",
+      "from_instance": "SQ_ST_CCRM_SHARE_HIERARCHY",
+      "to_field": "NODE_ID",
+      "to_instance": "EL_CCRM_SHARE_HIERARCHY"
+    },
+    {
+      "from_field": "STRUCTURE_NODE_NAME",
+      "from_instance": "SQ_ST_CCRM_SHARE_HIERARCHY",
+      "to_field": "STRUCTURE_NODE_NAME",
+      "to_instance": "EL_CCRM_SHARE_HIERARCHY"
+    },
+    {
+      "from_field": "NODE_ID",
+      "from_instance": "ST_CCRM_SHARE_HIERARCHY",
+      "to_field": "NODE_ID",
+      "to_instance": "SQ_ST_CCRM_SHARE_HIERARCHY"
+    },
+    {
+      "from_field": "STRUCTURE_NODE_NAME",
+      "from_instance": "ST_CCRM_SHARE_HIERARCHY",
+      "to_field": "STRUCTURE_NODE_NAME",
+      "to_instance": "SQ_ST_CCRM_SHARE_HIERARCHY"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_CCRM_SHARE_HIERARCHY",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_CCRM_SHARE_HIERARCHY"
+    },
+    {
+      "from_field": "NODE_TYPE",
+      "from_instance": "ST_CCRM_SHARE_HIERARCHY",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_ST_CCRM_SHARE_HIERARCHY"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_CCRM_SHARE_HIERARCHY",
+      "to_field": "LAST_UPDATED_DATE",
+      "to_instance": "SQ_ST_CCRM_SHARE_HIERARCHY"
+    },
+    {
+      "from_field": "NODE_TYPE",
+      "from_instance": "ST_CCRM_SHARE_HIERARCHY",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_ST_CCRM_SHARE_HIERARCHY"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "NODE_ID",
+      "source_path": [
+        {
+          "from_field": "NODE_ID",
+          "from_instance": "SQ_ST_CCRM_SHARE_HIERARCHY"
+        },
+        {
+          "from_field": "NODE_ID",
+          "from_instance": "ST_CCRM_SHARE_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "STRUCTURE_NODE_NAME",
+      "source_path": [
+        {
+          "from_field": "STRUCTURE_NODE_NAME",
+          "from_instance": "SQ_ST_CCRM_SHARE_HIERARCHY"
+        },
+        {
+          "from_field": "STRUCTURE_NODE_NAME",
+          "from_instance": "ST_CCRM_SHARE_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "NODE_TYPE",
+          "from_instance": "ST_CCRM_SHARE_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_CCRM_SHARE_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATED_BY",
+      "source_path": [
+        {
+          "from_field": "NODE_TYPE",
+          "from_instance": "ST_CCRM_SHARE_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATED_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_CCRM_SHARE_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:18.557079+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

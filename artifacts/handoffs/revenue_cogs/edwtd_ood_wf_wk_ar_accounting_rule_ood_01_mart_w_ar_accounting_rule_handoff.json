@@ -1,0 +1,629 @@
+{
+  "workflow_name": "wf_m_WK_AR_ACCOUNTING_RULE_OOD",
+  "mapping_name": "m_WK_AR_ACCOUNTING_RULE_OOD",
+  "mapping_description": "",
+  "folder_name": "EDWTD_OOD",
+  "target_table": "W_AR_ACCOUNTING_RULE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ood_wf_wk_ar_accounting_rule_ood_01_mart_w_ar_accounting_rule",
+  "source_tables": [
+    "ST_OOD_RA_RULES"
+  ],
+  "sources": [
+    {
+      "name": "ST_OOD_RA_RULES",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV2",
+      "fields": [
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "80",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RULE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_AR_ACCOUNTING_RULE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_ACCOUNTING_RULE_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AR_ACCOUNTING_RULE_DESCRIPTION",
+        "datatype": "varchar",
+        "precision": "80",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_RULE_ID_INT",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SS_CODE",
+        "datatype": "char",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_OOD_RA_RULES",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RULE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n\tCAST(TVOUTPUT.BK_ACCOUNTING_RULE_NAME AS VARCHAR(50)) AS BK_ACCOUNTING_RULE_NAME,\r\n\tCAST(TVOUTPUT.AR_ACCOUNTING_RULE_DESCRIPTION AS VARCHAR(240)) AS AR_ACCOUNTING_RULE_DESCRIPTION,\r\n\tCAST(TVOUTPUT.SK_RULE_ID_INT AS BIGINT) AS SK_RULE_ID_INT,\r\n\tTVOUTPUT.SS_CODE AS SS_CODE,\r\n\tTVOUTPUT.START_TV_DATE AS START_DATE_ACTIVE,\r\n\tCOALESCE (MAX (TVOUTPUT.START_TV_DATE - INTERVAL '1' DAY)\r\n\t\tOVER(PARTITION BY TVOUTPUT.BK_ACCOUNTING_RULE_NAME\r\n\t\tORDER BY TVOUTPUT.START_TV_DATE ASC ROWS BETWEEN 1 \r\n\t\tFOLLOWING AND 1 FOLLOWING), DATE '3500-01-01') AS END_DATE_ACTIVE,\r\n\t\tTVOUTPUT.ACTION_CODE AS ACTION_CODE, \r\n\t\tROW_NUMBER () OVER(PARTITION BY TVOUTPUT.BK_ACCOUNTING_RULE_NAME \r\n\t\tORDER BY TVOUTPUT.START_TV_DATE ASC) AS RANK_INDEX,\r\n\t(CASE WHEN RANK_INDEX = 1 AND NAARTV.BK_ACCOUNTING_RULE_NAME\r\n\tIS NOT NULL \r\n\tTHEN 'U'ELSE 'I' END) AS DML_TYPE, \r\n\tCAST (CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) AS CREATE_DATETIME\r\nFROM (\tSELECT \r\n\t\t\t\tBK_ACCOUNTING_RULE_NAME,\r\n                \tAR_ACCOUNTING_RULE_DESCRIPTION,\r\n\t\tSK_RULE_ID_INT,\r\n\t\tSS_CODE,\r\n\t\tSTART_TV_DATE,\r\n\t\t CREATE_DATETIME, \r\n\t\t ACTION_CODE,\r\nROW_NUMBER () OVER (PARTITION BY BK_ACCOUNTING_RULE_NAME\tORDER BY CREATE_DATETIME DESC) \r\n\t\tAS ROW_NUM\r\n\tFROM ( SELECT \r\n\t\t\t\t\t\tSORR.NAME BK_ACCOUNTING_RULE_NAME,\r\n\t\t\tSORR.DESCRIPTION AR_ACCOUNTING_RULE_DESCRIPTION,\r\n\t\t\tSORR.RULE_ID SK_RULE_ID_INT,\r\n\t\t\t'OOD' SS_CODE,\r\n\t\t\tCAST(SORR.CREATE_DATETIME AS DATE) START_TV_DATE,\r\n\t\t\tSORR.CREATE_DATETIME,\r\n\t\t\tSORR.ACTION_CODE\r\n\t\t\t\t\tFROM $$STGDB.ST_OOD_RA_RULES SORR\r\n\t\tUNION ALL\r\n\t\tSELECT\r\n\t\t\tNAARTV.BK_ACCOUNTING_RULE_NAME,\r\n\t\t\tNAARTV.AR_ACCOUNTING_RULE_DESCRIPTION,\r\n\t\t\tNAARTV.SK_RULE_ID_INT,\r\n\t\t\tNAARTV.SS_CODE,\r\n\t\t\tNAARTV.START_TV_DATE,\r\n\t\t\tNAARTV.EDW_UPDATE_DATETIME CREATE_DATETIME,\r\n\t\t\t'X' ACTION_CODE\r\n\t\t\tFROM $$FINLGLVWDB.N_AR_ACCOUNTING_RULE_TV NAARTV\r\n\t\tWHERE END_TV_DATE = CAST ('3500-01-01' AS DATE)\r\n\t\tAND BK_ACCOUNTING_RULE_NAME IN (SELECT NAME FROM $$STGDB.ST_OOD_RA_RULES )) TVINPUT\r\nQUALIFY ROW_NUMBER () OVER (PARTITION BY TVINPUT.BK_ACCOUNTING_RULE_NAME,TVINPUT.START_TV_DATE ORDER BY TVINPUT.CREATE_DATETIME DESC)=1\r\n\t)TVOUTPUT\r\n\tLEFT JOIN \r\n\t$$FINLGLVWDB.N_AR_ACCOUNTING_RULE_TV NAARTV\r\n\tON TVOUTPUT.BK_ACCOUNTING_RULE_NAME = NAARTV.BK_ACCOUNTING_RULE_NAME\r\n\tAND NAARTV.END_TV_DATE=CAST('3500-01-01' AS DATE)\r\n\tWHERE TVOUTPUT.ROW_NUM=1\r\n\t\r\n\r\nUNION ALL\r\n\r\nSELECT\r\n\tTVOUTPUT.BK_ACCOUNTING_RULE_NAME AS BK_ACCOUNTING_RULE_NAME,\r\n\tTVOUTPUT.AR_ACCOUNTING_RULE_DESCRIPTION AS AR_ACCOUNTING_RULE_DESCRIPTION,\r\n\tTVOUTPUT.SK_RULE_ID_INT AS SK_RULE_ID_INT,\r\n\tTVOUTPUT.SS_CODE AS SS_CODE,\r\n\tTVOUTPUT.START_TV_DATE AS START_DATE_ACTIVE,\r\n\tCOALESCE (MAX (TVOUTPUT.START_TV_DATE - INTERVAL '1' DAY)\r\n\t\tOVER(PARTITION BY TVOUTPUT.BK_ACCOUNTING_RULE_NAME\r\n\t\tORDER BY TVOUTPUT.START_TV_DATE ASC ROWS BETWEEN 1 \r\n\t\tFOLLOWING AND 1 FOLLOWING), DATE '3500-01-01') AS END_DATE_ACTIVE,\r\n\t\tTVOUTPUT.ACTION_CODE AS ACTION_CODE, \r\n\t\tROW_NUMBER () OVER(PARTITION BY TVOUTPUT.BK_ACCOUNTING_RULE_NAME \r\n\t\tORDER BY TVOUTPUT.START_TV_DATE ASC) AS RANK_INDEX,\r\n\t(CASE WHEN RANK_INDEX = 1 AND NAARTV.BK_ACCOUNTING_RULE_NAME\r\n\tIS NOT NULL \r\n\tTHEN 'U'ELSE 'I' END) AS DML_TYPE, \r\n\tCAST (CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) AS CREATE_DATETIME\r\nFROM (\tSELECT \r\n\t\t\t\tBK_ACCOUNTING_RULE_NAME,\r\n                \tAR_ACCOUNTING_RULE_DESCRIPTION,\r\n\t\tSK_RULE_ID_INT,\r\n\t\tSS_CODE,\r\n\t\tSTART_TV_DATE,\r\n\t\t CREATE_DATETIME, \r\n\t\t ACTION_CODE,\r\nROW_NUMBER () OVER (PARTITION BY BK_ACCOUNTING_RULE_NAME\tORDER BY CREATE_DATETIME DESC) \r\n\t\tAS ROW_NUM\r\n\tFROM ( SELECT \r\n\t\t\t\t\t\tSOFRR.NAME BK_ACCOUNTING_RULE_NAME,\r\n\t\t\tSOFRR.DESCRIPTION AR_ACCOUNTING_RULE_DESCRIPTION,\r\n\t\t\tSOFRR.RULE_ID SK_RULE_ID_INT,\r\n\t\t\t'OOD' SS_CODE,\r\n\t\t\tCAST(SOFRR.CREATE_DATETIME AS DATE) START_TV_DATE,\r\n\t\t\tSOFRR.CREATE_DATETIME,\r\n\t\t\tSOFRR.ACTION_CODE\r\n\t\t\t\t\tFROM $$STGDB.ST_OOD_FUSN_RA_RULES SOFRR\r\n\t\t\t\t\tWHERE NOT EXISTS (SEL 1 FROM $$STGDB.ST_OOD_RA_RULES SORR\r\n\t\t\t\t\tWHERE SORR.RULE_ID = SOFRR.RULE_ID)\r\n\t\tUNION ALL\r\n\t\tSELECT\r\n\t\t\tNAARTV.BK_ACCOUNTING_RULE_NAME,\r\n\t\t\tNAARTV.AR_ACCOUNTING_RULE_DESCRIPTION,\r\n\t\t\tNAARTV.SK_RULE_ID_INT,\r\n\t\t\tNAARTV.SS_CODE,\r\n\t\t\tNAARTV.START_TV_DATE,\r\n\t\t\tNAARTV.EDW_UPDATE_DATETIME CREATE_DATETIME,\r\n\t\t\t'X' ACTION_CODE\r\n\t\t\tFROM $$FINLGLVWDB.N_AR_ACCOUNTING_RULE_TV NAARTV\r\n\t\tWHERE END_TV_DATE = CAST ('3500-01-01' AS DATE)\r\n\t\tAND BK_ACCOUNTING_RULE_NAME IN (SELECT NAME FROM $$STGDB.ST_OOD_FUSN_RA_RULES )) TVINPUT\r\nQUALIFY ROW_NUMBER () OVER (PARTITION BY TVINPUT.BK_ACCOUNTING_RULE_NAME,TVINPUT.START_TV_DATE ORDER BY TVINPUT.CREATE_DATETIME DESC)=1\r\n\t)TVOUTPUT\r\n\tLEFT JOIN \r\n\t$$FINLGLVWDB.N_AR_ACCOUNTING_RULE_TV NAARTV\r\n\tON TVOUTPUT.BK_ACCOUNTING_RULE_NAME = NAARTV.BK_ACCOUNTING_RULE_NAME\r\n\tAND NAARTV.END_TV_DATE=CAST('3500-01-01' AS DATE)\r\n\tWHERE TVOUTPUT.ROW_NUM=1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_W_AR_ACCOUNTING_RULE_OOD",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "NAME"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DESCRIPTION"
+        },
+        {
+          "name": "RULE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RULE_ID"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SS_CODE"
+        },
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_TV_DATE"
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_TV_DATE"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RANK_INDEX"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATE_DATETIME"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "NAME",
+      "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "W_AR_ACCOUNTING_RULE"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD",
+      "to_field": "START_TV_DATE",
+      "to_instance": "W_AR_ACCOUNTING_RULE"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD",
+      "to_field": "END_TV_DATE",
+      "to_instance": "W_AR_ACCOUNTING_RULE"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD",
+      "to_field": "AR_ACCOUNTING_RULE_DESCRIPTION",
+      "to_instance": "W_AR_ACCOUNTING_RULE"
+    },
+    {
+      "from_field": "RULE_ID",
+      "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD",
+      "to_field": "SK_RULE_ID_INT",
+      "to_instance": "W_AR_ACCOUNTING_RULE"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD",
+      "to_field": "SS_CODE",
+      "to_instance": "W_AR_ACCOUNTING_RULE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_AR_ACCOUNTING_RULE"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_AR_ACCOUNTING_RULE"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "ST_OOD_RA_RULES",
+      "to_field": "DESCRIPTION",
+      "to_instance": "SQ_ST_OOD_RA_RULES"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "ST_OOD_RA_RULES",
+      "to_field": "NAME",
+      "to_instance": "SQ_ST_OOD_RA_RULES"
+    },
+    {
+      "from_field": "RULE_ID",
+      "from_instance": "ST_OOD_RA_RULES",
+      "to_field": "RULE_ID",
+      "to_instance": "SQ_ST_OOD_RA_RULES"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_OOD_RA_RULES",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_OOD_RA_RULES"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_OOD_RA_RULES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_OOD_RA_RULES"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "ST_OOD_RA_RULES",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_ST_OOD_RA_RULES"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_OOD_RA_RULES",
+      "to_field": "START_TV_DATE",
+      "to_instance": "SQ_ST_OOD_RA_RULES"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_OOD_RA_RULES",
+      "to_field": "END_TV_DATE",
+      "to_instance": "SQ_ST_OOD_RA_RULES"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "SQ_ST_OOD_RA_RULES",
+      "to_field": "NAME",
+      "to_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SQ_ST_OOD_RA_RULES",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+    },
+    {
+      "from_field": "RULE_ID",
+      "from_instance": "SQ_ST_OOD_RA_RULES",
+      "to_field": "RULE_ID",
+      "to_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_ST_OOD_RA_RULES",
+      "to_field": "SS_CODE",
+      "to_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "SQ_ST_OOD_RA_RULES",
+      "to_field": "START_TV_DATE",
+      "to_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "SQ_ST_OOD_RA_RULES",
+      "to_field": "END_TV_DATE",
+      "to_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_OOD_RA_RULES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+    },
+    {
+      "from_field": "RANK_INDEX",
+      "from_instance": "SQ_ST_OOD_RA_RULES",
+      "to_field": "RANK_INDEX",
+      "to_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_OOD_RA_RULES",
+      "to_field": "DML_TYPE",
+      "to_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_OOD_RA_RULES",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_ACCOUNTING_RULE_NAME",
+      "source_path": [
+        {
+          "from_field": "NAME",
+          "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "ST_OOD_RA_RULES"
+        },
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "SQ_ST_OOD_RA_RULES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_OOD_RA_RULES"
+        },
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "SQ_ST_OOD_RA_RULES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AR_ACCOUNTING_RULE_DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_RULE_ID_INT",
+      "source_path": [
+        {
+          "from_field": "RULE_ID",
+          "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CODE",
+      "source_path": [
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+        },
+        {
+          "from_field": "NAME",
+          "from_instance": "ST_OOD_RA_RULES"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_ST_OOD_RA_RULES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_OOD_RA_RULES"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_OOD_RA_RULES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "EXP_W_AR_ACCOUNTING_RULE_OOD"
+        },
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_ST_OOD_RA_RULES"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:20.818087+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

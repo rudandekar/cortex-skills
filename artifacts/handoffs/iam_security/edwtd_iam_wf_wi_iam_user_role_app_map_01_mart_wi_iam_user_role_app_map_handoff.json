@@ -1,0 +1,366 @@
+{
+  "workflow_name": "wf_m_WI_IAM_USER_ROLE_APP_MAP",
+  "mapping_name": "m_WI_IAM_USER_ROLE_APP_MAP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_IAM",
+  "target_table": "WI_IAM_USER_ROLE_APP_MAP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_iam_wf_wi_iam_user_role_app_map_01_mart_wi_iam_user_role_app_map",
+  "source_tables": [
+    "N_IAM_PTNRS_HIER_LNK"
+  ],
+  "sources": [
+    {
+      "name": "N_IAM_PTNRS_HIER_LNK",
+      "database_type": "Teradata",
+      "owner": "SECURITYVWDB_DV5",
+      "fields": [
+        {
+          "name": "PARTNER_SITE_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_IAM_ROLE_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "IAM_APPLICATION_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "IAM_USER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ASSIGNMENT_TYPE",
+          "datatype": "char",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "STANDARD_OR_EXCEPTION_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EXCLUSIVE_OR_RESTRICTIVE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_BK_PRTNR_SITE_PARTY_ID_INT",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IAM_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_CEC_ID",
+          "datatype": "char",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_IAM_USER_ROLE_APP_MAP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "CEC_ID",
+        "datatype": "varchar",
+        "precision": "120",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "APPLICATION_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_USER_PARTNER_CNT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "IAM_APPLICATION_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "IAM_USER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_IAM_PTNRS_HIER_LNK",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CEC_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "APPLICATION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_USER_PARTNER_CNT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IAM_APPLICATION_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IAM_USER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT  PARTNER.CEC_ID, \r\n                 PARTNER.APPLICATION_NAME,\r\n                 COUNT(*)  AS PARTNER_CTRY_COUNT,\r\nPARTNER.IAM_APPLICATION_KEY,\r\nPARTNER.IAM_USER_KEY\r\n                  FROM \r\n(SELECT \r\nDISTINCT NIU.DD_CEC_ID AS CEC_ID,\r\nAPP.APPLICATION_NAME AS APPLICATION_NAME,\r\nLNK.PARTNER_COUNTRY_PARTY_KEY,\r\nAPP.IAM_APPLICATION_KEY,\r\nNIU.IAM_USER_KEY\r\nFROM \r\n$$SECURITYVWDB.N_IAM_USER NIU,\r\n$$SECURITYVWDB.N_IAM_APPLICATION APP,\r\n$$SECURITYVWDB.N_IAM_PTNRS_HIER_LNK PARTNER,\r\n$$COMREFVWDB.N_CHANNEL_PARTNER_SITE LNK,\r\n$$COMREFVWDB.N_CHNL_PTNR_COUNTRY CTRY\r\nWHERE\r\nPARTNER.IAM_APPLICATION_KEY = APP.IAM_APPLICATION_KEY\r\nAND NIU.IAM_USER_KEY = PARTNER.IAM_USER_KEY\r\nAND PARTNER.PARTNER_SITE_PARTY_KEY=LNK.PARTNER_SITE_PARTY_KEY\r\nAND CTRY.PARTNER_COUNTRY_PARTY_KEY=LNK.PARTNER_COUNTRY_PARTY_KEY\r\nAND PARTNR_COUNTRY_REGISTERED_TYPE='R'\r\nAND PARTNER.SOURCE_DELETED_FLG='N')  PARTNER\r\nGROUP BY PARTNER.CEC_ID,\r\nPARTNER.APPLICATION_NAME,\r\nPARTNER.IAM_APPLICATION_KEY,\r\nPARTNER.IAM_USER_KEY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "CEC_ID",
+      "from_instance": "SQ_N_IAM_PTNRS_HIER_LNK",
+      "to_field": "CEC_ID",
+      "to_instance": "WI_IAM_USER_ROLE_APP_MAP"
+    },
+    {
+      "from_field": "APPLICATION_NAME",
+      "from_instance": "SQ_N_IAM_PTNRS_HIER_LNK",
+      "to_field": "APPLICATION_NAME",
+      "to_instance": "WI_IAM_USER_ROLE_APP_MAP"
+    },
+    {
+      "from_field": "DV_USER_PARTNER_CNT",
+      "from_instance": "SQ_N_IAM_PTNRS_HIER_LNK",
+      "to_field": "DV_USER_PARTNER_CNT",
+      "to_instance": "WI_IAM_USER_ROLE_APP_MAP"
+    },
+    {
+      "from_field": "IAM_APPLICATION_KEY",
+      "from_instance": "SQ_N_IAM_PTNRS_HIER_LNK",
+      "to_field": "IAM_APPLICATION_KEY",
+      "to_instance": "WI_IAM_USER_ROLE_APP_MAP"
+    },
+    {
+      "from_field": "IAM_USER_KEY",
+      "from_instance": "SQ_N_IAM_PTNRS_HIER_LNK",
+      "to_field": "IAM_USER_KEY",
+      "to_instance": "WI_IAM_USER_ROLE_APP_MAP"
+    },
+    {
+      "from_field": "BK_IAM_ROLE_NAME",
+      "from_instance": "N_IAM_PTNRS_HIER_LNK",
+      "to_field": "CEC_ID",
+      "to_instance": "SQ_N_IAM_PTNRS_HIER_LNK"
+    },
+    {
+      "from_field": "DD_BK_PRTNR_SITE_PARTY_ID_INT",
+      "from_instance": "N_IAM_PTNRS_HIER_LNK",
+      "to_field": "APPLICATION_NAME",
+      "to_instance": "SQ_N_IAM_PTNRS_HIER_LNK"
+    },
+    {
+      "from_field": "PARTNER_SITE_PARTY_KEY",
+      "from_instance": "N_IAM_PTNRS_HIER_LNK",
+      "to_field": "DV_USER_PARTNER_CNT",
+      "to_instance": "SQ_N_IAM_PTNRS_HIER_LNK"
+    },
+    {
+      "from_field": "IAM_APPLICATION_KEY",
+      "from_instance": "N_IAM_PTNRS_HIER_LNK",
+      "to_field": "IAM_APPLICATION_KEY",
+      "to_instance": "SQ_N_IAM_PTNRS_HIER_LNK"
+    },
+    {
+      "from_field": "IAM_USER_KEY",
+      "from_instance": "N_IAM_PTNRS_HIER_LNK",
+      "to_field": "IAM_USER_KEY",
+      "to_instance": "SQ_N_IAM_PTNRS_HIER_LNK"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "CEC_ID",
+      "source_path": [
+        {
+          "from_field": "CEC_ID",
+          "from_instance": "SQ_N_IAM_PTNRS_HIER_LNK"
+        },
+        {
+          "from_field": "BK_IAM_ROLE_NAME",
+          "from_instance": "N_IAM_PTNRS_HIER_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "APPLICATION_NAME",
+      "source_path": [
+        {
+          "from_field": "APPLICATION_NAME",
+          "from_instance": "SQ_N_IAM_PTNRS_HIER_LNK"
+        },
+        {
+          "from_field": "DD_BK_PRTNR_SITE_PARTY_ID_INT",
+          "from_instance": "N_IAM_PTNRS_HIER_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_USER_PARTNER_CNT",
+      "source_path": [
+        {
+          "from_field": "DV_USER_PARTNER_CNT",
+          "from_instance": "SQ_N_IAM_PTNRS_HIER_LNK"
+        },
+        {
+          "from_field": "PARTNER_SITE_PARTY_KEY",
+          "from_instance": "N_IAM_PTNRS_HIER_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "IAM_APPLICATION_KEY",
+      "source_path": [
+        {
+          "from_field": "IAM_APPLICATION_KEY",
+          "from_instance": "SQ_N_IAM_PTNRS_HIER_LNK"
+        },
+        {
+          "from_field": "IAM_APPLICATION_KEY",
+          "from_instance": "N_IAM_PTNRS_HIER_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "IAM_USER_KEY",
+      "source_path": [
+        {
+          "from_field": "IAM_USER_KEY",
+          "from_instance": "SQ_N_IAM_PTNRS_HIER_LNK"
+        },
+        {
+          "from_field": "IAM_USER_KEY",
+          "from_instance": "N_IAM_PTNRS_HIER_LNK"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:25:36.907100+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

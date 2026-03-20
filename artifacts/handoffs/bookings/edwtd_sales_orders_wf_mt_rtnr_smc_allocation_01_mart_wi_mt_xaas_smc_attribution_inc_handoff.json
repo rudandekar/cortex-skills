@@ -1,0 +1,2551 @@
+{
+  "workflow_name": "wf_m_MT_RTNR_SMC_ALLOCATION",
+  "mapping_name": "m_MT_RTNR_SMC_ALLOCATION",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_mt_rtnr_smc_allocation_01_mart_wi_mt_xaas_smc_attribution_inc",
+  "source_tables": [
+    "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+    "WI_XAAS_RTNR_SMC_ALLOCATION",
+    "MT_RTNR_SMC_ALLOCATION",
+    "WI_RTNR_SMC_ALLOCATION",
+    "WI_MT_SMC_ATTRIBUTION_INCR"
+  ],
+  "sources": [
+    {
+      "name": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ENTERPRISE_INV_SKU_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "varchar",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SERVICE_CATEGORY_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_TV_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_TV_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SOURCE_TYPE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_GAP_DAYS",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RENEWAL_REF_ID",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_REF_CD",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_REF_RULE",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "varchar",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SERVICE_CATEGORY_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_TV_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_TV_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SOURCE_TYPE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_GAP_DAYS",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RENEWAL_REF_ID",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_REF_CD",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_REF_RULE",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "MT_RTNR_SMC_ALLOCATION",
+      "database_type": "Teradata",
+      "owner": "SLSORDVWDB_DV4",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "varchar",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SERVICE_CATEGORY_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_TV_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_TV_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SOURCE_TYPE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_TRX_TYPE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_GAP_DAYS",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RENEWAL_REF_ID",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_REF_CD",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_REF_RULE",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_RTNR_SMC_ALLOCATION",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "varchar",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SERVICE_CATEGORY_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_TV_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_TV_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SOURCE_TYPE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_GAP_DAYS",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RENEWAL_REF_ID",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_REF_CD",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_REF_RULE",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ENTERPRISE_INV_SKU_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "varchar",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SERVICE_CATEGORY_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_TV_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_TV_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SOURCE_TYPE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_GAP_DAYS",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RENEWAL_REF_ID",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_REF_CD",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RENEWAL_REF_RULE",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_ORDER_LINE_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_ENTERPRISE_INV_SKU_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_MOTION_CD",
+        "datatype": "varchar",
+        "precision": "7",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_ALLOCATION_PCT",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_SERVICE_CATEGORY_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_TV_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_TV_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_MOTION_TIMING_CD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_SOURCE_TYPE",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RENEWAL_GAP_DAYS",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RENEWAL_REF_ID",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RENEWAL_REF_CD",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RENEWAL_REF_RULE",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SERVICE_CATEGORY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SOURCE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_TRX_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_GAP_DAYS",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_RULE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n    SALES_ORDER_LINE_KEY          \r\n     ,SALES_MOTION_CD               \r\n     ,DV_ALLOCATION_PCT \r\n\t ,DV_SERVICE_CATEGORY_CD\t\r\n     ,START_TV_DTM\r\n     ,END_TV_DTM\r\n     ,EDW_CREATE_DTM                \r\n     ,EDW_CREATE_USER               \r\n     ,EDW_UPDATE_DTM                \r\n     ,USER AS EDW_UPDATE_USER   \r\n     ,SALES_MOTION_TIMING_CD\t \r\n\t ,DV_SOURCE_TYPE \r\n\t ,DV_TRX_TYPE\r\n\t ,SS_CODE\r\n\t ,-9999 AS RENEWAL_GAP_DAYS\r\n\t ,'UNKNOWN' AS RENEWAL_REF_ID\r\n\t ,'UNKNOWN' AS RENEWAL_REF_CD\r\n\t ,'UNKNOWN' AS RENEWAL_REF_RULE\r\nFROM (\r\nSELECT \r\n     WI.SALES_ORDER_LINE_KEY          \r\n     ,WI.SALES_MOTION_CD               \r\n     ,WI.DV_ALLOCATION_PCT \r\n\t ,WI.DV_SERVICE_CATEGORY_CD\t\r\n     ,WI.START_TV_DTM\r\n     ,WI.END_TV_DTM\r\n     ,CURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM                \r\n     ,USER AS EDW_CREATE_USER               \r\n     ,CURRENT_TIMESTAMP(0) EDW_UPDATE_DTM                \r\n     ,USER AS EDW_UPDATE_USER   \r\n     ,WI.SALES_MOTION_TIMING_CD\t \r\n\t ,WI.DV_SOURCE_TYPE \r\n\t ,CAST('XAAS' AS VARCHAR(10)) AS DV_TRX_TYPE\r\n\t ,NSOL.SS_CODE\r\n FROM $$STGDB.WI_XAAS_RTNR_SMC_ALLOCATION WI\r\n INNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL\r\n ON WI.SALES_ORDER_LINE_KEY=NSOL.SALES_ORDER_LINE_KEY\r\n WHERE NOT EXISTS(SELECT 1 FROM $$STGDB.WI_RTNR_SMC_ALLOCATION W \r\n WHERE W.SALES_ORDER_LINE_KEY=WI.SALES_ORDER_LINE_KEY) \r\n AND NOT EXISTS ( SELECT 1 FROM $$SLSORDVWDB.MT_RTNR_SMC_ALLOCATION EL\r\n                     WHERE EL.SALES_ORDER_LINE_KEY = WI.SALES_ORDER_LINE_KEY \r\n                       AND EL.START_TV_DTM = WI.START_TV_DTM\r\n\t\t\t\t\t   AND EL.DV_TRX_TYPE='XAAS')\r\nUNION ALL\r\nSELECT \r\n      WI.SALES_ORDER_LINE_KEY          \r\n     ,WI.SALES_MOTION_CD               \r\n     ,WI.DV_ALLOCATION_PCT \r\n\t ,WI.DV_SERVICE_CATEGORY_CD\t\r\n     ,WI.START_TV_DTM\r\n     ,WI.END_TV_DTM\r\n     ,CURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM                \r\n     ,USER AS EDW_CREATE_USER               \r\n     ,CURRENT_TIMESTAMP(0) EDW_UPDATE_DTM                \r\n     ,USER AS EDW_UPDATE_USER   \r\n     ,WI.SALES_MOTION_TIMING_CD\t \r\n\t ,WI.DV_SOURCE_TYPE \r\n\t ,CAST('ERP' AS VARCHAR(10)) AS DV_TRX_TYPE\r\n\t ,NSOL.SS_CODE\r\n FROM $$STGDB.WI_RTNR_SMC_ALLOCATION WI \r\n  INNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL\r\n ON WI.SALES_ORDER_LINE_KEY=NSOL.SALES_ORDER_LINE_KEY\r\n WHERE NOT EXISTS ( SELECT 1 FROM $$SLSORDVWDB.MT_RTNR_SMC_ALLOCATION EL\r\n                     WHERE EL.SALES_ORDER_LINE_KEY = WI.SALES_ORDER_LINE_KEY \r\n                       AND EL.START_TV_DTM = WI.START_TV_DTM\r\n                        AND DV_TRX_TYPE='ERP')\r\n\r\n\t\t\t\t\t   )XAAS",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ENTERPRISE_INV_SKU_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SERVICE_CATEGORY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SOURCE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_GAP_DAYS",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_RULE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\tSALES_ORDER_LINE_KEY,\r\n\tDV_ENTERPRISE_INV_SKU_ID,\r\n\tSALES_MOTION_CD,\r\n\tDV_ALLOCATION_PCT,\r\n\tDV_SERVICE_CATEGORY_CD,  \r\n\tSTART_TV_DTM,\r\n\tEND_TV_DTM,\r\n\tSALES_MOTION_TIMING_CD,\r\n\tDV_SOURCE_TYPE, /* DV SOURCE TYPE addition to accommodate SQ */\r\n\t-9999 AS RENEWAL_GAP_DAYS,\r\n\t'UNKNOWN' AS RENEWAL_REF_ID,\r\n\t'UNKNOWN' AS RENEWAL_REF_CD,\r\n\t'UNKNOWN' AS RENEWAL_REF_RULE\r\nFROM $$SLSORDVWDB.MT_SLS_MOTION_ATTRIBUTION\r\nWHERE END_TV_DTM = '3500-01-01 00:00:00'  \r\n  AND DV_SOURCE_TYPE IN ('RTNR', 'SQ' )\r\n  AND BUNDLE_FLG='N'\r\n  AND SALES_ORDER_LINE_KEY IN ( SELECT SALES_ORDER_LINE_KEY \r\n\t\t\t\t\t\t\t\t FROM $$SLSORDVWDB.MT_SLS_MOTION_ATTRIBUTION\r\n                                WHERE EDW_UPDATE_DTM > '$$LastExtractDate' \r\n                                  AND DV_SOURCE_TYPE IN ( 'RTNR', 'SQ' )\r\n\t\t\t\t\t\t\t\t  AND BUNDLE_FLG='N'\r\n                              )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SERVICE_CATEGORY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SOURCE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_GAP_DAYS",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_RULE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nSMC_FINAL.SALES_ORDER_LINE_KEY,\r\nSMC_FINAL.SALES_MOTION_CD,\r\nSMC_FINAL.DV_ALLOCATION_PCT/SMC_FINAL.SUM_SPLIT AS DV_ALLOCATION_PCT,\r\nSMC_FINAL.DV_SERVICE_CATEGORY_CD,\r\nSMC_FINAL.START_TV_DTM , \r\nSMC_FINAL.END_TV_DTM,\r\nSMC_FINAL.SALES_MOTION_TIMING_CD SALES_MOTION_TIMING_CD,\r\nSMC_FINAL.DV_SOURCE_TYPE DV_SOURCE_TYPE,\r\nSMC_FINAL.RENEWAL_GAP_DAYS,\r\nSMC_FINAL.RENEWAL_REF_ID,\r\nSMC_FINAL.RENEWAL_REF_CD,\r\nSMC_FINAL.RENEWAL_REF_RULE\r\nFROM (SELECT \r\nSMC.SALES_ORDER_LINE_KEY,\r\nSMC.SALES_MOTION_CD,\r\nSUM(SMC.DV_ALLOCATION_PCT ) AS DV_ALLOCATION_PCT,\r\nSMC.SUM_SPLIT ,\r\nsmc.DV_SERVICE_CATEGORY_CD,\r\nSMC.START_TV_DTM , \r\nSMC.END_TV_DTM,\r\nSMC.SALES_MOTION_TIMING_CD SALES_MOTION_TIMING_CD,\r\nSMC.DV_SOURCE_TYPE DV_SOURCE_TYPE,/* DV SOURCE TYPE ADDITION to accommodate SQ */\r\nSMC.RENEWAL_GAP_DAYS,\r\nSMC.RENEWAL_REF_ID,\r\nSMC.RENEWAL_REF_CD,\r\nSMC.RENEWAL_REF_RULE\r\nFROM\r\n(\r\n/* For RTR data */\r\nSELECT \r\nSALES_ORDER_LINE_KEY,\r\nSALES_MOTION_CD,\r\nDV_ALLOCATION_PCT,\r\nCASE WHEN SUM_SPLIT=0 THEN 1 ELSE SUM_SPLIT END AS SUM_SPLIT,\r\nDV_SERVICE_CATEGORY_CD,\r\nSTART_TV_DTM,\r\nEND_TV_DTM,\r\nSALES_MOTION_TIMING_CD,\r\nCAST('RTNR' AS VARCHAR(10)) AS DV_SOURCE_TYPE,\r\nRENEWAL_GAP_DAYS,\r\nRENEWAL_REF_ID,\r\nRENEWAL_REF_CD,\r\nRENEWAL_REF_RULE\r\nFROM \r\n(SELECT\r\nRTR.SALES_ORDER_LINE_KEY,\r\nRTR.SALES_MOTION_CD,\r\nRTR.ATTR_PCT DV_ALLOCATION_PCT,\r\nSUM(RTR.ATTR_PCT) OVER(PARTITION BY RTR.SALES_ORDER_LINE_KEY) SUM_SPLIT,\r\nMAX(RTR.START_TV_DTM) OVER(PARTITION BY RTR.SALES_ORDER_LINE_KEY) START_TV_DTM, /* Changed logic as part of May 2nd release */\r\nCAST('3500-01-01 00:00:00' AS TIMESTAMP(0)) AS END_TV_DTM,\r\nRTR.ITEM_CATEGORY_NAME AS DV_SERVICE_CATEGORY_CD,\r\nRTR.SALES_MOTION_TIMING_CD,\r\n-9999 AS RENEWAL_GAP_DAYS,\r\n'UNKNOWN' AS RENEWAL_REF_ID,\r\n'UNKNOWN' AS RENEWAL_REF_CD,\r\n'UNKNOWN' AS RENEWAL_REF_RULE\r\nFROM\r\n$$SLSORDVWDB.N_ATTR_PRDT_NEW_RNWL_ACV_TV RTR\r\nWHERE END_TV_DTM = '3500-01-01 00:00:00'\r\nAND RTR.ITEM_CATEGORY_NAME NOT IN ( 'Billing', 'FLEXIBLE CONSUMPTION MODEL' )\r\nAND RTR.ORDER_ORIGIN_CD NOT IN ( SELECT ORDER_ORIGIN FROM $$ETLVWDB.EL_ORDER_ORIGIN )\r\nAND SALES_ORDER_LINE_KEY IN ( SEL SALES_ORDER_LINE_KEY FROM $$STGDB.WI_MT_SMC_ATTRIBUTION_INCR INCR WHERE DV_SOURCE_TYPE = 'RTNR' )\r\n) SMC1\r\n\r\n/* Below for SQ data */\r\nUNION ALL\r\n\r\nSELECT \r\nSALES_ORDER_LINE_KEY,\r\nSALES_MOTION_CD,\r\nDV_ALLOCATION_PCT,\r\nCASE WHEN SUM_SPLIT=0 THEN 1 ELSE SUM_SPLIT END AS SUM_SPLIT,\r\nDV_SERVICE_CATEGORY_CD,\r\nSTART_TV_DTM,\r\nEND_TV_DTM,\r\nSALES_MOTION_TIMING_CD,\r\nCAST( 'SQ' AS VARCHAR(10)) AS DV_SOURCE_TYPE,\r\nRENEWAL_GAP_DAYS,\r\nRENEWAL_REF_ID,\r\nRENEWAL_REF_CD,\r\nRENEWAL_REF_RULE\r\nFROM \r\n(SELECT\r\n    SALES_ORDER_LINE_KEY,\r\nSALES_MOTION_CD,\r\nDV_ALLOCATION_PCT,\r\nSUM(DV_ALLOCATION_PCT) OVER(PARTITION BY SALES_ORDER_LINE_KEY) SUM_SPLIT,\r\nDV_SERVICE_CATEGORY_CD,  \r\nMAX(START_TV_DTM) OVER(PARTITION BY SALES_ORDER_LINE_KEY) START_TV_DTM, /* Changed logic as part of May 2nd release */\r\n    MAX(END_TV_DTM) OVER(PARTITION BY SALES_ORDER_LINE_KEY) END_TV_DTM,\r\nSALES_MOTION_TIMING_CD,\r\nRENEWAL_GAP_DAYS,\r\nRENEWAL_REF_ID,\r\nRENEWAL_REF_CD,\r\nRENEWAL_REF_RULE\r\nFROM\r\n$$STGDB.WI_MT_SMC_ATTRIBUTION_INCR INCR\r\nWHERE INCR.DV_SOURCE_TYPE = 'SQ'\r\n) SMC1\r\n) SMC\r\nGROUP BY 1,2,4,5,6,7,8,9,10,11,12,13\r\n) SMC_FINAL",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SERVICE_CATEGORY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SOURCE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_GAP_DAYS",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_RULE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nSMC_FINAL.SALES_ORDER_LINE_KEY,\r\nSMC_FINAL.SALES_MOTION_CD,\r\nSMC_FINAL.DV_ALLOCATION_PCT/SMC_FINAL.SUM_SPLIT AS DV_ALLOCATION_PCT,\r\nSMC_FINAL.DV_SERVICE_CATEGORY_CD,\r\nSMC_FINAL.START_TV_DTM , \r\nSMC_FINAL.END_TV_DTM,\r\nSMC_FINAL.SALES_MOTION_TIMING_CD SALES_MOTION_TIMING_CD,\r\nSMC_FINAL.DV_SOURCE_TYPE DV_SOURCE_TYPE,\r\nSMC_FINAL.RENEWAL_GAP_DAYS,\r\nSMC_FINAL.RENEWAL_REF_ID,\r\nSMC_FINAL.RENEWAL_REF_CD,\r\nSMC_FINAL.RENEWAL_REF_RULE\r\nFROM (SELECT \r\nSMC.SALES_ORDER_LINE_KEY,\r\nSMC.SALES_MOTION_CD,\r\nSUM(SMC.DV_ALLOCATION_PCT ) AS DV_ALLOCATION_PCT,\r\nSMC.SUM_SPLIT ,\r\nsmc.DV_SERVICE_CATEGORY_CD,\r\nSMC.START_TV_DTM , \r\nSMC.END_TV_DTM,\r\ncoalesce(SMC.SALES_MOTION_TIMING_CD,'UNKNOWN') SALES_MOTION_TIMING_CD,\r\nSMC.DV_SOURCE_TYPE DV_SOURCE_TYPE,/* DV SOURCE TYPE ADDITION to accommodate SQ */\r\nRENEWAL_GAP_DAYS,\r\nRENEWAL_REF_ID,\r\nRENEWAL_REF_CD,\r\nRENEWAL_REF_RULE\r\nFROM\r\n(\r\nSELECT \r\nSALES_ORDER_LINE_KEY,\r\nSALES_MOTION_CD,\r\nDV_ALLOCATION_PCT,\r\nCASE WHEN SUM_SPLIT=0 THEN 1 ELSE SUM_SPLIT END AS SUM_SPLIT,\r\nDV_SERVICE_CATEGORY_CD,\r\nSTART_TV_DTM,\r\nEND_TV_DTM,\r\nSALES_MOTION_TIMING_CD,\r\n--CAST( 'RTNR' AS VARCHAR(10)) AS DV_SOURCE_TYPE,\r\nDV_SOURCE_TYPE,\r\nRENEWAL_GAP_DAYS,\r\nRENEWAL_REF_ID,\r\nRENEWAL_REF_CD,\r\nRENEWAL_REF_RULE\r\nFROM \r\n(SELECT\r\n    SALES_ORDER_LINE_KEY,\r\nSALES_MOTION_CD,\r\nDV_ALLOCATION_PCT,\r\nSUM(DV_ALLOCATION_PCT) OVER(PARTITION BY SALES_ORDER_LINE_KEY) SUM_SPLIT,\r\nDV_SERVICE_CATEGORY_CD,  \r\nMAX(START_TV_DTM) OVER(PARTITION BY SALES_ORDER_LINE_KEY) START_TV_DTM, /* Changed logic as part of May 2nd release */\r\n    MAX(END_TV_DTM) OVER(PARTITION BY SALES_ORDER_LINE_KEY) END_TV_DTM,\r\nSALES_MOTION_TIMING_CD,\r\nDV_SOURCE_TYPE,\r\nRENEWAL_GAP_DAYS,\r\nRENEWAL_REF_ID,\r\nRENEWAL_REF_CD,\r\nRENEWAL_REF_RULE\r\nFROM $$STGDB.WI_MT_XAAS_SMC_ATTRIBUTION_INC INCR\r\n) SMC1\r\n) SMC\r\nGROUP BY 1,2,4,5,6,7,8,9,10,11,12,13\r\n) SMC_FINAL",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ENTERPRISE_INV_SKU_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ALLOCATION_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SERVICE_CATEGORY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SOURCE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_GAP_DAYS",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_REF_RULE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\tTRX.MINOR_LN_EXAAS_SUBSCR_SOL_KEY AS SALES_ORDER_LINE_KEY,\r\n\tDV_ENTERPRISE_INV_SKU_ID,\r\n\tMT.SALES_MOTION_CD,\r\n\tDV_ALLOCATION_PCT,\r\n\tMT.DV_SERVICE_CATEGORY_CD,  \r\n\tSTART_TV_DTM,\r\n\tEND_TV_DTM,\r\n\tSALES_MOTION_TIMING_CD,\r\n\tDV_SOURCE_TYPE, /* DV SOURCE TYPE addition to accommodate SQ */\r\n\t-9999 AS RENEWAL_GAP_DAYS,\r\n\t'UNKNOWN' AS RENEWAL_REF_ID,\r\n\t'UNKNOWN' AS RENEWAL_REF_CD,\r\n\t'UNKNOWN' AS RENEWAL_REF_RULE\r\nFROM $$SLSORDVWDB.MT_XAAS_SLS_MOTION_ATTRIB MT\r\nINNER JOIN $$SLSORDVWDB.N_XAAS_SO_SBSCR_ITM_SLS_TRX TRX\r\nON MT.SO_SBSCRPTN_ITM_SLS_TRX_KEY=TRX.SO_SBSCRPTN_ITM_SLS_TRX_KEY\r\nWHERE MT.END_TV_DTM = '3500-01-01 00:00:00'\r\nAND TRX.MINOR_LN_EXAAS_SUBSCR_SOL_KEY>0\r\nAND MT.BUNDLE_FLG='N'\r\n--AND DV_SOURCE_TYPE IN ('RTNR')\r\n  AND MT.SO_SBSCRPTN_ITM_SLS_TRX_KEY IN ( SELECT SO_SBSCRPTN_ITM_SLS_TRX_KEY \r\n\t\t\t\t\t\t\t\t FROM $$SLSORDVWDB.MT_XAAS_SLS_MOTION_ATTRIB\r\n                                WHERE EDW_UPDATE_DTM > '$$LastExtractDate'\r\n\t\t\t\t\t\t\t\tAND BUNDLE_FLG='N'\r\n\t\t\t\t\t\t\t\t--AND DV_SOURCE_TYPE IN ('RTNR')\r\n\t\t\t\t\t\t\t\tGROUP BY 1\r\n                              )\r\nGROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "START_TV_DTM",
+      "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "START_TV_DTM",
+      "to_instance": "WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_SERVICE_CATEGORY_CD",
+      "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "DV_SERVICE_CATEGORY_CD",
+      "to_instance": "WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_SOURCE_TYPE",
+      "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "DV_SOURCE_TYPE",
+      "to_instance": "WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "END_TV_DTM",
+      "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "END_TV_DTM",
+      "to_instance": "WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_GAP_DAYS",
+      "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "RENEWAL_GAP_DAYS",
+      "to_instance": "WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_REF_ID",
+      "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "RENEWAL_REF_ID",
+      "to_instance": "WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_REF_CD",
+      "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "RENEWAL_REF_CD",
+      "to_instance": "WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_REF_RULE",
+      "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "RENEWAL_REF_RULE",
+      "to_instance": "WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_SERVICE_CATEGORY_CD",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "DV_SERVICE_CATEGORY_CD",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "DV_ENTERPRISE_INV_SKU_ID",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "DV_ENTERPRISE_INV_SKU_ID",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "DV_SOURCE_TYPE",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "DV_SOURCE_TYPE",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "START_TV_DTM",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "START_TV_DTM",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "RENEWAL_GAP_DAYS",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "RENEWAL_GAP_DAYS",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "END_TV_DTM",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "END_TV_DTM",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "RENEWAL_REF_ID",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "RENEWAL_REF_ID",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "RENEWAL_REF_CD",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "RENEWAL_REF_CD",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "RENEWAL_REF_RULE",
+      "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION",
+      "to_field": "RENEWAL_REF_RULE",
+      "to_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "START_TV_DTM",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "START_TV_DTM",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "END_TV_DTM",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "END_TV_DTM",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_SOURCE_TYPE",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "DV_SOURCE_TYPE",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_TRX_TYPE",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "DV_TRX_TYPE",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "SS_CODE",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_SERVICE_CATEGORY_CD",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "DV_SERVICE_CATEGORY_CD",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_GAP_DAYS",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "RENEWAL_GAP_DAYS",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_REF_RULE",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "RENEWAL_REF_RULE",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_REF_ID",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "RENEWAL_REF_ID",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_REF_CD",
+      "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION",
+      "to_field": "RENEWAL_REF_CD",
+      "to_instance": "MT_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "END_TV_DTM",
+      "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "END_TV_DTM",
+      "to_instance": "WI_XAAS_RTNR_SMC_ALLOCATION1"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "WI_XAAS_RTNR_SMC_ALLOCATION1"
+    },
+    {
+      "from_field": "DV_SOURCE_TYPE",
+      "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "DV_SOURCE_TYPE",
+      "to_instance": "WI_XAAS_RTNR_SMC_ALLOCATION1"
+    },
+    {
+      "from_field": "RENEWAL_GAP_DAYS",
+      "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "RENEWAL_GAP_DAYS",
+      "to_instance": "WI_XAAS_RTNR_SMC_ALLOCATION1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_XAAS_RTNR_SMC_ALLOCATION1"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "WI_XAAS_RTNR_SMC_ALLOCATION1"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "WI_XAAS_RTNR_SMC_ALLOCATION1"
+    },
+    {
+      "from_field": "DV_SERVICE_CATEGORY_CD",
+      "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "DV_SERVICE_CATEGORY_CD",
+      "to_instance": "WI_XAAS_RTNR_SMC_ALLOCATION1"
+    },
+    {
+      "from_field": "START_TV_DTM",
+      "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "START_TV_DTM",
+      "to_instance": "WI_XAAS_RTNR_SMC_ALLOCATION1"
+    },
+    {
+      "from_field": "RENEWAL_REF_CD",
+      "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "RENEWAL_REF_CD",
+      "to_instance": "WI_XAAS_RTNR_SMC_ALLOCATION1"
+    },
+    {
+      "from_field": "RENEWAL_REF_ID",
+      "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "RENEWAL_REF_ID",
+      "to_instance": "WI_XAAS_RTNR_SMC_ALLOCATION1"
+    },
+    {
+      "from_field": "RENEWAL_REF_RULE",
+      "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "RENEWAL_REF_RULE",
+      "to_instance": "WI_XAAS_RTNR_SMC_ALLOCATION1"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "DV_SERVICE_CATEGORY_CD",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "DV_SERVICE_CATEGORY_CD",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "START_TV_DTM",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "START_TV_DTM",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "END_TV_DTM",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "END_TV_DTM",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "DV_SOURCE_TYPE",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "DV_SOURCE_TYPE",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "DV_ENTERPRISE_INV_SKU_ID",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "DV_ENTERPRISE_INV_SKU_ID",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "RENEWAL_GAP_DAYS",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "RENEWAL_GAP_DAYS",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "RENEWAL_REF_ID",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "RENEWAL_REF_ID",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "RENEWAL_REF_CD",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "RENEWAL_REF_CD",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "RENEWAL_REF_RULE",
+      "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "RENEWAL_REF_RULE",
+      "to_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_SOURCE_TYPE",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "DV_SOURCE_TYPE",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_REF_RULE",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "RENEWAL_REF_RULE",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_REF_ID",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "RENEWAL_REF_ID",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_TRX_TYPE",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "DV_TRX_TYPE",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_SERVICE_CATEGORY_CD",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "DV_SERVICE_CATEGORY_CD",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_GAP_DAYS",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "RENEWAL_GAP_DAYS",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "START_TV_DTM",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "START_TV_DTM",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "END_TV_DTM",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "END_TV_DTM",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_REF_CD",
+      "from_instance": "MT_RTNR_SMC_ALLOCATION1",
+      "to_field": "RENEWAL_REF_CD",
+      "to_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "START_TV_DTM",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "START_TV_DTM",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "END_TV_DTM",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "END_TV_DTM",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "DV_SERVICE_CATEGORY_CD",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "DV_SERVICE_CATEGORY_CD",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "DV_SOURCE_TYPE",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "DV_SOURCE_TYPE",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "DV_ENTERPRISE_INV_SKU_ID",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "DV_ENTERPRISE_INV_SKU_ID",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "RENEWAL_GAP_DAYS",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "RENEWAL_GAP_DAYS",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "RENEWAL_REF_ID",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "RENEWAL_REF_ID",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "RENEWAL_REF_CD",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "RENEWAL_REF_CD",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "RENEWAL_REF_RULE",
+      "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR",
+      "to_field": "RENEWAL_REF_RULE",
+      "to_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+    },
+    {
+      "from_field": "END_TV_DTM",
+      "from_instance": "WI_RTNR_SMC_ALLOCATION1",
+      "to_field": "END_TV_DTM",
+      "to_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "DV_SERVICE_CATEGORY_CD",
+      "from_instance": "WI_RTNR_SMC_ALLOCATION1",
+      "to_field": "DV_SERVICE_CATEGORY_CD",
+      "to_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_RTNR_SMC_ALLOCATION1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "WI_RTNR_SMC_ALLOCATION1",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "DV_SOURCE_TYPE",
+      "from_instance": "WI_RTNR_SMC_ALLOCATION1",
+      "to_field": "DV_SOURCE_TYPE",
+      "to_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "WI_RTNR_SMC_ALLOCATION1",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "WI_RTNR_SMC_ALLOCATION1",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "RENEWAL_GAP_DAYS",
+      "from_instance": "WI_RTNR_SMC_ALLOCATION1",
+      "to_field": "RENEWAL_GAP_DAYS",
+      "to_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "RENEWAL_REF_ID",
+      "from_instance": "WI_RTNR_SMC_ALLOCATION1",
+      "to_field": "RENEWAL_REF_ID",
+      "to_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "RENEWAL_REF_CD",
+      "from_instance": "WI_RTNR_SMC_ALLOCATION1",
+      "to_field": "RENEWAL_REF_CD",
+      "to_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "RENEWAL_REF_RULE",
+      "from_instance": "WI_RTNR_SMC_ALLOCATION1",
+      "to_field": "RENEWAL_REF_RULE",
+      "to_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "START_TV_DTM",
+      "from_instance": "WI_RTNR_SMC_ALLOCATION1",
+      "to_field": "START_TV_DTM",
+      "to_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+    },
+    {
+      "from_field": "DV_SERVICE_CATEGORY_CD",
+      "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "DV_SERVICE_CATEGORY_CD",
+      "to_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "START_TV_DTM",
+      "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "START_TV_DTM",
+      "to_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "END_TV_DTM",
+      "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "END_TV_DTM",
+      "to_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_SOURCE_TYPE",
+      "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "DV_SOURCE_TYPE",
+      "to_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_GAP_DAYS",
+      "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "RENEWAL_GAP_DAYS",
+      "to_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_REF_CD",
+      "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "RENEWAL_REF_CD",
+      "to_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_REF_ID",
+      "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "RENEWAL_REF_ID",
+      "to_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_REF_RULE",
+      "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION",
+      "to_field": "RENEWAL_REF_RULE",
+      "to_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+    },
+    {
+      "from_field": "RENEWAL_GAP_DAYS",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "RENEWAL_GAP_DAYS",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    },
+    {
+      "from_field": "RENEWAL_REF_ID",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "RENEWAL_REF_ID",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    },
+    {
+      "from_field": "RENEWAL_REF_CD",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "RENEWAL_REF_CD",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    },
+    {
+      "from_field": "RENEWAL_REF_RULE",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "RENEWAL_REF_RULE",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    },
+    {
+      "from_field": "DV_ENTERPRISE_INV_SKU_ID",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "DV_ENTERPRISE_INV_SKU_ID",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    },
+    {
+      "from_field": "SALES_MOTION_CD",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "SALES_MOTION_CD",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    },
+    {
+      "from_field": "DV_ALLOCATION_PCT",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "DV_ALLOCATION_PCT",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    },
+    {
+      "from_field": "DV_SERVICE_CATEGORY_CD",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "DV_SERVICE_CATEGORY_CD",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    },
+    {
+      "from_field": "START_TV_DTM",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "START_TV_DTM",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    },
+    {
+      "from_field": "END_TV_DTM",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "END_TV_DTM",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    },
+    {
+      "from_field": "DV_SOURCE_TYPE",
+      "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC",
+      "to_field": "DV_SOURCE_TYPE",
+      "to_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_ORDER_LINE_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "MT_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_ENTERPRISE_INV_SKU_ID",
+      "source_path": [
+        {
+          "from_field": "DV_ENTERPRISE_INV_SKU_ID",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "DV_ENTERPRISE_INV_SKU_ID",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "DV_ENTERPRISE_INV_SKU_ID",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "DV_ENTERPRISE_INV_SKU_ID",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_MOTION_CD",
+      "source_path": [
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "MT_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "WI_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "SALES_MOTION_CD",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_ALLOCATION_PCT",
+      "source_path": [
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "MT_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "WI_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "DV_ALLOCATION_PCT",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_SERVICE_CATEGORY_CD",
+      "source_path": [
+        {
+          "from_field": "DV_SERVICE_CATEGORY_CD",
+          "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "DV_SERVICE_CATEGORY_CD",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "DV_SERVICE_CATEGORY_CD",
+          "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "DV_SERVICE_CATEGORY_CD",
+          "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "DV_SERVICE_CATEGORY_CD",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "DV_SERVICE_CATEGORY_CD",
+          "from_instance": "MT_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "DV_SERVICE_CATEGORY_CD",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "DV_SERVICE_CATEGORY_CD",
+          "from_instance": "WI_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "DV_SERVICE_CATEGORY_CD",
+          "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "DV_SERVICE_CATEGORY_CD",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DTM",
+      "source_path": [
+        {
+          "from_field": "START_TV_DTM",
+          "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "START_TV_DTM",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "START_TV_DTM",
+          "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "START_TV_DTM",
+          "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "START_TV_DTM",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "START_TV_DTM",
+          "from_instance": "MT_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "START_TV_DTM",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "START_TV_DTM",
+          "from_instance": "WI_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "START_TV_DTM",
+          "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "START_TV_DTM",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DTM",
+      "source_path": [
+        {
+          "from_field": "END_TV_DTM",
+          "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "END_TV_DTM",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "END_TV_DTM",
+          "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "END_TV_DTM",
+          "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "END_TV_DTM",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "END_TV_DTM",
+          "from_instance": "MT_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "END_TV_DTM",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "END_TV_DTM",
+          "from_instance": "WI_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "END_TV_DTM",
+          "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "END_TV_DTM",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_MOTION_TIMING_CD",
+      "source_path": [
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "MT_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "WI_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_SOURCE_TYPE",
+      "source_path": [
+        {
+          "from_field": "DV_SOURCE_TYPE",
+          "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "DV_SOURCE_TYPE",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "DV_SOURCE_TYPE",
+          "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "DV_SOURCE_TYPE",
+          "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "DV_SOURCE_TYPE",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "DV_SOURCE_TYPE",
+          "from_instance": "MT_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "DV_SOURCE_TYPE",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "DV_SOURCE_TYPE",
+          "from_instance": "WI_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "DV_SOURCE_TYPE",
+          "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "DV_SOURCE_TYPE",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RENEWAL_GAP_DAYS",
+      "source_path": [
+        {
+          "from_field": "RENEWAL_GAP_DAYS",
+          "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "RENEWAL_GAP_DAYS",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "RENEWAL_GAP_DAYS",
+          "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "RENEWAL_GAP_DAYS",
+          "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "RENEWAL_GAP_DAYS",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "RENEWAL_GAP_DAYS",
+          "from_instance": "MT_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "RENEWAL_GAP_DAYS",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "RENEWAL_GAP_DAYS",
+          "from_instance": "WI_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "RENEWAL_GAP_DAYS",
+          "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "RENEWAL_GAP_DAYS",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RENEWAL_REF_ID",
+      "source_path": [
+        {
+          "from_field": "RENEWAL_REF_ID",
+          "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "RENEWAL_REF_ID",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "RENEWAL_REF_ID",
+          "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "RENEWAL_REF_ID",
+          "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "RENEWAL_REF_ID",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "RENEWAL_REF_ID",
+          "from_instance": "MT_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "RENEWAL_REF_ID",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "RENEWAL_REF_ID",
+          "from_instance": "WI_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "RENEWAL_REF_ID",
+          "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "RENEWAL_REF_ID",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RENEWAL_REF_CD",
+      "source_path": [
+        {
+          "from_field": "RENEWAL_REF_CD",
+          "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "RENEWAL_REF_CD",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "RENEWAL_REF_CD",
+          "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "RENEWAL_REF_CD",
+          "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "RENEWAL_REF_CD",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "RENEWAL_REF_CD",
+          "from_instance": "MT_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "RENEWAL_REF_CD",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "RENEWAL_REF_CD",
+          "from_instance": "WI_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "RENEWAL_REF_CD",
+          "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "RENEWAL_REF_CD",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RENEWAL_REF_RULE",
+      "source_path": [
+        {
+          "from_field": "RENEWAL_REF_RULE",
+          "from_instance": "SQ_WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "RENEWAL_REF_RULE",
+          "from_instance": "SQ_MT_SLS_MOTION_ATTRIBUTION"
+        },
+        {
+          "from_field": "RENEWAL_REF_RULE",
+          "from_instance": "SQ_WI_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "RENEWAL_REF_RULE",
+          "from_instance": "SQ_WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "RENEWAL_REF_RULE",
+          "from_instance": "SQ_WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        },
+        {
+          "from_field": "RENEWAL_REF_RULE",
+          "from_instance": "MT_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "RENEWAL_REF_RULE",
+          "from_instance": "WI_MT_SMC_ATTRIBUTION_INCR"
+        },
+        {
+          "from_field": "RENEWAL_REF_RULE",
+          "from_instance": "WI_RTNR_SMC_ALLOCATION1"
+        },
+        {
+          "from_field": "RENEWAL_REF_RULE",
+          "from_instance": "WI_XAAS_RTNR_SMC_ALLOCATION"
+        },
+        {
+          "from_field": "RENEWAL_REF_RULE",
+          "from_instance": "WI_MT_XAAS_SMC_ATTRIBUTION_INC"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:18.780054+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

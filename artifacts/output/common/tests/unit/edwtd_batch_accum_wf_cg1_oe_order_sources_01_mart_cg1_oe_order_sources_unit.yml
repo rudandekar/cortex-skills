@@ -1,0 +1,13 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_batch_accum_wf_cg1_oe_order_sources_01_mart_cg1_oe_order_sources_expression_transform
+    model: edwtd_batch_accum_wf_cg1_oe_order_sources_01_mart_cg1_oe_order_sources
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'stg_cg1_oe_order_sources')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

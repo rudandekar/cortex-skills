@@ -1,0 +1,39 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_pos_svc_lines_with_ip_i', 'batch', 'edwtd_bkg_aggrs'],
+    meta={
+        'source_workflow': 'wf_m_WI_POS_SVC_LINES_WITH_IP_I',
+        'target_table': 'WI_POS_SVC_LINES_WITH_IP_I',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:34.057194+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_pos_svc_lines_with_ip_i AS (
+    SELECT
+        bk_service_contract_num,
+        bk_svc_cntrct_line_start_dtm,
+        svc_cntrct_line_end_dtm,
+        terminated_dtm,
+        terminated_reason_short_descr,
+        service_status_cd,
+        ip_key
+    FROM {{ source('raw', 'wi_pos_svc_lines_with_ip_i') }}
+),
+
+final AS (
+    SELECT
+        bk_service_contract_num,
+        bk_svc_cntrct_line_start_dtm,
+        svc_cntrct_line_end_dtm,
+        terminated_dtm,
+        terminated_reason_short_descr,
+        service_status_cd,
+        ip_key
+    FROM source_wi_pos_svc_lines_with_ip_i
+)
+
+SELECT * FROM final

@@ -1,0 +1,517 @@
+{
+  "workflow_name": "wf_m_W_ATTR_PRDT_NEW_RNWL_SMT_UPD",
+  "mapping_name": "m_W_ATTR_PRDT_NEW_RNWL_SMT_UPD",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "EL_SOL_SMT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_w_attr_prdt_new_rnwl_smt_upd_01_mart_el_sol_smt",
+  "source_tables": [
+    "ST_NON_TS_SMT",
+    "EL_SOL_SMT"
+  ],
+  "sources": [
+    {
+      "name": "ST_NON_TS_SMT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "BATCH_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "EL_SOL_SMT",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_DV4",
+      "fields": [
+        {
+          "name": "OFFER_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BATCH_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_SOL_SMT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "OFFER_NAME",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BATCH_NUMBER",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_ORDER_LINE_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_MOTION_TIMING_CD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_TV_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_TV_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_EL_SOL_SMT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "OFFER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BATCH_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT 'NON-TS' OFFER_NAME,\r\n       -9999 BATCH_NUMBER,\r\n       ST.SALES_ORDER_LINE_KEY SALES_ORDER_LINE_KEY,\r\n       ST.SALES_MOTION_TIMING_CD SALES_MOTION_TIMING_CD,\r\n       CURRENT_DATE START_TV_DT,\r\n      '3500-01-01'  END_TV_DT,\r\n      CURRENT_TIMESTAMP(0) EDW_UPDATE_DTM\r\n FROM $$STGDB.ST_NON_TS_SMT ST WHERE\r\n NOT EXISTS (SELECT 1 FROM $$ETLVWDB.EL_SOL_SMT EL WHERE EL.SALES_ORDER_LINE_KEY = ST.SALES_ORDER_LINE_KEY  AND EL.END_TV_DT = '3500-01-01')",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_NON_TS_SMT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_MOTION_TIMING_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "select  -9999 BATCH_NUMBER,\r\nSALES_ORDER_LINE_KEY, SMT from (\r\nselect  A.*,\r\nCASE  WHEN  RTRIM( LTRIM(SERVICE_STATUS_CD)) <>'TERMINATED'  THEN  (\r\nCASE WHEN CNTRCT_LINE_END_QUARTER_ID - CISCO_BOOKED_QUARTER_ID > 0  THEN 'EARLY' \r\nWHEN  CNTRCT_LINE_END_QUARTER_ID -  CISCO_BOOKED_QUARTER_ID =0 THEN CASE WHEN (SVC_CNTRCT_LINE_END_DTM > RU_CISCO_BOOKED_DATETIME ) THEN  'ONTIME' ELSE 'LATE IN QUARTER' END \r\nWHEN CNTRCT_LINE_END_QUARTER_ID - CISCO_BOOKED_QUARTER_ID < 0 THEN \r\n                            CASE WHEN ( CASE WHEN(cast(RU_CISCO_BOOKED_DATETIME  as date)-cast( SVC_CNTRCT_LINE_END_DTM as date)) <0 THEN ((cast(RU_CISCO_BOOKED_DATETIME  as date)-cast( SVC_CNTRCT_LINE_END_DTM as date)) *-1) ELSE ((cast(RU_CISCO_BOOKED_DATETIME  as date)-cast( SVC_CNTRCT_LINE_END_DTM as date))) END )  <= 365 THEN 'LATE' ELSE 'RECAPTURE' END \r\nEND )\r\nWHEN RTRIM( LTRIM(SERVICE_STATUS_CD)) ='TERMINATED'  THEN  (\r\nCASE WHEN  TERMINATED_QUARTER_ID - CISCO_BOOKED_QUARTER_ID > 0  THEN 'EARLY' \r\nWHEN  TERMINATED_QUARTER_ID -  CISCO_BOOKED_QUARTER_ID =0 THEN CASE WHEN (TERMINATED_DTM > RU_CISCO_BOOKED_DATETIME ) THEN  'ONTIME' ELSE 'LATE IN QUARTER' END \r\nWHEN TERMINATED_QUARTER_ID - CISCO_BOOKED_QUARTER_ID < 0 THEN \r\n                                CASE WHEN (CASE WHEN (cast(RU_CISCO_BOOKED_DATETIME  as date)-cast( TERMINATED_DTM as date))<0  THEN ( (cast(RU_CISCO_BOOKED_DATETIME  as date)-cast( TERMINATED_DTM as date))*-1) ELSE ( (cast(RU_CISCO_BOOKED_DATETIME  as date)-cast( TERMINATED_DTM as date))) END ) <= 365 THEN 'LATE' ELSE 'RECAPTURE' END \r\nEND )  ELSE 'UNKNOWN' END  SMT\r\nfrom ( select    item_category_name\r\n,ATTR_NET_PRICE_LOCAL_AMT\r\n,SK_RENEW_CONTRACT_LINE_ID\r\n,RENEWAL_REF_ID\r\n,RENEWAL_REF_CD\r\n,SCL.BK_SVC_CNTRCT_LINE_START_DTM\r\n,SCL.SVC_CNTRCT_LINE_END_DTM\r\n,SCL.TERMINATED_DTM           \r\n,SCL.SERVICE_STATUS_CD\r\n,R.sales_order_line_key  \r\n, B.RU_CISCO_BOOKED_DATETIME\r\n,CAST(case when EED.DV_FISCAL_QUARTER_ID like '%Q1%' THEN  Oreplace(EED.DV_FISCAL_QUARTER_ID,'Q1','01')\r\n           when EED.DV_FISCAL_QUARTER_ID like '%Q2%' THEN  Oreplace(EED.DV_FISCAL_QUARTER_ID,'Q2','02')\r\n           when EED.DV_FISCAL_QUARTER_ID like '%Q3%' THEN  Oreplace(EED.DV_FISCAL_QUARTER_ID,'Q3','03')\r\n           when EED.DV_FISCAL_QUARTER_ID like '%Q4%' THEN  Oreplace(EED.DV_FISCAL_QUARTER_ID,'Q4','04')\r\n           END AS INTEGER ) AS  CNTRCT_LINE_END_QUARTER_ID\r\n,CAST(case when EED1.DV_FISCAL_QUARTER_ID like '%Q1%' THEN  Oreplace(EED1.DV_FISCAL_QUARTER_ID,'Q1','01')\r\n           when EED1.DV_FISCAL_QUARTER_ID like '%Q2%' THEN  Oreplace(EED1.DV_FISCAL_QUARTER_ID,'Q2','02')\r\n           when EED1.DV_FISCAL_QUARTER_ID like '%Q3%' THEN  Oreplace(EED1.DV_FISCAL_QUARTER_ID,'Q3','03')\r\n           when EED1.DV_FISCAL_QUARTER_ID like '%Q4%' THEN  Oreplace(EED1.DV_FISCAL_QUARTER_ID,'Q4','04')\r\n           END AS INTEGER ) AS  CISCO_BOOKED_QUARTER_ID\r\n,CAST(case when EED2.DV_FISCAL_QUARTER_ID like '%Q1%' THEN  Oreplace(EED2.DV_FISCAL_QUARTER_ID,'Q1','01')\r\nwhen EED2.DV_FISCAL_QUARTER_ID like '%Q2%' THEN  Oreplace(EED2.DV_FISCAL_QUARTER_ID,'Q2','02')\r\nwhen EED2.DV_FISCAL_QUARTER_ID like '%Q3%' THEN  Oreplace(EED2.DV_FISCAL_QUARTER_ID,'Q3','03')\r\nwhen EED2.DV_FISCAL_QUARTER_ID like '%Q4%' THEN  Oreplace(EED2.DV_FISCAL_QUARTER_ID,'Q4','04')\r\nEND AS INTEGER ) AS  TERMINATED_QUARTER_ID\r\nFROM $$WORKDB.W_ATTR_PRDT_AS_NEW_OR_RNWL R\r\nINNER JOIN $$SERVICEVWDB.N_SVC_CNTRCT_LN_TECH_SERVICES SCL \r\nON CAST( REGEXP_REPLACE(RENEWAL_REF_ID, '[a-zA-Z/.]+', '')   AS  BIGINT) = SCL.SK_ID_LINT \r\nINNER  JOIN (SELECT  SO.RU_CISCO_BOOKED_DATETIME , SO.BK_SO_NUMBER_INT, SO.SALES_ORDER_KEY, SOL.SALES_ORDER_LINE_KEY\r\nFROM  $$SLSORDVWDB.N_SALES_ORDER  SO\r\nINNER  JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE  SOL\r\nON SO.SALES_ORDER_KEY  = SOL.SALES_ORDER_KEY  ) B\r\nON B.SALES_ORDER_LINE_KEY = R.SALES_ORDER_LINE_KEY  \r\nINNER  JOIN  $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR EED\r\nON  CAST( SCL.SVC_CNTRCT_LINE_END_DTM  AS DATE ) = EED.CALENDAR_DATE       \r\nINNER  JOIN  $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR EED1\r\nON  CAST(B.RU_CISCO_BOOKED_DATETIME  AS DATE ) = EED1.CALENDAR_DATE       \r\nLEFT  JOIN  $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR EED2\r\nON  CAST(SCL.TERMINATED_DTM  AS DATE ) = EED2.CALENDAR_DATE       \r\nWHERE   R.SALES_MOTION_CD = 'RENEW' AND\r\n R.SS_CD = 'OPL'\r\nAND LENGTH(CAST(SK_RTR_ATTRIBUTION_ID AS VARCHAR(10))) < 10 \r\nAND REGEXP_INSTR(RENEWAL_REF_ID,'^[a-zA-Z]+')=0\r\nAND RENEWAL_REF_CD =    'Renew Covered Line ID') A\r\n)  B   Qualify Row_number()  over  (partition by  sales_order_line_key order by ATTR_NET_PRICE_LOCAL_AMT desc, \r\n ( case  when  SMT = 'ONTIME' THEN 6  WHEN SMT= 'LATE IN QUARTER'  THEN 5  WHEN  SMT = 'EARLY'  THEN 4 WHEN SMT = 'LATE' THEN 3 WHEN SMT= 'RECAPTURE'  THEN  2 WHEN SMT= 'UNKNOWN'  THEN  1 END )\r\n desc)= 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "OFFER_NAME",
+      "from_instance": "SQ_EL_SOL_SMT",
+      "to_field": "OFFER_NAME",
+      "to_instance": "EL_SOL_SMT"
+    },
+    {
+      "from_field": "BATCH_NUMBER",
+      "from_instance": "SQ_EL_SOL_SMT",
+      "to_field": "BATCH_NUMBER",
+      "to_instance": "EL_SOL_SMT"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_EL_SOL_SMT",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "EL_SOL_SMT"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "SQ_EL_SOL_SMT",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "EL_SOL_SMT"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "SQ_EL_SOL_SMT",
+      "to_field": "START_TV_DT",
+      "to_instance": "EL_SOL_SMT"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "SQ_EL_SOL_SMT",
+      "to_field": "END_TV_DT",
+      "to_instance": "EL_SOL_SMT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_EL_SOL_SMT",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "EL_SOL_SMT"
+    },
+    {
+      "from_field": "BATCH_NUMBER",
+      "from_instance": "SQ_ST_NON_TS_SMT",
+      "to_field": "BATCH_NUMBER",
+      "to_instance": "ST_NON_TS_SMT"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_ST_NON_TS_SMT",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "ST_NON_TS_SMT"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "SQ_ST_NON_TS_SMT",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "ST_NON_TS_SMT"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "EL_SOL_SMT1",
+      "to_field": "END_TV_DT",
+      "to_instance": "SQ_EL_SOL_SMT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EL_SOL_SMT1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_EL_SOL_SMT"
+    },
+    {
+      "from_field": "OFFER_NAME",
+      "from_instance": "EL_SOL_SMT1",
+      "to_field": "OFFER_NAME",
+      "to_instance": "SQ_EL_SOL_SMT"
+    },
+    {
+      "from_field": "BATCH_NUMBER",
+      "from_instance": "EL_SOL_SMT1",
+      "to_field": "BATCH_NUMBER",
+      "to_instance": "SQ_EL_SOL_SMT"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "EL_SOL_SMT1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_EL_SOL_SMT"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "EL_SOL_SMT1",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "SQ_EL_SOL_SMT"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "EL_SOL_SMT1",
+      "to_field": "START_TV_DT",
+      "to_instance": "SQ_EL_SOL_SMT"
+    },
+    {
+      "from_field": "BATCH_NUMBER",
+      "from_instance": "ST_NON_TS_SMT1",
+      "to_field": "BATCH_NUMBER",
+      "to_instance": "SQ_ST_NON_TS_SMT"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "ST_NON_TS_SMT1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_ST_NON_TS_SMT"
+    },
+    {
+      "from_field": "SALES_MOTION_TIMING_CD",
+      "from_instance": "ST_NON_TS_SMT1",
+      "to_field": "SALES_MOTION_TIMING_CD",
+      "to_instance": "SQ_ST_NON_TS_SMT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "OFFER_NAME",
+      "source_path": [
+        {
+          "from_field": "OFFER_NAME",
+          "from_instance": "SQ_EL_SOL_SMT"
+        },
+        {
+          "from_field": "OFFER_NAME",
+          "from_instance": "EL_SOL_SMT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BATCH_NUMBER",
+      "source_path": [
+        {
+          "from_field": "BATCH_NUMBER",
+          "from_instance": "SQ_EL_SOL_SMT"
+        },
+        {
+          "from_field": "BATCH_NUMBER",
+          "from_instance": "SQ_ST_NON_TS_SMT"
+        },
+        {
+          "from_field": "BATCH_NUMBER",
+          "from_instance": "EL_SOL_SMT1"
+        },
+        {
+          "from_field": "BATCH_NUMBER",
+          "from_instance": "ST_NON_TS_SMT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_ORDER_LINE_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_EL_SOL_SMT"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_ST_NON_TS_SMT"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "EL_SOL_SMT1"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "ST_NON_TS_SMT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_MOTION_TIMING_CD",
+      "source_path": [
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "SQ_EL_SOL_SMT"
+        },
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "SQ_ST_NON_TS_SMT"
+        },
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "EL_SOL_SMT1"
+        },
+        {
+          "from_field": "SALES_MOTION_TIMING_CD",
+          "from_instance": "ST_NON_TS_SMT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DT",
+      "source_path": [
+        {
+          "from_field": "START_TV_DT",
+          "from_instance": "SQ_EL_SOL_SMT"
+        },
+        {
+          "from_field": "START_TV_DT",
+          "from_instance": "EL_SOL_SMT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DT",
+      "source_path": [
+        {
+          "from_field": "END_TV_DT",
+          "from_instance": "SQ_EL_SOL_SMT"
+        },
+        {
+          "from_field": "END_TV_DT",
+          "from_instance": "EL_SOL_SMT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_EL_SOL_SMT"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EL_SOL_SMT1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:24.371778+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

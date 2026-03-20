@@ -1,0 +1,1602 @@
+{
+  "workflow_name": "wf_m_WK_GL_ACCOUNT_BALANCE",
+  "mapping_name": "m_WK_GL_ACCOUNT_BALANCE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "SM_GL_ACCOUNT_BALANCE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_wk_gl_account_balance_02_mart_sm_gl_account_balance",
+  "source_tables": [
+    "ST_MF_GL_BALANCES"
+  ],
+  "sources": [
+    {
+      "name": "ST_MF_GL_BALANCES",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTUAL_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BEGIN_BALANCE_CR",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BEGIN_BALANCE_DR",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CODE_COMBINATION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "varchar",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GES_PK_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PERIOD_NAME",
+          "datatype": "varchar",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PERIOD_NET_CR",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PERIOD_NET_DR",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PERIOD_NUM",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PERIOD_TYPE",
+          "datatype": "varchar",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PERIOD_YEAR",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REVALUATION_STATUS",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SET_OF_BOOKS_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRANSLATED_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "SM_GL_ACCOUNT_BALANCE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "GL_ACCOUNT_BALANCE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_GES_PK_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SS_CD",
+        "datatype": "char",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_MF_GL_BALANCES_Work",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "GL_ACCOUNT_BALANCE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FISCAL_CALENDAR_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FISCAL_MONTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FISCAL_YEAR_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_POSTING_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_STATED_CURRENCY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GENERAL_LEDGER_ACCOUNT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREDIT_BALANCE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEBIT_BALANCE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MONTH_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_ACTIVITY_DEBIT_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_ACTIVITY_CREDIT_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_GES_PK_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSMGAB.GL_ACCOUNT_BALANCE_KEY        \r\n,'Fiscal Year' BK_FISCAL_CALENDAR_CD         \r\n,MF_OM_EX_BAL.PERIOD_NUM AS BK_FISCAL_MONTH_NUMBER_INT    \r\n,MF_OM_EX_BAL.PERIOD_YEAR AS BK_FISCAL_YEAR_NUMBER_INT     \r\n,CAST(MF_OM_EX_BAL.LAST_UPDATE_DATE AS DATE) AS BK_POSTING_DT                 \r\n,CAST(MF_OM_EX_BAL.CURRENCY_CODE AS  CHAR(3)) BK_STATED_CURRENCY_CD         \r\n,NGLA.GENERAL_LEDGER_ACCOUNT_KEY    \r\n,MF_OM_EX_BAL.BEGIN_BALANCE_CR AS CREDIT_BALANCE_AMT            \r\n,MF_OM_EX_BAL.BEGIN_BALANCE_DR AS DEBIT_BALANCE_AMT             \r\n,((MF_OM_EX_BAL.PERIOD_YEAR*100) + MF_OM_EX_BAL.PERIOD_NUM) AS DV_FISCAL_YEAR_MONTH_NUM_INT  \r\n,MF_OM_EX_BAL.PERIOD_NET_DR AS PERIOD_ACTIVITY_DEBIT_AMT     \r\n,MF_OM_EX_BAL.PERIOD_NET_CR AS PERIOD_ACTIVITY_CREDIT_AMT    \r\n,MF_OM_EX_BAL.GES_PK_ID AS SK_GES_PK_ID_INT              \r\n,NSSC.SOURCE_SYSTEM_CODE  AS SS_CD                         \r\n,MF_OM_EX_BAL.ACTION_CODE \r\nFROM\r\n(\r\n\tSelect\r\n\t\tSMGB.BATCH_ID,\r\n\t\tSMGB.LAST_UPDATE_DATE,\r\n\t\tSMGB.GES_PK_ID,\r\n\t\tSMGB.CREATE_DATETIME,\r\n\t\tCAST(SMGB.BEGIN_BALANCE_DR AS DECIMAL(38,7)) BEGIN_BALANCE_DR,\r\n\t\tCAST(SMGB.BEGIN_BALANCE_CR AS DECIMAL(38,7)) BEGIN_BALANCE_CR,\r\n\t\tSMGB.PERIOD_NET_DR,\r\n\t\tSMGB.PERIOD_NET_CR,\r\n\t\tSMGB.CURRENCY_CODE,\r\n\t\tSMGB.PERIOD_NUM,\r\n\t\tSMGB.PERIOD_YEAR,\r\n\t\tSMGB.CODE_COMBINATION_ID,\r\n\t\tSMGB.GLOBAL_NAME,\r\n\t\tSMGB.SET_OF_BOOKS_ID,\r\n\t\tSMGB.ACTION_CODE\r\n\tFROM\r\n\t\t$$STGDB.ST_MF_GL_BALANCES SMGB \r\n\tWHERE   SMGB.ACTUAL_FLAG='A' \r\n\t        /* AND (SMGB.TRANSLATED_FLAG IS NULL OR SMGB.TRANSLATED_FLAG='Y') */ /* commented as part of CCER OCT , populting hist data from FY13 Aug onwards */\r\n\t        AND SMGB.CURRENCY_CODE<>'STAT'\r\n\r\n\tUNION ALL\r\n\tSelect\r\n\t\tEXMOGB.BATCH_ID,\r\n\t\tEXMOGB.LAST_UPDATE_DATE,\r\n\t\tEXMOGB.GES_PK_ID,\r\n\t\tEXMOGB.CREATE_DATETIME,\r\n\t\tCAST(EXMOGB.BEGIN_BALANCE_DR AS DECIMAL(38,7)) BEGIN_BALANCE_DR,\r\n\t\tCAST(EXMOGB.BEGIN_BALANCE_CR AS DECIMAL(38,7)) BEGIN_BALANCE_CR,\r\n\t\tEXMOGB.PERIOD_NET_DR,\r\n\t\tEXMOGB.PERIOD_NET_CR,\r\n\t\tEXMOGB.CURRENCY_CODE,\r\n\t\tEXMOGB.PERIOD_NUM,\r\n\t\tEXMOGB.PERIOD_YEAR,\r\n\t\tEXMOGB.CODE_COMBINATION_ID,\r\n\t\tEXMOGB.GLOBAL_NAME,\r\n\t\tEXMOGB.SET_OF_BOOKS_ID,\r\n\t\tEXMOGB.ACTION_CODE\r\n\tFROM\r\n\t\t $$EXCEPDB.EX_MF_OM_GL_BALANCES     EXMOGB\r\n)MF_OM_EX_BAL,\r\n$$FINLGLVWDB.N_GENERAL_LEDGER_ACCOUNT NGLA,\r\n$$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC,\r\n$$FINLGLVWDB.N_ISO_CURRENCY_TV NIC,\r\n$$FINLGLVWDB.N_SET_OF_BOOKS NSOB,\r\n$$TRANSLATIONDB.SM_GL_ACCOUNT_BALANCE SMGAB\r\nWHERE\r\nMF_OM_EX_BAL.CODE_COMBINATION_ID=NGLA.SK_CODE_COMBINATION_ID_INT\r\nAND NGLA.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\nAND MF_OM_EX_BAL.GLOBAL_NAME = NSSC.GLOBAL_NAME\r\nAND MF_OM_EX_BAL.SET_OF_BOOKS_ID = NSOB.SK_SET_OF_BOOKS_ID_INT\r\nAND NSSC.SOURCE_SYSTEM_CODE = NSOB.SS_CODE\r\nAND NSOB.SET_OF_BOOKS_KEY = NGLA.SET_OF_BOOKS_KEY\r\nAND NIC.BK_ISO_CURRENCY_CODE  = MF_OM_EX_BAL.CURRENCY_CODE\r\nAND NIC.END_TV_DATE = '3500-01-01'\r\nAND MF_OM_EX_BAL.GES_PK_ID = SMGAB.SK_GES_PK_ID_INT\r\nAND NSSC.SOURCE_SYSTEM_CODE = SMGAB.SS_CD",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_MF_GL_BALANCES_Exception",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTUAL_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BEGIN_BALANCE_CR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BEGIN_BALANCE_DR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CODE_COMBINATION_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GES_PK_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_NET_CR",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_NET_DR",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_NUM",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_YEAR",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REVALUATION_STATUS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SET_OF_BOOKS_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSLATED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\t\r\nSMOGB.BATCH_ID,\r\nSMOGB.ACTUAL_FLAG,\r\nSMOGB.BEGIN_BALANCE_CR,\r\nSMOGB.BEGIN_BALANCE_DR,\r\nSMOGB.CODE_COMBINATION_ID,\r\nSMOGB.CURRENCY_CODE,\r\nSMOGB.GES_PK_ID,\r\nSMOGB.GES_UPDATE_DATE,\r\nSMOGB.GLOBAL_NAME,\r\nSMOGB.LAST_UPDATED_BY,\r\nSMOGB.LAST_UPDATE_DATE,\r\nSMOGB.PERIOD_NAME,\r\nSMOGB.PERIOD_NET_CR,\r\nSMOGB.PERIOD_NET_DR,\r\nSMOGB.PERIOD_NUM,\r\nSMOGB.PERIOD_TYPE,\r\nSMOGB.PERIOD_YEAR,\r\nSMOGB.REVALUATION_STATUS,\r\nSMOGB.SET_OF_BOOKS_ID,\r\nSMOGB.TRANSLATED_FLAG,\r\nSMOGB.CREATE_DATETIME,\r\nSMOGB.ACTION_CODE,\r\n'RI' EXCEPTION_TYPE                \r\nFROM\r\n(\r\n\tSELECT\t\r\n\t \tSMGB.BATCH_ID,\r\n\t\t SMGB.ACTUAL_FLAG,\r\n\t\t SMGB.BEGIN_BALANCE_CR,\r\n\t\t SMGB.BEGIN_BALANCE_DR,\r\n\t\t SMGB.CODE_COMBINATION_ID,\r\n\t\t SMGB.CURRENCY_CODE,\r\n\t\t SMGB.GES_PK_ID,\r\n\t\t SMGB.GES_UPDATE_DATE,\r\n\t\t SMGB.GLOBAL_NAME,\r\n\t\t SMGB.LAST_UPDATED_BY,\r\n\t\t SMGB.LAST_UPDATE_DATE,\r\n\t\t SMGB.PERIOD_NAME,\r\n\t\t SMGB.PERIOD_NET_CR,\r\n\t\t SMGB.PERIOD_NET_DR,\r\n\t\t SMGB.PERIOD_NUM,\r\n\t\t SMGB.PERIOD_TYPE,\r\n\t\t SMGB.PERIOD_YEAR,\r\n\t\t SMGB.REVALUATION_STATUS,\r\n\t\t SMGB.SET_OF_BOOKS_ID,\r\n\t\t SMGB.TRANSLATED_FLAG,\r\n\t\t SMGB.CREATE_DATETIME,\r\n\t\t SMGB.ACTION_CODE \r\n\tFROM\r\n\t\t$$STGDB.ST_MF_GL_BALANCES SMGB \r\n\tWHERE\tSMGB.ACTUAL_FLAG='A' \r\n\t/* AND\t(SMGB.TRANSLATED_FLAG IS NULL OR SMGB.TRANSLATED_FLAG='Y') */ /* Commented in CCER OCT FY13 release */\r\n\tAND\tSMGB.CURRENCY_CODE<>'STAT'\r\n\tAND SMGB.GLOBAL_NAME <>'UA'\r\n\t) SMOGB \r\nWHERE\t\r\n ( \r\nNOT EXISTS (\r\n\tSELECT\t1 \r\n        FROM\t$$FINLGLVWDB.N_GENERAL_LEDGER_ACCOUNT NGLA,$$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC,$$FINLGLVWDB.N_SET_OF_BOOKS NSOB\r\n        WHERE\t SMOGB.GLOBAL_NAME = NSSC.GLOBAL_NAME\r\n\t\tAND\tNGLA.SK_CODE_COMBINATION_ID_INT = SMOGB.CODE_COMBINATION_ID \r\n\t\tAND     NGLA.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\n\t\tAND\tNSOB.SK_SET_OF_BOOKS_ID_INT = SMOGB.SET_OF_BOOKS_ID\r\n\t\tAND\tNSOB.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\n\t\tAND\tNSOB.SET_OF_BOOKS_KEY = NGLA.SET_OF_BOOKS_KEY\r\n                                                                         )\r\nOR NOT EXISTS ( SELECT\t1\r\n\t\t       FROM\t$$FINLGLVWDB.N_ISO_CURRENCY_TV NIC\r\n\t\t       WHERE\tNIC.BK_ISO_CURRENCY_CODE = SMOGB.CURRENCY_CODE\r\n\t\t\t            AND\t NIC.END_TV_DATE = '3500-01-01')\r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BATCH_ID"
+        },
+        {
+          "name": "ACTUAL_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTUAL_FLAG"
+        },
+        {
+          "name": "BEGIN_BALANCE_CR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BEGIN_BALANCE_CR"
+        },
+        {
+          "name": "BEGIN_BALANCE_DR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BEGIN_BALANCE_DR"
+        },
+        {
+          "name": "CODE_COMBINATION_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CODE_COMBINATION_ID"
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CURRENCY_CODE"
+        },
+        {
+          "name": "GES_PK_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GES_PK_ID"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GES_UPDATE_DATE"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GLOBAL_NAME"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATED_BY"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_DATE"
+        },
+        {
+          "name": "PERIOD_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PERIOD_NAME"
+        },
+        {
+          "name": "PERIOD_NET_CR",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PERIOD_NET_CR"
+        },
+        {
+          "name": "PERIOD_NET_DR",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PERIOD_NET_DR"
+        },
+        {
+          "name": "PERIOD_NUM",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PERIOD_NUM"
+        },
+        {
+          "name": "PERIOD_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PERIOD_TYPE"
+        },
+        {
+          "name": "PERIOD_YEAR",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PERIOD_YEAR"
+        },
+        {
+          "name": "REVALUATION_STATUS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "REVALUATION_STATUS"
+        },
+        {
+          "name": "SET_OF_BOOKS_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SET_OF_BOOKS_ID"
+        },
+        {
+          "name": "TRANSLATED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "TRANSLATED_FLAG"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATE_DATETIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EXCEPTION_TYPE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "EXP_W_GL_ACCOUNT_BALANCE",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "GL_ACCOUNT_BALANCE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GL_ACCOUNT_BALANCE_KEY"
+        },
+        {
+          "name": "BK_FISCAL_CALENDAR_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_FISCAL_CALENDAR_CODE"
+        },
+        {
+          "name": "BK_FISCAL_MONTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_FISCAL_MONTH_NUMBER_INT"
+        },
+        {
+          "name": "BK_FISCAL_YEAR_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_FISCAL_YEAR_NUMBER_INT"
+        },
+        {
+          "name": "BK_POSTING_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_POSTING_DT"
+        },
+        {
+          "name": "BK_STATED_CURRENCY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_STATED_CURRENCY_CD"
+        },
+        {
+          "name": "GENERAL_LEDGER_ACCOUNT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GENERAL_LEDGER_ACCOUNT_KEY"
+        },
+        {
+          "name": "CREDIT_BALANCE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREDIT_BALANCE_AMT"
+        },
+        {
+          "name": "DEBIT_BALANCE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DEBIT_BALANCE_AMT"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MONTH_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DV_FISCAL_YEAR_MONTH_NUM_INT"
+        },
+        {
+          "name": "PERIOD_ACTIVITY_DEBIT_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PERIOD_ACTIVITY_DEBIT_AMT"
+        },
+        {
+          "name": "PERIOD_ACTIVITY_CREDIT_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PERIOD_ACTIVITY_CREDIT_AMT"
+        },
+        {
+          "name": "SK_GES_PK_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SK_GES_PK_ID_INT"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SS_CODE"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_MF_GL_BALANCES_SM",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "GL_ACCOUNT_BALANCE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_GES_PK_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT RANK () OVER (ORDER BY SMOGB.GES_PK_ID, SMOGB.SOURCE_SYSTEM_CODE) + MAX_VAL GL_ACCOUNT_BALANCE_KEY,\r\nSMOGB.GES_PK_ID AS SK_GES_PK_ID_INT ,SMOGB.SOURCE_SYSTEM_CODE AS SS_CD  FROM\r\n( SELECT MOGB.GES_PK_ID,NSSC.SOURCE_SYSTEM_CODE\r\n   FROM \r\n       (SELECT SMGB.GES_PK_ID, SMGB.GLOBAL_NAME FROM $$STGDB.ST_MF_GL_BALANCES SMGB\r\n                WHERE \tSMGB.ACTUAL_FLAG='A' \r\n                /* AND (SMGB.TRANSLATED_FLAG IS NULL OR SMGB.TRANSLATED_FLAG='Y')  */\r\n                AND SMGB.CURRENCY_CODE<>'STAT'\r\n        ) MOGB,\r\n\t$$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC \r\nWHERE MOGB.GLOBAL_NAME = NSSC.GLOBAL_NAME) SMOGB,\r\n(SELECT COALESCE (MAX (GL_ACCOUNT_BALANCE_KEY),0) MAX_VAL FROM $$TRANSLATIONDB.SM_GL_ACCOUNT_BALANCE) SGB\r\nWHERE NOT EXISTS\r\n(SELECT 1 FROM $$TRANSLATIONDB.SM_GL_ACCOUNT_BALANCE SGB \r\n   WHERE SMOGB.GES_PK_ID = SGB.SK_GES_PK_ID_INT AND SMOGB.SOURCE_SYSTEM_CODE=SGB.SS_CD)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "BEGIN_BALANCE_CR",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "BEGIN_BALANCE_CR",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "PERIOD_NUM",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "PERIOD_NUM",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "PERIOD_TYPE",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "PERIOD_TYPE",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "PERIOD_YEAR",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "PERIOD_YEAR",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "REVALUATION_STATUS",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "REVALUATION_STATUS",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "SET_OF_BOOKS_ID",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "SET_OF_BOOKS_ID",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "TRANSLATED_FLAG",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "TRANSLATED_FLAG",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "BEGIN_BALANCE_DR",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "BEGIN_BALANCE_DR",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "CODE_COMBINATION_ID",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "CODE_COMBINATION_ID",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "GES_PK_ID",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "GES_PK_ID",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "PERIOD_NAME",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "PERIOD_NAME",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "PERIOD_NET_CR",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "PERIOD_NET_CR",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "PERIOD_NET_DR",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "PERIOD_NET_DR",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "ACTUAL_FLAG",
+      "from_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE",
+      "to_field": "ACTUAL_FLAG",
+      "to_instance": "EX_MF_OM_GL_BALANCES"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "SS_CD",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "GL_ACCOUNT_BALANCE_KEY",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "GL_ACCOUNT_BALANCE_KEY",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BK_FISCAL_MONTH_NUMBER_INT",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "BK_FISCAL_MONTH_NUMBER_INT",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BK_FISCAL_YEAR_NUMBER_INT",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "BK_FISCAL_YEAR_NUMBER_INT",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BK_POSTING_DT",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "BK_POSTING_DT",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BK_STATED_CURRENCY_CD",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "BK_STATED_CURRENCY_CD",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "GENERAL_LEDGER_ACCOUNT_KEY",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "GENERAL_LEDGER_ACCOUNT_KEY",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "CREDIT_BALANCE_AMT",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "CREDIT_BALANCE_AMT",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "DEBIT_BALANCE_AMT",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "DEBIT_BALANCE_AMT",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MONTH_NUM_INT",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "DV_FISCAL_YEAR_MONTH_NUM_INT",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "PERIOD_ACTIVITY_DEBIT_AMT",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "PERIOD_ACTIVITY_DEBIT_AMT",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "PERIOD_ACTIVITY_CREDIT_AMT",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "PERIOD_ACTIVITY_CREDIT_AMT",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "SK_GES_PK_ID_INT",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "SK_GES_PK_ID_INT",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BK_FISCAL_CALENDAR_CODE",
+      "from_instance": "EXP_W_GL_ACCOUNT_BALANCE",
+      "to_field": "BK_FISCAL_CALENDAR_CD",
+      "to_instance": "W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "GL_ACCOUNT_BALANCE_KEY",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_SM",
+      "to_field": "GL_ACCOUNT_BALANCE_KEY",
+      "to_instance": "SM_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "SK_GES_PK_ID_INT",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_SM",
+      "to_field": "SK_GES_PK_ID_INT",
+      "to_instance": "SM_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_SM",
+      "to_field": "SS_CD",
+      "to_instance": "SM_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "GES_PK_ID",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "BK_FISCAL_YEAR_NUMBER_INT",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "BK_POSTING_DT",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "CODE_COMBINATION_ID",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "GL_ACCOUNT_BALANCE_KEY",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "BK_FISCAL_CALENDAR_CODE",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "PERIOD_NET_CR",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "PERIOD_ACTIVITY_DEBIT_AMT",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "PERIOD_NET_CR",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "PERIOD_ACTIVITY_CREDIT_AMT",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "GENERAL_LEDGER_ACCOUNT_KEY",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "BK_STATED_CURRENCY_CD",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "GES_PK_ID",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "SK_GES_PK_ID_INT",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "PERIOD_NET_CR",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "DEBIT_BALANCE_AMT",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "PERIOD_NET_DR",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "CREDIT_BALANCE_AMT",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "DV_FISCAL_YEAR_MONTH_NUM_INT",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "GES_PK_ID",
+      "from_instance": "ST_MF_GL_BALANCES",
+      "to_field": "BK_FISCAL_MONTH_NUMBER_INT",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Work"
+    },
+    {
+      "from_field": "GL_ACCOUNT_BALANCE_KEY",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "GL_ACCOUNT_BALANCE_KEY",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BK_FISCAL_CALENDAR_CODE",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "BK_FISCAL_CALENDAR_CODE",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BK_FISCAL_MONTH_NUMBER_INT",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "BK_FISCAL_MONTH_NUMBER_INT",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BK_FISCAL_YEAR_NUMBER_INT",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "BK_FISCAL_YEAR_NUMBER_INT",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BK_POSTING_DT",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "BK_POSTING_DT",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BK_STATED_CURRENCY_CD",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "BK_STATED_CURRENCY_CD",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "GENERAL_LEDGER_ACCOUNT_KEY",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "GENERAL_LEDGER_ACCOUNT_KEY",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "CREDIT_BALANCE_AMT",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "CREDIT_BALANCE_AMT",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "DEBIT_BALANCE_AMT",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "DEBIT_BALANCE_AMT",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MONTH_NUM_INT",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "DV_FISCAL_YEAR_MONTH_NUM_INT",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "PERIOD_ACTIVITY_DEBIT_AMT",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "PERIOD_ACTIVITY_DEBIT_AMT",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "PERIOD_ACTIVITY_CREDIT_AMT",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "PERIOD_ACTIVITY_CREDIT_AMT",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "SK_GES_PK_ID_INT",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "SK_GES_PK_ID_INT",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "SS_CODE",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Work",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "PERIOD_NET_DR",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "PERIOD_NET_DR",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "PERIOD_NUM",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "PERIOD_NUM",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "PERIOD_TYPE",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "PERIOD_TYPE",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "PERIOD_YEAR",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "PERIOD_YEAR",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "REVALUATION_STATUS",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "REVALUATION_STATUS",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "SET_OF_BOOKS_ID",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "SET_OF_BOOKS_ID",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "TRANSLATED_FLAG",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "TRANSLATED_FLAG",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "ACTUAL_FLAG",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "ACTUAL_FLAG",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "BEGIN_BALANCE_CR",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "BEGIN_BALANCE_CR",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "BEGIN_BALANCE_DR",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "BEGIN_BALANCE_DR",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "CODE_COMBINATION_ID",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "CODE_COMBINATION_ID",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "GES_PK_ID",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "GES_PK_ID",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "PERIOD_NAME",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "PERIOD_NAME",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "PERIOD_NET_CR",
+      "from_instance": "ST_MF_GL_BALANCES1",
+      "to_field": "PERIOD_NET_CR",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_Exception"
+    },
+    {
+      "from_field": "TRANSLATED_FLAG",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "TRANSLATED_FLAG",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "BATCH_ID",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "ACTUAL_FLAG",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "ACTUAL_FLAG",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BEGIN_BALANCE_CR",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "BEGIN_BALANCE_CR",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BEGIN_BALANCE_DR",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "BEGIN_BALANCE_DR",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "CODE_COMBINATION_ID",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "CODE_COMBINATION_ID",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "GES_PK_ID",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "GES_PK_ID",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "PERIOD_NAME",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "PERIOD_NAME",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "PERIOD_NET_CR",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "PERIOD_NET_CR",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "PERIOD_NET_DR",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "PERIOD_NET_DR",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "PERIOD_NUM",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "PERIOD_NUM",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "PERIOD_TYPE",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "PERIOD_TYPE",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "PERIOD_YEAR",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "PERIOD_YEAR",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "REVALUATION_STATUS",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "REVALUATION_STATUS",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "SET_OF_BOOKS_ID",
+      "from_instance": "SQ_ST_MF_GL_BALANCES_Exception",
+      "to_field": "SET_OF_BOOKS_ID",
+      "to_instance": "Exp_Ex_W_GL_ACCOUNT_BALANCE"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_MF_GL_BALANCES2",
+      "to_field": "GL_ACCOUNT_BALANCE_KEY",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_SM"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_MF_GL_BALANCES2",
+      "to_field": "SK_GES_PK_ID_INT",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_SM"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "ST_MF_GL_BALANCES2",
+      "to_field": "SS_CD",
+      "to_instance": "SQ_ST_MF_GL_BALANCES_SM"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "GL_ACCOUNT_BALANCE_KEY",
+      "source_path": [
+        {
+          "from_field": "GL_ACCOUNT_BALANCE_KEY",
+          "from_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+        },
+        {
+          "from_field": "GL_ACCOUNT_BALANCE_KEY",
+          "from_instance": "SQ_ST_MF_GL_BALANCES_SM"
+        },
+        {
+          "from_field": "CODE_COMBINATION_ID",
+          "from_instance": "ST_MF_GL_BALANCES"
+        },
+        {
+          "from_field": "GL_ACCOUNT_BALANCE_KEY",
+          "from_instance": "SQ_ST_MF_GL_BALANCES_Work"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "ST_MF_GL_BALANCES2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_GES_PK_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_GES_PK_ID_INT",
+          "from_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+        },
+        {
+          "from_field": "SK_GES_PK_ID_INT",
+          "from_instance": "SQ_ST_MF_GL_BALANCES_SM"
+        },
+        {
+          "from_field": "GES_PK_ID",
+          "from_instance": "ST_MF_GL_BALANCES"
+        },
+        {
+          "from_field": "SK_GES_PK_ID_INT",
+          "from_instance": "SQ_ST_MF_GL_BALANCES_Work"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "ST_MF_GL_BALANCES2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CD",
+      "source_path": [
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "EXP_W_GL_ACCOUNT_BALANCE"
+        },
+        {
+          "from_field": "SS_CD",
+          "from_instance": "SQ_ST_MF_GL_BALANCES_SM"
+        },
+        {
+          "from_field": "CURRENCY_CODE",
+          "from_instance": "ST_MF_GL_BALANCES2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:13.218863+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

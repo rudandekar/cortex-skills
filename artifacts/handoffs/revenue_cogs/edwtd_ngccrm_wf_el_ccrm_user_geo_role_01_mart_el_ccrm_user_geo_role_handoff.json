@@ -1,0 +1,337 @@
+{
+  "workflow_name": "wf_m_EL_CCRM_USER_GEO_ROLE",
+  "mapping_name": "m_EL_CCRM_USER_GEO_ROLE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_NGCCRM",
+  "target_table": "EL_CCRM_USER_GEO_ROLE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ngccrm_wf_el_ccrm_user_geo_role_01_mart_el_ccrm_user_geo_role",
+  "source_tables": [
+    "ST_CCRM_USER_GEO_ROLE"
+  ],
+  "sources": [
+    {
+      "name": "ST_CCRM_USER_GEO_ROLE",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV5",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "USER_ID",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHARE_NODE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ROLE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTIVE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATE_TIMESTAMP",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_CCRM_USER_GEO_ROLE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "USER_ID",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHARE_NODE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ROLE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "varchar",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATED_BY",
+        "datatype": "varchar",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_CCRM_USER_GEO_ROLE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "USER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHARE_NODE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ROLE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSCUGR.USER_ID, \r\nSCUGR.SHARE_NODE_ID, \r\nSCUGR.ROLE_ID\r\nFROM\r\n$$STGDB.ST_CCRM_USER_GEO_ROLE SCUGR\r\nWHERE NOT EXISTS (SELECT 1 FROM $$ETLVWDB.EL_CCRM_USER_GEO_ROLE ECUGR\r\n\tWHERE SCUGR.USER_ID = ECUGR.USER_ID AND\r\n              SCUGR.SHARE_NODE_ID = ECUGR.SHARE_NODE_ID AND \r\n              SCUGR.ROLE_ID = ECUGR.ROLE_ID)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "USER_ID",
+      "from_instance": "SQ_ST_CCRM_USER_GEO_ROLE",
+      "to_field": "USER_ID",
+      "to_instance": "EL_CCRM_USER_GEO_ROLE"
+    },
+    {
+      "from_field": "SHARE_NODE_ID",
+      "from_instance": "SQ_ST_CCRM_USER_GEO_ROLE",
+      "to_field": "SHARE_NODE_ID",
+      "to_instance": "EL_CCRM_USER_GEO_ROLE"
+    },
+    {
+      "from_field": "ROLE_ID",
+      "from_instance": "SQ_ST_CCRM_USER_GEO_ROLE",
+      "to_field": "ROLE_ID",
+      "to_instance": "EL_CCRM_USER_GEO_ROLE"
+    },
+    {
+      "from_field": "USER_ID",
+      "from_instance": "ST_CCRM_USER_GEO_ROLE",
+      "to_field": "USER_ID",
+      "to_instance": "SQ_ST_CCRM_USER_GEO_ROLE"
+    },
+    {
+      "from_field": "SHARE_NODE_ID",
+      "from_instance": "ST_CCRM_USER_GEO_ROLE",
+      "to_field": "SHARE_NODE_ID",
+      "to_instance": "SQ_ST_CCRM_USER_GEO_ROLE"
+    },
+    {
+      "from_field": "ROLE_ID",
+      "from_instance": "ST_CCRM_USER_GEO_ROLE",
+      "to_field": "ROLE_ID",
+      "to_instance": "SQ_ST_CCRM_USER_GEO_ROLE"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "ST_CCRM_USER_GEO_ROLE",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_ST_CCRM_USER_GEO_ROLE"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_CCRM_USER_GEO_ROLE",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_CCRM_USER_GEO_ROLE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "USER_ID",
+      "source_path": [
+        {
+          "from_field": "USER_ID",
+          "from_instance": "SQ_ST_CCRM_USER_GEO_ROLE"
+        },
+        {
+          "from_field": "USER_ID",
+          "from_instance": "ST_CCRM_USER_GEO_ROLE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHARE_NODE_ID",
+      "source_path": [
+        {
+          "from_field": "SHARE_NODE_ID",
+          "from_instance": "SQ_ST_CCRM_USER_GEO_ROLE"
+        },
+        {
+          "from_field": "SHARE_NODE_ID",
+          "from_instance": "ST_CCRM_USER_GEO_ROLE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ROLE_ID",
+      "source_path": [
+        {
+          "from_field": "ROLE_ID",
+          "from_instance": "SQ_ST_CCRM_USER_GEO_ROLE"
+        },
+        {
+          "from_field": "ROLE_ID",
+          "from_instance": "ST_CCRM_USER_GEO_ROLE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "ST_CCRM_USER_GEO_ROLE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATED_BY",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:18.563032+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

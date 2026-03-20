@@ -1,0 +1,324 @@
+{
+  "workflow_name": "wf_m_EL_ET_ACCOUNT_BUCKETS",
+  "mapping_name": "m_EL_ET_ACCOUNT_BUCKETS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "EL_ET_ACCOUNT_BUCKETS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_el_et_account_buckets_01_mart_el_et_account_buckets",
+  "source_tables": [
+    "ST_ET_ACCOUNT_BUCKETS"
+  ],
+  "sources": [
+    {
+      "name": "ST_ET_ACCOUNT_BUCKETS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DEV",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_SEQUENCE",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISCRETIONARY",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTROLLABLE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_ET_ACCOUNT_BUCKETS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ACCOUNT_BUCKET_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DESCRIPTION",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCOUNT_SEQUENCE",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DISCRETIONARY",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CONTROLLABLE",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_ET_ACCOUNT_BUCKETS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_BUCKET_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_SEQUENCE",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISCRETIONARY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONTROLLABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n\t SETAB.ACCOUNT_BUCKET_ID\r\n\t,SETAB.DESCRIPTION\r\n\t,SETAB.ACCOUNT_SEQUENCE\r\n\t,SETAB.DISCRETIONARY\r\n\t,SETAB.CONTROLLABLE\r\nFROM  $$STGDB.ST_ET_ACCOUNT_BUCKETS SETAB\r\nWHERE (\tSETAB.ACCOUNT_BUCKET_ID) NOT IN\r\n\t(SELECT\tELETAB.ACCOUNT_BUCKET_ID FROM $$ETLVWDB.EL_ET_ACCOUNT_BUCKETS ELETAB)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACCOUNT_BUCKET_ID",
+      "from_instance": "SQ_ST_ET_ACCOUNT_BUCKETS",
+      "to_field": "ACCOUNT_BUCKET_ID",
+      "to_instance": "EL_ET_ACCOUNT_BUCKETS"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SQ_ST_ET_ACCOUNT_BUCKETS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EL_ET_ACCOUNT_BUCKETS"
+    },
+    {
+      "from_field": "ACCOUNT_SEQUENCE",
+      "from_instance": "SQ_ST_ET_ACCOUNT_BUCKETS",
+      "to_field": "ACCOUNT_SEQUENCE",
+      "to_instance": "EL_ET_ACCOUNT_BUCKETS"
+    },
+    {
+      "from_field": "DISCRETIONARY",
+      "from_instance": "SQ_ST_ET_ACCOUNT_BUCKETS",
+      "to_field": "DISCRETIONARY",
+      "to_instance": "EL_ET_ACCOUNT_BUCKETS"
+    },
+    {
+      "from_field": "CONTROLLABLE",
+      "from_instance": "SQ_ST_ET_ACCOUNT_BUCKETS",
+      "to_field": "CONTROLLABLE",
+      "to_instance": "EL_ET_ACCOUNT_BUCKETS"
+    },
+    {
+      "from_field": "ACCOUNT_BUCKET_ID",
+      "from_instance": "ST_ET_ACCOUNT_BUCKETS",
+      "to_field": "ACCOUNT_BUCKET_ID",
+      "to_instance": "SQ_ST_ET_ACCOUNT_BUCKETS"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "ST_ET_ACCOUNT_BUCKETS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "SQ_ST_ET_ACCOUNT_BUCKETS"
+    },
+    {
+      "from_field": "ACCOUNT_SEQUENCE",
+      "from_instance": "ST_ET_ACCOUNT_BUCKETS",
+      "to_field": "ACCOUNT_SEQUENCE",
+      "to_instance": "SQ_ST_ET_ACCOUNT_BUCKETS"
+    },
+    {
+      "from_field": "DISCRETIONARY",
+      "from_instance": "ST_ET_ACCOUNT_BUCKETS",
+      "to_field": "DISCRETIONARY",
+      "to_instance": "SQ_ST_ET_ACCOUNT_BUCKETS"
+    },
+    {
+      "from_field": "CONTROLLABLE",
+      "from_instance": "ST_ET_ACCOUNT_BUCKETS",
+      "to_field": "CONTROLLABLE",
+      "to_instance": "SQ_ST_ET_ACCOUNT_BUCKETS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ACCOUNT_BUCKET_ID",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_BUCKET_ID",
+          "from_instance": "SQ_ST_ET_ACCOUNT_BUCKETS"
+        },
+        {
+          "from_field": "ACCOUNT_BUCKET_ID",
+          "from_instance": "ST_ET_ACCOUNT_BUCKETS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "SQ_ST_ET_ACCOUNT_BUCKETS"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "ST_ET_ACCOUNT_BUCKETS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNT_SEQUENCE",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_SEQUENCE",
+          "from_instance": "SQ_ST_ET_ACCOUNT_BUCKETS"
+        },
+        {
+          "from_field": "ACCOUNT_SEQUENCE",
+          "from_instance": "ST_ET_ACCOUNT_BUCKETS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DISCRETIONARY",
+      "source_path": [
+        {
+          "from_field": "DISCRETIONARY",
+          "from_instance": "SQ_ST_ET_ACCOUNT_BUCKETS"
+        },
+        {
+          "from_field": "DISCRETIONARY",
+          "from_instance": "ST_ET_ACCOUNT_BUCKETS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CONTROLLABLE",
+      "source_path": [
+        {
+          "from_field": "CONTROLLABLE",
+          "from_instance": "SQ_ST_ET_ACCOUNT_BUCKETS"
+        },
+        {
+          "from_field": "CONTROLLABLE",
+          "from_instance": "ST_ET_ACCOUNT_BUCKETS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:05.322508+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

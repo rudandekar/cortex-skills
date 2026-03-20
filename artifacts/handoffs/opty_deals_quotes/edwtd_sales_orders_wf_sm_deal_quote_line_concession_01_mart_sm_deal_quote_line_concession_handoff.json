@@ -1,0 +1,296 @@
+{
+  "workflow_name": "wf_m_SM_DEAL_QUOTE_LINE_CONCESSION",
+  "mapping_name": "m_SM_DEAL_QUOTE_LINE_CONCESSION",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "SM_DEAL_QUOTE_LINE_CONCESSION",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_sm_deal_quote_line_concession_01_mart_sm_deal_quote_line_concession",
+  "source_tables": [
+    "SM_DEAL_QUOTE_LINE_CONCESSION"
+  ],
+  "sources": [
+    {
+      "name": "SM_DEAL_QUOTE_LINE_CONCESSION",
+      "database_type": "Teradata",
+      "owner": "TRANSLATIONDB_DV4",
+      "fields": [
+        {
+          "name": "BK_DEAL_QT_LN_CONCESSION_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_OBJECT_ID_INT",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "SM_DEAL_QUOTE_LINE_CONCESSION",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_DEAL_QT_LN_CONCESSION_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_OBJECT_ID_INT",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SS_CODE",
+        "datatype": "varchar",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_DEAL_QT_LN_CONCESSION_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_OBJECT_ID_INT",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nRANK() OVER \r\n(ORDER BY CONCES.SK_OBJECT_ID_INT,CONCES.SS_CODE) + SDQLC_MAX.MAX_VAL BK_DEAL_QT_LN_CONCESSION_KEY,\r\nCONCES.SK_OBJECT_ID_INT SK_OBJECT_ID_INT,\r\nCONCES.SS_CODE,\r\nCURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\nUSER EDW_CREATE_USER\r\nFROM \r\n( \r\nSELECT \r\nDISTINCT OBJECT_ID SK_OBJECT_ID_INT , 'CCW' AS SS_CODE\r\nFROM \r\n$$STGDB.ST_INT_RAW_CQ_QUOTE_LNE_CONCES ) CONCES,\r\n(SELECT COALESCE(MAX(BK_DEAL_QT_LN_CONCESSION_KEY),0) MAX_VAL \r\n    FROM $$ETLVWDB.SM_DEAL_QUOTE_LINE_CONCESSION) SDQLC_MAX\r\nWHERE NOT EXISTS\r\n       ( SELECT 1 FROM $$ETLVWDB.SM_DEAL_QUOTE_LINE_CONCESSION SDQLC\r\n           WHERE SDQLC.SK_OBJECT_ID_INT = CONCES.SK_OBJECT_ID_INT\r\n\t\t   AND SDQLC.SS_CODE='CCW'\r\n\t\t )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_DEAL_QT_LN_CONCESSION_KEY",
+      "from_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION",
+      "to_field": "BK_DEAL_QT_LN_CONCESSION_KEY",
+      "to_instance": "SM_DEAL_QUOTE_LINE_CONCESSION"
+    },
+    {
+      "from_field": "SK_OBJECT_ID_INT",
+      "from_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION",
+      "to_field": "SK_OBJECT_ID_INT",
+      "to_instance": "SM_DEAL_QUOTE_LINE_CONCESSION"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_DEAL_QUOTE_LINE_CONCESSION"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_DEAL_QUOTE_LINE_CONCESSION"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION",
+      "to_field": "SS_CODE",
+      "to_instance": "SM_DEAL_QUOTE_LINE_CONCESSION"
+    },
+    {
+      "from_field": "BK_DEAL_QT_LN_CONCESSION_KEY",
+      "from_instance": "SM_DEAL_QUOTE_LINE_CONCESSION",
+      "to_field": "BK_DEAL_QT_LN_CONCESSION_KEY",
+      "to_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION"
+    },
+    {
+      "from_field": "SK_OBJECT_ID_INT",
+      "from_instance": "SM_DEAL_QUOTE_LINE_CONCESSION",
+      "to_field": "SK_OBJECT_ID_INT",
+      "to_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SM_DEAL_QUOTE_LINE_CONCESSION",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SM_DEAL_QUOTE_LINE_CONCESSION",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SM_DEAL_QUOTE_LINE_CONCESSION",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_DEAL_QT_LN_CONCESSION_KEY",
+      "source_path": [
+        {
+          "from_field": "BK_DEAL_QT_LN_CONCESSION_KEY",
+          "from_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION"
+        },
+        {
+          "from_field": "BK_DEAL_QT_LN_CONCESSION_KEY",
+          "from_instance": "SM_DEAL_QUOTE_LINE_CONCESSION"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_OBJECT_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_OBJECT_ID_INT",
+          "from_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION"
+        },
+        {
+          "from_field": "SK_OBJECT_ID_INT",
+          "from_instance": "SM_DEAL_QUOTE_LINE_CONCESSION"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CODE",
+      "source_path": [
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SM_DEAL_QUOTE_LINE_CONCESSION"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SM_DEAL_QUOTE_LINE_CONCESSION"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_SM_DEAL_QUOTE_LINE_CONCESSION"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SM_DEAL_QUOTE_LINE_CONCESSION"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:26:47.304975+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

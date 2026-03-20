@@ -1,0 +1,592 @@
+{
+  "workflow_name": "wf_m_N_IAM_USER_ROLE_MAP",
+  "mapping_name": "m_N_IAM_USER_ROLE_MAP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_IAM",
+  "target_table": "N_IAM_USER_ROLE_MAP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_iam_wf_n_iam_user_role_map_01_mart_n_iam_user_role_map",
+  "source_tables": [
+    "W_IAM_USER_ROLE_MAP"
+  ],
+  "sources": [
+    {
+      "name": "W_IAM_USER_ROLE_MAP",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV1",
+      "fields": [
+        {
+          "name": "BK_IAM_ROLE_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "IAM_USER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "STANDARD_OR_EXCEPTION_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PROXY_ROLE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_PROXY_IAM_USER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_PROXY_TYPE_CD",
+          "datatype": "char",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_IAM_USER_ROLE_MAP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_IAM_ROLE_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "IAM_USER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "STANDARD_OR_EXCEPTION_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOURCE_DELETED_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROXY_ROLE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_PROXY_IAM_USER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_PROXY_TYPE_CD",
+        "datatype": "char",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_IAM_USER_ROLE_MAP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_IAM_ROLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IAM_USER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STANDARD_OR_EXCEPTION_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROXY_ROLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_PROXY_IAM_USER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_PROXY_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT WIURM.BK_IAM_ROLE_NAME,\r\n WIURM.IAM_USER_KEY,\r\n WIURM.STANDARD_OR_EXCEPTION_FLG,\r\n WIURM.PROXY_ROLE,\r\n WIURM.SOURCE_DELETED_FLG,\r\n WIURM.EDW_CREATE_USER,\r\n WIURM.EDW_CREATE_DTM,\r\n WIURM.EDW_UPDATE_USER,\r\n WIURM.EDW_UPDATE_DTM,\r\nWIURM.RU_PROXY_IAM_USER_KEY,\r\nWIURM.RU_PROXY_TYPE_CD\r\nFROM\r\n $$WORKDB.W_IAM_USER_ROLE_MAP WIURM\r\n WHERE WIURM.DML_TYPE='I'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_IAM_ROLE_NAME",
+      "from_instance": "SQ_W_IAM_USER_ROLE_MAP",
+      "to_field": "BK_IAM_ROLE_NAME",
+      "to_instance": "N_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "IAM_USER_KEY",
+      "from_instance": "SQ_W_IAM_USER_ROLE_MAP",
+      "to_field": "IAM_USER_KEY",
+      "to_instance": "N_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "STANDARD_OR_EXCEPTION_FLG",
+      "from_instance": "SQ_W_IAM_USER_ROLE_MAP",
+      "to_field": "STANDARD_OR_EXCEPTION_FLG",
+      "to_instance": "N_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "PROXY_ROLE",
+      "from_instance": "SQ_W_IAM_USER_ROLE_MAP",
+      "to_field": "PROXY_ROLE",
+      "to_instance": "N_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "SQ_W_IAM_USER_ROLE_MAP",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "N_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_IAM_USER_ROLE_MAP",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_W_IAM_USER_ROLE_MAP",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_IAM_USER_ROLE_MAP",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_W_IAM_USER_ROLE_MAP",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "RU_PROXY_IAM_USER_KEY",
+      "from_instance": "SQ_W_IAM_USER_ROLE_MAP",
+      "to_field": "RU_PROXY_IAM_USER_KEY",
+      "to_instance": "N_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "RU_PROXY_TYPE_CD",
+      "from_instance": "SQ_W_IAM_USER_ROLE_MAP",
+      "to_field": "RU_PROXY_TYPE_CD",
+      "to_instance": "N_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "BK_IAM_ROLE_NAME",
+      "from_instance": "W_IAM_USER_ROLE_MAP",
+      "to_field": "BK_IAM_ROLE_NAME",
+      "to_instance": "SQ_W_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "IAM_USER_KEY",
+      "from_instance": "W_IAM_USER_ROLE_MAP",
+      "to_field": "IAM_USER_KEY",
+      "to_instance": "SQ_W_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "STANDARD_OR_EXCEPTION_FLG",
+      "from_instance": "W_IAM_USER_ROLE_MAP",
+      "to_field": "STANDARD_OR_EXCEPTION_FLG",
+      "to_instance": "SQ_W_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "PROXY_ROLE",
+      "from_instance": "W_IAM_USER_ROLE_MAP",
+      "to_field": "PROXY_ROLE",
+      "to_instance": "SQ_W_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "W_IAM_USER_ROLE_MAP",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "SQ_W_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_IAM_USER_ROLE_MAP",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "W_IAM_USER_ROLE_MAP",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_W_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_IAM_USER_ROLE_MAP",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "W_IAM_USER_ROLE_MAP",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_W_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "RU_PROXY_IAM_USER_KEY",
+      "from_instance": "W_IAM_USER_ROLE_MAP",
+      "to_field": "RU_PROXY_IAM_USER_KEY",
+      "to_instance": "SQ_W_IAM_USER_ROLE_MAP"
+    },
+    {
+      "from_field": "RU_PROXY_TYPE_CD",
+      "from_instance": "W_IAM_USER_ROLE_MAP",
+      "to_field": "RU_PROXY_TYPE_CD",
+      "to_instance": "SQ_W_IAM_USER_ROLE_MAP"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_IAM_ROLE_NAME",
+      "source_path": [
+        {
+          "from_field": "BK_IAM_ROLE_NAME",
+          "from_instance": "SQ_W_IAM_USER_ROLE_MAP"
+        },
+        {
+          "from_field": "BK_IAM_ROLE_NAME",
+          "from_instance": "W_IAM_USER_ROLE_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "IAM_USER_KEY",
+      "source_path": [
+        {
+          "from_field": "IAM_USER_KEY",
+          "from_instance": "SQ_W_IAM_USER_ROLE_MAP"
+        },
+        {
+          "from_field": "IAM_USER_KEY",
+          "from_instance": "W_IAM_USER_ROLE_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "STANDARD_OR_EXCEPTION_FLG",
+      "source_path": [
+        {
+          "from_field": "STANDARD_OR_EXCEPTION_FLG",
+          "from_instance": "SQ_W_IAM_USER_ROLE_MAP"
+        },
+        {
+          "from_field": "STANDARD_OR_EXCEPTION_FLG",
+          "from_instance": "W_IAM_USER_ROLE_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_DELETED_FLG",
+      "source_path": [
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "SQ_W_IAM_USER_ROLE_MAP"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "W_IAM_USER_ROLE_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_W_IAM_USER_ROLE_MAP"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "W_IAM_USER_ROLE_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_W_IAM_USER_ROLE_MAP"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "W_IAM_USER_ROLE_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_W_IAM_USER_ROLE_MAP"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "W_IAM_USER_ROLE_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_W_IAM_USER_ROLE_MAP"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "W_IAM_USER_ROLE_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROXY_ROLE",
+      "source_path": [
+        {
+          "from_field": "PROXY_ROLE",
+          "from_instance": "SQ_W_IAM_USER_ROLE_MAP"
+        },
+        {
+          "from_field": "PROXY_ROLE",
+          "from_instance": "W_IAM_USER_ROLE_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_PROXY_IAM_USER_KEY",
+      "source_path": [
+        {
+          "from_field": "RU_PROXY_IAM_USER_KEY",
+          "from_instance": "SQ_W_IAM_USER_ROLE_MAP"
+        },
+        {
+          "from_field": "RU_PROXY_IAM_USER_KEY",
+          "from_instance": "W_IAM_USER_ROLE_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_PROXY_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "RU_PROXY_TYPE_CD",
+          "from_instance": "SQ_W_IAM_USER_ROLE_MAP"
+        },
+        {
+          "from_field": "RU_PROXY_TYPE_CD",
+          "from_instance": "W_IAM_USER_ROLE_MAP"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:25:36.608630+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,417 @@
+{
+  "workflow_name": "wf_m_ST_DFR_OPEN_PERIOD",
+  "mapping_name": "m_ST_DFR_OPEN_PERIOD",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "ST_DFR_OPEN_PERIOD",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_st_dfr_open_period_01_mart_st_dfr_open_period",
+  "source_tables": [
+    "ST_AE_OPEN_PERIOD_ALL"
+  ],
+  "sources": [
+    {
+      "name": "ST_AE_OPEN_PERIOD_ALL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "MODULE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MODULE_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OPEN_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATE_USER",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATE_USER",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_DFR_OPEN_PERIOD",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_MONTH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "OPEN_FLAG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_USER",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATE_USER",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PRODUCT_OPEN_MTH_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SERVICE_OPEN_MTH_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_DFR_OPEN_PERIOD",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OPEN_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_OPEN_MTH_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_OPEN_MTH_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n FISCAL_MONTH_ID ,\r\n OPEN_FLAG ,\r\n CREATE_USER ,\r\n CREATE_DATETIME ,\r\n UPDATE_USER ,\r\n UPDATE_DATETIME ,\r\n 'Y' PRODUCT_OPEN_MTH_FLG,\r\n 'Y' SERVICE_OPEN_MTH_FLG\r\nFROM \r\n$$STGDB.ST_AE_OPEN_PERIOD_ALL\r\nWHERE MODULE_NAME = 'Deferred Revenue Allocations'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_DFR_OPEN_PERIOD",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "ST_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "OPEN_FLAG",
+      "from_instance": "SQ_DFR_OPEN_PERIOD",
+      "to_field": "OPEN_FLAG",
+      "to_instance": "ST_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "CREATE_USER",
+      "from_instance": "SQ_DFR_OPEN_PERIOD",
+      "to_field": "CREATE_USER",
+      "to_instance": "ST_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_DFR_OPEN_PERIOD",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "ST_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "UPDATE_USER",
+      "from_instance": "SQ_DFR_OPEN_PERIOD",
+      "to_field": "UPDATE_USER",
+      "to_instance": "ST_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "UPDATE_DATETIME",
+      "from_instance": "SQ_DFR_OPEN_PERIOD",
+      "to_field": "UPDATE_DATETIME",
+      "to_instance": "ST_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "SERVICE_OPEN_MTH_FLG",
+      "from_instance": "SQ_DFR_OPEN_PERIOD",
+      "to_field": "SERVICE_OPEN_MTH_FLG",
+      "to_instance": "ST_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "PRODUCT_OPEN_MTH_FLG",
+      "from_instance": "SQ_DFR_OPEN_PERIOD",
+      "to_field": "PRODUCT_OPEN_MTH_FLG",
+      "to_instance": "ST_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "ST_AE_OPEN_PERIOD_ALL",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "OPEN_FLAG",
+      "from_instance": "ST_AE_OPEN_PERIOD_ALL",
+      "to_field": "OPEN_FLAG",
+      "to_instance": "SQ_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "CREATE_USER",
+      "from_instance": "ST_AE_OPEN_PERIOD_ALL",
+      "to_field": "CREATE_USER",
+      "to_instance": "SQ_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_AE_OPEN_PERIOD_ALL",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "UPDATE_USER",
+      "from_instance": "ST_AE_OPEN_PERIOD_ALL",
+      "to_field": "UPDATE_USER",
+      "to_instance": "SQ_DFR_OPEN_PERIOD"
+    },
+    {
+      "from_field": "UPDATE_DATETIME",
+      "from_instance": "ST_AE_OPEN_PERIOD_ALL",
+      "to_field": "UPDATE_DATETIME",
+      "to_instance": "SQ_DFR_OPEN_PERIOD"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_MONTH_ID",
+      "source_path": [
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "SQ_DFR_OPEN_PERIOD"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "ST_AE_OPEN_PERIOD_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "OPEN_FLAG",
+      "source_path": [
+        {
+          "from_field": "OPEN_FLAG",
+          "from_instance": "SQ_DFR_OPEN_PERIOD"
+        },
+        {
+          "from_field": "OPEN_FLAG",
+          "from_instance": "ST_AE_OPEN_PERIOD_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "CREATE_USER",
+          "from_instance": "SQ_DFR_OPEN_PERIOD"
+        },
+        {
+          "from_field": "CREATE_USER",
+          "from_instance": "ST_AE_OPEN_PERIOD_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "SQ_DFR_OPEN_PERIOD"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_AE_OPEN_PERIOD_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "UPDATE_USER",
+          "from_instance": "SQ_DFR_OPEN_PERIOD"
+        },
+        {
+          "from_field": "UPDATE_USER",
+          "from_instance": "ST_AE_OPEN_PERIOD_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "UPDATE_DATETIME",
+          "from_instance": "SQ_DFR_OPEN_PERIOD"
+        },
+        {
+          "from_field": "UPDATE_DATETIME",
+          "from_instance": "ST_AE_OPEN_PERIOD_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRODUCT_OPEN_MTH_FLG",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_OPEN_MTH_FLG",
+          "from_instance": "SQ_DFR_OPEN_PERIOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SERVICE_OPEN_MTH_FLG",
+      "source_path": [
+        {
+          "from_field": "SERVICE_OPEN_MTH_FLG",
+          "from_instance": "SQ_DFR_OPEN_PERIOD"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:26.935361+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

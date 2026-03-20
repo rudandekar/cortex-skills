@@ -1,0 +1,403 @@
+{
+  "workflow_name": "wf_m_N_POS_ORGNTR_ORG_OPRTNG_CNTRY_STG23NF",
+  "mapping_name": "m_N_POS_ORGNTR_ORG_OPRTNG_CNTRY_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_POS",
+  "target_table": "N_POS_ORGNTR_ORG_OPRTNG_CNTRY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_pos_wf_n_pos_orgntr_org_oprtng_cntry_stg23nf_01_mart_n_pos_orgntr_org_oprtng_cntry",
+  "source_tables": [
+    "ST_WIPS_DISTI_SUPPORTED_INFO"
+  ],
+  "sources": [
+    {
+      "name": "ST_WIPS_DISTI_SUPPORTED_INFO",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "DISTI_PROFILE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COUNTRY",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SUPPORTED_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTRACTUAL_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LEGAL_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_POS_ORGNTR_ORG_OPRTNG_CNTRY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_WIPS_ORIGINATOR_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_ISO_COUNTRY_CD",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SUPPORTED_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CONTRACTUAL_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LEGAL_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DISTI_PROFILE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COUNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUPPORTED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONTRACTUAL_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LEGAL_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nDISTI_PROFILE_ID AS BK_WIPS_ORIGINATOR_ID_INT\r\n,ISO_CTRY.BK_ISO_COUNTRY_CODE AS BK_ISO_COUNTRY_CD\r\n,COALESCE(SUPPORTED_FLAG, 'N') AS SUPPORTED_FLG\r\n,COALESCE(CONTRACTUAL_FLAG,'N') AS CONTRACTUAL_FLG\r\n,COALESCE(LEGAL_FLAG,'N') AS LEGAL_FLG\r\n,CURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM \r\n,USER AS EDW_CREATE_USER\r\n,CURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM \r\n,USER AS EDW_UPDATE_USER\r\nFROM\r\n$$STGDB.ST_WIPS_DISTI_SUPPORTED_INFO SWD\r\nINNER JOIN\r\n$$COMREFVWDB.N_ISO_COUNTRY ISO_CTRY\r\nON\r\nSWD.COUNTRY=ISO_CTRY.ISO_COUNTRY_NAME",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "DISTI_PROFILE_ID",
+      "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "BK_WIPS_ORIGINATOR_ID_INT",
+      "to_instance": "N_POS_ORGNTR_ORG_OPRTNG_CNTRY"
+    },
+    {
+      "from_field": "COUNTRY_CD",
+      "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "BK_ISO_COUNTRY_CD",
+      "to_instance": "N_POS_ORGNTR_ORG_OPRTNG_CNTRY"
+    },
+    {
+      "from_field": "SUPPORTED_FLAG",
+      "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "SUPPORTED_FLG",
+      "to_instance": "N_POS_ORGNTR_ORG_OPRTNG_CNTRY"
+    },
+    {
+      "from_field": "CONTRACTUAL_FLAG",
+      "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "CONTRACTUAL_FLG",
+      "to_instance": "N_POS_ORGNTR_ORG_OPRTNG_CNTRY"
+    },
+    {
+      "from_field": "LEGAL_FLAG",
+      "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "LEGAL_FLG",
+      "to_instance": "N_POS_ORGNTR_ORG_OPRTNG_CNTRY"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_POS_ORGNTR_ORG_OPRTNG_CNTRY"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_POS_ORGNTR_ORG_OPRTNG_CNTRY"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_POS_ORGNTR_ORG_OPRTNG_CNTRY"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_POS_ORGNTR_ORG_OPRTNG_CNTRY"
+    },
+    {
+      "from_field": "COUNTRY",
+      "from_instance": "ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "COUNTRY_CD",
+      "to_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+    },
+    {
+      "from_field": "SUPPORTED_FLAG",
+      "from_instance": "ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "SUPPORTED_FLAG",
+      "to_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+    },
+    {
+      "from_field": "CONTRACTUAL_FLAG",
+      "from_instance": "ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "CONTRACTUAL_FLAG",
+      "to_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+    },
+    {
+      "from_field": "LEGAL_FLAG",
+      "from_instance": "ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "LEGAL_FLAG",
+      "to_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+    },
+    {
+      "from_field": "DISTI_PROFILE_ID",
+      "from_instance": "ST_WIPS_DISTI_SUPPORTED_INFO",
+      "to_field": "DISTI_PROFILE_ID",
+      "to_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_WIPS_ORIGINATOR_ID_INT",
+      "source_path": [
+        {
+          "from_field": "DISTI_PROFILE_ID",
+          "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_ISO_COUNTRY_CD",
+      "source_path": [
+        {
+          "from_field": "COUNTRY_CD",
+          "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SUPPORTED_FLG",
+      "source_path": [
+        {
+          "from_field": "SUPPORTED_FLAG",
+          "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CONTRACTUAL_FLG",
+      "source_path": [
+        {
+          "from_field": "CONTRACTUAL_FLAG",
+          "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LEGAL_FLG",
+      "source_path": [
+        {
+          "from_field": "LEGAL_FLAG",
+          "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_WIPS_DISTI_SUPPORTED_INFO"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:15.497421+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

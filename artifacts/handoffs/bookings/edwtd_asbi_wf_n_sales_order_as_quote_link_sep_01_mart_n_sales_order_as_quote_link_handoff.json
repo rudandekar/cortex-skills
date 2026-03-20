@@ -1,0 +1,390 @@
+{
+  "workflow_name": "wf_m_N_SALES_ORDER_AS_QUOTE_LINK_SEP",
+  "mapping_name": "m_N_SALES_ORDER_AS_QUOTE_LINK_SEP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_ASBI",
+  "target_table": "N_SALES_ORDER_AS_QUOTE_LINK",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_asbi_wf_n_sales_order_as_quote_link_sep_01_mart_n_sales_order_as_quote_link",
+  "source_tables": [
+    "N_SALES_ORDER_AS_QUOTE_LINK"
+  ],
+  "sources": [
+    {
+      "name": "N_SALES_ORDER_AS_QUOTE_LINK",
+      "database_type": "Teradata",
+      "owner": "SERVICEDB_DV4",
+      "fields": [
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_AS_QUOTE_NUM",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SS_CD",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_SALES_ORDER_AS_QUOTE_LINK",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_ORDER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_AS_QUOTE_NUM",
+        "datatype": "varchar",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SS_CD",
+        "datatype": "varchar",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_AS_QUOTE_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nWSOQL.SALES_ORDER_KEY,\r\nWSOQL.BK_AS_QUOTE_NUM,\r\nWSOQL.EDW_CREATE_DTM,\r\nWSOQL.EDW_CREATE_USER,\r\nWSOQL.EDW_UPDATE_DTM,\r\nWSOQL.EDW_UPDATE_USER,\r\nWSOQL.SS_CD\r\nFROM $$WORKDB.W_SALES_ORDR_AS_QT_LNK_SEP  WSOQL\r\n/*WHERE DML_TYPE='I' \r\nAND NOT EXISTS\r\n(SELECT 1 FROM $$SERVICEVWDB.N_SALES_ORDER_AS_QUOTE_LINK \r\nWHERE BK_AS_QUOTE_NUM=WSOQL.BK_AS_QUOTE_NUM\r\nAND SALES_ORDER_KEY=WSOQL.SALES_ORDER_KEY\r\nAND SS_CD = WSOQL.SS_CD )*/",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "delete from  $$SERVICEVWDB.N_SALES_ORDER_AS_QUOTE_LINK where BK_AS_QUOTE_NUM\r\nin ( select BK_AS_QUOTE_NUM from $$WORKDB.W_SALES_ORDR_AS_QT_LNK_SEP group by 1);",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "N_SALES_ORDER_AS_QUOTE_LINK1"
+    },
+    {
+      "from_field": "BK_AS_QUOTE_NUM",
+      "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP",
+      "to_field": "BK_AS_QUOTE_NUM",
+      "to_instance": "N_SALES_ORDER_AS_QUOTE_LINK1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_SALES_ORDER_AS_QUOTE_LINK1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_SALES_ORDER_AS_QUOTE_LINK1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_SALES_ORDER_AS_QUOTE_LINK1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_SALES_ORDER_AS_QUOTE_LINK1"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP",
+      "to_field": "SS_CD",
+      "to_instance": "N_SALES_ORDER_AS_QUOTE_LINK1"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+    },
+    {
+      "from_field": "BK_AS_QUOTE_NUM",
+      "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK",
+      "to_field": "BK_AS_QUOTE_NUM",
+      "to_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+    },
+    {
+      "from_field": "SS_CD",
+      "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK",
+      "to_field": "SS_CD",
+      "to_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_ORDER_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+        },
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_AS_QUOTE_NUM",
+      "source_path": [
+        {
+          "from_field": "BK_AS_QUOTE_NUM",
+          "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+        },
+        {
+          "from_field": "BK_AS_QUOTE_NUM",
+          "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CD",
+      "source_path": [
+        {
+          "from_field": "SS_CD",
+          "from_instance": "SQ_N_SALES_ORDER_AS_QUOTE_LINK_SEP"
+        },
+        {
+          "from_field": "SS_CD",
+          "from_instance": "N_SALES_ORDER_AS_QUOTE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:09.241803+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

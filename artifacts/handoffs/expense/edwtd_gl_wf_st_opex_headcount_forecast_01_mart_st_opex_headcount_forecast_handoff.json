@@ -1,0 +1,855 @@
+{
+  "workflow_name": "wf_m_ST_OPEX_HEADCOUNT_FORECAST",
+  "mapping_name": "m_ST_OPEX_HEADCOUNT_FORECAST",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "ST_OPEX_HEADCOUNT_FORECAST",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_st_opex_headcount_forecast_01_mart_st_opex_headcount_forecast",
+  "source_tables": [
+    "FF_OPEX_HEADCOUNT_FORECAST"
+  ],
+  "sources": [
+    {
+      "name": "FF_OPEX_HEADCOUNT_FORECAST",
+      "database_type": "Flat File",
+      "owner": "",
+      "fields": [
+        {
+          "name": "PROCESSED_FISCAL_MONTH",
+          "datatype": "number",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH",
+          "datatype": "number",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEPT_ID",
+          "datatype": "string",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REGFTE_FCST_HC",
+          "datatype": "number",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TEMP_FCST_HC",
+          "datatype": "number",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INT_FCST_HC",
+          "datatype": "number",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTR_FCST_HC",
+          "datatype": "number",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NEWHIRE_FCST_HC",
+          "datatype": "number",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTIVE_FLAG",
+          "datatype": "string",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REFRESH_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SCENARIO",
+          "datatype": "string",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_OPEX_HEADCOUNT_FORECAST",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROCESSED_FISCAL_MONTH",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FISCAL_MONTH",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DEPT_ID",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REGFTE_FCST_HC",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TEMP_FCST_HC",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INT_FCST_HC",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTR_FCST_HC",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NEWHIRE_FCST_HC",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTIVE_FLAG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REFRESH_DATE",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SCENARIO",
+        "datatype": "varchar",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_OPEX_HEADCOUNT_FORECAST",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PROCESSED_FISCAL_MONTH",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_MONTH",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEPT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REGFTE_FCST_HC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TEMP_FCST_HC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INT_FCST_HC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTR_FCST_HC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NEWHIRE_FCST_HC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTIVE_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REFRESH_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SCENARIO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "1"
+        },
+        {
+          "name": "PROCESSED_FISCAL_MONTH",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PROCESSED_FISCAL_MONTH"
+        },
+        {
+          "name": "FISCAL_MONTH",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FISCAL_MONTH"
+        },
+        {
+          "name": "DEPT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DEPT_ID"
+        },
+        {
+          "name": "REGFTE_FCST_HC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "REGFTE_FCST_HC"
+        },
+        {
+          "name": "TEMP_FCST_HC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "TEMP_FCST_HC"
+        },
+        {
+          "name": "INT_FCST_HC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "INT_FCST_HC"
+        },
+        {
+          "name": "ATTR_FCST_HC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ATTR_FCST_HC"
+        },
+        {
+          "name": "NEWHIRE_FCST_HC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "NEWHIRE_FCST_HC"
+        },
+        {
+          "name": "ACTIVE_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTIVE_FLAG"
+        },
+        {
+          "name": "REFRESH_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "REFRESH_DATE"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "SCENARIO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SCENARIO"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "BATCH_ID",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_MONTH",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "PROCESSED_FISCAL_MONTH",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "FISCAL_MONTH",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "FISCAL_MONTH",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "DEPT_ID",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "DEPT_ID",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "REGFTE_FCST_HC",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "REGFTE_FCST_HC",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "TEMP_FCST_HC",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "TEMP_FCST_HC",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "INT_FCST_HC",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "INT_FCST_HC",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "ATTR_FCST_HC",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "ATTR_FCST_HC",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "NEWHIRE_FCST_HC",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "NEWHIRE_FCST_HC",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "ACTIVE_FLAG",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "ACTIVE_FLAG",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "REFRESH_DATE",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "REFRESH_DATE",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "ACTION_CODE",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "CREATION_DATE",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "SCENARIO",
+      "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "SCENARIO",
+      "to_instance": "ST_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_MONTH",
+      "from_instance": "FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "PROCESSED_FISCAL_MONTH",
+      "to_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "FISCAL_MONTH",
+      "from_instance": "FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "FISCAL_MONTH",
+      "to_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "DEPT_ID",
+      "from_instance": "FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "DEPT_ID",
+      "to_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "REGFTE_FCST_HC",
+      "from_instance": "FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "REGFTE_FCST_HC",
+      "to_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "TEMP_FCST_HC",
+      "from_instance": "FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "TEMP_FCST_HC",
+      "to_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "INT_FCST_HC",
+      "from_instance": "FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "INT_FCST_HC",
+      "to_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "ATTR_FCST_HC",
+      "from_instance": "FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "ATTR_FCST_HC",
+      "to_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "NEWHIRE_FCST_HC",
+      "from_instance": "FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "NEWHIRE_FCST_HC",
+      "to_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "ACTIVE_FLAG",
+      "from_instance": "FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "ACTIVE_FLAG",
+      "to_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "REFRESH_DATE",
+      "from_instance": "FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "REFRESH_DATE",
+      "to_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "SCENARIO",
+      "from_instance": "FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "SCENARIO",
+      "to_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "PROCESSED_FISCAL_MONTH",
+      "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "PROCESSED_FISCAL_MONTH",
+      "to_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "FISCAL_MONTH",
+      "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "FISCAL_MONTH",
+      "to_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "DEPT_ID",
+      "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "DEPT_ID",
+      "to_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "REGFTE_FCST_HC",
+      "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "REGFTE_FCST_HC",
+      "to_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "TEMP_FCST_HC",
+      "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "TEMP_FCST_HC",
+      "to_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "INT_FCST_HC",
+      "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "INT_FCST_HC",
+      "to_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "ATTR_FCST_HC",
+      "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "ATTR_FCST_HC",
+      "to_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "NEWHIRE_FCST_HC",
+      "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "NEWHIRE_FCST_HC",
+      "to_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "ACTIVE_FLAG",
+      "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "ACTIVE_FLAG",
+      "to_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "REFRESH_DATE",
+      "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "REFRESH_DATE",
+      "to_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+    },
+    {
+      "from_field": "SCENARIO",
+      "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST",
+      "to_field": "SCENARIO",
+      "to_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROCESSED_FISCAL_MONTH",
+      "source_path": [
+        {
+          "from_field": "PROCESSED_FISCAL_MONTH",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "PROCESSED_FISCAL_MONTH",
+          "from_instance": "FF_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "PROCESSED_FISCAL_MONTH",
+          "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FISCAL_MONTH",
+      "source_path": [
+        {
+          "from_field": "FISCAL_MONTH",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "FISCAL_MONTH",
+          "from_instance": "FF_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "FISCAL_MONTH",
+          "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DEPT_ID",
+      "source_path": [
+        {
+          "from_field": "DEPT_ID",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "DEPT_ID",
+          "from_instance": "FF_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "DEPT_ID",
+          "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REGFTE_FCST_HC",
+      "source_path": [
+        {
+          "from_field": "REGFTE_FCST_HC",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "REGFTE_FCST_HC",
+          "from_instance": "FF_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "REGFTE_FCST_HC",
+          "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TEMP_FCST_HC",
+      "source_path": [
+        {
+          "from_field": "TEMP_FCST_HC",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "TEMP_FCST_HC",
+          "from_instance": "FF_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "TEMP_FCST_HC",
+          "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INT_FCST_HC",
+      "source_path": [
+        {
+          "from_field": "INT_FCST_HC",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "INT_FCST_HC",
+          "from_instance": "FF_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "INT_FCST_HC",
+          "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTR_FCST_HC",
+      "source_path": [
+        {
+          "from_field": "ATTR_FCST_HC",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "ATTR_FCST_HC",
+          "from_instance": "FF_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "ATTR_FCST_HC",
+          "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NEWHIRE_FCST_HC",
+      "source_path": [
+        {
+          "from_field": "NEWHIRE_FCST_HC",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "NEWHIRE_FCST_HC",
+          "from_instance": "FF_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "NEWHIRE_FCST_HC",
+          "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTIVE_FLAG",
+      "source_path": [
+        {
+          "from_field": "ACTIVE_FLAG",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "ACTIVE_FLAG",
+          "from_instance": "FF_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "ACTIVE_FLAG",
+          "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REFRESH_DATE",
+      "source_path": [
+        {
+          "from_field": "REFRESH_DATE",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "REFRESH_DATE",
+          "from_instance": "FF_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "REFRESH_DATE",
+          "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SCENARIO",
+      "source_path": [
+        {
+          "from_field": "SCENARIO",
+          "from_instance": "EXP_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "SCENARIO",
+          "from_instance": "FF_OPEX_HEADCOUNT_FORECAST"
+        },
+        {
+          "from_field": "SCENARIO",
+          "from_instance": "SQ_FF_OPEX_HEADCOUNT_FORECAST"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:12.165734+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,249 @@
+{
+  "workflow_name": "wf_m_ST_OTM_PHX_CODE_ASSIGNMENTS",
+  "mapping_name": "m_ST_OTM_PHX_CODE_ASSIGNMENTS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "ST_OTM_PHX_CODE_ASSIGNMENTS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_st_otm_phx_code_assignments_01_mart_st_otm_phx_code_assignments",
+  "source_tables": [
+    "ST_OTM_PHX_CODE_ASSIGNMENTS"
+  ],
+  "sources": [
+    {
+      "name": "ST_OTM_PHX_CODE_ASSIGNMENTS",
+      "database_type": "Teradata",
+      "owner": "flatfile",
+      "fields": [
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REBOK_CHANNEL_FLAG",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TERRITORY_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRX_SC_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_OTM_PHX_CODE_ASSIGNMENTS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REBOK_CHANNEL_FLAG",
+        "datatype": "varchar",
+        "precision": "150",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TERRITORY_TYPE_CODE",
+        "datatype": "varchar",
+        "precision": "150",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TRX_SC_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REBOK_CHANNEL_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TERRITORY_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRX_SC_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nASGN.LAST_UPDATE_DATE,\r\nNVL2(ASGN.CLASS_CODE,'Y','N') REBOK_CHANNEL_FLAG,   /*  ADDED  AS PART OF  D1FY14*/\r\nSC.TERRITORY_TYPE_CODE,\r\nTRX_SC.TRX_SC_ID   \r\nFROM \r\n(SELECT * FROM $$NRTACCUMVWDB.XXOTM_PHX_TRX_SC \r\nQUALIFY ROW_NUMBER()  OVER(PARTITION BY TRX_SC_ID ORDER BY REFRESH_DATETIME DESC)=1) TRX_SC\r\nINNER JOIN\r\n(SELECT * FROM $$GGSRCVWDB.XXOTM_PHX_SALES_CREDITS\r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY  SC_ID ORDER BY REFRESH_DATETIME DESC)=1) SC\r\nON TRX_SC.SC_ID=SC.SC_ID\r\nLEFT JOIN\r\n(SELECT * FROM $$GGSRCVWDB.XXOTM_PHX_CODE_ASSIGNMENTS\r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY  CODE_ASSIGNMENT_ID ORDER BY REFRESH_DATETIME DESC)=1) ASGN\r\nON  ASGN.OWNER_TABLE_NAME ='XXOTM_PHX_TRX_SC'\r\nAND ASGN.CLASS_CATEGORY= 'XXOTM_PHX_CB_FLAG'\r\nAND TRX_SC.TRX_SC_ID=ASGN.OWNER_TABLE_ID\r\nWHERE ASGN.LAST_UPDATE_DATE>CAST('$$LastExtractDate' AS TIMESTAMP(0))-interval '2' hour\r\n/* QUALIFY ROW_NUMBER() OVER (PARTITION BY TRX_SC.TRX_SC_ID ORDER BY TRX_SC.LAST_UPDATE_DATE DESC)=1 */",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "ST_OTM_PHX_CODE_ASSIGNMENTS"
+    },
+    {
+      "from_field": "REBOK_CHANNEL_FLAG",
+      "from_instance": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS",
+      "to_field": "REBOK_CHANNEL_FLAG",
+      "to_instance": "ST_OTM_PHX_CODE_ASSIGNMENTS"
+    },
+    {
+      "from_field": "TERRITORY_TYPE_CODE",
+      "from_instance": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS",
+      "to_field": "TERRITORY_TYPE_CODE",
+      "to_instance": "ST_OTM_PHX_CODE_ASSIGNMENTS"
+    },
+    {
+      "from_field": "TRX_SC_ID",
+      "from_instance": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS",
+      "to_field": "TRX_SC_ID",
+      "to_instance": "ST_OTM_PHX_CODE_ASSIGNMENTS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "FF_OTM_PHX_CODE_ASSIGNMENTS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS"
+    },
+    {
+      "from_field": "REBOK_CHANNEL_FLAG",
+      "from_instance": "FF_OTM_PHX_CODE_ASSIGNMENTS",
+      "to_field": "REBOK_CHANNEL_FLAG",
+      "to_instance": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS"
+    },
+    {
+      "from_field": "TERRITORY_TYPE_CODE",
+      "from_instance": "FF_OTM_PHX_CODE_ASSIGNMENTS",
+      "to_field": "TERRITORY_TYPE_CODE",
+      "to_instance": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS"
+    },
+    {
+      "from_field": "TRX_SC_ID",
+      "from_instance": "FF_OTM_PHX_CODE_ASSIGNMENTS",
+      "to_field": "TRX_SC_ID",
+      "to_instance": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "FF_OTM_PHX_CODE_ASSIGNMENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REBOK_CHANNEL_FLAG",
+      "source_path": [
+        {
+          "from_field": "REBOK_CHANNEL_FLAG",
+          "from_instance": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS"
+        },
+        {
+          "from_field": "REBOK_CHANNEL_FLAG",
+          "from_instance": "FF_OTM_PHX_CODE_ASSIGNMENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TERRITORY_TYPE_CODE",
+      "source_path": [
+        {
+          "from_field": "TERRITORY_TYPE_CODE",
+          "from_instance": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS"
+        },
+        {
+          "from_field": "TERRITORY_TYPE_CODE",
+          "from_instance": "FF_OTM_PHX_CODE_ASSIGNMENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TRX_SC_ID",
+      "source_path": [
+        {
+          "from_field": "TRX_SC_ID",
+          "from_instance": "SQ_ST_OTM_PHX_CODE_ASSIGNMENTS"
+        },
+        {
+          "from_field": "TRX_SC_ID",
+          "from_instance": "FF_OTM_PHX_CODE_ASSIGNMENTS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:21.641133+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

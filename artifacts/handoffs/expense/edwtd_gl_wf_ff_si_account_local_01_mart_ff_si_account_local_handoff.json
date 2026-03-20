@@ -1,0 +1,511 @@
+{
+  "workflow_name": "wf_m_FF_SI_ACCOUNT_LOCAL",
+  "mapping_name": "m_FF_SI_ACCOUNT_LOCAL",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "FF_SI_ACCOUNT_LOCAL",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_ff_si_account_local_01_mart_ff_si_account_local",
+  "source_tables": [
+    "SI_ACCOUNT_LOCAL"
+  ],
+  "sources": [
+    {
+      "name": "SI_ACCOUNT_LOCAL",
+      "database_type": "Oracle",
+      "owner": "SIALL",
+      "fields": [
+        {
+          "name": "ACCOUNT_VALUE",
+          "datatype": "varchar2",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SI_FLEX_STRUCT_ID",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "varchar2",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RECLASS_ACCOUNT_VALUE",
+          "datatype": "varchar2",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar2",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "varchar2",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INFO_PUBLISHED",
+          "datatype": "varchar2",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ERP_PUBLISHED",
+          "datatype": "varchar2",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_SI_ACCOUNT_LOCAL",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BATCH_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCOUNT_VALUE",
+        "datatype": "string",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SI_FLEX_STRUCT_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ENABLED_FLAG",
+        "datatype": "string",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RECLASS_ACCOUNT_VALUE",
+        "datatype": "string",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "string",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_SI_ACCOUNT_LOCAL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SI_FLEX_STRUCT_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RECLASS_ACCOUNT_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "SI_ACCOUNT_LOCAL.LAST_UPDATE_DATE>TO_DATE('$$LastExtractDate','MM/DD/YYYY HH24:MI:SS')",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_Set_Default_Values",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_BATCH_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "$$BatchId"
+        },
+        {
+          "name": "O_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "O_ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_DATE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "O_BATCH_ID",
+      "from_instance": "Exp_Set_Default_Values",
+      "to_field": "BATCH_ID",
+      "to_instance": "FF_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "O_CREATE_DATETIME",
+      "from_instance": "Exp_Set_Default_Values",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "FF_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "O_ACTION_CODE",
+      "from_instance": "Exp_Set_Default_Values",
+      "to_field": "ACTION_CODE",
+      "to_instance": "FF_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ACCOUNT_VALUE",
+      "from_instance": "SQ_SI_ACCOUNT_LOCAL",
+      "to_field": "ACCOUNT_VALUE",
+      "to_instance": "FF_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "SI_FLEX_STRUCT_ID",
+      "from_instance": "SQ_SI_ACCOUNT_LOCAL",
+      "to_field": "SI_FLEX_STRUCT_ID",
+      "to_instance": "FF_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "SQ_SI_ACCOUNT_LOCAL",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "FF_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "RECLASS_ACCOUNT_VALUE",
+      "from_instance": "SQ_SI_ACCOUNT_LOCAL",
+      "to_field": "RECLASS_ACCOUNT_VALUE",
+      "to_instance": "FF_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "SQ_SI_ACCOUNT_LOCAL",
+      "to_field": "END_DATE",
+      "to_instance": "FF_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "Exp_Set_Default_Values",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "FF_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ACCOUNT_VALUE",
+      "from_instance": "SI_ACCOUNT_LOCAL",
+      "to_field": "ACCOUNT_VALUE",
+      "to_instance": "SQ_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "SI_FLEX_STRUCT_ID",
+      "from_instance": "SI_ACCOUNT_LOCAL",
+      "to_field": "SI_FLEX_STRUCT_ID",
+      "to_instance": "SQ_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "SI_ACCOUNT_LOCAL",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "SQ_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "RECLASS_ACCOUNT_VALUE",
+      "from_instance": "SI_ACCOUNT_LOCAL",
+      "to_field": "RECLASS_ACCOUNT_VALUE",
+      "to_instance": "SQ_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "SI_ACCOUNT_LOCAL",
+      "to_field": "END_DATE",
+      "to_instance": "SQ_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SI_ACCOUNT_LOCAL",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ACCOUNT_VALUE",
+      "from_instance": "SQ_SI_ACCOUNT_LOCAL",
+      "to_field": "ACCOUNT_VALUE",
+      "to_instance": "Exp_Set_Default_Values"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_SI_ACCOUNT_LOCAL",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "Exp_Set_Default_Values"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "O_BATCH_ID",
+          "from_instance": "Exp_Set_Default_Values"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNT_VALUE",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_VALUE",
+          "from_instance": "SQ_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "ACCOUNT_VALUE",
+          "from_instance": "SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "ACCOUNT_VALUE",
+          "from_instance": "SQ_SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SI_FLEX_STRUCT_ID",
+      "source_path": [
+        {
+          "from_field": "SI_FLEX_STRUCT_ID",
+          "from_instance": "SQ_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "SI_FLEX_STRUCT_ID",
+          "from_instance": "SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ENABLED_FLAG",
+      "source_path": [
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "SQ_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RECLASS_ACCOUNT_VALUE",
+      "source_path": [
+        {
+          "from_field": "RECLASS_ACCOUNT_VALUE",
+          "from_instance": "SQ_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "RECLASS_ACCOUNT_VALUE",
+          "from_instance": "SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_DATE",
+      "source_path": [
+        {
+          "from_field": "END_DATE",
+          "from_instance": "SQ_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "END_DATE",
+          "from_instance": "SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "Exp_Set_Default_Values"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "O_CREATE_DATETIME",
+          "from_instance": "Exp_Set_Default_Values"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "O_ACTION_CODE",
+          "from_instance": "Exp_Set_Default_Values"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:07.548579+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

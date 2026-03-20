@@ -1,0 +1,118 @@
+# INFA2DBT Pipeline Configuration Template
+# Version: 2.2.0
+# Copy this file to your project and customize
+
+pipeline:
+  version: "2.2.0"
+  name: "infa2dbt_pipeline"
+  
+# Phase 1 Configuration
+phase_1:
+  # Fidelity scoring thresholds
+  fidelity:
+    standard_threshold: 0.85
+    thin_coverage_threshold: 0.70
+    
+  # Retry settings
+  retry:
+    max_retries: 3  # Shared pool between Agent 3 and Agent 4
+    retry_delay_seconds: 0  # No delay between retries
+    
+  # Checkpoint settings
+  checkpoints:
+    checkpoint_b_batch_size: 10  # Run Checkpoint B every N workflows
+    checkpoint_b_auto_continue: true  # Auto-continue after Checkpoint B
+    
+  # Quarantine settings
+  quarantine:
+    path: "models/review_pending/"
+    notify_on_quarantine: true
+    
+# Phase 2 Configuration (Stabilization)
+phase_2:
+  # Minimum time before ROI analysis
+  min_business_cycles: 2
+  min_days_in_production: 14
+  
+# Phase 3 Configuration (ROI Analysis)
+phase_3:
+  # Query history analysis window
+  analysis_window_days: 30
+  
+  # ROI scoring weights (must sum to 1.0)
+  roi_weights:
+    query_frequency: 0.30
+    bytes_scanned: 0.25
+    credit_consumption: 0.25
+    graph_centrality: 0.20
+    
+  # Tier thresholds
+  tier_thresholds:
+    tier_1_min: 0.70
+    tier_2_min: 0.40
+    
+  # Special tier rules
+  special_rules:
+    high_fanout_force_tier_1: 10  # Out-degree threshold
+    zero_queries_force_tier_3: true
+    staging_max_tier: 2  # stg_ prefix capped at Tier 2
+
+# Phase 4-5 Configuration (Optimization)
+phase_4_5:
+  # Sub-agent 7A (Config)
+  config_optimization:
+    max_cluster_keys: 4
+    apply_to_tiers: ["tier_1", "tier_2"]  # tier_3 gets recommendations only
+    
+  # Sub-agent 7B (SQL)
+  sql_optimization:
+    pattern_a_auto_apply: true  # CTE pruning
+    pattern_b_auto_apply: true  # Predicate pushdown
+    pattern_c_requires_hitl: true  # CTE consolidation
+    pattern_c_tiers: ["tier_1"]  # Only Tier 1 gets Pattern C
+
+# Gate Configuration
+gates:
+  gate_0:
+    required_files:
+      - "docs/corpus_coverage.csv"
+      - "docs/scheduling_audit.xlsx"
+      - "docs/INFA2DBT_coding_guidelines.md"
+      
+  gate_1:
+    required_approvers:
+      - "engineering_lead"
+    optional_approvers:
+      - "qa_lead"  # Required if test failure rate > 5%
+      
+  gate_3:
+    required_approvers:
+      - "data_architect"
+      
+  gate_5:
+    per_pattern_approval: true  # Each Pattern C needs approval
+
+# Notification Settings
+notifications:
+  enabled: true
+  channels:
+    slack: "slack://infa2dbt-alerts"
+    email: "infa2dbt-team@example.com"
+  notify_on:
+    - "checkpoint_b_complete"
+    - "gate_ready"
+    - "quarantine"
+    - "escalation"
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  log_directory: "logs/"
+  retain_days: 90
+
+# Snowflake Configuration
+snowflake:
+  sandbox_database: "INFA2DBT_SANDBOX"
+  sandbox_schema: "SEED_DATA"
+  target_database: "ANALYTICS"
+  target_schema: "DBT_MODELS"

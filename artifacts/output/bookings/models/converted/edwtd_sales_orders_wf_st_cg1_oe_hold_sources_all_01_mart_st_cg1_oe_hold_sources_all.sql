@@ -1,0 +1,107 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_st_cg1_oe_hold_sources_all', 'batch', 'edwtd_sales_orders'],
+    meta={
+        'source_workflow': 'wf_m_ST_CG1_OE_HOLD_SOURCES_ALL',
+        'target_table': 'ST_CG1_OE_HOLD_SOURCES_ALL',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:33.491395+00:00'
+    }
+) }}
+
+WITH 
+
+source_cg1_oe_hold_sources_all AS (
+    SELECT
+        hold_source_id,
+        hold_id,
+        attribute1,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        context,
+        created_by,
+        creation_date,
+        hold_comment,
+        hold_entity_code,
+        hold_entity_code2,
+        hold_entity_id,
+        hold_entity_id2,
+        hold_release_id,
+        hold_until_date,
+        last_updated_by,
+        last_update_date,
+        last_update_login,
+        org_id,
+        program_application_id,
+        program_id,
+        program_update_date,
+        released_flag,
+        request_id,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        processed_flag
+    FROM {{ source('raw', 'cg1_oe_hold_sources_all') }}
+),
+
+final AS (
+    SELECT
+        hold_source_id,
+        last_update_date,
+        last_updated_by,
+        last_update_login,
+        creation_date,
+        created_by,
+        program_application_id,
+        program_id,
+        program_update_date,
+        request_id,
+        hold_id,
+        hold_entity_code,
+        hold_entity_id,
+        hold_entity_code2,
+        hold_entity_id2,
+        hold_until_date,
+        released_flag,
+        hold_comment,
+        org_id,
+        context,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        hold_release_id,
+        source_commit_time,
+        global_name,
+        create_datetime,
+        source_dml_type,
+        refresh_datetime
+    FROM source_cg1_oe_hold_sources_all
+)
+
+SELECT * FROM final

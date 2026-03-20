@@ -1,0 +1,620 @@
+{
+  "workflow_name": "wf_m_EL_OOD_ORDER_HEADERS_ALL",
+  "mapping_name": "m_EL_OOD_ORDER_HEADERS_ALL",
+  "mapping_description": "",
+  "folder_name": "EDWTD_OOD",
+  "target_table": "EL_OOD_ORDER_HEADERS_ALL",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ood_wf_el_ood_order_headers_all_01_mart_el_ood_order_headers_all",
+  "source_tables": [
+    "ST_OOD_ORDER_HEADERS_ALL"
+  ],
+  "sources": [
+    {
+      "name": "ST_OOD_ORDER_HEADERS_ALL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV2",
+      "fields": [
+        {
+          "name": "HEADER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORDER_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CUSTOMER_ACCEPTANCE_FLAG",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_OOD_ORDER_HEADERS_ALL",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "HEADER_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ORG_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ORDER_NUMBER",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CUSTOMER_ACCEPTANCE_FLAG",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SS_CODE",
+        "datatype": "char",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "IDENTIFIER",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_OOD_ORDER_HEADERS_ALL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "HEADER_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORDER_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUSTOMER_ACCEPTANCE_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IDENTIFIER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT CAST(SOOHA.HEADER_ID AS BIGINT), CAST(SOOHA.ORG_ID AS BIGINT), \r\nSOOHA.ORDER_NUMBER, CAST(COALESCE (SOOHA.CUSTOMER_ACCEPTANCE_FLAG,'N')AS VARCHAR(30)) , \r\nSOOHA.CREATION_DATE, \r\nSOOHA.LAST_UPDATE_DATE ,\r\nCAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) EDW_UPDATE_DTM ,\r\n'CG' AS SS_CODE,\r\nCAST('OOD' AS VARCHAR(10)) AS IDENTIFIER\r\nFROM\r\n$$STGDB.ST_OOD_ORDER_HEADERS_ALL SOOHA\r\nWHERE NOT EXISTS (SEL 1 FROM $$ETLVWDB.EL_OOD_ORDER_HEADERS_ALL EOOHA \r\nWHERE EOOHA.HEADER_ID = SOOHA.HEADER_ID)\r\n\r\nUNION ALL\r\n\r\nSELECT SOFOHA.HEADER_ID, SOFOHA.ORG_ID, \r\nSOFOHA.ORDER_NUMBER, COALESCE (SOFOHA.CUSTOMER_ACCEPTANCE_FLAG,'N'), \r\nSOFOHA.CREATION_DATE, \r\nSOFOHA.LAST_UPDATE_DATE ,\r\nCAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) EDW_UPDATE_DTM ,\r\n'CG' AS SS_CODE,\r\n'FUSN' AS IDENTIFIER\r\nFROM\r\n$$STGDB.ST_OOD_FUSN_ORDER_HEADERS_ALL SOFOHA\r\nWHERE NOT EXISTS (SEL 1 FROM $$ETLVWDB.EL_OOD_ORDER_HEADERS_ALL EOOHA \r\nWHERE EOOHA.HEADER_ID = SOFOHA.HEADER_ID)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_EL_OOD_ORDER_HEADERS_ALL",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "HEADER_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "HEADER_ID"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ORG_ID"
+        },
+        {
+          "name": "ORDER_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ORDER_NUMBER"
+        },
+        {
+          "name": "CUSTOMER_ACCEPTANCE_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CUSTOMER_ACCEPTANCE_FLAG"
+        },
+        {
+          "name": "CUSTOMER_ACCEPTANCE_FLAG1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "DECODE(LTRIM(RTRIM(UPPER(CUSTOMER_ACCEPTANCE_FLAG))),'YES','Y','NO','N',CUSTOMER_ACCEPTANCE_FLAG)"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATION_DATE"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_DATE"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATE_DATETIME"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SS_CODE"
+        },
+        {
+          "name": "IDENTIFIER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "IDENTIFIER"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "CUSTOMER_ACCEPTANCE_FLAG1",
+      "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL",
+      "to_field": "CUSTOMER_ACCEPTANCE_FLAG",
+      "to_instance": "EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "HEADER_ID",
+      "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL",
+      "to_field": "HEADER_ID",
+      "to_instance": "EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL",
+      "to_field": "ORG_ID",
+      "to_instance": "EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "ORDER_NUMBER",
+      "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL",
+      "to_field": "ORDER_NUMBER",
+      "to_instance": "EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL",
+      "to_field": "SS_CODE",
+      "to_instance": "EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "IDENTIFIER",
+      "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL",
+      "to_field": "IDENTIFIER",
+      "to_instance": "EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "CUSTOMER_ACCEPTANCE_FLAG",
+      "from_instance": "ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "HEADER_ID",
+      "from_instance": "ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "HEADER_ID",
+      "to_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "ORG_ID",
+      "to_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "ORDER_NUMBER",
+      "from_instance": "ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "ORDER_NUMBER",
+      "to_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "CUSTOMER_ACCEPTANCE_FLAG",
+      "from_instance": "ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "CUSTOMER_ACCEPTANCE_FLAG",
+      "to_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "HEADER_ID",
+      "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "HEADER_ID",
+      "to_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "ORG_ID",
+      "to_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "ORDER_NUMBER",
+      "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "ORDER_NUMBER",
+      "to_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "CUSTOMER_ACCEPTANCE_FLAG",
+      "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "CUSTOMER_ACCEPTANCE_FLAG",
+      "to_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "SS_CODE",
+      "to_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+    },
+    {
+      "from_field": "IDENTIFIER",
+      "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL",
+      "to_field": "IDENTIFIER",
+      "to_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "HEADER_ID",
+      "source_path": [
+        {
+          "from_field": "HEADER_ID",
+          "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "HEADER_ID",
+          "from_instance": "ST_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "HEADER_ID",
+          "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ORG_ID",
+      "source_path": [
+        {
+          "from_field": "ORG_ID",
+          "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "ORG_ID",
+          "from_instance": "ST_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "ORG_ID",
+          "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ORDER_NUMBER",
+      "source_path": [
+        {
+          "from_field": "ORDER_NUMBER",
+          "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "ORDER_NUMBER",
+          "from_instance": "ST_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "ORDER_NUMBER",
+          "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CUSTOMER_ACCEPTANCE_FLAG",
+      "source_path": [
+        {
+          "from_field": "CUSTOMER_ACCEPTANCE_FLAG1",
+          "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "CUSTOMER_ACCEPTANCE_FLAG",
+          "from_instance": "ST_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "CUSTOMER_ACCEPTANCE_FLAG",
+          "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "ST_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "ST_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CODE",
+      "source_path": [
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "CUSTOMER_ACCEPTANCE_FLAG",
+          "from_instance": "ST_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "IDENTIFIER",
+      "source_path": [
+        {
+          "from_field": "IDENTIFIER",
+          "from_instance": "EXP_EL_OOD_ORDER_HEADERS_ALL"
+        },
+        {
+          "from_field": "IDENTIFIER",
+          "from_instance": "SQ_ST_OOD_ORDER_HEADERS_ALL"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:19.892077+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

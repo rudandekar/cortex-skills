@@ -1,0 +1,730 @@
+{
+  "workflow_name": "wf_m_WK_FINANCIAL_ACCT_HIER_NODE",
+  "mapping_name": "m_WK_FINANCIAL_ACCT_HIER_NODE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "W_FINANCIAL_ACCT_HIER_NODE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_wk_financial_acct_hier_node_01_mart_w_financial_acct_hier_node",
+  "source_tables": [
+    "EL_ET_EXPENSE_ACCOUNTS",
+    "N_FINANCIAL_ACCOUNT_TV"
+  ],
+  "sources": [
+    {
+      "name": "EL_ET_EXPENSE_ACCOUNTS",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_DV1",
+      "fields": [
+        {
+          "name": "ACCOUNT_ID",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_BUCKET_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DB_PREFIX",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "N_FINANCIAL_ACCOUNT_TV",
+      "database_type": "Teradata",
+      "owner": "FINLGLDB_DV1",
+      "fields": [
+        {
+          "name": "BK_FINANCIAL_ACCOUNT_CODE",
+          "datatype": "char",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_BK_PARENT_FIN_ACCT_CODE",
+          "datatype": "char",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCOUNT_GROUP_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FINANCIAL_ACCOUNT_TYPE_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FINANCIAL_ACCOUNT_DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "80",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FINANCIAL_ACCT_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_ACCOUNT_OWNER_PARTY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PARENT_ROLE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_FINANCIAL_ACCT_HIER_NODE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ACCOUNT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_TV_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_TV_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCT_NODE_LEVEL_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NODE_TYPE",
+        "datatype": "char",
+        "precision": "6",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARENT_ACCOUNT_GROUP_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_FINANCIAL_ACCOUNT_TV",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARENT_ACCOUNT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n\t\tTVOUTPUT.ACCOUNT_GROUP_ID,\r\n\t\tTVOUTPUT.START_TV_DT ,\r\n\t\tCOALESCE(MAX(TVOUTPUT.START_TV_DT - INTERVAL '1' DAY) OVER \r\n\t\t\t(PARTITION BY TVOUTPUT.ACCOUNT_GROUP_ID ORDER BY TVOUTPUT.START_TV_DT ROWS BETWEEN 1\r\n\t\t\tFOLLOWING AND 1 FOLLOWING), DATE '3500-01-01') AS END_TV_DT,\r\n\t\tTVOUTPUT.ACCT_NODE_LEVEL_NUMBER_INT,\r\n\t\tTVOUTPUT.NODE_TYPE, \r\n\t\tTVOUTPUT.PARENT_ACCOUNT_GROUP_ID,\r\n\t\tTVOUTPUT.ACTION_CODE,\r\n\t\tROW_NUMBER() OVER(PARTITION BY TVOUTPUT.ACCOUNT_GROUP_ID ORDER BY TVOUTPUT.START_TV_DT ASC)\r\n\t\t\tAS RANK_INDEX,\r\n\t\t(CASE WHEN RANK_INDEX = 1 AND NFAHNT_OUT.ACCOUNT_GROUP_ID IS NOT NULL THEN 'U' ELSE 'I' END) \r\n\t\t\tAS DML_TYPE\r\n\tFROM\r\n\t(\r\n\t\tSELECT\t\r\n\t\t\tACCOUNT_GROUP_ID,\r\n\t\t\tSTART_TV_DT,\r\n\t\t\tACCT_NODE_LEVEL_NUMBER_INT,\r\n\t\t\tNODE_TYPE,\r\n\t\t\tPARENT_ACCOUNT_GROUP_ID,\r\n\t\t\tEDW_CREATE_DTM,\r\n\t\t\tACTION_CODE,\r\n\t\t\tEXCEPTION_TYPE,\r\n\t\t\tROW_NUMBER () OVER (PARTITION BY ACCOUNT_GROUP_ID,PARENT_ACCOUNT_GROUP_ID, NODE_TYPE,ACCT_NODE_LEVEL_NUMBER_INT\r\n\t\t\tORDER\tBY EDW_CREATE_DTM DESC) AS ROW_NUM\r\n\t\tFROM(\r\n\t\r\n\t\tSELECT\r\n\t\t\t\tSTACCT.ACCOUNT_GROUP_ID1 AS ACCOUNT_GROUP_ID,\r\n\t\t\t\tSTACCT.START_TV_DT,\r\n\t\t\t\tSTACCT.ACCT_NODE_LEVEL_NUMBER_INT,\r\n\t\t\t\tSTACCT.NODE_TYPE,\r\n\t\t\t\tSTACCT.PARENT_ACCOUNT_GROUP_ID,\r\n\t\t\t\tSTACCT.EDW_CREATE_DTM,\r\n\t\t\t\t'I' AS ACTION_CODE,\r\n\t\t\t\t'NE' AS EXCEPTION_TYPE\r\n\t\t\tFROM\r\n\t\t\t(\r\n\t\t\t\t\t\tSELECT \r\n\t\t\t\t\tCAST(SCA_DR.account_id AS VARCHAR(50))  AS ACCOUNT_GROUP_ID1\r\n\t\t\t\t\t,CAST('Asset'  AS VARCHAR(50)) AS PARENT_ACCOUNT_GROUP_ID\r\n\t\t\t\t\t,CAST('MIDDLE' AS VARCHAR(6)) AS NODE_TYPE\r\n\t\t\t\t\t,CAST('4' AS INTEGER) AS ACCT_NODE_LEVEL_NUMBER_INT\r\n\t\t\t\t\t,CURRENT_DATE AS START_TV_DT\r\n\t\t\t\t\t,CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) AS EDW_CREATE_DTM\r\n\t\t\t\t\tFROM $$STGDB.ST_CAP_ACCOUNTS SCA_DR\r\n\t\t\t\t\t,$$STGDB.ST_CAP_ACCOUNTS SCA_PR1\r\n\t\t\t\t\t,$$STGDB.ST_CAP_ACCOUNTS SCA_PR2 \r\n\t\t\t\t\tWHERE SCA_DR.cap_account_id IN (2,3) \r\n\t\t\t\t\tAND SCA_PR1.parent_acct_id = SCA_DR.cap_account_id \r\n\t\t\t\t\tAND SCA_PR1.cap_account_id = SCA_PR2.parent_acct_id\r\n\t\t\t\t\tGROUP BY 1,2,3,4,5,6\r\n\t\t\t\t\tUNION ALL\r\n\t\t\t\t\t SELECT \r\n\t\t\t\t\tCAST(SCA_PR1.account_id AS VARCHAR(50)) AS ACCOUNT_GROUP_ID1\r\n\t\t\t\t\t,CAST(SCA_DR.account_id AS VARCHAR(50))   AS PARENT_ACCOUNT_GROUP_ID\r\n\t\t\t\t\t,CAST('LEAF' AS VARCHAR(50)) AS NODE_TYPE\r\n\t\t\t\t\t,CAST('5' AS INTEGER) AS ACCT_NODE_LEVEL_NUMBER_INT\r\n\t\t\t\t\t,CURRENT_DATE AS START_TV_DT\r\n\t\t\t\t\t,CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) AS EDW_CREATE_DTM\r\n\t\t\t\t\tFROM $$STGDB.ST_CAP_ACCOUNTS SCA_DR\r\n\t\t\t\t\t,$$STGDB.ST_CAP_ACCOUNTS SCA_PR1\r\n\t\t\t\t\t,$$STGDB.ST_CAP_ACCOUNTS SCA_PR2 \r\n\t\t\t\t\tWHERE SCA_DR.cap_account_id IN (2,3) \r\n\t\t\t\t\tAND SCA_PR1.parent_acct_id = SCA_DR.cap_account_id \r\n\t\t\t\t\tAND SCA_PR1.cap_account_id = SCA_PR2.parent_acct_id\r\n\t\t\t\t\tGROUP BY 1,2,3,4,5,6\r\nUNION ALL\r\n\t\t\t\tSELECT \r\n\t\t\t\t\t CAST('ALL' AS VARCHAR(50)) AS ACCOUNT_GROUP_ID1\r\n\t\t\t\t\t,CAST('NO PARENT' AS VARCHAR(50)) AS PARENT_ACCOUNT_GROUP_ID\r\n\t\t\t\t\t,CAST('ROOT' AS CHAR(6)) AS NODE_TYPE\r\n\t\t\t\t\t,CAST('1' AS INTEGER) AS ACCT_NODE_LEVEL_NUMBER_INT\r\n\t\t\t\t\t,CURRENT_DATE AS START_TV_DT\r\n\t\t\t\t\t,CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) AS EDW_CREATE_DTM\r\n\t\t\t\tFROM  $$ETLVWDB.EL_SI_ACCOUNT_TYPE\r\n\t\t\t\tGROUP BY ACCOUNT_GROUP_ID1, PARENT_ACCOUNT_GROUP_ID, NODE_TYPE, ACCT_NODE_LEVEL_NUMBER_INT, START_TV_DT, \r\n\t                           EDW_CREATE_DTM\r\n\t\t\t\tUNION ALL\r\n\t\t\t\tSELECT \r\n\t\t\t\t\t CAST('INCOME STATEMENT'AS VARCHAR(50)) AS ACCOUNT_GROUP_ID1\r\n\t\t\t\t\t,CAST('ALL' AS VARCHAR(50)) AS PARENT_ACCOUNT_GROUP_ID\r\n\t\t\t\t\t,'MIDDLE' AS NODE_TYPE\r\n\t\t\t\t\t,CAST('2' AS INTEGER) AS ACCT_NODE_LEVEL_NUMBER_INT\r\n\t\t\t\t\t,CURRENT_DATE AS START_TV_DT\r\n\t\t\t\t\t,CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) AS EDW_CREATE_DTM\r\n\t\t\t\tFROM $$ETLVWDB.EL_SI_ACCOUNT_TYPE\r\n\t\t\t\tGROUP BY ACCOUNT_GROUP_ID1, PARENT_ACCOUNT_GROUP_ID, NODE_TYPE, ACCT_NODE_LEVEL_NUMBER_INT, START_TV_DT, \r\n\t                           EDW_CREATE_DTM\r\n\t                        UNION ALL\r\n\t\t\t\tSELECT \r\n\t\t\t\t\t CAST('BALANCE SHEET'AS VARCHAR(50)) AS ACCOUNT_GROUP_ID1\r\n\t\t\t\t\t,CAST('ALL' AS VARCHAR(50)) AS PARENT_ACCOUNT_GROUP_ID\r\n\t\t\t\t\t,'MIDDLE' AS NODE_TYPE\r\n\t\t\t\t\t,CAST('2' AS INTEGER) AS ACCT_NODE_LEVEL_NUMBER_INT\r\n\t\t\t\t\t,CURRENT_DATE AS START_TV_DT\r\n\t\t\t\t\t,CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) AS EDW_CREATE_DTM\r\n\t\t\t\tFROM $$ETLVWDB.EL_SI_ACCOUNT_TYPE\r\n\t\t\t\tGROUP BY ACCOUNT_GROUP_ID1, PARENT_ACCOUNT_GROUP_ID, NODE_TYPE, ACCT_NODE_LEVEL_NUMBER_INT, START_TV_DT, \r\n\t                           EDW_CREATE_DTM\r\n\t\r\n\t\t\t\tUNION ALL\r\n\t\t\t\tSELECT \r\n\t\t\t\t\t ESATAT.ACCOUNT_TYPE_DESC AS ACCOUNT_GROUP_ID1\r\n\t\t\t\t\t,CASE WHEN ESATAT.ACCOUNT_TYPE_DESC IN ('Expense','Revenue') \r\n\t                                      THEN 'INCOME STATEMENT' \r\n\t                                      ELSE 'BALANCE SHEET' \r\n\t                                  END AS PARENT_ACCOUNT_GROUP_ID\r\n\t\t\t\t\t,'MIDDLE' AS NODE_TYPE\r\n\t\t\t\t\t,CAST('3' AS INTEGER) AS ACCT_NODE_LEVEL_NUMBER_INT\r\n\t\t\t\t\t,CURRENT_DATE AS START_TV_DT\r\n\t\t\t\t\t,CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) AS EDW_CREATE_DTM\r\n\t\t\t\tFROM $$FINLGLVWDB.N_FINANCIAL_ACCOUNT_TV NFATAT,\r\n\t\t\t\t      $$ETLVWDB.EL_SI_ACCOUNT_TYPE ESATAT\r\n\t\t\t\tWHERE NFATAT.FINANCIAL_ACCOUNT_TYPE   = CAST(ESATAT.ACCOUNT_TYPE_ID AS CHAR(1))\r\n\t\t\t\t  AND NFATAT.end_tv_date =16000101\r\n\t\t\t\tGROUP BY ACCOUNT_GROUP_ID1, PARENT_ACCOUNT_GROUP_ID, NODE_TYPE, ACCT_NODE_LEVEL_NUMBER_INT, START_TV_DT, \r\n\t                           EDW_CREATE_DTM\r\n                  UNION ALL\r\n                  SELECT \r\n\t\t\t\t\t CASE WHEN CLASSIFICATION_DESC IS NULL AND ESATD.ACCOUNT_TYPE_DESC = 'Expense' THEN 'Non Expense SSOT Other'\r\n\t \t\t\t\t      ELSE EEEABD.CLASSIFICATION_DESC\r\n\t\t\t\t\t END  AS ACCOUNT_GROUP_ID1 \r\n\t\t\t\t\t,ESATD.ACCOUNT_TYPE_DESC AS PARENT_ACCOUNT_GROUP_ID\r\n\t\t\t\t\t,'MIDDLE' AS NODE_TYPE\r\n\t\t\t\t\t,CAST('4' AS INTEGER) AS ACCT_NODE_LEVEL_NUMBER_INT\r\n\t\t\t\t\t,CURRENT_DATE AS START_TV_DT\r\n\t\t\t\t\t,CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) AS EDW_CREATE_DTM\r\n\t\t\t\tFROM $$FINLGLVWDB.N_FINANCIAL_ACCOUNT_TV NFATD\r\n\t\t\t\tJOIN  $$ETLVWDB.EL_SI_ACCOUNT_TYPE ESATD\r\n\t\t\t\t  ON  NFATD.FINANCIAL_ACCOUNT_TYPE   = CAST(ESATD.ACCOUNT_TYPE_ID AS CHAR(1))\r\n\t\t\t\tLEFT OUTER JOIN \r\n\t\t\t\t(\r\n\t\t\t\t   SELECT EEEA.ACCOUNT_BUCKET_ID,EEEA.ACCOUNT_ID,EEAB.DESCRIPTION,EAC.CLASSIFICATION_CODE ,EAC.CLASSIFICATION_DESC\r\n\t\t\t\t   FROM \r\n\t\t\t\t   $$ETLVWDB.EL_ET_EXPENSE_ACCOUNTS EEEA\r\n\t\t\t\t\tINNER JOIN $$ETLVWDB.EL_ET_ACCOUNT_BUCKETS EEAB\r\n\t\t\t\t     ON  EEEA.ACCOUNT_BUCKET_ID=EEAB.ACCOUNT_BUCKET_ID\r\n\t\t\t\t   LEFT OUTER JOIN  $$ETLVWDB.EL_ACCOUNT_CLASSIFICATION EAC  \r\n\t\t\t\t   \tON EEAB.DISCRETIONARY = EAC.CLASSIFICATION_CODE \r\n\t\t\t\t )EEEABD\r\n\t\t\t\tON NFATD.BK_FINANCIAL_ACCOUNT_CODE = EEEABD.ACCOUNT_ID \r\n\t\t\t\tGROUP BY ACCOUNT_GROUP_ID1, PARENT_ACCOUNT_GROUP_ID, NODE_TYPE, ACCT_NODE_LEVEL_NUMBER_INT, START_TV_DT, \r\n\t                           EDW_CREATE_DTM\r\n\t                        WHERE ACCOUNT_GROUP_ID1 IS NOT NULL\r\n\t                          AND NFATD.end_tv_date =16000101\r\n                               UNION ALL\r\n\t\t\t\tSELECT \r\n\t\t\t\t\t EEEABAB.DESCRIPTION  AS  ACCOUNT_GROUP_ID1\r\n\t\t\t\t\t,CASE WHEN EEEABAB.CLASSIFICATION_DESC  IS NULL AND ESATAB.ACCOUNT_TYPE_DESC = 'Expense'\r\n\t\t\t\t\t       THEN 'Non Expense SSOT Other'\r\n\t \t\t\t\t      ELSE EEEABAB.CLASSIFICATION_DESC  \r\n\t\t\t\t\t END   AS PARENT_ACCOUNT_GROUP_ID  \r\n\t\t\t\t\t,'LEAF' AS NODE_TYPE\r\n\t\t\t\t\t,CAST('5' AS INTEGER) AS ACCT_NODE_LEVEL_NUMBER_INT\r\n\t\t\t\t\t,CURRENT_DATE AS START_TV_DT\r\n\t\t\t\t\t,NFATAB.EDW_UPDATE_DATETIME  AS EDW_CREATE_DTM\r\n\t\t\t\tFROM $$FINLGLVWDB.N_FINANCIAL_ACCOUNT_TV NFATAB\r\n\t\t\t\tJOIN $$ETLVWDB.EL_SI_ACCOUNT_TYPE ESATAB\r\n\t\t\t\tON NFATAB.FINANCIAL_ACCOUNT_TYPE  = CAST(ESATAB.ACCOUNT_TYPE_ID AS CHAR(1))\r\n\t\t\t\tLEFT OUTER JOIN \r\n\t\t\t\t(\r\n\t\t\t\t   SELECT EEEA.ACCOUNT_BUCKET_ID,EEEA.ACCOUNT_ID,EEAB.DESCRIPTION,EAC.CLASSIFICATION_CODE ,EAC.CLASSIFICATION_DESC\r\n\t\t\t\t   FROM \r\n\t\t\t\t   $$ETLVWDB.EL_ET_EXPENSE_ACCOUNTS EEEA\r\n\t\t\t\t\tINNER JOIN $$ETLVWDB.EL_ET_ACCOUNT_BUCKETS EEAB\r\n\t\t\t\t     ON  EEEA.ACCOUNT_BUCKET_ID=EEAB.ACCOUNT_BUCKET_ID\r\n\t\t\t\t   LEFT OUTER JOIN  $$ETLVWDB.EL_ACCOUNT_CLASSIFICATION EAC  \r\n\t\t\t\t   \tON EEAB.DISCRETIONARY = EAC.CLASSIFICATION_CODE \r\n\t\t\t\t )EEEABAB\r\n\t\t\t\tON NFATAB.BK_FINANCIAL_ACCOUNT_CODE = EEEABAB.ACCOUNT_ID \r\n\t\t\t\tGROUP BY ACCOUNT_GROUP_ID1, PARENT_ACCOUNT_GROUP_ID, NODE_TYPE, ACCT_NODE_LEVEL_NUMBER_INT, START_TV_DT, \r\n\t                            EDW_CREATE_DTM\t\r\n\t                        WHERE ACCOUNT_GROUP_ID1 IS NOT NULL\r\n\t                        AND NFATAB.end_tv_date =16000101\r\n\t\t\t)STACCT\r\n\t\t\tUNION\tALL\r\n\t\t\tSELECT\t\r\n\t\t\t\t     NFAHNT.ACCOUNT_GROUP_ID,\r\n\t\t\t\t     NFAHNT.START_TV_DT,\r\n\t\t\t\t     NFAHNT.ACCT_NODE_LEVEL_NUMBER_INT,\r\n\t\t\t\t     NFAHNT.NODE_TYPE,\r\n\t\t\t\t     NFAHNT.PARENT_ACCOUNT_GROUP_ID,\r\n\t\t\t\t     NFAHNT.EDW_UPDATE_DTM AS EDW_CREATE_DTM,\r\n\t\t\t\t     'X' ACTION_CODE,\r\n\t\t\t\t     'NE' EXCEPTION_TYPE\r\n\t\t\tFROM\t$$FINLGLVWDB.N_FINANCIAL_ACCT_HIER_NODE_TV  NFAHNT \r\n\t\t\twhere END_TV_DT =16000101 \r\n\t\t)TVINPUT\r\n\t\tQUALIFY ROW_NUMBER() OVER (PARTITION BY TVINPUT.ACCOUNT_GROUP_ID,ACCT_NODE_LEVEL_NUMBER_INT,TVINPUT.START_TV_DT\r\n\t\tORDER BY TVINPUT.EDW_CREATE_DTM DESC) =1\t\r\n\t) TVOUTPUT\r\n\tLEFT JOIN $$FINLGLVWDB.N_FINANCIAL_ACCT_HIER_NODE_TV NFAHNT_OUT\r\n\t\tON\t TVOUTPUT.ACCOUNT_GROUP_ID = NFAHNT_OUT.ACCOUNT_GROUP_ID\r\n\t\tAND   TVOUTPUT.ACCT_NODE_LEVEL_NUMBER_INT = NFAHNT_OUT.ACCT_NODE_LEVEL_NUMBER_INT\r\n\t\tAND\tNFAHNT_OUT.END_TV_DT =16000101\r\n\tWHERE\tTVOUTPUT.ROW_NUM = 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACCOUNT_GROUP_ID"
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_TV_DT"
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_TV_DT"
+        },
+        {
+          "name": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACCT_NODE_LEVEL_NUMBER_INT"
+        },
+        {
+          "name": "NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "NODE_TYPE"
+        },
+        {
+          "name": "PARENT_ACCOUNT_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PARENT_ACCOUNT_GROUP_ID"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RANK_INDEX"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACCOUNT_GROUP_ID",
+      "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "ACCOUNT_GROUP_ID",
+      "to_instance": "W_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "START_TV_DT",
+      "to_instance": "W_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "END_TV_DT",
+      "to_instance": "W_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "NODE_TYPE",
+      "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "NODE_TYPE",
+      "to_instance": "W_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "PARENT_ACCOUNT_GROUP_ID",
+      "to_instance": "W_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE",
+      "to_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "to_instance": "W_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "RU_BK_PARENT_FIN_ACCT_CODE",
+      "from_instance": "N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "NODE_TYPE",
+      "to_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+    },
+    {
+      "from_field": "FINANCIAL_ACCOUNT_TYPE_CODE",
+      "from_instance": "N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+    },
+    {
+      "from_field": "GLOBAL_ACCOUNT_OWNER_PARTY_KEY",
+      "from_instance": "N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "RANK_INDEX",
+      "to_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "START_TV_DT",
+      "to_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "END_TV_DT",
+      "to_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+    },
+    {
+      "from_field": "FINANCIAL_ACCOUNT_DESCRIPTION",
+      "from_instance": "N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "PARENT_ACCOUNT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+    },
+    {
+      "from_field": "FINANCIAL_ACCOUNT_TYPE_CODE",
+      "from_instance": "N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+    },
+    {
+      "from_field": "GLOBAL_ACCOUNT_OWNER_PARTY_KEY",
+      "from_instance": "N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "to_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EL_ET_EXPENSE_ACCOUNTS",
+      "to_field": "ACCOUNT_GROUP_ID",
+      "to_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+    },
+    {
+      "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "to_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACCOUNT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "ACCOUNT_GROUP_ID",
+      "to_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "START_TV_DT",
+      "to_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "END_TV_DT",
+      "to_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "NODE_TYPE",
+      "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "NODE_TYPE",
+      "to_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "PARENT_ACCOUNT_GROUP_ID",
+      "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "PARENT_ACCOUNT_GROUP_ID",
+      "to_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "ACTION_CODE",
+      "to_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "RANK_INDEX",
+      "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "RANK_INDEX",
+      "to_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV",
+      "to_field": "DML_TYPE",
+      "to_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ACCOUNT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_GROUP_ID",
+          "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "EL_ET_EXPENSE_ACCOUNTS"
+        },
+        {
+          "from_field": "ACCOUNT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DT",
+      "source_path": [
+        {
+          "from_field": "START_TV_DT",
+          "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "N_FINANCIAL_ACCOUNT_TV"
+        },
+        {
+          "from_field": "START_TV_DT",
+          "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DT",
+      "source_path": [
+        {
+          "from_field": "END_TV_DT",
+          "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "N_FINANCIAL_ACCOUNT_TV"
+        },
+        {
+          "from_field": "END_TV_DT",
+          "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCT_NODE_LEVEL_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "GLOBAL_ACCOUNT_OWNER_PARTY_KEY",
+          "from_instance": "N_FINANCIAL_ACCOUNT_TV"
+        },
+        {
+          "from_field": "ACCT_NODE_LEVEL_NUMBER_INT",
+          "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NODE_TYPE",
+      "source_path": [
+        {
+          "from_field": "NODE_TYPE",
+          "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "RU_BK_PARENT_FIN_ACCT_CODE",
+          "from_instance": "N_FINANCIAL_ACCOUNT_TV"
+        },
+        {
+          "from_field": "NODE_TYPE",
+          "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARENT_ACCOUNT_GROUP_ID",
+      "source_path": [
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "FINANCIAL_ACCOUNT_DESCRIPTION",
+          "from_instance": "N_FINANCIAL_ACCOUNT_TV"
+        },
+        {
+          "from_field": "PARENT_ACCOUNT_GROUP_ID",
+          "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "FINANCIAL_ACCOUNT_TYPE_CODE",
+          "from_instance": "N_FINANCIAL_ACCOUNT_TV"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "exp_m_WK_FINANCIAL_ACCT_HIER_NODE"
+        },
+        {
+          "from_field": "FINANCIAL_ACCOUNT_TYPE_CODE",
+          "from_instance": "N_FINANCIAL_ACCOUNT_TV"
+        },
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_N_FINANCIAL_ACCOUNT_TV"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:12.910130+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

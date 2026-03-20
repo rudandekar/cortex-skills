@@ -1,0 +1,157 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_csf_xxcss_mkt_prod_warritem_map', 'batch', 'edwtd_batch_accum'],
+    meta={
+        'source_workflow': 'wf_m_CSF_XXCSS_MKT_PROD_WARRITEM_MAP',
+        'target_table': 'CSF_XXCSS_MKT_PROD_WARRITEM_MAP',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:22:00.892510+00:00'
+    }
+) }}
+
+WITH 
+
+source_csf_xxcss_mkt_prd_warritem_mp AS (
+    SELECT
+        source_dml_type,
+        fully_qualified_table_name,
+        source_commit_time,
+        refresh_datetime,
+        trail_position,
+        token,
+        refresh_day,
+        prod_map_id,
+        product_family,
+        product_id,
+        product_name,
+        organization_id,
+        document_id,
+        document_name,
+        warranty_item_id,
+        warranty_item,
+        coverage_template,
+        source,
+        duration,
+        uom,
+        created_by,
+        last_updated_by,
+        creation_date,
+        last_update_date,
+        start_date,
+        end_date,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        gg_enqueue_time,
+        gg_dequeue_time
+    FROM {{ source('raw', 'csf_xxcss_mkt_prd_warritem_mp') }}
+),
+
+source_stg_csf_xxcss_mkt_prod_warritem_map AS (
+    SELECT
+        prod_map_id,
+        product_family,
+        product_id,
+        product_name,
+        organization_id,
+        document_id,
+        document_name,
+        warranty_item_id,
+        warranty_item,
+        coverage_template,
+        source,
+        duration,
+        uom,
+        created_by,
+        last_updated_by,
+        creation_date,
+        last_update_date,
+        start_date,
+        end_date,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime
+    FROM {{ source('raw', 'stg_csf_xxcss_mkt_prod_warritem_map') }}
+),
+
+transformed_exp_csf_xxcss_mkt_prod_warritem_map AS (
+    SELECT
+    source_dml_type,
+    fully_qualified_table_name,
+    source_commit_time,
+    refresh_datetime,
+    trail_position,
+    token,
+    refresh_day,
+    prod_map_id,
+    product_family,
+    product_id,
+    product_name,
+    organization_id,
+    document_id,
+    document_name,
+    warranty_item_id,
+    warranty_item,
+    coverage_template,
+    source,
+    duration,
+    uom,
+    created_by,
+    last_updated_by,
+    creation_date,
+    last_update_date,
+    start_date,
+    end_date,
+    attribute1,
+    attribute2,
+    attribute3,
+    attribute4,
+    attribute5,
+    gg_enqueue_time,
+    gg_dequeue_time
+    FROM source_stg_csf_xxcss_mkt_prod_warritem_map
+),
+
+final AS (
+    SELECT
+        prod_map_id,
+        product_family,
+        product_id,
+        product_name,
+        organization_id,
+        document_id,
+        document_name,
+        warranty_item_id,
+        warranty_item,
+        coverage_template,
+        source,
+        duration,
+        uom,
+        created_by,
+        last_updated_by,
+        creation_date,
+        last_update_date,
+        start_date,
+        end_date,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime
+    FROM transformed_exp_csf_xxcss_mkt_prod_warritem_map
+)
+
+SELECT * FROM final

@@ -1,0 +1,155 @@
+{
+  "workflow_name": "wf_m_WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ",
+  "mapping_name": "m_WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_wi_tss_srvc_unbill_ctrl_mth_adj_01_mart_wi_tss_srvc_unbill_ctrl_mth_adj",
+  "source_tables": [
+    "WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ"
+  ],
+  "sources": [
+    {
+      "name": "WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "TRANSACTION_TYPE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "TRANSACTION_TYPE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FISCAL_YEAR_MONTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "TRANSACTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n TRANSACTION_TYPE,\r\n MAX(PROCESSED_FISCAL_MTH) AS FISCAL_YEAR_MONTH_INT\r\n FROM $$FINLGLVWDB.MT_RSTD_UNBILLED_REVENUE UNB\r\n LEFT JOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RFM\r\n ON RFM.FISCAL_YEAR_MONTH_INT = UNB.PROCESSED_FISCAL_MTH\r\n WHERE PREVIOUS_FSCL_MONTH_FLAG      ='Y' \r\n AND TRANSACTION_TYPE NOT IN ('ERP','NET_ADJ_ERP','SBP','SBP_ACCRUALS','NET_ADJ_SBP','OPL','OPL_ACCRUALS')\r\n GROUP BY 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "TRANSACTION_TYPE",
+      "from_instance": "SQ_WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ",
+      "to_field": "TRANSACTION_TYPE",
+      "to_instance": "WI_TSS_SRVC_UNBILL_CTRL_ADJ"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "SQ_WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "WI_TSS_SRVC_UNBILL_CTRL_ADJ"
+    },
+    {
+      "from_field": "TRANSACTION_TYPE",
+      "from_instance": "WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ",
+      "to_field": "TRANSACTION_TYPE",
+      "to_instance": "SQ_WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "SQ_WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "TRANSACTION_TYPE",
+      "source_path": [
+        {
+          "from_field": "TRANSACTION_TYPE",
+          "from_instance": "SQ_WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ"
+        },
+        {
+          "from_field": "TRANSACTION_TYPE",
+          "from_instance": "WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FISCAL_YEAR_MONTH_INT",
+      "source_path": [
+        {
+          "from_field": "FISCAL_YEAR_MONTH_INT",
+          "from_instance": "SQ_WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ"
+        },
+        {
+          "from_field": "FISCAL_YEAR_MONTH_INT",
+          "from_instance": "WI_TSS_SRVC_UNBILL_CTRL_MTH_ADJ"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:07.457799+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

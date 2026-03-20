@@ -1,0 +1,296 @@
+{
+  "workflow_name": "wf_m_EL_CCM_TAC_SR_ACOD",
+  "mapping_name": "m_EL_CCM_TAC_SR_ACOD",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "EL_CCM_TAC_SR_ACOD",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_el_ccm_tac_sr_acod_01_mart_el_ccm_tac_sr_acod",
+  "source_tables": [
+    "EL_CCM_TAC_SR_ACOD"
+  ],
+  "sources": [
+    {
+      "name": "EL_CCM_TAC_SR_ACOD",
+      "database_type": "Teradata",
+      "owner": "ETLVWDB_DV4",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SR_NUMBER",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WG_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCRUED_ACOD",
+          "datatype": "decimal",
+          "precision": "22",
+          "scale": "10",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FIN_ACOD",
+          "datatype": "decimal",
+          "precision": "22",
+          "scale": "10",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_CCM_TAC_SR_ACOD",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_YEAR_MONTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SR_NUMBER",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "WG_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCRUED_ACOD",
+        "datatype": "decimal",
+        "precision": "22",
+        "scale": "10",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FIN_ACOD",
+        "datatype": "decimal",
+        "precision": "22",
+        "scale": "10",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_EL_CCM_TAC_SR_ACOD",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SR_NUMBER",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WG_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCRUED_ACOD",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FIN_ACOD",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT (select FISCAL_YEAR_MONTH_INT from $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID) AS FISCAL_YEAR_MONTH_INT\r\n,ACOD.INCIDENT_NUMBER AS SR_NUMBER,\r\n        ACOD.WG_NAME,\r\n       SUM (CAST (ACCRUED_ACOD AS DECIMAL (22, 10))) AS ACCRUED_ACOD,       \r\n       SUM (CAST (ACOD AS DECIMAL (22, 10))) AS FIN_ACOD\r\n  FROM (\r\nSELECT         ACTS.INCIDENT_NUMBER,\r\n               ACTS.CHG_WKGRP_NAME AS WG_NAME,\r\n               SUM (CAST (ACTS.ACTS_WORKTIME AS DECIMAL (22, 10))) AS ACOD,\r\n               CAST (0 AS DECIMAL (22, 10)) AS ACCRUED_ACOD\r\n               FROM (\r\nSELECT INC.INCIDENT_NUMBER,\r\n                       INC.CLOSED_DATE,\r\n                       INC.CURRENT_OWNER_WG_NAME,\r\n                       WKG.FISCAL_YEAR_MONTH_INT\r\n                  FROM $$ETLVWDB.EL_TSS_INCIDENTS_F_V INC,\r\n                       $$ETLVWDB.EL_CCM_TAC_WORKGROUP WKG\r\n                 WHERE     1 = 1\r\n                       AND INC.CLOSED_DATE IS NOT NULL\r\n                                                                         AND (CAST ( (INC.CLOSED_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS') >= ( SELECT cast( START_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         AND CAST ( (INC.CLOSED_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS')<= ( SELECT cast( END_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         )\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t AND (CAST ( (INC.ACTIVITY_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS') >= ( SELECT cast( START_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         AND CAST ( (INC.ACTIVITY_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS')<= ( SELECT cast( END_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         )\r\n                                                                         AND INC.INCIDENT_TYPE in ('ANC','TAC','SMB','TAC-B2B')\r\n                                                                         AND BL_INCIDENT_KEY = (\r\nSELECT MAX(BL_INCIDENT_KEY)\r\n                                                                         FROM $$ETLVWDB.EL_TSS_INCIDENTS_F_V MAXINC\r\n                                                                         WHERE MAXINC.INCIDENT_NUMBER = INC.INCIDENT_NUMBER\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t AND (CAST ( (MAXINC.ACTIVITY_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS') >= ( SELECT cast( START_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         AND CAST ( (MAXINC.ACTIVITY_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS')<= ( SELECT cast( END_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         )\r\n                                                                         )\r\n                                                                         AND INC.CURRENT_OWNER_WG_NAME = WKG.WG_NAME\r\n                                                                        AND WKG.FISCAL_YEAR_MONTH_INT =   (select FISCAL_YEAR_MONTH_INT from $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)\r\n                                                                        ) VOL_FACT,(\r\nSELECT EATWF.INCIDENT_NUMBER, EATWF.CHG_WKGRP_NAME, EATWF.ACTS_WORKTIME,\r\n                            EATWF.ACTIVITY_DATE \r\nFROM   \r\n$$ETLVWDB.EL_ACTS_TSLA_WORKTIME_F EATWF,$$ETLVWDB.EL_CCM_TAC_WORKGROUP WKG\r\nWHERE 1=1  \r\n              AND      EATWF.CHG_WKGRP_NAME=WKG.WG_NAME\r\n              AND     ( CAST ( (EATWF.ACTIVITY_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS') >= ( SELECT cast( START_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         AND CAST ( (EATWF.ACTIVITY_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS')<= ( SELECT cast( END_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         )\r\n              AND      WKG.FISCAL_YEAR_MONTH_INT =  (select FISCAL_YEAR_MONTH_INT from $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)) ACTS\r\n                                                                        WHERE  1=1\r\n                                                                        AND VOL_FACT.INCIDENT_NUMBER = ACTS.INCIDENT_NUMBER\r\n                     AND ( CAST ( (ACTS.ACTIVITY_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS') >= ( SELECT cast( START_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         AND CAST ( (ACTS.ACTIVITY_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS')<= ( SELECT cast( END_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         )\r\n                                                             GROUP BY  ACTS.INCIDENT_NUMBER, ACTS.CHG_WKGRP_NAME\r\nUNION\r\nALL\r\nSELECT               ACTS.INCIDENT_NUMBER,\r\n                                                                                     ACTS.CHG_WKGRP_NAME AS WG_NAME,\r\n                                                                                     CAST(0 AS DECIMAL(22,10)) AS ACOD,\r\n                                                                                     SUM (CAST(ACTS.ACTS_WORKTIME AS DECIMAL(22,\r\n                            10))) AS ACCRUED_ACOD\r\n               FROM (\r\nSELECT INC.INCIDENT_NUMBER,\r\n                       INC.CLOSED_DATE,\r\n                       INC.CURRENT_OWNER_WG_NAME,\r\n                       WKG.FISCAL_YEAR_MONTH_INT\r\n                  FROM $$ETLVWDB.EL_TSS_INCIDENTS_F_V INC,\r\n                       $$ETLVWDB.EL_CCM_TAC_WORKGROUP WKG\r\n                 WHERE     1 = 1\r\n                       AND INC.CLOSED_DATE IS NOT NULL\r\n                                                                         AND ( CAST ((INC.CLOSED_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS') >= ( SELECT cast( START_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         AND CAST ( (INC.CLOSED_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS')<= ( SELECT cast( END_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         )\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t AND (CAST ( (INC.ACTIVITY_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS') >= ( SELECT cast( START_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         AND CAST ( (INC.ACTIVITY_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS')<= ( SELECT cast( END_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t )\r\n                                                                         AND INC.INCIDENT_TYPE in ('ANC','TAC','SMB','TAC-B2B')\r\n                                                                         AND BL_INCIDENT_KEY = (\r\nSELECT MAX(BL_INCIDENT_KEY)\r\n                                                                         FROM $$ETLVWDB.EL_TSS_INCIDENTS_F_V MAXINC\r\n                                                                         WHERE MAXINC.INCIDENT_NUMBER = INC.INCIDENT_NUMBER\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t AND (CAST ( (MAXINC.ACTIVITY_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS') >= ( SELECT cast( START_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         AND CAST ( (MAXINC.ACTIVITY_DATE) AS TIMESTAMP  format 'MM/DD/YYYYBHH:MI:SS')<= ( SELECT cast( END_DATE as timestamp format 'MM/DD/YYYYBHH:MI:SS') FROM $$STGDB.WI_FISCAL_MONTH_ACTS)\r\n                                                                         )\r\n                                                                         )\r\n                                                                         AND INC.CURRENT_OWNER_WG_NAME = WKG.WG_NAME\r\n                                                                        AND WKG.FISCAL_YEAR_MONTH_INT = (select FISCAL_YEAR_MONTH_INT from $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)\r\n                                                                        ) VOL_FACT,(\r\nSELECT EATWF.INCIDENT_NUMBER, EATWF.CHG_WKGRP_NAME, EATWF.ACTS_WORKTIME,\r\n                            EATWF.ACTIVITY_DATE \r\nFROM   \r\n$$ETLVWDB.EL_ACTS_TSLA_WORKTIME_F EATWF,$$ETLVWDB.EL_CCM_TAC_WORKGROUP WKG, $$ETLVWDB.EL_FISCAL_MONTH_CCM FM\r\nWHERE 1=1  \r\n              AND      EATWF.CHG_WKGRP_NAME=WKG.WG_NAME\r\n\t\t\t  AND     EATWF.ACTIVITY_DATE between FM.start_date and FM.end_date\r\n              AND      WKG.FISCAL_YEAR_MONTH_INT =  FM.FISCAL_YEAR_MONTH_INT) ACTS\r\n                                                                        WHERE  1=1\r\n                                                                        AND VOL_FACT.INCIDENT_NUMBER = ACTS.INCIDENT_NUMBER\r\n                                                         GROUP BY ACTS.INCIDENT_NUMBER, ACTS.CHG_WKGRP_NAME) ACOD\r\n                                                         GROUP BY  FISCAL_YEAR_MONTH_INT ,ACOD.INCIDENT_NUMBER, ACOD.WG_NAME",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "WG_NAME",
+      "from_instance": "SQ_EL_CCM_TAC_SR_ACOD",
+      "to_field": "WG_NAME",
+      "to_instance": "EL_CCM_TAC_SR_ACOD1"
+    },
+    {
+      "from_field": "ACCRUED_ACOD",
+      "from_instance": "SQ_EL_CCM_TAC_SR_ACOD",
+      "to_field": "ACCRUED_ACOD",
+      "to_instance": "EL_CCM_TAC_SR_ACOD1"
+    },
+    {
+      "from_field": "FIN_ACOD",
+      "from_instance": "SQ_EL_CCM_TAC_SR_ACOD",
+      "to_field": "FIN_ACOD",
+      "to_instance": "EL_CCM_TAC_SR_ACOD1"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "SQ_EL_CCM_TAC_SR_ACOD",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "EL_CCM_TAC_SR_ACOD1"
+    },
+    {
+      "from_field": "SR_NUMBER",
+      "from_instance": "SQ_EL_CCM_TAC_SR_ACOD",
+      "to_field": "SR_NUMBER",
+      "to_instance": "EL_CCM_TAC_SR_ACOD1"
+    },
+    {
+      "from_field": "FIN_ACOD",
+      "from_instance": "EL_CCM_TAC_SR_ACOD",
+      "to_field": "FIN_ACOD",
+      "to_instance": "SQ_EL_CCM_TAC_SR_ACOD"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "EL_CCM_TAC_SR_ACOD",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "SQ_EL_CCM_TAC_SR_ACOD"
+    },
+    {
+      "from_field": "SR_NUMBER",
+      "from_instance": "EL_CCM_TAC_SR_ACOD",
+      "to_field": "SR_NUMBER",
+      "to_instance": "SQ_EL_CCM_TAC_SR_ACOD"
+    },
+    {
+      "from_field": "WG_NAME",
+      "from_instance": "EL_CCM_TAC_SR_ACOD",
+      "to_field": "WG_NAME",
+      "to_instance": "SQ_EL_CCM_TAC_SR_ACOD"
+    },
+    {
+      "from_field": "ACCRUED_ACOD",
+      "from_instance": "EL_CCM_TAC_SR_ACOD",
+      "to_field": "ACCRUED_ACOD",
+      "to_instance": "SQ_EL_CCM_TAC_SR_ACOD"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_YEAR_MONTH_INT",
+      "source_path": [
+        {
+          "from_field": "FISCAL_YEAR_MONTH_INT",
+          "from_instance": "SQ_EL_CCM_TAC_SR_ACOD"
+        },
+        {
+          "from_field": "FISCAL_YEAR_MONTH_INT",
+          "from_instance": "EL_CCM_TAC_SR_ACOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SR_NUMBER",
+      "source_path": [
+        {
+          "from_field": "SR_NUMBER",
+          "from_instance": "SQ_EL_CCM_TAC_SR_ACOD"
+        },
+        {
+          "from_field": "SR_NUMBER",
+          "from_instance": "EL_CCM_TAC_SR_ACOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "WG_NAME",
+      "source_path": [
+        {
+          "from_field": "WG_NAME",
+          "from_instance": "SQ_EL_CCM_TAC_SR_ACOD"
+        },
+        {
+          "from_field": "WG_NAME",
+          "from_instance": "EL_CCM_TAC_SR_ACOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCRUED_ACOD",
+      "source_path": [
+        {
+          "from_field": "ACCRUED_ACOD",
+          "from_instance": "SQ_EL_CCM_TAC_SR_ACOD"
+        },
+        {
+          "from_field": "ACCRUED_ACOD",
+          "from_instance": "EL_CCM_TAC_SR_ACOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FIN_ACOD",
+      "source_path": [
+        {
+          "from_field": "FIN_ACOD",
+          "from_instance": "SQ_EL_CCM_TAC_SR_ACOD"
+        },
+        {
+          "from_field": "FIN_ACOD",
+          "from_instance": "EL_CCM_TAC_SR_ACOD"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:21.682917+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

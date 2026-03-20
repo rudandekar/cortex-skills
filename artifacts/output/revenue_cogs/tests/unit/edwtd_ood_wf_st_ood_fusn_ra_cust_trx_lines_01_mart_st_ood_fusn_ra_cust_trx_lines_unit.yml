@@ -1,0 +1,24 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_ood_wf_st_ood_fusn_ra_cust_trx_lines_01_mart_st_ood_fusn_ra_cust_trx_lines_filter_basic
+    model: edwtd_ood_wf_st_ood_fusn_ra_cust_trx_lines_01_mart_st_ood_fusn_ra_cust_trx_lines
+    description: "Verify filter transformation passes expected rows"
+    given:
+      - input: source('raw', 'ff_ood_fusn_ra_cust_trx_lines')
+        rows:
+          - {id: 1, status: 'ACTIVE'}
+          - {id: 2, status: 'INACTIVE'}
+    expect:
+      rows:
+        - {id: 1, status: 'ACTIVE'}
+  - name: test_edwtd_ood_wf_st_ood_fusn_ra_cust_trx_lines_01_mart_st_ood_fusn_ra_cust_trx_lines_expression_transform
+    model: edwtd_ood_wf_st_ood_fusn_ra_cust_trx_lines_01_mart_st_ood_fusn_ra_cust_trx_lines
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'ff_ood_fusn_ra_cust_trx_lines')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

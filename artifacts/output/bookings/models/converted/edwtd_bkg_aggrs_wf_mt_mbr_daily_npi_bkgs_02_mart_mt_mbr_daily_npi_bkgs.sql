@@ -1,0 +1,128 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_mt_mbr_daily_npi_bkgs_incr', 'batch', 'edwtd_bkg_aggrs'],
+    meta={
+        'source_workflow': 'wf_m_MT_MBR_DAILY_NPI_BKGS_INCR',
+        'target_table': 'MT_MBR_DAILY_NPI_BKGS',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:33.876181+00:00'
+    }
+) }}
+
+WITH 
+
+source_mt_mbr_daily_npi_bkgs_incr AS (
+    SELECT
+        dv_incr_data_refresh_datetime,
+        action_cd,
+        bookings_type,
+        l0_sales_territory_descr,
+        l1_sales_territory_descr,
+        l2_sales_territory_descr,
+        l3_sales_territory_descr,
+        l4_sales_territory_descr,
+        l5_sales_territory_descr,
+        l6_sales_territory_descr,
+        fiscal_year_number_int,
+        fiscal_year_quarter_number_int,
+        fiscal_quarter_name,
+        fiscal_year_month_int,
+        fiscal_month_name,
+        fiscal_year_week_num_int,
+        fiscal_week_name,
+        current_fiscal_qtr_flg,
+        sales_rep_num,
+        erp_sales_rep_name,
+        business_entity_descr,
+        sub_business_entity_descr,
+        product_family_id,
+        product_id,
+        service_flg,
+        fmv_flg,
+        sales_coverage_code,
+        sales_subcoverage_cd,
+        dv_total_bkgs_amt,
+        npi_product_name,
+        npi_project_name,
+        orderable_qtr,
+        bk_parent_offer_type_name,
+        npi_flg
+    FROM {{ source('raw', 'mt_mbr_daily_npi_bkgs_incr') }}
+),
+
+source_wi_mbr_daily_npi_bkgs AS (
+    SELECT
+        bookings_type,
+        l0_sales_territory_descr,
+        l1_sales_territory_descr,
+        l2_sales_territory_descr,
+        l3_sales_territory_descr,
+        l4_sales_territory_descr,
+        l5_sales_territory_descr,
+        l6_sales_territory_descr,
+        fiscal_year_number_int,
+        fiscal_year_quarter_number_int,
+        fiscal_quarter_name,
+        fiscal_year_month_int,
+        fiscal_month_name,
+        fiscal_year_week_num_int,
+        fiscal_week_name,
+        current_fiscal_qtr_flg,
+        sales_rep_num,
+        erp_sales_rep_name,
+        business_entity_descr,
+        sub_business_entity_descr,
+        product_family_id,
+        product_id,
+        service_flg,
+        fmv_flg,
+        sales_coverage_code,
+        sales_subcoverage_cd,
+        dv_total_bkgs_amt,
+        npi_product_name,
+        npi_project_name,
+        orderable_qtr,
+        bk_parent_offer_type_name,
+        npi_flg
+    FROM {{ source('raw', 'wi_mbr_daily_npi_bkgs') }}
+),
+
+final AS (
+    SELECT
+        bookings_type,
+        l0_sales_territory_descr,
+        l1_sales_territory_descr,
+        l2_sales_territory_descr,
+        l3_sales_territory_descr,
+        l4_sales_territory_descr,
+        l5_sales_territory_descr,
+        l6_sales_territory_descr,
+        fiscal_year_number_int,
+        fiscal_year_quarter_number_int,
+        fiscal_quarter_name,
+        fiscal_year_month_int,
+        fiscal_month_name,
+        fiscal_year_week_num_int,
+        fiscal_week_name,
+        current_fiscal_qtr_flg,
+        sales_rep_num,
+        erp_sales_rep_name,
+        business_entity_descr,
+        sub_business_entity_descr,
+        product_family_id,
+        product_id,
+        service_flg,
+        fmv_flg,
+        sales_coverage_code,
+        sales_subcoverage_cd,
+        dv_total_bkgs_amt,
+        npi_product_name,
+        npi_project_name,
+        orderable_qtr,
+        bk_parent_offer_type_name,
+        npi_flg
+    FROM source_wi_mbr_daily_npi_bkgs
+)
+
+SELECT * FROM final

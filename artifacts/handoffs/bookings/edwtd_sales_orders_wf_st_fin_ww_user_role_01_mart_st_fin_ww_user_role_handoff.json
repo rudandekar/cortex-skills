@@ -1,0 +1,275 @@
+{
+  "workflow_name": "wf_m_ST_FIN_WW_USER_ROLE",
+  "mapping_name": "m_ST_FIN_WW_USER_ROLE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "ST_FIN_WW_USER_ROLE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_st_fin_ww_user_role_01_mart_st_fin_ww_user_role",
+  "source_tables": [
+    "XXANP_FIN_WW_USER_ROLE"
+  ],
+  "sources": [
+    {
+      "name": "XXANP_FIN_WW_USER_ROLE",
+      "database_type": "Oracle",
+      "owner": "XXANP",
+      "fields": [
+        {
+          "name": "CEC_ID",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "USER_ROLE",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTIVE_FLAG",
+          "datatype": "nvarchar2",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_FIN_WW_USER_ROLE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "CEC_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "USER_ROLE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTIVE_FLAG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "varchar",
+        "precision": "150",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_XXANP_FIN_WW_USER_ROLE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CEC_ID",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "USER_ROLE",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTIVE_FLAG",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "select distinct cec_id,user_role,ACTIVE_FLAG,LAST_UPDATE_DATE  from XXANP.XXANP_FIN_WW_USER_ROLE",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "USER_ROLE",
+      "from_instance": "SQ_XXANP_FIN_WW_USER_ROLE",
+      "to_field": "USER_ROLE",
+      "to_instance": "ST_FIN_WW_USER_ROLE"
+    },
+    {
+      "from_field": "ACTIVE_FLAG",
+      "from_instance": "SQ_XXANP_FIN_WW_USER_ROLE",
+      "to_field": "ACTIVE_FLAG",
+      "to_instance": "ST_FIN_WW_USER_ROLE"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_XXANP_FIN_WW_USER_ROLE",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "ST_FIN_WW_USER_ROLE"
+    },
+    {
+      "from_field": "CEC_ID",
+      "from_instance": "SQ_XXANP_FIN_WW_USER_ROLE",
+      "to_field": "CEC_ID",
+      "to_instance": "ST_FIN_WW_USER_ROLE"
+    },
+    {
+      "from_field": "CEC_ID",
+      "from_instance": "XXANP_FIN_WW_USER_ROLE",
+      "to_field": "CEC_ID",
+      "to_instance": "SQ_XXANP_FIN_WW_USER_ROLE"
+    },
+    {
+      "from_field": "USER_ROLE",
+      "from_instance": "XXANP_FIN_WW_USER_ROLE",
+      "to_field": "USER_ROLE",
+      "to_instance": "SQ_XXANP_FIN_WW_USER_ROLE"
+    },
+    {
+      "from_field": "ACTIVE_FLAG",
+      "from_instance": "XXANP_FIN_WW_USER_ROLE",
+      "to_field": "ACTIVE_FLAG",
+      "to_instance": "SQ_XXANP_FIN_WW_USER_ROLE"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "XXANP_FIN_WW_USER_ROLE",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_XXANP_FIN_WW_USER_ROLE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "CEC_ID",
+      "source_path": [
+        {
+          "from_field": "CEC_ID",
+          "from_instance": "SQ_XXANP_FIN_WW_USER_ROLE"
+        },
+        {
+          "from_field": "CEC_ID",
+          "from_instance": "XXANP_FIN_WW_USER_ROLE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "USER_ROLE",
+      "source_path": [
+        {
+          "from_field": "USER_ROLE",
+          "from_instance": "SQ_XXANP_FIN_WW_USER_ROLE"
+        },
+        {
+          "from_field": "USER_ROLE",
+          "from_instance": "XXANP_FIN_WW_USER_ROLE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTIVE_FLAG",
+      "source_path": [
+        {
+          "from_field": "ACTIVE_FLAG",
+          "from_instance": "SQ_XXANP_FIN_WW_USER_ROLE"
+        },
+        {
+          "from_field": "ACTIVE_FLAG",
+          "from_instance": "XXANP_FIN_WW_USER_ROLE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_XXANP_FIN_WW_USER_ROLE"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "XXANP_FIN_WW_USER_ROLE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:21.471586+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

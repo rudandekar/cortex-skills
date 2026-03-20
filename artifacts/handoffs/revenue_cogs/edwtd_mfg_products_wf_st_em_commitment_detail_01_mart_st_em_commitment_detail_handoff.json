@@ -1,0 +1,484 @@
+{
+  "workflow_name": "wf_m_ST_EM_COMMITMENT_DETAIL",
+  "mapping_name": "m_ST_EM_COMMITMENT_DETAIL",
+  "mapping_description": "This ETL mapping extracts data from EM_COMMITMENT_DETAIL table from flat file  to Stage table - Supply Chain data stream\r\n",
+  "folder_name": "EDWTD_MFG_PRODUCTS",
+  "target_table": "ST_EM_COMMITMENT_DETAIL",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_mfg_products_wf_st_em_commitment_detail_01_mart_st_em_commitment_detail",
+  "source_tables": [
+    "FF_EM_COMMITMENT_DETAIL"
+  ],
+  "sources": [
+    {
+      "name": "FF_EM_COMMITMENT_DETAIL",
+      "database_type": "Flat File",
+      "owner": "",
+      "fields": [
+        {
+          "name": "COMMITMENT_DETAIL_ID",
+          "datatype": "number",
+          "precision": "9",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COMMITMENT_ID",
+          "datatype": "number",
+          "precision": "9",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PERIOD_START",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PERIOD_END",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMITMENT_QTY",
+          "datatype": "number",
+          "precision": "9",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COMMIT_MESSAGE",
+          "datatype": "string",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "int",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_EM_COMMITMENT_DETAIL",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "COMMITMENT_DETAIL_ID",
+        "datatype": "decimal",
+        "precision": "9",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMMITMENT_ID",
+        "datatype": "decimal",
+        "precision": "9",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PERIOD_START",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PERIOD_END",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMMITMENT_QTY",
+        "datatype": "decimal",
+        "precision": "9",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMMIT_MESSAGE",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "Sq_FF_EM_COMMITMENT_DETAIL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "COMMITMENT_DETAIL_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMITMENT_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_START",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERIOD_END",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMITMENT_QTY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMIT_MESSAGE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL",
+      "to_field": "BATCH_ID",
+      "to_instance": "ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMIT_MESSAGE",
+      "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL",
+      "to_field": "COMMIT_MESSAGE",
+      "to_instance": "ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMITMENT_QTY",
+      "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL",
+      "to_field": "COMMITMENT_QTY",
+      "to_instance": "ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PERIOD_END",
+      "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL",
+      "to_field": "PERIOD_END",
+      "to_instance": "ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PERIOD_START",
+      "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL",
+      "to_field": "PERIOD_START",
+      "to_instance": "ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMITMENT_ID",
+      "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL",
+      "to_field": "COMMITMENT_ID",
+      "to_instance": "ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMITMENT_DETAIL_ID",
+      "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL",
+      "to_field": "COMMITMENT_DETAIL_ID",
+      "to_instance": "ST_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMITMENT_DETAIL_ID",
+      "from_instance": "FF_EM_COMMITMENT_DETAIL",
+      "to_field": "COMMITMENT_DETAIL_ID",
+      "to_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMITMENT_ID",
+      "from_instance": "FF_EM_COMMITMENT_DETAIL",
+      "to_field": "COMMITMENT_ID",
+      "to_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PERIOD_START",
+      "from_instance": "FF_EM_COMMITMENT_DETAIL",
+      "to_field": "PERIOD_START",
+      "to_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "PERIOD_END",
+      "from_instance": "FF_EM_COMMITMENT_DETAIL",
+      "to_field": "PERIOD_END",
+      "to_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMITMENT_QTY",
+      "from_instance": "FF_EM_COMMITMENT_DETAIL",
+      "to_field": "COMMITMENT_QTY",
+      "to_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "COMMIT_MESSAGE",
+      "from_instance": "FF_EM_COMMITMENT_DETAIL",
+      "to_field": "COMMIT_MESSAGE",
+      "to_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "FF_EM_COMMITMENT_DETAIL",
+      "to_field": "BATCH_ID",
+      "to_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "FF_EM_COMMITMENT_DETAIL",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "FF_EM_COMMITMENT_DETAIL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "COMMITMENT_DETAIL_ID",
+      "source_path": [
+        {
+          "from_field": "COMMITMENT_DETAIL_ID",
+          "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+        },
+        {
+          "from_field": "COMMITMENT_DETAIL_ID",
+          "from_instance": "FF_EM_COMMITMENT_DETAIL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMMITMENT_ID",
+      "source_path": [
+        {
+          "from_field": "COMMITMENT_ID",
+          "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+        },
+        {
+          "from_field": "COMMITMENT_ID",
+          "from_instance": "FF_EM_COMMITMENT_DETAIL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PERIOD_START",
+      "source_path": [
+        {
+          "from_field": "PERIOD_START",
+          "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+        },
+        {
+          "from_field": "PERIOD_START",
+          "from_instance": "FF_EM_COMMITMENT_DETAIL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PERIOD_END",
+      "source_path": [
+        {
+          "from_field": "PERIOD_END",
+          "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+        },
+        {
+          "from_field": "PERIOD_END",
+          "from_instance": "FF_EM_COMMITMENT_DETAIL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMMITMENT_QTY",
+      "source_path": [
+        {
+          "from_field": "COMMITMENT_QTY",
+          "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+        },
+        {
+          "from_field": "COMMITMENT_QTY",
+          "from_instance": "FF_EM_COMMITMENT_DETAIL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMMIT_MESSAGE",
+      "source_path": [
+        {
+          "from_field": "COMMIT_MESSAGE",
+          "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+        },
+        {
+          "from_field": "COMMIT_MESSAGE",
+          "from_instance": "FF_EM_COMMITMENT_DETAIL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "FF_EM_COMMITMENT_DETAIL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "FF_EM_COMMITMENT_DETAIL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Sq_FF_EM_COMMITMENT_DETAIL"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "FF_EM_COMMITMENT_DETAIL"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:17.297409+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

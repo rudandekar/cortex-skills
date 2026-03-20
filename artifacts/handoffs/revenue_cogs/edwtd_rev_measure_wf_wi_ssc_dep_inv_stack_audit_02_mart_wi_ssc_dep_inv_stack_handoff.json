@@ -1,0 +1,583 @@
+{
+  "workflow_name": "wf_m_WI_SSC_DEP_INV_STACK_AUDIT",
+  "mapping_name": "m_WI_SSC_DEP_INV_STACK_AUDIT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_SSC_DEP_INV_STACK",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_ssc_dep_inv_stack_audit_02_mart_wi_ssc_dep_inv_stack",
+  "source_tables": [
+    "WI_CCM_FISCAL_MONTH_CTRL",
+    "WI_SSC_DEP_INV_STACK"
+  ],
+  "sources": [
+    {
+      "name": "WI_CCM_FISCAL_MONTH_CTRL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_YEAR_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH_NAME",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH_END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_QUARTER_NAME",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_QUARTER_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_QUARTER_END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_3YEAR_AGO_MONTH_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH_AGO_MONTH_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_SSC_DEP_INV_STACK",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "PRODUCT_FAMILY",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEP_INV_COST",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_SSC_DEP_INV_STACK",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PRODUCT_FAMILY",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FISCAL_MONTH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DEP_INV_COST",
+        "datatype": "decimal",
+        "precision": "38",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "QUANTITY",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_DATE"
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_DATE"
+        },
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FISCAL_MONTH_ID"
+        },
+        {
+          "name": "o_START_DATE",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SETVARIABLE($$START_DATE,START_DATE)"
+        },
+        {
+          "name": "o_END_DATE",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SETVARIABLE($$END_DATE,END_DATE)"
+        },
+        {
+          "name": "o_FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "SETVARIABLE($$FISCAL_MONTH_ID,FISCAL_MONTH_ID)"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_WI_SSC_DEP_INV_STACK",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PRODUCT_FAMILY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEP_INV_COST",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT mc.segment1 as PF ,$$FISCAL_MONTH_ID as FISCAL_MONTH_ID,\r\nsum(nvl(xfnbs.shipment_unit_std_cost,0) * xfnbd.matched_qty) as DEP_INV_COST\r\n,SUM(xfnbd.matched_qty) AS QUANTITY\r\nFROM APPS.rcv_transactions rt \r\n,APPS.mtl_material_transactions  mmt \r\n,APPS.po_lines_all pol \r\n,XXCTS_O.xxcts_fin_new_buy_shipments  xfnbs \r\n,APPS.mtl_system_items_b msi \r\n,APPS.mtl_item_categories mic \r\n,APPS.mtl_categories mc\r\n,XXCTS_O.xxcts_fin_new_buy_deliveries xfnbd \r\n,APPS.mtl_category_sets  mcs \r\nWHERE rt.transaction_date BETWEEN /*$$START_DATE and $$END_DATE */\r\nTO_DATE('$$START_DATE','MM/DD/YYYY HH24:MI:SS') AND TO_DATE('$$END_DATE','MM/DD/YYYY HH24:MI:SS')\r\nAND rt.transaction_type = 'DELIVER' \r\nAND rt.destination_type_code = 'INVENTORY' \r\nAND rt.transaction_id = mmt.rcv_transaction_id \r\nAND mmt.transaction_quantity> 0 \r\nAND mmt.source_code = 'RCV' \r\nAND rt.po_line_id = pol.po_line_id \r\nAND rt.transaction_id = xfnbd.transaction_id \r\nAND xfnbs.new_buy_shipment_id = xfnbd.new_buy_shipment_id \r\nAND pol.item_id = msi.inventory_item_id \r\nAND msi.organization_id = mmt.organization_id \r\nAND mc.category_id = mic.category_id \r\nAND mic.category_set_id = mcs.category_set_id (+) \r\nAND mcs.category_set_name = 'PROD GROUP'\r\nAND mic.inventory_item_id = msi.inventory_item_id \r\nAND mic.organization_id = msi.organization_id\r\nGROUP BY mc.segment1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_TSS_COST_CNTRL_MONTH_ID",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT FDTY.FISCAL_MONTH_START_DATE - INTERVAL '7' DAY AS START_DATE, FDTY.FISCAL_MONTH_END_DATE - INTERVAL '6' DAY AS END_DATE,FISCAL_MONTH_ID+1 FISCAL_MONTH_ID FROM $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR FDTY\r\nINNER JOIN $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID CTRL\r\nON FDTY.FISCAL_MONTH_AGO_MONTH_NUMBER = CTRL.FISCAL_YEAR_MONTH_INT",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "FILTRANS",
+      "type": "Filter",
+      "description": "",
+      "fields": [
+        {
+          "name": "START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "o_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "o_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "o_FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Filter Condition": "1=2",
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Filter",
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "DEP_INV_COST",
+      "from_instance": "SQ_WI_SSC_DEP_INV_STACK",
+      "to_field": "DEP_INV_COST",
+      "to_instance": "WI_SSC_DEP_INV_STACK"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY",
+      "from_instance": "SQ_WI_SSC_DEP_INV_STACK",
+      "to_field": "PRODUCT_FAMILY",
+      "to_instance": "WI_SSC_DEP_INV_STACK"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_WI_SSC_DEP_INV_STACK",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "WI_SSC_DEP_INV_STACK"
+    },
+    {
+      "from_field": "QUANTITY",
+      "from_instance": "SQ_WI_SSC_DEP_INV_STACK",
+      "to_field": "QUANTITY",
+      "to_instance": "WI_SSC_DEP_INV_STACK"
+    },
+    {
+      "from_field": "START_DATE",
+      "from_instance": "FILTRANS",
+      "to_field": "START_DATE",
+      "to_instance": "DEP_INV_STACK_PARAM"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "FILTRANS",
+      "to_field": "END_DATE",
+      "to_instance": "DEP_INV_STACK_PARAM"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "FILTRANS",
+      "to_field": "MONTH_ID",
+      "to_instance": "DEP_INV_STACK_PARAM"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "SQ_WI_TSS_COST_CNTRL_MONTH_ID",
+      "to_field": "END_DATE",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_WI_TSS_COST_CNTRL_MONTH_ID",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "START_DATE",
+      "from_instance": "SQ_WI_TSS_COST_CNTRL_MONTH_ID",
+      "to_field": "START_DATE",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "START_DATE",
+      "from_instance": "EXPTRANS",
+      "to_field": "START_DATE",
+      "to_instance": "FILTRANS"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "EXPTRANS",
+      "to_field": "END_DATE",
+      "to_instance": "FILTRANS"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "EXPTRANS",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "FILTRANS"
+    },
+    {
+      "from_field": "o_START_DATE",
+      "from_instance": "EXPTRANS",
+      "to_field": "o_START_DATE",
+      "to_instance": "FILTRANS"
+    },
+    {
+      "from_field": "o_END_DATE",
+      "from_instance": "EXPTRANS",
+      "to_field": "o_END_DATE",
+      "to_instance": "FILTRANS"
+    },
+    {
+      "from_field": "o_FISCAL_MONTH_ID",
+      "from_instance": "EXPTRANS",
+      "to_field": "o_FISCAL_MONTH_ID",
+      "to_instance": "FILTRANS"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "WI_SSC_DEP_INV_STACK1",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_WI_SSC_DEP_INV_STACK"
+    },
+    {
+      "from_field": "DEP_INV_COST",
+      "from_instance": "WI_SSC_DEP_INV_STACK1",
+      "to_field": "DEP_INV_COST",
+      "to_instance": "SQ_WI_SSC_DEP_INV_STACK"
+    },
+    {
+      "from_field": "QUANTITY",
+      "from_instance": "WI_SSC_DEP_INV_STACK1",
+      "to_field": "QUANTITY",
+      "to_instance": "SQ_WI_SSC_DEP_INV_STACK"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY",
+      "from_instance": "WI_SSC_DEP_INV_STACK1",
+      "to_field": "PRODUCT_FAMILY",
+      "to_instance": "SQ_WI_SSC_DEP_INV_STACK"
+    },
+    {
+      "from_field": "FISCAL_MONTH_START_DATE",
+      "from_instance": "WI_CCM_FISCAL_MONTH_CTRL",
+      "to_field": "START_DATE",
+      "to_instance": "SQ_WI_TSS_COST_CNTRL_MONTH_ID"
+    },
+    {
+      "from_field": "FISCAL_MONTH_END_DATE",
+      "from_instance": "WI_CCM_FISCAL_MONTH_CTRL",
+      "to_field": "END_DATE",
+      "to_instance": "SQ_WI_TSS_COST_CNTRL_MONTH_ID"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "WI_CCM_FISCAL_MONTH_CTRL",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_WI_TSS_COST_CNTRL_MONTH_ID"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PRODUCT_FAMILY",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_FAMILY",
+          "from_instance": "SQ_WI_SSC_DEP_INV_STACK"
+        },
+        {
+          "from_field": "PRODUCT_FAMILY",
+          "from_instance": "WI_SSC_DEP_INV_STACK1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FISCAL_MONTH_ID",
+      "source_path": [
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "SQ_WI_SSC_DEP_INV_STACK"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "SQ_WI_TSS_COST_CNTRL_MONTH_ID"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "WI_SSC_DEP_INV_STACK1"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "WI_CCM_FISCAL_MONTH_CTRL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DEP_INV_COST",
+      "source_path": [
+        {
+          "from_field": "DEP_INV_COST",
+          "from_instance": "SQ_WI_SSC_DEP_INV_STACK"
+        },
+        {
+          "from_field": "DEP_INV_COST",
+          "from_instance": "WI_SSC_DEP_INV_STACK1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "QUANTITY",
+      "source_path": [
+        {
+          "from_field": "QUANTITY",
+          "from_instance": "SQ_WI_SSC_DEP_INV_STACK"
+        },
+        {
+          "from_field": "QUANTITY",
+          "from_instance": "WI_SSC_DEP_INV_STACK1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:34.580370+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

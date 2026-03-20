@@ -1,0 +1,343 @@
+{
+  "workflow_name": "wf_m_N_CUSTOMS_DOCUMENT_TYPE_STG23NF",
+  "mapping_name": "m_N_CUSTOMS_DOCUMENT_TYPE_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GTC",
+  "target_table": "N_CUSTOMS_DOCUMENT_TYPE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gtc_wf_n_customs_document_type_stg23nf_01_mart_n_customs_document_type",
+  "source_tables": [
+    "N_CUSTOMS_DOCUMENT_TYPE"
+  ],
+  "sources": [
+    {
+      "name": "N_CUSTOMS_DOCUMENT_TYPE",
+      "database_type": "Teradata",
+      "owner": "FINLGLDB_DV1",
+      "fields": [
+        {
+          "name": "BK_CUSTOMS_DOCUMENT_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_CUSTOMS_DOCUMENT_TYPE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_CUSTOMS_DOCUMENT_TYPE_CD",
+        "datatype": "varchar",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SOURCE_DELETED_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_CUSTOMS_DOCUMENT_TYPE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_CUSTOMS_DOCUMENT_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\tCOALESCE( X.BK_CUSTOMS_DOCUMENT_TYPE_CD, 'UNKNOWN') AS BK_CUSTOMS_DOCUMENT_TYPE_CD ,\r\n\t'N' AS SOURCE_DELETED_FLG,\r\n\tCURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\n\tUSER EDW_CREATE_USER,\r\n\tCURRENT_TIMESTAMP(0) EDW_UPDATE_DTM,\r\n\tUSER EDW_UPDATE_USER\r\nFROM\r\n(\r\n  SELECT  REFERENCE6  AS BK_CUSTOMS_DOCUMENT_TYPE_CD FROM $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1 WHERE REFERENCE6 IS NOT NULL\r\n  UNION\r\n  SELECT  REFERENCE26 AS BK_CUSTOMS_DOCUMENT_TYPE_CD FROM $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1  WHERE REFERENCE26 IS NOT NULL\r\n  UNION\r\n  SELECT  REFERENCE46 AS BK_CUSTOMS_DOCUMENT_TYPE_CD FROM $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1  WHERE REFERENCE46 IS NOT NULL\r\n  UNION\r\n  SELECT  REFERENCE66 AS BK_CUSTOMS_DOCUMENT_TYPE_CD FROM $$STGDB.ST_XXCP_TRANSCTN_REFRNCS_CG1  WHERE REFERENCE66 IS NOT NULL\r\n) X\r\nWHERE NOT EXISTS\r\n  (\r\n  SELECT 1  FROM $$FINLGLVWDB.N_CUSTOMS_DOCUMENT_TYPE\t NCDT\r\n  WHERE NCDT.BK_CUSTOMS_DOCUMENT_TYPE_CD = X.BK_CUSTOMS_DOCUMENT_TYPE_CD\r\n  )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_CUSTOMS_DOCUMENT_TYPE_CD",
+      "from_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE",
+      "to_field": "BK_CUSTOMS_DOCUMENT_TYPE_CD",
+      "to_instance": "N_CUSTOMS_DOCUMENT_TYPE"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "N_CUSTOMS_DOCUMENT_TYPE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_CUSTOMS_DOCUMENT_TYPE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_CUSTOMS_DOCUMENT_TYPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_CUSTOMS_DOCUMENT_TYPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_CUSTOMS_DOCUMENT_TYPE"
+    },
+    {
+      "from_field": "BK_CUSTOMS_DOCUMENT_TYPE_CD",
+      "from_instance": "N_CUSTOMS_DOCUMENT_TYPE",
+      "to_field": "BK_CUSTOMS_DOCUMENT_TYPE_CD",
+      "to_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "N_CUSTOMS_DOCUMENT_TYPE",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_CUSTOMS_DOCUMENT_TYPE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_CUSTOMS_DOCUMENT_TYPE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_CUSTOMS_DOCUMENT_TYPE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_CUSTOMS_DOCUMENT_TYPE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_CUSTOMS_DOCUMENT_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "BK_CUSTOMS_DOCUMENT_TYPE_CD",
+          "from_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE"
+        },
+        {
+          "from_field": "BK_CUSTOMS_DOCUMENT_TYPE_CD",
+          "from_instance": "N_CUSTOMS_DOCUMENT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_DELETED_FLG",
+      "source_path": [
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "N_CUSTOMS_DOCUMENT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_CUSTOMS_DOCUMENT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_CUSTOMS_DOCUMENT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "N_CUSTOMS_DOCUMENT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_CUSTOMS_DOCUMENT_TYPE"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_CUSTOMS_DOCUMENT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:12.830756+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

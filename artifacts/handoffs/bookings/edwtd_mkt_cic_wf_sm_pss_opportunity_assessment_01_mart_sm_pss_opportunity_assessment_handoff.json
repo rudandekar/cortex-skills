@@ -1,0 +1,249 @@
+{
+  "workflow_name": "wf_m_SM_PSS_OPPORTUNITY_ASSESSMENT",
+  "mapping_name": "m_SM_PSS_OPPORTUNITY_ASSESSMENT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_MKT_CIC",
+  "target_table": "SM_PSS_OPPORTUNITY_ASSESSMENT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_mkt_cic_wf_sm_pss_opportunity_assessment_01_mart_sm_pss_opportunity_assessment",
+  "source_tables": [
+    "SM_PSS_OPPORTUNITY_ASSESSMENT"
+  ],
+  "sources": [
+    {
+      "name": "SM_PSS_OPPORTUNITY_ASSESSMENT",
+      "database_type": "Teradata",
+      "owner": "TRANSLATIONDB_DV4",
+      "fields": [
+        {
+          "name": "PSS_OPPORTUNITY_ASSESSMENT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SFDC_WORKSPACE_ID",
+          "datatype": "varchar",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "SM_PSS_OPPORTUNITY_ASSESSMENT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PSS_OPPORTUNITY_ASSESSMENT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SFDC_WORKSPACE_ID",
+        "datatype": "varchar",
+        "precision": "18",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PSS_OPPORTUNITY_ASSESSMENT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SFDC_WORKSPACE_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT RANK () OVER (ORDER BY STG.ID) + TGT.MAX_KEY AS PSS_OPPORTUNITY_ASSESSMENT_KEY,\r\n       ID AS SFDC_WORKSPACE_ID,\r\n       CURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\n       USER EDW_CREATE_USER\r\n  FROM (SELECT DISTINCT ID FROM $$STGDB.ST_AT_WORKSPACE__C) stg,\r\n       (SELECT COALESCE (MAX (PSS_OPPORTUNITY_ASSESSMENT_KEY), 0) AS MAX_KEY\r\n          FROM $$ETLVWDB.SM_PSS_OPPORTUNITY_ASSESSMENT) TGT\r\n WHERE NOT EXISTS\r\n          (SELECT 1\r\n             FROM $$ETLVWDB.SM_PSS_OPPORTUNITY_ASSESSMENT TGT\r\n            WHERE STG.ID = TGT.SFDC_WORKSPACE_ID)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "PSS_OPPORTUNITY_ASSESSMENT_KEY",
+      "from_instance": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT",
+      "to_field": "PSS_OPPORTUNITY_ASSESSMENT_KEY",
+      "to_instance": "SM_PSS_OPPORTUNITY_ASSESSMENT1"
+    },
+    {
+      "from_field": "SFDC_WORKSPACE_ID",
+      "from_instance": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT",
+      "to_field": "SFDC_WORKSPACE_ID",
+      "to_instance": "SM_PSS_OPPORTUNITY_ASSESSMENT1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_PSS_OPPORTUNITY_ASSESSMENT1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_PSS_OPPORTUNITY_ASSESSMENT1"
+    },
+    {
+      "from_field": "PSS_OPPORTUNITY_ASSESSMENT_KEY",
+      "from_instance": "SM_PSS_OPPORTUNITY_ASSESSMENT",
+      "to_field": "PSS_OPPORTUNITY_ASSESSMENT_KEY",
+      "to_instance": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT"
+    },
+    {
+      "from_field": "SFDC_WORKSPACE_ID",
+      "from_instance": "SM_PSS_OPPORTUNITY_ASSESSMENT",
+      "to_field": "SFDC_WORKSPACE_ID",
+      "to_instance": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SM_PSS_OPPORTUNITY_ASSESSMENT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SM_PSS_OPPORTUNITY_ASSESSMENT",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PSS_OPPORTUNITY_ASSESSMENT_KEY",
+      "source_path": [
+        {
+          "from_field": "PSS_OPPORTUNITY_ASSESSMENT_KEY",
+          "from_instance": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT"
+        },
+        {
+          "from_field": "PSS_OPPORTUNITY_ASSESSMENT_KEY",
+          "from_instance": "SM_PSS_OPPORTUNITY_ASSESSMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SFDC_WORKSPACE_ID",
+      "source_path": [
+        {
+          "from_field": "SFDC_WORKSPACE_ID",
+          "from_instance": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT"
+        },
+        {
+          "from_field": "SFDC_WORKSPACE_ID",
+          "from_instance": "SM_PSS_OPPORTUNITY_ASSESSMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SM_PSS_OPPORTUNITY_ASSESSMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_SM_PSS_OPPORTUNITY_ASSESSMENT"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SM_PSS_OPPORTUNITY_ASSESSMENT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:14.491929+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

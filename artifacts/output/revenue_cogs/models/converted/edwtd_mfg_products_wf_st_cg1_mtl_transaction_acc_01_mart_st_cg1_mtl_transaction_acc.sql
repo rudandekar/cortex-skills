@@ -1,0 +1,106 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_st_cg1_mtl_transaction_acc', 'batch', 'edwtd_mfg_products'],
+    meta={
+        'source_workflow': 'wf_m_ST_CG1_MTL_TRANSACTION_ACC',
+        'target_table': 'ST_CG1_MTL_TRANSACTION_ACC',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:45.635623+00:00'
+    }
+) }}
+
+WITH 
+
+source_cg1_mtl_transaction_accounts AS (
+    SELECT
+        transaction_id,
+        reference_account,
+        last_update_date,
+        last_updated_by,
+        creation_date,
+        created_by,
+        last_update_login,
+        inventory_item_id,
+        organization_id,
+        transaction_date,
+        transaction_source_id,
+        transaction_source_type_id,
+        transaction_value,
+        primary_quantity,
+        gl_batch_id,
+        accounting_line_type,
+        base_transaction_value,
+        contra_set_id,
+        rate_or_amount,
+        basis_type,
+        resource_id,
+        cost_element_id,
+        activity_id,
+        currency_code,
+        currency_conversion_date,
+        currency_conversion_type,
+        currency_conversion_rate,
+        request_id,
+        program_application_id,
+        program_id,
+        program_update_date,
+        encumbrance_type_id,
+        repetitive_schedule_id,
+        gl_sl_link_id,
+        ussgl_transaction_code,
+        inv_sub_ledger_id,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime
+    FROM {{ source('raw', 'cg1_mtl_transaction_accounts') }}
+),
+
+final AS (
+    SELECT
+        transaction_id,
+        reference_account,
+        last_update_date,
+        last_updated_by,
+        creation_date,
+        created_by,
+        last_update_login,
+        inventory_item_id,
+        organization_id,
+        transaction_date,
+        transaction_source_id,
+        transaction_source_type_id,
+        transaction_value,
+        primary_quantity,
+        gl_batch_id,
+        accounting_line_type,
+        base_transaction_value,
+        contra_set_id,
+        rate_or_amount,
+        basis_type,
+        resource_id,
+        cost_element_id,
+        activity_id,
+        currency_code,
+        currency_conversion_date,
+        currency_conversion_type,
+        currency_conversion_rate,
+        request_id,
+        program_application_id,
+        program_id,
+        program_update_date,
+        encumbrance_type_id,
+        repetitive_schedule_id,
+        gl_sl_link_id,
+        ussgl_transaction_code,
+        inv_sub_ledger_id,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        ss_cd,
+        ledger_amount
+    FROM source_cg1_mtl_transaction_accounts
+)
+
+SELECT * FROM final

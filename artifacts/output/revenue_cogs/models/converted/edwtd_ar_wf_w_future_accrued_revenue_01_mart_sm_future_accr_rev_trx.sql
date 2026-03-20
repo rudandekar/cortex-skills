@@ -1,0 +1,110 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_w_future_accrued_revenue', 'batch', 'edwtd_ar'],
+    meta={
+        'source_workflow': 'wf_m_W_FUTURE_ACCRUED_REVENUE',
+        'target_table': 'SM_FUTURE_ACCR_REV_TRX',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:46.880793+00:00'
+    }
+) }}
+
+WITH 
+
+source_sm_future_accr_rev_trx AS (
+    SELECT
+        future_accr_rev_key,
+        ar_trx_line_key,
+        sk_line_ref_num,
+        gl_dt,
+        sequence_id,
+        offr_attr_id_int,
+        ru_cdt_general_ledger_acct_key,
+        ru_dbt_general_ledger_acct_key,
+        acct_class_cd,
+        edw_create_dtm,
+        edw_create_user,
+        trxn_source,
+        sk_so_line_id_int,
+        transaction_id
+    FROM {{ source('raw', 'sm_future_accr_rev_trx') }}
+),
+
+source_w_future_accrued_revenue AS (
+    SELECT
+        future_accr_rev_key,
+        bk_accounting_rule_name,
+        bk_offer_type_name,
+        transaction_iso_currency_cd,
+        sales_order_line_key,
+        future_accr_rev_fisc_calndr_cd,
+        future_accr_rev_fisc_yr_num_int,
+        future_accr_rev_fisc_mnth_num_int,
+        bk_web_order_id,
+        ar_trx_line_key,
+        ar_trx_key,
+        sk_line_reference_num,
+        gl_date,
+        future_accr_rev_trans_quantity,
+        credit_debit_type,
+        gl_posted_date,
+        ss_cd,
+        pob_type_cd,
+        offer_attribution_id_int,
+        attribution_cd,
+        tsv_transactional_amt,
+        rev_recognition_flg,
+        sk_org_line_reference_num,
+        sequence_id_bigint,
+        offer_attribtion_pct,
+        business_application_name,
+        dv_fisc_yr_mnth_int,
+        future_billing_process_flg,
+        origin_source_cd,
+        partner_hardware_rev_flg,
+        time_bound_credit_applied_flg,
+        flex_up_reserve_transaction_flg,
+        sk_so_line_id_int,
+        account_class_cd,
+        accounting_rule_start_date,
+        accounting_rule_end_date,
+        product_key,
+        ru_credit_general_ledger_acc_key,
+        ru_credit_funcational_amt,
+        ru_credit_transactional_amt,
+        ru_debit_general_ledger_acc_key,
+        ru_debit_funcational_amt,
+        ru_debit_transactional_amt,
+        future_accr_rev_trans_cancl_flg,
+        dv_bundle_product_key,
+        trans_processed_period_int,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        action_code,
+        dml_type
+    FROM {{ source('raw', 'w_future_accrued_revenue') }}
+),
+
+final AS (
+    SELECT
+        future_accr_rev_key,
+        ar_trx_line_key,
+        sk_line_ref_num,
+        gl_dt,
+        sequence_id,
+        offr_attr_id_int,
+        ru_cdt_general_ledger_acct_key,
+        ru_dbt_general_ledger_acct_key,
+        acct_class_cd,
+        edw_create_dtm,
+        edw_create_user,
+        trxn_source,
+        sk_so_line_id_int,
+        transaction_id
+    FROM source_w_future_accrued_revenue
+)
+
+SELECT * FROM final

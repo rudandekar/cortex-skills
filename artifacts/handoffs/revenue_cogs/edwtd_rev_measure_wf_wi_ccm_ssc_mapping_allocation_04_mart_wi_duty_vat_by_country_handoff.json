@@ -1,0 +1,1664 @@
+{
+  "workflow_name": "wf_m_WI_CCM_SSC_MAPPING_ALLOCATION",
+  "mapping_name": "m_WI_CCM_SSC_MAPPING_ALLOCATION",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_DUTY_VAT_BY_COUNTRY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_ccm_ssc_mapping_allocation_04_mart_wi_duty_vat_by_country",
+  "source_tables": [
+    "WI_DUTY_VAT_BY_COUNTRY",
+    "TWFM065_FREIGHT_WH_MULTIPLIER",
+    "TWFM007_THEATER_MAP",
+    "CCM_TAC_MAPPING_ALLOCATION",
+    "CCM_SSC_MAPPING_ALLOCATION",
+    "WI_TSS_COST_CNTRL_MONTH_ID"
+  ],
+  "sources": [
+    {
+      "name": "WI_DUTY_VAT_BY_COUNTRY",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "COUNTRY_CODE",
+          "datatype": "varchar",
+          "precision": "2",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "THEATER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COUNTRY",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VAT_RECOVABLE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EFFECTIVE_DUTY",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EFFECTIVE_VAT",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CIV_RATE",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "TWFM065_FREIGHT_WH_MULTIPLIER",
+      "database_type": "Oracle",
+      "owner": "FINCCMTRX",
+      "fields": [
+        {
+          "name": "COUNTRY_CODE",
+          "datatype": "nvarchar2",
+          "precision": "2",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_REQUEST",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "THEATER",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COUNTRY",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MULTIPLIER",
+          "datatype": "number(p,s)",
+          "precision": "4",
+          "scale": "2",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "TWFM007_THEATER_MAP",
+      "database_type": "Oracle",
+      "owner": "FINCCMTRX",
+      "fields": [
+        {
+          "name": "EXT_THEATER_NAME",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "THEATER_NAME",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_ID",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "UPDATED_ID",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEPT",
+          "datatype": "nvarchar2",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "CCM_TAC_MAPPING_ALLOCATION",
+      "database_type": "Oracle",
+      "owner": "FINCCMTRX",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PL_NODE_VALUE",
+          "datatype": "varchar2",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MAPPING",
+          "datatype": "varchar2",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DELIVERY_THEATER",
+          "datatype": "varchar2",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DELIVERY_CHANNEL",
+          "datatype": "varchar2",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COST_TYPE",
+          "datatype": "varchar2",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ALLOCATION_METHOD",
+          "datatype": "varchar2",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OH_CATEGORY",
+          "datatype": "varchar2",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "CCM_SSC_MAPPING_ALLOCATION",
+      "database_type": "Oracle",
+      "owner": "FINCCMTRX",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PL_NODE_VALUE",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCOUNT_NUMBER",
+          "datatype": "nvarchar2",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUB_ACCOUNT_NUMBER",
+          "datatype": "nvarchar2",
+          "precision": "4",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FUNCTIONAL_COST",
+          "datatype": "nvarchar2",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COST_TYPE",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ALLOCATION_METHOD",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "THEATER",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_TSS_COST_CNTRL_MONTH_ID",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FISCAL_QUARTER_NAME",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH_NAME",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MONTH_RANK",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_DUTY_VAT_BY_COUNTRY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "COUNTRY_CODE",
+        "datatype": "varchar",
+        "precision": "2",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "THEATER",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COUNTRY",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "VAT_RECOVABLE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EFFECTIVE_DUTY",
+        "datatype": "decimal",
+        "precision": "38",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EFFECTIVE_VAT",
+        "datatype": "decimal",
+        "precision": "38",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CIV_RATE",
+        "datatype": "decimal",
+        "precision": "38",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_CCM_SSC_MAPPING_ALLOCATION",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PL_NODE_VALUE",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_NUMBER",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUB_ACCOUNT_NUMBER",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FUNCTIONAL_COST",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COST_TYPE",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ALLOCATION_METHOD",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n    FISCAL_MONTH_ID\r\n    ,PL_NODE_VALUE\r\n    ,ACCOUNT_NUMBER\r\n    ,SUB_ACCOUNT_NUMBER\r\n    ,FUNCTIONAL_COST\r\n    ,COST_TYPE\r\n    ,ALLOCATION_METHOD\r\n    ,THEATER\r\nFROM FINCCMTRX.CCM_SSC_MAPPING_ALLOCATION",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_TWFM007_THEATER_MAP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "EXT_THEATER_NAME",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER_NAME",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_ID",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_ID",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEPT",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT TWFM007_THEATER_MAP.EXT_THEATER_NAME, TWFM007_THEATER_MAP.THEATER_NAME, TWFM007_THEATER_MAP.CREATED_ID, TWFM007_THEATER_MAP.CREATED_DATE, TWFM007_THEATER_MAP.UPDATED_ID, TWFM007_THEATER_MAP.UPDATED_DATE, TWFM007_THEATER_MAP.DEPT \r\nFROM\r\n FINCCMTRX.TWFM007_THEATER_MAP",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "COUNTRY_CODE",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_REQUEST",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COUNTRY",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MULTIPLIER",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT TWFM065_FREIGHT_WH_MULTIPLIER.COUNTRY_CODE, TWFM065_FREIGHT_WH_MULTIPLIER.SERVICE_REQUEST, TWFM065_FREIGHT_WH_MULTIPLIER.THEATER, TWFM065_FREIGHT_WH_MULTIPLIER.COUNTRY, TWFM065_FREIGHT_WH_MULTIPLIER.MULTIPLIER \r\nFROM\r\n FINCCMTRX.TWFM065_FREIGHT_WH_MULTIPLIER",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_TSS_COST_CNTRL_MONTH_ID",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT FISCAL_MONTH_ID, FISCAL_YEAR_MONTH_INT \r\nFROM $$STGDB. WI_TSS_COST_CNTRL_MONTH_ID",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "in_FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "in_FISCAL_YEAR_MONTH_INT"
+        },
+        {
+          "name": "PL_NODE_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PL_NODE_VALUE"
+        },
+        {
+          "name": "MAPPING",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "MAPPING"
+        },
+        {
+          "name": "DELIVERY_THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DELIVERY_THEATER"
+        },
+        {
+          "name": "DELIVERY_CHANNEL",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DELIVERY_CHANNEL"
+        },
+        {
+          "name": "COST_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "COST_TYPE"
+        },
+        {
+          "name": "ALLOCATION_METHOD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ALLOCATION_METHOD"
+        },
+        {
+          "name": "OH_CATEGORY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "OH_CATEGORY"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_CCM_TAC_MAPPING_ALLOCATION",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PL_NODE_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MAPPING",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DELIVERY_THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DELIVERY_CHANNEL",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COST_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ALLOCATION_METHOD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OH_CATEGORY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "JNRTRANS",
+      "type": "Joiner",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_MONTH_ID1",
+          "datatype": "integer",
+          "porttype": "INPUT/MASTER",
+          "expression": ""
+        },
+        {
+          "name": "PL_NODE_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT/MASTER",
+          "expression": ""
+        },
+        {
+          "name": "MAPPING",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT/MASTER",
+          "expression": ""
+        },
+        {
+          "name": "DELIVERY_THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT/MASTER",
+          "expression": ""
+        },
+        {
+          "name": "DELIVERY_CHANNEL",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT/MASTER",
+          "expression": ""
+        },
+        {
+          "name": "COST_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT/MASTER",
+          "expression": ""
+        },
+        {
+          "name": "ALLOCATION_METHOD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT/MASTER",
+          "expression": ""
+        },
+        {
+          "name": "OH_CATEGORY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT/MASTER",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Case Sensitive String Comparison": "YES",
+        "Cache Directory": "$PMCacheDir",
+        "Join Condition": "FISCAL_MONTH_ID1 = FISCAL_MONTH_ID",
+        "Join Type": "Normal Join",
+        "Null ordering in master": "Null Is Highest Value",
+        "Null ordering in detail": "Null Is Highest Value",
+        "Tracing Level": "Normal",
+        "Joiner Data Cache Size": "Auto",
+        "Joiner Index Cache Size": "Auto",
+        "Sorted Input": "NO",
+        "Master Sort Order": "Auto",
+        "Transformation Scope": "All Input"
+      }
+    },
+    {
+      "name": "SQ_WI_DUTY_VAT_BY_COUNTRY",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "COUNTRY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COUNTRY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VAT_RECOVABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EFFECTIVE_DUTY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EFFECTIVE_VAT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CIV_RATE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n  COUNTRY_CODE                \r\n, THEATER           \t\r\n, COUNTRY     \r\n, VAT_RECOVABLE           \r\n, EFFECTIVE_DUTY                    \r\n, EFFECTIVE_VAT\r\n,CIV_RATE\r\n,CURRENT_TIMESTAMP(0)\r\n,USER\r\nFROM $$STGDB.ST_DUTY_VAT_BY_COUNTRY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Joiner",
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "COUNTRY_CODE",
+      "from_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER",
+      "to_field": "COUNTRY_CODE",
+      "to_instance": "WI_FREIGHT_WH_MULTIPLIER"
+    },
+    {
+      "from_field": "SERVICE_REQUEST",
+      "from_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER",
+      "to_field": "SERVICE_REQUEST",
+      "to_instance": "WI_FREIGHT_WH_MULTIPLIER"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER",
+      "to_field": "THEATER",
+      "to_instance": "WI_FREIGHT_WH_MULTIPLIER"
+    },
+    {
+      "from_field": "COUNTRY",
+      "from_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER",
+      "to_field": "COUNTRY",
+      "to_instance": "WI_FREIGHT_WH_MULTIPLIER"
+    },
+    {
+      "from_field": "MULTIPLIER",
+      "from_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER",
+      "to_field": "MULTIPLIER",
+      "to_instance": "WI_FREIGHT_WH_MULTIPLIER"
+    },
+    {
+      "from_field": "COUNTRY_CODE",
+      "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY",
+      "to_field": "COUNTRY_CODE",
+      "to_instance": "WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY",
+      "to_field": "THEATER",
+      "to_instance": "WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "COUNTRY",
+      "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY",
+      "to_field": "COUNTRY",
+      "to_instance": "WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "VAT_RECOVABLE",
+      "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY",
+      "to_field": "VAT_RECOVABLE",
+      "to_instance": "WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "EFFECTIVE_DUTY",
+      "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY",
+      "to_field": "EFFECTIVE_DUTY",
+      "to_instance": "WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "EFFECTIVE_VAT",
+      "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY",
+      "to_field": "EFFECTIVE_VAT",
+      "to_instance": "WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "CIV_RATE",
+      "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY",
+      "to_field": "CIV_RATE",
+      "to_instance": "WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "WI_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "PL_NODE_VALUE",
+      "from_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "PL_NODE_VALUE",
+      "to_instance": "WI_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "ACCOUNT_NUMBER",
+      "from_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "ACCOUNT_NUMBER",
+      "to_instance": "WI_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "SUB_ACCOUNT_NUMBER",
+      "from_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "SUB_ACCOUNT_NUMBER",
+      "to_instance": "WI_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "FUNCTIONAL_COST",
+      "from_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "FUNCTIONAL_COST",
+      "to_instance": "WI_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "COST_TYPE",
+      "from_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "COST_TYPE",
+      "to_instance": "WI_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "ALLOCATION_METHOD",
+      "from_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "ALLOCATION_METHOD",
+      "to_instance": "WI_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "THEATER",
+      "to_instance": "WI_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "in_FISCAL_YEAR_MONTH_INT",
+      "from_instance": "EXPTRANS",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "EL_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "PL_NODE_VALUE",
+      "from_instance": "EXPTRANS",
+      "to_field": "PL_NODE_VALUE",
+      "to_instance": "EL_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "MAPPING",
+      "from_instance": "EXPTRANS",
+      "to_field": "MAPPING",
+      "to_instance": "EL_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "DELIVERY_THEATER",
+      "from_instance": "EXPTRANS",
+      "to_field": "DELIVERY_THEATER",
+      "to_instance": "EL_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "DELIVERY_CHANNEL",
+      "from_instance": "EXPTRANS",
+      "to_field": "DELIVERY_CHANNEL",
+      "to_instance": "EL_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "COST_TYPE",
+      "from_instance": "EXPTRANS",
+      "to_field": "COST_TYPE",
+      "to_instance": "EL_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "ALLOCATION_METHOD",
+      "from_instance": "EXPTRANS",
+      "to_field": "ALLOCATION_METHOD",
+      "to_instance": "EL_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "OH_CATEGORY",
+      "from_instance": "EXPTRANS",
+      "to_field": "OH_CATEGORY",
+      "to_instance": "EL_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "THEATER_NAME",
+      "from_instance": "SQ_TWFM007_THEATER_MAP",
+      "to_field": "THEATER_NAME",
+      "to_instance": "WI_THEATER_MAP"
+    },
+    {
+      "from_field": "CREATED_ID",
+      "from_instance": "SQ_TWFM007_THEATER_MAP",
+      "to_field": "CREATED_ID",
+      "to_instance": "WI_THEATER_MAP"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "SQ_TWFM007_THEATER_MAP",
+      "to_field": "CREATED_DATE",
+      "to_instance": "WI_THEATER_MAP"
+    },
+    {
+      "from_field": "UPDATED_ID",
+      "from_instance": "SQ_TWFM007_THEATER_MAP",
+      "to_field": "UPDATED_ID",
+      "to_instance": "WI_THEATER_MAP"
+    },
+    {
+      "from_field": "UPDATED_DATE",
+      "from_instance": "SQ_TWFM007_THEATER_MAP",
+      "to_field": "UPDATED_DATE",
+      "to_instance": "WI_THEATER_MAP"
+    },
+    {
+      "from_field": "DEPT",
+      "from_instance": "SQ_TWFM007_THEATER_MAP",
+      "to_field": "DEPT",
+      "to_instance": "WI_THEATER_MAP"
+    },
+    {
+      "from_field": "EXT_THEATER_NAME",
+      "from_instance": "SQ_TWFM007_THEATER_MAP",
+      "to_field": "EXT_THEATER_NAME",
+      "to_instance": "WI_THEATER_MAP"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "PL_NODE_VALUE",
+      "from_instance": "CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "PL_NODE_VALUE",
+      "to_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "ACCOUNT_NUMBER",
+      "from_instance": "CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "ACCOUNT_NUMBER",
+      "to_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "SUB_ACCOUNT_NUMBER",
+      "from_instance": "CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "SUB_ACCOUNT_NUMBER",
+      "to_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "FUNCTIONAL_COST",
+      "from_instance": "CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "FUNCTIONAL_COST",
+      "to_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "COST_TYPE",
+      "from_instance": "CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "COST_TYPE",
+      "to_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "ALLOCATION_METHOD",
+      "from_instance": "CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "ALLOCATION_METHOD",
+      "to_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "CCM_SSC_MAPPING_ALLOCATION",
+      "to_field": "THEATER",
+      "to_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "EXT_THEATER_NAME",
+      "from_instance": "TWFM007_THEATER_MAP",
+      "to_field": "EXT_THEATER_NAME",
+      "to_instance": "SQ_TWFM007_THEATER_MAP"
+    },
+    {
+      "from_field": "THEATER_NAME",
+      "from_instance": "TWFM007_THEATER_MAP",
+      "to_field": "THEATER_NAME",
+      "to_instance": "SQ_TWFM007_THEATER_MAP"
+    },
+    {
+      "from_field": "CREATED_ID",
+      "from_instance": "TWFM007_THEATER_MAP",
+      "to_field": "CREATED_ID",
+      "to_instance": "SQ_TWFM007_THEATER_MAP"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "TWFM007_THEATER_MAP",
+      "to_field": "CREATED_DATE",
+      "to_instance": "SQ_TWFM007_THEATER_MAP"
+    },
+    {
+      "from_field": "UPDATED_ID",
+      "from_instance": "TWFM007_THEATER_MAP",
+      "to_field": "UPDATED_ID",
+      "to_instance": "SQ_TWFM007_THEATER_MAP"
+    },
+    {
+      "from_field": "UPDATED_DATE",
+      "from_instance": "TWFM007_THEATER_MAP",
+      "to_field": "UPDATED_DATE",
+      "to_instance": "SQ_TWFM007_THEATER_MAP"
+    },
+    {
+      "from_field": "DEPT",
+      "from_instance": "TWFM007_THEATER_MAP",
+      "to_field": "DEPT",
+      "to_instance": "SQ_TWFM007_THEATER_MAP"
+    },
+    {
+      "from_field": "COUNTRY_CODE",
+      "from_instance": "TWFM065_FREIGHT_WH_MULTIPLIER",
+      "to_field": "COUNTRY_CODE",
+      "to_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER"
+    },
+    {
+      "from_field": "SERVICE_REQUEST",
+      "from_instance": "TWFM065_FREIGHT_WH_MULTIPLIER",
+      "to_field": "SERVICE_REQUEST",
+      "to_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "TWFM065_FREIGHT_WH_MULTIPLIER",
+      "to_field": "THEATER",
+      "to_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER"
+    },
+    {
+      "from_field": "COUNTRY",
+      "from_instance": "TWFM065_FREIGHT_WH_MULTIPLIER",
+      "to_field": "COUNTRY",
+      "to_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER"
+    },
+    {
+      "from_field": "MULTIPLIER",
+      "from_instance": "TWFM065_FREIGHT_WH_MULTIPLIER",
+      "to_field": "MULTIPLIER",
+      "to_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "WI_TSS_COST_CNTRL_MONTH_ID",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_WI_TSS_COST_CNTRL_MONTH_ID"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "WI_TSS_COST_CNTRL_MONTH_ID",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "SQ_WI_TSS_COST_CNTRL_MONTH_ID"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_WI_TSS_COST_CNTRL_MONTH_ID",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "JNRTRANS"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "SQ_WI_TSS_COST_CNTRL_MONTH_ID",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "JNRTRANS"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "JNRTRANS",
+      "to_field": "in_FISCAL_YEAR_MONTH_INT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "PL_NODE_VALUE",
+      "from_instance": "JNRTRANS",
+      "to_field": "PL_NODE_VALUE",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "MAPPING",
+      "from_instance": "JNRTRANS",
+      "to_field": "MAPPING",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "DELIVERY_THEATER",
+      "from_instance": "JNRTRANS",
+      "to_field": "DELIVERY_THEATER",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "DELIVERY_CHANNEL",
+      "from_instance": "JNRTRANS",
+      "to_field": "DELIVERY_CHANNEL",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "COST_TYPE",
+      "from_instance": "JNRTRANS",
+      "to_field": "COST_TYPE",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "ALLOCATION_METHOD",
+      "from_instance": "JNRTRANS",
+      "to_field": "ALLOCATION_METHOD",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "OH_CATEGORY",
+      "from_instance": "JNRTRANS",
+      "to_field": "OH_CATEGORY",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "PL_NODE_VALUE",
+      "from_instance": "CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "PL_NODE_VALUE",
+      "to_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "MAPPING",
+      "from_instance": "CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "MAPPING",
+      "to_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "DELIVERY_THEATER",
+      "from_instance": "CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "DELIVERY_THEATER",
+      "to_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "DELIVERY_CHANNEL",
+      "from_instance": "CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "DELIVERY_CHANNEL",
+      "to_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "COST_TYPE",
+      "from_instance": "CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "COST_TYPE",
+      "to_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "ALLOCATION_METHOD",
+      "from_instance": "CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "ALLOCATION_METHOD",
+      "to_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "OH_CATEGORY",
+      "from_instance": "CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "OH_CATEGORY",
+      "to_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "FISCAL_MONTH_ID1",
+      "to_instance": "JNRTRANS"
+    },
+    {
+      "from_field": "PL_NODE_VALUE",
+      "from_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "PL_NODE_VALUE",
+      "to_instance": "JNRTRANS"
+    },
+    {
+      "from_field": "MAPPING",
+      "from_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "MAPPING",
+      "to_instance": "JNRTRANS"
+    },
+    {
+      "from_field": "DELIVERY_THEATER",
+      "from_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "DELIVERY_THEATER",
+      "to_instance": "JNRTRANS"
+    },
+    {
+      "from_field": "DELIVERY_CHANNEL",
+      "from_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "DELIVERY_CHANNEL",
+      "to_instance": "JNRTRANS"
+    },
+    {
+      "from_field": "COST_TYPE",
+      "from_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "COST_TYPE",
+      "to_instance": "JNRTRANS"
+    },
+    {
+      "from_field": "ALLOCATION_METHOD",
+      "from_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "ALLOCATION_METHOD",
+      "to_instance": "JNRTRANS"
+    },
+    {
+      "from_field": "OH_CATEGORY",
+      "from_instance": "SQ_CCM_TAC_MAPPING_ALLOCATION",
+      "to_field": "OH_CATEGORY",
+      "to_instance": "JNRTRANS"
+    },
+    {
+      "from_field": "EFFECTIVE_VAT",
+      "from_instance": "WI_DUTY_VAT_BY_COUNTRY1",
+      "to_field": "EFFECTIVE_VAT",
+      "to_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "CIV_RATE",
+      "from_instance": "WI_DUTY_VAT_BY_COUNTRY1",
+      "to_field": "CIV_RATE",
+      "to_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "WI_DUTY_VAT_BY_COUNTRY1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_DUTY_VAT_BY_COUNTRY1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "COUNTRY_CODE",
+      "from_instance": "WI_DUTY_VAT_BY_COUNTRY1",
+      "to_field": "COUNTRY_CODE",
+      "to_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "WI_DUTY_VAT_BY_COUNTRY1",
+      "to_field": "THEATER",
+      "to_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "COUNTRY",
+      "from_instance": "WI_DUTY_VAT_BY_COUNTRY1",
+      "to_field": "COUNTRY",
+      "to_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "VAT_RECOVABLE",
+      "from_instance": "WI_DUTY_VAT_BY_COUNTRY1",
+      "to_field": "VAT_RECOVABLE",
+      "to_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+    },
+    {
+      "from_field": "EFFECTIVE_DUTY",
+      "from_instance": "WI_DUTY_VAT_BY_COUNTRY1",
+      "to_field": "EFFECTIVE_DUTY",
+      "to_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "COUNTRY_CODE",
+      "source_path": [
+        {
+          "from_field": "COUNTRY_CODE",
+          "from_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER"
+        },
+        {
+          "from_field": "COUNTRY_CODE",
+          "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+        },
+        {
+          "from_field": "COUNTRY_CODE",
+          "from_instance": "TWFM065_FREIGHT_WH_MULTIPLIER"
+        },
+        {
+          "from_field": "COUNTRY_CODE",
+          "from_instance": "WI_DUTY_VAT_BY_COUNTRY1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "THEATER",
+      "source_path": [
+        {
+          "from_field": "THEATER",
+          "from_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "SQ_CCM_SSC_MAPPING_ALLOCATION"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "CCM_SSC_MAPPING_ALLOCATION"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "TWFM065_FREIGHT_WH_MULTIPLIER"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "WI_DUTY_VAT_BY_COUNTRY1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COUNTRY",
+      "source_path": [
+        {
+          "from_field": "COUNTRY",
+          "from_instance": "SQ_TWFM065_FREIGHT_WH_MULTIPLIER"
+        },
+        {
+          "from_field": "COUNTRY",
+          "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+        },
+        {
+          "from_field": "COUNTRY",
+          "from_instance": "TWFM065_FREIGHT_WH_MULTIPLIER"
+        },
+        {
+          "from_field": "COUNTRY",
+          "from_instance": "WI_DUTY_VAT_BY_COUNTRY1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "VAT_RECOVABLE",
+      "source_path": [
+        {
+          "from_field": "VAT_RECOVABLE",
+          "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+        },
+        {
+          "from_field": "VAT_RECOVABLE",
+          "from_instance": "WI_DUTY_VAT_BY_COUNTRY1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EFFECTIVE_DUTY",
+      "source_path": [
+        {
+          "from_field": "EFFECTIVE_DUTY",
+          "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+        },
+        {
+          "from_field": "EFFECTIVE_DUTY",
+          "from_instance": "WI_DUTY_VAT_BY_COUNTRY1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EFFECTIVE_VAT",
+      "source_path": [
+        {
+          "from_field": "EFFECTIVE_VAT",
+          "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+        },
+        {
+          "from_field": "EFFECTIVE_VAT",
+          "from_instance": "WI_DUTY_VAT_BY_COUNTRY1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CIV_RATE",
+      "source_path": [
+        {
+          "from_field": "CIV_RATE",
+          "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+        },
+        {
+          "from_field": "CIV_RATE",
+          "from_instance": "WI_DUTY_VAT_BY_COUNTRY1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "WI_DUTY_VAT_BY_COUNTRY1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_WI_DUTY_VAT_BY_COUNTRY"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "WI_DUTY_VAT_BY_COUNTRY1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "thin",
+  "generated_timestamp": "2026-03-19T18:33:27.748386+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,926 @@
+{
+  "workflow_name": "wf_m_W_MFG_INV_ORG_WRKNG_CLNDR",
+  "mapping_name": "m_W_MFG_INV_ORG_WRKNG_CLNDR",
+  "mapping_description": "",
+  "folder_name": "EDWTD_MFG_PRODUCTS",
+  "target_table": "W_MFG_INV_ORG_WRKNG_CLNDR",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_mfg_products_wf_w_mfg_inv_org_wrkng_clndr_01_mart_w_mfg_inv_org_wrkng_clndr",
+  "source_tables": [
+    "ST_CG1_BOM_CALENDAR_DATES"
+  ],
+  "sources": [
+    {
+      "name": "ST_CG1_BOM_CALENDAR_DATES",
+      "database_type": "Teradata",
+      "owner": "STGDB_dv3",
+      "fields": [
+        {
+          "name": "CALENDAR_CODE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EXCEPTION_SET_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CALENDAR_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_LOGIN",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SEQ_NUM",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NEXT_SEQ_NUM",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRIOR_SEQ_NUM",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "NEXT_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRIOR_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REQUEST_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROGRAM_APPLICATION_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROGRAM_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROGRAM_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CD",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REFRESH_DATETIME",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_MFG_INV_ORG_WRKNG_CLNDR",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "INV_ORG_NAME_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_CALENDAR_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "CALENDAR_DATE_STATUS_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_CG1_BOM_CALENDAR_DATES",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "INV_ORG_NAME_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_CALENDAR_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CALENDAR_DATE_STATUS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nNCIO.INVENTORY_ORGN_NAME_KEY AS INV_ORG_NAME_KEY,\r\nSCBCD.CALENDAR_DATE AS BK_CALENDAR_DT,\r\n(CASE WHEN SCBCD.SEQ_NUM IS NOT NULL THEN 'WORK DAY'\r\nWHEN SCBCD.SEQ_NUM IS NULL AND RFDTY.CALENDAR_DAY_NAME IN ('SATURDAY','SUNDAY') THEN 'NON-WORK DAY'\r\nWHEN SCBCD.SEQ_NUM IS NULL AND RFDTY.CALENDAR_DAY_NAME IN ('MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY') THEN 'HOLIDAY'\r\nELSE 'UNKNOWN' END) AS CALENDAR_DATE_STATUS_CODE,\r\nSCBCD.ACTION_CD AS ACTION_CODE,\r\n(CASE WHEN (NMIOWC.INV_ORG_NAME_KEY IS NULL OR NMIOWC.BK_CALENDAR_DT IS NULL) THEN 'I' ELSE 'U' END) AS DML_TYPE\r\nFROM \r\n(\r\nSELECT \r\nCALENDAR_CODE,\r\nCALENDAR_DATE,\r\nACTION_CD,\r\nSEQ_NUM\r\nFROM $$STGDB.ST_CG1_BOM_CALENDAR_DATES\r\nUNION\r\nSELECT \r\nCALENDAR_CODE,\r\nCALENDAR_DATE,\r\nACTION_CD,\r\nSEQ_NUM\r\nFROM $$EXCEPDB.EX_CG1_BOM_CALENDAR_DATES\r\n)SCBCD\r\nINNER JOIN $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR RFDTY\r\nON RFDTY.CALENDAR_DATE = SCBCD.CALENDAR_DATE\r\nINNER JOIN $$STGDB.ST_CG1_MTL_PARAMETER SCMP\r\nON SCMP.CALENDAR_CODE = SCBCD.CALENDAR_CODE\r\nINNER JOIN $$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO\r\nON NCIO.INVENTORY_ORGANIZATION_CODE = SCMP.ORGANIZATION_CODE\r\nLEFT JOIN $$INVFLMTVWDB.N_MFG_INV_ORG_WRKNG_CLNDR NMIOWC\r\nON NMIOWC.INV_ORG_NAME_KEY = NCIO.INVENTORY_ORGN_NAME_KEY\r\nAND NMIOWC.BK_CALENDAR_DT = SCBCD.CALENDAR_DATE",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CALENDAR_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXCEPTION_SET_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CALENDAR_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_LOGIN",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SEQ_NUM",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NEXT_SEQ_NUM",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRIOR_SEQ_NUM",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NEXT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRIOR_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REQUEST_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROGRAM_APPLICATION_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROGRAM_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROGRAM_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REFRESH_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nCALENDAR_CODE                 ,\r\nEXCEPTION_SET_ID              ,\r\nCALENDAR_DATE                 ,\r\nLAST_UPDATED_BY               ,\r\nCREATION_DATE                 ,\r\nCREATED_BY                    ,\r\nLAST_UPDATE_LOGIN             ,\r\nLAST_UPDATE_DATE              ,\r\nSEQ_NUM                       ,\r\nNEXT_SEQ_NUM                  ,\r\nPRIOR_SEQ_NUM                 ,\r\nNEXT_DATE                     ,\r\nPRIOR_DATE                    ,\r\nREQUEST_ID                    ,\r\nPROGRAM_APPLICATION_ID        ,\r\nPROGRAM_ID                    ,\r\nPROGRAM_UPDATE_DATE           ,\r\nBATCH_ID                      ,\r\nACTION_CD                     ,\r\nGLOBAL_NAME                   ,\r\nCREATE_DATETIME               ,\r\nSOURCE_COMMIT_TIME            ,\r\nREFRESH_DATETIME              ,\r\n'RI' AS EXCEPTION_TYPE\r\nFROM $$STGDB.ST_CG1_BOM_CALENDAR_DATES SCBCD\r\nWHERE\r\n(\r\nNOT EXISTS (SELECT 1 FROM $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR RFDTY WHERE SCBCD.CALENDAR_DATE = RFDTY.CALENDAR_DATE)\r\n)\r\nOR \r\n(\r\nNOT EXISTS (SELECT 1 FROM $$COMREFVWDB.N_CISCO_INVENTORY_ORG NCIO WHERE NCIO.INVENTORY_ORGANIZATION_CODE \r\nIN\r\n\t(SELECT SCMP.ORGANIZATION_CODE FROM $$STGDB.ST_CG1_MTL_PARAMETER SCMP WHERE SCMP.CALENDAR_CODE = SCBCD.CALENDAR_CODE))\r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "CALENDAR_CODE",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "CALENDAR_CODE",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "EXCEPTION_SET_ID",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "EXCEPTION_SET_ID",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "CALENDAR_DATE",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "CALENDAR_DATE",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "CREATED_BY",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "LAST_UPDATE_LOGIN",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "LAST_UPDATE_LOGIN",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "SEQ_NUM",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "SEQ_NUM",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "NEXT_SEQ_NUM",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "NEXT_SEQ_NUM",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "PRIOR_SEQ_NUM",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "PRIOR_SEQ_NUM",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "NEXT_DATE",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "NEXT_DATE",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "PRIOR_DATE",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "PRIOR_DATE",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "REQUEST_ID",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "REQUEST_ID",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "PROGRAM_APPLICATION_ID",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "PROGRAM_APPLICATION_ID",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "PROGRAM_ID",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "PROGRAM_ID",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "PROGRAM_UPDATE_DATE",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "PROGRAM_UPDATE_DATE",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "ACTION_CD",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "ACTION_CD",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "SOURCE_COMMIT_TIME",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "SOURCE_COMMIT_TIME",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "REFRESH_DATETIME",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "REFRESH_DATETIME",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "EX_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_MFG_INV_ORG_WRKNG_CLNDR"
+    },
+    {
+      "from_field": "INV_ORG_NAME_KEY",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES",
+      "to_field": "INV_ORG_NAME_KEY",
+      "to_instance": "W_MFG_INV_ORG_WRKNG_CLNDR"
+    },
+    {
+      "from_field": "BK_CALENDAR_DT",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES",
+      "to_field": "BK_CALENDAR_DT",
+      "to_instance": "W_MFG_INV_ORG_WRKNG_CLNDR"
+    },
+    {
+      "from_field": "CALENDAR_DATE_STATUS_CD",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES",
+      "to_field": "CALENDAR_DATE_STATUS_CD",
+      "to_instance": "W_MFG_INV_ORG_WRKNG_CLNDR"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_MFG_INV_ORG_WRKNG_CLNDR"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES",
+      "to_field": "INV_ORG_NAME_KEY",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES",
+      "to_field": "BK_CALENDAR_DT",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "CALENDAR_CODE",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES",
+      "to_field": "CALENDAR_DATE_STATUS_CD",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "ACTION_CD",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES"
+    },
+    {
+      "from_field": "CALENDAR_DATE",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "CALENDAR_DATE",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "LAST_UPDATE_LOGIN",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "LAST_UPDATE_LOGIN",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "SEQ_NUM",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "SEQ_NUM",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "NEXT_SEQ_NUM",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "NEXT_SEQ_NUM",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "PRIOR_SEQ_NUM",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "PRIOR_SEQ_NUM",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "NEXT_DATE",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "NEXT_DATE",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "PRIOR_DATE",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "PRIOR_DATE",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "REQUEST_ID",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "REQUEST_ID",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "PROGRAM_APPLICATION_ID",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "PROGRAM_APPLICATION_ID",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "PROGRAM_ID",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "PROGRAM_ID",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "PROGRAM_UPDATE_DATE",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "PROGRAM_UPDATE_DATE",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "ACTION_CD",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "ACTION_CD",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "SOURCE_COMMIT_TIME",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "SOURCE_COMMIT_TIME",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "REFRESH_DATETIME",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "REFRESH_DATETIME",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "CALENDAR_CODE",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "CALENDAR_CODE",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "CALENDAR_CODE",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    },
+    {
+      "from_field": "EXCEPTION_SET_ID",
+      "from_instance": "ST_CG1_BOM_CALENDAR_DATES1",
+      "to_field": "EXCEPTION_SET_ID",
+      "to_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "INV_ORG_NAME_KEY",
+      "source_path": [
+        {
+          "from_field": "INV_ORG_NAME_KEY",
+          "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "ST_CG1_BOM_CALENDAR_DATES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_CALENDAR_DT",
+      "source_path": [
+        {
+          "from_field": "BK_CALENDAR_DT",
+          "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_CG1_BOM_CALENDAR_DATES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CALENDAR_DATE_STATUS_CD",
+      "source_path": [
+        {
+          "from_field": "CALENDAR_DATE_STATUS_CD",
+          "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES"
+        },
+        {
+          "from_field": "CALENDAR_CODE",
+          "from_instance": "ST_CG1_BOM_CALENDAR_DATES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES"
+        },
+        {
+          "from_field": "ACTION_CD",
+          "from_instance": "ST_CG1_BOM_CALENDAR_DATES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_ST_CG1_BOM_CALENDAR_DATES"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "ST_CG1_BOM_CALENDAR_DATES"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:17.652945+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

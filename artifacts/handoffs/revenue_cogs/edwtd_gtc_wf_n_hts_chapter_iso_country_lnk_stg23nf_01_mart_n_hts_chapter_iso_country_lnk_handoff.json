@@ -1,0 +1,343 @@
+{
+  "workflow_name": "wf_m_N_HTS_CHAPTER_ISO_COUNTRY_LNK_STG23NF",
+  "mapping_name": "m_N_HTS_CHAPTER_ISO_COUNTRY_LNK_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GTC",
+  "target_table": "N_HTS_CHAPTER_ISO_COUNTRY_LNK",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gtc_wf_n_hts_chapter_iso_country_lnk_stg23nf_01_mart_n_hts_chapter_iso_country_lnk",
+  "source_tables": [
+    "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+  ],
+  "sources": [
+    {
+      "name": "N_HTS_CHAPTER_ISO_COUNTRY_LNK",
+      "database_type": "Teradata",
+      "owner": "FINLGLVWDB_DV3",
+      "fields": [
+        {
+          "name": "BK_HTS_CHAPTER_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_ISO_COUNTRY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_HTS_CHAPTER_ISO_COUNTRY_LNK",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_HTS_CHAPTER_NUM",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_ISO_COUNTRY_CD",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_HTS_CHAPTER_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ISO_COUNTRY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_HTS_CHAPTER_NUM",
+      "from_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+      "to_field": "BK_HTS_CHAPTER_NUM",
+      "to_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+    },
+    {
+      "from_field": "BK_ISO_COUNTRY_CD",
+      "from_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+      "to_field": "BK_ISO_COUNTRY_CD",
+      "to_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+    },
+    {
+      "from_field": "BK_HTS_CHAPTER_NUM",
+      "from_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK",
+      "to_field": "BK_HTS_CHAPTER_NUM",
+      "to_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+    },
+    {
+      "from_field": "BK_ISO_COUNTRY_CD",
+      "from_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK",
+      "to_field": "BK_ISO_COUNTRY_CD",
+      "to_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_HTS_CHAPTER_NUM",
+      "source_path": [
+        {
+          "from_field": "BK_HTS_CHAPTER_NUM",
+          "from_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+        },
+        {
+          "from_field": "BK_HTS_CHAPTER_NUM",
+          "from_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_ISO_COUNTRY_CD",
+      "source_path": [
+        {
+          "from_field": "BK_ISO_COUNTRY_CD",
+          "from_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+        },
+        {
+          "from_field": "BK_ISO_COUNTRY_CD",
+          "from_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_XXCFI_CB_HTS_CNTNT_FLTR_DTLS"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_HTS_CHAPTER_ISO_COUNTRY_LNK"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:12.916232+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

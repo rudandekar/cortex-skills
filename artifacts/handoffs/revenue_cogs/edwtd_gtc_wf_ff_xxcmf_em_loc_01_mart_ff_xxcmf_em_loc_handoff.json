@@ -1,0 +1,666 @@
+{
+  "workflow_name": "wf_m_FF_XXCMF_EM_LOC",
+  "mapping_name": "m_FF_XXCMF_EM_LOC",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GTC",
+  "target_table": "FF_XXCMF_EM_LOC",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gtc_wf_ff_xxcmf_em_loc_01_mart_ff_xxcmf_em_loc",
+  "source_tables": [
+    "XXCMF_EM_LOC"
+  ],
+  "sources": [
+    {
+      "name": "XXCMF_EM_LOC",
+      "database_type": "Oracle",
+      "owner": "ECM",
+      "fields": [
+        {
+          "name": "SITE_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LOCATION",
+          "datatype": "nvarchar2",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COUNTRY",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "nvarchar2",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "nvarchar2",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STATUS",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_XXCMF_EM_LOC",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BATCH_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SITE_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LOCATION",
+        "datatype": "string",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COUNTRY",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "string",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATED_BY",
+        "datatype": "string",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATED_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "STATUS",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "string",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXP_XXCMF_EM_LOC",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "$$BatchId"
+        },
+        {
+          "name": "SITE_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SITE_ID"
+        },
+        {
+          "name": "LOCATION",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LOCATION"
+        },
+        {
+          "name": "COUNTRY",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "COUNTRY"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATED_BY"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATED_BY"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATED_DATE"
+        },
+        {
+          "name": "LAST_UPDATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATED_DATE"
+        },
+        {
+          "name": "STATUS",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "STATUS"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_XXCMF_EM_LOC",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SITE_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOCATION",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COUNTRY",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STATUS",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nXXCMF_EM_LOC.SITE_ID,\r\n XXCMF_EM_LOC.LOCATION, \r\nXXCMF_EM_LOC.COUNTRY, XXCMF_EM_LOC.CREATED_BY, XXCMF_EM_LOC.LAST_UPDATED_BY, XXCMF_EM_LOC.CREATED_DATE, XXCMF_EM_LOC.LAST_UPDATED_DATE, XXCMF_EM_LOC.STATUS \r\nFROM XXCMF_EM_LOC \r\nWHERE LAST_UPDATED_DATE > TO_DATE('$$LastExtractDate','MM/DD/YYYY HH24:MI:SS')",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "EXP_XXCMF_EM_LOC",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "FF_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_XXCMF_EM_LOC",
+      "to_field": "ACTION_CODE",
+      "to_instance": "FF_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "EXP_XXCMF_EM_LOC",
+      "to_field": "BATCH_ID",
+      "to_instance": "FF_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "SITE_ID",
+      "from_instance": "EXP_XXCMF_EM_LOC",
+      "to_field": "SITE_ID",
+      "to_instance": "FF_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "LOCATION",
+      "from_instance": "EXP_XXCMF_EM_LOC",
+      "to_field": "LOCATION",
+      "to_instance": "FF_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "COUNTRY",
+      "from_instance": "EXP_XXCMF_EM_LOC",
+      "to_field": "COUNTRY",
+      "to_instance": "FF_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "EXP_XXCMF_EM_LOC",
+      "to_field": "CREATED_BY",
+      "to_instance": "FF_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "EXP_XXCMF_EM_LOC",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "FF_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "EXP_XXCMF_EM_LOC",
+      "to_field": "CREATED_DATE",
+      "to_instance": "FF_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "LAST_UPDATED_DATE",
+      "from_instance": "EXP_XXCMF_EM_LOC",
+      "to_field": "LAST_UPDATED_DATE",
+      "to_instance": "FF_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "STATUS",
+      "from_instance": "EXP_XXCMF_EM_LOC",
+      "to_field": "STATUS",
+      "to_instance": "FF_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "SITE_ID",
+      "from_instance": "SQ_XXCMF_EM_LOC",
+      "to_field": "SITE_ID",
+      "to_instance": "EXP_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "LOCATION",
+      "from_instance": "SQ_XXCMF_EM_LOC",
+      "to_field": "LOCATION",
+      "to_instance": "EXP_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "COUNTRY",
+      "from_instance": "SQ_XXCMF_EM_LOC",
+      "to_field": "COUNTRY",
+      "to_instance": "EXP_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_XXCMF_EM_LOC",
+      "to_field": "CREATED_BY",
+      "to_instance": "EXP_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "SQ_XXCMF_EM_LOC",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "EXP_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "SQ_XXCMF_EM_LOC",
+      "to_field": "CREATED_DATE",
+      "to_instance": "EXP_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "LAST_UPDATED_DATE",
+      "from_instance": "SQ_XXCMF_EM_LOC",
+      "to_field": "LAST_UPDATED_DATE",
+      "to_instance": "EXP_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "STATUS",
+      "from_instance": "SQ_XXCMF_EM_LOC",
+      "to_field": "STATUS",
+      "to_instance": "EXP_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "SITE_ID",
+      "from_instance": "XXCMF_EM_LOC",
+      "to_field": "SITE_ID",
+      "to_instance": "SQ_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "LOCATION",
+      "from_instance": "XXCMF_EM_LOC",
+      "to_field": "LOCATION",
+      "to_instance": "SQ_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "COUNTRY",
+      "from_instance": "XXCMF_EM_LOC",
+      "to_field": "COUNTRY",
+      "to_instance": "SQ_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "XXCMF_EM_LOC",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "XXCMF_EM_LOC",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "XXCMF_EM_LOC",
+      "to_field": "CREATED_DATE",
+      "to_instance": "SQ_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "LAST_UPDATED_DATE",
+      "from_instance": "XXCMF_EM_LOC",
+      "to_field": "LAST_UPDATED_DATE",
+      "to_instance": "SQ_XXCMF_EM_LOC"
+    },
+    {
+      "from_field": "STATUS",
+      "from_instance": "XXCMF_EM_LOC",
+      "to_field": "STATUS",
+      "to_instance": "SQ_XXCMF_EM_LOC"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "EXP_XXCMF_EM_LOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SITE_ID",
+      "source_path": [
+        {
+          "from_field": "SITE_ID",
+          "from_instance": "EXP_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "SITE_ID",
+          "from_instance": "SQ_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "SITE_ID",
+          "from_instance": "XXCMF_EM_LOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LOCATION",
+      "source_path": [
+        {
+          "from_field": "LOCATION",
+          "from_instance": "EXP_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "LOCATION",
+          "from_instance": "SQ_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "LOCATION",
+          "from_instance": "XXCMF_EM_LOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COUNTRY",
+      "source_path": [
+        {
+          "from_field": "COUNTRY",
+          "from_instance": "EXP_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "COUNTRY",
+          "from_instance": "SQ_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "COUNTRY",
+          "from_instance": "XXCMF_EM_LOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "EXP_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "XXCMF_EM_LOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATED_BY",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "EXP_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "SQ_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "XXCMF_EM_LOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "EXP_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "SQ_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "XXCMF_EM_LOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATED_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATED_DATE",
+          "from_instance": "EXP_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "LAST_UPDATED_DATE",
+          "from_instance": "SQ_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "LAST_UPDATED_DATE",
+          "from_instance": "XXCMF_EM_LOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "STATUS",
+      "source_path": [
+        {
+          "from_field": "STATUS",
+          "from_instance": "EXP_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "STATUS",
+          "from_instance": "SQ_XXCMF_EM_LOC"
+        },
+        {
+          "from_field": "STATUS",
+          "from_instance": "XXCMF_EM_LOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "EXP_XXCMF_EM_LOC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_XXCMF_EM_LOC"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:12.765843+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

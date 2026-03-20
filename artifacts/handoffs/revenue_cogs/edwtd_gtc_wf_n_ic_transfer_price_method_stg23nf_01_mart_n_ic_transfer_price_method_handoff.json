@@ -1,0 +1,343 @@
+{
+  "workflow_name": "wf_m_N_IC_TRANSFER_PRICE_METHOD_STG23NF",
+  "mapping_name": "m_N_IC_TRANSFER_PRICE_METHOD_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GTC",
+  "target_table": "N_IC_TRANSFER_PRICE_METHOD",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gtc_wf_n_ic_transfer_price_method_stg23nf_01_mart_n_ic_transfer_price_method",
+  "source_tables": [
+    "N_IC_TRANSFER_PRICE_METHOD"
+  ],
+  "sources": [
+    {
+      "name": "N_IC_TRANSFER_PRICE_METHOD",
+      "database_type": "Teradata",
+      "owner": "FINLGLDB_DV1",
+      "fields": [
+        {
+          "name": "BK_TRANSFER_PRICE_METHOD_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_IC_TRANSFER_PRICE_METHOD",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_TRANSFER_PRICE_METHOD_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SOURCE_DELETED_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_IC_TRANSFER_PRICE_METHOD",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_TRANSFER_PRICE_METHOD_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT BK_TRANSFER_PRICE_METHOD_CD,\r\n\t   'N'   AS  SOURCE_DELETED_FLG,\r\n\t   CURRENT_TIMESTAMP(0)  AS EDW_CREATE_DTM,\r\n\t   USER                  AS EDW_CREATE_USER,\r\n       CURRENT_TIMESTAMP(0)  AS EDW_UPDATE_DTM,\r\n\t   USER                  AS EDW_UPDATE_USER\r\nFROM             \r\n( \r\nSELECT DISTINCT MC_QUALIFIER1 AS BK_TRANSFER_PRICE_METHOD_CD\r\nFROM  $$STGDB.ST_CP_TRNSACTIN_ATR_QTC\r\nWHERE MC_QUALIFIER1 IS NOT NULL\r\nUNION \r\nSELECT DISTINCT MC_QUALIFIER1 AS BK_TRANSFER_PRICE_METHOD_CD\r\nFROM  $$STGDB.ST_CP_TRNSACTION_ATTR_BV\r\nWHERE MC_QUALIFIER1 IS NOT NULL\r\nUNION\r\nSELECT DISTINCT MC_QUALIFIER1 AS BK_TRANSFER_PRICE_METHOD_CD\r\nFROM  $$STGDB.ST_CP_TRNSACTION_ATTR_CG1\r\nWHERE MC_QUALIFIER1 IS NOT NULL\r\nUNION\r\nSELECT DISTINCT MC_QUALIFIER1 AS BK_TRANSFER_PRICE_METHOD_CD\r\nFROM  $$STGDB.ST_CP_TRANSACTION_ATTR_SJ\r\nWHERE MC_QUALIFIER1 IS NOT NULL\r\n) IQ\r\nWHERE NOT EXISTS\r\n(\r\n SELECT 1\r\n    FROM     $$FINLGLVWDB.N_IC_TRANSFER_PRICE_METHOD NITPM\r\n    WHERE NITPM.BK_TRANSFER_PRICE_METHOD_CD = IQ.BK_TRANSFER_PRICE_METHOD_CD\r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_TRANSFER_PRICE_METHOD_CD",
+      "from_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD",
+      "to_field": "BK_TRANSFER_PRICE_METHOD_CD",
+      "to_instance": "N_IC_TRANSFER_PRICE_METHOD1"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "N_IC_TRANSFER_PRICE_METHOD1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_IC_TRANSFER_PRICE_METHOD1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_IC_TRANSFER_PRICE_METHOD1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_IC_TRANSFER_PRICE_METHOD1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_IC_TRANSFER_PRICE_METHOD1"
+    },
+    {
+      "from_field": "BK_TRANSFER_PRICE_METHOD_CD",
+      "from_instance": "N_IC_TRANSFER_PRICE_METHOD",
+      "to_field": "BK_TRANSFER_PRICE_METHOD_CD",
+      "to_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "N_IC_TRANSFER_PRICE_METHOD",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_IC_TRANSFER_PRICE_METHOD",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_IC_TRANSFER_PRICE_METHOD",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_IC_TRANSFER_PRICE_METHOD",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_IC_TRANSFER_PRICE_METHOD",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_TRANSFER_PRICE_METHOD_CD",
+      "source_path": [
+        {
+          "from_field": "BK_TRANSFER_PRICE_METHOD_CD",
+          "from_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD"
+        },
+        {
+          "from_field": "BK_TRANSFER_PRICE_METHOD_CD",
+          "from_instance": "N_IC_TRANSFER_PRICE_METHOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_DELETED_FLG",
+      "source_path": [
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "N_IC_TRANSFER_PRICE_METHOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_IC_TRANSFER_PRICE_METHOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_IC_TRANSFER_PRICE_METHOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "N_IC_TRANSFER_PRICE_METHOD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_IC_TRANSFER_PRICE_METHOD"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_IC_TRANSFER_PRICE_METHOD"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:12.971668+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

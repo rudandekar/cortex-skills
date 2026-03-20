@@ -1,0 +1,327 @@
+{
+  "workflow_name": "wf_m_W_PRODUCT_FAST_TRACK",
+  "mapping_name": "m_W_PRODUCT_FAST_TRACK",
+  "mapping_description": "",
+  "folder_name": "EDWTD_RDC",
+  "target_table": "W_PRODUCT_FAST_TRACK_TEMP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rdc_wf_w_product_fast_track_01_int_w_product_fast_track_temp",
+  "source_tables": [
+    "ST_PRODUCT_FAST_TRACK"
+  ],
+  "sources": [
+    {
+      "name": "ST_PRODUCT_FAST_TRACK",
+      "database_type": "Teradata",
+      "owner": "",
+      "fields": [
+        {
+          "name": "PRODUCT_ID",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FT3_FLAG",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_PRODUCT_FAST_TRACK_TEMP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PRODUCT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "FAST_TRACK_WORLD_WIDE_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_PRODUCT_FAST_TRACK",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PRODUCT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FT3_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nTMP.ITEM_KEY PRODUCT_KEY,\r\nTMP.FT3_FLAG FAST_TRACK_WORLD_WIDE_FLG,\r\nCURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\nUSER EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) EDW_UPDATE_DTM,\r\nUSER EDW_UPDATE_USER,\r\n'I' ACTION_CODE,\r\n'I' DML_TYPE\r\nFROM \r\n(\r\n\tSELECT \r\n\tNP.ITEM_KEY ITEM_KEY,\r\n\tCASE  \r\n\t\tWHEN \r\n\t\tFT3_FLAG= 'FT-WW'  \r\n\t\tTHEN \r\n\t\t'Y' \r\n\t\tELSE \r\n\t\t'N' \r\n\tEND FT3_FLAG\r\n\tFROM \r\n\t$$STGDB.ST_PRODUCT_FAST_TRACK ST, \r\n\t$$COMREFVWDB.N_PRODUCT NP \r\n\tWHERE \r\n\tNP.BK_PRODUCT_ID = ST.PRODUCT_ID \r\n)TMP",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "COLLECT STATS ON $$STGDB.ST_PRODUCT_FAST_TRACK COLUMN ( PRODUCT_ID );\r\n\r\nDELETE FROM $$WORKDB.W_PRODUCT_FAST_TRACK;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "PRODUCT_ID",
+      "from_instance": "SQ_ST_PRODUCT_FAST_TRACK",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "W_PRODUCT_FAST_TRACK"
+    },
+    {
+      "from_field": "FT3_FLAG",
+      "from_instance": "SQ_ST_PRODUCT_FAST_TRACK",
+      "to_field": "FAST_TRACK_WORLD_WIDE_FLG",
+      "to_instance": "W_PRODUCT_FAST_TRACK"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_PRODUCT_FAST_TRACK",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_PRODUCT_FAST_TRACK"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_PRODUCT_FAST_TRACK",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_PRODUCT_FAST_TRACK"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_PRODUCT_FAST_TRACK",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_PRODUCT_FAST_TRACK"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_PRODUCT_FAST_TRACK",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_PRODUCT_FAST_TRACK"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_PRODUCT_FAST_TRACK",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_PRODUCT_FAST_TRACK"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_PRODUCT_FAST_TRACK",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_PRODUCT_FAST_TRACK"
+    },
+    {
+      "from_field": "PRODUCT_ID",
+      "from_instance": "ST_PRODUCT_FAST_TRACK",
+      "to_field": "PRODUCT_ID",
+      "to_instance": "SQ_ST_PRODUCT_FAST_TRACK"
+    },
+    {
+      "from_field": "FT3_FLAG",
+      "from_instance": "ST_PRODUCT_FAST_TRACK",
+      "to_field": "FT3_FLAG",
+      "to_instance": "SQ_ST_PRODUCT_FAST_TRACK"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PRODUCT_KEY",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_ID",
+          "from_instance": "SQ_ST_PRODUCT_FAST_TRACK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FAST_TRACK_WORLD_WIDE_FLG",
+      "source_path": [
+        {
+          "from_field": "FT3_FLAG",
+          "from_instance": "SQ_ST_PRODUCT_FAST_TRACK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_PRODUCT_FAST_TRACK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_PRODUCT_FAST_TRACK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_PRODUCT_FAST_TRACK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_PRODUCT_FAST_TRACK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_PRODUCT_FAST_TRACK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_ST_PRODUCT_FAST_TRACK"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:17.944588+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,270 @@
+{
+  "workflow_name": "wf_m_SM_SALES_CREDIT_CLAIM_EVENT",
+  "mapping_name": "m_SM_SALES_CREDIT_CLAIM_EVENT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "SM_SALES_CREDIT_CLAIM_EVENT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_sm_sales_credit_claim_event_01_mart_sm_sales_credit_claim_event",
+  "source_tables": [
+    "ST_OTM_GCT_EVENTS"
+  ],
+  "sources": [
+    {
+      "name": "ST_OTM_GCT_EVENTS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "EVENT_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CLAIM_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EVENT_DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "SM_SALES_CREDIT_CLAIM_EVENT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_CREDIT_CLAIM_EVENT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_EVENT_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_OTM_GCT_EVENTS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_CREDIT_CLAIM_EVENT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_EVENT_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nRANK() OVER (ORDER BY SOGE.EVENT_ID) + KEY_SRC.MAX_VAL SALES_CREDIT_CLAIM_EVENT_KEY,\r\nSOGE.EVENT_ID,\r\nCURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\nUSER EDW_CREATE_USER\r\nFROM\r\n$$STGDB.ST_OTM_GCT_EVENTS SOGE,\r\n(SELECT COALESCE(MAX(SALES_CREDIT_CLAIM_EVENT_KEY),10000) MAX_VAL FROM $$ETLVWDB.SM_SALES_CREDIT_CLAIM_EVENT\r\n)KEY_SRC\r\nWHERE NOT EXISTS\r\n(\r\nSELECT 1 FROM\r\n$$ETLVWDB.SM_SALES_CREDIT_CLAIM_EVENT SM_SCCE\r\nWHERE\r\nSM_SCCE.SK_EVENT_ID_INT = SOGE.EVENT_ID)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SALES_CREDIT_CLAIM_EVENT_KEY",
+      "from_instance": "SQ_ST_OTM_GCT_EVENTS",
+      "to_field": "SALES_CREDIT_CLAIM_EVENT_KEY",
+      "to_instance": "SM_SALES_CREDIT_CLAIM_EVENT"
+    },
+    {
+      "from_field": "SK_EVENT_ID_INT",
+      "from_instance": "SQ_ST_OTM_GCT_EVENTS",
+      "to_field": "SK_EVENT_ID_INT",
+      "to_instance": "SM_SALES_CREDIT_CLAIM_EVENT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_OTM_GCT_EVENTS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_SALES_CREDIT_CLAIM_EVENT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_OTM_GCT_EVENTS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_SALES_CREDIT_CLAIM_EVENT"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "ST_OTM_GCT_EVENTS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "EVENT_DESCRIPTION",
+      "from_instance": "ST_OTM_GCT_EVENTS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "EVENT_ID",
+      "from_instance": "ST_OTM_GCT_EVENTS",
+      "to_field": "SALES_CREDIT_CLAIM_EVENT_KEY",
+      "to_instance": "SQ_ST_OTM_GCT_EVENTS"
+    },
+    {
+      "from_field": "CLAIM_ID",
+      "from_instance": "ST_OTM_GCT_EVENTS",
+      "to_field": "SK_EVENT_ID_INT",
+      "to_instance": "SQ_ST_OTM_GCT_EVENTS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_CREDIT_CLAIM_EVENT_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_CREDIT_CLAIM_EVENT_KEY",
+          "from_instance": "SQ_ST_OTM_GCT_EVENTS"
+        },
+        {
+          "from_field": "EVENT_ID",
+          "from_instance": "ST_OTM_GCT_EVENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_EVENT_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_EVENT_ID_INT",
+          "from_instance": "SQ_ST_OTM_GCT_EVENTS"
+        },
+        {
+          "from_field": "CLAIM_ID",
+          "from_instance": "ST_OTM_GCT_EVENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_OTM_GCT_EVENTS"
+        },
+        {
+          "from_field": "CREATED_DATE",
+          "from_instance": "ST_OTM_GCT_EVENTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_OTM_GCT_EVENTS"
+        },
+        {
+          "from_field": "EVENT_DESCRIPTION",
+          "from_instance": "ST_OTM_GCT_EVENTS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:20.468632+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

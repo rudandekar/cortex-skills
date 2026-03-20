@@ -1,0 +1,437 @@
+{
+  "workflow_name": "wf_m_EL_DFR_GROSS_UNBILLED_AVG_TERM",
+  "mapping_name": "m_EL_DFR_GROSS_UNBILLED_AVG_TERM",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "EL_DFR_GROSS_UNBILLED_AVG_TERM",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_el_dfr_gross_unbilled_avg_term_01_mart_el_dfr_gross_unbilled_avg_term",
+  "source_tables": [
+    "EL_DFR_GROSS_UNBILLED_AVG_TERM"
+  ],
+  "sources": [
+    {
+      "name": "EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_DV2",
+      "fields": [
+        {
+          "name": "BUSINESS_UNIT",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EFFECTIVE_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AVG_TERM",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_DFR_GROSS_UNBILLED_AVG_TERM",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BUSINESS_UNIT",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EFFECTIVE_START_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AVG_TERM",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATED_BY",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BUSINESS_UNIT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EFFECTIVE_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AVG_TERM",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nBUSINESS_UNIT,\r\nEFFECTIVE_START_DATE,\r\nEND_DATE,\r\nAVG_TERM,\r\nCREATED_BY,\r\nCREATE_DATE,\r\nUPDATED_BY,\r\nUPDATE_DATE\r\nFROM $$STGDB.ST_DFR_GROSS_UNBILLED_AVG_TERM\r\nWHERE UPDATE_DATE>'$$LastExtractDate'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BUSINESS_UNIT",
+      "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "BUSINESS_UNIT",
+      "to_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM1"
+    },
+    {
+      "from_field": "EFFECTIVE_START_DATE",
+      "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "EFFECTIVE_START_DATE",
+      "to_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM1"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "END_DATE",
+      "to_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM1"
+    },
+    {
+      "from_field": "AVG_TERM",
+      "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "AVG_TERM",
+      "to_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM1"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "CREATED_BY",
+      "to_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM1"
+    },
+    {
+      "from_field": "CREATE_DATE",
+      "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "CREATE_DATE",
+      "to_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM1"
+    },
+    {
+      "from_field": "UPDATED_BY",
+      "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "UPDATED_BY",
+      "to_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM1"
+    },
+    {
+      "from_field": "UPDATE_DATE",
+      "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "UPDATE_DATE",
+      "to_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM1"
+    },
+    {
+      "from_field": "BUSINESS_UNIT",
+      "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "BUSINESS_UNIT",
+      "to_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+    },
+    {
+      "from_field": "EFFECTIVE_START_DATE",
+      "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "EFFECTIVE_START_DATE",
+      "to_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "END_DATE",
+      "to_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+    },
+    {
+      "from_field": "AVG_TERM",
+      "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "AVG_TERM",
+      "to_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+    },
+    {
+      "from_field": "CREATE_DATE",
+      "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "CREATE_DATE",
+      "to_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+    },
+    {
+      "from_field": "UPDATED_BY",
+      "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "UPDATED_BY",
+      "to_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+    },
+    {
+      "from_field": "UPDATE_DATE",
+      "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM",
+      "to_field": "UPDATE_DATE",
+      "to_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BUSINESS_UNIT",
+      "source_path": [
+        {
+          "from_field": "BUSINESS_UNIT",
+          "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        },
+        {
+          "from_field": "BUSINESS_UNIT",
+          "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EFFECTIVE_START_DATE",
+      "source_path": [
+        {
+          "from_field": "EFFECTIVE_START_DATE",
+          "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        },
+        {
+          "from_field": "EFFECTIVE_START_DATE",
+          "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_DATE",
+      "source_path": [
+        {
+          "from_field": "END_DATE",
+          "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        },
+        {
+          "from_field": "END_DATE",
+          "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AVG_TERM",
+      "source_path": [
+        {
+          "from_field": "AVG_TERM",
+          "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        },
+        {
+          "from_field": "AVG_TERM",
+          "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATE",
+          "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        },
+        {
+          "from_field": "CREATE_DATE",
+          "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATED_BY",
+      "source_path": [
+        {
+          "from_field": "UPDATED_BY",
+          "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        },
+        {
+          "from_field": "UPDATED_BY",
+          "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "UPDATE_DATE",
+          "from_instance": "SQ_EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        },
+        {
+          "from_field": "UPDATE_DATE",
+          "from_instance": "EL_DFR_GROSS_UNBILLED_AVG_TERM"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:32:56.728326+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

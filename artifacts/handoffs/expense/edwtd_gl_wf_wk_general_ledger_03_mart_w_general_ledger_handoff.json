@@ -1,0 +1,1963 @@
+{
+  "workflow_name": "wf_m_WK_GENERAL_LEDGER",
+  "mapping_name": "m_WK_GENERAL_LEDGER",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "W_GENERAL_LEDGER",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_wk_general_ledger_03_mart_w_general_ledger",
+  "source_tables": [
+    "ST_MF_GL_CODE_COMBINATIONS",
+    "ST_ED_COMPANY_SOURCE_MAP",
+    "N_FISCAL_MONTH"
+  ],
+  "sources": [
+    {
+      "name": "ST_MF_GL_CODE_COMBINATIONS",
+      "database_type": "Teradata",
+      "owner": "STGDB",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CODE_COMBINATION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CHART_OF_ACCOUNTS_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRESERVE_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SEGMENT1",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SEGMENT2",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SEGMENT3",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SEGMENT4",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SEGMENT5",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SEGMENT6",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "ST_ED_COMPANY_SOURCE_MAP",
+      "database_type": "Teradata",
+      "owner": "STGDB",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMPANY",
+          "datatype": "varchar",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "2",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SET_OF_BOOKS_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "varchar",
+          "precision": "4",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "START_FISCAL_PERIOD_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_FISCAL_PERIOD_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "N_FISCAL_MONTH",
+      "database_type": "Teradata",
+      "owner": "COMREFDB_DV1",
+      "fields": [
+        {
+          "name": "BK_FISCAL_MONTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_FISCAL_YEAR_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FISCAL_MONTH_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH_END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH_CLOSE_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FISCAL_MONTH_NAME",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_FISCAL_QUARTER_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_FISCAL_CALENDAR_CODE",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_CURRENT_FISCAL_MONTH_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FISCAL_MONTH_AGE",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_PREVIOUS_FSCL_MONTH_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FISCAL_YTM_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FISCAL_QTM_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_PREV_FISCAL_YEAR_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_PREVIOUS_FSCL_MONTH_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_PREV_YR_CURR_FSCL_MNTH_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_NUMBER_OF_FISCAL_WEEK_COUNT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_GENERAL_LEDGER",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "GL_TYPE_CODE",
+        "datatype": "char",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_COMPANY_CODE",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SET_OF_BOOKS_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_FUNCTIONAL_CURRENCY_CODE",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CODE_COMBINATION_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHART_OF_ACCOUNTS_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRESERVE_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SEGMENT1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SEGMENT2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SEGMENT3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SEGMENT4",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SEGMENT5",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SEGMENT6",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT    \r\n\tEXGCC.BATCH_ID                      \r\n\t,EXGCC.CODE_COMBINATION_ID           \r\n\t,EXGCC.GLOBAL_NAME                   \r\n\t,EXGCC.ACCOUNT_TYPE                  \r\n\t,EXGCC.CHART_OF_ACCOUNTS_ID          \r\n\t,EXGCC.ENABLED_FLAG                  \r\n\t,EXGCC.PRESERVE_FLAG                 \r\n\t,EXGCC.SEGMENT1                      \r\n\t,EXGCC.SEGMENT2                      \r\n\t,EXGCC.SEGMENT3                      \r\n\t,EXGCC.SEGMENT4                      \r\n\t,EXGCC.SEGMENT5                      \r\n\t,EXGCC.SEGMENT6                      \r\n\t,EXGCC.START_DATE_ACTIVE             \r\n\t,EXGCC.END_DATE_ACTIVE               \r\n\t,EXGCC.GES_UPDATE_DATE               \r\n\t,EXGCC.CREATE_DATETIME               \r\n\t,ACTION_CODE   \r\n\t,'RI' EXCEPTION_TYPE\r\nFROM \r\n\t(\r\n\tSELECT\r\n\t\tBATCH_ID                      \r\n\t\t,CODE_COMBINATION_ID           \r\n\t\t,GLOBAL_NAME                   \r\n\t\t,ACCOUNT_TYPE                  \r\n\t\t,CHART_OF_ACCOUNTS_ID          \r\n\t\t,ENABLED_FLAG                  \r\n\t\t,PRESERVE_FLAG                 \r\n\t\t,SEGMENT1                      \r\n\t\t,SEGMENT2                      \r\n\t\t,SEGMENT3                      \r\n\t\t,SEGMENT4                      \r\n\t\t,SEGMENT5                      \r\n\t\t,SEGMENT6                      \r\n\t\t,START_DATE_ACTIVE             \r\n\t\t,END_DATE_ACTIVE               \r\n\t\t,GES_UPDATE_DATE               \r\n\t\t,CREATE_DATETIME               \r\n\t\t,ACTION_CODE   \r\n\tFROM $$STGDB.ST_MF_GL_CODE_COMBINATIONS SMGCC     \r\n\tUNION\r\n        SELECT\r\n\t\tBATCH_ID                      \r\n\t\t,CODE_COMBINATION_ID           \r\n\t\t,GLOBAL_NAME                   \r\n\t\t,ACCOUNT_TYPE                  \r\n\t\t,CHART_OF_ACCOUNTS_ID          \r\n\t\t,ENABLED_FLAG                  \r\n\t\t,PRESERVE_FLAG                 \r\n\t\t,SEGMENT1                      \r\n\t\t,SEGMENT2                      \r\n\t\t,SEGMENT3                      \r\n\t\t,SEGMENT4                      \r\n\t\t,SEGMENT5                      \r\n\t\t,SEGMENT6                      \r\n\t\t,START_DATE_ACTIVE             \r\n\t\t,END_DATE_ACTIVE               \r\n\t\t,GES_UPDATE_DATE               \r\n\t\t,CREATE_DATETIME               \r\n\t\t,ACTION_CODE   \r\n\tFROM $$STGDB.ST_CG1_GL_CODE_COMBINATIONS SCGCC     \r\n\tUNION\r\n\tSELECT\r\n\t\tBATCH_ID                      \r\n\t\t,CODE_COMBINATION_ID           \r\n\t\t,GLOBAL_NAME                   \r\n\t\t,ACCOUNT_TYPE                  \r\n\t\t,CHART_OF_ACCOUNTS_ID          \r\n\t\t,ENABLED_FLAG                  \r\n\t\t,PRESERVE_FLAG                 \r\n\t\t,SEGMENT1                      \r\n\t\t,SEGMENT2                      \r\n\t\t,SEGMENT3                      \r\n\t\t,SEGMENT4                      \r\n\t\t,SEGMENT5                      \r\n\t\t,SEGMENT6                      \r\n\t\t,START_DATE_ACTIVE             \r\n\t\t,END_DATE_ACTIVE               \r\n\t\t,GES_UPDATE_DATE               \r\n\t\t,CREATE_DATETIME               \r\n\t\t,ACTION_CODE   \r\n\tFROM $$STGDB.ST_OM_GL_CODE_COMBINATIONS SOGCC\r\n\t) EXGCC\r\nWHERE (NOT EXISTS (SELECT 1 FROM $$FINLGLVWDB.N_SET_OF_BOOKS NSOB, $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC\r\n\t\t\t\t\tWHERE NSOB.BK_CHART_OF_ACCOUNTS_ID_INT = EXGCC.CHART_OF_ACCOUNTS_ID\r\n\t\t\t\t\tAND EXGCC.GLOBAL_NAME = NSSC.GLOBAL_NAME\r\n\t\t\t\t\tAND NSOB.SS_CODE = NSSC.SOURCE_SYSTEM_CODE)\r\n   OR NOT EXISTS (SELECT 1 FROM $$FINLGLVWDB.N_FINANCIAL_COMPANY_TV NFCT\r\n                   WHERE EXGCC.SEGMENT1 = NFCT.BK_COMPANY_CODE\r\n                   AND NFCT.END_TV_DATE='3500-01-01'))\r\n AND (SEGMENT1,GLOBAL_NAME, CHART_OF_ACCOUNTS_ID)\r\n  NOT IN\r\n\t(SELECT EDCSM.COMPANY, NSSC.GLOBAL_NAME, NSOB.BK_CHART_OF_ACCOUNTS_ID_INT\r\n\t FROM $$STGDB.ST_ED_COMPANY_SOURCE_MAP EDCSM, \r\n\t$$FINLGLVWDB.N_SET_OF_BOOKS NSOB,\r\n\t$$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC\r\n\tWHERE EDCSM.GLOBAL_NAME = NSSC.GLOBAL_NAME  \r\n\tAND NSOB.SK_SET_OF_BOOKS_ID_INT = EDCSM.SET_OF_BOOKS_ID\r\n\tAND NSOB.SS_CODE = NSSC.SOURCE_SYSTEM_CODE \r\n\tUNION ALL\r\n\tSELECT NGL.BK_COMPANY_CODE, NSSC.GLOBAL_NAME, NSOB.BK_CHART_OF_ACCOUNTS_ID_INT FROM $$FINLGLVWDB.N_GENERAL_LEDGER NGL,\r\n\t$$FINLGLVWDB.N_SET_OF_BOOKS NSOB,\r\n\t$$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC\r\n\tWHERE NGL.SET_OF_BOOKS_KEY = NSOB.SET_OF_BOOKS_KEY\r\n\tAND NSOB.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\n\tAND GL_TYPE_CODE IN ('CONSOL ONLY','OPERATING')\r\n\t)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "GL_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_COMPANY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SET_OF_BOOKS_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FUNCTIONAL_CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n                (CASE WHEN NSOB.SK_SET_OF_BOOKS_ID_INT = 5 THEN 'CONSOL ONLY' ELSE 'OPERATING' END) GL_TYPE_CODE, \r\n                EDCSM.COMPANY BK_COMPANY_CODE,\r\n                (CASE WHEN (CAST(SUBSTR(EDCSM.START_FISCAL_PERIOD_ID,1,4) AS INTEGER)) = NFM.BK_FISCAL_YEAR_NUMBER_INT\r\n                AND (CAST(SUBSTR(EDCSM.START_FISCAL_PERIOD_ID,5,2) AS INTEGER)) = NFM.BK_FISCAL_MONTH_NUMBER_INT\r\n                THEN NFM.FISCAL_MONTH_START_DATE ELSE CURRENT_DATE END) START_TV_DATE,\r\n                (CASE WHEN (CAST(SUBSTR(EDCSM.END_FISCAL_PERIOD_ID,1,4) AS INTEGER)) = NFM1.BK_FISCAL_YEAR_NUMBER_INT\r\n                AND (CAST(SUBSTR(EDCSM.END_FISCAL_PERIOD_ID,5,2) AS INTEGER)) = NFM1.BK_FISCAL_MONTH_NUMBER_INT\r\n                THEN NFM1.FISCAL_MONTH_END_DATE ELSE CAST('3500-01-01' AS DATE) END) END_TV_DATE,\r\n                NSOB.SET_OF_BOOKS_KEY as SET_OF_BOOKS_KEY, \r\n                EDCSM.CURRENCY_CODE BK_FUNCTIONAL_CURRENCY_CODE,\r\n                ACTION_CODE\r\nFROM \r\n                $$STGDB.ST_ED_COMPANY_SOURCE_MAP EDCSM\r\n                INNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC\r\n                                ON EDCSM.GLOBAL_NAME = NSSC.GLOBAL_NAME        \r\n                INNER JOIN         $$COMREFVWDB.N_FISCAL_MONTH NFM\r\n                                ON   (CAST(SUBSTR(EDCSM.START_FISCAL_PERIOD_ID,1,4) AS INTEGER)) = NFM.BK_FISCAL_YEAR_NUMBER_INT\r\n                                AND  (CAST(SUBSTR(EDCSM.START_FISCAL_PERIOD_ID,5,2) AS INTEGER)) = NFM.BK_FISCAL_MONTH_NUMBER_INT\r\n                LEFT JOIN $$COMREFVWDB.N_FISCAL_MONTH NFM1\r\n                                ON   (CAST(SUBSTR(EDCSM.END_FISCAL_PERIOD_ID,1,4) AS INTEGER)) = NFM1.BK_FISCAL_YEAR_NUMBER_INT\r\n                                AND  (CAST(SUBSTR(EDCSM.END_FISCAL_PERIOD_ID,5,2) AS INTEGER)) = NFM1.BK_FISCAL_MONTH_NUMBER_INT\r\n                INNER JOIN $$FINLGLVWDB.N_ISO_CURRENCY_TV NICTV\r\n                                ON    NICTV.BK_ISO_CURRENCY_CODE = EDCSM.CURRENCY_CODE\r\n                                AND       NICTV.END_TV_DATE = 16000101\r\n                INNER JOIN $$FINLGLVWDB.N_FINANCIAL_COMPANY_TV NFCTV\r\n                                ON   NFCTV.BK_COMPANY_CODE = EDCSM.COMPANY\r\n                                AND       NFCTV.END_TV_DATE=16000101\r\n                INNER JOIN $$FINLGLVWDB.N_SET_OF_BOOKS NSOB\r\n                                ON NSOB.SK_SET_OF_BOOKS_ID_INT = EDCSM.SET_OF_BOOKS_ID\r\n                                AND NSOB.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\nUNION ALL\r\nSELECT \r\n                (CASE WHEN NSOB.SK_SET_OF_BOOKS_ID_INT = 5 THEN 'CONSOL ONLY' ELSE 'OPERATING' END) GL_TYPE_CODE, \r\n                EECSM.COMPANY BK_COMPANY_CODE,\r\n                (CASE WHEN (CAST(SUBSTR(EECSM.START_FISCAL_PERIOD_ID,1,4) AS INTEGER)) = NFM.BK_FISCAL_YEAR_NUMBER_INT\r\n                AND (CAST(SUBSTR(EECSM.START_FISCAL_PERIOD_ID,5,2) AS INTEGER)) = NFM.BK_FISCAL_MONTH_NUMBER_INT\r\n                THEN NFM.FISCAL_MONTH_START_DATE ELSE CURRENT_DATE END) START_TV_DATE,\r\n                (CASE WHEN (CAST(SUBSTR(EECSM.END_FISCAL_PERIOD_ID,1,4) AS INTEGER)) = NFM1.BK_FISCAL_YEAR_NUMBER_INT\r\n                AND (CAST(SUBSTR(EECSM.END_FISCAL_PERIOD_ID,5,2) AS INTEGER)) = NFM1.BK_FISCAL_MONTH_NUMBER_INT\r\n                THEN NFM1.FISCAL_MONTH_END_DATE ELSE CAST('3500-01-01' AS DATE) END) END_TV_DATE,\r\n                NSOB.SET_OF_BOOKS_KEY as  SET_OF_BOOKS_KEY, \r\n                EECSM.CURRENCY_CODE BK_FUNCTIONAL_CURRENCY_CODE,\r\n                ACTION_CODE\r\nFROM \r\n                $$EXCEPDB.EX_ED_COMPANY_SOURCE_MAP EECSM \r\n                INNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC\r\n                                ON EECSM.GLOBAL_NAME = NSSC.GLOBAL_NAME        \r\n                INNER JOIN         $$COMREFVWDB.N_FISCAL_MONTH NFM\r\n                                ON   (CAST(SUBSTR(EECSM.START_FISCAL_PERIOD_ID,1,4) AS INTEGER)) = NFM.BK_FISCAL_YEAR_NUMBER_INT\r\n                                AND  (CAST(SUBSTR(EECSM.START_FISCAL_PERIOD_ID,5,2) AS INTEGER)) = NFM.BK_FISCAL_MONTH_NUMBER_INT\r\n                LEFT JOIN $$COMREFVWDB.N_FISCAL_MONTH NFM1\r\n                                ON   (CAST(SUBSTR(EECSM.END_FISCAL_PERIOD_ID,1,4) AS INTEGER)) = NFM1.BK_FISCAL_YEAR_NUMBER_INT\r\n                                AND  (CAST(SUBSTR(EECSM.END_FISCAL_PERIOD_ID,5,2) AS INTEGER)) = NFM1.BK_FISCAL_MONTH_NUMBER_INT\r\n                INNER JOIN $$FINLGLVWDB.N_ISO_CURRENCY_TV NICTV\r\n                                ON    NICTV.BK_ISO_CURRENCY_CODE = EECSM.CURRENCY_CODE\r\n                                AND       NICTV.END_TV_DATE = 16000101\r\n                INNER JOIN $$FINLGLVWDB.N_FINANCIAL_COMPANY_TV NFCTV\r\n                                ON   NFCTV.BK_COMPANY_CODE = EECSM.COMPANY\r\n                                AND       NFCTV.END_TV_DATE=16000101\r\n                INNER JOIN $$FINLGLVWDB.N_SET_OF_BOOKS NSOB\r\n                                ON NSOB.SK_SET_OF_BOOKS_ID_INT = EECSM.SET_OF_BOOKS_ID\r\n                                AND NSOB.SS_CODE = NSSC.SOURCE_SYSTEM_CODE",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "GL_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GL_TYPE_CODE"
+        },
+        {
+          "name": "BK_COMPANY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_COMPANY_CODE"
+        },
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_TV_DATE"
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_TV_DATE"
+        },
+        {
+          "name": "SET_OF_BOOKS_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SET_OF_BOOKS_KEY"
+        },
+        {
+          "name": "BK_FUNCTIONAL_CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_FUNCTIONAL_CURRENCY_CODE"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RANK_INDEX"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMPANY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SET_OF_BOOKS_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_FISCAL_PERIOD_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_FISCAL_PERIOD_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nSECSM.BATCH_ID,\r\nSECSM.COMPANY,\r\nSECSM.GLOBAL_NAME,\r\nSECSM.SET_OF_BOOKS_ID,\r\nSECSM.CURRENCY_CODE,\r\nSECSM.START_FISCAL_PERIOD_ID,\r\nSECSM.END_FISCAL_PERIOD_ID,\r\nSECSM.CREATE_DATETIME,\r\nSECSM.ACTION_CODE\r\nFROM\r\n\t$$STGDB.ST_ED_COMPANY_SOURCE_MAP SECSM\r\nWHERE   (\r\n\t    ((CAST(SUBSTR(SECSM.START_FISCAL_PERIOD_ID,1,4) AS INTEGER)),\r\n\t\t(CAST(SUBSTR(SECSM.START_FISCAL_PERIOD_ID,5,2) AS INTEGER)))\r\n            NOT IN (SELECT NFM.BK_FISCAL_YEAR_NUMBER_INT,NFM.BK_FISCAL_MONTH_NUMBER_INT \r\n\t\t\tFROM $$COMREFVWDB.N_FISCAL_MONTH NFM)\r\n\tOR\r\n\t\tNOT EXISTS (SELECT 1 FROM $$FINLGLVWDB.N_ISO_CURRENCY_TV NICTV\r\n\t\t \t\tWHERE NICTV.BK_ISO_CURRENCY_CODE = SECSM.CURRENCY_CODE\r\n\t\t   \t  \t  AND NICTV.END_TV_DATE = 16000101)\r\n\tOR\r\n\t\tNOT EXISTS (SELECT 1 FROM $$FINLGLVWDB.N_FINANCIAL_COMPANY_TV NFCTV\r\n\t\t\t\tWHERE\tNFCTV.BK_COMPANY_CODE = SECSM.COMPANY\r\n\t\t   \t\t  AND\tNFCTV.END_TV_DATE=16000101)\r\n \tOR\r\n\t\tNOT EXISTS (SELECT 1 FROM $$FINLGLVWDB.N_SET_OF_BOOKS NSOB, $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC\r\n                    WHERE NSOB.SK_SET_OF_BOOKS_ID_INT = SECSM.SET_OF_BOOKS_ID\r\n                    AND NSSC.GLOBAL_NAME = SECSM.GLOBAL_NAME\r\n                    AND NSOB.SS_CODE = NSSC.SOURCE_SYSTEM_CODE)\r\n\t)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "GL_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_COMPANY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SET_OF_BOOKS_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FUNCTIONAL_CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nTVOUTPUT.GL_TYPE_CODE\r\n,TVOUTPUT.BK_COMPANY_CODE\r\n,TVOUTPUT.START_TV_DATE AS START_TV_DATE\r\n, COALESCE (MAX(TVOUTPUT.START_TV_DATE - INTERVAL '1' DAY)\r\n\tOVER (PARTITION BY TVOUTPUT.BK_COMPANY_CODE\r\n\t\t\t\t\t   , TVOUTPUT.SET_OF_BOOKS_KEY\r\n\t\tORDER BY TVOUTPUT.START_TV_DATE ASC\r\n\t\tROWS BETWEEN 1 FOLLOWING AND 1 FOLLOWING)\r\n\t, DATE '3500-01-01') AS END_TV_DATE\r\n, TVOUTPUT.SET_OF_BOOKS_KEY\r\n, TVOUTPUT.BK_FUNCTIONAL_CURRENCY_CODE\r\n, TVOUTPUT.ACTION_CODE\r\n, ROW_NUMBER() OVER (PARTITION BY TVOUTPUT.BK_COMPANY_CODE\r\n\t\t\t\t\t\t\t\t\t  , TVOUTPUT.SET_OF_BOOKS_KEY\r\n\t\t\tORDER BY TVOUTPUT.START_TV_DATE ASC) AS RANK_INDEX\r\n, (CASE WHEN RANK_INDEX = 1 AND NGTT.BK_COMPANY_CODE IS NOT NULL\r\n\tTHEN 'U' \r\n\tELSE 'I' END) AS DML_TYPE\r\nFROM \r\n(\r\nSELECT\t\r\n\t\tBATCH_ID,\r\n\t\tGL_TYPE_CODE,\r\n\t\tBK_COMPANY_CODE,\r\n                START_TV_DATE,\r\n                SET_OF_BOOKS_KEY,\r\n\t\tBK_FUNCTIONAL_CURRENCY_CODE,\r\n\t\tEDW_CREATE_DATETIME,\r\n\t\tACTION_CODE,\r\n\t\tEXCEPTION_TYPE,\r\n\t\tROW_NUMBER () OVER (PARTITION BY BK_COMPANY_CODE, SET_OF_BOOKS_KEY,BK_FUNCTIONAL_CURRENCY_CODE\r\n\t\tORDER\tBY EDW_CREATE_DATETIME DESC) AS ROW_NUM\r\n\tFROM (\r\n\t\tSELECT    \r\n\t\tGLC.BATCH_ID,\r\n\t\t(CASE WHEN NSOB.SK_SET_OF_BOOKS_ID_INT = 5 THEN 'CONSOL' ELSE 'UNKNOWN' END) GL_TYPE_CODE,\r\n\t\tNFCT.BK_COMPANY_CODE BK_COMPANY_CODE,\r\n\t\tCAST(GLC.EDW_CREATE_DATETIME AS DATE) START_TV_DATE,\r\n\t\tNSOB.SET_OF_BOOKS_KEY,\r\n\t\tNSOB.FUNCTIONAL_CURRENCY_CODE AS  BK_FUNCTIONAL_CURRENCY_CODE,\r\n\t\tGLC.EDW_CREATE_DATETIME,\r\n\t\tGLC.ACTION_CODE,\r\n\t\tGLC.EXCEPTION_TYPE\r\n\t\tFROM \r\n\t\t\t   (\r\n\t\t\t\tSELECT\r\n\t\t\t\t\tSMGCC.BATCH_ID,\r\n\t\t\t\t\tSMGCC.GLOBAL_NAME,          \r\n\t\t\t\t\tSMGCC.SEGMENT1,                  \r\n\t\t\t\t\tSMGCC.CHART_OF_ACCOUNTS_ID,\r\n\t\t\t\t\tSMGCC.CREATE_DATETIME AS EDW_CREATE_DATETIME, \r\n\t\t\t\t\tSMGCC.ACTION_CODE,\r\n\t\t\t\t\t'NE' AS EXCEPTION_TYPE\r\n\t\t\t\tFROM $$STGDB.ST_MF_GL_CODE_COMBINATIONS SMGCC     \r\n\t\t\t\tUNION \r\n\t\t\t\tSELECT\r\n\t\t\t\t\tSOGCC.BATCH_ID,\r\n\t\t\t\t\tSOGCC.GLOBAL_NAME,          \r\n\t\t\t\t\tSOGCC.SEGMENT1,                  \r\n\t\t\t\t\tSOGCC.CHART_OF_ACCOUNTS_ID,\r\n\t\t\t\t\tSOGCC.CREATE_DATETIME AS  EDW_CREATE_DATETIME,  \r\n\t\t\t\t\tSOGCC.ACTION_CODE,\r\n\t\t\t\t\t'NE' AS EXCEPTION_TYPE\r\n\t\t\t\tFROM $$STGDB.ST_OM_GL_CODE_COMBINATIONS SOGCC\r\n\t\t\t\tUNION\r\n                                SELECT\r\n\t\t\t\t\tSCGCC.BATCH_ID,\r\n\t\t\t\t\tSCGCC.GLOBAL_NAME,          \r\n\t\t\t\t\tSCGCC.SEGMENT1,                  \r\n\t\t\t\t\tSCGCC.CHART_OF_ACCOUNTS_ID,\r\n\t\t\t\t\tSCGCC.CREATE_DATETIME AS EDW_CREATE_DATETIME, \r\n\t\t\t\t\tSCGCC.ACTION_CODE,\r\n\t\t\t\t\t'NE' AS EXCEPTION_TYPE\r\n\t\t\t\tFROM $$STGDB.ST_CG1_GL_CODE_COMBINATIONS SCGCC   \r\n                                UNION \r\n\t\t\t\tSELECT\r\n\t\t\t\t\tEXGCC.BATCH_ID,\r\n\t\t\t\t\tEXGCC.GLOBAL_NAME,          \r\n\t\t\t\t\tEXGCC.SEGMENT1,                  \r\n\t\t\t\t\tEXGCC.CHART_OF_ACCOUNTS_ID,\r\n\t\t\t\t\tEXGCC.CREATE_DATETIME  AS  EDW_CREATE_DATETIME, \r\n\t\t                        EXGCC.ACTION_CODE,\r\n\t\t\t\t\tEXGCC.EXCEPTION_TYPE\r\n\t\t\t\tFROM $$EXCEPDB.EX_GL_CODE_COMBINATIONS EXGCC\r\n\t\t\t\t) GLC\r\n\t\t\t\tINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC\r\n\t\t\t\t\tON GLC.GLOBAL_NAME = NSSC.GLOBAL_NAME\r\n\t\t\t\tINNER JOIN $$FINLGLVWDB.N_FINANCIAL_COMPANY_TV NFCT\r\n\t\t\t\t\tON GLC.SEGMENT1 = NFCT.BK_COMPANY_CODE\r\n\t\t\t\t\tAND NFCT.END_TV_DATE='3500-01-01'\r\n\t\t\t\tINNER JOIN $$FINLGLVWDB.N_SET_OF_BOOKS NSOB\r\n\t\t\t\t\tON NSOB.BK_CHART_OF_ACCOUNTS_ID_INT = GLC.CHART_OF_ACCOUNTS_ID\r\n\t\t\t\t\tAND NSOB.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\n\t\t\t\tWHERE (BK_COMPANY_CODE,SET_OF_BOOKS_KEY) \r\n\t\t\t\t  NOT IN\r\n\t\t\t\t\t\t(\r\n\t\t\t\t\t\tSELECT BK_COMPANY_CODE, SET_OF_BOOKS_KEY FROM $$WORKDB.W_GENERAL_LEDGER where END_TV_DATE = '3500-01-01' \r\n\t\t\t\t\t\tUNION ALL\r\n\t\t\t\t\t\tSELECT BK_COMPANY_CODE, SET_OF_BOOKS_KEY FROM $$FINLGLVWDB.N_GENERAL_LEDGER\r\n\t\t\t\t\t\tWHERE GL_TYPE_CODE IN ('CONSOL ONLY','OPERATING')\r\n\t\t\t\t\t\t)\t\t\r\n\t\tUNION ALL\r\n\t\tSELECT \r\n\t\t-999 BATCH_ID, \r\n\t\tNGT.GL_TYPE_CODE,\r\n\t\tNGT.BK_COMPANY_CODE,\r\n\t\tNGT.START_TV_DATE,\r\n\t\tNGT.SET_OF_BOOKS_KEY,\r\n\t\tNGT.BK_FUNCTIONAL_CURRENCY_CODE,\r\n\t\tNGT.EDW_CREATE_DATETIME,\r\n\t\t'X' ACTION_CODE,\r\n\t\t'NE' EXCEPTION_TYPE\r\n\t\tFROM $$FINLGLVWDB.N_GENERAL_LEDGER_TV NGT \r\n\t\tWHERE  GL_TYPE_CODE IN ('CONSOL','UNKNOWN')\r\n\t\t           AND END_TV_DATE ='3500-01-01'\r\n\t\t         AND (BK_COMPANY_CODE,SET_OF_BOOKS_KEY )\r\n\t\t         IN ( SELECT GLCI.SEGMENT1,NSOB.SET_OF_BOOKS_KEY \r\n\t\t                    FROM ( \t\r\n\t\t                   \t\t\t\t SELECT\r\n\t\t\t\t\t\t\t\t\t\tSMGCC.GLOBAL_NAME,          \r\n\t\t\t\t\t\t\t\t\t\tSMGCC.SEGMENT1,                  \r\n\t\t\t\t\t\t\t\t\t\tSMGCC.CHART_OF_ACCOUNTS_ID\r\n\t\t\t\t\t\t\t\t\tFROM  $$STGDB.ST_MF_GL_CODE_COMBINATIONS SMGCC     \r\n\t\t\t\t\t\t\t\t\tUNION \r\n\t\t\t\t\t\t\t\t\tSELECT\r\n\t\t\t\t\t\t\t\t\t\tSOGCC.GLOBAL_NAME,          \r\n\t\t\t\t\t\t\t\t\t\tSOGCC.SEGMENT1,                  \r\n\t\t\t\t\t\t\t\t\t\tSOGCC.CHART_OF_ACCOUNTS_ID\r\n\t\t\t\t\t\t\t\t\tFROM $$STGDB.ST_OM_GL_CODE_COMBINATIONS SOGCC\r\n                                                                        \r\n\t\t\t\t\t\t\t\t\tUNION\r\n                                                                        SELECT\r\n\t\t\t\t\t\t\t\t\t\tSCGCC.GLOBAL_NAME,          \r\n\t\t\t\t\t\t\t\t\t\tSCGCC.SEGMENT1,                  \r\n\t\t\t\t\t\t\t\t\t\tSCGCC.CHART_OF_ACCOUNTS_ID\r\n\t\t\t\t\t\t\t\t\tFROM  $$STGDB.ST_CG1_GL_CODE_COMBINATIONS SCGCC     \r\n\t\t\t\t\t\t\t\t\tUNION  \r\n\t\t\t\t\t\t\t\t\tSELECT\r\n\t\t\t\t\t\t\t\t\t\tEXGCC.GLOBAL_NAME,          \r\n\t\t\t\t\t\t\t\t\t\tEXGCC.SEGMENT1,                  \r\n\t\t\t\t\t\t\t\t\t\tEXGCC.CHART_OF_ACCOUNTS_ID\r\n\t\t\t\t\t\t\t\t\tFROM $$EXCEPDB.EX_GL_CODE_COMBINATIONS EXGCC WHERE EXCEPTION_TYPE = 'RI'\r\n\t\t\t\t\t\t\t\t\t)GLCI\r\n\t\t\t\t\t\t\t  \tINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC\r\n\t\t\t\t\t\t\t\t\tON GLCI.GLOBAL_NAME = NSSC.GLOBAL_NAME\r\n\t\t\t\t\t\t\t\tINNER JOIN $$FINLGLVWDB.N_SET_OF_BOOKS NSOB\r\n\t\t\t\t\t\t\t\t\tON NSOB.BK_CHART_OF_ACCOUNTS_ID_INT = GLCI.CHART_OF_ACCOUNTS_ID\r\n\t\t\t\t\t\t\t\t\tAND NSOB.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\n\t               )\r\n\t)TVINPUT\r\n\tQUALIFY ROW_NUMBER() OVER (PARTITION BY TVINPUT.BK_COMPANY_CODE, TVINPUT.SET_OF_BOOKS_KEY\r\n\t\t\t\t\t\t\t\t\t\t\t\t, TVINPUT.START_TV_DATE\r\n\t\t\t\t\t\t\t\t\tORDER BY TVINPUT.EDW_CREATE_DATETIME DESC) =1\r\n)TVOUTPUT\r\nLEFT JOIN $$FINLGLVWDB.N_GENERAL_LEDGER_TV NGTT \r\n\t ON   NGTT.GL_TYPE_CODE IN ('CONSOL','UNKNOWN')  \r\n\t AND  TVOUTPUT.BK_COMPANY_CODE = NGTT.BK_COMPANY_CODE\r\n\tAND  TVOUTPUT.SET_OF_BOOKS_KEY  = NGTT.SET_OF_BOOKS_KEY\r\n\tAND NGTT.END_TV_DATE = CAST('3500-01-01' AS DATE)\r\nWHERE TVOUTPUT.ROW_NUM = 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_W_GENERAL_LEDGER",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "GL_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GL_TYPE_CODE"
+        },
+        {
+          "name": "BK_COMPANY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_COMPANY_CODE"
+        },
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_TV_DATE"
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_TV_DATE"
+        },
+        {
+          "name": "SET_OF_BOOKS_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SET_OF_BOOKS_KEY"
+        },
+        {
+          "name": "BK_FUNCTIONAL_CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_FUNCTIONAL_CURRENCY_CODE"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BATCH_ID"
+        },
+        {
+          "name": "COMPANY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "COMPANY"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GLOBAL_NAME"
+        },
+        {
+          "name": "SET_OF_BOOKS_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SET_OF_BOOKS_ID"
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CURRENCY_CODE"
+        },
+        {
+          "name": "START_FISCAL_PERIOD_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_FISCAL_PERIOD_ID"
+        },
+        {
+          "name": "END_FISCAL_PERIOD_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_FISCAL_PERIOD_ID"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATE_DATETIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'RI'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "GL_TYPE_CODE",
+      "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "GL_TYPE_CODE",
+      "to_instance": "W_GENERAL_LEDGER_GLCC"
+    },
+    {
+      "from_field": "BK_COMPANY_CODE",
+      "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "BK_COMPANY_CODE",
+      "to_instance": "W_GENERAL_LEDGER_GLCC"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "START_TV_DATE",
+      "to_instance": "W_GENERAL_LEDGER_GLCC"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "END_TV_DATE",
+      "to_instance": "W_GENERAL_LEDGER_GLCC"
+    },
+    {
+      "from_field": "SET_OF_BOOKS_KEY",
+      "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "SET_OF_BOOKS_KEY",
+      "to_instance": "W_GENERAL_LEDGER_GLCC"
+    },
+    {
+      "from_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+      "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+      "to_instance": "W_GENERAL_LEDGER_GLCC"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_GENERAL_LEDGER_GLCC"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_GENERAL_LEDGER_GLCC"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_ED_COMPANY_SOURCE_MAP"
+    },
+    {
+      "from_field": "COMPANY",
+      "from_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI",
+      "to_field": "COMPANY",
+      "to_instance": "EX_ED_COMPANY_SOURCE_MAP"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EX_ED_COMPANY_SOURCE_MAP"
+    },
+    {
+      "from_field": "SET_OF_BOOKS_ID",
+      "from_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI",
+      "to_field": "SET_OF_BOOKS_ID",
+      "to_instance": "EX_ED_COMPANY_SOURCE_MAP"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "EX_ED_COMPANY_SOURCE_MAP"
+    },
+    {
+      "from_field": "START_FISCAL_PERIOD_ID",
+      "from_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI",
+      "to_field": "START_FISCAL_PERIOD_ID",
+      "to_instance": "EX_ED_COMPANY_SOURCE_MAP"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "EX_ED_COMPANY_SOURCE_MAP"
+    },
+    {
+      "from_field": "END_FISCAL_PERIOD_ID",
+      "from_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI",
+      "to_field": "END_FISCAL_PERIOD_ID",
+      "to_instance": "EX_ED_COMPANY_SOURCE_MAP"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_ED_COMPANY_SOURCE_MAP"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EX_ED_COMPANY_SOURCE_MAP"
+    },
+    {
+      "from_field": "GL_TYPE_CODE",
+      "from_instance": "Exp_W_GENERAL_LEDGER",
+      "to_field": "GL_TYPE_CODE",
+      "to_instance": "W_GENERAL_LEDGER_EDCSM"
+    },
+    {
+      "from_field": "BK_COMPANY_CODE",
+      "from_instance": "Exp_W_GENERAL_LEDGER",
+      "to_field": "BK_COMPANY_CODE",
+      "to_instance": "W_GENERAL_LEDGER_EDCSM"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "Exp_W_GENERAL_LEDGER",
+      "to_field": "START_TV_DATE",
+      "to_instance": "W_GENERAL_LEDGER_EDCSM"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "Exp_W_GENERAL_LEDGER",
+      "to_field": "END_TV_DATE",
+      "to_instance": "W_GENERAL_LEDGER_EDCSM"
+    },
+    {
+      "from_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+      "from_instance": "Exp_W_GENERAL_LEDGER",
+      "to_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+      "to_instance": "W_GENERAL_LEDGER_EDCSM"
+    },
+    {
+      "from_field": "SET_OF_BOOKS_KEY",
+      "from_instance": "Exp_W_GENERAL_LEDGER",
+      "to_field": "SET_OF_BOOKS_KEY",
+      "to_instance": "W_GENERAL_LEDGER_EDCSM"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "CODE_COMBINATION_ID",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "CODE_COMBINATION_ID",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "ACCOUNT_TYPE",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "CHART_OF_ACCOUNTS_ID",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "CHART_OF_ACCOUNTS_ID",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "PRESERVE_FLAG",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "PRESERVE_FLAG",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "SEGMENT1",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "SEGMENT1",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "SEGMENT2",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "SEGMENT2",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "SEGMENT3",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "SEGMENT3",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "SEGMENT4",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "SEGMENT4",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "SEGMENT5",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "SEGMENT5",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "SEGMENT6",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "SEGMENT6",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "START_DATE_ACTIVE",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "END_DATE_ACTIVE",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "EX_GL_CODE_COMBINATIONS"
+    },
+    {
+      "from_field": "SEGMENT3",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "SEGMENT3",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "SEGMENT4",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "SEGMENT4",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "SEGMENT5",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "SEGMENT5",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "SEGMENT6",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "SEGMENT6",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "START_DATE_ACTIVE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "END_DATE_ACTIVE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "CODE_COMBINATION_ID",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "CODE_COMBINATION_ID",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "ACCOUNT_TYPE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "CHART_OF_ACCOUNTS_ID",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "CHART_OF_ACCOUNTS_ID",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "PRESERVE_FLAG",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "PRESERVE_FLAG",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "SEGMENT1",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "SEGMENT1",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "SEGMENT2",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS",
+      "to_field": "SEGMENT2",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+    },
+    {
+      "from_field": "FISCAL_MONTH_START_DATE",
+      "from_instance": "N_FISCAL_MONTH",
+      "to_field": "START_TV_DATE",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+    },
+    {
+      "from_field": "FISCAL_MONTH_END_DATE",
+      "from_instance": "N_FISCAL_MONTH",
+      "to_field": "END_TV_DATE",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+    },
+    {
+      "from_field": "GL_TYPE_CODE",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work",
+      "to_field": "GL_TYPE_CODE",
+      "to_instance": "Exp_W_GENERAL_LEDGER"
+    },
+    {
+      "from_field": "BK_COMPANY_CODE",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work",
+      "to_field": "BK_COMPANY_CODE",
+      "to_instance": "Exp_W_GENERAL_LEDGER"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work",
+      "to_field": "START_TV_DATE",
+      "to_instance": "Exp_W_GENERAL_LEDGER"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work",
+      "to_field": "END_TV_DATE",
+      "to_instance": "Exp_W_GENERAL_LEDGER"
+    },
+    {
+      "from_field": "SET_OF_BOOKS_KEY",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work",
+      "to_field": "SET_OF_BOOKS_KEY",
+      "to_instance": "Exp_W_GENERAL_LEDGER"
+    },
+    {
+      "from_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work",
+      "to_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+      "to_instance": "Exp_W_GENERAL_LEDGER"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_W_GENERAL_LEDGER"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Work",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Work",
+      "to_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+    },
+    {
+      "from_field": "COMPANY",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Work",
+      "to_field": "GL_TYPE_CODE",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+    },
+    {
+      "from_field": "SET_OF_BOOKS_ID",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Work",
+      "to_field": "SET_OF_BOOKS_KEY",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+    },
+    {
+      "from_field": "COMPANY",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Work",
+      "to_field": "BK_COMPANY_CODE",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+    },
+    {
+      "from_field": "GL_TYPE_CODE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "GL_TYPE_CODE",
+      "to_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "BK_COMPANY_CODE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "BK_COMPANY_CODE",
+      "to_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "START_TV_DATE",
+      "to_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "END_TV_DATE",
+      "to_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "SET_OF_BOOKS_KEY",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "SET_OF_BOOKS_KEY",
+      "to_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+      "to_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "RANK_INDEX",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "RANK_INDEX",
+      "to_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work",
+      "to_field": "DML_TYPE",
+      "to_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "SET_OF_BOOKS_ID",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "SET_OF_BOOKS_ID",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception"
+    },
+    {
+      "from_field": "START_FISCAL_PERIOD_ID",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "START_FISCAL_PERIOD_ID",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception"
+    },
+    {
+      "from_field": "END_FISCAL_PERIOD_ID",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "END_FISCAL_PERIOD_ID",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception"
+    },
+    {
+      "from_field": "COMPANY",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "COMPANY",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI"
+    },
+    {
+      "from_field": "START_FISCAL_PERIOD_ID",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "START_FISCAL_PERIOD_ID",
+      "to_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI"
+    },
+    {
+      "from_field": "END_FISCAL_PERIOD_ID",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "END_FISCAL_PERIOD_ID",
+      "to_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "BATCH_ID",
+      "to_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI"
+    },
+    {
+      "from_field": "COMPANY",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "COMPANY",
+      "to_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI"
+    },
+    {
+      "from_field": "SET_OF_BOOKS_ID",
+      "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception",
+      "to_field": "SET_OF_BOOKS_ID",
+      "to_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI"
+    },
+    {
+      "from_field": "SEGMENT1",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS1",
+      "to_field": "GL_TYPE_CODE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "SEGMENT2",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS1",
+      "to_field": "BK_COMPANY_CODE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS1",
+      "to_field": "START_TV_DATE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS1",
+      "to_field": "END_TV_DATE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "CHART_OF_ACCOUNTS_ID",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS1",
+      "to_field": "SET_OF_BOOKS_KEY",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "CHART_OF_ACCOUNTS_ID",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS1",
+      "to_field": "RANK_INDEX",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS1",
+      "to_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "ST_MF_GL_CODE_COMBINATIONS1",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "GL_TYPE_CODE",
+      "source_path": [
+        {
+          "from_field": "GL_TYPE_CODE",
+          "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "GL_TYPE_CODE",
+          "from_instance": "Exp_W_GENERAL_LEDGER"
+        },
+        {
+          "from_field": "GL_TYPE_CODE",
+          "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+        },
+        {
+          "from_field": "COMPANY",
+          "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Work"
+        },
+        {
+          "from_field": "GL_TYPE_CODE",
+          "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "SEGMENT1",
+          "from_instance": "ST_MF_GL_CODE_COMBINATIONS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_COMPANY_CODE",
+      "source_path": [
+        {
+          "from_field": "BK_COMPANY_CODE",
+          "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "BK_COMPANY_CODE",
+          "from_instance": "Exp_W_GENERAL_LEDGER"
+        },
+        {
+          "from_field": "BK_COMPANY_CODE",
+          "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+        },
+        {
+          "from_field": "COMPANY",
+          "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Work"
+        },
+        {
+          "from_field": "BK_COMPANY_CODE",
+          "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "SEGMENT2",
+          "from_instance": "ST_MF_GL_CODE_COMBINATIONS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "Exp_W_GENERAL_LEDGER"
+        },
+        {
+          "from_field": "FISCAL_MONTH_START_DATE",
+          "from_instance": "N_FISCAL_MONTH"
+        },
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+        },
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "START_DATE_ACTIVE",
+          "from_instance": "ST_MF_GL_CODE_COMBINATIONS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "Exp_W_GENERAL_LEDGER"
+        },
+        {
+          "from_field": "FISCAL_MONTH_END_DATE",
+          "from_instance": "N_FISCAL_MONTH"
+        },
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+        },
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "END_DATE_ACTIVE",
+          "from_instance": "ST_MF_GL_CODE_COMBINATIONS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SET_OF_BOOKS_KEY",
+      "source_path": [
+        {
+          "from_field": "SET_OF_BOOKS_KEY",
+          "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "SET_OF_BOOKS_KEY",
+          "from_instance": "Exp_W_GENERAL_LEDGER"
+        },
+        {
+          "from_field": "SET_OF_BOOKS_KEY",
+          "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+        },
+        {
+          "from_field": "SET_OF_BOOKS_ID",
+          "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Work"
+        },
+        {
+          "from_field": "SET_OF_BOOKS_KEY",
+          "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "CHART_OF_ACCOUNTS_ID",
+          "from_instance": "ST_MF_GL_CODE_COMBINATIONS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_FUNCTIONAL_CURRENCY_CODE",
+      "source_path": [
+        {
+          "from_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+          "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+          "from_instance": "Exp_W_GENERAL_LEDGER"
+        },
+        {
+          "from_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+          "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+        },
+        {
+          "from_field": "CURRENCY_CODE",
+          "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Work"
+        },
+        {
+          "from_field": "BK_FUNCTIONAL_CURRENCY_CODE",
+          "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "ST_MF_GL_CODE_COMBINATIONS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_ST_ED_COMPANY_SOURCE_MAP_RI"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Exception"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_MF_GL_CODE_COMBINATIONS"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Work"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Work"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_ED_COMPANY_SOURCE_MAP_Exception"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_ED_COMPANY_SOURCE_MAP_Exception"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "ST_MF_GL_CODE_COMBINATIONS1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "Exp_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_ST_MF_GL_CODE_COMBINATIONS_Work"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "ST_MF_GL_CODE_COMBINATIONS1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:13.164579+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

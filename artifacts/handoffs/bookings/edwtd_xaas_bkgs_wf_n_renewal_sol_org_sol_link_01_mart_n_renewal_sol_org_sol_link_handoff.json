@@ -1,0 +1,343 @@
+{
+  "workflow_name": "wf_m_N_RENEWAL_SOL_ORG_SOL_LINK",
+  "mapping_name": "m_N_RENEWAL_SOL_ORG_SOL_LINK",
+  "mapping_description": "",
+  "folder_name": "EDWTD_XAAS_BKGS",
+  "target_table": "N_RENEWAL_SOL_ORG_SOL_LINK",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_xaas_bkgs_wf_n_renewal_sol_org_sol_link_01_mart_n_renewal_sol_org_sol_link",
+  "source_tables": [
+    "N_RENEWAL_SOL_ORG_SOL_LINK"
+  ],
+  "sources": [
+    {
+      "name": "N_RENEWAL_SOL_ORG_SOL_LINK",
+      "database_type": "Teradata",
+      "owner": "SLSORDVWDB_DV1",
+      "fields": [
+        {
+          "name": "ORG_SOL_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RENEWAL_SOL_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_RENEWAL_SOL_ORG_SOL_LINK",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ORG_SOL_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RENEWAL_SOL_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ORG_SOL_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RENEWAL_SOL_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT ORG_SOL_KEY ,\r\nRENEWAL_SOL_KEY ,     \r\nEDW_CREATE_DTM ,\r\nEDW_CREATE_USER ,\r\nEDW_UPDATE_DTM ,\r\nEDW_UPDATE_USER FROM $$WORKDB.W_RENEWAL_SOL_ORG_SOL_LINK W_SOL\r\nWHERE  DML_TYPE='I'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ORG_SOL_KEY",
+      "from_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "ORG_SOL_KEY",
+      "to_instance": "N_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "RENEWAL_SOL_KEY",
+      "from_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "RENEWAL_SOL_KEY",
+      "to_instance": "N_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_RENEWAL_SOL_ORG_SOL_LINK1"
+    },
+    {
+      "from_field": "ORG_SOL_KEY",
+      "from_instance": "N_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "ORG_SOL_KEY",
+      "to_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK"
+    },
+    {
+      "from_field": "RENEWAL_SOL_KEY",
+      "from_instance": "N_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "RENEWAL_SOL_KEY",
+      "to_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_RENEWAL_SOL_ORG_SOL_LINK",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ORG_SOL_KEY",
+      "source_path": [
+        {
+          "from_field": "ORG_SOL_KEY",
+          "from_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK"
+        },
+        {
+          "from_field": "ORG_SOL_KEY",
+          "from_instance": "N_RENEWAL_SOL_ORG_SOL_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RENEWAL_SOL_KEY",
+      "source_path": [
+        {
+          "from_field": "RENEWAL_SOL_KEY",
+          "from_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK"
+        },
+        {
+          "from_field": "RENEWAL_SOL_KEY",
+          "from_instance": "N_RENEWAL_SOL_ORG_SOL_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_RENEWAL_SOL_ORG_SOL_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_RENEWAL_SOL_ORG_SOL_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "N_RENEWAL_SOL_ORG_SOL_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_RENEWAL_SOL_ORG_SOL_LINK"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_RENEWAL_SOL_ORG_SOL_LINK"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:26.019208+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

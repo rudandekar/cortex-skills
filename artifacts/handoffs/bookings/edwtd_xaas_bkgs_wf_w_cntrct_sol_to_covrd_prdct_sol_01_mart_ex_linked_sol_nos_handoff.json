@@ -1,0 +1,780 @@
+{
+  "workflow_name": "wf_m_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+  "mapping_name": "m_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+  "mapping_description": "",
+  "folder_name": "EDWTD_XAAS_BKGS",
+  "target_table": "EX_LINKED_SOL_NOS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_xaas_bkgs_wf_w_cntrct_sol_to_covrd_prdct_sol_01_mart_ex_linked_sol_nos",
+  "source_tables": [
+    "EX_LINKED_SOL_NOS",
+    "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+    "ST_Linked_SOL_NOS"
+  ],
+  "sources": [
+    {
+      "name": "EX_LINKED_SOL_NOS",
+      "database_type": "Teradata",
+      "owner": "EXCEPDB_DV1",
+      "fields": [
+        {
+          "name": "line_id",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINKED_SO_LN_NUMS",
+          "datatype": "varchar",
+          "precision": "500",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV1",
+      "fields": [
+        {
+          "name": "COVERED_PRODUCT_SOL_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_CONTRACT_SOL_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "ST_Linked_SOL_NOS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "line_id",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINKED_SO_LN_NUMS",
+          "datatype": "varchar",
+          "precision": "500",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EX_LINKED_SOL_NOS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "line_id",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LINKED_SO_LN_NUMS",
+        "datatype": "varchar",
+        "precision": "500",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "COVERED_PRODUCT_SOL_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_CONTRACT_SOL_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nCOALESCE(SM_CG.SALES_ORDER_LINE_KEY,-999) COVERED_PRODUCT_SOL_KEY, \r\nCOALESCE(SM_OPL.SALES_ORDER_LINE_KEY,-999) SERVICE_CONTRACT_SOL_KEY,\r\nCURRENT_USER EDW_CREATE_USER,\r\nCURRENT_USER EDW_UPDATE_USER,\r\nCURRENT_TIMESTAMP(0) EDW_CREATE_DATETIME,\r\nCURRENT_TIMESTAMP(0) EDW_UPDATE_DATETIME,\r\n'I' ACTION_CODE,\r\nCASE WHEN (NCST.SERVICE_CONTRACT_SOL_KEY IS NOT NULL AND NCST.COVERED_PRODUCT_SOL_KEY IS NOT NULL) THEN 'U'\r\nELSE 'I'\r\nEND  AS DML_TYPE\r\nFROM \r\n$$STGDB.ST_LINKED_SOL_NOS ST\r\nJOIN\r\n$$ETLVWDB.SM_SALES_ORDER_LINE SM_OPL\r\nON \r\n(\r\nST.LINE_ID=SM_OPL.SK_OPL_LINE_ID_INT\r\nand SM_OPL.SS_CODE='OPL'\r\n)\r\nJOIN\r\n$$ETLVWDB.SM_SALES_ORDER_LINE SM_CG\r\nON\r\n(\r\nST.LINKED_SO_LN_NUMS=CAST(SM_CG.SK_SO_LINE_ID_INT AS VARCHAR(500))\r\nAND SM_CG.SS_CODE='CG'\r\n)\r\nLEFT JOIN\r\n$$SLSORDVWDB.N_CNTRCT_SOL_TO_COVRD_PRDCT_SOL NCST\r\nON NCST.SERVICE_CONTRACT_SOL_KEY=SM_OPL.SALES_ORDER_LINE_KEY\r\nAND NCST.COVERED_PRODUCT_SOL_KEY=SM_CG.SALES_ORDER_LINE_KEY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "COVERED_PRODUCT_SOL_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "COVERED_PRODUCT_SOL_KEY"
+        },
+        {
+          "name": "SERVICE_CONTRACT_SOL_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SERVICE_CONTRACT_SOL_KEY"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_CREATE_USER"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_UPDATE_USER"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_CREATE_DATETIME"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_UPDATE_DATETIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_Linked_SOL_NOS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "line_id",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LINKED_SO_LN_NUMS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n  ST_LINK.LINE_ID,\r\n  ST_LINK.LINKED_SO_LN_NUMS,\r\n  ST_LINK.EDW_CREATE_DTM\r\nFROM \r\n$$STGDB.ST_LINKED_SOL_NOS ST_LINK\r\nLEFT JOIN\r\n$$ETLVWDB.SM_SALES_ORDER_LINE SM_OPL\r\nON \r\n(\r\nST_LINK.LINE_ID=SM_OPL.SK_OPL_LINE_ID_INT\r\nand SM_OPL.SS_CODE='OPL'\r\n)\r\nLEFT JOIN\r\n$$ETLVWDB.SM_SALES_ORDER_LINE SM_CG\r\nON\r\n(\r\nST_LINK.LINKED_SO_LN_NUMS=CAST(SM_CG.SK_SO_LINE_ID_INT AS VARCHAR(500))\r\nAND SM_CG.SS_CODE='CG'\r\n)\r\nWHERE SM_OPL.SALES_ORDER_LINE_KEY IS NULL OR\r\nSM_CG.SALES_ORDER_LINE_KEY IS NULL",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXPTRANS1",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "line_id",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "line_id"
+        },
+        {
+          "name": "LINKED_SO_LN_NUMS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LINKED_SO_LN_NUMS"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_CREATE_DTM"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_EX_LINKED_SOL_NOS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "line_id",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LINKED_SO_LN_NUMS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n  EX.LINE_ID,\r\n  EX.LINKED_SO_LN_NUMS,\r\n  EX.EDW_CREATE_DTM\r\n  FROM\r\n  $$EXCEPDB.EX_LINKED_SOL_NOS EX\r\n  WHERE \r\n  NOT EXISTS\r\n  (\r\n  SELECT 1 FROM \r\n  $$STGDB.ST_LINKED_SOL_NOS ST_LINK\r\n  WHERE ST_LINK.LINE_ID=EX.LINE_ID\r\n  )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXPTRANS2",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "line_id",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "line_id"
+        },
+        {
+          "name": "LINKED_SO_LN_NUMS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LINKED_SO_LN_NUMS"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_CREATE_DTM"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "COVERED_PRODUCT_SOL_KEY",
+      "from_instance": "EXPTRANS",
+      "to_field": "COVERED_PRODUCT_SOL_KEY",
+      "to_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "SERVICE_CONTRACT_SOL_KEY",
+      "from_instance": "EXPTRANS",
+      "to_field": "SERVICE_CONTRACT_SOL_KEY",
+      "to_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "EXPTRANS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "EXPTRANS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "EXPTRANS",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "EXPTRANS",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXPTRANS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "EXPTRANS",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "line_id",
+      "from_instance": "EXPTRANS2",
+      "to_field": "line_id",
+      "to_instance": "ST_Linked_SOL_NOS1"
+    },
+    {
+      "from_field": "LINKED_SO_LN_NUMS",
+      "from_instance": "EXPTRANS2",
+      "to_field": "LINKED_SO_LN_NUMS",
+      "to_instance": "ST_Linked_SOL_NOS1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EXPTRANS2",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "ST_Linked_SOL_NOS1"
+    },
+    {
+      "from_field": "line_id",
+      "from_instance": "EXPTRANS1",
+      "to_field": "line_id",
+      "to_instance": "EX_LINKED_SOL_NOS"
+    },
+    {
+      "from_field": "LINKED_SO_LN_NUMS",
+      "from_instance": "EXPTRANS1",
+      "to_field": "LINKED_SO_LN_NUMS",
+      "to_instance": "EX_LINKED_SOL_NOS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EXPTRANS1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "EX_LINKED_SOL_NOS"
+    },
+    {
+      "from_field": "COVERED_PRODUCT_SOL_KEY",
+      "from_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL1",
+      "to_field": "COVERED_PRODUCT_SOL_KEY",
+      "to_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "SERVICE_CONTRACT_SOL_KEY",
+      "from_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL1",
+      "to_field": "SERVICE_CONTRACT_SOL_KEY",
+      "to_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL1",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL1",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL1",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL"
+    },
+    {
+      "from_field": "COVERED_PRODUCT_SOL_KEY",
+      "from_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+      "to_field": "COVERED_PRODUCT_SOL_KEY",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "SERVICE_CONTRACT_SOL_KEY",
+      "from_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+      "to_field": "SERVICE_CONTRACT_SOL_KEY",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_W_CNTRCT_SOL_TO_COVRD_PRDCT_SOL",
+      "to_field": "DML_TYPE",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "line_id",
+      "from_instance": "ST_Linked_SOL_NOS",
+      "to_field": "line_id",
+      "to_instance": "SQ_ST_Linked_SOL_NOS"
+    },
+    {
+      "from_field": "LINKED_SO_LN_NUMS",
+      "from_instance": "ST_Linked_SOL_NOS",
+      "to_field": "LINKED_SO_LN_NUMS",
+      "to_instance": "SQ_ST_Linked_SOL_NOS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "ST_Linked_SOL_NOS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_Linked_SOL_NOS"
+    },
+    {
+      "from_field": "line_id",
+      "from_instance": "SQ_ST_Linked_SOL_NOS",
+      "to_field": "line_id",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "LINKED_SO_LN_NUMS",
+      "from_instance": "SQ_ST_Linked_SOL_NOS",
+      "to_field": "LINKED_SO_LN_NUMS",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_Linked_SOL_NOS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "line_id",
+      "from_instance": "EX_LINKED_SOL_NOS1",
+      "to_field": "line_id",
+      "to_instance": "SQ_EX_LINKED_SOL_NOS"
+    },
+    {
+      "from_field": "LINKED_SO_LN_NUMS",
+      "from_instance": "EX_LINKED_SOL_NOS1",
+      "to_field": "LINKED_SO_LN_NUMS",
+      "to_instance": "SQ_EX_LINKED_SOL_NOS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EX_LINKED_SOL_NOS1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_EX_LINKED_SOL_NOS"
+    },
+    {
+      "from_field": "line_id",
+      "from_instance": "SQ_EX_LINKED_SOL_NOS",
+      "to_field": "line_id",
+      "to_instance": "EXPTRANS2"
+    },
+    {
+      "from_field": "LINKED_SO_LN_NUMS",
+      "from_instance": "SQ_EX_LINKED_SOL_NOS",
+      "to_field": "LINKED_SO_LN_NUMS",
+      "to_instance": "EXPTRANS2"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_EX_LINKED_SOL_NOS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "EXPTRANS2"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "line_id",
+      "source_path": [
+        {
+          "from_field": "line_id",
+          "from_instance": "EXPTRANS2"
+        },
+        {
+          "from_field": "line_id",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "line_id",
+          "from_instance": "ST_Linked_SOL_NOS"
+        },
+        {
+          "from_field": "line_id",
+          "from_instance": "SQ_ST_Linked_SOL_NOS"
+        },
+        {
+          "from_field": "line_id",
+          "from_instance": "EX_LINKED_SOL_NOS1"
+        },
+        {
+          "from_field": "line_id",
+          "from_instance": "SQ_EX_LINKED_SOL_NOS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LINKED_SO_LN_NUMS",
+      "source_path": [
+        {
+          "from_field": "LINKED_SO_LN_NUMS",
+          "from_instance": "EXPTRANS2"
+        },
+        {
+          "from_field": "LINKED_SO_LN_NUMS",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "LINKED_SO_LN_NUMS",
+          "from_instance": "ST_Linked_SOL_NOS"
+        },
+        {
+          "from_field": "LINKED_SO_LN_NUMS",
+          "from_instance": "SQ_ST_Linked_SOL_NOS"
+        },
+        {
+          "from_field": "LINKED_SO_LN_NUMS",
+          "from_instance": "EX_LINKED_SOL_NOS1"
+        },
+        {
+          "from_field": "LINKED_SO_LN_NUMS",
+          "from_instance": "SQ_EX_LINKED_SOL_NOS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EXPTRANS2"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "ST_Linked_SOL_NOS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_Linked_SOL_NOS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EX_LINKED_SOL_NOS1"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_EX_LINKED_SOL_NOS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:26.596889+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

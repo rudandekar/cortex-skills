@@ -1,0 +1,565 @@
+{
+  "workflow_name": "wf_m_SM_APSP_BCBD_USER",
+  "mapping_name": "m_SM_APSP_BCBD_USER",
+  "mapping_description": "",
+  "folder_name": "EDWTD_IAM",
+  "target_table": "SM_APSP_BCBD_USER",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_iam_wf_sm_apsp_bcbd_user_02_mart_sm_apsp_bcbd_user",
+  "source_tables": [
+    "WI_ML_SECURITY_LOAD",
+    "SM_APSP_BCBD_USER"
+  ],
+  "sources": [
+    {
+      "name": "WI_ML_SECURITY_LOAD",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "USER_ID",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ROLE_NAME",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "SM_APSP_BCBD_USER",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "BCBD_USER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "IAM_USER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_BCBD_MAILER_ALIAS_ADDR",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_BCBD_USER_TYPE",
+          "datatype": "char",
+          "precision": "12",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "SM_APSP_BCBD_USER",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BCBD_USER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "IAM_USER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_BCBD_MAILER_ALIAS_ADDR",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_BCBD_USER_TYPE",
+        "datatype": "char",
+        "precision": "12",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_ML_SECURITY_LOAD",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "IAM_USER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_BCBD_MAILER_ALIAS_ADDR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_BCBD_USER_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT -999  IAM_USER_KEY, USER_ID BK_BCBD_MAILER_ALIAS_ADDR,  'MAILER ALIAS' BK_BCBD_USER_TYPE, CURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\nUSER AS EDW_CREATE_USER  FROM  $$STGDB.WI_ML_SECURITY_LOAD ST\r\nWHERE NOT EXISTS (SELECT 1 FROM $$ETLVWDB.SM_APSP_BCBD_USER SM WHERE ST.USER_ID=SM.BK_BCBD_MAILER_ALIAS_ADDR AND SM.BK_BCBD_USER_TYPE=  'MAILER ALIAS'  )\r\ngroup by 1,2,3,4,5",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_N_IAM_USER_ROLE_APP_MAP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "IAM_USER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_BCBD_MAILER_ALIAS_ADDR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_BCBD_USER_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SEL   IAM_USER_KEY, BK_BCBD_MAILER_ALIAS_ADDR,  BK_BCBD_USER_TYPE,  EDW_CREATE_DTM, EDW_CREATE_USER  FROM (  \r\n  SELECT distinct  IAM_USER_KEY, 'UNKNOWN' BK_BCBD_MAILER_ALIAS_ADDR,   'IAM USER' BK_BCBD_USER_TYPE, CURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\nUSER AS EDW_CREATE_USER  FROM  $$SECURITYVWDB.N_IAM_USER_ROLE_APP_MAP ROLE_APP\r\nINNER JOIN $$SECURITYVWDB.N_IAM_APPLICATION APP\r\nON APP.IAM_APPLICATION_KEY=ROLE_APP.IAM_APPLICATION_KEY AND APPLICATION_NAME='BI Cafe-2'\r\n  UNION\r\n  sel   distinct  IAM_USER_KEY, 'UNKNOWN' BK_BCBD_MAILER_ALIAS_ADDR,   'IAM USER' BK_BCBD_USER_TYPE, CURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\n  USER AS EDW_CREATE_USER\r\n   from $$stgdb.ST_CA_FIN_VISIBILITY_SEC_LOAD st \r\n  INNER JOIN $$SECURITYVWDB.N_IAM_USER USR\r\n  ON ST.USER_ID=USR.DD_CEC_ID) ST \r\n  WHERE NOT EXISTS (SELECT 1 FROM $$ETLVWDB.SM_APSP_BCBD_USER SM \r\n  WHERE ST.IAM_USER_KEY=SM.IAM_USER_KEY AND SM.BK_BCBD_USER_TYPE= 'IAM USER')",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "USER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ROLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT ST.USER_ID, ST.ROLE_NAME \r\nFROM\r\n$$STGDB.ST_CA_FIN_VISIBILITY_SEC_LOAD ST\r\nWHERE ST.LOAD_TYPE ='ml_security_load'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "IAM_USER_KEY",
+      "from_instance": "SQ_WI_ML_SECURITY_LOAD",
+      "to_field": "IAM_USER_KEY",
+      "to_instance": "SM_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "BK_BCBD_MAILER_ALIAS_ADDR",
+      "from_instance": "SQ_WI_ML_SECURITY_LOAD",
+      "to_field": "BK_BCBD_MAILER_ALIAS_ADDR",
+      "to_instance": "SM_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "BK_BCBD_USER_TYPE",
+      "from_instance": "SQ_WI_ML_SECURITY_LOAD",
+      "to_field": "BK_BCBD_USER_TYPE",
+      "to_instance": "SM_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_WI_ML_SECURITY_LOAD",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_ML_SECURITY_LOAD",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "NEXTVAL",
+      "from_instance": "SM_APSP_BCBD_USER_EMAILER",
+      "to_field": "BCBD_USER_KEY",
+      "to_instance": "SM_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "IAM_USER_KEY",
+      "from_instance": "SQ_N_IAM_USER_ROLE_APP_MAP",
+      "to_field": "IAM_USER_KEY",
+      "to_instance": "SM_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "BK_BCBD_MAILER_ALIAS_ADDR",
+      "from_instance": "SQ_N_IAM_USER_ROLE_APP_MAP",
+      "to_field": "BK_BCBD_MAILER_ALIAS_ADDR",
+      "to_instance": "SM_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "BK_BCBD_USER_TYPE",
+      "from_instance": "SQ_N_IAM_USER_ROLE_APP_MAP",
+      "to_field": "BK_BCBD_USER_TYPE",
+      "to_instance": "SM_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_IAM_USER_ROLE_APP_MAP",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_IAM_USER_ROLE_APP_MAP",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "NEXTVAL",
+      "from_instance": "SM_APSP_BCBD_USER_IAM",
+      "to_field": "BCBD_USER_KEY",
+      "to_instance": "SM_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "USER_ID",
+      "from_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD",
+      "to_field": "USER_ID",
+      "to_instance": "WI_ML_SECURITY_LOAD"
+    },
+    {
+      "from_field": "ROLE_NAME",
+      "from_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD",
+      "to_field": "ROLE_NAME",
+      "to_instance": "WI_ML_SECURITY_LOAD"
+    },
+    {
+      "from_field": "IAM_USER_KEY",
+      "from_instance": "WI_ML_SECURITY_LOAD",
+      "to_field": "IAM_USER_KEY",
+      "to_instance": "SQ_WI_ML_SECURITY_LOAD"
+    },
+    {
+      "from_field": "BK_BCBD_MAILER_ALIAS_ADDR",
+      "from_instance": "WI_ML_SECURITY_LOAD",
+      "to_field": "BK_BCBD_MAILER_ALIAS_ADDR",
+      "to_instance": "SQ_WI_ML_SECURITY_LOAD"
+    },
+    {
+      "from_field": "BK_BCBD_USER_TYPE",
+      "from_instance": "WI_ML_SECURITY_LOAD",
+      "to_field": "BK_BCBD_USER_TYPE",
+      "to_instance": "SQ_WI_ML_SECURITY_LOAD"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "WI_ML_SECURITY_LOAD",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_WI_ML_SECURITY_LOAD"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_ML_SECURITY_LOAD",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_ML_SECURITY_LOAD"
+    },
+    {
+      "from_field": "IAM_USER_KEY",
+      "from_instance": "N_IAM_USER_ROLE_APP_MAP",
+      "to_field": "IAM_USER_KEY",
+      "to_instance": "SQ_N_IAM_USER_ROLE_APP_MAP"
+    },
+    {
+      "from_field": "BK_BCBD_MAILER_ALIAS_ADDR",
+      "from_instance": "N_IAM_USER_ROLE_APP_MAP",
+      "to_field": "BK_BCBD_MAILER_ALIAS_ADDR",
+      "to_instance": "SQ_N_IAM_USER_ROLE_APP_MAP"
+    },
+    {
+      "from_field": "BK_BCBD_USER_TYPE",
+      "from_instance": "N_IAM_USER_ROLE_APP_MAP",
+      "to_field": "BK_BCBD_USER_TYPE",
+      "to_instance": "SQ_N_IAM_USER_ROLE_APP_MAP"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_IAM_USER_ROLE_APP_MAP",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_IAM_USER_ROLE_APP_MAP"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_IAM_USER_ROLE_APP_MAP",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_IAM_USER_ROLE_APP_MAP"
+    },
+    {
+      "from_field": "USER_ID",
+      "from_instance": "ST_CA_FIN_VISIBILITY_SEC_LOAD",
+      "to_field": "USER_ID",
+      "to_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD"
+    },
+    {
+      "from_field": "ROLE_NAME",
+      "from_instance": "ST_CA_FIN_VISIBILITY_SEC_LOAD",
+      "to_field": "ROLE_NAME",
+      "to_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BCBD_USER_KEY",
+      "source_path": [
+        {
+          "from_field": "NEXTVAL",
+          "from_instance": "SM_APSP_BCBD_USER_EMAILER"
+        },
+        {
+          "from_field": "NEXTVAL",
+          "from_instance": "SM_APSP_BCBD_USER_IAM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "IAM_USER_KEY",
+      "source_path": [
+        {
+          "from_field": "IAM_USER_KEY",
+          "from_instance": "SQ_WI_ML_SECURITY_LOAD"
+        },
+        {
+          "from_field": "IAM_USER_KEY",
+          "from_instance": "SQ_N_IAM_USER_ROLE_APP_MAP"
+        },
+        {
+          "from_field": "IAM_USER_KEY",
+          "from_instance": "WI_ML_SECURITY_LOAD"
+        },
+        {
+          "from_field": "IAM_USER_KEY",
+          "from_instance": "N_IAM_USER_ROLE_APP_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_BCBD_MAILER_ALIAS_ADDR",
+      "source_path": [
+        {
+          "from_field": "BK_BCBD_MAILER_ALIAS_ADDR",
+          "from_instance": "SQ_WI_ML_SECURITY_LOAD"
+        },
+        {
+          "from_field": "BK_BCBD_MAILER_ALIAS_ADDR",
+          "from_instance": "SQ_N_IAM_USER_ROLE_APP_MAP"
+        },
+        {
+          "from_field": "BK_BCBD_MAILER_ALIAS_ADDR",
+          "from_instance": "WI_ML_SECURITY_LOAD"
+        },
+        {
+          "from_field": "BK_BCBD_MAILER_ALIAS_ADDR",
+          "from_instance": "N_IAM_USER_ROLE_APP_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_BCBD_USER_TYPE",
+      "source_path": [
+        {
+          "from_field": "BK_BCBD_USER_TYPE",
+          "from_instance": "SQ_WI_ML_SECURITY_LOAD"
+        },
+        {
+          "from_field": "BK_BCBD_USER_TYPE",
+          "from_instance": "SQ_N_IAM_USER_ROLE_APP_MAP"
+        },
+        {
+          "from_field": "BK_BCBD_USER_TYPE",
+          "from_instance": "WI_ML_SECURITY_LOAD"
+        },
+        {
+          "from_field": "BK_BCBD_USER_TYPE",
+          "from_instance": "N_IAM_USER_ROLE_APP_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_WI_ML_SECURITY_LOAD"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_IAM_USER_ROLE_APP_MAP"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "WI_ML_SECURITY_LOAD"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_IAM_USER_ROLE_APP_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_WI_ML_SECURITY_LOAD"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_IAM_USER_ROLE_APP_MAP"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "WI_ML_SECURITY_LOAD"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_IAM_USER_ROLE_APP_MAP"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:25:36.632009+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

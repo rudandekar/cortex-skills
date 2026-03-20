@@ -1,0 +1,88 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_el_fa_additions_b', 'batch', 'edwtd_gl'],
+    meta={
+        'source_workflow': 'wf_m_EL_FA_ADDITIONS_B',
+        'target_table': 'EL_FA_ADDITIONS_B',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:05:29.080284+00:00'
+    }
+) }}
+
+WITH 
+
+source_st_mf_fa_additions_b AS (
+    SELECT
+        batch_id,
+        add_cost_je_flag,
+        asset_category_id,
+        asset_id,
+        asset_key_ccid,
+        asset_number,
+        asset_type,
+        attribute1,
+        attribute2,
+        attribute28,
+        attribute29,
+        attribute3,
+        attribute30,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute_category_code,
+        context,
+        created_by,
+        creation_date,
+        current_units,
+        ges_update_date,
+        global_name,
+        inventorial,
+        in_use_flag,
+        last_updated_by,
+        last_update_date,
+        last_update_login,
+        lease_id,
+        manufacturer_name,
+        model_number,
+        new_used,
+        owned_leased,
+        parent_asset_id,
+        property_1245_1250_code,
+        property_type_code,
+        serial_number,
+        tag_number,
+        unit_adjustment_flag,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute14,
+        attribute16,
+        attribute27,
+        create_datetime,
+        action_code
+    FROM {{ source('raw', 'st_mf_fa_additions_b') }}
+),
+
+final AS (
+    SELECT
+        asset_category_id,
+        asset_id,
+        asset_number,
+        asset_type,
+        creation_date,
+        current_units,
+        global_name,
+        model_number,
+        serial_number,
+        tag_number,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute14,
+        attribute16,
+        attribute27
+    FROM source_st_mf_fa_additions_b
+)
+
+SELECT * FROM final

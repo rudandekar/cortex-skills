@@ -1,0 +1,925 @@
+{
+  "workflow_name": "wf_m_W_ERP_FOB_POINT",
+  "mapping_name": "m_W_ERP_FOB_POINT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "W_ERP_FOB_POINT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_w_erp_fob_point_01_int_w_erp_fob_point",
+  "source_tables": [
+    "EL_FND_LOOKUP_VALUES",
+    "N_SOURCE_SYSTEM_CODES"
+  ],
+  "sources": [
+    {
+      "name": "EL_FND_LOOKUP_VALUES",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_DEV",
+      "fields": [
+        {
+          "name": "LOOKUP_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LANG",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SECURITY_GROUP_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LOOKUP_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MEANING",
+          "datatype": "varchar",
+          "precision": "80",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "VIEW_APPLICATION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "N_SOURCE_SYSTEM_CODES",
+      "database_type": "Teradata",
+      "owner": "COMREFVWDB_DEV",
+      "fields": [
+        {
+          "name": "source_system_code",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "source_System_name",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "database_name",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "company",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "edw_create_date",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "edw_create_user",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "edw_update_date",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "edw_update_user",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "global_name",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "gmt_offset",
+          "datatype": "decimal",
+          "precision": "5",
+          "scale": "2",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_ERP_FOB_POINT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_FOB_POINT_CODE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "START_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "END_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FOB_POINT_NAME",
+        "datatype": "varchar",
+        "precision": "80",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FOB_POINT_DESCRIPTION",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FOB_POINT_ENABLED_FLAG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FOB_POINT_START_ACTIVE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FOB_POINT_END_ACTIVE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SS_CODE",
+        "datatype": "char",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_OBSERVATION_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_EL_FND_LOOKUP_VALUES",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "LOOKUP_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MEANING",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_SYSTEM_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nTVOUTPUT.BK_FOB_POINT_CODE,\r\nTVOUTPUT.START_TV_DATE,\r\nCOALESCE( MAX(TVOUTPUT.START_TV_DATE - INTERVAL '1' DAY) \r\nOVER (PARTITION BY TVOUTPUT.BK_FOB_POINT_CODE\r\nORDER BY TVOUTPUT.START_TV_DATE ASC \r\nROWS BETWEEN 1 FOLLOWING AND 1 FOLLOWING), DATE '3500-01-01') AS END_TV_DATE,\r\nTVOUTPUT.FOB_POINT_NAME,\r\nTVOUTPUT.FOB_POINT_DESCRIPTION,\r\nTVOUTPUT.FOB_POINT_ENABLED_FLAG,\r\nTVOUTPUT.FOB_POINT_START_ACTIVE_DTM,\r\nTVOUTPUT.FOB_POINT_END_ACTIVE_DTM,\r\nTVOUTPUT.SS_CODE,\r\nTVOUTPUT.ACTION_CODE,\r\nTVOUTPUT.EDW_UPDATE_DATETIME,\r\nROW_NUMBER() OVER (PARTITION BY \r\n\tTVOUTPUT.BK_FOB_POINT_CODE\r\n\tORDER BY TVOUTPUT.START_TV_DATE ASC) AS RANK_INDEX,\r\n(CASE WHEN RANK_INDEX = 1 AND NEFPT.BK_FOB_POINT_CODE IS NOT NULL THEN 'U' ELSE 'I' END) AS DML_TYPE\r\nFROM\r\n(\r\nSELECT\r\nBK_FOB_POINT_CODE,\r\nSTART_TV_DATE,\r\nFOB_POINT_NAME,\r\nFOB_POINT_DESCRIPTION,\r\nFOB_POINT_ENABLED_FLAG,\r\nFOB_POINT_START_ACTIVE_DTM,\r\nFOB_POINT_END_ACTIVE_DTM,\r\nSS_CODE,\r\nCREATE_DATETIME,\r\nACTION_CODE,\r\nEDW_UPDATE_DATETIME,\r\nROW_NUMBER() OVER (PARTITION BY BK_FOB_POINT_CODE, FOB_POINT_NAME, FOB_POINT_DESCRIPTION, FOB_POINT_ENABLED_FLAG\r\n\tORDER BY EDW_UPDATE_DATETIME DESC) AS row_num\r\nFROM\r\n(\r\nSELECT \r\n\tEFLV.LOOKUP_CODE BK_FOB_POINT_CODE,\r\n\tCAST(EFLV.GES_UPDATE_DATE AS DATE) START_TV_DATE,\r\n\tEFLV.MEANING FOB_POINT_NAME,\r\n\tEFLV.DESCRIPTION FOB_POINT_DESCRIPTION,\r\n\tEFLV.ENABLED_FLAG FOB_POINT_ENABLED_FLAG,\r\n\tEFLV.START_DATE_ACTIVE FOB_POINT_START_ACTIVE_DTM,\t\r\n\tEFLV.END_DATE_ACTIVE FOB_POINT_END_ACTIVE_DTM,\t\t\r\n\tNSSC.SOURCE_SYSTEM_CODE SS_CODE,\t\r\n\tEFLV.CREATE_DATETIME,\r\n\t'X'  ACTION_CODE,\r\n\tEFLV.GES_UPDATE_DATE EDW_UPDATE_DATETIME\r\n\tFROM\r\n\t$$ETLVWDB.EL_FND_LOOKUP_VALUES EFLV\r\n\tINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC ON (NSSC.GLOBAL_NAME = EFLV.GLOBAL_NAME)\r\n\tQUALIFY ROW_NUMBER() OVER (PARTITION BY  EFLV.LOOKUP_CODE ORDER BY EFLV.GES_UPDATE_DATE DESC ) = 1\r\n\tWHERE EFLV.GES_UPDATE_DATE >(SELECT LAST_EXTRACT_DATE FROM $$ETLVWDB.DW_JOB_STREAMS WHERE JOB_STREAM_ID='wf_W_ERP_FOB_POINT')\r\n\tAND\tEFLV.LOOKUP_TYPE='FOB'\r\n\tAND NSSC.GLOBAL_NAME='CG' /* SJPROD Retirement Q1FY14 */\r\n\tUNION ALL \r\nSELECT \r\n\tNEFPT.BK_FOB_POINT_CODE,\r\n\tNEFPT.START_TV_DATE,\r\n\tNEFPT.FOB_POINT_NAME,\r\n\tNEFPT.FOB_POINT_DESCRIPTION,\r\n\tNEFPT.FOB_POINT_ENABLED_FLAG,\r\n\tNEFPT.FOB_POINT_START_ACTIVE_DTM,\r\n\tNEFPT.FOB_POINT_END_ACTIVE_DTM,\r\n\tNEFPT.SS_CODE,\r\n\tNEFPT.EDW_CREATE_DATETIME CREATE_DATETIME,\r\n\t'X'  ACTION_CODE,\r\n\tNEFPT.EDW_UPDATE_DATETIME\r\n\tFROM $$SLSORDVWDB.N_ERP_FOB_POINT_TV NEFPT\r\n\tWHERE END_TV_DATE = CAST ('3500-01-01' AS DATE)\r\n\tAND BK_FOB_POINT_CODE IN\r\n\t(\r\n\tSELECT LOOKUP_CODE\r\n\tFROM $$ETLVWDB.EL_FND_LOOKUP_VALUES EFLV\r\n\tINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC ON (NSSC.GLOBAL_NAME = EFLV.GLOBAL_NAME)\r\n        WHERE EFLV.GES_UPDATE_DATE >(SELECT LAST_EXTRACT_DATE FROM $$ETLVWDB.DW_JOB_STREAMS WHERE JOB_STREAM_ID='wf_W_ERP_FOB_POINT')\r\n\tAND\tEFLV.LOOKUP_TYPE='FOB'\r\n\tAND NSSC.GLOBAL_NAME='CG' /* SJPROD Retirement Q1FY14 */\r\n\t)\r\n\t)TVINPUT\r\n\tQUALIFY ROW_NUMBER() OVER (PARTITION BY \r\n\t\t\t\tTVINPUT.BK_FOB_POINT_CODE, TVINPUT.START_TV_DATE ORDER BY TVINPUT.EDW_UPDATE_DATETIME desc) = 1\r\n\t)TVOUTPUT\r\n\tLEFT JOIN $$SLSORDVWDB.N_ERP_FOB_POINT_TV NEFPT\r\n\t\t\tON TVOUTPUT.BK_FOB_POINT_CODE = NEFPT.BK_FOB_POINT_CODE\r\n\t\t\tAND NEFPT.END_TV_DATE = CAST('3500-01-01' AS date)\r\n\tWHERE\tTVOUTPUT.row_num = 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_EL_FND_LOOKUP_VALUES",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "LOOKUP_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LOOKUP_CODE"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GES_UPDATE_DATE"
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_TV_DATE"
+        },
+        {
+          "name": "MEANING",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "MEANING"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DESCRIPTION"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ENABLED_FLAG"
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_DATE_ACTIVE"
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_DATE_ACTIVE"
+        },
+        {
+          "name": "SOURCE_SYSTEM_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SOURCE_SYSTEM_CODE"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RANK_INDEX"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_UPDATE_DATETIME"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "START_TV_DATE",
+      "to_instance": "W_ERP_FOB_POINT"
+    },
+    {
+      "from_field": "SOURCE_SYSTEM_CODE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "SS_CODE",
+      "to_instance": "W_ERP_FOB_POINT"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "FOB_POINT_START_ACTIVE_DTM",
+      "to_instance": "W_ERP_FOB_POINT"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "FOB_POINT_END_ACTIVE_DTM",
+      "to_instance": "W_ERP_FOB_POINT"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_ERP_FOB_POINT"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_ERP_FOB_POINT"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "END_TV_DATE",
+      "to_instance": "W_ERP_FOB_POINT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "W_ERP_FOB_POINT"
+    },
+    {
+      "from_field": "LOOKUP_CODE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "BK_FOB_POINT_CODE",
+      "to_instance": "W_ERP_FOB_POINT"
+    },
+    {
+      "from_field": "MEANING",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "FOB_POINT_NAME",
+      "to_instance": "W_ERP_FOB_POINT"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "FOB_POINT_ENABLED_FLAG",
+      "to_instance": "W_ERP_FOB_POINT"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "FOB_POINT_DESCRIPTION",
+      "to_instance": "W_ERP_FOB_POINT"
+    },
+    {
+      "from_field": "LOOKUP_CODE",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "LOOKUP_CODE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "MEANING",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "MEANING",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "DESCRIPTION",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "START_DATE_ACTIVE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "END_DATE_ACTIVE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "VIEW_APPLICATION_ID",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "RANK_INDEX",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "END_TV_DATE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "source_system_code",
+      "from_instance": "N_SOURCE_SYSTEM_CODES",
+      "to_field": "SOURCE_SYSTEM_CODE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "LOOKUP_CODE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "LOOKUP_CODE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "MEANING",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "MEANING",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "RANK_INDEX",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "RANK_INDEX",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "DML_TYPE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "END_TV_DATE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "SOURCE_SYSTEM_CODE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "SOURCE_SYSTEM_CODE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "START_DATE_ACTIVE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "END_DATE_ACTIVE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_FOB_POINT_CODE",
+      "source_path": [
+        {
+          "from_field": "LOOKUP_CODE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "GES_UPDATE_DATE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "SQ_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FOB_POINT_NAME",
+      "source_path": [
+        {
+          "from_field": "MEANING",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FOB_POINT_DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FOB_POINT_ENABLED_FLAG",
+      "source_path": [
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FOB_POINT_START_ACTIVE_DTM",
+      "source_path": [
+        {
+          "from_field": "START_DATE_ACTIVE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FOB_POINT_END_ACTIVE_DTM",
+      "source_path": [
+        {
+          "from_field": "END_DATE_ACTIVE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CODE",
+      "source_path": [
+        {
+          "from_field": "SOURCE_SYSTEM_CODE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "GES_UPDATE_DATE",
+          "from_instance": "EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "SQ_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_OBSERVATION_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:24.669449+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

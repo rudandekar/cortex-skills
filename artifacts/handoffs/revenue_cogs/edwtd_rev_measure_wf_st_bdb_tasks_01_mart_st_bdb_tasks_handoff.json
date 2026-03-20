@@ -1,0 +1,624 @@
+{
+  "workflow_name": "wf_m_ST_BDB_TASKS",
+  "mapping_name": "m_ST_BDB_TASKS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "ST_BDB_TASKS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_st_bdb_tasks_01_mart_st_bdb_tasks",
+  "source_tables": [
+    "FF_BDB_TASKS"
+  ],
+  "sources": [
+    {
+      "name": "FF_BDB_TASKS",
+      "database_type": "Flat File",
+      "owner": "FlatFile",
+      "fields": [
+        {
+          "name": "ID",
+          "datatype": "string",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADMIN_LABELS",
+          "datatype": "string",
+          "precision": "500",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LABELS",
+          "datatype": "string",
+          "precision": "1000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUTHOR_UID",
+          "datatype": "string",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTRIBUTORS",
+          "datatype": "string",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_AT",
+          "datatype": "string",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATED_AT",
+          "datatype": "string",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_BDB_TASKS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ID",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NAME",
+        "datatype": "varchar",
+        "precision": "200",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ADMIN_LABELS",
+        "datatype": "varchar",
+        "precision": "500",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LABELS",
+        "datatype": "varchar",
+        "precision": "1000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUTHOR_UID",
+        "datatype": "varchar",
+        "precision": "200",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CONTRIBUTORS",
+        "datatype": "varchar",
+        "precision": "200",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_AT",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATED_AT",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_BDB_TASKS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADMIN_LABELS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LABELS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUTHOR_UID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONTRIBUTORS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_AT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATED_AT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "ID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_ID",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(ID)) = '\\N',NULL,ID)"
+        },
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_NAME",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(NAME)) = '\\N',NULL,NAME)"
+        },
+        {
+          "name": "ADMIN_LABELS",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_ADMIN_LABELS",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(ADMIN_LABELS)) = '\\N',NULL,ADMIN_LABELS)"
+        },
+        {
+          "name": "LABELS",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_LABELS",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(LABELS)) = '\\N',NULL,LABELS)"
+        },
+        {
+          "name": "AUTHOR_UID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_AUTHOR_UID",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(AUTHOR_UID)) = '\\N',NULL,AUTHOR_UID)"
+        },
+        {
+          "name": "CONTRIBUTORS",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_CONTRIBUTORS",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(CONTRIBUTORS)) = '\\N',NULL,CONTRIBUTORS)"
+        },
+        {
+          "name": "CREATED_AT",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_CREATED_AT",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(CREATED_AT)) = '\\N',NULL,TO_DATE(CREATED_AT,'YYYY-MM-DD HH24:MI:SS'))"
+        },
+        {
+          "name": "UPDATED_AT",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_UPDATED_AT",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(UPDATED_AT)) = '\\N',NULL,TO_DATE(UPDATED_AT,'YYYY-MM-DD HH24:MI:SS'))"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "O_ID",
+      "from_instance": "EXPTRANS",
+      "to_field": "ID",
+      "to_instance": "ST_BDB_TASKS"
+    },
+    {
+      "from_field": "O_NAME",
+      "from_instance": "EXPTRANS",
+      "to_field": "NAME",
+      "to_instance": "ST_BDB_TASKS"
+    },
+    {
+      "from_field": "O_ADMIN_LABELS",
+      "from_instance": "EXPTRANS",
+      "to_field": "ADMIN_LABELS",
+      "to_instance": "ST_BDB_TASKS"
+    },
+    {
+      "from_field": "O_LABELS",
+      "from_instance": "EXPTRANS",
+      "to_field": "LABELS",
+      "to_instance": "ST_BDB_TASKS"
+    },
+    {
+      "from_field": "O_AUTHOR_UID",
+      "from_instance": "EXPTRANS",
+      "to_field": "AUTHOR_UID",
+      "to_instance": "ST_BDB_TASKS"
+    },
+    {
+      "from_field": "O_CONTRIBUTORS",
+      "from_instance": "EXPTRANS",
+      "to_field": "CONTRIBUTORS",
+      "to_instance": "ST_BDB_TASKS"
+    },
+    {
+      "from_field": "O_CREATED_AT",
+      "from_instance": "EXPTRANS",
+      "to_field": "CREATED_AT",
+      "to_instance": "ST_BDB_TASKS"
+    },
+    {
+      "from_field": "O_UPDATED_AT",
+      "from_instance": "EXPTRANS",
+      "to_field": "UPDATED_AT",
+      "to_instance": "ST_BDB_TASKS"
+    },
+    {
+      "from_field": "ID",
+      "from_instance": "FF_BDB_TASKS",
+      "to_field": "ID",
+      "to_instance": "SQ_FF_BDB_TASKS"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "FF_BDB_TASKS",
+      "to_field": "NAME",
+      "to_instance": "SQ_FF_BDB_TASKS"
+    },
+    {
+      "from_field": "ADMIN_LABELS",
+      "from_instance": "FF_BDB_TASKS",
+      "to_field": "ADMIN_LABELS",
+      "to_instance": "SQ_FF_BDB_TASKS"
+    },
+    {
+      "from_field": "LABELS",
+      "from_instance": "FF_BDB_TASKS",
+      "to_field": "LABELS",
+      "to_instance": "SQ_FF_BDB_TASKS"
+    },
+    {
+      "from_field": "AUTHOR_UID",
+      "from_instance": "FF_BDB_TASKS",
+      "to_field": "AUTHOR_UID",
+      "to_instance": "SQ_FF_BDB_TASKS"
+    },
+    {
+      "from_field": "CONTRIBUTORS",
+      "from_instance": "FF_BDB_TASKS",
+      "to_field": "CONTRIBUTORS",
+      "to_instance": "SQ_FF_BDB_TASKS"
+    },
+    {
+      "from_field": "CREATED_AT",
+      "from_instance": "FF_BDB_TASKS",
+      "to_field": "CREATED_AT",
+      "to_instance": "SQ_FF_BDB_TASKS"
+    },
+    {
+      "from_field": "UPDATED_AT",
+      "from_instance": "FF_BDB_TASKS",
+      "to_field": "UPDATED_AT",
+      "to_instance": "SQ_FF_BDB_TASKS"
+    },
+    {
+      "from_field": "ID",
+      "from_instance": "SQ_FF_BDB_TASKS",
+      "to_field": "ID",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "SQ_FF_BDB_TASKS",
+      "to_field": "NAME",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "ADMIN_LABELS",
+      "from_instance": "SQ_FF_BDB_TASKS",
+      "to_field": "ADMIN_LABELS",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "LABELS",
+      "from_instance": "SQ_FF_BDB_TASKS",
+      "to_field": "LABELS",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "AUTHOR_UID",
+      "from_instance": "SQ_FF_BDB_TASKS",
+      "to_field": "AUTHOR_UID",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "CONTRIBUTORS",
+      "from_instance": "SQ_FF_BDB_TASKS",
+      "to_field": "CONTRIBUTORS",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "CREATED_AT",
+      "from_instance": "SQ_FF_BDB_TASKS",
+      "to_field": "CREATED_AT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "UPDATED_AT",
+      "from_instance": "SQ_FF_BDB_TASKS",
+      "to_field": "UPDATED_AT",
+      "to_instance": "EXPTRANS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ID",
+      "source_path": [
+        {
+          "from_field": "O_ID",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "ID",
+          "from_instance": "FF_BDB_TASKS"
+        },
+        {
+          "from_field": "ID",
+          "from_instance": "SQ_FF_BDB_TASKS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NAME",
+      "source_path": [
+        {
+          "from_field": "O_NAME",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "NAME",
+          "from_instance": "FF_BDB_TASKS"
+        },
+        {
+          "from_field": "NAME",
+          "from_instance": "SQ_FF_BDB_TASKS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ADMIN_LABELS",
+      "source_path": [
+        {
+          "from_field": "O_ADMIN_LABELS",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "ADMIN_LABELS",
+          "from_instance": "FF_BDB_TASKS"
+        },
+        {
+          "from_field": "ADMIN_LABELS",
+          "from_instance": "SQ_FF_BDB_TASKS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LABELS",
+      "source_path": [
+        {
+          "from_field": "O_LABELS",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "LABELS",
+          "from_instance": "FF_BDB_TASKS"
+        },
+        {
+          "from_field": "LABELS",
+          "from_instance": "SQ_FF_BDB_TASKS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUTHOR_UID",
+      "source_path": [
+        {
+          "from_field": "O_AUTHOR_UID",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "AUTHOR_UID",
+          "from_instance": "FF_BDB_TASKS"
+        },
+        {
+          "from_field": "AUTHOR_UID",
+          "from_instance": "SQ_FF_BDB_TASKS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CONTRIBUTORS",
+      "source_path": [
+        {
+          "from_field": "O_CONTRIBUTORS",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "CONTRIBUTORS",
+          "from_instance": "FF_BDB_TASKS"
+        },
+        {
+          "from_field": "CONTRIBUTORS",
+          "from_instance": "SQ_FF_BDB_TASKS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_AT",
+      "source_path": [
+        {
+          "from_field": "O_CREATED_AT",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "CREATED_AT",
+          "from_instance": "FF_BDB_TASKS"
+        },
+        {
+          "from_field": "CREATED_AT",
+          "from_instance": "SQ_FF_BDB_TASKS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATED_AT",
+      "source_path": [
+        {
+          "from_field": "O_UPDATED_AT",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "UPDATED_AT",
+          "from_instance": "FF_BDB_TASKS"
+        },
+        {
+          "from_field": "UPDATED_AT",
+          "from_instance": "SQ_FF_BDB_TASKS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:26.890299+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

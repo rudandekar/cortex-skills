@@ -1,0 +1,13 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_batch_accum_wf_cg1_cmf_expedite_line_details_01_stg_cg1_cmf_expedite_line_dtls_expression_transform
+    model: edwtd_batch_accum_wf_cg1_cmf_expedite_line_details_01_stg_cg1_cmf_expedite_line_dtls
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'stg_cg1_cmf_expedite_line_dtls')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

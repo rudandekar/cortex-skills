@@ -1,0 +1,107 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_n_dyn_restmt_sls_adjstmt_archive', 'batch', 'edwtd_sales_orders'],
+    meta={
+        'source_workflow': 'wf_m_N_DYN_RESTMT_SLS_ADJSTMT_ARCHIVE',
+        'target_table': 'N_DYN_RESTMT_SLS_ADJSTMT_BKP',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:34.124886+00:00'
+    }
+) }}
+
+WITH 
+
+source_n_dyn_restmt_sls_adjstmt_bkp AS (
+    SELECT
+        dyn_restmt_sls_adjstmt_key,
+        original_sales_terr_key,
+        restated_sales_terr_key,
+        sales_order_line_key,
+        bk_bookings_trx_type_cd,
+        bk_allocation_split_pct,
+        bk_effective_dt,
+        sk_trx_id_bigint,
+        restatement_sub_type_cd,
+        cust_prty_key,
+        do_not_restate_flg,
+        expiration_dt,
+        apprvd_by_csco_wrkr_prty_key,
+        uploaded_by_csco_wrkr_prty_key,
+        approved_dtm,
+        dv_approved_dt,
+        uploaded_dtm,
+        dv_uploaded_dt,
+        validation_status_cd,
+        validation_status_reason_descr,
+        upload_file_name,
+        processed_flg,
+        ar_trx_line_key,
+        bk_pos_trx_id_int,
+        bk_sales_adj_line_num_int,
+        so_subscr_item_sales_trx_key,
+        rev_transfer_key,
+        sales_acct_grp_prty_key,
+        dv_bookings_trx_ref_id,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        reason_comment_txt,
+        original_cust_prty_key,
+        original_sls_acct_grp_prty_key,
+        summary_adjustment_flg,
+        bk_deal_id,
+        fddr_reporting_flg,
+        sales_rep_num,
+        archive_edw_create_dtm
+    FROM {{ source('raw', 'n_dyn_restmt_sls_adjstmt_bkp') }}
+),
+
+final AS (
+    SELECT
+        dyn_restmt_sls_adjstmt_key,
+        original_sales_terr_key,
+        restated_sales_terr_key,
+        sales_order_line_key,
+        bk_bookings_trx_type_cd,
+        bk_allocation_split_pct,
+        bk_effective_dt,
+        sk_trx_id_bigint,
+        restatement_sub_type_cd,
+        cust_prty_key,
+        do_not_restate_flg,
+        expiration_dt,
+        apprvd_by_csco_wrkr_prty_key,
+        uploaded_by_csco_wrkr_prty_key,
+        approved_dtm,
+        dv_approved_dt,
+        uploaded_dtm,
+        dv_uploaded_dt,
+        validation_status_cd,
+        validation_status_reason_descr,
+        upload_file_name,
+        processed_flg,
+        ar_trx_line_key,
+        bk_pos_trx_id_int,
+        bk_sales_adj_line_num_int,
+        so_subscr_item_sales_trx_key,
+        rev_transfer_key,
+        sales_acct_grp_prty_key,
+        dv_bookings_trx_ref_id,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        reason_comment_txt,
+        original_cust_prty_key,
+        original_sls_acct_grp_prty_key,
+        summary_adjustment_flg,
+        bk_deal_id,
+        fddr_reporting_flg,
+        sales_rep_num,
+        archive_edw_create_dtm
+    FROM source_n_dyn_restmt_sls_adjstmt_bkp
+)
+
+SELECT * FROM final

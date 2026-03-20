@@ -1,0 +1,259 @@
+{
+  "workflow_name": "wf_m_MT_PROFITABILITY_FX_NORM",
+  "mapping_name": "m_MT_PROFITABILITY_FX_NORM",
+  "mapping_description": "",
+  "folder_name": "EDWTD_BKG_AGGRS",
+  "target_table": "MT_PROFITABILITY_FX_NORM",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_bkg_aggrs_wf_mt_profitability_fx_norm_01_mart_mt_profitability_fx_norm",
+  "source_tables": [
+    "MT_PROFITABILITY_FX_NORM"
+  ],
+  "sources": [
+    {
+      "name": "MT_PROFITABILITY_FX_NORM",
+      "database_type": "Teradata",
+      "owner": "SLSORDDB_DV3",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_CURRENCY_CD",
+          "datatype": "char",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "MT_PROFITABILITY_FX_NORM",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_TERRITORY_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_CURRENCY_CD",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_MT_PROFITABILITY_FX_NORM",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_CURRENCY_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nSALES_TERRITORY_KEY,\r\nBK_CURRENCY_CD\r\nFROM \r\n(\r\nSELECT SALES_TERRITORY_KEY,'CAD' AS BK_CURRENCY_CD\r\nFROM $$COMREFVWDB.R_SALES_HIERARCHY \r\nWHERE L2_SALES_TERRITORY_DESCR='CANADA'\r\nAND DV_SALES_TERR_LEVEL_NUM_INT <=6\r\nUNION ALL\r\nSELECT SALES_TERRITORY_KEY,'AUD' AS BK_CURRENCY_CD\r\nFROM $$COMREFVWDB.R_SALES_HIERARCHY \r\nWHERE L3_SALES_TERRITORY_DESCR='AUST'\r\nAND DV_SALES_TERR_LEVEL_NUM_INT <=6\r\nUNION ALL\r\nSELECT SALES_TERRITORY_KEY,'JPY' AS BK_CURRENCY_CD\r\nFROM $$COMREFVWDB.R_SALES_HIERARCHY \r\nWHERE L2_SALES_TERRITORY_DESCR='JAPAN__'\r\nAND DV_SALES_TERR_LEVEL_NUM_INT <=6\r\n) FX",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_MT_PROFITABILITY_FX_NORM",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "MT_PROFITABILITY_FX_NORM1"
+    },
+    {
+      "from_field": "BK_CURRENCY_CD",
+      "from_instance": "SQ_MT_PROFITABILITY_FX_NORM",
+      "to_field": "BK_CURRENCY_CD",
+      "to_instance": "MT_PROFITABILITY_FX_NORM1"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "MT_PROFITABILITY_FX_NORM",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_MT_PROFITABILITY_FX_NORM"
+    },
+    {
+      "from_field": "BK_CURRENCY_CD",
+      "from_instance": "MT_PROFITABILITY_FX_NORM",
+      "to_field": "BK_CURRENCY_CD",
+      "to_instance": "SQ_MT_PROFITABILITY_FX_NORM"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_TERRITORY_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_TERRITORY_KEY",
+          "from_instance": "SQ_MT_PROFITABILITY_FX_NORM"
+        },
+        {
+          "from_field": "SALES_TERRITORY_KEY",
+          "from_instance": "MT_PROFITABILITY_FX_NORM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_CURRENCY_CD",
+      "source_path": [
+        {
+          "from_field": "BK_CURRENCY_CD",
+          "from_instance": "SQ_MT_PROFITABILITY_FX_NORM"
+        },
+        {
+          "from_field": "BK_CURRENCY_CD",
+          "from_instance": "MT_PROFITABILITY_FX_NORM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:09.819147+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

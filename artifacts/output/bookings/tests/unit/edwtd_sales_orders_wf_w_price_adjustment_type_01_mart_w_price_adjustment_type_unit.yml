@@ -1,0 +1,13 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_sales_orders_wf_w_price_adjustment_type_01_mart_w_price_adjustment_type_expression_transform
+    model: edwtd_sales_orders_wf_w_price_adjustment_type_01_mart_w_price_adjustment_type
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'st_om_fnd_lookup_values_sod')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

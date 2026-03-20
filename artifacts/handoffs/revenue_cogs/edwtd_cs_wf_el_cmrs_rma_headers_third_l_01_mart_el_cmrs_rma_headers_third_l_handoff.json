@@ -1,0 +1,381 @@
+{
+  "workflow_name": "wf_m_EL_CMRS_RMA_HEADERS_THIRD_L",
+  "mapping_name": "m_EL_CMRS_RMA_HEADERS_THIRD_L",
+  "mapping_description": "",
+  "folder_name": "EDWTD_CS",
+  "target_table": "EL_CMRS_RMA_HEADERS_THIRD_L",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_cs_wf_el_cmrs_rma_headers_third_l_01_mart_el_cmrs_rma_headers_third_l",
+  "source_tables": [
+    "st_CMRS_RMA_HEADERS_THIRD_L"
+  ],
+  "sources": [
+    {
+      "name": "st_CMRS_RMA_HEADERS_THIRD_L",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV5",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REQUEST_NUMBER",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FINANCE_DIRECTOR_EMAIL",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FINANCE_DIRECTOR_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "char",
+          "precision": "4",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CD",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_CMRS_RMA_HEADERS_THIRD_L",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "REQUEST_NUMBER",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FINANCE_DIRECTOR_EMAIL",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FINANCE_DIRECTOR_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GES_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GLOBAL_NAME",
+        "datatype": "char",
+        "precision": "4",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_st_CMRS_RMA_HEADERS_THIRD_L",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REQUEST_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FINANCE_DIRECTOR_EMAIL",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FINANCE_DIRECTOR_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT SCRHTL.REQUEST_NUMBER, \r\nSCRHTL.FINANCE_DIRECTOR_EMAIL, SCRHTL.FINANCE_DIRECTOR_ID, \r\nSCRHTL.GES_UPDATE_DATE, SCRHTL.GLOBAL_NAME, SCRHTL.CREATE_DATETIME \r\nFROM\r\n$$STGDB.ST_CMRS_RMA_HEADERS_THIRD_L SCRHTL\r\nWHERE NOT EXISTS\r\n(\r\nSELECT 1 FROM $$ETLONLYDB.EL_CMRS_RMA_HEADERS_THIRD_L ECRHTL\r\nWHERE SCRHTL.REQUEST_NUMBER=ECRHTL.REQUEST_NUMBER\r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "REQUEST_NUMBER",
+      "from_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "REQUEST_NUMBER",
+      "to_instance": "EL_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "FINANCE_DIRECTOR_EMAIL",
+      "from_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "FINANCE_DIRECTOR_EMAIL",
+      "to_instance": "EL_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "FINANCE_DIRECTOR_ID",
+      "from_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "FINANCE_DIRECTOR_ID",
+      "to_instance": "EL_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "EL_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EL_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EL_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "REQUEST_NUMBER",
+      "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "REQUEST_NUMBER",
+      "to_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "FINANCE_DIRECTOR_EMAIL",
+      "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "FINANCE_DIRECTOR_EMAIL",
+      "to_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "FINANCE_DIRECTOR_ID",
+      "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "FINANCE_DIRECTOR_ID",
+      "to_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+    },
+    {
+      "from_field": "ACTION_CD",
+      "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L",
+      "to_field": "ACTION_CD",
+      "to_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "REQUEST_NUMBER",
+      "source_path": [
+        {
+          "from_field": "REQUEST_NUMBER",
+          "from_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+        },
+        {
+          "from_field": "REQUEST_NUMBER",
+          "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FINANCE_DIRECTOR_EMAIL",
+      "source_path": [
+        {
+          "from_field": "FINANCE_DIRECTOR_EMAIL",
+          "from_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+        },
+        {
+          "from_field": "FINANCE_DIRECTOR_EMAIL",
+          "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FINANCE_DIRECTOR_ID",
+      "source_path": [
+        {
+          "from_field": "FINANCE_DIRECTOR_ID",
+          "from_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+        },
+        {
+          "from_field": "FINANCE_DIRECTOR_ID",
+          "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GES_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "GES_UPDATE_DATE",
+          "from_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+        },
+        {
+          "from_field": "GES_UPDATE_DATE",
+          "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GLOBAL_NAME",
+      "source_path": [
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "SQ_st_CMRS_RMA_HEADERS_THIRD_L"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "st_CMRS_RMA_HEADERS_THIRD_L"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:11.713138+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

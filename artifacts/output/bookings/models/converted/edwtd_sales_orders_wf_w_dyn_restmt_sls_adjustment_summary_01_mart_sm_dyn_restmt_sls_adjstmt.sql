@@ -1,0 +1,133 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_w_dyn_summary_sls_adjstmt', 'batch', 'edwtd_sales_orders'],
+    meta={
+        'source_workflow': 'wf_m_W_DYN_SUMMARY_SLS_ADJSTMT',
+        'target_table': 'SM_DYN_RESTMT_SLS_ADJSTMT',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:33.575834+00:00'
+    }
+) }}
+
+WITH 
+
+source_sm_dyn_restmt_sls_adjstmt AS (
+    SELECT
+        dyn_restmt_sls_adjstmt_key,
+        original_sales_terr_key,
+        restated_sales_terr_key,
+        sales_order_line_key,
+        bk_bookings_trx_type_cd,
+        bk_allocation_split_pct,
+        bk_effective_dt,
+        sk_trx_id_bigint,
+        ar_trx_line_key,
+        bk_pos_trx_id_int,
+        bk_sales_adj_line_num_int,
+        so_subscr_item_sales_trx_key,
+        rev_transfer_key,
+        sales_acct_grp_prty_key,
+        cust_prty_key,
+        original_cust_prty_key,
+        original_sls_acct_grp_prty_key,
+        edw_create_dtm,
+        edw_create_user,
+        bk_deal_id,
+        sales_rep_num,
+        upload_file_name,
+        dv_bookings_trx_ref_id,
+        service_indicator_flag,
+        product_key,
+        fiscal_calendar_code,
+        fiscal_quarter_number_int,
+        fiscal_year_number_int
+    FROM {{ source('raw', 'sm_dyn_restmt_sls_adjstmt') }}
+),
+
+source_w_dyn_restmt_sls_adjstmt AS (
+    SELECT
+        dyn_restmt_sls_adjstmt_key,
+        original_sales_terr_key,
+        restated_sales_terr_key,
+        sales_order_line_key,
+        bk_bookings_trx_type_cd,
+        bk_allocation_split_pct,
+        bk_effective_dt,
+        sk_trx_id_bigint,
+        restatement_sub_type_cd,
+        cust_prty_key,
+        do_not_restate_flg,
+        expiration_dt,
+        apprvd_by_csco_wrkr_prty_key,
+        uploaded_by_csco_wrkr_prty_key,
+        approved_dtm,
+        dv_approved_dt,
+        uploaded_dtm,
+        dv_uploaded_dt,
+        validation_status_cd,
+        validation_status_reason_descr,
+        upload_file_name,
+        processed_flg,
+        ar_trx_line_key,
+        bk_pos_trx_id_int,
+        bk_sales_adj_line_num_int,
+        so_subscr_item_sales_trx_key,
+        rev_transfer_key,
+        sales_acct_grp_prty_key,
+        dv_bookings_trx_ref_id,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        reason_comment_txt,
+        original_cust_prty_key,
+        original_sls_acct_grp_prty_key,
+        summary_adjustment_flg,
+        action_code,
+        dml_type,
+        bk_deal_id,
+        sales_rep_num,
+        bk_fiscal_calendar_code,
+        bk_fiscal_quarter_number_int,
+        bk_fiscal_year_number_int,
+        service_indicator_flag,
+        product_key
+    FROM {{ source('raw', 'w_dyn_restmt_sls_adjstmt') }}
+),
+
+final AS (
+    SELECT
+        dyn_restmt_sls_adjstmt_key,
+        original_sales_terr_key,
+        restated_sales_terr_key,
+        sales_order_line_key,
+        bk_bookings_trx_type_cd,
+        bk_allocation_split_pct,
+        bk_effective_dt,
+        sk_trx_id_bigint,
+        ar_trx_line_key,
+        bk_pos_trx_id_int,
+        bk_sales_adj_line_num_int,
+        so_subscr_item_sales_trx_key,
+        rev_transfer_key,
+        sales_acct_grp_prty_key,
+        cust_prty_key,
+        original_cust_prty_key,
+        original_sls_acct_grp_prty_key,
+        restatement_sub_type_cd,
+        edw_create_dtm,
+        edw_create_user,
+        bk_deal_id,
+        sales_rep_num,
+        upload_file_name,
+        dv_bookings_trx_ref_id,
+        service_indicator_flag,
+        fiscal_calendar_code,
+        fiscal_year_number_int,
+        fiscal_quarter_number_int,
+        product_key
+    FROM source_w_dyn_restmt_sls_adjstmt
+)
+
+SELECT * FROM final

@@ -1,0 +1,200 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_deferred_bookings_trx', 'batch', 'edwtd_xaas_bkgs_nrt'],
+    meta={
+        'source_workflow': 'wf_m_WI_DEFERRED_BOOKINGS_TRX',
+        'target_table': 'WI_XAAS_DEFER_INCR_F',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:33.656161+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_drvd_xaas_defer_trx_r AS (
+    SELECT
+        dv_so_sbscrptn_itm_sls_trx_key,
+        so_sbscrptn_itm_sls_trx_key,
+        fiscal_year_mth_number_int,
+        prcsd_fiscal_year_mth_num_int,
+        bill_to_customer_key,
+        ship_to_customer_key,
+        sold_to_customer_key,
+        dv_end_customer_key,
+        bkgs_measure_trans_type_cd,
+        bookings_split_pct,
+        sk_offer_attribution_id_int,
+        corporate_bookings_flg,
+        charges_flg,
+        conversion_rt,
+        conversion_dt,
+        dv_attribution_cd,
+        dd_comp_us_net_price_amt,
+        dd_comp_us_list_price_amt,
+        dd_comp_us_cost_amt,
+        dd_comp_us_standard_price_amt,
+        dd_bk_so_number_int,
+        dd_cisco_booked_dtm,
+        dv_local_extnd_list_price_amt,
+        dv_mthly_rcr_rev_trxl_usd_amt,
+        dv_incrml_mthy_rcrr_rv_usd_amt,
+        dv_annlzd_mthy_rcrr_rv_usd_amt,
+        dv_incrml_annl_rcrr_rv_usd_amt,
+        local_unit_list_price_amt,
+        dv_unit_list_price_usd_amt,
+        dv_total_cntrct_val_usd_amt,
+        dd_extended_quantity,
+        dd_sls_ord_operating_unit_cd,
+        dd_trx_currency_cd,
+        dv_product_key,
+        dv_deal_id,
+        end_customer_key,
+        ic_revenue_flg,
+        misc_flg,
+        international_demo_flg,
+        dv_transaction_name,
+        product_key,
+        replacement_demo_flg,
+        revenue_flg,
+        recurring_offer_flg,
+        sales_territory_key,
+        sales_rep_num,
+        sales_channel_cd,
+        sales_credit_type_cd,
+        service_flg,
+        transaction_dtm,
+        dv_deferral_release_dt,
+        orig_bkg_so_subscr_sls_trx_key,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        xcat_flg,
+        bk_offer_type_name,
+        ela_flg,
+        active_flg,
+        dv_latest_record_flg,
+        forward_reverse_flg,
+        process_date
+    FROM {{ source('raw', 'wi_drvd_xaas_defer_trx_r') }}
+),
+
+source_wi_xaas_defer_incr_f AS (
+    SELECT
+        so_sbscrptn_itm_sls_trx_key,
+        orig_bkg_so_subscr_sls_trx_key
+    FROM {{ source('raw', 'wi_xaas_defer_incr_f') }}
+),
+
+source_wi_drvd_xaas_defer_trx_f AS (
+    SELECT
+        sls_credit_asgnmt_sls_trx_key,
+        bk_sales_rep_num,
+        so_sbscrptn_itm_sls_trx_key,
+        sales_territory_key,
+        bk_sales_credit_type_code,
+        split_pct,
+        bk_sales_adj_cd,
+        bk_sales_adj_type_cd,
+        sales_value_trxl_amt,
+        bk_trxl_currency_cd,
+        booked_dt,
+        forward_reverse_code,
+        transaction_datetime,
+        process_date,
+        transaction_qty,
+        subscription_product_key,
+        rbk_sc_source_commit_dtm,
+        dv_attribution_cd,
+        sk_offer_attribution_id_int,
+        dv_so_sbscrptn_itm_sls_trx_key,
+        dv_product_key
+    FROM {{ source('raw', 'wi_drvd_xaas_defer_trx_f') }}
+),
+
+source_wi_xaas_defer_incr_r AS (
+    SELECT
+        so_sbscrptn_itm_sls_trx_key,
+        process_date,
+        transaction_datetime,
+        sls_credit_asgnmt_sls_trx_key
+    FROM {{ source('raw', 'wi_xaas_defer_incr_r') }}
+),
+
+source_wi_deferred_bookings_trx AS (
+    SELECT
+        dv_so_sbscrptn_itm_sls_trx_key,
+        so_sbscrptn_itm_sls_trx_key,
+        fiscal_year_mth_number_int,
+        prcsd_fiscal_year_mth_num_int,
+        bill_to_customer_key,
+        ship_to_customer_key,
+        sold_to_customer_key,
+        dv_end_customer_key,
+        bkgs_measure_trans_type_cd,
+        bookings_split_pct,
+        sk_offer_attribution_id_int,
+        corporate_bookings_flg,
+        charges_flg,
+        conversion_rt,
+        conversion_dt,
+        dv_attribution_cd,
+        dd_comp_us_net_price_amt,
+        dd_comp_us_list_price_amt,
+        dd_comp_us_cost_amt,
+        dd_comp_us_standard_price_amt,
+        dd_bk_so_number_int,
+        dd_cisco_booked_dtm,
+        dv_local_extnd_list_price_amt,
+        dv_mthly_rcr_rev_trxl_usd_amt,
+        dv_incrml_mthy_rcrr_rv_usd_amt,
+        dv_annlzd_mthy_rcrr_rv_usd_amt,
+        dv_incrml_annl_rcrr_rv_usd_amt,
+        local_unit_list_price_amt,
+        dv_unit_list_price_usd_amt,
+        dv_total_cntrct_val_usd_amt,
+        dd_extended_quantity,
+        dd_sls_ord_operating_unit_cd,
+        dd_trx_currency_cd,
+        dv_product_key,
+        dv_deal_id,
+        end_customer_key,
+        ic_revenue_flg,
+        misc_flg,
+        international_demo_flg,
+        dv_transaction_name,
+        product_key,
+        replacement_demo_flg,
+        revenue_flg,
+        recurring_offer_flg,
+        sales_territory_key,
+        sales_rep_num,
+        sales_channel_cd,
+        sales_credit_type_cd,
+        service_flg,
+        transaction_dtm,
+        dv_deferral_release_dt,
+        orig_bkg_so_subscr_sls_trx_key,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        xcat_flg,
+        bk_offer_type_name,
+        ela_flg,
+        active_flg,
+        dv_latest_record_flg,
+        forward_reverse_flg,
+        process_date
+    FROM {{ source('raw', 'wi_deferred_bookings_trx') }}
+),
+
+final AS (
+    SELECT
+        so_sbscrptn_itm_sls_trx_key,
+        orig_bkg_so_subscr_sls_trx_key
+    FROM source_wi_deferred_bookings_trx
+)
+
+SELECT * FROM final

@@ -1,0 +1,99 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_w_volume_fact', 'batch', 'edwtd_ca_services'],
+    meta={
+        'source_workflow': 'wf_m_W_VOLUME_FACT',
+        'target_table': 'W_VOLUME_FACT',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:44.412563+00:00'
+    }
+) }}
+
+WITH 
+
+source_el_tss_cust_site_ref_d AS (
+    SELECT
+        customer_id,
+        address_location_id,
+        cust_market_seg_name,
+        bl_last_update_date,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user
+    FROM {{ source('raw', 'el_tss_cust_site_ref_d') }}
+),
+
+final AS (
+    SELECT
+        sr_number,
+        fiscal_month_id,
+        quarter,
+        fiscal_year_id,
+        create_date,
+        close_date,
+        tech_name,
+        sub_tech_name,
+        cot_technology_map_id,
+        center_id,
+        owner_service_type,
+        sub_region,
+        fs_minutes,
+        fs_days,
+        owner_time_minutes,
+        owner_time_days,
+        problem_code,
+        contact_ccie,
+        complexity_id,
+        initial_tech_name,
+        initial_sub_tech_name,
+        initial_problem_code,
+        relationship,
+        differentiated,
+        ee,
+        ie,
+        p_ee,
+        p_ie,
+        market_segment,
+        service_sub_group,
+        sa_number,
+        customer,
+        hw_family,
+        sw_family,
+        contract,
+        cec_id,
+        cco_id,
+        cse_role,
+        sr_type,
+        entry_channel,
+        contact_ccie_flag,
+        initial_cot_tech_key,
+        updated_cot_tech_key,
+        extra_time_status,
+        extra_time_email,
+        sw_version_id,
+        hw_version_id,
+        nam_technology,
+        former_technology,
+        apac_technology,
+        ext_theater_name,
+        ext_workgroup_name,
+        ext_delivery_channel,
+        ext_complexity,
+        ext_center_name,
+        ext_cust_theater,
+        cust_theater,
+        cust_country_code,
+        acod_finance_accrued,
+        smart_account_id,
+        subscription_reference_id,
+        virtual_account_id,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user
+    FROM source_el_tss_cust_site_ref_d
+)
+
+SELECT * FROM final

@@ -1,0 +1,130 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_rstd_defrev_ccw_trngltd', 'batch', 'edwtd_rev_measure'],
+    meta={
+        'source_workflow': 'wf_m_WI_RSTD_DEFREV_CCW_TRNGLTD',
+        'target_table': 'WI_RSTD_CCW_THRESHOLD_TYPE',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:46.295469+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_rstd_ccw_trngt_out AS (
+    SELECT
+        processed_fiscal_year_mth_int,
+        bk_measure_name,
+        fiscal_year_month_int,
+        sales_territory_key,
+        product_key,
+        trngtd_sales_territory_key,
+        be_trngtd_allocation_pct,
+        driver_type
+    FROM {{ source('raw', 'wi_rstd_ccw_trngt_out') }}
+),
+
+source_wi_rstd_defrev_ccw_prdt_offer AS (
+    SELECT
+        processed_fiscal_year_mth_int,
+        bk_measure_name,
+        sales_territory_key,
+        product_key,
+        fiscal_year_month_int,
+        src_entity_name,
+        bk_deal_id,
+        erp_deal_id,
+        bk_ccrm_profile_id_int,
+        service_flg,
+        recognized_rev_usd_amt,
+        balance_rev_usd_amt,
+        projected_rev_usd_amt,
+        projected_balance_rev_usd_amt,
+        sales_order_key,
+        dv_attribution_cd,
+        dv_product_key,
+        xcat_flg,
+        recurring_offer_flg,
+        bk_offer_type_name,
+        ela_flg,
+        sk_offer_attribution_id_int,
+        product_subscription_flg,
+        dv_beginning_blnce_rev_usd_amt,
+        deferral_rev_usd_amt,
+        pob_type_cd,
+        restated_sls_crdt_split_pct
+    FROM {{ source('raw', 'wi_rstd_defrev_ccw_prdt_offer') }}
+),
+
+source_wi_rstd_defrev_ccw_trngltd AS (
+    SELECT
+        processed_fiscal_year_mth_int,
+        bk_measure_name,
+        sales_territory_key,
+        product_key,
+        fiscal_year_month_int,
+        src_entity_name,
+        bk_deal_id,
+        erp_deal_id,
+        bk_ccrm_profile_id_int,
+        service_flg,
+        recognized_rev_usd_amt,
+        balance_rev_usd_amt,
+        projected_rev_usd_amt,
+        projected_balance_rev_usd_amt,
+        sales_order_key,
+        dv_attribution_cd,
+        dv_product_key,
+        xcat_flg,
+        recurring_offer_flg,
+        bk_offer_type_name,
+        ela_flg,
+        sk_offer_attribution_id_int,
+        product_subscription_flg,
+        dv_beginning_blnce_rev_usd_amt,
+        deferral_rev_usd_amt,
+        pob_type_cd,
+        restated_sls_crdt_split_pct
+    FROM {{ source('raw', 'wi_rstd_defrev_ccw_trngltd') }}
+),
+
+source_wi_rstd_ccw_trngt_in AS (
+    SELECT
+        processed_fiscal_year_mth_int,
+        bk_measure_name,
+        fiscal_year_month_int,
+        sales_territory_key,
+        l3_sales_territory_name_code,
+        iso_country_code,
+        product_key,
+        bk_product_id,
+        ru_bk_product_family_id,
+        bk_business_entity_name,
+        prdt_family_allocation_pct
+    FROM {{ source('raw', 'wi_rstd_ccw_trngt_in') }}
+),
+
+source_wi_rstd_ccw_threshold_type AS (
+    SELECT
+        processed_fiscal_year_mth_int,
+        bk_measure_name,
+        l3_sales_territory_name_code,
+        amt,
+        percentage,
+        thresold_type
+    FROM {{ source('raw', 'wi_rstd_ccw_threshold_type') }}
+),
+
+final AS (
+    SELECT
+        processed_fiscal_year_mth_int,
+        bk_measure_name,
+        l3_sales_territory_name_code,
+        amt,
+        percentage,
+        thresold_type
+    FROM source_wi_rstd_ccw_threshold_type
+)
+
+SELECT * FROM final

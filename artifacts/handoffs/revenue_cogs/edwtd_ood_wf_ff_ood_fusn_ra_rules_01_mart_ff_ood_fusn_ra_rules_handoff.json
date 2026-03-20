@@ -1,0 +1,508 @@
+{
+  "workflow_name": "wf_m_FF_OOD_FUSN_RA_RULES",
+  "mapping_name": "m_FF_OOD_FUSN_RA_RULES",
+  "mapping_description": "",
+  "folder_name": "EDWTD_OOD",
+  "target_table": "FF_OOD_FUSN_RA_RULES",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ood_wf_ff_ood_fusn_ra_rules_01_mart_ff_ood_fusn_ra_rules",
+  "source_tables": [
+    "SAAS_RA_RULES"
+  ],
+  "sources": [
+    {
+      "name": "SAAS_RA_RULES",
+      "database_type": "XML",
+      "owner": "",
+      "fields": [
+        {
+          "name": "XPK_ROOT",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "XPK_RA_RULES",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FK_ROOT",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RULE_ID",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "string",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_OOD_FUSN_RA_RULES",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "DESCRIPTION",
+        "datatype": "string",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NAME",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RULE_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "string",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "XMLDSQ_SAAS_RA_RULES",
+      "type": "XML Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "XPK_ROOT",
+          "datatype": "bigint",
+          "porttype": "GENERATED KEY/INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "XPK_RA_RULES",
+          "datatype": "bigint",
+          "porttype": "GENERATED KEY/INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FK_ROOT",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RULE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal",
+        "Reset": "NO",
+        "Restart": "NO",
+        "Validate XML Source": "Validate only if DTD/Schema is present",
+        "Is Partitionable": "NO"
+      },
+      "groups": [
+        {
+          "name": "X_ROOT",
+          "expression": ""
+        },
+        {
+          "name": "X_RA_RULES",
+          "expression": ""
+        }
+      ]
+    },
+    {
+      "name": "EXP_FUSN_RA_RULES",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DESCRIPTION"
+        },
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "NAME"
+        },
+        {
+          "name": "RULE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RULE_ID"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATION_DATE"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_DATE"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "XML Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EXP_FUSN_RA_RULES",
+      "to_field": "DESCRIPTION",
+      "to_instance": "FF_OOD_FUSN_RA_RULES"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "EXP_FUSN_RA_RULES",
+      "to_field": "NAME",
+      "to_instance": "FF_OOD_FUSN_RA_RULES"
+    },
+    {
+      "from_field": "RULE_ID",
+      "from_instance": "EXP_FUSN_RA_RULES",
+      "to_field": "RULE_ID",
+      "to_instance": "FF_OOD_FUSN_RA_RULES"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EXP_FUSN_RA_RULES",
+      "to_field": "CREATION_DATE",
+      "to_instance": "FF_OOD_FUSN_RA_RULES"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "EXP_FUSN_RA_RULES",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "FF_OOD_FUSN_RA_RULES"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "EXP_FUSN_RA_RULES",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "FF_OOD_FUSN_RA_RULES"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_FUSN_RA_RULES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "FF_OOD_FUSN_RA_RULES"
+    },
+    {
+      "from_field": "XPK_ROOT",
+      "from_instance": "SAAS_RA_RULES",
+      "to_field": "XPK_ROOT",
+      "to_instance": "XMLDSQ_SAAS_RA_RULES"
+    },
+    {
+      "from_field": "XPK_RA_RULES",
+      "from_instance": "SAAS_RA_RULES",
+      "to_field": "XPK_RA_RULES",
+      "to_instance": "XMLDSQ_SAAS_RA_RULES"
+    },
+    {
+      "from_field": "FK_ROOT",
+      "from_instance": "SAAS_RA_RULES",
+      "to_field": "FK_ROOT",
+      "to_instance": "XMLDSQ_SAAS_RA_RULES"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SAAS_RA_RULES",
+      "to_field": "DESCRIPTION",
+      "to_instance": "XMLDSQ_SAAS_RA_RULES"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "SAAS_RA_RULES",
+      "to_field": "NAME",
+      "to_instance": "XMLDSQ_SAAS_RA_RULES"
+    },
+    {
+      "from_field": "RULE_ID",
+      "from_instance": "SAAS_RA_RULES",
+      "to_field": "RULE_ID",
+      "to_instance": "XMLDSQ_SAAS_RA_RULES"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SAAS_RA_RULES",
+      "to_field": "CREATION_DATE",
+      "to_instance": "XMLDSQ_SAAS_RA_RULES"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SAAS_RA_RULES",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "XMLDSQ_SAAS_RA_RULES"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "XMLDSQ_SAAS_RA_RULES",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EXP_FUSN_RA_RULES"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "XMLDSQ_SAAS_RA_RULES",
+      "to_field": "NAME",
+      "to_instance": "EXP_FUSN_RA_RULES"
+    },
+    {
+      "from_field": "RULE_ID",
+      "from_instance": "XMLDSQ_SAAS_RA_RULES",
+      "to_field": "RULE_ID",
+      "to_instance": "EXP_FUSN_RA_RULES"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "XMLDSQ_SAAS_RA_RULES",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EXP_FUSN_RA_RULES"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "XMLDSQ_SAAS_RA_RULES",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "EXP_FUSN_RA_RULES"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "EXP_FUSN_RA_RULES"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "SAAS_RA_RULES"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "XMLDSQ_SAAS_RA_RULES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NAME",
+      "source_path": [
+        {
+          "from_field": "NAME",
+          "from_instance": "EXP_FUSN_RA_RULES"
+        },
+        {
+          "from_field": "NAME",
+          "from_instance": "SAAS_RA_RULES"
+        },
+        {
+          "from_field": "NAME",
+          "from_instance": "XMLDSQ_SAAS_RA_RULES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RULE_ID",
+      "source_path": [
+        {
+          "from_field": "RULE_ID",
+          "from_instance": "EXP_FUSN_RA_RULES"
+        },
+        {
+          "from_field": "RULE_ID",
+          "from_instance": "SAAS_RA_RULES"
+        },
+        {
+          "from_field": "RULE_ID",
+          "from_instance": "XMLDSQ_SAAS_RA_RULES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EXP_FUSN_RA_RULES"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SAAS_RA_RULES"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "XMLDSQ_SAAS_RA_RULES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "EXP_FUSN_RA_RULES"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SAAS_RA_RULES"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "XMLDSQ_SAAS_RA_RULES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "EXP_FUSN_RA_RULES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_FUSN_RA_RULES"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "missing",
+  "generated_timestamp": "2026-03-19T18:33:20.025961+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": true
+}

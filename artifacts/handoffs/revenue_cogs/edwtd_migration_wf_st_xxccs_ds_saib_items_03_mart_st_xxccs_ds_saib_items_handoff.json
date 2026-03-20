@@ -1,0 +1,231 @@
+{
+  "workflow_name": "wf_m_FF_XXCCS_DS_SAIB_ITEMS",
+  "mapping_name": "m_FF_XXCCS_DS_SAIB_ITEMS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_MIGRATION",
+  "target_table": "ST_XXCCS_DS_SAIB_ITEMS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_migration_wf_st_xxccs_ds_saib_items_03_mart_st_xxccs_ds_saib_items",
+  "source_tables": [
+    "FF_XXCCS_DS_SAIB_ITEMS",
+    "XXCCS_DS_SAIB_ITEMS"
+  ],
+  "sources": [
+    {
+      "name": "FF_XXCCS_DS_SAIB_ITEMS",
+      "database_type": "Flat File",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "INVENTORY_ITEM_ID",
+          "datatype": "int",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BUSINESS_ENTITY_DESC_TOP",
+          "datatype": "string",
+          "precision": "1000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUB_BUSINESS_ENTITY_DESC_TOP",
+          "datatype": "string",
+          "precision": "1000",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "XXCCS_DS_SAIB_ITEMS",
+      "database_type": "Oracle",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "INVENTORY_ITEM_ID",
+          "datatype": "number(p,s)",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BUSINESS_ENTITY_DESC_TOP",
+          "datatype": "varchar2",
+          "precision": "1000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUB_BUSINESS_ENTITY_DESC_TOP",
+          "datatype": "varchar2",
+          "precision": "1000",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_XXCCS_DS_SAIB_ITEMS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "INVENTORY_ITEM_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BUSINESS_ENTITY_DESC_TOP",
+        "datatype": "varchar",
+        "precision": "1000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SUB_BUSINESS_ENTITY_DESC_TOP",
+        "datatype": "varchar",
+        "precision": "1000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_XXCCS_DS_SAIB_ITEMS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "INVENTORY_ITEM_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUSINESS_ENTITY_DESC_TOP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUB_BUSINESS_ENTITY_DESC_TOP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "select \r\nINVENTORY_ITEM_ID ,\r\nBUSINESS_ENTITY_DESC_TOP,\r\nSUB_BUSINESS_ENTITY_DESC_TOP\r\n from apps.xxccs_ds_saib_items",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "INVENTORY_ITEM_ID",
+      "from_instance": "SQ_XXCCS_DS_SAIB_ITEMS",
+      "to_field": "INVENTORY_ITEM_ID",
+      "to_instance": "FF_XXCCS_DS_SAIB_ITEMS"
+    },
+    {
+      "from_field": "BUSINESS_ENTITY_DESC_TOP",
+      "from_instance": "SQ_XXCCS_DS_SAIB_ITEMS",
+      "to_field": "BUSINESS_ENTITY_DESC_TOP",
+      "to_instance": "FF_XXCCS_DS_SAIB_ITEMS"
+    },
+    {
+      "from_field": "SUB_BUSINESS_ENTITY_DESC_TOP",
+      "from_instance": "SQ_XXCCS_DS_SAIB_ITEMS",
+      "to_field": "SUB_BUSINESS_ENTITY_DESC_TOP",
+      "to_instance": "FF_XXCCS_DS_SAIB_ITEMS"
+    },
+    {
+      "from_field": "INVENTORY_ITEM_ID",
+      "from_instance": "XXCCS_DS_SAIB_ITEMS",
+      "to_field": "INVENTORY_ITEM_ID",
+      "to_instance": "SQ_XXCCS_DS_SAIB_ITEMS"
+    },
+    {
+      "from_field": "BUSINESS_ENTITY_DESC_TOP",
+      "from_instance": "XXCCS_DS_SAIB_ITEMS",
+      "to_field": "BUSINESS_ENTITY_DESC_TOP",
+      "to_instance": "SQ_XXCCS_DS_SAIB_ITEMS"
+    },
+    {
+      "from_field": "SUB_BUSINESS_ENTITY_DESC_TOP",
+      "from_instance": "XXCCS_DS_SAIB_ITEMS",
+      "to_field": "SUB_BUSINESS_ENTITY_DESC_TOP",
+      "to_instance": "SQ_XXCCS_DS_SAIB_ITEMS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "INVENTORY_ITEM_ID",
+      "source_path": [
+        {
+          "from_field": "INVENTORY_ITEM_ID",
+          "from_instance": "SQ_XXCCS_DS_SAIB_ITEMS"
+        },
+        {
+          "from_field": "INVENTORY_ITEM_ID",
+          "from_instance": "XXCCS_DS_SAIB_ITEMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BUSINESS_ENTITY_DESC_TOP",
+      "source_path": [
+        {
+          "from_field": "BUSINESS_ENTITY_DESC_TOP",
+          "from_instance": "SQ_XXCCS_DS_SAIB_ITEMS"
+        },
+        {
+          "from_field": "BUSINESS_ENTITY_DESC_TOP",
+          "from_instance": "XXCCS_DS_SAIB_ITEMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SUB_BUSINESS_ENTITY_DESC_TOP",
+      "source_path": [
+        {
+          "from_field": "SUB_BUSINESS_ENTITY_DESC_TOP",
+          "from_instance": "SQ_XXCCS_DS_SAIB_ITEMS"
+        },
+        {
+          "from_field": "SUB_BUSINESS_ENTITY_DESC_TOP",
+          "from_instance": "XXCCS_DS_SAIB_ITEMS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:18.461430+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

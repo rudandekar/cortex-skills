@@ -1,0 +1,158 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_cg1_xxicm_saf_salesreps_all', 'batch', 'edwtd_batch_accum'],
+    meta={
+        'source_workflow': 'wf_m_CG1_XXICM_SAF_SALESREPS_ALL',
+        'target_table': 'CG1_XXICM_SAF_SALESREPS_ALL',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:22:00.763404+00:00'
+    }
+) }}
+
+WITH 
+
+source_stg_cg1_xxicm_saf_salesreps AS (
+    SELECT
+        saf_salesrep_id,
+        saf_invoice_id,
+        salesrep_id,
+        territory_id,
+        split_percent,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        last_update_login,
+        transaction_type,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        processed_flag
+    FROM {{ source('raw', 'stg_cg1_xxicm_saf_salesreps') }}
+),
+
+source_cg1_xxicm_saf_salesreps_all AS (
+    SELECT
+        source_dml_type,
+        fully_qualified_table_name,
+        source_commit_time,
+        refresh_datetime,
+        trail_position,
+        token,
+        saf_salesrep_id,
+        saf_invoice_id,
+        salesrep_id,
+        territory_id,
+        split_percent,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        last_update_login,
+        transaction_type,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15
+    FROM {{ source('raw', 'cg1_xxicm_saf_salesreps_all') }}
+),
+
+transformed_exp_cg1_xxicm_saf_salesreps_all AS (
+    SELECT
+    source_dml_type,
+    source_commit_time,
+    refresh_datetime,
+    saf_salesrep_id,
+    saf_invoice_id,
+    salesrep_id,
+    territory_id,
+    split_percent,
+    created_by,
+    creation_date,
+    last_updated_by,
+    last_update_date,
+    last_update_login,
+    transaction_type,
+    attribute1,
+    attribute2,
+    attribute3,
+    attribute4,
+    attribute5,
+    attribute6,
+    attribute7,
+    attribute8,
+    attribute9,
+    attribute10,
+    attribute11,
+    attribute12,
+    attribute13,
+    attribute14,
+    attribute15
+    FROM source_cg1_xxicm_saf_salesreps_all
+),
+
+final AS (
+    SELECT
+        saf_salesrep_id,
+        saf_invoice_id,
+        salesrep_id,
+        territory_id,
+        split_percent,
+        created_by,
+        creation_date,
+        last_updated_by,
+        last_update_date,
+        last_update_login,
+        transaction_type,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        processed_flag
+    FROM transformed_exp_cg1_xxicm_saf_salesreps_all
+)
+
+SELECT * FROM final

@@ -1,0 +1,390 @@
+{
+  "workflow_name": "wf_m_ST_WG_H_CURRENT",
+  "mapping_name": "m_ST_WG_H_CURRENT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "ST_WG_H_CURRENT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_st_wg_h_current_01_mart_st_wg_h_current",
+  "source_tables": [
+    "FF_WG_H_CURRENT"
+  ],
+  "sources": [
+    {
+      "name": "FF_WG_H_CURRENT",
+      "database_type": "Flat File",
+      "owner": "FlatFile",
+      "fields": [
+        {
+          "name": "HIERARCHY_ID",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OBJECT_NUMBER",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REPORTS_TO_OBJECT_NUMBER",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "HIERARCHY_LEVEL",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "HIERARCHY_VERSION",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "HIERARCHY_STRING",
+          "datatype": "string",
+          "precision": "750",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_WG_H_CURRENT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "HIERARCHY_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "OBJECT_NUMBER",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REPORTS_TO_OBJECT_NUMBER",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "HIERARCHY_LEVEL",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "HIERARCHY_VERSION",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "HIERARCHY_STRING",
+        "datatype": "varchar",
+        "precision": "750",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_WG_H_CURRENT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "HIERARCHY_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OBJECT_NUMBER",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPORTS_TO_OBJECT_NUMBER",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HIERARCHY_LEVEL",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HIERARCHY_VERSION",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HIERARCHY_STRING",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "HIERARCHY_ID",
+      "from_instance": "SQ_FF_WG_H_CURRENT",
+      "to_field": "HIERARCHY_ID",
+      "to_instance": "ST_WG_H_CURRENT"
+    },
+    {
+      "from_field": "OBJECT_NUMBER",
+      "from_instance": "SQ_FF_WG_H_CURRENT",
+      "to_field": "OBJECT_NUMBER",
+      "to_instance": "ST_WG_H_CURRENT"
+    },
+    {
+      "from_field": "REPORTS_TO_OBJECT_NUMBER",
+      "from_instance": "SQ_FF_WG_H_CURRENT",
+      "to_field": "REPORTS_TO_OBJECT_NUMBER",
+      "to_instance": "ST_WG_H_CURRENT"
+    },
+    {
+      "from_field": "HIERARCHY_LEVEL",
+      "from_instance": "SQ_FF_WG_H_CURRENT",
+      "to_field": "HIERARCHY_LEVEL",
+      "to_instance": "ST_WG_H_CURRENT"
+    },
+    {
+      "from_field": "HIERARCHY_VERSION",
+      "from_instance": "SQ_FF_WG_H_CURRENT",
+      "to_field": "HIERARCHY_VERSION",
+      "to_instance": "ST_WG_H_CURRENT"
+    },
+    {
+      "from_field": "CREATE_DATE",
+      "from_instance": "SQ_FF_WG_H_CURRENT",
+      "to_field": "CREATE_DATE",
+      "to_instance": "ST_WG_H_CURRENT"
+    },
+    {
+      "from_field": "HIERARCHY_STRING",
+      "from_instance": "SQ_FF_WG_H_CURRENT",
+      "to_field": "HIERARCHY_STRING",
+      "to_instance": "ST_WG_H_CURRENT"
+    },
+    {
+      "from_field": "HIERARCHY_ID",
+      "from_instance": "FF_WG_H_CURRENT",
+      "to_field": "HIERARCHY_ID",
+      "to_instance": "SQ_FF_WG_H_CURRENT"
+    },
+    {
+      "from_field": "OBJECT_NUMBER",
+      "from_instance": "FF_WG_H_CURRENT",
+      "to_field": "OBJECT_NUMBER",
+      "to_instance": "SQ_FF_WG_H_CURRENT"
+    },
+    {
+      "from_field": "REPORTS_TO_OBJECT_NUMBER",
+      "from_instance": "FF_WG_H_CURRENT",
+      "to_field": "REPORTS_TO_OBJECT_NUMBER",
+      "to_instance": "SQ_FF_WG_H_CURRENT"
+    },
+    {
+      "from_field": "HIERARCHY_LEVEL",
+      "from_instance": "FF_WG_H_CURRENT",
+      "to_field": "HIERARCHY_LEVEL",
+      "to_instance": "SQ_FF_WG_H_CURRENT"
+    },
+    {
+      "from_field": "HIERARCHY_VERSION",
+      "from_instance": "FF_WG_H_CURRENT",
+      "to_field": "HIERARCHY_VERSION",
+      "to_instance": "SQ_FF_WG_H_CURRENT"
+    },
+    {
+      "from_field": "CREATE_DATE",
+      "from_instance": "FF_WG_H_CURRENT",
+      "to_field": "CREATE_DATE",
+      "to_instance": "SQ_FF_WG_H_CURRENT"
+    },
+    {
+      "from_field": "HIERARCHY_STRING",
+      "from_instance": "FF_WG_H_CURRENT",
+      "to_field": "HIERARCHY_STRING",
+      "to_instance": "SQ_FF_WG_H_CURRENT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "HIERARCHY_ID",
+      "source_path": [
+        {
+          "from_field": "HIERARCHY_ID",
+          "from_instance": "SQ_FF_WG_H_CURRENT"
+        },
+        {
+          "from_field": "HIERARCHY_ID",
+          "from_instance": "FF_WG_H_CURRENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "OBJECT_NUMBER",
+      "source_path": [
+        {
+          "from_field": "OBJECT_NUMBER",
+          "from_instance": "SQ_FF_WG_H_CURRENT"
+        },
+        {
+          "from_field": "OBJECT_NUMBER",
+          "from_instance": "FF_WG_H_CURRENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REPORTS_TO_OBJECT_NUMBER",
+      "source_path": [
+        {
+          "from_field": "REPORTS_TO_OBJECT_NUMBER",
+          "from_instance": "SQ_FF_WG_H_CURRENT"
+        },
+        {
+          "from_field": "REPORTS_TO_OBJECT_NUMBER",
+          "from_instance": "FF_WG_H_CURRENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "HIERARCHY_LEVEL",
+      "source_path": [
+        {
+          "from_field": "HIERARCHY_LEVEL",
+          "from_instance": "SQ_FF_WG_H_CURRENT"
+        },
+        {
+          "from_field": "HIERARCHY_LEVEL",
+          "from_instance": "FF_WG_H_CURRENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "HIERARCHY_VERSION",
+      "source_path": [
+        {
+          "from_field": "HIERARCHY_VERSION",
+          "from_instance": "SQ_FF_WG_H_CURRENT"
+        },
+        {
+          "from_field": "HIERARCHY_VERSION",
+          "from_instance": "FF_WG_H_CURRENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATE",
+          "from_instance": "SQ_FF_WG_H_CURRENT"
+        },
+        {
+          "from_field": "CREATE_DATE",
+          "from_instance": "FF_WG_H_CURRENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "HIERARCHY_STRING",
+      "source_path": [
+        {
+          "from_field": "HIERARCHY_STRING",
+          "from_instance": "SQ_FF_WG_H_CURRENT"
+        },
+        {
+          "from_field": "HIERARCHY_STRING",
+          "from_instance": "FF_WG_H_CURRENT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:27.113830+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,70 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_sol_so_end_cust_ret_ar_ood', 'batch', 'edwtd_ood'],
+    meta={
+        'source_workflow': 'wf_m_WI_SOL_SO_END_CUST_RET_AR_OOD',
+        'target_table': 'WI_SOL_END_CUST_REV_RETRO_OOD',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:43.998114+00:00'
+    }
+) }}
+
+WITH 
+
+source_n_sol_end_customer_tv AS (
+    SELECT
+        sales_order_line_key,
+        end_customer_key,
+        start_tv_datetime,
+        start_ssp_date,
+        end_tv_datetime,
+        end_ssp_date,
+        end_customer_type_code,
+        ss_code,
+        end_customer_assgn_level,
+        edw_create_datetime,
+        edw_create_user,
+        edw_update_datetime,
+        edw_update_user,
+        dd_parent_sales_order_line_key
+    FROM {{ source('raw', 'n_sol_end_customer_tv') }}
+),
+
+source_n_so_end_customer_tv AS (
+    SELECT
+        end_customer_key,
+        dd_end_customer_type,
+        sk_sales_order_header_id_int,
+        ss_cd,
+        sales_order_key,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        start_ssp_date,
+        start_tv_datetime,
+        end_ssp_date,
+        end_tv_datetime
+    FROM {{ source('raw', 'n_so_end_customer_tv') }}
+),
+
+final AS (
+    SELECT
+        sales_order_line_key,
+        end_customer_key,
+        start_tv_datetime,
+        start_ssp_date,
+        end_tv_datetime,
+        end_ssp_date,
+        end_customer_type_code,
+        ss_code,
+        end_customer_assgn_level,
+        edw_create_user,
+        edw_update_user,
+        edw_create_datetime,
+        edw_update_datetime
+    FROM source_n_so_end_customer_tv
+)
+
+SELECT * FROM final

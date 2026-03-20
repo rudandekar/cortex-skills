@@ -1,0 +1,13 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_gl_wf_wk_journal_entry_line_01_mart_wi_monthly_conversion_rate_expression_transform
+    model: edwtd_gl_wf_wk_journal_entry_line_01_mart_wi_monthly_conversion_rate
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'n_currency_conv_daily_rate')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

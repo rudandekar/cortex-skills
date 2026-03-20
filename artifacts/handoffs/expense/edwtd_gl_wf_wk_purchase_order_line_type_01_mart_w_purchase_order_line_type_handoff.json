@@ -1,0 +1,500 @@
+{
+  "workflow_name": "wf_m_WK_PURCHASE_ORDER_LINE_TYPE",
+  "mapping_name": "m_WK_PURCHASE_ORDER_LINE_TYPE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "W_PURCHASE_ORDER_LINE_TYPE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_wk_purchase_order_line_type_01_mart_w_purchase_order_line_type",
+  "source_tables": [
+    "ST_MF_PO_LINE_TYPES_TL"
+  ],
+  "sources": [
+    {
+      "name": "ST_MF_PO_LINE_TYPES_TL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DEV",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LANGUAGE_CODE",
+          "datatype": "varchar",
+          "precision": "4",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LINE_TYPE",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LINE_TYPE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_LANG",
+          "datatype": "varchar",
+          "precision": "4",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_PURCHASE_ORDER_LINE_TYPE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_PURCHASE_ORDER_LINE_TYPE_CD",
+        "datatype": "char",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "PURCHASE_BASIS_CD",
+        "datatype": "char",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PURCHASE_ORDER_LINE_TYPE_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "Exp_W_PURCHASE_ORDER_LINE_TYPE",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PURCHASE_ORDER_LINE_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_PURCHASE_ORDER_LINE_TYPE_CD"
+        },
+        {
+          "name": "PURCHASE_ORDER_LINE_TYPE_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PURCHASE_ORDER_LINE_TYPE_DESCR"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GES_UPDATE_DATE"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        },
+        {
+          "name": "PURCHASE_BASIS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PURCHASE_BASIS"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_MF_PO_LINE_TYPES_TL",
+      "type": "Source Qualifier",
+      "description": "Joined the MF_PO_LINE_TYPES_B, MF_PO_LINE_TYPES_TL table to get PURCHASE_BASIS.",
+      "fields": [
+        {
+          "name": "LINE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_LANG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PURCHASE_BASIS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nA.LINE_TYPE,\r\nA.DESCRIPTION,\r\nA.ACTION_CODE,\r\nA.DML_TYPE,\r\nA.PURCHASE_BASIS\r\nfrom \r\n(\r\n\tSELECT\r\n\tSMOPLTT.LINE_TYPE,\r\n\tSMOPLTT.DESCRIPTION,\r\n\tSMOPLTT.ACTION_CODE,\r\n\t'I' as DML_TYPE,\r\n\tSMOPLTT.PURCHASE_BASIS,\r\n\tROW_NUMBER() OVER (PARTITION BY SMOPLTT.LINE_TYPE\r\n\tORDER BY SMOPLTT.GES_UPDATE_DATE DESC) AS ROW_NUM\r\n\tFROM \r\n\t(\r\n\t\tSELECT \r\n\t\tSMPLTT.LINE_TYPE ,SMPLTT.DESCRIPTION , \r\n\t\tSMPLTT.GES_UPDATE_DATE,\r\n\t\tSMPLTT.ACTION_CODE,\r\n\t\tSMPLB.PURCHASE_BASIS\r\n\t\tFROM \r\n\t    $$STGDB.ST_MF_PO_LINE_TYPES_TL SMPLTT,\r\n\t\t$$STGDB.ST_MF_PO_LINE_TYPES_B SMPLB\r\n\t\tWHERE \r\n\t\t\tSMPLTT.LINE_TYPE_ID = SMPLB.LINE_TYPE_ID\r\n\t\t\r\n\t\t\r\n\t\tUNION ALL\r\n\t\tSELECT \r\n\t\tSCPLTT.LINE_TYPE,\r\n\t\tSCPLTT.DESCRIPTION ,\r\n\t\tSCPLTT.LAST_UPDATE_DATE,\r\n\t\tSCPLTT.ACTION_CODE,\r\n\t\tSCPLB.PURCHASE_BASIS\r\n\t\tFROM \r\n\t\t$$STGDB.ST_CG1_PO_LINE_TYPES_TL SCPLTT,\r\n\t\t$$STGDB.ST_CG1_PO_LINE_TYPES_B SCPLB\r\n\t\tWHERE \r\n\t\tSCPLTT.LINE_TYPE_ID = SCPLB.LINE_TYPE_ID\r\n\t\t\r\n\t\t) SMOPLTT                  /* Added CG1 flow as a part of SJPROD Q1FY14 */\r\n) A  where A.row_num=1\r\n\r\n\t\t/*\r\n\t\tBedrock2.0 change - removed OM flow\r\n\t\tUNION ALL\r\n\t\tSELECT \r\n\t\tLINE_TYPE ,\r\n\t\tDESCRIPTION ,\r\n\t\tGES_UPDATE_DATE,\r\n\t\tACTION_CODE\r\n\t\tFROM $$STGDB.ST_OM_PO_LINE_TYPES_TL SOPLTT\r\n\t\t*/",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "/*COLLECT STATS ON $$STGDB.ST_MF_PO_LINE_TYPES_TL;*/\r\n\r\nCALL COLLECT_STATS_WRAP('$$STGDB','ST_MF_PO_LINE_TYPES_TL','D');\r\n\r\nCALL COLLECT_STATS_WRAP('$$STGDB','ST_CG1_PO_LINE_TYPES_TL','D');   /* Added CG1 flow as a part of Q1FY14 */\r\n\r\n/* Bedrock2.0 change - removed OM flow\r\nCOLLECT STATS ON $$STGDB.ST_OM_PO_LINE_TYPES_TL;\r\n*/\r\n\r\nDELETE FROM $$WORKDB.W_PURCHASE_ORDER_LINE_TYPE ALL;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_PURCHASE_ORDER_LINE_TYPE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_PURCHASE_ORDER_LINE_TYPE"
+    },
+    {
+      "from_field": "BK_PURCHASE_ORDER_LINE_TYPE_CD",
+      "from_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE",
+      "to_field": "BK_PURCHASE_ORDER_LINE_TYPE_CD",
+      "to_instance": "W_PURCHASE_ORDER_LINE_TYPE"
+    },
+    {
+      "from_field": "PURCHASE_ORDER_LINE_TYPE_DESCR",
+      "from_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE",
+      "to_field": "PURCHASE_ORDER_LINE_TYPE_DESCR",
+      "to_instance": "W_PURCHASE_ORDER_LINE_TYPE"
+    },
+    {
+      "from_field": "PURCHASE_BASIS",
+      "from_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE",
+      "to_field": "PURCHASE_BASIS_CD",
+      "to_instance": "W_PURCHASE_ORDER_LINE_TYPE"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "ST_MF_PO_LINE_TYPES_TL",
+      "to_field": "DESCRIPTION",
+      "to_instance": "SQ_ST_MF_PO_LINE_TYPES_TL"
+    },
+    {
+      "from_field": "LINE_TYPE",
+      "from_instance": "ST_MF_PO_LINE_TYPES_TL",
+      "to_field": "LINE_TYPE",
+      "to_instance": "SQ_ST_MF_PO_LINE_TYPES_TL"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "ST_MF_PO_LINE_TYPES_TL",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "SQ_ST_MF_PO_LINE_TYPES_TL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_MF_PO_LINE_TYPES_TL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_MF_PO_LINE_TYPES_TL"
+    },
+    {
+      "from_field": "SOURCE_LANG",
+      "from_instance": "ST_MF_PO_LINE_TYPES_TL",
+      "to_field": "SOURCE_LANG",
+      "to_instance": "SQ_ST_MF_PO_LINE_TYPES_TL"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "ST_MF_PO_LINE_TYPES_TL",
+      "to_field": "PURCHASE_BASIS",
+      "to_instance": "SQ_ST_MF_PO_LINE_TYPES_TL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_MF_PO_LINE_TYPES_TL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE"
+    },
+    {
+      "from_field": "LINE_TYPE",
+      "from_instance": "SQ_ST_MF_PO_LINE_TYPES_TL",
+      "to_field": "BK_PURCHASE_ORDER_LINE_TYPE_CD",
+      "to_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SQ_ST_MF_PO_LINE_TYPES_TL",
+      "to_field": "PURCHASE_ORDER_LINE_TYPE_DESCR",
+      "to_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE"
+    },
+    {
+      "from_field": "SOURCE_LANG",
+      "from_instance": "SQ_ST_MF_PO_LINE_TYPES_TL",
+      "to_field": "DML_TYPE",
+      "to_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE"
+    },
+    {
+      "from_field": "PURCHASE_BASIS",
+      "from_instance": "SQ_ST_MF_PO_LINE_TYPES_TL",
+      "to_field": "PURCHASE_BASIS",
+      "to_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_PURCHASE_ORDER_LINE_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "BK_PURCHASE_ORDER_LINE_TYPE_CD",
+          "from_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE"
+        },
+        {
+          "from_field": "LINE_TYPE",
+          "from_instance": "SQ_ST_MF_PO_LINE_TYPES_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PURCHASE_BASIS_CD",
+      "source_path": [
+        {
+          "from_field": "PURCHASE_BASIS",
+          "from_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PURCHASE_ORDER_LINE_TYPE_DESCR",
+      "source_path": [
+        {
+          "from_field": "PURCHASE_ORDER_LINE_TYPE_DESCR",
+          "from_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "SQ_ST_MF_PO_LINE_TYPES_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_MF_PO_LINE_TYPES_TL"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_MF_PO_LINE_TYPES_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "Exp_W_PURCHASE_ORDER_LINE_TYPE"
+        },
+        {
+          "from_field": "SOURCE_LANG",
+          "from_instance": "SQ_ST_MF_PO_LINE_TYPES_TL"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:13.415455+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

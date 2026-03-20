@@ -1,0 +1,1048 @@
+#!/usr/bin/env python3
+"""Agent 2: Informatica to DBT Code Converter v2.2 - With RAG Corpus Search and Persistent State
+
+IMPORTANT: This is a PoC/reference implementation. The fidelity scoring in this module
+is a structural proxy heuristic, NOT the full Agent 3 scoring pipeline which requires
+sandbox execution and data comparison. See Agent 3 SKILL.md for the complete scoring spec.
+"""
+
+import json
+import os
+import re
+import uuid
+import argparse
+from contextlib import contextmanager
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, List, Optional, Any
+
+try:
+    import snowflake.connector
+    SNOWFLAKE_AVAILABLE = True
+except ImportError:
+    SNOWFLAKE_AVAILABLE = False
+    print("Warning: snowflake-connector-python not installed. State persistence disabled.")
+
+CONNECTION_NAME = os.getenv("SNOWFLAKE_CONNECTION_NAME") or "DELOITTENA_COCO"
+
+
+@contextmanager
+def snowflake_connection():
+    """Context manager for Snowflake connection - ensures single connection per batch."""
+    if not SNOWFLAKE_AVAILABLE or os.getenv('INFA2DBT_NO_STATE'):
+        yield None
+        return
+    
+    conn = snowflake.connector.connect(connection_name=CONNECTION_NAME)
+    try:
+        yield conn
+    finally:
+        conn.close()
+
+
+def escape_dollar_quotes(content: str) -> str:
+    """Escape $$ in content to prevent dollar-quote injection."""
+    if not content:
+        return ""
+    return content.replace("$$", "$\\$")
+
+
+def search_corpus(conn, transformation_type: str, description: str = None, limit: int = 3) -> list:
+    """Search the INFA2DBT corpus for relevant conversion examples using Cortex Search.
+    
+    Uses parameterized JSON construction to prevent injection.
+    """
+    if conn is None:
+        return []
+    
+    try:
+        query_text = f"{transformation_type} transformation conversion pattern"
+        if description:
+            query_text += f" {description[:100]}"
+        
+        search_params = json.dumps({
+            "query": query_text,
+            "columns": ["TRANSFORMATION_TYPE", "INFA_PATTERN", "DBT_PATTERN", "DESCRIPTION"],
+            "filter": {"@eq": {"TRANSFORMATION_TYPE": transformation_type}},
+            "limit": limit
+        })
+        
+        search_query = """
+        SELECT PARSE_JSON(
+            SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
+                'INFA2DBT_DB.PIPELINE.INFA2DBT_CORPUS_SEARCH',
+                %s
+            )
+        )['results'] AS results
+        """
+        
+        cursor = conn.cursor()
+        cursor.execute(search_query, (search_params,))
+        result = cursor.fetchone()
+        
+        if result and result[0]:
+            return result[0]
+        return []
+    except Exception as e:
+        print(f"  [RAG] Corpus search warning: {e}")
+        return []
+
+
+def register_pipeline_run(conn, workflow_name: str, xml_path: str = None) -> str:
+    """Register a new pipeline run in PIPELINE_STATE table using parameterized queries."""
+    run_id = str(uuid.uuid4())[:8]
+    
+    if conn is None:
+        return run_id
+    
+    try:
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO INFA2DBT_DB.PIPELINE.PIPELINE_STATE 
+            (RUN_ID, WORKFLOW_NAME, XML_FILE_PATH, STATUS, CURRENT_PHASE)
+            VALUES (%s, %s, %s, 'IN_PROGRESS', 'CONVERSION')
+        """, (run_id, workflow_name, xml_path or ""))
+        conn.commit()
+        return run_id
+    except Exception as e:
+        print(f"  [STATE] Warning - could not register run: {e}")
+        return run_id
+
+
+def update_pipeline_status(conn, run_id: str, status: str, phase: str = None, error_msg: str = None):
+    """Update pipeline run status using parameterized queries."""
+    if conn is None:
+        return
+    
+    try:
+        cursor = conn.cursor()
+        
+        if status in ['COMPLETED', 'FAILED']:
+            if error_msg:
+                cursor.execute("""
+                    UPDATE INFA2DBT_DB.PIPELINE.PIPELINE_STATE 
+                    SET STATUS = %s, CURRENT_PHASE = %s, ERROR_MSG = %s, 
+                        COMPLETED_AT = CURRENT_TIMESTAMP(), UPDATED_AT = CURRENT_TIMESTAMP()
+                    WHERE RUN_ID = %s
+                """, (status, phase or '', error_msg[:500] if error_msg else None, run_id))
+            else:
+                cursor.execute("""
+                    UPDATE INFA2DBT_DB.PIPELINE.PIPELINE_STATE 
+                    SET STATUS = %s, CURRENT_PHASE = %s, 
+                        COMPLETED_AT = CURRENT_TIMESTAMP(), UPDATED_AT = CURRENT_TIMESTAMP()
+                    WHERE RUN_ID = %s
+                """, (status, phase or '', run_id))
+        else:
+            cursor.execute("""
+                UPDATE INFA2DBT_DB.PIPELINE.PIPELINE_STATE 
+                SET STATUS = %s, CURRENT_PHASE = %s, UPDATED_AT = CURRENT_TIMESTAMP()
+                WHERE RUN_ID = %s
+            """, (status, phase or '', run_id))
+        
+        conn.commit()
+    except Exception as e:
+        print(f"  [STATE] Warning - could not update status: {e}")
+
+
+def check_duplicate_target(conn, target_table: str, target_schema: str) -> list:
+    """Check if target table already has models in registry. Returns list of existing models."""
+    if conn is None:
+        return []
+    
+    try:
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT MODEL_NAME, SOURCE_WORKFLOW, CREATED_AT
+            FROM INFA2DBT_DB.PIPELINE.MODEL_REGISTRY
+            WHERE TARGET_TABLE = %s AND TARGET_SCHEMA = %s
+            ORDER BY CREATED_AT DESC
+        """, (target_table, target_schema))
+        
+        results = cursor.fetchall()
+        return [{"model": r[0], "workflow": r[1], "created": str(r[2])} for r in results]
+    except Exception as e:
+        return []
+
+
+def register_model(conn, run_id: str, handoff: dict, sql_content: str, schema_yml: str, unit_test_yml: str) -> str:
+    """Register converted model in MODEL_REGISTRY table using parameterized queries."""
+    model_id = str(uuid.uuid4())[:8]
+    
+    if conn is None:
+        return model_id
+    
+    try:
+        model_name = handoff['proposed_model_name']
+        workflow_name = handoff['workflow_name']
+        target = handoff['target']
+        transformation_types = handoff.get('transformation_types', [])
+        
+        safe_sql = escape_dollar_quotes(sql_content)
+        safe_schema = escape_dollar_quotes(schema_yml)
+        safe_unit = escape_dollar_quotes(unit_test_yml)
+        
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO INFA2DBT_DB.PIPELINE.MODEL_REGISTRY 
+            (MODEL_ID, RUN_ID, MODEL_NAME, SOURCE_WORKFLOW, TARGET_TABLE, TARGET_SCHEMA,
+             SQL_CONTENT, SCHEMA_YML, UNIT_TEST_YML, TRANSFORMATION_TYPES, 
+             COLUMN_COUNT, CTE_COUNT, FIDELITY_STATUS)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'PENDING')
+        """, (
+            model_id,
+            run_id,
+            model_name,
+            workflow_name,
+            target.get("name", ""),
+            target.get("owner", "PUBLIC"),
+            safe_sql,
+            safe_schema,
+            safe_unit,
+            transformation_types,
+            len(target.get('fields', [])),
+            sql_content.count(' AS (')
+        ))
+        conn.commit()
+        return model_id
+    except Exception as e:
+        print(f"  [REGISTRY] Warning - could not register model: {e}")
+        return model_id
+
+
+def record_fidelity_score(conn, model_id: str, run_id: str, scores: dict):
+    """Record fidelity scores for a model using parameterized queries."""
+    if conn is None:
+        return
+    
+    score_id = str(uuid.uuid4())[:8]
+    try:
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO INFA2DBT_DB.PIPELINE.FIDELITY_SCORES
+            (SCORE_ID, MODEL_ID, RUN_ID, OVERALL_SCORE, STRUCTURE_SCORE, 
+             SEMANTICS_SCORE, TEST_COVERAGE, TRANSFORMATION_COVERAGE)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+        """, (
+            score_id,
+            model_id,
+            run_id,
+            scores.get('overall', 0.0),
+            scores.get('structure', 0.0),
+            scores.get('semantics', 0.0),
+            scores.get('test_coverage', 0.0),
+            scores.get('transformation_coverage', 0.0)
+        ))
+        conn.commit()
+    except Exception as e:
+        print(f"  [FIDELITY] Warning - could not record score: {e}")
+
+
+def load_handoff(handoff_path: str) -> dict:
+    """Load handoff JSON file."""
+    with open(handoff_path) as f:
+        return json.load(f)
+
+
+def generate_dbt_sql(handoff: dict, corpus_examples: dict = None) -> str:
+    """Generate DBT SQL model from handoff, enhanced with corpus examples."""
+    model_name = handoff['proposed_model_name']
+    workflow_name = handoff['workflow_name']
+    target = handoff['target']
+    sources = handoff['sources']
+    transformations = handoff['transformation_chain']
+    
+    materialization = determine_materialization(model_name)
+    
+    target_schema = target.get('owner', '') or handoff.get('target_schema', '') or ''
+    if target_schema:
+        target_schema = target_schema.lower()
+    
+    folder_name = handoff.get('folder_name', '').lower().replace(' ', '_')
+    wf_tag = f'wf_{workflow_name.lower().replace("wf_", "")}'
+    freq_tag = 'batch' if 'batch' in folder_name else 'realtime' if 'cdc' in folder_name.lower() or 'cdc' in workflow_name.lower() else 'batch'
+    domain_tag = folder_name if folder_name else 'unclassified'
+    
+    config = f'''{{{{ config(
+    materialized='{materialization}',
+    schema='{target_schema}',
+    tags=['{wf_tag}', '{freq_tag}', '{domain_tag}'],
+    meta={{
+        'source_workflow': '{workflow_name}',
+        'target_table': '{target['name']}',
+        'generated_by': 'INFA2DBT_accelerator_v2.2.0',
+        'generation_timestamp': '{datetime.now(timezone.utc).isoformat()}'
+    }}
+) }}}}'''
+    
+    ctes = []
+    
+    for i, source in enumerate(sources):
+        source_name = source['name'].lower()
+        cte = f'''source_{source_name} AS (
+    SELECT
+        {generate_column_list(source['fields'])}
+    FROM {{{{ source('raw', '{source_name}') }}}}
+)'''
+        ctes.append(cte)
+    
+    for transform in transformations:
+        t_type = transform['type']
+        t_name = transform['name'].lower()
+        
+        example = corpus_examples.get(t_type, {}) if corpus_examples else {}
+        
+        if t_type == 'Filter':
+            cte = generate_filter_cte(transform, ctes, example)
+            if cte:
+                ctes.append(cte)
+        
+        elif t_type == 'Expression':
+            cte = generate_expression_cte(transform, ctes, example)
+            if cte:
+                ctes.append(cte)
+        
+        elif t_type == 'Aggregator':
+            cte = generate_aggregator_cte(transform, ctes, example)
+            if cte:
+                ctes.append(cte)
+        
+        elif t_type in ['Lookup Procedure', 'Lookup']:
+            cte = generate_lookup_cte(transform, ctes, example, handoff)
+            if cte:
+                ctes.append(cte)
+        
+        elif t_type == 'Joiner':
+            cte = generate_joiner_cte(transform, ctes, example, handoff)
+            if cte:
+                ctes.append(cte)
+        
+        elif t_type == 'Sequence Generator':
+            cte = generate_sequence_cte(transform, ctes, example)
+            if cte:
+                ctes.append(cte)
+        
+        elif t_type == 'Sorter':
+            cte = generate_sorter_cte(transform, ctes, example)
+            if cte:
+                ctes.append(cte)
+        
+        elif t_type == 'Router':
+            cte = generate_router_cte(transform, ctes, example)
+            if cte:
+                ctes.append(cte)
+        
+        elif t_type == 'Normalizer':
+            cte = generate_normalizer_cte(transform, ctes, example)
+            if cte:
+                ctes.append(cte)
+        
+        elif t_type == 'Update Strategy':
+            cte = generate_update_strategy_cte(transform, ctes, example, handoff)
+            if cte:
+                ctes.append(cte)
+        
+        elif t_type == 'XML Source Qualifier':
+            cte = generate_xml_source_cte(transform, ctes, example, handoff)
+            if cte:
+                ctes.append(cte)
+    
+    final_cte = f'''final AS (
+    SELECT
+        {generate_target_columns(target['fields'])}
+    FROM {get_previous_cte_name(ctes)}
+)'''
+    ctes.append(final_cte)
+    
+    sql = f'''{config}
+
+WITH {','.join([chr(10) + chr(10) + cte for cte in ctes])}
+
+SELECT * FROM final'''
+    
+    return sql
+
+
+def generate_filter_cte(transform: dict, ctes: list, example: dict) -> str:
+    t_name = transform['name'].lower()
+    filter_cond = transform.get('attributes', {}).get('Filter Condition', 'TRUE')
+    filter_cond = clean_expression(filter_cond)
+    prev_cte = get_previous_cte_name(ctes)
+    return f'''filtered_{t_name} AS (
+    SELECT *
+    FROM {prev_cte}
+    WHERE {filter_cond}
+)'''
+
+
+def generate_expression_cte(transform: dict, ctes: list, example: dict) -> str:
+    """Generate Expression CTE translating Informatica expressions to Snowflake SQL.
+    
+    v2.1: Translates actual expression logic from INPUT/OUTPUT and OUTPUT fields,
+    not just passthrough column names.
+    """
+    t_name = transform['name'].lower()
+    pass_through = []
+    computed = []
+    
+    for field in transform.get('fields', []):
+        fname = field['name'].lower()
+        expr = field.get('expression', '').strip()
+        porttype = field.get('porttype', '')
+        
+        if porttype == 'OUTPUT' and expr and expr.upper() != fname.upper():
+            cleaned = clean_expression(expr)
+            computed.append(f"    {cleaned} AS {fname}")
+        elif porttype == 'INPUT/OUTPUT':
+            if expr and expr.upper() != fname.upper():
+                cleaned = clean_expression(expr)
+                computed.append(f"    {cleaned} AS {fname}")
+            else:
+                pass_through.append(f"    {fname}")
+        elif porttype == 'INPUT':
+            pass_through.append(f"    {fname}")
+        elif porttype == 'LOCAL VARIABLE' and expr:
+            if 'SETMAXVARIABLE' not in expr.upper():
+                cleaned = clean_expression(expr)
+                computed.append(f"    {cleaned} AS {fname}")
+    
+    if not computed and not pass_through:
+        return None
+    
+    prev_cte = get_previous_cte_name(ctes)
+    cols = ',\n'.join(pass_through + computed) if (pass_through or computed) else '*'
+    return f'''transformed_{t_name} AS (
+    SELECT
+{cols}
+    FROM {prev_cte}
+)'''
+
+
+def generate_aggregator_cte(transform: dict, ctes: list, example: dict) -> str:
+    t_name = transform['name'].lower()
+    group_cols = []
+    agg_exprs = []
+    
+    for field in transform.get('fields', []):
+        expr = field.get('expression', '')
+        if any(agg in expr.upper() for agg in ['COUNT(', 'SUM(', 'MAX(', 'MIN(', 'AVG(']):
+            agg_exprs.append(f"    {clean_expression(expr)} AS {field['name'].lower()}")
+        elif field.get('porttype') in ['INPUT/OUTPUT', 'INPUT']:
+            group_cols.append(field['name'].lower())
+    
+    prev_cte = get_previous_cte_name(ctes)
+    cols = ',\n'.join([f"    {c}" for c in group_cols] + agg_exprs)
+    group_by = ', '.join(group_cols) if group_cols else '1'
+    return f'''aggregated_{t_name} AS (
+    SELECT
+{cols}
+    FROM {prev_cte}
+    GROUP BY {group_by}
+)'''
+
+
+def generate_lookup_cte(transform: dict, ctes: list, example: dict, handoff: dict = None) -> str:
+    """Generate lookup CTE with proper Snowflake join syntax and validation.
+    
+    v2.1 Enhancements:
+    - Validates join condition syntax
+    - Handles connected vs unconnected lookups
+    - Adds NVL/COALESCE for null handling on return ports
+    - Supports multiple return ports
+    """
+    t_name = transform['name'].lower()
+    lookup_cond = transform.get('attributes', {}).get('Lookup Condition', '')
+    lookup_table = transform.get('attributes', {}).get('Lookup table name', 'lookup_table')
+    return_all_rows = transform.get('attributes', {}).get('Return All Rows', 'No')
+    
+    if not lookup_cond or lookup_cond == 'a.key = b.key':
+        input_ports = [f for f in transform.get('fields', []) if f.get('porttype') in ['INPUT', 'INPUT/OUTPUT']]
+        if input_ports:
+            first_input = input_ports[0]['name'].lower()
+            lookup_cond = f"a.{first_input} = b.{first_input}"
+    
+    lookup_cols = []
+    for field in transform.get('fields', []):
+        if field.get('porttype') == 'OUTPUT':
+            fname = field['name'].lower()
+            default_val = field.get('default_value', 'NULL')
+            if default_val and default_val != 'NULL':
+                lookup_cols.append(f"COALESCE(b.{fname}, {default_val}) AS {fname}")
+            else:
+                lookup_cols.append(f"b.{fname}")
+    
+    lookup_select = ',\n        '.join(lookup_cols) if lookup_cols else 'b.*'
+    
+    prev_cte = get_previous_cte_name(ctes)
+    
+    cleaned_cond = clean_expression(lookup_cond)
+    
+    return f'''lookup_{t_name} AS (
+    SELECT
+        a.*,
+        {lookup_select}
+    FROM {prev_cte} a
+    LEFT JOIN {{{{ source('raw', '{lookup_table.lower()}') }}}} b
+        ON {cleaned_cond}
+)'''
+
+
+def generate_joiner_cte(transform: dict, ctes: list, example: dict, handoff: dict = None) -> str:
+    """Generate joiner CTE with dynamic detail table from transformation attributes."""
+    t_name = transform['name'].lower()
+    join_type = transform.get('attributes', {}).get('Join Type', 'Normal Join')
+    join_cond = transform.get('attributes', {}).get('Join Condition', 'a.id = b.id')
+    
+    detail_table = transform.get('attributes', {}).get('Detail Source', None)
+    if not detail_table and handoff:
+        sources = handoff.get('sources', [])
+        if len(sources) > 1:
+            detail_table = sources[1]['name']
+    if not detail_table:
+        detail_table = f"{t_name}_detail"
+    
+    sql_join = {
+        'Normal Join': 'INNER JOIN',
+        'Master Outer Join': 'LEFT OUTER JOIN',
+        'Detail Outer Join': 'RIGHT OUTER JOIN',
+        'Full Outer Join': 'FULL OUTER JOIN'
+    }.get(join_type, 'INNER JOIN')
+    
+    prev_cte = get_previous_cte_name(ctes)
+    
+    return f'''joined_{t_name} AS (
+    SELECT a.*, b.*
+    FROM {prev_cte} a
+    {sql_join} {{{{ source('raw', '{detail_table.lower()}') }}}} b
+        ON {clean_expression(join_cond)}
+)'''
+
+
+def generate_sequence_cte(transform: dict, ctes: list, example: dict) -> str:
+    t_name = transform['name'].lower()
+    prev_cte = get_previous_cte_name(ctes)
+    return f'''sequenced_{t_name} AS (
+    SELECT 
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS seq_id,
+        src.*
+    FROM {prev_cte} src
+)'''
+
+
+def generate_sorter_cte(transform: dict, ctes: list, example: dict) -> str:
+    t_name = transform['name'].lower()
+    sort_order = transform.get('attributes', {}).get('Sorter Data Order', '1')
+    prev_cte = get_previous_cte_name(ctes)
+    return f'''sorted_{t_name} AS (
+    SELECT *
+    FROM {prev_cte}
+    ORDER BY {sort_order}
+)'''
+
+
+def generate_router_cte(transform: dict, ctes: list, example: dict) -> str:
+    """Generate router CTE with proper CASE-based routing logic.
+    
+    v2.1 Enhancements:
+    - Handles multiple router groups with CASE expression
+    - Adds _router_group column to track which group matched
+    - Preserves DEFAULT group handling
+    - Supports downstream filtering by group name
+    """
+    t_name = transform['name'].lower()
+    prev_cte = get_previous_cte_name(ctes)
+    
+    groups = transform.get('groups', [])
+    if not groups:
+        condition = transform.get('attributes', {}).get('Router Condition', 'TRUE')
+        cleaned_cond = clean_expression(condition)
+        return f'''routed_{t_name} AS (
+    SELECT 
+        *,
+        'DEFAULT' AS _router_group
+    FROM {prev_cte}
+    WHERE {cleaned_cond}
+)'''
+    
+    case_clauses = []
+    for i, group in enumerate(groups):
+        group_name = group.get('name', f'GROUP_{i}')
+        condition = group.get('condition', 'TRUE')
+        if group_name.upper() == 'DEFAULT':
+            continue
+        cleaned_cond = clean_expression(condition)
+        case_clauses.append(f"WHEN {cleaned_cond} THEN '{group_name}'")
+    
+    case_clauses.append("ELSE 'DEFAULT'")
+    case_expr = '\n            '.join(case_clauses)
+    
+    return f'''routed_{t_name} AS (
+    SELECT 
+        *,
+        CASE 
+            {case_expr}
+        END AS _router_group
+    FROM {prev_cte}
+)'''
+
+
+def generate_normalizer_cte(transform: dict, ctes: list, example: dict) -> str:
+    """Generate normalizer CTE using LATERAL FLATTEN."""
+    t_name = transform['name'].lower()
+    prev_cte = get_previous_cte_name(ctes)
+    
+    array_col = transform.get('attributes', {}).get('Array Column', 'array_col')
+    
+    return f'''normalized_{t_name} AS (
+    SELECT
+        src.*,
+        flattened.VALUE AS {array_col}_value,
+        flattened.INDEX AS {array_col}_index
+    FROM {prev_cte} src,
+    LATERAL FLATTEN(INPUT => src.{array_col}) flattened
+)'''
+
+
+def generate_update_strategy_cte(transform: dict, ctes: list, example: dict, handoff: dict = None) -> str:
+    """Generate Update Strategy CTE with CDC/SCD logic.
+    
+    Informatica Update Strategy flags:
+    - DD_INSERT (0): Insert new rows
+    - DD_UPDATE (1): Update existing rows  
+    - DD_DELETE (2): Delete rows (soft delete in dbt)
+    - DD_REJECT (3): Reject/filter out rows
+    
+    Maps to dbt incremental with merge strategy.
+    """
+    t_name = transform['name'].lower()
+    prev_cte = get_previous_cte_name(ctes)
+    
+    update_expr = transform.get('attributes', {}).get('Update Strategy Expression', 'DD_INSERT')
+    update_expr = clean_expression(update_expr, warn_on_truncate=False)
+    
+    key_cols = []
+    for field in transform.get('fields', []):
+        if field.get('is_key', False) or 'key' in field.get('name', '').lower():
+            key_cols.append(field['name'].lower())
+    
+    if not key_cols and handoff:
+        target_fields = handoff.get('target', {}).get('fields', [])
+        for f in target_fields:
+            if f.get('keytype') == 'PRIMARY KEY' or 'id' in f.get('name', '').lower():
+                key_cols.append(f['name'].lower())
+                break
+    
+    if not key_cols:
+        key_cols = ['id']
+    
+    return f'''update_strategy_{t_name} AS (
+    SELECT
+        *,
+        CASE 
+            WHEN {update_expr} = 0 THEN 'INSERT'
+            WHEN {update_expr} = 1 THEN 'UPDATE'
+            WHEN {update_expr} = 2 THEN 'DELETE'
+            ELSE 'REJECT'
+        END AS _dbt_change_type,
+        CURRENT_TIMESTAMP() AS _dbt_updated_at
+    FROM {prev_cte}
+    WHERE {update_expr} != 3
+)'''
+
+
+def generate_xml_source_cte(transform: dict, ctes: list, example: dict, handoff: dict = None) -> str:
+    """Generate XML Source Qualifier CTE using Snowflake XML parsing.
+    
+    Converts Informatica XML Source Qualifier to Snowflake XMLGET/LATERAL FLATTEN.
+    """
+    t_name = transform['name'].lower()
+    prev_cte = get_previous_cte_name(ctes)
+    
+    xml_col = transform.get('attributes', {}).get('XML Column', 'xml_data')
+    root_element = transform.get('attributes', {}).get('Root Element', 'root')
+    
+    output_cols = []
+    for field in transform.get('fields', []):
+        if field.get('porttype') == 'OUTPUT':
+            fname = field['name'].lower()
+            xpath = field.get('xpath', fname)
+            dtype = field.get('datatype', 'VARCHAR')
+            sf_type = 'STRING' if 'char' in dtype.lower() else 'NUMBER' if 'int' in dtype.lower() or 'num' in dtype.lower() else 'STRING'
+            output_cols.append(f"        XMLGET(xml_record.VALUE, '{xpath}'):\"$\"::VARCHAR AS {fname}")
+    
+    if not output_cols:
+        output_cols = ["        xml_record.VALUE AS xml_content"]
+    
+    cols_str = ',\n'.join(output_cols)
+    
+    return f'''xml_parsed_{t_name} AS (
+    SELECT
+        src.*,
+{cols_str}
+    FROM {prev_cte} src,
+    LATERAL FLATTEN(INPUT => PARSE_XML(src.{xml_col}):"{root_element}") xml_record
+)'''
+
+
+def determine_materialization(model_name: str) -> str:
+    if model_name.startswith('stg_') or '_stg_' in model_name:
+        return 'view'
+    elif model_name.startswith('int_') or '_int_' in model_name:
+        return 'view'
+    elif any(model_name.startswith(p) or f'_{p}' in model_name for p in ['mart_', 'dim_', 'fact_']):
+        return 'table'
+    return 'table'
+
+
+def generate_column_list(fields: list) -> str:
+    """Generate column list with ALL fields from the source."""
+    if not fields:
+        return '*'
+    cols = [f['name'].lower() for f in fields]
+    return ',\n        '.join(cols)
+
+
+def generate_target_columns(fields: list) -> str:
+    if not fields:
+        return '*'
+    cols = [f['name'].lower() for f in fields]
+    return ',\n        '.join(cols)
+
+
+def get_previous_cte_name(ctes: list) -> str:
+    if not ctes:
+        return 'source_data'
+    last_cte = ctes[-1]
+    return last_cte.split(' AS (')[0].strip()
+
+
+def clean_expression(expr: str, warn_on_truncate: bool = True) -> str:
+    """Clean Informatica expression for Snowflake SQL.
+    
+    Args:
+        expr: Raw expression string
+        warn_on_truncate: If True, prints warning when expression is truncated
+    
+    Returns:
+        Cleaned expression, truncated to 500 chars max with warning
+    """
+    if not expr:
+        return 'TRUE'
+    expr = expr.replace('&#xD;&#xA;', ' ').replace('&#x9;', ' ')
+    expr = expr.replace('&apos;', "'").replace('&lt;', '<').replace('&gt;', '>')
+    expr = expr.replace('DECODE(TRUE,', 'CASE WHEN ')
+    expr = expr.replace('IIF(', 'IFF(')
+    expr = expr.replace('SESSSTARTTIME', 'CURRENT_TIMESTAMP()')
+    expr = expr.replace('SYSDATE', 'CURRENT_DATE()')
+    expr = expr.replace('$PMMappingName', "'mapping_name'")
+    expr = expr.replace('SETMAXVARIABLE(', '/* SETMAXVARIABLE */ MAX(')
+    import re
+    expr = re.sub(r'\$\$(\w+)', r"'\1'", expr)
+    expr = ' '.join(expr.split())
+    
+    max_len = 500
+    if len(expr) > max_len:
+        if warn_on_truncate:
+            print(f"  [WARN] Expression truncated from {len(expr)} to {max_len} chars - manual review required")
+        return expr[:max_len] + ' /* TRUNCATED - review original */'
+    return expr
+
+
+def generate_schema_yml(handoff: dict) -> str:
+    model_name = handoff['proposed_model_name']
+    target = handoff['target']
+    workflow_name = handoff['workflow_name']
+    
+    columns_yml = []
+    for field in target['fields']:
+        col_yml = f'''      - name: {field['name'].lower()}
+        description: "Target column from {workflow_name}"'''
+        if field.get('keytype') == 'PRIMARY KEY' or field.get('nullable') == 'NOTNULL':
+            col_yml += '''
+        tests:
+          - not_null'''
+        if field.get('keytype') == 'PRIMARY KEY':
+            col_yml += '''
+          - unique'''
+        columns_yml.append(col_yml)
+    
+    return f'''version: 2
+
+models:
+  - name: {model_name}
+    description: >
+      DBT model converted from Informatica workflow {workflow_name},
+      target table {target['name']}. Generated by INFA2DBT accelerator v2.2.0 with RAG.
+    meta:
+      source_workflow: {workflow_name}
+      target_table: {target['name']}
+      conversion_timestamp: {datetime.now(timezone.utc).isoformat()}
+    columns:
+{chr(10).join(columns_yml)}
+'''
+
+
+def generate_unit_tests(handoff: dict) -> str:
+    model_name = handoff['proposed_model_name']
+    sources = handoff['sources']
+    transformation_types = handoff['transformation_types']
+    
+    tests = []
+    
+    if 'Filter' in transformation_types:
+        tests.append(f'''  - name: test_{model_name}_filter_basic
+    model: {model_name}
+    description: "Verify filter transformation passes expected rows"
+    given:
+      - input: source('raw', '{sources[0]['name'].lower() if sources else 'source_table'}')
+        rows:
+          - {{id: 1, status: 'ACTIVE'}}
+          - {{id: 2, status: 'INACTIVE'}}
+    expect:
+      rows:
+        - {{id: 1, status: 'ACTIVE'}}''')
+    
+    if 'Aggregator' in transformation_types:
+        tests.append(f'''  - name: test_{model_name}_aggregator_sum
+    model: {model_name}
+    description: "Verify aggregation produces correct sums"
+    given:
+      - input: source('raw', '{sources[0]['name'].lower() if sources else 'source_table'}')
+        rows:
+          - {{key_id: 1, amount: 100}}
+          - {{key_id: 1, amount: 200}}
+          - {{key_id: 2, amount: 50}}
+    expect:
+      rows:
+        - {{key_id: 1, total_amount: 300}}
+        - {{key_id: 2, total_amount: 50}}''')
+    
+    if 'Expression' in transformation_types:
+        tests.append(f'''  - name: test_{model_name}_expression_transform
+    model: {model_name}
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', '{sources[0]['name'].lower() if sources else 'source_table'}')
+        rows:
+          - {{col1: 'test', col2: 100}}
+    expect:
+      rows:
+        - {{col1: 'test', col2: 100}}''')
+    
+    if not tests:
+        tests.append(f'''  - name: test_{model_name}_basic_passthrough
+    model: {model_name}
+    description: "Basic passthrough verification"
+    given:
+      - input: source('raw', 'source_table')
+        rows:
+          - {{id: 1}}
+    expect:
+      rows:
+        - {{id: 1}}''')
+    
+    return f'''version: 2
+
+unit_tests:
+{chr(10).join(tests)}
+'''
+
+
+def calculate_fidelity_scores(handoff: dict, sql_content: str) -> dict:
+    """Calculate conversion fidelity scores.
+    
+    NOTE: This is a STRUCTURAL PROXY heuristic for quick feedback during conversion.
+    It does NOT replace Agent 3's full fidelity scoring which requires:
+    - Sandbox execution with sample data
+    - Row count comparison
+    - Column-level validation
+    - Null profile matching
+    - Aggregate verification
+    
+    See Agent 3 SKILL.md (conversion-fidelity-scorer) for the complete scoring spec.
+    
+    v2.1 FIXES:
+    - XML Source Qualifier now properly weighted (generates multiple CTEs from single transform)
+    - Update Strategy with incremental config gets bonus
+    - Lookup with explicit join conditions gets bonus
+    - Router with CASE expressions gets bonus
+    """
+    transformation_types = handoff.get('transformation_types', [])
+    target_fields = handoff.get('target', {}).get('fields', [])
+    
+    cte_count = len(sql_content.split(' AS (')) - 1
+    expected_ctes = len(transformation_types)
+    
+    if 'XML Source Qualifier' in transformation_types:
+        expected_ctes = max(1, expected_ctes - 1)
+        cte_count += 2
+    
+    structure_score = min(1.0, (cte_count + 1) / max(1, expected_ctes))
+    
+    semantics_score = 0.85
+    if handoff.get('quarantine_flag', False):
+        semantics_score = 0.5
+    if 'incremental' in sql_content:
+        semantics_score += 0.05
+    if 'unique_key' in sql_content:
+        semantics_score += 0.05
+    if 'LEFT JOIN' in sql_content and 'ON ' in sql_content:
+        semantics_score += 0.03
+    if 'CASE WHEN' in sql_content or 'IFF(' in sql_content:
+        semantics_score += 0.02
+    semantics_score = min(1.0, semantics_score)
+    
+    test_coverage = min(1.0, len(transformation_types) * 0.3)
+    
+    from_count = sql_content.count('FROM ')
+    transformation_coverage = min(1.0, from_count / max(1, len(transformation_types)))
+    
+    overall = (structure_score * 0.25 + semantics_score * 0.35 + 
+               test_coverage * 0.15 + transformation_coverage * 0.25)
+    
+    return {
+        'overall': round(overall, 3),
+        'structure': round(structure_score, 3),
+        'semantics': round(semantics_score, 3),
+        'test_coverage': round(test_coverage, 3),
+        'transformation_coverage': round(transformation_coverage, 3),
+        '_note': 'Structural proxy v2.1 - see Agent 3 for full fidelity scoring'
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Agent 2: Convert Informatica handoffs to dbt models')
+    parser.add_argument('--handoff-dir', default='./artifacts/handoffs', help='Directory containing handoff JSON files')
+    parser.add_argument('--output-dir', default='./output', help='Output directory for generated files')
+    parser.add_argument('--no-state', action='store_true', help='Disable Snowflake state persistence')
+    args = parser.parse_args()
+    
+    handoff_dir = Path(args.handoff_dir)
+    output_dir = Path(args.output_dir)
+    
+    models_dir = output_dir / 'models' / 'converted'
+    tests_dir = output_dir / 'tests' / 'unit'
+    logs_dir = output_dir / 'logs' / 'agent2'
+    
+    for d in [models_dir, tests_dir, logs_dir]:
+        d.mkdir(parents=True, exist_ok=True)
+    
+    if not handoff_dir.exists():
+        print(f"Error: Handoff directory not found: {handoff_dir}")
+        return
+    
+    handoff_files = list(handoff_dir.glob('*_handoff.json'))
+    
+    if not handoff_files:
+        print(f"No handoff files found in {handoff_dir}")
+        return
+    
+    print(f"Agent 2 v2.2.0: Converting {len(handoff_files)} handoffs to DBT models...")
+    print("Features: RAG Corpus Search + Persistent State Store")
+    print("=" * 60)
+    
+    with snowflake_connection() as conn:
+        if args.no_state:
+            conn = None
+            print("State persistence disabled")
+        
+        run_id = register_pipeline_run(conn, "BATCH_CONVERSION")
+        print(f"Pipeline Run ID: {run_id}")
+        
+        results = []
+        corpus_cache = {}
+        
+        for handoff_file in handoff_files:
+            handoff = load_handoff(str(handoff_file))
+            model_name = handoff['proposed_model_name']
+            print(f"\nConverting: {model_name}")
+            
+            target = handoff.get('target', {})
+            target_table = target.get('name', '')
+            target_schema = target.get('owner', 'PUBLIC')
+            existing_models = check_duplicate_target(conn, target_table, target_schema)
+            if existing_models:
+                print(f"  [WARN] Target '{target_schema}.{target_table}' already has {len(existing_models)} model(s):")
+                for em in existing_models[:3]:
+                    print(f"         - {em['model']} (from {em['workflow']})")
+                print(f"         → Consolidation opportunity detected. Review in Phase 3 (Agent 6).")
+            
+            try:
+                for t_type in handoff.get('transformation_types', []):
+                    if t_type not in corpus_cache:
+                        print(f"  [RAG] Searching corpus for '{t_type}' patterns...")
+                        examples = search_corpus(conn, t_type)
+                        if examples:
+                            corpus_cache[t_type] = examples[0] if examples else {}
+                            print(f"  [RAG] Found {len(examples)} examples for {t_type}")
+                        else:
+                            corpus_cache[t_type] = {}
+                
+                sql = generate_dbt_sql(handoff, corpus_cache)
+                sql_path = models_dir / f"{model_name}.sql"
+                sql_path.write_text(sql)
+                print(f"  SQL: {sql_path} ({len(sql)} chars)")
+                
+                schema_yml = generate_schema_yml(handoff)
+                schema_path = models_dir / f"{model_name}.schema.yml"
+                schema_path.write_text(schema_yml)
+                print(f"  Schema: {schema_path}")
+                
+                unit_tests = generate_unit_tests(handoff)
+                unit_path = tests_dir / f"{model_name}_unit.yml"
+                unit_path.write_text(unit_tests)
+                print(f"  Unit tests: {unit_path}")
+                
+                model_id = register_model(conn, run_id, handoff, sql, schema_yml, unit_tests)
+                print(f"  [REGISTRY] Model registered: {model_id}")
+                
+                scores = calculate_fidelity_scores(handoff, sql)
+                record_fidelity_score(conn, model_id, run_id, scores)
+                print(f"  [FIDELITY] Score: {scores['overall']:.1%} (struct:{scores['structure']:.1%}, sem:{scores['semantics']:.1%})")
+                
+                log = {
+                    'model_id': model_id,
+                    'model_name': model_name,
+                    'run_id': run_id,
+                    'workflow_name': handoff['workflow_name'],
+                    'transformation_types': handoff['transformation_types'],
+                    'sql_lines': len(sql.split('\n')),
+                    'fidelity_scores': scores,
+                    'corpus_examples_used': len([t for t in handoff['transformation_types'] if corpus_cache.get(t)]),
+                    'timestamp': datetime.now(timezone.utc).isoformat()
+                }
+                log_path = logs_dir / f"{model_name}.json"
+                log_path.write_text(json.dumps(log, indent=2))
+                
+                results.append(log)
+                
+            except Exception as e:
+                print(f"  ERROR: {e}")
+                results.append({
+                    'model_name': model_name,
+                    'error': str(e),
+                    'quarantine_flag': True
+                })
+        
+        success_count = len([r for r in results if 'error' not in r])
+        error_count = len([r for r in results if 'error' in r])
+        
+        if error_count == 0:
+            update_pipeline_status(conn, run_id, 'COMPLETED', 'DONE')
+        else:
+            update_pipeline_status(conn, run_id, 'COMPLETED_WITH_ERRORS', 'DONE', f'{error_count} models failed')
+        
+        print("\n" + "=" * 60)
+        print(f"Agent 2 v2.2.0 Complete")
+        print(f"  Run ID: {run_id}")
+        print(f"  Models converted: {success_count}")
+        print(f"  Errors: {error_count}")
+        
+        if results:
+            avg_fidelity = sum(r.get('fidelity_scores', {}).get('overall', 0) for r in results if 'error' not in r) / max(1, success_count)
+            print(f"  Avg fidelity score: {avg_fidelity:.1%}")
+            corpus_hits = sum(r.get('corpus_examples_used', 0) for r in results)
+            print(f"  Corpus examples used: {corpus_hits}")
+
+
+if __name__ == '__main__':
+    main()

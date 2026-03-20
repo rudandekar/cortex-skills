@@ -1,0 +1,578 @@
+{
+  "workflow_name": "wf_m_N_SALES_ADJUSTMENT",
+  "mapping_name": "m_N_SALES_ADJUSTMENT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "N_SALES_ADJUSTMENT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_n_sales_adjustment_01_mart_n_sales_adjustment",
+  "source_tables": [
+    "N_SALES_ADJUSTMENT_NRT"
+  ],
+  "sources": [
+    {
+      "name": "N_SALES_ADJUSTMENT_NRT",
+      "database_type": "Teradata",
+      "owner": "NRTNCRDB_DV1",
+      "fields": [
+        {
+          "name": "BK_SALES_ADJ_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ADJUSTMENT_SOURCE_CODE",
+          "datatype": "char",
+          "precision": "6",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ADJ_PHYSICAL_SOURCE_CD",
+          "datatype": "char",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SALES_IDE_ADJ_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SALES_ADJ_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "char",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SALES_ADJ_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_SALES_ADJUSTMENT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_SALES_ADJ_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SALES_ADJUSTMENT_SOURCE_CODE",
+        "datatype": "char",
+        "precision": "6",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_ADJ_PHYSICAL_SOURCE_CD",
+        "datatype": "char",
+        "precision": "18",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_SALES_IDE_ADJ_CODE",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_SALES_ADJ_CODE",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SS_CODE",
+        "datatype": "char",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_SALES_ADJ_TYPE_CODE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_SALES_ADJUSTMENT_NRT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_SALES_ADJ_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ADJUSTMENT_SOURCE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ADJ_PHYSICAL_SOURCE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_IDE_ADJ_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_ADJ_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SALES_ADJ_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nNSAN.BK_SALES_ADJ_NUMBER_INT, \r\nNSAN.SALES_ADJUSTMENT_SOURCE_CODE, \r\nNSAN.SALES_ADJ_PHYSICAL_SOURCE_CD, \r\nNSAN.BK_SALES_IDE_ADJ_CODE, \r\nNSAN.BK_SALES_ADJ_CODE, \r\nNSAN.SS_CODE,\r\nNSAN.EDW_CREATE_USER, \r\nNSAN.EDW_UPDATE_USER, \r\nNSAN.EDW_CREATE_DATETIME, \r\nNSAN.EDW_UPDATE_DATETIME,\r\nNSAN.BK_SALES_ADJ_TYPE_CODE\r\nFROM\r\n$$NRTNCRVWDB.N_SALES_ADJUSTMENT_NRT NSAN\r\nWHERE EDW_UPDATE_DATETIME > (SELECT EDW_UPDATE_DATETIME FROM $$STGDB.WI_N_SALES_ADJ_INCR )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_SALES_ADJ_NUMBER_INT",
+      "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT",
+      "to_field": "BK_SALES_ADJ_NUMBER_INT",
+      "to_instance": "N_SALES_ADJUSTMENT"
+    },
+    {
+      "from_field": "SALES_ADJUSTMENT_SOURCE_CODE",
+      "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT",
+      "to_field": "SALES_ADJUSTMENT_SOURCE_CODE",
+      "to_instance": "N_SALES_ADJUSTMENT"
+    },
+    {
+      "from_field": "SALES_ADJ_PHYSICAL_SOURCE_CD",
+      "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT",
+      "to_field": "SALES_ADJ_PHYSICAL_SOURCE_CD",
+      "to_instance": "N_SALES_ADJUSTMENT"
+    },
+    {
+      "from_field": "BK_SALES_IDE_ADJ_CODE",
+      "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT",
+      "to_field": "BK_SALES_IDE_ADJ_CODE",
+      "to_instance": "N_SALES_ADJUSTMENT"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_CODE",
+      "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT",
+      "to_field": "BK_SALES_ADJ_CODE",
+      "to_instance": "N_SALES_ADJUSTMENT"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT",
+      "to_field": "SS_CODE",
+      "to_instance": "N_SALES_ADJUSTMENT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_SALES_ADJUSTMENT"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_SALES_ADJUSTMENT"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "N_SALES_ADJUSTMENT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "N_SALES_ADJUSTMENT"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_TYPE_CODE",
+      "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT",
+      "to_field": "BK_SALES_ADJ_TYPE_CODE",
+      "to_instance": "N_SALES_ADJUSTMENT"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_NUMBER_INT",
+      "from_instance": "N_SALES_ADJUSTMENT_NRT",
+      "to_field": "BK_SALES_ADJ_NUMBER_INT",
+      "to_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+    },
+    {
+      "from_field": "SALES_ADJUSTMENT_SOURCE_CODE",
+      "from_instance": "N_SALES_ADJUSTMENT_NRT",
+      "to_field": "SALES_ADJUSTMENT_SOURCE_CODE",
+      "to_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+    },
+    {
+      "from_field": "SALES_ADJ_PHYSICAL_SOURCE_CD",
+      "from_instance": "N_SALES_ADJUSTMENT_NRT",
+      "to_field": "SALES_ADJ_PHYSICAL_SOURCE_CD",
+      "to_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+    },
+    {
+      "from_field": "BK_SALES_IDE_ADJ_CODE",
+      "from_instance": "N_SALES_ADJUSTMENT_NRT",
+      "to_field": "BK_SALES_IDE_ADJ_CODE",
+      "to_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_CODE",
+      "from_instance": "N_SALES_ADJUSTMENT_NRT",
+      "to_field": "BK_SALES_ADJ_CODE",
+      "to_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "N_SALES_ADJUSTMENT_NRT",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_SALES_ADJUSTMENT_NRT",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_SALES_ADJUSTMENT_NRT",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "N_SALES_ADJUSTMENT_NRT",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "N_SALES_ADJUSTMENT_NRT",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+    },
+    {
+      "from_field": "BK_SALES_ADJ_TYPE_CODE",
+      "from_instance": "N_SALES_ADJUSTMENT_NRT",
+      "to_field": "BK_SALES_ADJ_TYPE_CODE",
+      "to_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_SALES_ADJ_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "BK_SALES_ADJ_NUMBER_INT",
+          "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+        },
+        {
+          "from_field": "BK_SALES_ADJ_NUMBER_INT",
+          "from_instance": "N_SALES_ADJUSTMENT_NRT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_ADJUSTMENT_SOURCE_CODE",
+      "source_path": [
+        {
+          "from_field": "SALES_ADJUSTMENT_SOURCE_CODE",
+          "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+        },
+        {
+          "from_field": "SALES_ADJUSTMENT_SOURCE_CODE",
+          "from_instance": "N_SALES_ADJUSTMENT_NRT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_ADJ_PHYSICAL_SOURCE_CD",
+      "source_path": [
+        {
+          "from_field": "SALES_ADJ_PHYSICAL_SOURCE_CD",
+          "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+        },
+        {
+          "from_field": "SALES_ADJ_PHYSICAL_SOURCE_CD",
+          "from_instance": "N_SALES_ADJUSTMENT_NRT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SALES_IDE_ADJ_CODE",
+      "source_path": [
+        {
+          "from_field": "BK_SALES_IDE_ADJ_CODE",
+          "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+        },
+        {
+          "from_field": "BK_SALES_IDE_ADJ_CODE",
+          "from_instance": "N_SALES_ADJUSTMENT_NRT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SALES_ADJ_CODE",
+      "source_path": [
+        {
+          "from_field": "BK_SALES_ADJ_CODE",
+          "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+        },
+        {
+          "from_field": "BK_SALES_ADJ_CODE",
+          "from_instance": "N_SALES_ADJUSTMENT_NRT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CODE",
+      "source_path": [
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "N_SALES_ADJUSTMENT_NRT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_SALES_ADJUSTMENT_NRT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_SALES_ADJUSTMENT_NRT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+        },
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "N_SALES_ADJUSTMENT_NRT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+        },
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "N_SALES_ADJUSTMENT_NRT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SALES_ADJ_TYPE_CODE",
+      "source_path": [
+        {
+          "from_field": "BK_SALES_ADJ_TYPE_CODE",
+          "from_instance": "SQ_N_SALES_ADJUSTMENT_NRT"
+        },
+        {
+          "from_field": "BK_SALES_ADJ_TYPE_CODE",
+          "from_instance": "N_SALES_ADJUSTMENT_NRT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:19.610962+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

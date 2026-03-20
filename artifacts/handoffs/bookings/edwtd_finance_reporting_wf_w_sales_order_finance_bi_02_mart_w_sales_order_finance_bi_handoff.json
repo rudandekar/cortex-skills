@@ -1,0 +1,986 @@
+{
+  "workflow_name": "wf_m_W_SALES_ORDER_FINANCE_BI",
+  "mapping_name": "m_W_SALES_ORDER_FINANCE_BI",
+  "mapping_description": "",
+  "folder_name": "EDWTD_FINANCE_REPORTING",
+  "target_table": "W_SALES_ORDER_FINANCE_BI",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_finance_reporting_wf_w_sales_order_finance_bi_02_mart_w_sales_order_finance_bi",
+  "source_tables": [
+    "WI_BKG_MEASURE_SO_BIF",
+    "N_BOOKINGS_MEASURE"
+  ],
+  "sources": [
+    {
+      "name": "WI_BKG_MEASURE_SO_BIF",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV2",
+      "fields": [
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SO_DISCOUNT_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "N_BOOKINGS_MEASURE",
+      "database_type": "Teradata",
+      "owner": "SLSORDVWDB_DV5",
+      "fields": [
+        {
+          "name": "BOOKINGS_MEASURE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AR_TRX_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AR_TRX_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BILL_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHIP_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOLD_TO_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BOOKINGS_PROCESS_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SALES_ADJ_LINE_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SALES_ADJ_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_TYPE_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_CHANNEL_CODE",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_CREDIT_TYPE_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IDE_ADJUSTMENT_CODE",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_CODE",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CANCELLED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CANCEL_CODE",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACQUISITION_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FORWARD_REVERSE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DISTRIBUTOR_OFFSET_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CORPORATE_BOOKINGS_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "OVERLAY_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "IC_REVENUE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CHARGES_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALESREP_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MISC_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INTERNATIONAL_DEMO_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REPLACEMENT_DEMO_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REVENUE_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RMA_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRADE_IN_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_LIST_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_COST_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_EXTENDED_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_NET_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_LIST_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_COMP_US_HOLD_COST_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DD_EXTENDED_HOLD_QUANTITY",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DD_COMP_US_STANDARD_PRICE_AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "WIPS_ORIGINATOR_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_SALES_ORDER_FINANCE_BI",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_ORDER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DV_DISCOUNT_BAND_CD",
+        "datatype": "char",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_ORDER_BAND_CD",
+        "datatype": "char",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_BOOKINGS_MEASURE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_LIST_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSOD.SALES_ORDER_KEY,\r\nSOD.NET_PRICE DD_COMP_US_NET_PRICE_AMOUNT,\r\nCASE WHEN SOD.LIST_PRICE=0 THEN 0 ELSE (SOD.LIST_PRICE-SOD.NET_PRICE)/SOD.LIST_PRICE*100 END SO_DISCOUNT_PCT,\r\n\r\nUSER EDW_CREATE_USER,\r\nUSER EDW_UPDATE_USER,\r\ncurrent_timestamp(0) EDW_CREATE_DATETIME,\r\ncurrent_timestamp(0) EDW_UPDATE_DATETIME\r\nFROM \r\n(select\r\nSALES_ORDER_KEY,\r\nSUM(DD_COMP_US_NET_PRICE_AMOUNT ) NET_PRICE,\r\nSUM(DD_COMP_US_LIST_PRICE_AMOUNT) LIST_PRICE\r\nfrom \r\n$$SLSORDVWDB.N_BOOKINGS_MEASURE\r\nwhere DV_REVENUE_RECOGNITION_FLG ='Y' /*Added part of TRUE DEMAND */\r\n/*where CORPORATE_BOOKINGS_FLG ='Y' */ /*Removed  part of TRUE DEMAND */\r\nGROUP BY SALES_ORDER_KEY) SOD",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "DELETE FROM $$STGDB.WI_BKG_MEASURE_SO_BIF ALL;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_BKG_MEASURE_SO_BIF",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_DISCOUNT_PCT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nSALES_ORDER_KEY,\r\nCASE\r\n\tWHEN SO_DISCOUNT_PCT<35   THEN '35% and lesser'   \r\n\tWHEN SO_DISCOUNT_PCT>=35 AND SO_DISCOUNT_PCT<40  THEN '35% to 40%'          \r\n\tWHEN SO_DISCOUNT_PCT>=40 AND SO_DISCOUNT_PCT<45  THEN '40% to 45%' \r\n\tWHEN SO_DISCOUNT_PCT>=45 AND SO_DISCOUNT_PCT<50  THEN '45% to 50%' \r\n\tWHEN SO_DISCOUNT_PCT>=50 AND SO_DISCOUNT_PCT<55  THEN '50% to 55%' \r\n\tWHEN SO_DISCOUNT_PCT>=55 AND SO_DISCOUNT_PCT<60  THEN '55% to 60%' \r\n\tWHEN SO_DISCOUNT_PCT>=60 AND SO_DISCOUNT_PCT<65  THEN '60% to 65%' \r\n\tWHEN SO_DISCOUNT_PCT>=65 AND SO_DISCOUNT_PCT<70  THEN '65% to 70%' \r\n\tWHEN SO_DISCOUNT_PCT>=70 THEN '70% and greater'\r\nEND as DV_DISCOUNT_BAND_CD,\r\nCASE \r\n\tWHEN DD_COMP_US_NET_PRICE_AMOUNT<1000000 THEN '$1M and lesser'   \r\n\tWHEN DD_COMP_US_NET_PRICE_AMOUNT>=1000000 AND DD_COMP_US_NET_PRICE_AMOUNT<2000000  THEN '$1M to $2M' \r\n\tWHEN DD_COMP_US_NET_PRICE_AMOUNT>=2000000 AND DD_COMP_US_NET_PRICE_AMOUNT<3000000  THEN '$2M to $3M' \r\n\tWHEN DD_COMP_US_NET_PRICE_AMOUNT>=3000000 AND DD_COMP_US_NET_PRICE_AMOUNT<4000000  THEN '$3M to $4M' \r\n\tWHEN DD_COMP_US_NET_PRICE_AMOUNT>=4000000 AND DD_COMP_US_NET_PRICE_AMOUNT<5000000  THEN '$4M to $5M' \r\n\tWHEN DD_COMP_US_NET_PRICE_AMOUNT>=5000000  THEN '$5M and greater'\r\nEND as DV_ORDER_BAND_CD,\r\ncurrent_timestamp(0) EDW_CREATE_DTM,\r\nUSER EDW_CREATE_USER,\r\ncurrent_timestamp(0) EDW_UPDATE_DTM,\r\nUSER EDW_UPDATE_USER\r\nFROM  \r\n$$STGDB.WI_BKG_MEASURE_SO_BIF",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "DELETE FROM $$WORKDB.W_SALES_ORDER_FINANCE_BI ALL;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_N_BOOKINGS_MEASURE",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "SQ_N_BOOKINGS_MEASURE",
+      "to_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "from_instance": "SQ_N_BOOKINGS_MEASURE",
+      "to_field": "SO_DISCOUNT_PCT",
+      "to_instance": "WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_N_BOOKINGS_MEASURE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_BOOKINGS_MEASURE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ_N_BOOKINGS_MEASURE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_BOOKINGS_MEASURE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "W_SALES_ORDER_FINANCE_BI"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_SALES_ORDER_FINANCE_BI"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_SALES_ORDER_FINANCE_BI"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_SALES_ORDER_FINANCE_BI"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_SALES_ORDER_FINANCE_BI"
+    },
+    {
+      "from_field": "SO_DISCOUNT_PCT",
+      "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF",
+      "to_field": "DV_DISCOUNT_BAND_CD",
+      "to_instance": "W_SALES_ORDER_FINANCE_BI"
+    },
+    {
+      "from_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF",
+      "to_field": "DV_ORDER_BAND_CD",
+      "to_instance": "W_SALES_ORDER_FINANCE_BI"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "N_BOOKINGS_MEASURE",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "N_BOOKINGS_MEASURE",
+      "to_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "SQ_N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "from_instance": "N_BOOKINGS_MEASURE",
+      "to_field": "DD_COMP_US_LIST_PRICE_AMOUNT",
+      "to_instance": "SQ_N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_BOOKINGS_MEASURE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_BOOKINGS_MEASURE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "N_BOOKINGS_MEASURE",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "N_BOOKINGS_MEASURE",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_N_BOOKINGS_MEASURE"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "WI_BKG_MEASURE_SO_BIF1",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "WI_BKG_MEASURE_SO_BIF1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_BKG_MEASURE_SO_BIF1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "WI_BKG_MEASURE_SO_BIF1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "WI_BKG_MEASURE_SO_BIF1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_BKG_MEASURE_SO_BIF1",
+      "to_field": "SO_DISCOUNT_PCT",
+      "to_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_BKG_MEASURE_SO_BIF1",
+      "to_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_ORDER_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "SQ_N_BOOKINGS_MEASURE"
+        },
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+        },
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "N_BOOKINGS_MEASURE"
+        },
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "WI_BKG_MEASURE_SO_BIF1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_DISCOUNT_BAND_CD",
+      "source_path": [
+        {
+          "from_field": "SO_DISCOUNT_PCT",
+          "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_ORDER_BAND_CD",
+      "source_path": [
+        {
+          "from_field": "DD_COMP_US_NET_PRICE_AMOUNT",
+          "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "SQ_N_BOOKINGS_MEASURE"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "WI_BKG_MEASURE_SO_BIF1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_BOOKINGS_MEASURE"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_BOOKINGS_MEASURE"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "WI_BKG_MEASURE_SO_BIF1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "SQ_N_BOOKINGS_MEASURE"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "WI_BKG_MEASURE_SO_BIF1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_BOOKINGS_MEASURE"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_WI_BKG_MEASURE_SO_BIF"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_BOOKINGS_MEASURE"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "WI_BKG_MEASURE_SO_BIF1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:14.245341+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

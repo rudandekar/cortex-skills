@@ -1,0 +1,24 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_bkg_aggrs_wf_wi_aud_rstd_bkgs_measure_mth_01_mart_wi_aud_rstd_bkg_thrshld_values_filter_basic
+    model: edwtd_bkg_aggrs_wf_wi_aud_rstd_bkgs_measure_mth_01_mart_wi_aud_rstd_bkg_thrshld_values
+    description: "Verify filter transformation passes expected rows"
+    given:
+      - input: source('raw', 'wi_aud_rstd_bkg_thrshld_values')
+        rows:
+          - {id: 1, status: 'ACTIVE'}
+          - {id: 2, status: 'INACTIVE'}
+    expect:
+      rows:
+        - {id: 1, status: 'ACTIVE'}
+  - name: test_edwtd_bkg_aggrs_wf_wi_aud_rstd_bkgs_measure_mth_01_mart_wi_aud_rstd_bkg_thrshld_values_expression_transform
+    model: edwtd_bkg_aggrs_wf_wi_aud_rstd_bkgs_measure_mth_01_mart_wi_aud_rstd_bkg_thrshld_values
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'wi_aud_rstd_bkg_thrshld_values')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

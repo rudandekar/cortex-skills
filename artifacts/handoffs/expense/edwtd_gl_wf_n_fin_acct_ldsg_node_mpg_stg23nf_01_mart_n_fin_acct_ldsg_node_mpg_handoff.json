@@ -1,0 +1,213 @@
+{
+  "workflow_name": "wf_m_N_FIN_ACCT_LDSG_NODE_MPG_STG23NF",
+  "mapping_name": "m_N_FIN_ACCT_LDSG_NODE_MPG_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "N_FIN_ACCT_LDSG_NODE_MPG",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_n_fin_acct_ldsg_node_mpg_stg23nf_01_mart_n_fin_acct_ldsg_node_mpg",
+  "source_tables": [
+    "ST_APSP_FIN_ACCOUNT_LDSG"
+  ],
+  "sources": [
+    {
+      "name": "ST_APSP_FIN_ACCOUNT_LDSG",
+      "database_type": "Teradata",
+      "owner": "STGDB_dv3",
+      "fields": [
+        {
+          "name": "ACCOUNT_NUM",
+          "datatype": "char",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SPEND_ROLL_UP",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SPEND_CATEGORY",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SPEND_GROUP",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_FIN_ACCT_LDSG_NODE_MPG",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_LDSG_NODE_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_FINANCIAL_ACCOUNT_CD",
+        "datatype": "char",
+        "precision": "5",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_APSP_FIN_ACCOUNT_LDSG",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SPEND_ROLL_UP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SPEND_ROLL_UP",
+      "from_instance": "SQ_ST_APSP_FIN_ACCOUNT_LDSG",
+      "to_field": "BK_LDSG_NODE_NAME",
+      "to_instance": "N_FIN_ACCT_LDSG_NODE_MPG"
+    },
+    {
+      "from_field": "ACCOUNT_NUM",
+      "from_instance": "SQ_ST_APSP_FIN_ACCOUNT_LDSG",
+      "to_field": "BK_FINANCIAL_ACCOUNT_CD",
+      "to_instance": "N_FIN_ACCT_LDSG_NODE_MPG"
+    },
+    {
+      "from_field": "ACCOUNT_NUM",
+      "from_instance": "ST_APSP_FIN_ACCOUNT_LDSG",
+      "to_field": "ACCOUNT_NUM",
+      "to_instance": "SQ_ST_APSP_FIN_ACCOUNT_LDSG"
+    },
+    {
+      "from_field": "SPEND_ROLL_UP",
+      "from_instance": "ST_APSP_FIN_ACCOUNT_LDSG",
+      "to_field": "SPEND_ROLL_UP",
+      "to_instance": "SQ_ST_APSP_FIN_ACCOUNT_LDSG"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_LDSG_NODE_NAME",
+      "source_path": [
+        {
+          "from_field": "SPEND_ROLL_UP",
+          "from_instance": "SQ_ST_APSP_FIN_ACCOUNT_LDSG"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_FINANCIAL_ACCOUNT_CD",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_NUM",
+          "from_instance": "SQ_ST_APSP_FIN_ACCOUNT_LDSG"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:08.481438+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

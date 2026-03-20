@@ -1,0 +1,5371 @@
+{
+  "workflow_name": "wf_m_WI_FUTURE_ACRL_TRXNL_DATA",
+  "mapping_name": "m_WI_FUTURE_ACRL_TRXNL_DATA",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "WI_FBS_INV_TRXNL_DATA",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_wi_future_acrl_trxnl_data_09_mart_wi_fbs_inv_trxnl_data",
+  "source_tables": [
+    "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+    "WI_FBS_MONTH_CTRL",
+    "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+    "WI_FBS_ACRL_INV_TRXNL_DATA",
+    "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+    "WI_FBS_ACCRUAL_INVOICING_CALC",
+    "WI_FBS_ACRL_INV_DATA",
+    "WI_FBS_ACRL_TRXNL_DATA",
+    "WI_FBS_INV_TRXNL_DATA"
+  ],
+  "sources": [
+    {
+      "name": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "char",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_FBS_MONTH_CTRL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "CURRENT_MONTH",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PREVIOUS_MONTH",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "CURR_FISCAL_MONTH",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRE_FISCAL_MONTH",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "char",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TSV_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CURR_FBS_ACCRUAL_INCREASE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRE_FBS_ACCRUAL_INCREASE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CURR_CUMULATIVE_CONTRA_DR",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRE_CUMULATIVE_CONTRA_DR",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CURR_INVOICING",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRE_INVOICING",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CURR_CUMULATIVE_INVOICING",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRE_CUMULATIVE_INVOICING",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CURR_REMAINING_CA",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRE_REMAINING_CA",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CURR_DEFERED_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRE_DEFERED_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FBS_ACCRUAL_DECREASE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CUMULATIVE_ACCRUAL_DECREASE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CHEC",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCRUAL_NET",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "char",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "IDENTIFIER",
+          "datatype": "varchar",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TSV_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FBS_ACCRUAL_INCREASE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CUMULATIVE_CONTRA_DR",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INVOICING",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CUMULATIVE_INVOICING",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "char",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "char",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TSV_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FBS_ACCRUAL_INCREASE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CUMULATIVE_CONTRA",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INVOICING",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CUMULATIVE_INVOICE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REMAINING_CA",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DEFERED_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_FBS_ACRL_INV_DATA",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "char",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TSV_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FBS_ACCRUAL_INCREASE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CUMULATIVE_CONTRA_DR",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INVOICING",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CUMULATIVE_INVOICING",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_FBS_ACRL_TRXNL_DATA",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "char",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TSV_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FBS_ACCRUAL_INCREASE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CUMULATIVE_CONTRA_DR",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "IDENTIFIER",
+          "datatype": "varchar",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_FBS_INV_TRXNL_DATA",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "char",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TSV_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INVOICING",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CUMULATIVE_INVOICING",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "IDENTIFIER",
+          "datatype": "varchar",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_FBS_INV_TRXNL_DATA",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "DV_FISC_YR_MNTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PRODUCT_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_BUNDLE_PRODUCT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_ORDER_LINE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_LINE_REFERENCE_NUM",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ATTRIBUTION_CD",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_ACCOUNTING_RULE_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCOUNTING_RULE_START_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCOUNTING_RULE_END_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREDIT_DEBIT_TYPE",
+        "datatype": "char",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCOUNT_CLASS_CD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TSV_TRANSACTIONAL_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_INVOICE_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_BILL_REL_TO_INVOICING_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INVOICING",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CUMULATIVE_INVOICING",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "IDENTIFIER",
+        "datatype": "varchar",
+        "precision": "7",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSV_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FBS_ACCRUAL_INCREASE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUMULATIVE_CONTRA_DR",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IDENTIFIER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IDENTIFIER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSV_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FBS_ACCRUAL_INCREASE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUMULATIVE_CONTRA_DR",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVOICING",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUMULATIVE_INVOICING",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_FBS_ACRL_INV_DATA",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSV_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FBS_ACCRUAL_INCREASE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUMULATIVE_CONTRA_DR",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVOICING",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUMULATIVE_INVOICING",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_FBS_MONTH_CTRL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CURRENT_MONTH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PREVIOUS_MONTH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSV_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FBS_ACCRUAL_INCREASE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUMULATIVE_CONTRA",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVOICING",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUMULATIVE_INVOICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REMAINING_CA",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEFERED_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CURR_FISCAL_MONTH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRE_FISCAL_MONTH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSV_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURR_FBS_ACCRUAL_INCREASE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRE_FBS_ACCRUAL_INCREASE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURR_CUMULATIVE_CONTRA_DR",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRE_CUMULATIVE_CONTRA_DR",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURR_INVOICING",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRE_INVOICING",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURR_CUMULATIVE_INVOICING",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRE_CUMULATIVE_INVOICING",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURR_REMAINING_CA",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRE_REMAINING_CA",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURR_DEFERED_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRE_DEFERED_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FBS_ACCRUAL_DECREASE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUMULATIVE_ACCRUAL_DECREASE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHEC",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCRUAL_NET",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISC_YR_MNTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BUNDLE_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_LINE_REFERENCE_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ACCOUNTING_RULE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNTING_RULE_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREDIT_DEBIT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_CLASS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TSV_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_INVOICE_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_BILL_REL_TO_INVOICING_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVOICING",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CUMULATIVE_INVOICING",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IDENTIFIER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "TSV_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "TSV_TRANSACTIONAL_AMT",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "FBS_ACCRUAL_INCREASE",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "FBS_ACCRUAL_INCREASE",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "CUMULATIVE_CONTRA_DR",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "CUMULATIVE_CONTRA_DR",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "IDENTIFIER",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "IDENTIFIER",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "WI_FBS_ACRL_TRXNL_DATA1"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "IDENTIFIER",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "IDENTIFIER",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "TSV_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "TSV_TRANSACTIONAL_AMT",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "FBS_ACCRUAL_INCREASE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "FBS_ACCRUAL_INCREASE",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "CUMULATIVE_CONTRA_DR",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "CUMULATIVE_CONTRA_DR",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "INVOICING",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "INVOICING",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "CUMULATIVE_INVOICING",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "CUMULATIVE_INVOICING",
+      "to_instance": "WI_FBS_ACRL_INV_TRXNL_DATA1"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "TSV_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "TSV_TRANSACTIONAL_AMT",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "FBS_ACCRUAL_INCREASE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "FBS_ACCRUAL_INCREASE",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "CUMULATIVE_CONTRA_DR",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "CUMULATIVE_CONTRA_DR",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "INVOICING",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "INVOICING",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "CUMULATIVE_INVOICING",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "CUMULATIVE_INVOICING",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "WI_FBS_ACRL_INV_DATA1"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH1"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH1"
+    },
+    {
+      "from_field": "CURRENT_MONTH",
+      "from_instance": "SQ_WI_FBS_MONTH_CTRL",
+      "to_field": "CURRENT_MONTH",
+      "to_instance": "WI_FBS_MONTH_CTRL1"
+    },
+    {
+      "from_field": "PREVIOUS_MONTH",
+      "from_instance": "SQ_WI_FBS_MONTH_CTRL",
+      "to_field": "PREVIOUS_MONTH",
+      "to_instance": "WI_FBS_MONTH_CTRL1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "TSV_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "TSV_TRANSACTIONAL_AMT",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "FBS_ACCRUAL_INCREASE",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "FBS_ACCRUAL_INCREASE",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "CUMULATIVE_CONTRA",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "CUMULATIVE_CONTRA",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "INVOICING",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "INVOICING",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "CUMULATIVE_INVOICE",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "CUMULATIVE_INVOICE",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "REMAINING_CA",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "REMAINING_CA",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "DEFERED_INVOICE_AMOUNT",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "DEFERED_INVOICE_AMOUNT",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC1"
+    },
+    {
+      "from_field": "CURR_FISCAL_MONTH",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_FISCAL_MONTH",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "PRE_FISCAL_MONTH",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_FISCAL_MONTH",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "TSV_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "TSV_TRANSACTIONAL_AMT",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "CURR_FBS_ACCRUAL_INCREASE",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_FBS_ACCRUAL_INCREASE",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "PRE_FBS_ACCRUAL_INCREASE",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_FBS_ACCRUAL_INCREASE",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "CURR_CUMULATIVE_CONTRA_DR",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_CUMULATIVE_CONTRA_DR",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "PRE_CUMULATIVE_CONTRA_DR",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_CUMULATIVE_CONTRA_DR",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "CURR_INVOICING",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_INVOICING",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "PRE_INVOICING",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_INVOICING",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "CURR_CUMULATIVE_INVOICING",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_CUMULATIVE_INVOICING",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "PRE_CUMULATIVE_INVOICING",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_CUMULATIVE_INVOICING",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "CURR_REMAINING_CA",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_REMAINING_CA",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "PRE_REMAINING_CA",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_REMAINING_CA",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "CURR_DEFERED_INVOICE_AMOUNT",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_DEFERED_INVOICE_AMOUNT",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "PRE_DEFERED_INVOICE_AMOUNT",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_DEFERED_INVOICE_AMOUNT",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "FBS_ACCRUAL_DECREASE",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "FBS_ACCRUAL_DECREASE",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "CUMULATIVE_ACCRUAL_DECREASE",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CUMULATIVE_ACCRUAL_DECREASE",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "CHEC",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CHEC",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "ACCRUAL_NET",
+      "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "ACCRUAL_NET",
+      "to_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL1"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "TSV_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "TSV_TRANSACTIONAL_AMT",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "INVOICING",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "INVOICING",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "CUMULATIVE_INVOICING",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "CUMULATIVE_INVOICING",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "IDENTIFIER",
+      "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA",
+      "to_field": "IDENTIFIER",
+      "to_instance": "WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "TSV_TRANSACTIONAL_AMT",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "TSV_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "FBS_ACCRUAL_INCREASE",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "FBS_ACCRUAL_INCREASE",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "CUMULATIVE_CONTRA_DR",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "CUMULATIVE_CONTRA_DR",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "IDENTIFIER",
+      "from_instance": "WI_FBS_ACRL_TRXNL_DATA",
+      "to_field": "IDENTIFIER",
+      "to_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "IDENTIFIER",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "IDENTIFIER",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "TSV_TRANSACTIONAL_AMT",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "TSV_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "FBS_ACCRUAL_INCREASE",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "FBS_ACCRUAL_INCREASE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "CUMULATIVE_CONTRA_DR",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "CUMULATIVE_CONTRA_DR",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "INVOICING",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "INVOICING",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "CUMULATIVE_INVOICING",
+      "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA",
+      "to_field": "CUMULATIVE_INVOICING",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "TSV_TRANSACTIONAL_AMT",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "TSV_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "FBS_ACCRUAL_INCREASE",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "FBS_ACCRUAL_INCREASE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "CUMULATIVE_CONTRA_DR",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "CUMULATIVE_CONTRA_DR",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "INVOICING",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "INVOICING",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "CUMULATIVE_INVOICING",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "CUMULATIVE_INVOICING",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "WI_FBS_ACRL_INV_DATA",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+    },
+    {
+      "from_field": "CURRENT_MONTH",
+      "from_instance": "WI_FBS_MONTH_CTRL",
+      "to_field": "CURRENT_MONTH",
+      "to_instance": "SQ_WI_FBS_MONTH_CTRL"
+    },
+    {
+      "from_field": "PREVIOUS_MONTH",
+      "from_instance": "WI_FBS_MONTH_CTRL",
+      "to_field": "PREVIOUS_MONTH",
+      "to_instance": "SQ_WI_FBS_MONTH_CTRL"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "TSV_TRANSACTIONAL_AMT",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "TSV_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "FBS_ACCRUAL_INCREASE",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "FBS_ACCRUAL_INCREASE",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "CUMULATIVE_CONTRA",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "CUMULATIVE_CONTRA",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "INVOICING",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "INVOICING",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "CUMULATIVE_INVOICE",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "CUMULATIVE_INVOICE",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "REMAINING_CA",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "REMAINING_CA",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "DEFERED_INVOICE_AMOUNT",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC",
+      "to_field": "DEFERED_INVOICE_AMOUNT",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+    },
+    {
+      "from_field": "PRE_FISCAL_MONTH",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_FISCAL_MONTH",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "TSV_TRANSACTIONAL_AMT",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "TSV_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "CURR_FBS_ACCRUAL_INCREASE",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_FBS_ACCRUAL_INCREASE",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "PRE_FBS_ACCRUAL_INCREASE",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_FBS_ACCRUAL_INCREASE",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "CURR_CUMULATIVE_CONTRA_DR",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_CUMULATIVE_CONTRA_DR",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "PRE_CUMULATIVE_CONTRA_DR",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_CUMULATIVE_CONTRA_DR",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "CURR_INVOICING",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_INVOICING",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "PRE_INVOICING",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_INVOICING",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "CURR_CUMULATIVE_INVOICING",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_CUMULATIVE_INVOICING",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "PRE_CUMULATIVE_INVOICING",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_CUMULATIVE_INVOICING",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "CURR_REMAINING_CA",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_REMAINING_CA",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "PRE_REMAINING_CA",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_REMAINING_CA",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "CURR_DEFERED_INVOICE_AMOUNT",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_DEFERED_INVOICE_AMOUNT",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "PRE_DEFERED_INVOICE_AMOUNT",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "PRE_DEFERED_INVOICE_AMOUNT",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "FBS_ACCRUAL_DECREASE",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "FBS_ACCRUAL_DECREASE",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "CUMULATIVE_ACCRUAL_DECREASE",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CUMULATIVE_ACCRUAL_DECREASE",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "CHEC",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CHEC",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "ACCRUAL_NET",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "ACCRUAL_NET",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "CURR_FISCAL_MONTH",
+      "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL",
+      "to_field": "CURR_FISCAL_MONTH",
+      "to_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+    },
+    {
+      "from_field": "DV_FISC_YR_MNTH_INT",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "DV_FISC_YR_MNTH_INT",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "DV_BUNDLE_PRODUCT_KEY",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "DV_BUNDLE_PRODUCT_KEY",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "SK_LINE_REFERENCE_NUM",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "SK_LINE_REFERENCE_NUM",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ATTRIBUTION_CD",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "BK_ACCOUNTING_RULE_NAME",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "BK_ACCOUNTING_RULE_NAME",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_START_DATE",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "ACCOUNTING_RULE_START_DATE",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNTING_RULE_END_DATE",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "ACCOUNTING_RULE_END_DATE",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "CREDIT_DEBIT_TYPE",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "CREDIT_DEBIT_TYPE",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "ACCOUNT_CLASS_CD",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "ACCOUNT_CLASS_CD",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "TSV_TRANSACTIONAL_AMT",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "TSV_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "DV_INVOICE_DT",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "DV_INVOICE_DT",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "DV_BILL_REL_TO_INVOICING_DT",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "INVOICING",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "INVOICING",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "CUMULATIVE_INVOICING",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "CUMULATIVE_INVOICING",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    },
+    {
+      "from_field": "IDENTIFIER",
+      "from_instance": "WI_FBS_INV_TRXNL_DATA1",
+      "to_field": "IDENTIFIER",
+      "to_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "DV_FISC_YR_MNTH_INT",
+      "source_path": [
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "DV_FISC_YR_MNTH_INT",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRODUCT_KEY",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_BUNDLE_PRODUCT_KEY",
+      "source_path": [
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "DV_BUNDLE_PRODUCT_KEY",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_ORDER_LINE_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_LINE_REFERENCE_NUM",
+      "source_path": [
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "SK_LINE_REFERENCE_NUM",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ATTRIBUTION_CD",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "ATTRIBUTION_CD",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_ACCOUNTING_RULE_NAME",
+      "source_path": [
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "BK_ACCOUNTING_RULE_NAME",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNTING_RULE_START_DATE",
+      "source_path": [
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_START_DATE",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNTING_RULE_END_DATE",
+      "source_path": [
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "ACCOUNTING_RULE_END_DATE",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREDIT_DEBIT_TYPE",
+      "source_path": [
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "CREDIT_DEBIT_TYPE",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNT_CLASS_CD",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "ACCOUNT_CLASS_CD",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TSV_TRANSACTIONAL_AMT",
+      "source_path": [
+        {
+          "from_field": "TSV_TRANSACTIONAL_AMT",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "TSV_TRANSACTIONAL_AMT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "TSV_TRANSACTIONAL_AMT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "TSV_TRANSACTIONAL_AMT",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "TSV_TRANSACTIONAL_AMT",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "TSV_TRANSACTIONAL_AMT",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "TSV_TRANSACTIONAL_AMT",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "TSV_TRANSACTIONAL_AMT",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "TSV_TRANSACTIONAL_AMT",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "TSV_TRANSACTIONAL_AMT",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "TSV_TRANSACTIONAL_AMT",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "TSV_TRANSACTIONAL_AMT",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_CREDIT_TRANSACTIONAL_AMT",
+      "source_path": [
+        {
+          "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "RU_CREDIT_TRANSACTIONAL_AMT",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_INVOICE_DT",
+      "source_path": [
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "DV_INVOICE_DT",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_BILL_REL_TO_INVOICING_DT",
+      "source_path": [
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_MAX_MTH"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "WI_FBS_ACRL_INV_DATA_DISCONT_MTH"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC_FINAL"
+        },
+        {
+          "from_field": "DV_BILL_REL_TO_INVOICING_DT",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INVOICING",
+      "source_path": [
+        {
+          "from_field": "INVOICING",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "INVOICING",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "INVOICING",
+          "from_instance": "SQ_WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "INVOICING",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "INVOICING",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "INVOICING",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "INVOICING",
+          "from_instance": "WI_FBS_ACCRUAL_INVOICING_CALC"
+        },
+        {
+          "from_field": "INVOICING",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CUMULATIVE_INVOICING",
+      "source_path": [
+        {
+          "from_field": "CUMULATIVE_INVOICING",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "CUMULATIVE_INVOICING",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "CUMULATIVE_INVOICING",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "CUMULATIVE_INVOICING",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "CUMULATIVE_INVOICING",
+          "from_instance": "WI_FBS_ACRL_INV_DATA"
+        },
+        {
+          "from_field": "CUMULATIVE_INVOICING",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "IDENTIFIER",
+      "source_path": [
+        {
+          "from_field": "IDENTIFIER",
+          "from_instance": "SQ_WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "IDENTIFIER",
+          "from_instance": "SQ_WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "IDENTIFIER",
+          "from_instance": "SQ_WI_FBS_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "IDENTIFIER",
+          "from_instance": "WI_FBS_ACRL_TRXNL_DATA"
+        },
+        {
+          "from_field": "IDENTIFIER",
+          "from_instance": "WI_FBS_ACRL_INV_TRXNL_DATA"
+        },
+        {
+          "from_field": "IDENTIFIER",
+          "from_instance": "WI_FBS_INV_TRXNL_DATA1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:03.328661+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

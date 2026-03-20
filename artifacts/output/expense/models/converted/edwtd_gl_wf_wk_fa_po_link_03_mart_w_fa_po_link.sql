@@ -1,0 +1,107 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wk_fa_po_link', 'batch', 'edwtd_gl'],
+    meta={
+        'source_workflow': 'wf_m_WK_FA_PO_LINK',
+        'target_table': 'W_FA_PO_LINK',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:05:28.774975+00:00'
+    }
+) }}
+
+WITH 
+
+source_st_mf_fa_books AS (
+    SELECT
+        batch_id,
+        adjusted_capacity,
+        adjusted_cost,
+        adjusted_rate,
+        adjusted_recoverable_cost,
+        adjustment_required_status,
+        allowed_deprn_limit,
+        allowed_deprn_limit_amount,
+        annual_deprn_rounding_flag,
+        annual_rounding_flag,
+        asset_id,
+        basic_rate,
+        bonus_rule,
+        book_type_code,
+        capitalize_flag,
+        ceiling_name,
+        conversion_date,
+        cost,
+        cost_change_flag,
+        date_effective,
+        date_ineffective,
+        date_placed_in_service,
+        depreciate_flag,
+        deprn_method_code,
+        deprn_start_date,
+        eofy_adj_cost,
+        eofy_formula_factor,
+        formula_factor,
+        fully_rsvd_revals_counter,
+        ges_update_date,
+        global_attribute1,
+        global_attribute2,
+        global_attribute3,
+        global_attribute4,
+        global_name,
+        group_asset_id,
+        idled_flag,
+        itc_amount,
+        itc_amount_id,
+        itc_basis,
+        last_updated_by,
+        last_update_date,
+        last_update_login,
+        life_in_months,
+        old_adjusted_cost,
+        original_cost,
+        original_deprn_start_date,
+        percent_salvage_value,
+        period_counter_capitalized,
+        period_counter_fully_reserved,
+        period_counter_fully_retired,
+        period_counter_life_complete,
+        production_capacity,
+        prorate_convention_code,
+        prorate_date,
+        rate_adjustment_factor,
+        recoverable_cost,
+        remaining_life1,
+        remaining_life2,
+        retirement_id,
+        retirement_pending_flag,
+        reval_amortization_basis,
+        reval_ceiling,
+        salvage_value,
+        short_fiscal_year_flag,
+        tax_request_id,
+        transaction_header_id_in,
+        transaction_header_id_out,
+        unit_of_measure,
+        unrevalued_cost,
+        create_datetime,
+        action_code
+    FROM {{ source('raw', 'st_mf_fa_books') }}
+),
+
+final AS (
+    SELECT
+        bk_fixed_asset_num,
+        bk_company_cd,
+        set_of_books_key,
+        purchase_order_key,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        action_code,
+        dml_type
+    FROM source_st_mf_fa_books
+)
+
+SELECT * FROM final

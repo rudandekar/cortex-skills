@@ -1,0 +1,855 @@
+{
+  "workflow_name": "wf_m_FF_EM_ITEM_MASTER",
+  "mapping_name": "m_FF_EM_ITEM_MASTER",
+  "mapping_description": "This ETL mapping extracts data from EM_ITEM_MASTER table from ODS instance to Flat file - Supply Chain data stream",
+  "folder_name": "EDWTD_MFG_PRODUCTS",
+  "target_table": "FF_EM_ITEM_MASTER",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_mfg_products_wf_ff_em_item_master_01_mart_ff_em_item_master",
+  "source_tables": [
+    "EM_ITEM_MASTER"
+  ],
+  "sources": [
+    {
+      "name": "EM_ITEM_MASTER",
+      "database_type": "Oracle",
+      "owner": "EHUBADM",
+      "fields": [
+        {
+          "name": "ITEM_MASTER_ID",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PARTNER_ID",
+          "datatype": "varchar2",
+          "precision": "13",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_ID",
+          "datatype": "varchar2",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REORDER_POINT_QUANTITY",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ROP_SAFETY_STOCK_QUANTITY",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SINGLE_USE_KANBAN_QUANTITY",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CYCLE_TIME_TO_REPLENISH",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MINIMUM_ORDER_QUANTITY",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MINIMUM_PACKAGE_QUANTITY",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_EM_ITEM_MASTER",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ITEM_MASTER_ID",
+        "datatype": "int",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "PARTNER_ID",
+        "datatype": "string",
+        "precision": "13",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PRODUCT_ID",
+        "datatype": "string",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REORDER_POINT_QUANTITY",
+        "datatype": "int",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ROP_SAFETY_STOCK_QUANTITY",
+        "datatype": "int",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SINGLE_USE_KANBAN_QUANTITY",
+        "datatype": "int",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CYCLE_TIME_TO_REPLENISH",
+        "datatype": "int",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MINIMUM_ORDER_QUANTITY",
+        "datatype": "int",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MINIMUM_PACKAGE_QUANTITY",
+        "datatype": "int",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BATCH_ID",
+        "datatype": "int",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "string",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "Exp_EM_ITEM_MASTER",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "ITEM_MASTER_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ITEM_MASTER_ID"
+        },
+        {
+          "name": "PARTNER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PARTNER_ID"
+        },
+        {
+          "name": "PRODUCT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PRODUCT_ID"
+        },
+        {
+          "name": "REORDER_POINT_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "REORDER_POINT_QUANTITY"
+        },
+        {
+          "name": "ROP_SAFETY_STOCK_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ROP_SAFETY_STOCK_QUANTITY"
+        },
+        {
+          "name": "SINGLE_USE_KANBAN_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SINGLE_USE_KANBAN_QUANTITY"
+        },
+        {
+          "name": "CYCLE_TIME_TO_REPLENISH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CYCLE_TIME_TO_REPLENISH"
+        },
+        {
+          "name": "MINIMUM_ORDER_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "MINIMUM_ORDER_QUANTITY"
+        },
+        {
+          "name": "MINIMUM_PACKAGE_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "MINIMUM_PACKAGE_QUANTITY"
+        },
+        {
+          "name": "LAST_UPDATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATION_DATE"
+        },
+        {
+          "name": "O_BATCH_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "$$BatchId"
+        },
+        {
+          "name": "O_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "O_ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "Sq_EM_ITEM_MASTER",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ITEM_MASTER_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REORDER_POINT_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ROP_SAFETY_STOCK_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SINGLE_USE_KANBAN_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CYCLE_TIME_TO_REPLENISH",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MINIMUM_ORDER_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MINIMUM_PACKAGE_QUANTITY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT EM_ITEM_MASTER.ITEM_MASTER_ID, EM_ITEM_MASTER.PARTNER_ID, EM_ITEM_MASTER.PRODUCT_ID, EM_ITEM_MASTER.REORDER_POINT_QUANTITY, EM_ITEM_MASTER.ROP_SAFETY_STOCK_QUANTITY, EM_ITEM_MASTER.SINGLE_USE_KANBAN_QUANTITY, EM_ITEM_MASTER.CYCLE_TIME_TO_REPLENISH, EM_ITEM_MASTER.MINIMUM_ORDER_QUANTITY, EM_ITEM_MASTER.MINIMUM_PACKAGE_QUANTITY, EM_ITEM_MASTER.LAST_UPDATE, EM_ITEM_MASTER.CREATION_DATE \r\nFROM\r\n EM_ITEM_MASTER\r\nWHERE \r\n EM_ITEM_MASTER.PRODUCT_ID IN ( SELECT DISTINCT SEGMENT1 FROM CG1_MTL_SYSTEM_ITEMS_B )\r\nAND EM_ITEM_MASTER.LAST_UPDATE > '$$LastExtractDate'\r\nAND EM_ITEM_MASTER.PARTNER_ID <> '153804570'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "LAST_UPDATE",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "LAST_UPDATE",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "CREATION_DATE",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "O_BATCH_ID",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "BATCH_ID",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "O_CREATE_DATETIME",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "O_ACTION_CODE",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "ACTION_CODE",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ITEM_MASTER_ID",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "ITEM_MASTER_ID",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "PARTNER_ID",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "PARTNER_ID",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "PRODUCT_ID",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "PRODUCT_ID",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "REORDER_POINT_QUANTITY",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "REORDER_POINT_QUANTITY",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ROP_SAFETY_STOCK_QUANTITY",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "ROP_SAFETY_STOCK_QUANTITY",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "SINGLE_USE_KANBAN_QUANTITY",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "SINGLE_USE_KANBAN_QUANTITY",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "CYCLE_TIME_TO_REPLENISH",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "CYCLE_TIME_TO_REPLENISH",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "MINIMUM_ORDER_QUANTITY",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "MINIMUM_ORDER_QUANTITY",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "MINIMUM_PACKAGE_QUANTITY",
+      "from_instance": "Exp_EM_ITEM_MASTER",
+      "to_field": "MINIMUM_PACKAGE_QUANTITY",
+      "to_instance": "FF_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ITEM_MASTER_ID",
+      "from_instance": "Sq_EM_ITEM_MASTER",
+      "to_field": "ITEM_MASTER_ID",
+      "to_instance": "Exp_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "PARTNER_ID",
+      "from_instance": "Sq_EM_ITEM_MASTER",
+      "to_field": "PARTNER_ID",
+      "to_instance": "Exp_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "PRODUCT_ID",
+      "from_instance": "Sq_EM_ITEM_MASTER",
+      "to_field": "PRODUCT_ID",
+      "to_instance": "Exp_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "REORDER_POINT_QUANTITY",
+      "from_instance": "Sq_EM_ITEM_MASTER",
+      "to_field": "REORDER_POINT_QUANTITY",
+      "to_instance": "Exp_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ROP_SAFETY_STOCK_QUANTITY",
+      "from_instance": "Sq_EM_ITEM_MASTER",
+      "to_field": "ROP_SAFETY_STOCK_QUANTITY",
+      "to_instance": "Exp_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "SINGLE_USE_KANBAN_QUANTITY",
+      "from_instance": "Sq_EM_ITEM_MASTER",
+      "to_field": "SINGLE_USE_KANBAN_QUANTITY",
+      "to_instance": "Exp_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "CYCLE_TIME_TO_REPLENISH",
+      "from_instance": "Sq_EM_ITEM_MASTER",
+      "to_field": "CYCLE_TIME_TO_REPLENISH",
+      "to_instance": "Exp_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "MINIMUM_ORDER_QUANTITY",
+      "from_instance": "Sq_EM_ITEM_MASTER",
+      "to_field": "MINIMUM_ORDER_QUANTITY",
+      "to_instance": "Exp_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "MINIMUM_PACKAGE_QUANTITY",
+      "from_instance": "Sq_EM_ITEM_MASTER",
+      "to_field": "MINIMUM_PACKAGE_QUANTITY",
+      "to_instance": "Exp_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "LAST_UPDATE",
+      "from_instance": "Sq_EM_ITEM_MASTER",
+      "to_field": "LAST_UPDATE",
+      "to_instance": "Exp_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "Sq_EM_ITEM_MASTER",
+      "to_field": "CREATION_DATE",
+      "to_instance": "Exp_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ITEM_MASTER_ID",
+      "from_instance": "EM_ITEM_MASTER",
+      "to_field": "ITEM_MASTER_ID",
+      "to_instance": "Sq_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "PARTNER_ID",
+      "from_instance": "EM_ITEM_MASTER",
+      "to_field": "PARTNER_ID",
+      "to_instance": "Sq_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "MINIMUM_PACKAGE_QUANTITY",
+      "from_instance": "EM_ITEM_MASTER",
+      "to_field": "MINIMUM_PACKAGE_QUANTITY",
+      "to_instance": "Sq_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "LAST_UPDATE",
+      "from_instance": "EM_ITEM_MASTER",
+      "to_field": "LAST_UPDATE",
+      "to_instance": "Sq_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "PRODUCT_ID",
+      "from_instance": "EM_ITEM_MASTER",
+      "to_field": "PRODUCT_ID",
+      "to_instance": "Sq_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "REORDER_POINT_QUANTITY",
+      "from_instance": "EM_ITEM_MASTER",
+      "to_field": "REORDER_POINT_QUANTITY",
+      "to_instance": "Sq_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "ROP_SAFETY_STOCK_QUANTITY",
+      "from_instance": "EM_ITEM_MASTER",
+      "to_field": "ROP_SAFETY_STOCK_QUANTITY",
+      "to_instance": "Sq_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "SINGLE_USE_KANBAN_QUANTITY",
+      "from_instance": "EM_ITEM_MASTER",
+      "to_field": "SINGLE_USE_KANBAN_QUANTITY",
+      "to_instance": "Sq_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "CYCLE_TIME_TO_REPLENISH",
+      "from_instance": "EM_ITEM_MASTER",
+      "to_field": "CYCLE_TIME_TO_REPLENISH",
+      "to_instance": "Sq_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "MINIMUM_ORDER_QUANTITY",
+      "from_instance": "EM_ITEM_MASTER",
+      "to_field": "MINIMUM_ORDER_QUANTITY",
+      "to_instance": "Sq_EM_ITEM_MASTER"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EM_ITEM_MASTER",
+      "to_field": "CREATION_DATE",
+      "to_instance": "Sq_EM_ITEM_MASTER"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ITEM_MASTER_ID",
+      "source_path": [
+        {
+          "from_field": "ITEM_MASTER_ID",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "ITEM_MASTER_ID",
+          "from_instance": "Sq_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "ITEM_MASTER_ID",
+          "from_instance": "EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTNER_ID",
+      "source_path": [
+        {
+          "from_field": "PARTNER_ID",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "PARTNER_ID",
+          "from_instance": "Sq_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "PARTNER_ID",
+          "from_instance": "EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRODUCT_ID",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_ID",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "PRODUCT_ID",
+          "from_instance": "Sq_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "PRODUCT_ID",
+          "from_instance": "EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REORDER_POINT_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "REORDER_POINT_QUANTITY",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "REORDER_POINT_QUANTITY",
+          "from_instance": "Sq_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "REORDER_POINT_QUANTITY",
+          "from_instance": "EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ROP_SAFETY_STOCK_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "ROP_SAFETY_STOCK_QUANTITY",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "ROP_SAFETY_STOCK_QUANTITY",
+          "from_instance": "Sq_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "ROP_SAFETY_STOCK_QUANTITY",
+          "from_instance": "EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SINGLE_USE_KANBAN_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "SINGLE_USE_KANBAN_QUANTITY",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "SINGLE_USE_KANBAN_QUANTITY",
+          "from_instance": "Sq_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "SINGLE_USE_KANBAN_QUANTITY",
+          "from_instance": "EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CYCLE_TIME_TO_REPLENISH",
+      "source_path": [
+        {
+          "from_field": "CYCLE_TIME_TO_REPLENISH",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "CYCLE_TIME_TO_REPLENISH",
+          "from_instance": "Sq_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "CYCLE_TIME_TO_REPLENISH",
+          "from_instance": "EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MINIMUM_ORDER_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "MINIMUM_ORDER_QUANTITY",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "MINIMUM_ORDER_QUANTITY",
+          "from_instance": "Sq_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "MINIMUM_ORDER_QUANTITY",
+          "from_instance": "EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MINIMUM_PACKAGE_QUANTITY",
+      "source_path": [
+        {
+          "from_field": "MINIMUM_PACKAGE_QUANTITY",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "MINIMUM_PACKAGE_QUANTITY",
+          "from_instance": "Sq_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "MINIMUM_PACKAGE_QUANTITY",
+          "from_instance": "EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "LAST_UPDATE",
+          "from_instance": "Sq_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "LAST_UPDATE",
+          "from_instance": "EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "Sq_EM_ITEM_MASTER"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "O_BATCH_ID",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "O_CREATE_DATETIME",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "O_ACTION_CODE",
+          "from_instance": "Exp_EM_ITEM_MASTER"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:16.038744+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

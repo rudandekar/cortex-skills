@@ -1,0 +1,693 @@
+{
+  "workflow_name": "wf_m_ST_TSS_SRM_CBEBRE_LOGS",
+  "mapping_name": "m_ST_TSS_SRM_CBEBRE_LOGS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_CA_SERVICES",
+  "target_table": "ST_TSS_SRM_CBEBRE_LOGS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ca_services_wf_st_tss_srm_cbebre_logs_01_mart_st_tss_srm_cbebre_logs",
+  "source_tables": [
+    "FF_TSS_SRM_CBEBRE_LOGS"
+  ],
+  "sources": [
+    {
+      "name": "FF_TSS_SRM_CBEBRE_LOGS",
+      "database_type": "Flat File",
+      "owner": "Flat_File",
+      "fields": [
+        {
+          "name": "BRE_TRX_LOG_ID",
+          "datatype": "string",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EVENT_TYPE",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "precision": "29",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BL_LAST_UPDATE_DATE",
+          "datatype": "string",
+          "precision": "29",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_ID",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EVENTDATETIMEC",
+          "datatype": "string",
+          "precision": "29",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COLLABORATIONEXTIDC",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EVENTTYPEC",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_TIME",
+          "datatype": "string",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_TSS_SRM_CBEBRE_LOGS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BRE_TRX_LOG_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EVENT_TYPE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BL_LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TRANSACTION_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EVENTDATETIMEC",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COLLABORATIONEXTIDC",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EVENTTYPEC",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_TIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EX_ST_TSS_SRM_CBEBRE_LOGS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BRE_TRX_LOG_ID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_BRE_TRX_LOG_ID",
+          "datatype": "bigint",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(BRE_TRX_LOG_ID))='\\N',-999,TO_BIGINT(BRE_TRX_LOG_ID))\r\n"
+        },
+        {
+          "name": "EVENT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_EVENT_TYPE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(EVENT_TYPE)) = '\\N',NULL,EVENT_TYPE)"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(CREATION_DATE)) = '\\N',NULL,TO_DATE(CREATION_DATE,'YYYY-MM-DD HH24:MI:SS'))"
+        },
+        {
+          "name": "BL_LAST_UPDATE_DATE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_BL_LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(BL_LAST_UPDATE_DATE)) = '\\N',TO_DATE('3500-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS'),TO_DATE(BL_LAST_UPDATE_DATE,'YYYY-MM-DD HH24:MI:SS'))"
+        },
+        {
+          "name": "TRANSACTION_ID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_TRANSACTION_ID",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(TRANSACTION_ID)) = '\\N',NULL,TRANSACTION_ID)\r\n"
+        },
+        {
+          "name": "EVENTDATETIMEC",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_EVENTDATETIMEC",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(EVENTDATETIMEC)) = '\\N',NULL,TO_DATE(EVENTDATETIMEC,'YYYY-MM-DD HH24:MI:SS'))"
+        },
+        {
+          "name": "COLLABORATIONEXTIDC",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_COLLABORATIONEXTIDC",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(COLLABORATIONEXTIDC)) = '\\N',NULL,COLLABORATIONEXTIDC)\r\n"
+        },
+        {
+          "name": "EVENTTYPEC",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_EVENTTYPEC",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(EVENTTYPEC)) = '\\N',NULL,EVENTTYPEC)\r\n"
+        },
+        {
+          "name": "START_TIME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_TIME"
+        },
+        {
+          "name": "O_START_TIME",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(START_TIME))='\\N',NULL,IIF(LENGTH(START_TIME)>19,TO_DATE(SUBSTR(START_TIME , 0,INSTR(START_TIME,'.')-1),'YYYY-MM-DD HH24:MI:SS'),TO_DATE(START_TIME,'YYYY-MM-DD HH24:MI:SS')))\r\n\r\n\r\n"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_FF_TSS_SRM_CBEBRE_LOGS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BRE_TRX_LOG_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EVENT_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BL_LAST_UPDATE_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EVENTDATETIMEC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COLLABORATIONEXTIDC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EVENTTYPEC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TIME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "O_BL_LAST_UPDATE_DATE",
+      "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "BL_LAST_UPDATE_DATE",
+      "to_instance": "ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "O_BRE_TRX_LOG_ID",
+      "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "BRE_TRX_LOG_ID",
+      "to_instance": "ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "O_EVENT_TYPE",
+      "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "EVENT_TYPE",
+      "to_instance": "ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "O_CREATION_DATE",
+      "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "O_TRANSACTION_ID",
+      "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "TRANSACTION_ID",
+      "to_instance": "ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "O_EVENTDATETIMEC",
+      "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "EVENTDATETIMEC",
+      "to_instance": "ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "O_COLLABORATIONEXTIDC",
+      "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "COLLABORATIONEXTIDC",
+      "to_instance": "ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "O_EVENTTYPEC",
+      "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "EVENTTYPEC",
+      "to_instance": "ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "O_START_TIME",
+      "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "START_TIME",
+      "to_instance": "ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "BRE_TRX_LOG_ID",
+      "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "BRE_TRX_LOG_ID",
+      "to_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "EVENT_TYPE",
+      "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "EVENT_TYPE",
+      "to_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "EVENTTYPEC",
+      "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "EVENTTYPEC",
+      "to_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "BL_LAST_UPDATE_DATE",
+      "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "BL_LAST_UPDATE_DATE",
+      "to_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "TRANSACTION_ID",
+      "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "TRANSACTION_ID",
+      "to_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "EVENTDATETIMEC",
+      "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "EVENTDATETIMEC",
+      "to_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "COLLABORATIONEXTIDC",
+      "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "COLLABORATIONEXTIDC",
+      "to_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "START_TIME",
+      "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "START_TIME",
+      "to_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "BRE_TRX_LOG_ID",
+      "from_instance": "FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "BRE_TRX_LOG_ID",
+      "to_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "EVENT_TYPE",
+      "from_instance": "FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "EVENT_TYPE",
+      "to_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "BL_LAST_UPDATE_DATE",
+      "from_instance": "FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "BL_LAST_UPDATE_DATE",
+      "to_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "TRANSACTION_ID",
+      "from_instance": "FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "TRANSACTION_ID",
+      "to_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "EVENTDATETIMEC",
+      "from_instance": "FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "EVENTDATETIMEC",
+      "to_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "COLLABORATIONEXTIDC",
+      "from_instance": "FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "COLLABORATIONEXTIDC",
+      "to_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "EVENTTYPEC",
+      "from_instance": "FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "EVENTTYPEC",
+      "to_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+    },
+    {
+      "from_field": "START_TIME",
+      "from_instance": "FF_TSS_SRM_CBEBRE_LOGS",
+      "to_field": "START_TIME",
+      "to_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BRE_TRX_LOG_ID",
+      "source_path": [
+        {
+          "from_field": "O_BRE_TRX_LOG_ID",
+          "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "BRE_TRX_LOG_ID",
+          "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "BRE_TRX_LOG_ID",
+          "from_instance": "FF_TSS_SRM_CBEBRE_LOGS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EVENT_TYPE",
+      "source_path": [
+        {
+          "from_field": "O_EVENT_TYPE",
+          "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "EVENT_TYPE",
+          "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "EVENT_TYPE",
+          "from_instance": "FF_TSS_SRM_CBEBRE_LOGS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "O_CREATION_DATE",
+          "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "FF_TSS_SRM_CBEBRE_LOGS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BL_LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "O_BL_LAST_UPDATE_DATE",
+          "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "BL_LAST_UPDATE_DATE",
+          "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "BL_LAST_UPDATE_DATE",
+          "from_instance": "FF_TSS_SRM_CBEBRE_LOGS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TRANSACTION_ID",
+      "source_path": [
+        {
+          "from_field": "O_TRANSACTION_ID",
+          "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "TRANSACTION_ID",
+          "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "TRANSACTION_ID",
+          "from_instance": "FF_TSS_SRM_CBEBRE_LOGS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EVENTDATETIMEC",
+      "source_path": [
+        {
+          "from_field": "O_EVENTDATETIMEC",
+          "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "EVENTDATETIMEC",
+          "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "EVENTDATETIMEC",
+          "from_instance": "FF_TSS_SRM_CBEBRE_LOGS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COLLABORATIONEXTIDC",
+      "source_path": [
+        {
+          "from_field": "O_COLLABORATIONEXTIDC",
+          "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "COLLABORATIONEXTIDC",
+          "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "COLLABORATIONEXTIDC",
+          "from_instance": "FF_TSS_SRM_CBEBRE_LOGS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EVENTTYPEC",
+      "source_path": [
+        {
+          "from_field": "O_EVENTTYPEC",
+          "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "EVENTTYPEC",
+          "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "EVENTTYPEC",
+          "from_instance": "FF_TSS_SRM_CBEBRE_LOGS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TIME",
+      "source_path": [
+        {
+          "from_field": "O_START_TIME",
+          "from_instance": "EX_ST_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "START_TIME",
+          "from_instance": "SQ_FF_TSS_SRM_CBEBRE_LOGS"
+        },
+        {
+          "from_field": "START_TIME",
+          "from_instance": "FF_TSS_SRM_CBEBRE_LOGS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:11.609521+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,405 @@
+{
+  "workflow_name": "wf_m_W_SALES_ORDER_LINE_DELS",
+  "mapping_name": "m_W_SALES_ORDER_LINE_DELS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "WI_SALES_ORDER_LINE_DELS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_w_sales_order_line_dels_01_mart_wi_sales_order_line_dels",
+  "source_tables": [
+    "ST_BO_OE_ORDER_LINES_ALL_DELS",
+    "ST_UO_OE_ORDER_LINES_ALL_DELS"
+  ],
+  "sources": [
+    {
+      "name": "ST_BO_OE_ORDER_LINES_ALL_DELS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "LINE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUEUE_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ERROR_MSG",
+          "datatype": "varchar",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TABLE_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DE_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROCESS_SET_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "ST_UO_OE_ORDER_LINES_ALL_DELS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "LINE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUEUE_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ERROR_MSG",
+          "datatype": "varchar",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TABLE_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DE_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROCESS_SET_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_SALES_ORDER_LINE_DELS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_ORDER_LINE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_UO_OE_ORDER_LINES_ALL_DELS1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSSOL.SALES_ORDER_LINE_KEY \t\tSALES_ORDER_LINE_KEY,\r\nUSER\t\t\t\t\t\t\tEDW_CREATE_USER,\r\nCOALESCE(CAST(SUOOLAD.LAST_UPDATE_DATE AS TIMESTAMP(0)),\r\nCAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0))\t)\t\tEDW_CREATE_DATETIME\r\nFROM $$STGDB.ST_UO_OE_ORDER_LINES_ALL_DELS SUOOLAD\r\nINNER JOIN (\r\n\t\t\t$$ETLVWDB.SM_SALES_ORDER_LINE SSOL \r\n\t\t\t\tINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC_SOL\r\n\t\t\t\tON( NSSC_SOL.SOURCE_SYSTEM_CODE= SSOL.SS_CODE)\r\n\t\t\t)\r\nON\t( SUOOLAD.LINE_ID=SSOL.SK_SO_LINE_ID_INT AND\tNSSC_SOL.GLOBAL_NAME='UO' )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_BO_OE_ORDER_LINES_ALL_DELS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSSOL.SALES_ORDER_LINE_KEY \t\tSALES_ORDER_LINE_KEY,\r\nUSER\t\t\t\t\t\t\tEDW_CREATE_USER,\r\nCOALESCE(CAST(SBOOLAD.LAST_UPDATE_DATE AS TIMESTAMP(0)),\r\nCAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0))\t)\t\tEDW_CREATE_DATETIME\r\nFROM $$STGDB.ST_BO_OE_ORDER_LINES_ALL_DELS SBOOLAD\r\nINNER JOIN (\r\n\t\t\t$$ETLVWDB.SM_SALES_ORDER_LINE SSOL \r\n\t\t\t\tINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC_SOL\r\n\t\t\t\tON( NSSC_SOL.SOURCE_SYSTEM_CODE= SSOL.SS_CODE)\r\n\t\t\t)\r\nON\t( SBOOLAD.LINE_ID=SSOL.SK_SO_LINE_ID_INT AND NSSC_SOL.GLOBAL_NAME='BO' )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_ST_BO_OE_ORDER_LINES_ALL_DELS",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "BO_WI_SALES_ORDER_LINE_DELS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_BO_OE_ORDER_LINES_ALL_DELS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "BO_WI_SALES_ORDER_LINE_DELS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_BO_OE_ORDER_LINES_ALL_DELS",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "BO_WI_SALES_ORDER_LINE_DELS"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_ST_UO_OE_ORDER_LINES_ALL_DELS1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "UO_WI_SALES_ORDER_LINE_DELS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_UO_OE_ORDER_LINES_ALL_DELS1",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "UO_WI_SALES_ORDER_LINE_DELS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_UO_OE_ORDER_LINES_ALL_DELS1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "UO_WI_SALES_ORDER_LINE_DELS"
+    },
+    {
+      "from_field": "LINE_ID",
+      "from_instance": "ST_UO_OE_ORDER_LINES_ALL_DELS",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_ST_UO_OE_ORDER_LINES_ALL_DELS1"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_UO_OE_ORDER_LINES_ALL_DELS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_UO_OE_ORDER_LINES_ALL_DELS1"
+    },
+    {
+      "from_field": "DE_NAME",
+      "from_instance": "ST_UO_OE_ORDER_LINES_ALL_DELS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_UO_OE_ORDER_LINES_ALL_DELS1"
+    },
+    {
+      "from_field": "DE_NAME",
+      "from_instance": "ST_BO_OE_ORDER_LINES_ALL_DELS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_BO_OE_ORDER_LINES_ALL_DELS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_BO_OE_ORDER_LINES_ALL_DELS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_BO_OE_ORDER_LINES_ALL_DELS"
+    },
+    {
+      "from_field": "LINE_ID",
+      "from_instance": "ST_BO_OE_ORDER_LINES_ALL_DELS",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_ST_BO_OE_ORDER_LINES_ALL_DELS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_ORDER_LINE_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_ST_BO_OE_ORDER_LINES_ALL_DELS"
+        },
+        {
+          "from_field": "SALES_ORDER_LINE_KEY",
+          "from_instance": "SQ_ST_UO_OE_ORDER_LINES_ALL_DELS1"
+        },
+        {
+          "from_field": "LINE_ID",
+          "from_instance": "ST_UO_OE_ORDER_LINES_ALL_DELS"
+        },
+        {
+          "from_field": "LINE_ID",
+          "from_instance": "ST_BO_OE_ORDER_LINES_ALL_DELS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_BO_OE_ORDER_LINES_ALL_DELS"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_UO_OE_ORDER_LINES_ALL_DELS1"
+        },
+        {
+          "from_field": "DE_NAME",
+          "from_instance": "ST_UO_OE_ORDER_LINES_ALL_DELS"
+        },
+        {
+          "from_field": "DE_NAME",
+          "from_instance": "ST_BO_OE_ORDER_LINES_ALL_DELS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_ST_BO_OE_ORDER_LINES_ALL_DELS"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_ST_UO_OE_ORDER_LINES_ALL_DELS1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:25.428741+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

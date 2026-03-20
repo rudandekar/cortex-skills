@@ -1,0 +1,393 @@
+{
+  "workflow_name": "wf_m_AUDIT_UNBILLED_REVENUE",
+  "mapping_name": "m_AUDIT_UNBILLED_REVENUE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "AUDIT_UNBILLED_REVENUE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_audit_unbilled_revenue_01_mart_audit_unbilled_revenue",
+  "source_tables": [
+    "AUDIT_UNBILLED_REVENUE"
+  ],
+  "sources": [
+    {
+      "name": "AUDIT_UNBILLED_REVENUE",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV2",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_MTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REV_MISMATCH_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUDIT_TRXN_TYPE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "AUDIT_UNBILLED_REVENUE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_YEAR_MTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "REV_MISMATCH_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_TRXN_TYPE",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "AUDIT_TABLE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "AUDIT_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_AUDIT_UNBILLED_REVENUE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_MTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REV_MISMATCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TRXN_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SEL SRC.FISCAL_YEAR_MTH_INT, ABS( (BL_AMT-REV_AMT)) AS REV_MISMATCH_AMT,\r\n'ERP' AS AUDIT_TRXN_TYPE,\r\n'MT_UNBILLED_REVENUE' AS AUDIT_TABLE,\r\nCURRENT_DATE AS AUDIT_DATE\r\nFROM (\r\nSELECT DV_FISCAL_YEAR_MTH_NUMBER_INT AS FISCAL_YEAR_MTH_INT ,SUM(DV_FB_COMP_NET_PRICE_USD_AMT) BL_AMT FROM   $$SLSORDVWDB.N_SCAA_FINANCE_BACKLOG_TV NSOB  \r\n WHERE  DV_FISCAL_YEAR_MTH_NUMBER_INT  =(SEL DISTINCT DV_FISCAL_YEAR_MTH_NUMBER_INT FROM $$SLSORDVWDB.N_SCAA_FINANCE_BACKLOG WHERE DD_FB_SS_CD NOT IN ('AE')) \r\n AND  DV_FB_CORP_FINANCE_BACKLOG_FLG='Y' AND DD_FB_SS_CD NOT IN ('AE')\r\n GROUP BY 1\r\n  )SRC\r\nLEFT JOIN (\r\nSEL PROCESSED_FISCAL_MTH AS FISCAL_MTH,SUM(UNBILLED_REVENUE_AMT) REV_AMT  FROM $$FINLGLVWDB.MT_UNBILLED_REVENUE WHERE PROCESSED_FISCAL_MTH IN ( SEL DISTINCT DV_FISCAL_YEAR_MTH_NUMBER_INT FROM $$SLSORDVWDB.N_SCAA_FINANCE_BACKLOG WHERE DD_FB_SS_CD NOT IN ('AE') )\r\nAND TRANSACTION_TYPE='ERP' GROUP BY 1\r\n  )TGT\r\nON TGT.FISCAL_MTH=SRC.FISCAL_YEAR_MTH_INT\r\nUNION ALL\r\nSEL\r\n SRC.FISCAL_YEAR_MTH_INT, ABS(BACKLOG_TSV +UNBILLED_TSV) AS REV_MISMATCH_AMT,\r\n'ERP' AS AUDIT_TRXN_TYPE,\r\n'MT_UNBILLED_REVENUE' AS AUDIT_TABLE,\r\nCURRENT_DATE AS AUDIT_DATE\r\nFROM\r\n(SELECT DV_FISCAL_YEAR_MTH_NUMBER_INT AS FISCAL_YEAR_MTH_INT, \r\nSUM(UNIT_SALE_PRICE*ORDER_QUANTITY*(DD_FB_SALES_COMMISSION_PCT/100)    ) AS BACKLOG_TSV\r\nFROM   $$SLSORDVWDB.N_SCAA_FINANCE_BACKLOG_TV NSOB  \r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL\r\nON NSOL.SALES_ORDER_LINE_KEY=NSOB.DD_FB_SALES_ORDER_LINE_KEY\r\n WHERE  DV_FISCAL_YEAR_MTH_NUMBER_INT  =(SEL DISTINCT DV_FISCAL_YEAR_MTH_NUMBER_INT FROM $$SLSORDVWDB.N_SCAA_FINANCE_BACKLOG WHERE DD_FB_SS_CD NOT IN ('AE')) \r\n AND  DV_FB_CORP_FINANCE_BACKLOG_FLG='Y' AND DD_FB_SS_CD NOT IN ('AE')\r\n GROUP BY 1)SRC\r\nLEFT JOIN\r\n(SEL PROCESSED_FISCAL_MTH AS FISCAL_YEAR_MTH_INT,SUM(DV_TOTAL_SALES_VALUE_AMT/PL_CONVERSION_RATE)*-1 AS UNBILLED_TSV  FROM $$FINLGLVWDB.MT_UNBILLED_REVENUE WHERE PROCESSED_FISCAL_MTH IN \r\n( SEL DISTINCT DV_FISCAL_YEAR_MTH_NUMBER_INT FROM $$SLSORDVWDB.N_SCAA_FINANCE_BACKLOG WHERE DD_FB_SS_CD NOT IN ('AE') )\r\nAND TRANSACTION_TYPE='ERP' GROUP BY 1)TGT\r\nON TGT.FISCAL_YEAR_MTH_INT=SRC.FISCAL_YEAR_MTH_INT",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_MTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FISCAL_YEAR_MTH_INT"
+        },
+        {
+          "name": "REV_MISMATCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TRXN_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TRXN_TYPE"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TABLE"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_DATE"
+        },
+        {
+          "name": "REV_AUDIT_CHK",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": "IIF(REV_MISMATCH_AMT>1000,ABORT('REV_MISMATCH_AMT >1000 in MT_UNBILLED_REVENUE for ERP'),REV_MISMATCH_AMT)"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "FISCAL_YEAR_MTH_INT",
+      "from_instance": "EXPTRANS",
+      "to_field": "FISCAL_YEAR_MTH_INT",
+      "to_instance": "AUDIT_UNBILLED_REVENUE1"
+    },
+    {
+      "from_field": "AUDIT_TRXN_TYPE",
+      "from_instance": "EXPTRANS",
+      "to_field": "AUDIT_TRXN_TYPE",
+      "to_instance": "AUDIT_UNBILLED_REVENUE1"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "EXPTRANS",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "AUDIT_UNBILLED_REVENUE1"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "EXPTRANS",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "AUDIT_UNBILLED_REVENUE1"
+    },
+    {
+      "from_field": "REV_AUDIT_CHK",
+      "from_instance": "EXPTRANS",
+      "to_field": "REV_MISMATCH_AMT",
+      "to_instance": "AUDIT_UNBILLED_REVENUE1"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MTH_INT",
+      "from_instance": "AUDIT_UNBILLED_REVENUE",
+      "to_field": "FISCAL_YEAR_MTH_INT",
+      "to_instance": "SQ_AUDIT_UNBILLED_REVENUE"
+    },
+    {
+      "from_field": "REV_MISMATCH_AMT",
+      "from_instance": "AUDIT_UNBILLED_REVENUE",
+      "to_field": "REV_MISMATCH_AMT",
+      "to_instance": "SQ_AUDIT_UNBILLED_REVENUE"
+    },
+    {
+      "from_field": "AUDIT_TRXN_TYPE",
+      "from_instance": "AUDIT_UNBILLED_REVENUE",
+      "to_field": "AUDIT_TRXN_TYPE",
+      "to_instance": "SQ_AUDIT_UNBILLED_REVENUE"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "AUDIT_UNBILLED_REVENUE",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "SQ_AUDIT_UNBILLED_REVENUE"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "AUDIT_UNBILLED_REVENUE",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "SQ_AUDIT_UNBILLED_REVENUE"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MTH_INT",
+      "from_instance": "SQ_AUDIT_UNBILLED_REVENUE",
+      "to_field": "FISCAL_YEAR_MTH_INT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "REV_MISMATCH_AMT",
+      "from_instance": "SQ_AUDIT_UNBILLED_REVENUE",
+      "to_field": "REV_MISMATCH_AMT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "AUDIT_TRXN_TYPE",
+      "from_instance": "SQ_AUDIT_UNBILLED_REVENUE",
+      "to_field": "AUDIT_TRXN_TYPE",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "SQ_AUDIT_UNBILLED_REVENUE",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "SQ_AUDIT_UNBILLED_REVENUE",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "EXPTRANS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_YEAR_MTH_INT",
+      "source_path": [
+        {
+          "from_field": "FISCAL_YEAR_MTH_INT",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "FISCAL_YEAR_MTH_INT",
+          "from_instance": "AUDIT_UNBILLED_REVENUE"
+        },
+        {
+          "from_field": "FISCAL_YEAR_MTH_INT",
+          "from_instance": "SQ_AUDIT_UNBILLED_REVENUE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REV_MISMATCH_AMT",
+      "source_path": [
+        {
+          "from_field": "REV_AUDIT_CHK",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "REV_MISMATCH_AMT",
+          "from_instance": "AUDIT_UNBILLED_REVENUE"
+        },
+        {
+          "from_field": "REV_MISMATCH_AMT",
+          "from_instance": "SQ_AUDIT_UNBILLED_REVENUE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_TRXN_TYPE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_TRXN_TYPE",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "AUDIT_TRXN_TYPE",
+          "from_instance": "AUDIT_UNBILLED_REVENUE"
+        },
+        {
+          "from_field": "AUDIT_TRXN_TYPE",
+          "from_instance": "SQ_AUDIT_UNBILLED_REVENUE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_TABLE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "AUDIT_UNBILLED_REVENUE"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "SQ_AUDIT_UNBILLED_REVENUE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_DATE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "AUDIT_UNBILLED_REVENUE"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "SQ_AUDIT_UNBILLED_REVENUE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:32:56.602215+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

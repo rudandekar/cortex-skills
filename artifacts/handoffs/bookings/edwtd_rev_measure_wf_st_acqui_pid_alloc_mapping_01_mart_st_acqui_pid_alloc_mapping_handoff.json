@@ -1,0 +1,489 @@
+{
+  "workflow_name": "wf_m_ST_ACQUI_PID_ALLOC_MAPPING",
+  "mapping_name": "m_ST_ACQUI_PID_ALLOC_MAPPING",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "ST_ACQUI_PID_ALLOC_MAPPING",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_st_acqui_pid_alloc_mapping_01_mart_st_acqui_pid_alloc_mapping",
+  "source_tables": [
+    "FF_ACQUI_PID_ALLOC_MAPPING"
+  ],
+  "sources": [
+    {
+      "name": "FF_ACQUI_PID_ALLOC_MAPPING",
+      "database_type": "Flat File",
+      "owner": "FINDATARPTRO",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACQUISITION_NAME",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACQ_SVC_PID",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACQ_HW_PID",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BUSINESS_ENTITY_DESCR",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUB_BUSINESS_ENTITY_DESCR",
+          "datatype": "string",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ALLOC_PCT",
+          "datatype": "number",
+          "precision": "30",
+          "scale": "16",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_USER",
+          "datatype": "string",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATE_USER",
+          "datatype": "string",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPDATE_DATETIME",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_ACQUI_PID_ALLOC_MAPPING",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_YEAR_MONTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACQUISITION_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACQUI_SKU",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_PRODUCT_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BUSINESS_ENTITY_DESCR",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SUB_BUSINESS_ENTITY_DESCR",
+        "datatype": "varchar",
+        "precision": "60",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PID_PCT",
+        "datatype": "decimal",
+        "precision": "30",
+        "scale": "16",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_ACQUI_PID_ALLOC_MAPPING",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACQUISITION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACQ_SVC_PID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACQ_HW_PID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUSINESS_ENTITY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUB_BUSINESS_ENTITY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ALLOC_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACQ_SVC_PID",
+      "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "ACQUI_SKU",
+      "to_instance": "ST_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "ACQ_HW_PID",
+      "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "BK_PRODUCT_ID",
+      "to_instance": "ST_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "BUSINESS_ENTITY_DESCR",
+      "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "BUSINESS_ENTITY_DESCR",
+      "to_instance": "ST_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "SUB_BUSINESS_ENTITY_DESCR",
+      "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "SUB_BUSINESS_ENTITY_DESCR",
+      "to_instance": "ST_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "to_instance": "ST_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "ALLOC_PCT",
+      "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "PID_PCT",
+      "to_instance": "ST_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "UPDATE_DATETIME",
+      "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "UPDATE_DATETIME",
+      "to_instance": "ST_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "ACQUISITION_NAME",
+      "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "ACQUISITION_NAME",
+      "to_instance": "ST_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "ST_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "ACQUISITION_NAME",
+      "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "ACQUISITION_NAME",
+      "to_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "ACQ_SVC_PID",
+      "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "ACQ_SVC_PID",
+      "to_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "ACQ_HW_PID",
+      "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "ACQ_HW_PID",
+      "to_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "BUSINESS_ENTITY_DESCR",
+      "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "BUSINESS_ENTITY_DESCR",
+      "to_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "SUB_BUSINESS_ENTITY_DESCR",
+      "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "SUB_BUSINESS_ENTITY_DESCR",
+      "to_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "to_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "ALLOC_PCT",
+      "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "ALLOC_PCT",
+      "to_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+    },
+    {
+      "from_field": "UPDATE_DATETIME",
+      "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING",
+      "to_field": "UPDATE_DATETIME",
+      "to_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_YEAR_MONTH_INT",
+      "source_path": [
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACQUISITION_NAME",
+      "source_path": [
+        {
+          "from_field": "ACQUISITION_NAME",
+          "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+        },
+        {
+          "from_field": "ACQUISITION_NAME",
+          "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACQUI_SKU",
+      "source_path": [
+        {
+          "from_field": "ACQ_SVC_PID",
+          "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_PRODUCT_ID",
+      "source_path": [
+        {
+          "from_field": "ACQ_HW_PID",
+          "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BUSINESS_ENTITY_DESCR",
+      "source_path": [
+        {
+          "from_field": "BUSINESS_ENTITY_DESCR",
+          "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+        },
+        {
+          "from_field": "BUSINESS_ENTITY_DESCR",
+          "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SUB_BUSINESS_ENTITY_DESCR",
+      "source_path": [
+        {
+          "from_field": "SUB_BUSINESS_ENTITY_DESCR",
+          "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+        },
+        {
+          "from_field": "SUB_BUSINESS_ENTITY_DESCR",
+          "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "source_path": [
+        {
+          "from_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+          "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+        },
+        {
+          "from_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+          "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PID_PCT",
+      "source_path": [
+        {
+          "from_field": "ALLOC_PCT",
+          "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPDATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "UPDATE_DATETIME",
+          "from_instance": "SQ_FF_ACQUI_PID_ALLOC_MAPPING"
+        },
+        {
+          "from_field": "UPDATE_DATETIME",
+          "from_instance": "FF_ACQUI_PID_ALLOC_MAPPING"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:17.975451+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

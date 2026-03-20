@@ -1,0 +1,1987 @@
+{
+  "workflow_name": "wf_m_WI_SERVICE_REVENUE_BY_PID_UA",
+  "mapping_name": "m_WI_SERVICE_REVENUE_BY_PID_UA",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_BE_PF_ADJ_PID_MAP_REV",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_service_revenue_by_pid_ua_03_mart_wi_be_pf_adj_pid_map_rev",
+  "source_tables": [
+    "WI_BE_PF_ADJ_PID_MAP_REV",
+    "WI_SERVICE_REVENUE_PP",
+    "WI_UA_BE_PRD_ALLOC",
+    "WI_SERVICE_REVENUE_BY_PID"
+  ],
+  "sources": [
+    {
+      "name": "WI_BE_PF_ADJ_PID_MAP_REV",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "BUSINESS_ENTITY_DESCR",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_PRODUCT_FAMILY_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_PRODUCT_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ITEM_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_SERVICE_REVENUE_PP",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "REVENUE_MEASURE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REV_MEASURE_TRANS_TYPE_CD",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SO_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GOODS_OR_SERVICE_TYPE",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_BK_PRODUCT_SUBGROUP_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERVICE_SKU",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_BK_PRODUCT_FAMILY_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_ALLOCATED_SERVC_GROUP_ID",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_COMP_US_NET_REV_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_COMP_FUNC_NET_REV_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GL_DISTRIB_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GL_DISTRIB_FUNCTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FUNC_EXT_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_USD_EXT_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FUNC_SHIPPED_REVENUE_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SHIPPED_REVENUE_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_UA_BE_PRD_ALLOC",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "BUSINESS_ENTITY_DESCR",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRODUCT_FAMILY_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BE_SPLIT_PCT",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PC_SPLIT_PCT",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ITEM_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_PRODUCT_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_SERVICE_REVENUE_BY_PID",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "REVENUE_MEASURE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REV_MEASURE_TRANS_TYPE_CD",
+          "datatype": "char",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SO_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GOODS_OR_SERVICE_TYPE",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_BK_PRODUCT_SUBGROUP_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERVICE_SKU",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_BK_PRODUCT_FAMILY_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GOODS_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_ALLOCATED_SERVC_GROUP_ID",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REV_ALLOC_PCT",
+          "datatype": "decimal",
+          "precision": "30",
+          "scale": "16",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BKGS_ALLOC_PCT",
+          "datatype": "decimal",
+          "precision": "30",
+          "scale": "16",
+          "nullable": "NULL"
+        },
+        {
+          "name": "METRIC_TYPE",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_COMP_US_NET_REV_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_COMP_FUNC_NET_REV_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GL_DISTRIB_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GL_DISTRIB_FUNCTIONAL_AMT",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FUNC_EXT_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_USD_EXT_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FUNC_SHIPPED_REVENUE_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_SHIPPED_REVENUE_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_BE_PF_ADJ_PID_MAP_REV",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BUSINESS_ENTITY_DESCR",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_PRODUCT_FAMILY_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_PRODUCT_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ITEM_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_SERVICE_REVENUE_PP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "REVENUE_MEASURE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REV_MEASURE_TRANS_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GOODS_OR_SERVICE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_BK_PRODUCT_SUBGROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_SKU",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_BK_PRODUCT_FAMILY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ALLOCATED_SERVC_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_COMP_US_NET_REV_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_COMP_FUNC_NET_REV_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GL_DISTRIB_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GL_DISTRIB_FUNCTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FUNC_EXT_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_USD_EXT_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FUNC_SHIPPED_REVENUE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SHIPPED_REVENUE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nREVENUE_MEASURE_KEY           ,\r\nREV_MEASURE_TRANS_TYPE_CD     ,\r\nSALES_REP_NUMBER              ,\r\nREV.SALES_TERRITORY_KEY           ,\r\nDV_FISCAL_YEAR_MTH_NUMBER_INT ,\r\nREV.SALES_ORDER_KEY               ,\r\nSALES_ORDER_LINE_KEY          ,\r\nDV_SALES_ORDER_LINE_KEY       ,\r\nSK_OFFER_ATTRIBUTION_ID_INT   ,\r\nDV_ATTRIBUTION_CD             ,\r\nCASE\r\nWHEN    SALES_ORDER.BK_SO_NUMBER_INT  ='-7777'\r\nOR      SALES_ORDER.BK_SO_NUMBER_INT  IS NULL THEN -9999\r\nELSE    SALES_ORDER.BK_SO_NUMBER_INT\r\nEND     AS SO_NUMBER_INT ,\r\nPRODUCT_KEY                   ,\r\nDV_PRODUCT_KEY                ,\r\nREV.GOODS_OR_SERVICE_TYPE         ,\r\nREV.RU_BK_PRODUCT_SUBGROUP_ID ,\r\n BPRD.BK_PRODUCT_ID  AS SERVICE_SKU  ,\r\n BPRD.RU_BK_PRODUCT_FAMILY_ID,    \r\nBK_ALLOCATED_SERVC_GROUP_ID   \r\n,SUM(DV_COMP_US_NET_REV_AMT    )   AS DV_COMP_US_NET_REV_AMT \r\n,SUM(DV_COMP_FUNC_NET_REV_AMT)  AS DV_comp_FUNC_NET_REV_AMT \r\n ,SUM( GL_DISTRIB_TRANSACTIONAL_AMT  ) AS GL_DISTRIB_TRANSACTIONAL_AMT\r\n,SUM(GL_DISTRIB_FUNCTIONAL_AMT ) AS     GL_DISTRIB_FUNCTIONAL_AMT\r\n,SUM(DV_FUNC_EXT_INVOICE_AMOUNT  ) AS      DV_FUNC_EXT_INVOICE_AMOUNT\r\n,SUM(DV_USD_EXT_INVOICE_AMOUNT   ) AS    DV_USD_EXT_INVOICE_AMOUNT   \r\n ,SUM(DV_FUNC_SHIPPED_REVENUE_AMT  ) AS      DV_FUNC_SHIPPED_REVENUE_AMT\r\n,SUM(DV_SHIPPED_REVENUE_AMT   ) AS     DV_SHIPPED_REVENUE_AMT           \r\nFROM $$STGDB.WI_RSTD_GL_SVC_REV_MSR_FINAL  REV\r\nINNER JOIN $$COMREFVWDB.R_SALES_HIERARCHY      BSH\r\nON BSH.SALES_TERRITORY_KEY = (CASE WHEN REV.SALES_TERRITORY_KEY < 0 THEN -999 ELSE REV.SALES_TERRITORY_KEY END)\r\nINNER JOIN $$COMREFVWDB.N_PRODUCT    BPRD  \r\nON REV.PRODUCT_KEY = BPRD.ITEM_KEY\r\nAND BPRD.DIVESTITURE_TYPE_CD = 'UNKNOWN'   /* ADDED AS PART OF M&A JUN10 Q4FY18*/  \r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_TV SALES_ORDER\r\nON  REV.SALES_ORDER_KEY=SALES_ORDER.SALES_ORDER_KEY \r\nAND CAST(SALES_ORDER.END_TV_DATETIME  AS DATE )= '3500-01-01'\r\nWHERE \r\nBSH.SALES_TERRITORY_TYPE_CODE IN  ('CORP. REVENUE','UNKNOWN') \r\nAND  NOT EXISTS (SELECT 1 FROM $$STGDB.WI_SERVICE_REVENUE_BY_PID SBP \r\nWHERE SBP.REV_MEASURE_TRANS_TYPE_CD=REV.REV_MEASURE_TRANS_TYPE_CD\r\nAND SBP.REVENUE_MEASURE_KEY=REV.REVENUE_MEASURE_KEY\r\nAND SBP.SALES_TERRITORY_KEY=REV.SALES_TERRITORY_KEY\r\nAND SBP.SALES_REP_NUMBER=REV.SALES_REP_NUMBER \r\nGROUP BY REV_MEASURE_TRANS_TYPE_CD, REVENUE_MEASURE_KEY, SALES_TERRITORY_KEY, SALES_REP_NUMBER )\r\nGROUP BY  1 ,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_UA_BE_PRD_ALLOC",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BUSINESS_ENTITY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_FAMILY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BE_SPLIT_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PC_SPLIT_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ITEM_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_PRODUCT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nBASE.BUSINESS_ENTITY_DESCR,\r\nBASE.PRODUCT_FAMILY_ID,\r\nBASE.BK_PRDT_ALLCTN_CLSFCTN_CD,\r\nBASE.BE_SPLIT_PCT,\r\nBASE.PC_SPLIT_PCT,\r\nADJ_PID.ITEM_KEY,\r\nADJ_PID.BK_PRODUCT_ID\r\nFROM \r\n(SELECT\r\nBUSINESS_ENTITY_DESCR,\r\nBK_PRDT_ALLCTN_CLSFCTN_CD,\r\nPRODUCT_FAMILY_ID,\r\nBE_REV/TOTAL_REV AS BE_SPLIT_PCT,\r\nPC_REV/BE_REV AS PC_SPLIT_PCT\r\nFROM \r\n(SELECT DISTINCT\r\nBUSINESS_ENTITY_DESCR,\r\nBK_PRDT_ALLCTN_CLSFCTN_CD,\r\nPRODUCT_FAMILY_ID,\r\nPRDT_FAMILY_ALLOCATION_PCT,\r\nALLOCATION_PCT,\r\nSUM(REV) OVER () TOTAL_REV,\r\nSUM(REV) OVER (PARTITION BY BUSINESS_ENTITY_DESCR,BK_PRDT_ALLCTN_CLSFCTN_CD) PC_REV,\r\nSUM(REV) OVER (PARTITION BY BUSINESS_ENTITY_DESCR) BE_REV,\r\nSUM(REV) OVER (PARTITION BY BUSINESS_ENTITY_DESCR,BK_PRDT_ALLCTN_CLSFCTN_CD,PRODUCT_FAMILY_ID) PF_PC_REV\r\nFROM\r\n(SELECT \r\nBKGS.DV_FISCAL_YEAR_MTH_NUMBER_INT,\r\nBE.BUSINESS_ENTITY_DESCR,\r\nBE.PRODUCT_FAMILY_ID AS PRODUCT_FAMILY_ID,\r\nCOALESCE(PC.BK_PRDT_ALLCTN_CLSFCTN_CD,'UNKNOWN') AS BK_PRDT_ALLCTN_CLSFCTN_CD,\r\nBE.PRDT_FAMILY_ALLOCATION_PCT,\r\nPC.ALLOCATION_PCT,\r\nBKGS.GOODS_PRODUCT_KEY,\r\nSUM(CAST(DV_COMP_US_NET_REV_AMT* BE.PRDT_FAMILY_ALLOCATION_PCT*PC.ALLOCATION_PCT AS DECIMAL(26,7))) REV\r\nFROM $$STGDB.WI_SERVICE_REVENUE_BY_PID  BKGS\r\nINNER JOIN \r\n(SELECT ITEM_KEY,BUSINESS_ENTITY_DESCR,SUB_BUSINESS_ENTITY_DESCR,BK_PRODUCT_FAMILY_ID AS PRODUCT_FAMILY_ID,PRDT_FAMILY_ALLOCATION_PCT\r\nFROM $$COMREFVWDB.MT_BE_HIER_PRDT_FAMILY_ALLOC BE WHERE  BK_BUSINESS_ENTITY_TYPE_CD='I' \r\nAND BE.BK_PRODUCT_FAMILY_ID NOT IN ('ACANO','ACNOHW','ACNOSW','ACNOSWS','ACNOSER') \r\nAND BE.BK_PRODUCT_FAMILY_ID NOT LIKE 'CMS%' \r\nAND BE.BUSINESS_ENTITY_DESCR <> 'Splunk' /* ADDED AS PART OF April 2024 RELEASE */\r\nAND FISCAL_YEAR_QUARTER_NUMBER_INT IN (SEL FISCAL_YEAR_QUARTER_NUMBER_INT FROM $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR  WHERE  FISCAL_YEAR_MONTH_INT IN \r\n(SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_REV_CNTRL_MNTH))\r\nAND GOODS_OR_SERVICE_TYPE='GOODS' \r\nGROUP BY 1,2,3,4,5 ) BE \r\nON BE.ITEM_KEY = BKGS.GOODS_PRODUCT_KEY\r\nINNER JOIN $$COMREFVWDB.N_PRDT_TO_PRDT_CLSFTN_ALCTN PC \r\nON PC.PRODUCT_KEY=BE.ITEM_KEY AND PC.DV_FISCAL_YEAR_QUARTER_NUM_INT IN \r\n(SEL FISCAL_YEAR_QUARTER_NUMBER_INT FROM $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR  WHERE  FISCAL_YEAR_MONTH_INT IN (SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_REV_CNTRL_MNTH))\r\nAND  PC.BK_PRDT_ALLCTN_METRIC_CD IN ('REVENUE' ,'UNKNOWN')  \r\nWHERE   BKGS.DV_ATTRIBUTION_CD    IN ( 'ATTRIBUTED','STANDALONE')  \r\nAND BKGS.METRIC_TYPE NOT IN ('GSP_BE_PID','UNASSIGNED','$20 Range') \r\nAND BKGS.dv_FISCAL_YEAR_MTH_NUMBER_INT IN  (SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_REV_CNTRL_MNTH)\r\nGROUP BY 1,2,3,4,5,6,7\r\n) A\r\n)B\r\nWHERE PRDT_FAMILY_ALLOCATION_PCT=1.00 \r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY BUSINESS_ENTITY_DESCR,BK_PRDT_ALLCTN_CLSFCTN_CD ORDER BY PF_PC_REV DESC)=1\r\n) BASE\r\n\r\nLEFT JOIN\r\n\r\n$$STGDB.WI_BE_PF_ADJ_PID_MAP_REV ADJ_PID\r\nON ADJ_PID.BK_PRODUCT_FAMILY_ID=BASE.PRODUCT_FAMILY_ID\r\nAND ADJ_PID.BUSINESS_ENTITY_DESCR=BASE.BUSINESS_ENTITY_DESCR\r\nAND ADJ_PID.BK_PRDT_ALLCTN_CLSFCTN_CD=BASE.BK_PRDT_ALLCTN_CLSFCTN_CD",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_BE_PF_ADJ_PID_MAP_REV",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BUSINESS_ENTITY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_PRODUCT_FAMILY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_PRODUCT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ITEM_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT BUSINESS_ENTITY_DESCR\r\n,BK_PRODUCT_FAMILY_ID\r\n,BK_PRDT_ALLCTN_CLSFCTN_CD\r\n,BK_PRODUCT_ID\r\n,ITEM_KEY\r\nFROM\r\n(SELECT BE.BUSINESS_ENTITY_DESCR,BE.BK_PRODUCT_FAMILY_ID,PC.BK_PRDT_ALLCTN_CLSFCTN_CD,BE.BK_PRODUCT_ID,BE.ITEM_KEY,\r\nCASE WHEN BE.PRDT_FAMILY_ALLOCATION_PCT=1 AND BE.BK_PRODUCT_ID LIKE '%_ADJ_%' AND PC.ALLOCATION_PCT=1 THEN 1 \r\n\t WHEN BE.PRDT_FAMILY_ALLOCATION_PCT=1 AND PC.ALLOCATION_PCT=1 AND BE.BK_PRODUCT_ID NOT LIKE '%_ADJ_%' THEN 2 \r\n\t WHEN BE.PRDT_FAMILY_ALLOCATION_PCT=1 AND BE.BK_PRODUCT_ID LIKE '%_ADJ_%' AND PC.ALLOCATION_PCT<>1 THEN 3\r\n\t WHEN BE.PRDT_FAMILY_ALLOCATION_PCT=1 AND BE.BK_PRODUCT_ID NOT LIKE '%_ADJ_%' AND PC.ALLOCATION_PCT<>1 THEN 4\r\n\t WHEN BE.PRDT_FAMILY_ALLOCATION_PCT<>1 AND PC.ALLOCATION_PCT<>1 AND BK_PRODUCT_ID LIKE '%_ADJ_%' THEN 5\r\n\t WHEN BE.PRDT_FAMILY_ALLOCATION_PCT<>1 AND BE.BK_PRODUCT_ID NOT LIKE '%_ADJ_%' AND PC.ALLOCATION_PCT<>1 THEN 6\r\nEND AS PRIORITY \r\nFROM (SELECT BE.ITEM_KEY,BE.BK_PRODUCT_ID,BK_PRODUCT_FAMILY_ID, BUSINESS_ENTITY_DESCR,SUM(PRDT_FAMILY_ALLOCATION_PCT) AS PRDT_FAMILY_ALLOCATION_PCT\r\nFROM $$COMREFVWDB.MT_BE_HIER_PRDT_FAMILY_ALLOC BE\r\nINNER JOIN $$COMREFVWDB.N_PRODUCT GP ON BE.ITEM_KEY = GP.ITEM_KEY AND GP.DIVESTITURE_TYPE_CD = 'UNKNOWN'\r\nWHERE BE.GOODS_OR_SERVICE_TYPE='GOODS' AND BK_BUSINESS_ENTITY_TYPE_CD='I' \r\nAND BE.BK_PRODUCT_FAMILY_ID NOT IN ('ACANO','ACNOHW','ACNOSW','ACNOSWS','ACNOSER')\r\nAND BE.BK_PRODUCT_FAMILY_ID NOT LIKE 'CMS%'\r\nAND BE.BUSINESS_ENTITY_DESCR <> 'Splunk' /* ADDED AS PART OF April 2024 RELEASE */\r\nAND FISCAL_YEAR_QUARTER_NUMBER_INT \r\nIN (SELECT FISCAL_YEAR_QUARTER_NUMBER_INT FROM $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR WHERE FISCAL_YEAR_MONTH_INT IN (SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_REV_CNTRL_MNTH))\r\nGROUP BY 1,2,3,4) BE\r\nINNER JOIN (SELECT * FROM $$COMREFVWDB.N_PRDT_TO_PRDT_CLSFTN_ALCTN WHERE BK_PRDT_ALLCTN_CLSFCTN_CD='Hardware'\r\nAND BK_PRDT_ALLCTN_METRIC_CD IN ('REVENUE' ,'UNKNOWN')) PC \r\nON PC.PRODUCT_KEY=BE.ITEM_KEY \r\nAND PC.DV_FISCAL_YEAR_QUARTER_NUM_INT IN (SELECT FISCAL_YEAR_QUARTER_NUMBER_INT FROM $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR WHERE FISCAL_YEAR_MONTH_INT IN (SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_REV_CNTRL_MNTH))\r\nWHERE BK_PRODUCT_ID NOT LIKE '%Discontinue%'\r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY BUSINESS_ENTITY_DESCR,BK_PRODUCT_FAMILY_ID,BK_PRDT_ALLCTN_CLSFCTN_CD ORDER BY PRIORITY,ITEM_KEY DESC)=1\r\n\r\nUNION\r\n\r\nSELECT BE.BUSINESS_ENTITY_DESCR,BE.BK_PRODUCT_FAMILY_ID,PC.BK_PRDT_ALLCTN_CLSFCTN_CD,BE.BK_PRODUCT_ID,BE.ITEM_KEY,\r\nCASE WHEN BE.PRDT_FAMILY_ALLOCATION_PCT=1 AND BE.BK_PRODUCT_ID LIKE '%_ADJ_%' AND PC.ALLOCATION_PCT=1 THEN 1\r\n\t WHEN BE.PRDT_FAMILY_ALLOCATION_PCT=1 AND PC.ALLOCATION_PCT=1 AND BE.BK_PRODUCT_ID NOT LIKE '%_ADJ_%' THEN 2 \r\n\t WHEN BE.PRDT_FAMILY_ALLOCATION_PCT=1 AND BE.BK_PRODUCT_ID LIKE '%_ADJ_%' AND PC.ALLOCATION_PCT<>1 THEN 3\r\n\t WHEN BE.PRDT_FAMILY_ALLOCATION_PCT=1 AND BE.BK_PRODUCT_ID NOT LIKE '%_ADJ_%' AND PC.ALLOCATION_PCT<>1 THEN 4\r\n\t WHEN BE.PRDT_FAMILY_ALLOCATION_PCT<>1 AND PC.ALLOCATION_PCT<>1 AND BK_PRODUCT_ID LIKE '%_ADJ_%' THEN 5\r\n\t WHEN BE.PRDT_FAMILY_ALLOCATION_PCT<>1 AND BE.BK_PRODUCT_ID NOT LIKE '%_ADJ_%' AND PC.ALLOCATION_PCT<>1 THEN 6\r\nEND AS PRIORITY \r\nFROM (SELECT BE.ITEM_KEY,BE.BK_PRODUCT_ID,BK_PRODUCT_FAMILY_ID, BUSINESS_ENTITY_DESCR,SUM(PRDT_FAMILY_ALLOCATION_PCT) AS PRDT_FAMILY_ALLOCATION_PCT\r\nFROM $$COMREFVWDB.MT_BE_HIER_PRDT_FAMILY_ALLOC BE\r\nINNER JOIN $$COMREFVWDB.N_PRODUCT GP ON BE.ITEM_KEY = GP.ITEM_KEY AND GP.DIVESTITURE_TYPE_CD = 'UNKNOWN'\r\nWHERE BE.GOODS_OR_SERVICE_TYPE='GOODS' AND BK_BUSINESS_ENTITY_TYPE_CD='I' \r\nAND BE.BK_PRODUCT_FAMILY_ID NOT IN ('ACANO','ACNOHW','ACNOSW','ACNOSWS','ACNOSER')\r\nAND BE.BK_PRODUCT_FAMILY_ID NOT LIKE 'CMS%'\r\nAND BE.BUSINESS_ENTITY_DESCR <> 'Splunk' /* ADDED AS PART OF April 2024 RELEASE */\r\nAND FISCAL_YEAR_QUARTER_NUMBER_INT IN (SELECT FISCAL_YEAR_QUARTER_NUMBER_INT FROM $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR WHERE FISCAL_YEAR_MONTH_INT IN (SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_REV_CNTRL_MNTH))\r\nGROUP BY 1,2,3,4) BE\r\nINNER JOIN (SELECT * FROM $$COMREFVWDB.N_PRDT_TO_PRDT_CLSFTN_ALCTN WHERE BK_PRDT_ALLCTN_CLSFCTN_CD='Software'\r\nAND BK_PRDT_ALLCTN_METRIC_CD IN ('REVENUE' ,'UNKNOWN') ) PC \r\nON PC.PRODUCT_KEY=BE.ITEM_KEY \r\nAND PC.DV_FISCAL_YEAR_QUARTER_NUM_INT IN (SELECT FISCAL_YEAR_QUARTER_NUMBER_INT FROM $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR WHERE FISCAL_YEAR_MONTH_INT IN (SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_REV_CNTRL_MNTH))\r\nWHERE BK_PRODUCT_ID NOT LIKE '%Discontinue%'\r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY BUSINESS_ENTITY_DESCR,BK_PRODUCT_FAMILY_ID,BK_PRDT_ALLCTN_CLSFCTN_CD ORDER BY PRIORITY,ITEM_KEY DESC)=1\r\n) ADJ",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "REVENUE_MEASURE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REV_MEASURE_TRANS_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_REP_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_ATTRIBUTION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GOODS_OR_SERVICE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_BK_PRODUCT_SUBGROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_SKU",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_BK_PRODUCT_FAMILY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GOODS_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_ALLOCATED_SERVC_GROUP_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REV_ALLOC_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BKGS_ALLOC_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "METRIC_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_COMP_US_NET_REV_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_COMP_FUNC_NET_REV_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GL_DISTRIB_TRANSACTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GL_DISTRIB_FUNCTIONAL_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FUNC_EXT_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_USD_EXT_INVOICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FUNC_SHIPPED_REVENUE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SHIPPED_REVENUE_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nREVENUE_MEASURE_KEY           ,\r\nREV_MEASURE_TRANS_TYPE_CD     ,\r\nSALES_REP_NUMBER              ,\r\nREV.SALES_TERRITORY_KEY,\r\nDV_FISCAL_YEAR_MTH_NUMBER_INT ,\r\nREV.SALES_ORDER_KEY               ,\r\nREV.SALES_ORDER_LINE_KEY          ,\r\nREV.DV_SALES_ORDER_LINE_KEY       ,\r\nREV.SK_OFFER_ATTRIBUTION_ID_INT ,\r\nREV.DV_ATTRIBUTION_CD             ,\r\nSO_NUMBER_INT,\r\nREV.PRODUCT_KEY                   ,\r\nDV_PRODUCT_KEY                ,\r\nREV.GOODS_OR_SERVICE_TYPE,\r\nREV.RU_BK_PRODUCT_SUBGROUP_ID,\r\nSERVICE_SKU  ,\r\nRU_BK_PRODUCT_FAMILY_ID,\r\nB.ITEM_KEY AS GOODS_PRODUCT_KEY     \r\n,REV.BK_ALLOCATED_SERVC_GROUP_ID          \r\n,1 AS REV_ALLOC_PCT   \r\n,1 AS BKGS_ALLOC_PCT  \r\n,'UNASSIGNED'     METRIC_TYPE ,\r\n(DV_COMP_US_NET_REV_AMT   * BE_SPLIT_PCT    * PC_SPLIT_PCT    )    AS  DV_COMP_US_NET_REV_AMT   ,\r\n(DV_COMP_FUNC_NET_REV_AMT   * BE_SPLIT_PCT    * PC_SPLIT_PCT    )   AS DV_COMP_FUNC_NET_REV_AMT           ,\r\n(GL_DISTRIB_TRANSACTIONAL_AMT   * BE_SPLIT_PCT    * PC_SPLIT_PCT    )    AS  GL_DISTRIB_TRANSACTIONAL_AMT               ,\r\n(GL_DISTRIB_FUNCTIONAL_AMT   * BE_SPLIT_PCT    * PC_SPLIT_PCT    )    AS  GL_DISTRIB_FUNCTIONAL_AMT             ,\r\n(DV_FUNC_EXT_INVOICE_AMOUNT   * BE_SPLIT_PCT    * PC_SPLIT_PCT    )    AS  DV_FUNC_EXT_INVOICE_AMOUNT                   ,\r\n(DV_USD_EXT_INVOICE_AMOUNT   * BE_SPLIT_PCT    * PC_SPLIT_PCT    )    AS  DV_USD_EXT_INVOICE_AMOUNT   \r\n ,(DV_FUNC_SHIPPED_REVENUE_AMT  * BE_SPLIT_PCT * PC_SPLIT_PCT  ) AS      DV_FUNC_SHIPPED_REVENUE_AMT\r\n,(DV_SHIPPED_REVENUE_AMT  * BE_SPLIT_PCT * PC_SPLIT_PCT   ) AS     DV_SHIPPED_REVENUE_AMT  \r\nFROM $$STGDB.WI_SERVICE_REVENUE_PP REV , $$STGDB.WI_UA_BE_PRD_ALLOC B",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "SO_NUMBER_INT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SO_NUMBER_INT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "GOODS_OR_SERVICE_TYPE",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "GOODS_OR_SERVICE_TYPE",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "RU_BK_PRODUCT_SUBGROUP_ID",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "RU_BK_PRODUCT_SUBGROUP_ID",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "SERVICE_SKU",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SERVICE_SKU",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "RU_BK_PRODUCT_FAMILY_ID",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "RU_BK_PRODUCT_FAMILY_ID",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "GOODS_PRODUCT_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "GOODS_PRODUCT_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "BK_ALLOCATED_SERVC_GROUP_ID",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "BK_ALLOCATED_SERVC_GROUP_ID",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "REV_ALLOC_PCT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "REV_ALLOC_PCT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "BKGS_ALLOC_PCT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "BKGS_ALLOC_PCT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "METRIC_TYPE",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "METRIC_TYPE",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "DV_COMP_US_NET_REV_AMT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_COMP_US_NET_REV_AMT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "DV_COMP_FUNC_NET_REV_AMT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_COMP_FUNC_NET_REV_AMT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "GL_DISTRIB_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "GL_DISTRIB_TRANSACTIONAL_AMT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "GL_DISTRIB_FUNCTIONAL_AMT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "GL_DISTRIB_FUNCTIONAL_AMT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "DV_FUNC_EXT_INVOICE_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_FUNC_EXT_INVOICE_AMOUNT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "DV_USD_EXT_INVOICE_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_USD_EXT_INVOICE_AMOUNT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "DV_FUNC_SHIPPED_REVENUE_AMT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_FUNC_SHIPPED_REVENUE_AMT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "DV_SHIPPED_REVENUE_AMT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_SHIPPED_REVENUE_AMT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "REVENUE_MEASURE_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "REVENUE_MEASURE_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SALES_REP_NUMBER",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "to_instance": "WI_SERVICE_REVENUE_BY_PID1"
+    },
+    {
+      "from_field": "BUSINESS_ENTITY_DESCR",
+      "from_instance": "SQ_WI_UA_BE_PRD_ALLOC",
+      "to_field": "BUSINESS_ENTITY_DESCR",
+      "to_instance": "WI_UA_BE_PRD_ALLOC1"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY_ID",
+      "from_instance": "SQ_WI_UA_BE_PRD_ALLOC",
+      "to_field": "PRODUCT_FAMILY_ID",
+      "to_instance": "WI_UA_BE_PRD_ALLOC1"
+    },
+    {
+      "from_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "from_instance": "SQ_WI_UA_BE_PRD_ALLOC",
+      "to_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "to_instance": "WI_UA_BE_PRD_ALLOC1"
+    },
+    {
+      "from_field": "BE_SPLIT_PCT",
+      "from_instance": "SQ_WI_UA_BE_PRD_ALLOC",
+      "to_field": "BE_SPLIT_PCT",
+      "to_instance": "WI_UA_BE_PRD_ALLOC1"
+    },
+    {
+      "from_field": "PC_SPLIT_PCT",
+      "from_instance": "SQ_WI_UA_BE_PRD_ALLOC",
+      "to_field": "PC_SPLIT_PCT",
+      "to_instance": "WI_UA_BE_PRD_ALLOC1"
+    },
+    {
+      "from_field": "ITEM_KEY",
+      "from_instance": "SQ_WI_UA_BE_PRD_ALLOC",
+      "to_field": "ITEM_KEY",
+      "to_instance": "WI_UA_BE_PRD_ALLOC1"
+    },
+    {
+      "from_field": "BK_PRODUCT_ID",
+      "from_instance": "SQ_WI_UA_BE_PRD_ALLOC",
+      "to_field": "BK_PRODUCT_ID",
+      "to_instance": "WI_UA_BE_PRD_ALLOC1"
+    },
+    {
+      "from_field": "BK_PRODUCT_ID",
+      "from_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV",
+      "to_field": "BK_PRODUCT_ID",
+      "to_instance": "WI_BE_PF_ADJ_PID_MAP_REV1"
+    },
+    {
+      "from_field": "ITEM_KEY",
+      "from_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV",
+      "to_field": "ITEM_KEY",
+      "to_instance": "WI_BE_PF_ADJ_PID_MAP_REV1"
+    },
+    {
+      "from_field": "BUSINESS_ENTITY_DESCR",
+      "from_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV",
+      "to_field": "BUSINESS_ENTITY_DESCR",
+      "to_instance": "WI_BE_PF_ADJ_PID_MAP_REV1"
+    },
+    {
+      "from_field": "BK_PRODUCT_FAMILY_ID",
+      "from_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV",
+      "to_field": "BK_PRODUCT_FAMILY_ID",
+      "to_instance": "WI_BE_PF_ADJ_PID_MAP_REV1"
+    },
+    {
+      "from_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "from_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV",
+      "to_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "to_instance": "WI_BE_PF_ADJ_PID_MAP_REV1"
+    },
+    {
+      "from_field": "SERVICE_SKU",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "SERVICE_SKU",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "RU_BK_PRODUCT_FAMILY_ID",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "RU_BK_PRODUCT_FAMILY_ID",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "BK_ALLOCATED_SERVC_GROUP_ID",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "BK_ALLOCATED_SERVC_GROUP_ID",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "DV_COMP_US_NET_REV_AMT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_COMP_US_NET_REV_AMT",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "DV_COMP_FUNC_NET_REV_AMT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_COMP_FUNC_NET_REV_AMT",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "GL_DISTRIB_TRANSACTIONAL_AMT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "GL_DISTRIB_TRANSACTIONAL_AMT",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "GL_DISTRIB_FUNCTIONAL_AMT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "GL_DISTRIB_FUNCTIONAL_AMT",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "DV_FUNC_EXT_INVOICE_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_FUNC_EXT_INVOICE_AMOUNT",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "DV_USD_EXT_INVOICE_AMOUNT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_USD_EXT_INVOICE_AMOUNT",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "DV_FUNC_SHIPPED_REVENUE_AMT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_FUNC_SHIPPED_REVENUE_AMT",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "DV_SHIPPED_REVENUE_AMT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_SHIPPED_REVENUE_AMT",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "GOODS_OR_SERVICE_TYPE",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "GOODS_OR_SERVICE_TYPE",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "RU_BK_PRODUCT_SUBGROUP_ID",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "RU_BK_PRODUCT_SUBGROUP_ID",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "REVENUE_MEASURE_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "REVENUE_MEASURE_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "SALES_REP_NUMBER",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "SO_NUMBER_INT",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "SO_NUMBER_INT",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_SERVICE_REVENUE_PP",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_SERVICE_REVENUE_PP1"
+    },
+    {
+      "from_field": "RU_BK_PRODUCT_FAMILY_ID",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "RU_BK_PRODUCT_FAMILY_ID",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "DV_COMP_US_NET_REV_AMT",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_COMP_US_NET_REV_AMT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "DV_COMP_FUNC_NET_REV_AMT",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_COMP_FUNC_NET_REV_AMT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "GL_DISTRIB_TRANSACTIONAL_AMT",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "GL_DISTRIB_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "GL_DISTRIB_FUNCTIONAL_AMT",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "GL_DISTRIB_FUNCTIONAL_AMT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "DV_FUNC_EXT_INVOICE_AMOUNT",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_FUNC_EXT_INVOICE_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "DV_USD_EXT_INVOICE_AMOUNT",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_USD_EXT_INVOICE_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "DV_SHIPPED_REVENUE_AMT",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_SHIPPED_REVENUE_AMT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "REVENUE_MEASURE_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "REVENUE_MEASURE_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "SALES_REP_NUMBER",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "SO_NUMBER_INT",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "SO_NUMBER_INT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "GOODS_OR_SERVICE_TYPE",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "GOODS_OR_SERVICE_TYPE",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "RU_BK_PRODUCT_SUBGROUP_ID",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "RU_BK_PRODUCT_SUBGROUP_ID",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "BK_ALLOCATED_SERVC_GROUP_ID",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "BK_ALLOCATED_SERVC_GROUP_ID",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "SERVICE_SKU",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "SERVICE_SKU",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "DV_FUNC_SHIPPED_REVENUE_AMT",
+      "from_instance": "WI_SERVICE_REVENUE_PP",
+      "to_field": "DV_FUNC_SHIPPED_REVENUE_AMT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_PP"
+    },
+    {
+      "from_field": "BUSINESS_ENTITY_DESCR",
+      "from_instance": "WI_UA_BE_PRD_ALLOC",
+      "to_field": "BUSINESS_ENTITY_DESCR",
+      "to_instance": "SQ_WI_UA_BE_PRD_ALLOC"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY_ID",
+      "from_instance": "WI_UA_BE_PRD_ALLOC",
+      "to_field": "PRODUCT_FAMILY_ID",
+      "to_instance": "SQ_WI_UA_BE_PRD_ALLOC"
+    },
+    {
+      "from_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "from_instance": "WI_UA_BE_PRD_ALLOC",
+      "to_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "to_instance": "SQ_WI_UA_BE_PRD_ALLOC"
+    },
+    {
+      "from_field": "BE_SPLIT_PCT",
+      "from_instance": "WI_UA_BE_PRD_ALLOC",
+      "to_field": "BE_SPLIT_PCT",
+      "to_instance": "SQ_WI_UA_BE_PRD_ALLOC"
+    },
+    {
+      "from_field": "PC_SPLIT_PCT",
+      "from_instance": "WI_UA_BE_PRD_ALLOC",
+      "to_field": "PC_SPLIT_PCT",
+      "to_instance": "SQ_WI_UA_BE_PRD_ALLOC"
+    },
+    {
+      "from_field": "ITEM_KEY",
+      "from_instance": "WI_UA_BE_PRD_ALLOC",
+      "to_field": "ITEM_KEY",
+      "to_instance": "SQ_WI_UA_BE_PRD_ALLOC"
+    },
+    {
+      "from_field": "BK_PRODUCT_ID",
+      "from_instance": "WI_UA_BE_PRD_ALLOC",
+      "to_field": "BK_PRODUCT_ID",
+      "to_instance": "SQ_WI_UA_BE_PRD_ALLOC"
+    },
+    {
+      "from_field": "ITEM_KEY",
+      "from_instance": "WI_BE_PF_ADJ_PID_MAP_REV",
+      "to_field": "ITEM_KEY",
+      "to_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV"
+    },
+    {
+      "from_field": "BUSINESS_ENTITY_DESCR",
+      "from_instance": "WI_BE_PF_ADJ_PID_MAP_REV",
+      "to_field": "BUSINESS_ENTITY_DESCR",
+      "to_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV"
+    },
+    {
+      "from_field": "BK_PRODUCT_FAMILY_ID",
+      "from_instance": "WI_BE_PF_ADJ_PID_MAP_REV",
+      "to_field": "BK_PRODUCT_FAMILY_ID",
+      "to_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV"
+    },
+    {
+      "from_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "from_instance": "WI_BE_PF_ADJ_PID_MAP_REV",
+      "to_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "to_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV"
+    },
+    {
+      "from_field": "BK_PRODUCT_ID",
+      "from_instance": "WI_BE_PF_ADJ_PID_MAP_REV",
+      "to_field": "BK_PRODUCT_ID",
+      "to_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV"
+    },
+    {
+      "from_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "REV_MEASURE_TRANS_TYPE_CD",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "SALES_REP_NUMBER",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SALES_REP_NUMBER",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "SALES_TERRITORY_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SALES_TERRITORY_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "DV_SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "GOODS_OR_SERVICE_TYPE",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "GOODS_OR_SERVICE_TYPE",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "RU_BK_PRODUCT_SUBGROUP_ID",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "RU_BK_PRODUCT_SUBGROUP_ID",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "SERVICE_SKU",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SERVICE_SKU",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "RU_BK_PRODUCT_FAMILY_ID",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "RU_BK_PRODUCT_FAMILY_ID",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "GOODS_PRODUCT_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "GOODS_PRODUCT_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "BK_ALLOCATED_SERVC_GROUP_ID",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "BK_ALLOCATED_SERVC_GROUP_ID",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "REV_ALLOC_PCT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "REV_ALLOC_PCT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "BKGS_ALLOC_PCT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "BKGS_ALLOC_PCT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "METRIC_TYPE",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "METRIC_TYPE",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "DV_COMP_US_NET_REV_AMT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_COMP_US_NET_REV_AMT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "DV_COMP_FUNC_NET_REV_AMT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_COMP_FUNC_NET_REV_AMT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "GL_DISTRIB_TRANSACTIONAL_AMT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "GL_DISTRIB_TRANSACTIONAL_AMT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "GL_DISTRIB_FUNCTIONAL_AMT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "GL_DISTRIB_FUNCTIONAL_AMT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "DV_FUNC_EXT_INVOICE_AMOUNT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_FUNC_EXT_INVOICE_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "DV_USD_EXT_INVOICE_AMOUNT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_USD_EXT_INVOICE_AMOUNT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "DV_FUNC_SHIPPED_REVENUE_AMT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_FUNC_SHIPPED_REVENUE_AMT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "DV_SHIPPED_REVENUE_AMT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_SHIPPED_REVENUE_AMT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "REVENUE_MEASURE_KEY",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "REVENUE_MEASURE_KEY",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "DV_ATTRIBUTION_CD",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "DV_ATTRIBUTION_CD",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    },
+    {
+      "from_field": "SO_NUMBER_INT",
+      "from_instance": "WI_SERVICE_REVENUE_BY_PID",
+      "to_field": "SO_NUMBER_INT",
+      "to_instance": "SQ_WI_SERVICE_REVENUE_BY_PID"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BUSINESS_ENTITY_DESCR",
+      "source_path": [
+        {
+          "from_field": "BUSINESS_ENTITY_DESCR",
+          "from_instance": "SQ_WI_UA_BE_PRD_ALLOC"
+        },
+        {
+          "from_field": "BUSINESS_ENTITY_DESCR",
+          "from_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV"
+        },
+        {
+          "from_field": "BUSINESS_ENTITY_DESCR",
+          "from_instance": "WI_UA_BE_PRD_ALLOC"
+        },
+        {
+          "from_field": "BUSINESS_ENTITY_DESCR",
+          "from_instance": "WI_BE_PF_ADJ_PID_MAP_REV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_PRODUCT_FAMILY_ID",
+      "source_path": [
+        {
+          "from_field": "BK_PRODUCT_FAMILY_ID",
+          "from_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV"
+        },
+        {
+          "from_field": "BK_PRODUCT_FAMILY_ID",
+          "from_instance": "WI_BE_PF_ADJ_PID_MAP_REV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+      "source_path": [
+        {
+          "from_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+          "from_instance": "SQ_WI_UA_BE_PRD_ALLOC"
+        },
+        {
+          "from_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+          "from_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV"
+        },
+        {
+          "from_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+          "from_instance": "WI_UA_BE_PRD_ALLOC"
+        },
+        {
+          "from_field": "BK_PRDT_ALLCTN_CLSFCTN_CD",
+          "from_instance": "WI_BE_PF_ADJ_PID_MAP_REV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_PRODUCT_ID",
+      "source_path": [
+        {
+          "from_field": "BK_PRODUCT_ID",
+          "from_instance": "SQ_WI_UA_BE_PRD_ALLOC"
+        },
+        {
+          "from_field": "BK_PRODUCT_ID",
+          "from_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV"
+        },
+        {
+          "from_field": "BK_PRODUCT_ID",
+          "from_instance": "WI_UA_BE_PRD_ALLOC"
+        },
+        {
+          "from_field": "BK_PRODUCT_ID",
+          "from_instance": "WI_BE_PF_ADJ_PID_MAP_REV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ITEM_KEY",
+      "source_path": [
+        {
+          "from_field": "ITEM_KEY",
+          "from_instance": "SQ_WI_UA_BE_PRD_ALLOC"
+        },
+        {
+          "from_field": "ITEM_KEY",
+          "from_instance": "SQ_WI_BE_PF_ADJ_PID_MAP_REV"
+        },
+        {
+          "from_field": "ITEM_KEY",
+          "from_instance": "WI_UA_BE_PRD_ALLOC"
+        },
+        {
+          "from_field": "ITEM_KEY",
+          "from_instance": "WI_BE_PF_ADJ_PID_MAP_REV"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:34.450111+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

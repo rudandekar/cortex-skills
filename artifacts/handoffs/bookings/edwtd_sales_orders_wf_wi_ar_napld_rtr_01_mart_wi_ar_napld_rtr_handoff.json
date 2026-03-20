@@ -1,0 +1,202 @@
+{
+  "workflow_name": "wf_m_WI_AR_NAPLD_RTR",
+  "mapping_name": "m_WI_AR_NAPLD_RTR",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "WI_AR_NAPLD_RTR",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_wi_ar_napld_rtr_01_mart_wi_ar_napld_rtr",
+  "source_tables": [
+    "WI_AR_NAPLD_RTR"
+  ],
+  "sources": [
+    {
+      "name": "WI_AR_NAPLD_RTR",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "AR_TRX_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEAL_ID",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_AR_NAPLD_RTR",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "AR_TRX_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DEAL_ID",
+        "datatype": "varchar",
+        "precision": "250",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_AR_NAPLD_RTR",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "AR_TRX_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DEAL_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT EL.AR_TRX_KEY,\r\nEL.DEAL_ID,\r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM\r\nFROM $$ETLVWDB.EL_AR_NAPLD_SMC_DENORM EL\r\nWHERE EL.END_TV_DTM = '3500-01-01 00:00:00'\r\nAND EXISTS\r\n(\r\nSELECT 1\r\nFROM\r\n(\r\nSELECT AR_TRX_KEY\r\nFROM $$ETLVWDB.EL_AR_NAPLD_SMC_DENORM EL_INNER\r\nWHERE EXISTS\r\n(\r\nSELECT 1\r\nFROM\r\n( SELECT SALES_ORDER_LINE_KEY\r\nFROM $$SLSORDVWDB.MT_RTNR_SMC_ALLOCATION SMC_ALLOC\r\nWHERE SMC_ALLOC.EDW_UPDATE_DTM >= '$$LastExtractDate'\r\n) SMC_ALLOC\r\nWHERE EL_INNER.SALES_ORDER_LINE_KEY = SMC_ALLOC.SALES_ORDER_LINE_KEY\r\n)\r\n\r\n) EL_INCR\r\nWHERE EL.AR_TRX_KEY = EL_INCR.AR_TRX_KEY\r\n)\r\nGROUP BY 1,2,3\r\nUNION\r\nSELECT\r\nEL.AR_TRX_KEY,\r\nEL.DEAL_ID,\r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM\r\nFROM $$ETLVWDB.EL_AR_NAPLD_SMC_DENORM EL\r\nINNER JOIN $$FINLGLVWDB.N_AR_TRX_LINE NATL\r\nON EL.AR_TRX_KEY = NATL.AR_TRX_KEY\r\nWHERE EL.END_TV_DTM = '3500-01-01 00:00:00'\r\nAND NATL.EDW_UPDATE_DATETIME >= ( SELECT LAST_EXTRACT_DATE FROM $$ETLVWDB.CTL_ETL_LAST_EXTRACT_DATES WHERE JOB_STREAM_ID ='wf_EL_AR_NAPLD_SMC_DENORM' AND TABLE_NAME = 'EL_AR_NAPLD_SMC_DENORM' )\r\nGROUP BY 1,2,3",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "AR_TRX_KEY",
+      "from_instance": "SQ_WI_AR_NAPLD_RTR",
+      "to_field": "AR_TRX_KEY",
+      "to_instance": "WI_AR_NAPLD_RTR"
+    },
+    {
+      "from_field": "DEAL_ID",
+      "from_instance": "SQ_WI_AR_NAPLD_RTR",
+      "to_field": "DEAL_ID",
+      "to_instance": "WI_AR_NAPLD_RTR"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_WI_AR_NAPLD_RTR",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "WI_AR_NAPLD_RTR"
+    },
+    {
+      "from_field": "AR_TRX_KEY",
+      "from_instance": "WI_AR_NAPLD_RTR1",
+      "to_field": "AR_TRX_KEY",
+      "to_instance": "SQ_WI_AR_NAPLD_RTR"
+    },
+    {
+      "from_field": "DEAL_ID",
+      "from_instance": "WI_AR_NAPLD_RTR1",
+      "to_field": "DEAL_ID",
+      "to_instance": "SQ_WI_AR_NAPLD_RTR"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "WI_AR_NAPLD_RTR1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_WI_AR_NAPLD_RTR"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "AR_TRX_KEY",
+      "source_path": [
+        {
+          "from_field": "AR_TRX_KEY",
+          "from_instance": "SQ_WI_AR_NAPLD_RTR"
+        },
+        {
+          "from_field": "AR_TRX_KEY",
+          "from_instance": "WI_AR_NAPLD_RTR1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DEAL_ID",
+      "source_path": [
+        {
+          "from_field": "DEAL_ID",
+          "from_instance": "SQ_WI_AR_NAPLD_RTR"
+        },
+        {
+          "from_field": "DEAL_ID",
+          "from_instance": "WI_AR_NAPLD_RTR1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_WI_AR_NAPLD_RTR"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "WI_AR_NAPLD_RTR1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:22.068370+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

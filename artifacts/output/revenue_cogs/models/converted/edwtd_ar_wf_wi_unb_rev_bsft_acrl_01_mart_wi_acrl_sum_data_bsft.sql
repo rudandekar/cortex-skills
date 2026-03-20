@@ -1,0 +1,135 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_unb_rev_bsft_acrl', 'batch', 'edwtd_ar'],
+    meta={
+        'source_workflow': 'wf_m_WI_UNB_REV_BSFT_ACRL',
+        'target_table': 'WI_ACRL_SUM_DATA_BSFT',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:44.760184+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_acrl_trxnl_data_bsft AS (
+    SELECT
+        accrued_rev_trx_key,
+        dv_fiscal_year_mth_int,
+        product_key,
+        dv_bundle_prdt_key,
+        sales_order_line_key,
+        sk_line_ref_num,
+        attribution_cd,
+        accounting_rule_name,
+        tsv_trxl_amt,
+        sk_original_line_ref_num,
+        acct_class_cd,
+        offr_attr_pct,
+        ru_credit_trxl_amt,
+        ru_debit_trxl_amt,
+        bk_trxl_iso_curr_cd,
+        ru_cdt_general_ledger_acct_key,
+        ru_dbt_general_ledger_acct_key
+    FROM {{ source('raw', 'wi_acrl_trxnl_data_bsft') }}
+),
+
+source_wi_acrl_sum_data_bsft AS (
+    SELECT
+        sales_order_line_key,
+        product_key,
+        dv_bundle_prdt_key,
+        accrual_amount
+    FROM {{ source('raw', 'wi_acrl_sum_data_bsft') }}
+),
+
+source_wi_unb_rev_acrl_bsft AS (
+    SELECT
+        transaction_type,
+        rpo_flg,
+        unbilled_revenue_amt,
+        processed_fiscal_mth,
+        fiscal_mth,
+        src_entity,
+        sales_territory_key,
+        product_key,
+        sales_order_key,
+        sales_order_line_key,
+        web_order_id,
+        bill_to_customer_key,
+        ship_to_customer_key,
+        sold_to_cust_acct_key,
+        end_customer_key,
+        service_flg,
+        corp_flg,
+        contract_start_dtm,
+        contract_end_dtm,
+        contract_term,
+        contract_num,
+        erp_deal_id,
+        auto_release_dt,
+        fhi_bni_flg,
+        cisco_booked_dt,
+        oracle_book_dtm,
+        process_dt,
+        scheduled_ship_dt,
+        hold_flg,
+        early_ship_flg,
+        shipped_not_invoiced_flg,
+        cust_rqstd_shipment_dt,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        attributed_product_key,
+        dv_attribution_cd,
+        dv_recurring_offer_cd,
+        dv_total_sales_value_amt,
+        dd_fb_trxl_currency_cd,
+        pl_conversion_rate,
+        dd_fb_so_line_src_create_dtm,
+        dd_fb_promised_to_shipment_dt,
+        dd_fb_ss_cd,
+        dv_projected_contract_start_dt,
+        dv_projected_contract_end_dt,
+        dv_contract_header_start_dt,
+        dv_contract_header_end_dt,
+        accounting_rule_name,
+        dv_ar_accounting_term_mth_int,
+        dv_average_term_mth_int,
+        dv_auto_release_dt,
+        dv_waterfall_start_dt,
+        dv_waterfall_end_dt,
+        dv_waterfall_term_days_int,
+        days_in_mth,
+        wf_unbilled_revenue_amt,
+        dv_rem_unbilled_revenue_amt,
+        month_age,
+        depth,
+        dv_billing_cycle_id,
+        transaction_seq_id,
+        dv_predicted_month_bill_dt,
+        dv_rem_term_months_cnt,
+        channel_bookings_flg,
+        bk_business_unit_id,
+        dv_prdt_allctn_clsfctn_cd,
+        dv_milestone_start_dt,
+        dv_milestone_end_dt,
+        dv_order_quantity,
+        dv_comp_us_list_price_amount,
+        dv_attribution_pct,
+        dv_sales_commission_pct,
+        dv_rpo_active_flg
+    FROM {{ source('raw', 'wi_unb_rev_acrl_bsft') }}
+),
+
+final AS (
+    SELECT
+        sales_order_line_key,
+        product_key,
+        dv_bundle_prdt_key,
+        accrual_amount
+    FROM source_wi_unb_rev_acrl_bsft
+)
+
+SELECT * FROM final

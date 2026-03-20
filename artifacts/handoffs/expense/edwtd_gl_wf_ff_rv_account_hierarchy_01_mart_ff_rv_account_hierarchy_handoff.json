@@ -1,0 +1,460 @@
+{
+  "workflow_name": "wf_m_FF_RV_ACCOUNT_HIERARCHY",
+  "mapping_name": "m_FF_RV_ACCOUNT_HIERARCHY",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "FF_RV_ACCOUNT_HIERARCHY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_ff_rv_account_hierarchy_01_mart_ff_rv_account_hierarchy",
+  "source_tables": [
+    "RV_ACCOUNT_HIERARCHY"
+  ],
+  "sources": [
+    {
+      "name": "RV_ACCOUNT_HIERARCHY",
+      "database_type": "Oracle",
+      "owner": "EDADM",
+      "fields": [
+        {
+          "name": "HIERARCHY_TYPE",
+          "datatype": "varchar2",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "varchar2",
+          "precision": "2",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CATEGORY",
+          "datatype": "varchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CATEGORY_LEVEL1",
+          "datatype": "varchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CATEGORY_LEVEL2",
+          "datatype": "varchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCOUNT",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_RV_ACCOUNT_HIERARCHY",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "HIERARCHY_TYPE",
+        "datatype": "string",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CATEGORY_ID",
+        "datatype": "string",
+        "precision": "2",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CATEGORY",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CATEGORY_LEVEL1",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CATEGORY_LEVEL2",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCOUNT",
+        "datatype": "number",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "string",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BATCH_ID",
+        "datatype": "string",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "string",
+        "precision": "29",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_RV_ACCOUNT_HIERARCHY",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "HIERARCHY_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CATEGORY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CATEGORY_LEVEL1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CATEGORY_LEVEL2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT HIERARCHY_TYPE, CATEGORY_ID, CATEGORY, CATEGORY_LEVEL1, CATEGORY_LEVEL2, ACCOUNT \r\nFROM\r\n RV_ACCOUNT_HIERARCHY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_RV_ACCOUNT_HIERARCHY",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "'$$BatchId'"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        },
+        {
+          "name": "HIERARCHY_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "HIERARCHY_TYPE",
+      "from_instance": "SQ_RV_ACCOUNT_HIERARCHY",
+      "to_field": "HIERARCHY_TYPE",
+      "to_instance": "FF_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "CATEGORY_ID",
+      "from_instance": "SQ_RV_ACCOUNT_HIERARCHY",
+      "to_field": "CATEGORY_ID",
+      "to_instance": "FF_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "CATEGORY",
+      "from_instance": "SQ_RV_ACCOUNT_HIERARCHY",
+      "to_field": "CATEGORY",
+      "to_instance": "FF_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "CATEGORY_LEVEL1",
+      "from_instance": "SQ_RV_ACCOUNT_HIERARCHY",
+      "to_field": "CATEGORY_LEVEL1",
+      "to_instance": "FF_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "CATEGORY_LEVEL2",
+      "from_instance": "SQ_RV_ACCOUNT_HIERARCHY",
+      "to_field": "CATEGORY_LEVEL2",
+      "to_instance": "FF_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "ACCOUNT",
+      "from_instance": "SQ_RV_ACCOUNT_HIERARCHY",
+      "to_field": "ACCOUNT",
+      "to_instance": "FF_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "Exp_RV_ACCOUNT_HIERARCHY",
+      "to_field": "BATCH_ID",
+      "to_instance": "FF_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Exp_RV_ACCOUNT_HIERARCHY",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "FF_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_RV_ACCOUNT_HIERARCHY",
+      "to_field": "ACTION_CODE",
+      "to_instance": "FF_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "HIERARCHY_TYPE",
+      "from_instance": "RV_ACCOUNT_HIERARCHY",
+      "to_field": "HIERARCHY_TYPE",
+      "to_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "CATEGORY_ID",
+      "from_instance": "RV_ACCOUNT_HIERARCHY",
+      "to_field": "CATEGORY_ID",
+      "to_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "CATEGORY",
+      "from_instance": "RV_ACCOUNT_HIERARCHY",
+      "to_field": "CATEGORY",
+      "to_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "CATEGORY_LEVEL1",
+      "from_instance": "RV_ACCOUNT_HIERARCHY",
+      "to_field": "CATEGORY_LEVEL1",
+      "to_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "CATEGORY_LEVEL2",
+      "from_instance": "RV_ACCOUNT_HIERARCHY",
+      "to_field": "CATEGORY_LEVEL2",
+      "to_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "ACCOUNT",
+      "from_instance": "RV_ACCOUNT_HIERARCHY",
+      "to_field": "ACCOUNT",
+      "to_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+    },
+    {
+      "from_field": "HIERARCHY_TYPE",
+      "from_instance": "SQ_RV_ACCOUNT_HIERARCHY",
+      "to_field": "HIERARCHY_TYPE",
+      "to_instance": "Exp_RV_ACCOUNT_HIERARCHY"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "HIERARCHY_TYPE",
+      "source_path": [
+        {
+          "from_field": "HIERARCHY_TYPE",
+          "from_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+        },
+        {
+          "from_field": "HIERARCHY_TYPE",
+          "from_instance": "RV_ACCOUNT_HIERARCHY"
+        },
+        {
+          "from_field": "HIERARCHY_TYPE",
+          "from_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CATEGORY_ID",
+      "source_path": [
+        {
+          "from_field": "CATEGORY_ID",
+          "from_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+        },
+        {
+          "from_field": "CATEGORY_ID",
+          "from_instance": "RV_ACCOUNT_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CATEGORY",
+      "source_path": [
+        {
+          "from_field": "CATEGORY",
+          "from_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+        },
+        {
+          "from_field": "CATEGORY",
+          "from_instance": "RV_ACCOUNT_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CATEGORY_LEVEL1",
+      "source_path": [
+        {
+          "from_field": "CATEGORY_LEVEL1",
+          "from_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+        },
+        {
+          "from_field": "CATEGORY_LEVEL1",
+          "from_instance": "RV_ACCOUNT_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CATEGORY_LEVEL2",
+      "source_path": [
+        {
+          "from_field": "CATEGORY_LEVEL2",
+          "from_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+        },
+        {
+          "from_field": "CATEGORY_LEVEL2",
+          "from_instance": "RV_ACCOUNT_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNT",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT",
+          "from_instance": "SQ_RV_ACCOUNT_HIERARCHY"
+        },
+        {
+          "from_field": "ACCOUNT",
+          "from_instance": "RV_ACCOUNT_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_RV_ACCOUNT_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "Exp_RV_ACCOUNT_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "Exp_RV_ACCOUNT_HIERARCHY"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:07.526686+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

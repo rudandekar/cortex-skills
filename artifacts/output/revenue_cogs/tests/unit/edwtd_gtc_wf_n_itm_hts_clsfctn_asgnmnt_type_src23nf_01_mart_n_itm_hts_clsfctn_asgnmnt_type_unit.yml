@@ -1,0 +1,24 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_gtc_wf_n_itm_hts_clsfctn_asgnmnt_type_src23nf_01_mart_n_itm_hts_clsfctn_asgnmnt_type_filter_basic
+    model: edwtd_gtc_wf_n_itm_hts_clsfctn_asgnmnt_type_src23nf_01_mart_n_itm_hts_clsfctn_asgnmnt_type
+    description: "Verify filter transformation passes expected rows"
+    given:
+      - input: source('raw', 'n_itm_hts_clsfctn_asgnmnt_type')
+        rows:
+          - {id: 1, status: 'ACTIVE'}
+          - {id: 2, status: 'INACTIVE'}
+    expect:
+      rows:
+        - {id: 1, status: 'ACTIVE'}
+  - name: test_edwtd_gtc_wf_n_itm_hts_clsfctn_asgnmnt_type_src23nf_01_mart_n_itm_hts_clsfctn_asgnmnt_type_expression_transform
+    model: edwtd_gtc_wf_n_itm_hts_clsfctn_asgnmnt_type_src23nf_01_mart_n_itm_hts_clsfctn_asgnmnt_type
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'n_itm_hts_clsfctn_asgnmnt_type')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

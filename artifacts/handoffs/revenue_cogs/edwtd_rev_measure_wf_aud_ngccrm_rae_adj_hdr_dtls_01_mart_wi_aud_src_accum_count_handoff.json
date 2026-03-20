@@ -1,0 +1,2722 @@
+{
+  "workflow_name": "wf_m_WI_AUD_CNTS_XXCFIR_RAE_ADJ_HDR",
+  "mapping_name": "m_WI_AUD_CNTS_XXCFIR_RAE_ADJ_HDR",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_AUD_SRC_ACCUM_COUNT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_aud_ngccrm_rae_adj_hdr_dtls_01_mart_wi_aud_src_accum_count",
+  "source_tables": [
+    "WI_AUD_SRC_ACCUM_COUNT",
+    "NGCCRM_RAE_ADJ_HDR_EDW_DTLS",
+    "RAO_NGCCRM_RAE_ADJ_HDR_EDW_DTL"
+  ],
+  "sources": [
+    {
+      "name": "WI_AUD_SRC_ACCUM_COUNT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "CAPTURE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRACK",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SUBTRACK",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AUDIT_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_TABLE_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TGT_TABLE_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AUDIT_COLUMN_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_AUDIT_COLUMN_VALUE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TGT_AUDIT_COLUMN_VALUE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DIFFERENCE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PERCENTAGE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "NGCCRM_RAE_ADJ_HDR_EDW_DTLS",
+      "database_type": "Oracle",
+      "owner": "QTCADMIN",
+      "fields": [
+        {
+          "name": "ADJUSTMENT_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_DESCRIPTION",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "APPLICATION_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LEDGER_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ASSOCIATION_TYPE",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_START_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GL_CATEGORY",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PERCENT",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GL_SOURCE",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXCHANGE_RATE",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXCHANGE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONVERSION_TYPE",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INTERFACE_GL_FLAG",
+          "datatype": "nvarchar2",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_PERCENT",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_PCT_VALUE",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_AMOUNT",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINE_COGS_AMOUNT",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RECOGNIZED_BOOKING_PCT",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_CATEGORY",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_SOURCE",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AMOUNT_SOURCE",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXECUTION_EVENT",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCOUNTING_RULE_TYPE",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUTO_EXECUTE_FLAG",
+          "datatype": "nvarchar2",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORIG_DEFERRAL_SOURCE",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_STATUS",
+          "datatype": "nvarchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DATA_KEY1",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DATA_KEY2",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DATA_KEY3",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DATA_KEY4",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DATA_KEY5",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT1",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT2",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT3",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT4",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT5",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT6",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT7",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT8",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT9",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT10",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_CCID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT1",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT2",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT3",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT4",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT5",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT6",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT7",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT8",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT9",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT10",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_CCID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CUSTOMER_TRX_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINE_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CUSTOMER_TRX_LINE_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STADNARD_COST",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSFER_PRICE",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_ENTITY",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "HEADER_CHR_ATTRIBUTE7",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIP_ENTITY",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "HEADER_CHR_ATTRIBUTE9",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORDER_NUMBER",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE1",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE2",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE3",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE4",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE5",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE6",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE7",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE8",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OA_FLAG",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE10",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE11",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE12",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE13",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE14",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE15",
+          "datatype": "nvarchar2",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REQUEST_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROGRAM_APPLICATION_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROGRAM_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROGRAM_UPDATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_LOGIN",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "nvarchar2",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "APPLY_MID_MONTH",
+          "datatype": "nvarchar2",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANS_TYPE",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANS_AMT",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CM_AMOUNT",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DM_AMOUNT",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TSV_FLAG",
+          "datatype": "nvarchar2",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UNIQUE_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MERAKI_FLAG",
+          "datatype": "nvarchar2",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROCESS_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RAO_CREATED_BY",
+          "datatype": "nvarchar2",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RAO_CREATION_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RAO_LAST_UPDATED_BY",
+          "datatype": "nvarchar2",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RAO_LAST_UPDATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROFILE_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "RAO_NGCCRM_RAE_ADJ_HDR_EDW_DTL",
+      "database_type": "Teradata",
+      "owner": "NRTACCUMVWDB_DV3",
+      "fields": [
+        {
+          "name": "ACCOUNTING_RULE_TYPE",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE1",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE10",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE11",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE12",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE13",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE14",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE15",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE2",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE3",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE4",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE5",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE6",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE7",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ATTRIBUTE8",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_CATEGORY",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ADJUSTMENT_PCT_VALUE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_PERCENT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_SOURCE",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_START_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADJUSTMENT_STATUS",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AMOUNT_SOURCE",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "APPLICATION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "APPLY_MID_MONTH",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ASSOCIATION_TYPE",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUTO_EXECUTE_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BILL_ENTITY",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CM_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONVERSION_TYPE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_CCID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT1",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT10",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT2",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT3",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT4",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT5",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT6",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT7",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT8",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREDIT_SEGMENT9",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CUSTOMER_TRX_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CUSTOMER_TRX_LINE_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_CCID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT1",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT10",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT2",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT3",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT4",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT5",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT6",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT7",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT8",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DEBIT_SEGMENT9",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DM_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXCHANGE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXCHANGE_RATE",
+          "datatype": "decimal",
+          "precision": "32",
+          "scale": "15",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EXECUTION_EVENT",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GL_CATEGORY",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GL_SOURCE",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "HEADER_CHR_ATTRIBUTE7",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "HEADER_CHR_ATTRIBUTE9",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INTERFACE_GL_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_LOGIN",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LEDGER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINE_COGS_AMOUNT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LINE_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MERAKI_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OA_FLAG",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORDER_NUMBER",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORIG_DEFERRAL_SOURCE",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PERCENT_ADJ",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROCESS_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROGRAM_APPLICATION_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROGRAM_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROGRAM_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RAO_CREATED_BY",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RAO_CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RAO_LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RAO_LAST_UPDATED_BY",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RECOGNIZED_BOOKING_PCT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REQUEST_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIP_ENTITY",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DATA_KEY1",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DATA_KEY2",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DATA_KEY3",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DATA_KEY4",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DATA_KEY5",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STADNARD_COST",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANS_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANS_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSFER_PRICE",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TSV_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UNIQUE_ID",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRAIL_FILE_NAME",
+          "datatype": "varchar",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DML_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REFRESH_DATETIME",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PROCESSED_FLAG",
+          "datatype": "varchar",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROFILE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_AUD_SRC_ACCUM_COUNT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "CAPTURE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "TRACK",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SUBTRACK",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SRC_TABLE_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TGT_TABLE_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_COLUMN_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SRC_AUDIT_COLUMN_VALUE",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TGT_AUDIT_COLUMN_VALUE",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DIFFERENCE",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PERCENTAGE",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXP_AUD_COUNTS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "CAPTURE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CAPTURE_DATE"
+        },
+        {
+          "name": "TRACK",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "TRACK"
+        },
+        {
+          "name": "SUBTRACK",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SUBTRACK"
+        },
+        {
+          "name": "AUDIT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_NAME"
+        },
+        {
+          "name": "SRC_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SRC_TABLE_NAME"
+        },
+        {
+          "name": "TGT_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "TGT_TABLE_NAME"
+        },
+        {
+          "name": "AUDIT_COLUMN_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_COLUMN_NAME"
+        },
+        {
+          "name": "SRC_AUDIT_COLUMN_VALUE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SRC_AUDIT_COLUMN_VALUE"
+        },
+        {
+          "name": "TGT_AUDIT_COLUMN_VALUE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "TGT_AUDIT_COLUMN_VALUE"
+        },
+        {
+          "name": "DIFFERENCE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DIFFERENCE"
+        },
+        {
+          "name": "PERCENTAGE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PERCENTAGE"
+        },
+        {
+          "name": "ABORT",
+          "datatype": "string",
+          "porttype": "LOCAL VARIABLE",
+          "expression": "IIF(DIFFERENCE<0,ABORT('Record counts are not matching'))"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CAPTURE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRACK",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBTRACK",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SRC_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TGT_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_COLUMN_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SRC_AUDIT_COLUMN_VALUE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TGT_AUDIT_COLUMN_VALUE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DIFFERENCE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PERCENTAGE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT CAPTURE_DATE, TRACK, SUBTRACK, AUDIT_NAME, SRC_TABLE_NAME,\r\n TGT_TABLE_NAME, AUDIT_COLUMN_NAME, SRC_AUDIT_COLUMN_VALUE, \r\n TGT_AUDIT_COLUMN_VALUE, DIFFERENCE, PERCENTAGE \r\nFROM\r\n$$STGDB.WI_AUD_SRC_ACCUM_COUNT\r\nWHERE AUDIT_NAME='wf_AUD_NGCCRM_RAE_ADJ_HDR_DTLS'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Joiner_Dummy",
+      "type": "Joiner",
+      "description": "",
+      "fields": [
+        {
+          "name": "EDW_COUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "Dummy",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SRC_COUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT/MASTER",
+          "expression": ""
+        },
+        {
+          "name": "Dummy1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT/MASTER",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Case Sensitive String Comparison": "YES",
+        "Cache Directory": "$PMCacheDir",
+        "Join Condition": "Dummy1 = Dummy",
+        "Join Type": "Normal Join",
+        "Null ordering in master": "Null Is Highest Value",
+        "Null ordering in detail": "Null Is Highest Value",
+        "Tracing Level": "Normal",
+        "Joiner Data Cache Size": "Auto",
+        "Joiner Index Cache Size": "Auto",
+        "Sorted Input": "NO",
+        "Master Sort Order": "Auto",
+        "Transformation Scope": "All Input"
+      }
+    },
+    {
+      "name": "Exp_difference_counts",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "CAPTURE_DATE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "to_char(sysdate,'MM-DD-YYYY HH24:MI:SS')"
+        },
+        {
+          "name": "TRACK",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'REVENUE'"
+        },
+        {
+          "name": "SUBTRACK",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'NGCCRM'"
+        },
+        {
+          "name": "AUDIT_NAME",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'wf_AUD_NGCCRM_RAE_ADJ_HDR_DTLS'"
+        },
+        {
+          "name": "SRC_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'NGCCRM_RAE_ADJ_HDR_EDW_DTLS'"
+        },
+        {
+          "name": "TGT_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'RAO_NGCCRM_RAE_ADJ_HDR_EDW_DTL'"
+        },
+        {
+          "name": "AUDIT_COLUMN_NAME",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'COUNT'"
+        },
+        {
+          "name": "SRC_AUDIT_COLUMN_VALUE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SRC_AUDIT_COLUMN_VALUE"
+        },
+        {
+          "name": "TGT_AUDIT_COLUMN_VALUE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "TGT_AUDIT_COLUMN_VALUE"
+        },
+        {
+          "name": "COUNT_DIFF",
+          "datatype": "decimal",
+          "porttype": "LOCAL VARIABLE",
+          "expression": "TGT_AUDIT_COLUMN_VALUE-SRC_AUDIT_COLUMN_VALUE"
+        },
+        {
+          "name": "DIFFERENCE",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": "COUNT_DIFF"
+        },
+        {
+          "name": "PERCENTAGE",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": "NULL"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "EXP_EDW_DUMMY",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "EDW_COUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_COUNT"
+        },
+        {
+          "name": "Dummy",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "1"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_RAO_NGCCRM_RAE_ADJ_HDR_EDW_DTL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "EDW_COUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT COUNT(*) TGT_COUNT  \r\n FROM \r\n(SELECT *\r\nFROM $$NRTACCUMVWDB.RAO_NGCCRM_RAE_ADJ_HDR_EDW_DTL  \r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY  ADJUSTMENT_ID ORDER BY  REFRESH_DATETIME DESC) = 1\r\n) K \r\nWHERE  LAST_UPDATE_DATE BETWEEN '$$MACRO_START_EXTRACT_DATE_m2'   AND '$$MACRO_END_EXTRACT_DATE_m2'\r\nAND  SOURCE_DML_TYPE <> 'DELETE'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_NGCCRM_RAE_ADJ_HDR_EDW_DTLS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SRC_COUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT COUNT(*) SRC_COUNT \r\nFROM QTCADMIN.NGCCRM_RAE_ADJ_HDR_EDW_DTLS\r\nWHERE LAST_UPDATE_DATE BETWEEN TO_DATE('$$MACRO_START_EXTRACT_DATE_m2' , 'MM/DD/YYYY hh24:mi:ss')\r\nAND TO_DATE('$$MACRO_END_EXTRACT_DATE_m2', 'MM/DD/YYYY hh24:mi:ss')",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_SRC_DUMMY",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "SRC_COUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SRC_COUNT"
+        },
+        {
+          "name": "Dummy",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "1"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Joiner",
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "SRC_AUDIT_COLUMN_VALUE",
+      "from_instance": "Exp_difference_counts",
+      "to_field": "SRC_AUDIT_COLUMN_VALUE",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "TGT_AUDIT_COLUMN_VALUE",
+      "from_instance": "Exp_difference_counts",
+      "to_field": "TGT_AUDIT_COLUMN_VALUE",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "DIFFERENCE",
+      "from_instance": "Exp_difference_counts",
+      "to_field": "DIFFERENCE",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "PERCENTAGE",
+      "from_instance": "Exp_difference_counts",
+      "to_field": "PERCENTAGE",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "CAPTURE_DATE",
+      "from_instance": "Exp_difference_counts",
+      "to_field": "CAPTURE_DATE",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "TRACK",
+      "from_instance": "Exp_difference_counts",
+      "to_field": "TRACK",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "SUBTRACK",
+      "from_instance": "Exp_difference_counts",
+      "to_field": "SUBTRACK",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "AUDIT_NAME",
+      "from_instance": "Exp_difference_counts",
+      "to_field": "AUDIT_NAME",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "SRC_TABLE_NAME",
+      "from_instance": "Exp_difference_counts",
+      "to_field": "SRC_TABLE_NAME",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "TGT_TABLE_NAME",
+      "from_instance": "Exp_difference_counts",
+      "to_field": "TGT_TABLE_NAME",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "AUDIT_COLUMN_NAME",
+      "from_instance": "Exp_difference_counts",
+      "to_field": "AUDIT_COLUMN_NAME",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "CAPTURE_DATE",
+      "from_instance": "EXP_AUD_COUNTS",
+      "to_field": "CAPTURE_DATE",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS"
+    },
+    {
+      "from_field": "TRACK",
+      "from_instance": "EXP_AUD_COUNTS",
+      "to_field": "TRACK",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS"
+    },
+    {
+      "from_field": "SUBTRACK",
+      "from_instance": "EXP_AUD_COUNTS",
+      "to_field": "SUBTRACK",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS"
+    },
+    {
+      "from_field": "AUDIT_NAME",
+      "from_instance": "EXP_AUD_COUNTS",
+      "to_field": "AUDIT_NAME",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS"
+    },
+    {
+      "from_field": "SRC_TABLE_NAME",
+      "from_instance": "EXP_AUD_COUNTS",
+      "to_field": "SRC_TABLE_NAME",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS"
+    },
+    {
+      "from_field": "TGT_TABLE_NAME",
+      "from_instance": "EXP_AUD_COUNTS",
+      "to_field": "TGT_TABLE_NAME",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS"
+    },
+    {
+      "from_field": "AUDIT_COLUMN_NAME",
+      "from_instance": "EXP_AUD_COUNTS",
+      "to_field": "AUDIT_COLUMN_NAME",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS"
+    },
+    {
+      "from_field": "SRC_AUDIT_COLUMN_VALUE",
+      "from_instance": "EXP_AUD_COUNTS",
+      "to_field": "SRC_AUDIT_COLUMN_VALUE",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS"
+    },
+    {
+      "from_field": "TGT_AUDIT_COLUMN_VALUE",
+      "from_instance": "EXP_AUD_COUNTS",
+      "to_field": "TGT_AUDIT_COLUMN_VALUE",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS"
+    },
+    {
+      "from_field": "DIFFERENCE",
+      "from_instance": "EXP_AUD_COUNTS",
+      "to_field": "DIFFERENCE",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS"
+    },
+    {
+      "from_field": "PERCENTAGE",
+      "from_instance": "EXP_AUD_COUNTS",
+      "to_field": "PERCENTAGE",
+      "to_instance": "WI_AUD_SRC_ACCUM_LSS"
+    },
+    {
+      "from_field": "CAPTURE_DATE",
+      "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP",
+      "to_field": "CAPTURE_DATE",
+      "to_instance": "EXP_AUD_COUNTS"
+    },
+    {
+      "from_field": "TRACK",
+      "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP",
+      "to_field": "TRACK",
+      "to_instance": "EXP_AUD_COUNTS"
+    },
+    {
+      "from_field": "SUBTRACK",
+      "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP",
+      "to_field": "SUBTRACK",
+      "to_instance": "EXP_AUD_COUNTS"
+    },
+    {
+      "from_field": "AUDIT_NAME",
+      "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP",
+      "to_field": "AUDIT_NAME",
+      "to_instance": "EXP_AUD_COUNTS"
+    },
+    {
+      "from_field": "SRC_TABLE_NAME",
+      "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP",
+      "to_field": "SRC_TABLE_NAME",
+      "to_instance": "EXP_AUD_COUNTS"
+    },
+    {
+      "from_field": "TGT_TABLE_NAME",
+      "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP",
+      "to_field": "TGT_TABLE_NAME",
+      "to_instance": "EXP_AUD_COUNTS"
+    },
+    {
+      "from_field": "AUDIT_COLUMN_NAME",
+      "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP",
+      "to_field": "AUDIT_COLUMN_NAME",
+      "to_instance": "EXP_AUD_COUNTS"
+    },
+    {
+      "from_field": "SRC_AUDIT_COLUMN_VALUE",
+      "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP",
+      "to_field": "SRC_AUDIT_COLUMN_VALUE",
+      "to_instance": "EXP_AUD_COUNTS"
+    },
+    {
+      "from_field": "TGT_AUDIT_COLUMN_VALUE",
+      "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP",
+      "to_field": "TGT_AUDIT_COLUMN_VALUE",
+      "to_instance": "EXP_AUD_COUNTS"
+    },
+    {
+      "from_field": "DIFFERENCE",
+      "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP",
+      "to_field": "DIFFERENCE",
+      "to_instance": "EXP_AUD_COUNTS"
+    },
+    {
+      "from_field": "PERCENTAGE",
+      "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP",
+      "to_field": "PERCENTAGE",
+      "to_instance": "EXP_AUD_COUNTS"
+    },
+    {
+      "from_field": "CAPTURE_DATE",
+      "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1",
+      "to_field": "CAPTURE_DATE",
+      "to_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "TRACK",
+      "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1",
+      "to_field": "TRACK",
+      "to_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "SUBTRACK",
+      "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1",
+      "to_field": "SUBTRACK",
+      "to_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "AUDIT_NAME",
+      "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1",
+      "to_field": "AUDIT_NAME",
+      "to_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "SRC_TABLE_NAME",
+      "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1",
+      "to_field": "SRC_TABLE_NAME",
+      "to_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "TGT_TABLE_NAME",
+      "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1",
+      "to_field": "TGT_TABLE_NAME",
+      "to_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "AUDIT_COLUMN_NAME",
+      "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1",
+      "to_field": "AUDIT_COLUMN_NAME",
+      "to_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "SRC_AUDIT_COLUMN_VALUE",
+      "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1",
+      "to_field": "SRC_AUDIT_COLUMN_VALUE",
+      "to_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "TGT_AUDIT_COLUMN_VALUE",
+      "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1",
+      "to_field": "TGT_AUDIT_COLUMN_VALUE",
+      "to_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "DIFFERENCE",
+      "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1",
+      "to_field": "DIFFERENCE",
+      "to_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "PERCENTAGE",
+      "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1",
+      "to_field": "PERCENTAGE",
+      "to_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+    },
+    {
+      "from_field": "EDW_COUNT",
+      "from_instance": "EXP_EDW_DUMMY",
+      "to_field": "EDW_COUNT",
+      "to_instance": "Joiner_Dummy"
+    },
+    {
+      "from_field": "Dummy",
+      "from_instance": "EXP_EDW_DUMMY",
+      "to_field": "Dummy",
+      "to_instance": "Joiner_Dummy"
+    },
+    {
+      "from_field": "SRC_COUNT",
+      "from_instance": "EXP_SRC_DUMMY",
+      "to_field": "SRC_COUNT",
+      "to_instance": "Joiner_Dummy"
+    },
+    {
+      "from_field": "Dummy",
+      "from_instance": "EXP_SRC_DUMMY",
+      "to_field": "Dummy1",
+      "to_instance": "Joiner_Dummy"
+    },
+    {
+      "from_field": "SRC_COUNT",
+      "from_instance": "Joiner_Dummy",
+      "to_field": "SRC_AUDIT_COLUMN_VALUE",
+      "to_instance": "Exp_difference_counts"
+    },
+    {
+      "from_field": "EDW_COUNT",
+      "from_instance": "Joiner_Dummy",
+      "to_field": "TGT_AUDIT_COLUMN_VALUE",
+      "to_instance": "Exp_difference_counts"
+    },
+    {
+      "from_field": "EDW_COUNT",
+      "from_instance": "SQ_RAO_NGCCRM_RAE_ADJ_HDR_EDW_DTL",
+      "to_field": "EDW_COUNT",
+      "to_instance": "EXP_EDW_DUMMY"
+    },
+    {
+      "from_field": "PROGRAM_APPLICATION_ID",
+      "from_instance": "RAO_NGCCRM_RAE_ADJ_HDR_EDW_DTL",
+      "to_field": "EDW_COUNT",
+      "to_instance": "SQ_RAO_NGCCRM_RAE_ADJ_HDR_EDW_DTL"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "NGCCRM_RAE_ADJ_HDR_EDW_DTLS",
+      "to_field": "SRC_COUNT",
+      "to_instance": "SQ_NGCCRM_RAE_ADJ_HDR_EDW_DTLS"
+    },
+    {
+      "from_field": "SRC_COUNT",
+      "from_instance": "SQ_NGCCRM_RAE_ADJ_HDR_EDW_DTLS",
+      "to_field": "SRC_COUNT",
+      "to_instance": "EXP_SRC_DUMMY"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "CAPTURE_DATE",
+      "source_path": [
+        {
+          "from_field": "CAPTURE_DATE",
+          "from_instance": "Exp_difference_counts"
+        },
+        {
+          "from_field": "CAPTURE_DATE",
+          "from_instance": "EXP_AUD_COUNTS"
+        },
+        {
+          "from_field": "CAPTURE_DATE",
+          "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+        },
+        {
+          "from_field": "CAPTURE_DATE",
+          "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TRACK",
+      "source_path": [
+        {
+          "from_field": "TRACK",
+          "from_instance": "Exp_difference_counts"
+        },
+        {
+          "from_field": "TRACK",
+          "from_instance": "EXP_AUD_COUNTS"
+        },
+        {
+          "from_field": "TRACK",
+          "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+        },
+        {
+          "from_field": "TRACK",
+          "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SUBTRACK",
+      "source_path": [
+        {
+          "from_field": "SUBTRACK",
+          "from_instance": "Exp_difference_counts"
+        },
+        {
+          "from_field": "SUBTRACK",
+          "from_instance": "EXP_AUD_COUNTS"
+        },
+        {
+          "from_field": "SUBTRACK",
+          "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+        },
+        {
+          "from_field": "SUBTRACK",
+          "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_NAME",
+      "source_path": [
+        {
+          "from_field": "AUDIT_NAME",
+          "from_instance": "Exp_difference_counts"
+        },
+        {
+          "from_field": "AUDIT_NAME",
+          "from_instance": "EXP_AUD_COUNTS"
+        },
+        {
+          "from_field": "AUDIT_NAME",
+          "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+        },
+        {
+          "from_field": "AUDIT_NAME",
+          "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SRC_TABLE_NAME",
+      "source_path": [
+        {
+          "from_field": "SRC_TABLE_NAME",
+          "from_instance": "Exp_difference_counts"
+        },
+        {
+          "from_field": "SRC_TABLE_NAME",
+          "from_instance": "EXP_AUD_COUNTS"
+        },
+        {
+          "from_field": "SRC_TABLE_NAME",
+          "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+        },
+        {
+          "from_field": "SRC_TABLE_NAME",
+          "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TGT_TABLE_NAME",
+      "source_path": [
+        {
+          "from_field": "TGT_TABLE_NAME",
+          "from_instance": "Exp_difference_counts"
+        },
+        {
+          "from_field": "TGT_TABLE_NAME",
+          "from_instance": "EXP_AUD_COUNTS"
+        },
+        {
+          "from_field": "TGT_TABLE_NAME",
+          "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+        },
+        {
+          "from_field": "TGT_TABLE_NAME",
+          "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_COLUMN_NAME",
+      "source_path": [
+        {
+          "from_field": "AUDIT_COLUMN_NAME",
+          "from_instance": "Exp_difference_counts"
+        },
+        {
+          "from_field": "AUDIT_COLUMN_NAME",
+          "from_instance": "EXP_AUD_COUNTS"
+        },
+        {
+          "from_field": "AUDIT_COLUMN_NAME",
+          "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+        },
+        {
+          "from_field": "AUDIT_COLUMN_NAME",
+          "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SRC_AUDIT_COLUMN_VALUE",
+      "source_path": [
+        {
+          "from_field": "SRC_AUDIT_COLUMN_VALUE",
+          "from_instance": "Exp_difference_counts"
+        },
+        {
+          "from_field": "SRC_AUDIT_COLUMN_VALUE",
+          "from_instance": "EXP_AUD_COUNTS"
+        },
+        {
+          "from_field": "SRC_AUDIT_COLUMN_VALUE",
+          "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+        },
+        {
+          "from_field": "SRC_AUDIT_COLUMN_VALUE",
+          "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1"
+        },
+        {
+          "from_field": "SRC_COUNT",
+          "from_instance": "Joiner_Dummy"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TGT_AUDIT_COLUMN_VALUE",
+      "source_path": [
+        {
+          "from_field": "TGT_AUDIT_COLUMN_VALUE",
+          "from_instance": "Exp_difference_counts"
+        },
+        {
+          "from_field": "TGT_AUDIT_COLUMN_VALUE",
+          "from_instance": "EXP_AUD_COUNTS"
+        },
+        {
+          "from_field": "TGT_AUDIT_COLUMN_VALUE",
+          "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+        },
+        {
+          "from_field": "TGT_AUDIT_COLUMN_VALUE",
+          "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1"
+        },
+        {
+          "from_field": "EDW_COUNT",
+          "from_instance": "Joiner_Dummy"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DIFFERENCE",
+      "source_path": [
+        {
+          "from_field": "DIFFERENCE",
+          "from_instance": "Exp_difference_counts"
+        },
+        {
+          "from_field": "DIFFERENCE",
+          "from_instance": "EXP_AUD_COUNTS"
+        },
+        {
+          "from_field": "DIFFERENCE",
+          "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+        },
+        {
+          "from_field": "DIFFERENCE",
+          "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PERCENTAGE",
+      "source_path": [
+        {
+          "from_field": "PERCENTAGE",
+          "from_instance": "Exp_difference_counts"
+        },
+        {
+          "from_field": "PERCENTAGE",
+          "from_instance": "EXP_AUD_COUNTS"
+        },
+        {
+          "from_field": "PERCENTAGE",
+          "from_instance": "SQ_WI_AUD_SRC_ACCUM_LSS_TEMP"
+        },
+        {
+          "from_field": "PERCENTAGE",
+          "from_instance": "WI_AUD_SRC_ACCUM_LSS_TEMP1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "thin",
+  "generated_timestamp": "2026-03-19T18:33:21.512217+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

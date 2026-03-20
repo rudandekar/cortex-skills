@@ -1,0 +1,87 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_table_name_param_pnl_as', 'batch', 'edwtd_asbi'],
+    meta={
+        'source_workflow': 'wf_m_WI_TABLE_NAME_PARAM_PNL_AS',
+        'target_table': 'WI_AS_COGS_BKGS_SOL_AOT',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:45.884135+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_as_cogs_proj_sol_final AS (
+    SELECT
+        bk_as_project_cd,
+        sales_order_line_key,
+        sol_identifier
+    FROM {{ source('raw', 'wi_as_cogs_proj_sol_final') }}
+),
+
+source_wi_as_cogs_proj_sol_lnk_split AS (
+    SELECT
+        bk_as_project_cd,
+        sales_order_line_key,
+        psol_split_pct
+    FROM {{ source('raw', 'wi_as_cogs_proj_sol_lnk_split') }}
+),
+
+source_wi_as_cogs_proj_sol_aot_split AS (
+    SELECT
+        bk_as_project_cd,
+        dv_sales_order_line_key,
+        bk_allocated_servc_group_id,
+        bk_as_ato_architecture_name,
+        bk_busi_svc_offer_type_name,
+        bk_as_ato_tech_name,
+        dv_goods_adj_prd_key,
+        dv_cx_product,
+        split_pct
+    FROM {{ source('raw', 'wi_as_cogs_proj_sol_aot_split') }}
+),
+
+source_wi_as_cogs_bkgs_sol_aot AS (
+    SELECT
+        dv_sales_order_line_key,
+        bk_as_ato_architecture_name,
+        bk_busi_svc_offer_type_name,
+        bk_allocated_servc_group_id,
+        bk_as_ato_tech_name,
+        dv_goods_adj_prd_key,
+        dv_cx_product,
+        bookings_amount
+    FROM {{ source('raw', 'wi_as_cogs_bkgs_sol_aot') }}
+),
+
+source_wi_table_name_param_pnl_as AS (
+    SELECT
+        table_name1,
+        table_name2
+    FROM {{ source('raw', 'wi_table_name_param_pnl_as') }}
+),
+
+transformed_param_expression AS (
+    SELECT
+    table_name1,
+    table_name2,
+    setvariable('MAP_VAR1',TABLE_NAME1) AS table_value1,
+    setvariable('MAP_VAR2',TABLE_NAME2) AS table_value2
+    FROM source_wi_table_name_param_pnl_as
+),
+
+final AS (
+    SELECT
+        dv_sales_order_line_key,
+        bk_as_ato_architecture_name,
+        bk_busi_svc_offer_type_name,
+        bk_allocated_servc_group_id,
+        bk_as_ato_tech_name,
+        dv_goods_adj_prd_key,
+        dv_cx_product,
+        bookings_amount
+    FROM transformed_param_expression
+)
+
+SELECT * FROM final

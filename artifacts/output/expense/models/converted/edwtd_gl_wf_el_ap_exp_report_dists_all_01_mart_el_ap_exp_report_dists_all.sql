@@ -1,0 +1,98 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_el_ap_exp_report_dists_all', 'batch', 'edwtd_gl'],
+    meta={
+        'source_workflow': 'wf_m_EL_AP_EXP_REPORT_DISTS_ALL',
+        'target_table': 'EL_AP_EXP_REPORT_DISTS_ALL',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:05:28.834877+00:00'
+    }
+) }}
+
+WITH 
+
+source_st_mf_ap_exp_report_dists_all AS (
+    SELECT
+        batch_id,
+        report_header_id,
+        report_line_id,
+        report_distribution_id,
+        org_id,
+        sequence_num,
+        last_update_date,
+        last_updated_by,
+        create_date,
+        created_by,
+        last_update_login,
+        code_combination_id,
+        segment1,
+        segment2,
+        segment3,
+        segment4,
+        segment5,
+        segment6,
+        segment7,
+        segment8,
+        segment9,
+        segment10,
+        segment11,
+        segment12,
+        segment13,
+        segment14,
+        segment15,
+        segment16,
+        segment17,
+        segment18,
+        segment19,
+        segment20,
+        segment21,
+        segment22,
+        segment23,
+        segment24,
+        segment25,
+        segment26,
+        segment27,
+        segment28,
+        segment29,
+        segment30,
+        preparer_modified_flag,
+        amount,
+        project_id,
+        task_id,
+        award_id,
+        expenditure_organization_id,
+        cost_center,
+        ges_update_date,
+        global_name,
+        action_code,
+        create_datetime
+    FROM {{ source('raw', 'st_mf_ap_exp_report_dists_all') }}
+),
+
+final AS (
+    SELECT
+        report_header_id,
+        report_line_id,
+        report_distribution_id,
+        org_id,
+        last_update_date,
+        creation_date,
+        code_combination_id,
+        segment1,
+        segment2,
+        segment3,
+        segment4,
+        segment5,
+        segment6,
+        amount,
+        project_id,
+        task_id,
+        award_id,
+        ges_update_date,
+        global_name,
+        creation_datetime
+    FROM source_st_mf_ap_exp_report_dists_all
+)
+
+SELECT * FROM final

@@ -1,0 +1,177 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_mt_finance_rec_rev_def_srvc_qtr', 'batch', 'edwtd_rev_measure'],
+    meta={
+        'source_workflow': 'wf_m_MT_FINANCE_REC_REV_DEF_SRVC_QTR',
+        'target_table': 'MT_FINANCE_RECURRING_REVENUE',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:45.507817+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_fin_rec_rev_def_srvc_qtr3 AS (
+    SELECT
+        product_key,
+        sales_territory_key,
+        dv_corporate_revenue_flg,
+        dv_service_flg,
+        dv_comp_us_net_rev_amt,
+        bk_revenue_or_cogs_type_cd,
+        bk_iso_country_code,
+        dv_product_key,
+        dv_attribution_cd,
+        source_entity_name,
+        revenue_classification,
+        recurring_flg,
+        bk_measure_name,
+        scenario_name,
+        processed_fiscal_year_mth_int,
+        fiscal_period_number,
+        fiscal_period_type,
+        l2_offer_type_name,
+        ela_flg,
+        xcat_flg,
+        product_subscription_flg,
+        dv_ru_software_usage_type_cd,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        dv_fiscal_year_mth_number_int
+    FROM {{ source('raw', 'wi_fin_rec_rev_def_srvc_qtr3') }}
+),
+
+source_wi_fin_rec_rev_def_srvc_qtr1 AS (
+    SELECT
+        product_key,
+        sales_territory_key,
+        dv_corporate_revenue_flg,
+        dv_service_flg,
+        dv_comp_us_net_rev_amt1,
+        bk_revenue_or_cogs_type_cd,
+        bk_iso_country_code,
+        dv_product_key,
+        dv_attribution_cd,
+        source_entity_name,
+        revenue_classification,
+        recurring_flg,
+        bk_measure_name,
+        scenario_name,
+        processed_fiscal_year_mth_int,
+        fiscal_period_number,
+        fiscal_period_type,
+        l2_offer_type_name,
+        ela_flg,
+        xcat_flg,
+        product_subscription_flg,
+        dv_ru_software_usage_type_cd,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        dv_fiscal_year_mth_number_int
+    FROM {{ source('raw', 'wi_fin_rec_rev_def_srvc_qtr1') }}
+),
+
+source_wi_fin_rec_rev_def_srvc_qtr2 AS (
+    SELECT
+        product_key,
+        sales_territory_key,
+        dv_corporate_revenue_flg,
+        dv_service_flg,
+        dv_comp_us_net_rev_amt,
+        bk_revenue_or_cogs_type_cd,
+        bk_iso_country_code,
+        dv_product_key,
+        dv_attribution_cd,
+        source_entity_name,
+        revenue_classification,
+        recurring_flg,
+        bk_measure_name,
+        scenario_name,
+        processed_fiscal_year_mth_int,
+        fiscal_period_number,
+        fiscal_period_type,
+        l2_offer_type_name,
+        ela_flg,
+        xcat_flg,
+        product_subscription_flg,
+        dv_ru_software_usage_type_cd,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        dv_fiscal_year_mth_number_int
+    FROM {{ source('raw', 'wi_fin_rec_rev_def_srvc_qtr2') }}
+),
+
+source_mt_finance_recurring_revenue AS (
+    SELECT
+        product_key,
+        sales_territory_key,
+        dv_corporate_revenue_flg,
+        dv_service_flg,
+        dv_comp_us_net_rev_amt,
+        bk_revenue_or_cogs_type_cd,
+        bk_iso_country_code,
+        dv_product_key,
+        dv_attribution_cd,
+        source_entity_name,
+        revenue_classification,
+        recurring_flg,
+        bk_measure_name,
+        scenario_name,
+        processed_fiscal_year_mth_int,
+        fiscal_period_number,
+        dv_fiscal_period_descr,
+        fiscal_period_type,
+        l2_offer_type_name,
+        ela_flg,
+        xcat_flg,
+        product_subscription_flg,
+        dv_ru_software_usage_type_cd,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        dv_fiscal_year_mth_number_int
+    FROM {{ source('raw', 'mt_finance_recurring_revenue') }}
+),
+
+final AS (
+    SELECT
+        product_key,
+        sales_territory_key,
+        dv_corporate_revenue_flg,
+        dv_service_flg,
+        dv_comp_us_net_rev_amt,
+        bk_revenue_or_cogs_type_cd,
+        bk_iso_country_code,
+        dv_product_key,
+        dv_attribution_cd,
+        source_entity_name,
+        revenue_classification,
+        recurring_flg,
+        bk_measure_name,
+        scenario_name,
+        processed_fiscal_year_mth_int,
+        fiscal_period_number,
+        dv_fiscal_period_descr,
+        fiscal_period_type,
+        l2_offer_type_name,
+        ela_flg,
+        xcat_flg,
+        product_subscription_flg,
+        dv_ru_software_usage_type_cd,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        dv_fiscal_year_mth_number_int
+    FROM source_mt_finance_recurring_revenue
+)
+
+SELECT * FROM final

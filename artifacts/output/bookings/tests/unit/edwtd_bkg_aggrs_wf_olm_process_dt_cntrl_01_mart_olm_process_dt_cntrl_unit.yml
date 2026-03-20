@@ -1,0 +1,14 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_bkg_aggrs_wf_olm_process_dt_cntrl_01_mart_olm_process_dt_cntrl_filter_basic
+    model: edwtd_bkg_aggrs_wf_olm_process_dt_cntrl_01_mart_olm_process_dt_cntrl
+    description: "Verify filter transformation passes expected rows"
+    given:
+      - input: source('raw', 'olm_process_dt_cntrl')
+        rows:
+          - {id: 1, status: 'ACTIVE'}
+          - {id: 2, status: 'INACTIVE'}
+    expect:
+      rows:
+        - {id: 1, status: 'ACTIVE'}

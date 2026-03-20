@@ -1,0 +1,231 @@
+{
+  "workflow_name": "wf_m_ST_CONTRACT_TYPE_MCT",
+  "mapping_name": "m_ST_CONTRACT_TYPE_MCT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_MIGRATION",
+  "target_table": "FF_CONTRACT_TYPE_MCT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_migration_wf_st_contract_type_mct_02_mart_ff_contract_type_mct",
+  "source_tables": [
+    "FF_CONTRACT_TYPE_MCT",
+    "xxccs_ds_master_cvg_template"
+  ],
+  "sources": [
+    {
+      "name": "FF_CONTRACT_TYPE_MCT",
+      "database_type": "Flat File",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "COVERAGE_TEMPLATE_NAME",
+          "datatype": "string",
+          "precision": "57",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PILLAR_DESC",
+          "datatype": "string",
+          "precision": "57",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BUSINESS_PROCESS_NAME",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "xxccs_ds_master_cvg_template",
+      "database_type": "Oracle",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "COVERAGE_TEMPLATE_NAME",
+          "datatype": "varchar2",
+          "precision": "57",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PILLAR_DESC",
+          "datatype": "varchar2",
+          "precision": "57",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BUSINESS_PROCESS_NAME",
+          "datatype": "varchar2",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_CONTRACT_TYPE_MCT",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "COVERAGE_TEMPLATE_NAME",
+        "datatype": "string",
+        "precision": "57",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PILLAR_DESC",
+        "datatype": "string",
+        "precision": "57",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BUSINESS_PROCESS_NAME",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_CONTRACT_TYPE_MCT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "COVERAGE_TEMPLATE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PILLAR_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUSINESS_PROCESS_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "COVERAGE_TEMPLATE_NAME",
+      "from_instance": "SQ_FF_CONTRACT_TYPE_MCT",
+      "to_field": "COVERAGE_TEMPLATE_NAME",
+      "to_instance": "ST_CONTRACT_TYPE_MCT"
+    },
+    {
+      "from_field": "PILLAR_DESC",
+      "from_instance": "SQ_FF_CONTRACT_TYPE_MCT",
+      "to_field": "PILLAR_DESC",
+      "to_instance": "ST_CONTRACT_TYPE_MCT"
+    },
+    {
+      "from_field": "BUSINESS_PROCESS_NAME",
+      "from_instance": "SQ_FF_CONTRACT_TYPE_MCT",
+      "to_field": "BUSINESS_PROCESS_NAME",
+      "to_instance": "ST_CONTRACT_TYPE_MCT"
+    },
+    {
+      "from_field": "COVERAGE_TEMPLATE_NAME",
+      "from_instance": "FF_CONTRACT_TYPE_MCT",
+      "to_field": "COVERAGE_TEMPLATE_NAME",
+      "to_instance": "SQ_FF_CONTRACT_TYPE_MCT"
+    },
+    {
+      "from_field": "PILLAR_DESC",
+      "from_instance": "FF_CONTRACT_TYPE_MCT",
+      "to_field": "PILLAR_DESC",
+      "to_instance": "SQ_FF_CONTRACT_TYPE_MCT"
+    },
+    {
+      "from_field": "BUSINESS_PROCESS_NAME",
+      "from_instance": "FF_CONTRACT_TYPE_MCT",
+      "to_field": "BUSINESS_PROCESS_NAME",
+      "to_instance": "SQ_FF_CONTRACT_TYPE_MCT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "COVERAGE_TEMPLATE_NAME",
+      "source_path": [
+        {
+          "from_field": "COVERAGE_TEMPLATE_NAME",
+          "from_instance": "SQ_FF_CONTRACT_TYPE_MCT"
+        },
+        {
+          "from_field": "COVERAGE_TEMPLATE_NAME",
+          "from_instance": "FF_CONTRACT_TYPE_MCT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PILLAR_DESC",
+      "source_path": [
+        {
+          "from_field": "PILLAR_DESC",
+          "from_instance": "SQ_FF_CONTRACT_TYPE_MCT"
+        },
+        {
+          "from_field": "PILLAR_DESC",
+          "from_instance": "FF_CONTRACT_TYPE_MCT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BUSINESS_PROCESS_NAME",
+      "source_path": [
+        {
+          "from_field": "BUSINESS_PROCESS_NAME",
+          "from_instance": "SQ_FF_CONTRACT_TYPE_MCT"
+        },
+        {
+          "from_field": "BUSINESS_PROCESS_NAME",
+          "from_instance": "FF_CONTRACT_TYPE_MCT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:18.144749+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

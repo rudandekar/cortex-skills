@@ -1,0 +1,339 @@
+{
+  "workflow_name": "wf_m_FF_INT_RAW_PRICE_LIST",
+  "mapping_name": "m_FF_INT_RAW_PRICE_LIST",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "FF_INT_RAW_PRICE_LIST",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_ff_int_raw_price_list_01_stg_ff_int_raw_price_list",
+  "source_tables": [
+    "INT_RAW_PRICE_LIST"
+  ],
+  "sources": [
+    {
+      "name": "INT_RAW_PRICE_LIST",
+      "database_type": "Oracle",
+      "owner": "DMADM",
+      "fields": [
+        {
+          "name": "PRICE_LIST_ID",
+          "datatype": "number(p,s)",
+          "precision": "38",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ERP_PRICE_LIST_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHORT_DESC",
+          "datatype": "nvarchar2",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ERP_PRICE_LIST_NAME",
+          "datatype": "nvarchar2",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TITLE",
+          "datatype": "nvarchar2",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "nvarchar2",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_INT_RAW_PRICE_LIST",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PRICE_LIST_ID",
+        "datatype": "number",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "ERP_PRICE_LIST_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHORT_DESC",
+        "datatype": "string",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ERP_PRICE_LIST_NAME",
+        "datatype": "string",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TITLE_1",
+        "datatype": "string",
+        "precision": "60",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CURRENCY_CODE",
+        "datatype": "string",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_INT_RAW_PRICE_LIST",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PRICE_LIST_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ERP_PRICE_LIST_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHORT_DESC",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ERP_PRICE_LIST_NAME",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TITLE",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT INT_RAW_PRICE_LIST.PRICE_LIST_ID, INT_RAW_PRICE_LIST.ERP_PRICE_LIST_ID, INT_RAW_PRICE_LIST.SHORT_DESC, INT_RAW_PRICE_LIST.ERP_PRICE_LIST_NAME, INT_RAW_PRICE_LIST.TITLE, INT_RAW_PRICE_LIST.CURRENCY_CODE \r\nFROM\r\n INT_RAW_PRICE_LIST",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "PRICE_LIST_ID",
+      "from_instance": "SQ_INT_RAW_PRICE_LIST",
+      "to_field": "PRICE_LIST_ID",
+      "to_instance": "FF_INT_RAW_PRICE_LIST"
+    },
+    {
+      "from_field": "ERP_PRICE_LIST_ID",
+      "from_instance": "SQ_INT_RAW_PRICE_LIST",
+      "to_field": "ERP_PRICE_LIST_ID",
+      "to_instance": "FF_INT_RAW_PRICE_LIST"
+    },
+    {
+      "from_field": "SHORT_DESC",
+      "from_instance": "SQ_INT_RAW_PRICE_LIST",
+      "to_field": "SHORT_DESC",
+      "to_instance": "FF_INT_RAW_PRICE_LIST"
+    },
+    {
+      "from_field": "ERP_PRICE_LIST_NAME",
+      "from_instance": "SQ_INT_RAW_PRICE_LIST",
+      "to_field": "ERP_PRICE_LIST_NAME",
+      "to_instance": "FF_INT_RAW_PRICE_LIST"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "SQ_INT_RAW_PRICE_LIST",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "FF_INT_RAW_PRICE_LIST"
+    },
+    {
+      "from_field": "TITLE",
+      "from_instance": "SQ_INT_RAW_PRICE_LIST",
+      "to_field": "TITLE_1",
+      "to_instance": "FF_INT_RAW_PRICE_LIST"
+    },
+    {
+      "from_field": "PRICE_LIST_ID",
+      "from_instance": "INT_RAW_PRICE_LIST",
+      "to_field": "PRICE_LIST_ID",
+      "to_instance": "SQ_INT_RAW_PRICE_LIST"
+    },
+    {
+      "from_field": "ERP_PRICE_LIST_ID",
+      "from_instance": "INT_RAW_PRICE_LIST",
+      "to_field": "ERP_PRICE_LIST_ID",
+      "to_instance": "SQ_INT_RAW_PRICE_LIST"
+    },
+    {
+      "from_field": "SHORT_DESC",
+      "from_instance": "INT_RAW_PRICE_LIST",
+      "to_field": "SHORT_DESC",
+      "to_instance": "SQ_INT_RAW_PRICE_LIST"
+    },
+    {
+      "from_field": "ERP_PRICE_LIST_NAME",
+      "from_instance": "INT_RAW_PRICE_LIST",
+      "to_field": "ERP_PRICE_LIST_NAME",
+      "to_instance": "SQ_INT_RAW_PRICE_LIST"
+    },
+    {
+      "from_field": "TITLE",
+      "from_instance": "INT_RAW_PRICE_LIST",
+      "to_field": "TITLE",
+      "to_instance": "SQ_INT_RAW_PRICE_LIST"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "INT_RAW_PRICE_LIST",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "SQ_INT_RAW_PRICE_LIST"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PRICE_LIST_ID",
+      "source_path": [
+        {
+          "from_field": "PRICE_LIST_ID",
+          "from_instance": "SQ_INT_RAW_PRICE_LIST"
+        },
+        {
+          "from_field": "PRICE_LIST_ID",
+          "from_instance": "INT_RAW_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ERP_PRICE_LIST_ID",
+      "source_path": [
+        {
+          "from_field": "ERP_PRICE_LIST_ID",
+          "from_instance": "SQ_INT_RAW_PRICE_LIST"
+        },
+        {
+          "from_field": "ERP_PRICE_LIST_ID",
+          "from_instance": "INT_RAW_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHORT_DESC",
+      "source_path": [
+        {
+          "from_field": "SHORT_DESC",
+          "from_instance": "SQ_INT_RAW_PRICE_LIST"
+        },
+        {
+          "from_field": "SHORT_DESC",
+          "from_instance": "INT_RAW_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ERP_PRICE_LIST_NAME",
+      "source_path": [
+        {
+          "from_field": "ERP_PRICE_LIST_NAME",
+          "from_instance": "SQ_INT_RAW_PRICE_LIST"
+        },
+        {
+          "from_field": "ERP_PRICE_LIST_NAME",
+          "from_instance": "INT_RAW_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TITLE_1",
+      "source_path": [
+        {
+          "from_field": "TITLE",
+          "from_instance": "SQ_INT_RAW_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CURRENCY_CODE",
+      "source_path": [
+        {
+          "from_field": "CURRENCY_CODE",
+          "from_instance": "SQ_INT_RAW_PRICE_LIST"
+        },
+        {
+          "from_field": "CURRENCY_CODE",
+          "from_instance": "INT_RAW_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:26:46.787422+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

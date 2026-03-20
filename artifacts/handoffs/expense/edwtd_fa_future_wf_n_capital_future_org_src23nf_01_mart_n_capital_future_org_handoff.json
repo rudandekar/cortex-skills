@@ -1,0 +1,546 @@
+{
+  "workflow_name": "wf_m_N_CAPITAL_FUTURE_ORG_SRC23NF",
+  "mapping_name": "m_N_CAPITAL_FUTURE_ORG_SRC23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_FA_FUTURE",
+  "target_table": "N_CAPITAL_FUTURE_ORG",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_fa_future_wf_n_capital_future_org_src23nf_01_mart_n_capital_future_org",
+  "source_tables": [
+    "CAP_ORGANIZATIONS"
+  ],
+  "sources": [
+    {
+      "name": "CAP_ORGANIZATIONS",
+      "database_type": "Oracle",
+      "owner": "CBTADM",
+      "fields": [
+        {
+          "name": "UPDATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ORG_NAME",
+          "datatype": "varchar2",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "varchar2",
+          "precision": "2",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "UPDATED_BY",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BLOCK_USERS",
+          "datatype": "varchar2",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BLOCK_ORG",
+          "datatype": "varchar2",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORG_MONTHS",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_CAPITAL_FUTURE_ORG",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_CPTL_FUTURE_ORG_ABBR_NAME",
+        "datatype": "char",
+        "precision": "12",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SK_ORG_ID",
+        "datatype": "char",
+        "precision": "2",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_CAP_ORGANIZATIONS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ORG_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "lkp_N_CAPTIAL_FUTURE_ORG",
+      "type": "Lookup Procedure",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_CPTL_FUTURE_ORG_ABBR_NAME",
+          "datatype": "string",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Lookup Sql Override": "SELECT \r\nTRIM(NCFO.BK_CPTL_FUTURE_ORG_ABBR_NAME) as BK_CPTL_FUTURE_ORG_ABBR_NAME\r\n FROM $$FINLGLVWDB.N_CAPITAL_FUTURE_ORG NCFO",
+        "Lookup table name": "N_CAPITAL_FUTURE_ORG",
+        "Lookup Source Filter": "",
+        "Lookup caching enabled": "YES",
+        "Lookup policy on multiple match": "Use Any Value",
+        "Lookup condition": "BK_CPTL_FUTURE_ORG_ABBR_NAME = ORG_NAME",
+        "Connection Information": "$Target",
+        "Source Type": "Database",
+        "Recache if Stale": "NO",
+        "Tracing Level": "Normal",
+        "Lookup cache directory name": "$PMCacheDir",
+        "Lookup cache initialize": "NO",
+        "Lookup cache persistent": "NO",
+        "Lookup Data Cache Size": "Auto",
+        "Lookup Index Cache Size": "Auto",
+        "Dynamic Lookup Cache": "NO",
+        "Synchronize Dynamic Cache": "NO",
+        "Output Old Value On Update": "NO",
+        "Update Dynamic Cache Condition": "TRUE",
+        "Cache File Name Prefix": "",
+        "Re-cache from lookup source": "NO",
+        "Insert Else Update": "NO",
+        "Update Else Insert": "NO",
+        "Datetime Format": "",
+        "Thousand Separator": "None",
+        "Decimal Separator": ".",
+        "Case Sensitive String Comparison": "NO",
+        "Null ordering": "Null Is Highest Value",
+        "Sorted Input": "NO",
+        "Lookup source is static": "NO",
+        "Pre-build lookup cache": "Auto",
+        "Subsecond Precision": "6"
+      }
+    },
+    {
+      "name": "exp_N_CAPTIAL_FUTURE",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_CPTL_FUTURE_ORG_ABBR_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_CPTL_FUTURE_ORG_ABBR_NAME"
+        },
+        {
+          "name": "ORG_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ORG_NAME"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ORG_ID"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "ftr_N_CAPITAL_FUTURE_ORG",
+      "type": "Filter",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_CPTL_FUTURE_ORG_ABBR_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Filter Condition": "ISNULL(BK_CPTL_FUTURE_ORG_ABBR_NAME)",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "upd_N_CAPITAL_FUTURE_ORG_INSERT",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "ORG_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_INSERT",
+        "Forward Rejected Rows": "YES",
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Update Strategy",
+    "Filter",
+    "Lookup Procedure",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ORG_NAME",
+      "from_instance": "upd_N_CAPITAL_FUTURE_ORG_INSERT",
+      "to_field": "BK_CPTL_FUTURE_ORG_ABBR_NAME",
+      "to_instance": "N_CAPITAL_FUTURE_ORG_INSERT"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "upd_N_CAPITAL_FUTURE_ORG_INSERT",
+      "to_field": "SK_ORG_ID",
+      "to_instance": "N_CAPITAL_FUTURE_ORG_INSERT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "upd_N_CAPITAL_FUTURE_ORG_INSERT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_CAPITAL_FUTURE_ORG_INSERT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "upd_N_CAPITAL_FUTURE_ORG_INSERT",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_CAPITAL_FUTURE_ORG_INSERT"
+    },
+    {
+      "from_field": "ORG_NAME",
+      "from_instance": "CAP_ORGANIZATIONS",
+      "to_field": "ORG_NAME",
+      "to_instance": "SQ_CAP_ORGANIZATIONS"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "CAP_ORGANIZATIONS",
+      "to_field": "ORG_ID",
+      "to_instance": "SQ_CAP_ORGANIZATIONS"
+    },
+    {
+      "from_field": "ORG_NAME",
+      "from_instance": "SQ_CAP_ORGANIZATIONS",
+      "to_field": "ORG_NAME",
+      "to_instance": "lkp_N_CAPTIAL_FUTURE_ORG"
+    },
+    {
+      "from_field": "ORG_NAME",
+      "from_instance": "SQ_CAP_ORGANIZATIONS",
+      "to_field": "ORG_NAME",
+      "to_instance": "exp_N_CAPTIAL_FUTURE"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "SQ_CAP_ORGANIZATIONS",
+      "to_field": "ORG_ID",
+      "to_instance": "exp_N_CAPTIAL_FUTURE"
+    },
+    {
+      "from_field": "BK_CPTL_FUTURE_ORG_ABBR_NAME",
+      "from_instance": "lkp_N_CAPTIAL_FUTURE_ORG",
+      "to_field": "BK_CPTL_FUTURE_ORG_ABBR_NAME",
+      "to_instance": "exp_N_CAPTIAL_FUTURE"
+    },
+    {
+      "from_field": "BK_CPTL_FUTURE_ORG_ABBR_NAME",
+      "from_instance": "exp_N_CAPTIAL_FUTURE",
+      "to_field": "BK_CPTL_FUTURE_ORG_ABBR_NAME",
+      "to_instance": "ftr_N_CAPITAL_FUTURE_ORG"
+    },
+    {
+      "from_field": "ORG_NAME",
+      "from_instance": "exp_N_CAPTIAL_FUTURE",
+      "to_field": "ORG_NAME",
+      "to_instance": "ftr_N_CAPITAL_FUTURE_ORG"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "exp_N_CAPTIAL_FUTURE",
+      "to_field": "ORG_ID",
+      "to_instance": "ftr_N_CAPITAL_FUTURE_ORG"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "exp_N_CAPTIAL_FUTURE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "ftr_N_CAPITAL_FUTURE_ORG"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "exp_N_CAPTIAL_FUTURE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "ftr_N_CAPITAL_FUTURE_ORG"
+    },
+    {
+      "from_field": "ORG_NAME",
+      "from_instance": "ftr_N_CAPITAL_FUTURE_ORG",
+      "to_field": "ORG_NAME",
+      "to_instance": "upd_N_CAPITAL_FUTURE_ORG_INSERT"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "ftr_N_CAPITAL_FUTURE_ORG",
+      "to_field": "ORG_ID",
+      "to_instance": "upd_N_CAPITAL_FUTURE_ORG_INSERT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "ftr_N_CAPITAL_FUTURE_ORG",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "upd_N_CAPITAL_FUTURE_ORG_INSERT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "ftr_N_CAPITAL_FUTURE_ORG",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "upd_N_CAPITAL_FUTURE_ORG_INSERT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_CPTL_FUTURE_ORG_ABBR_NAME",
+      "source_path": [
+        {
+          "from_field": "ORG_NAME",
+          "from_instance": "upd_N_CAPITAL_FUTURE_ORG_INSERT"
+        },
+        {
+          "from_field": "BK_CPTL_FUTURE_ORG_ABBR_NAME",
+          "from_instance": "lkp_N_CAPTIAL_FUTURE_ORG"
+        },
+        {
+          "from_field": "BK_CPTL_FUTURE_ORG_ABBR_NAME",
+          "from_instance": "exp_N_CAPTIAL_FUTURE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_ORG_ID",
+      "source_path": [
+        {
+          "from_field": "ORG_ID",
+          "from_instance": "upd_N_CAPITAL_FUTURE_ORG_INSERT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "upd_N_CAPITAL_FUTURE_ORG_INSERT"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "exp_N_CAPTIAL_FUTURE"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "ftr_N_CAPITAL_FUTURE_ORG"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "upd_N_CAPITAL_FUTURE_ORG_INSERT"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "exp_N_CAPTIAL_FUTURE"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "ftr_N_CAPITAL_FUTURE_ORG"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "thin",
+  "generated_timestamp": "2026-03-19T18:05:04.587449+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

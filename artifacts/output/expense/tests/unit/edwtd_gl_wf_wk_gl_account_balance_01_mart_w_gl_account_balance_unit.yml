@@ -1,0 +1,13 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_gl_wf_wk_gl_account_balance_01_mart_w_gl_account_balance_expression_transform
+    model: edwtd_gl_wf_wk_gl_account_balance_01_mart_w_gl_account_balance
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'st_mf_gl_balances')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

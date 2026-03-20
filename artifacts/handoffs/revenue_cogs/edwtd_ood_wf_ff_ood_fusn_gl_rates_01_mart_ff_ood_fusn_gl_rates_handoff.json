@@ -1,0 +1,634 @@
+{
+  "workflow_name": "wf_m_FF_OOD_FUSN_GL_RATES",
+  "mapping_name": "m_FF_OOD_FUSN_GL_RATES",
+  "mapping_description": "",
+  "folder_name": "EDWTD_OOD",
+  "target_table": "FF_OOD_FUSN_GL_RATES",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ood_wf_ff_ood_fusn_gl_rates_01_mart_ff_ood_fusn_gl_rates",
+  "source_tables": [
+    "SAAS_GL_RATES"
+  ],
+  "sources": [
+    {
+      "name": "SAAS_GL_RATES",
+      "database_type": "XML",
+      "owner": "",
+      "fields": [
+        {
+          "name": "XPK_ROOT",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "XPK_GL_DAILY_RATES",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FK_ROOT",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONVERSION_RATE",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONVERSION_DATE",
+          "datatype": "string",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONVERSION_TYPE",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FROM_CURRENCY",
+          "datatype": "string",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TO_CURRENCY",
+          "datatype": "string",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "string",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_OOD_FUSN_GL_RATES",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "CONVERSION_RATE",
+        "datatype": "number",
+        "precision": "35",
+        "scale": "18",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CONVERSION_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CONVERSION_TYPE",
+        "datatype": "string",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FROM_CURRENCY",
+        "datatype": "string",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TO_CURRENCY",
+        "datatype": "string",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "string",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXP_SAAS_GL_RATES",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "CONVERSION_RATE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CONVERSION_RATE"
+        },
+        {
+          "name": "CONVERSION_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CONVERSION_DATE"
+        },
+        {
+          "name": "CONVERSION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CONVERSION_TYPE"
+        },
+        {
+          "name": "FROM_CURRENCY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FROM_CURRENCY"
+        },
+        {
+          "name": "TO_CURRENCY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "TO_CURRENCY"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATION_DATE"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_DATE"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "XMLDSQ_SAAS_GL_RATES",
+      "type": "XML Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "XPK_ROOT",
+          "datatype": "bigint",
+          "porttype": "GENERATED KEY/INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "XPK_GL_DAILY_RATES",
+          "datatype": "bigint",
+          "porttype": "GENERATED KEY/INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FK_ROOT",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONVERSION_RATE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONVERSION_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONVERSION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FROM_CURRENCY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TO_CURRENCY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal",
+        "Reset": "NO",
+        "Restart": "NO",
+        "Validate XML Source": "Validate only if DTD/Schema is present",
+        "Is Partitionable": "NO"
+      },
+      "groups": [
+        {
+          "name": "X_GL_DAILY_RATES",
+          "expression": ""
+        },
+        {
+          "name": "X_ROOT",
+          "expression": ""
+        }
+      ]
+    }
+  ],
+  "transformation_types": [
+    "XML Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "CONVERSION_RATE",
+      "from_instance": "EXP_SAAS_GL_RATES",
+      "to_field": "CONVERSION_RATE",
+      "to_instance": "FF_OOD_FUSN_GL_RATES"
+    },
+    {
+      "from_field": "CONVERSION_DATE",
+      "from_instance": "EXP_SAAS_GL_RATES",
+      "to_field": "CONVERSION_DATE",
+      "to_instance": "FF_OOD_FUSN_GL_RATES"
+    },
+    {
+      "from_field": "CONVERSION_TYPE",
+      "from_instance": "EXP_SAAS_GL_RATES",
+      "to_field": "CONVERSION_TYPE",
+      "to_instance": "FF_OOD_FUSN_GL_RATES"
+    },
+    {
+      "from_field": "FROM_CURRENCY",
+      "from_instance": "EXP_SAAS_GL_RATES",
+      "to_field": "FROM_CURRENCY",
+      "to_instance": "FF_OOD_FUSN_GL_RATES"
+    },
+    {
+      "from_field": "TO_CURRENCY",
+      "from_instance": "EXP_SAAS_GL_RATES",
+      "to_field": "TO_CURRENCY",
+      "to_instance": "FF_OOD_FUSN_GL_RATES"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EXP_SAAS_GL_RATES",
+      "to_field": "CREATION_DATE",
+      "to_instance": "FF_OOD_FUSN_GL_RATES"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "EXP_SAAS_GL_RATES",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "FF_OOD_FUSN_GL_RATES"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "EXP_SAAS_GL_RATES",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "FF_OOD_FUSN_GL_RATES"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_SAAS_GL_RATES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "FF_OOD_FUSN_GL_RATES"
+    },
+    {
+      "from_field": "CONVERSION_RATE",
+      "from_instance": "XMLDSQ_SAAS_GL_RATES",
+      "to_field": "CONVERSION_RATE",
+      "to_instance": "EXP_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "CONVERSION_DATE",
+      "from_instance": "XMLDSQ_SAAS_GL_RATES",
+      "to_field": "CONVERSION_DATE",
+      "to_instance": "EXP_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "CONVERSION_TYPE",
+      "from_instance": "XMLDSQ_SAAS_GL_RATES",
+      "to_field": "CONVERSION_TYPE",
+      "to_instance": "EXP_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "FROM_CURRENCY",
+      "from_instance": "XMLDSQ_SAAS_GL_RATES",
+      "to_field": "FROM_CURRENCY",
+      "to_instance": "EXP_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "TO_CURRENCY",
+      "from_instance": "XMLDSQ_SAAS_GL_RATES",
+      "to_field": "TO_CURRENCY",
+      "to_instance": "EXP_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "XMLDSQ_SAAS_GL_RATES",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EXP_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "XMLDSQ_SAAS_GL_RATES",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "EXP_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "XPK_ROOT",
+      "from_instance": "SAAS_GL_RATES",
+      "to_field": "XPK_ROOT",
+      "to_instance": "XMLDSQ_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "XPK_GL_DAILY_RATES",
+      "from_instance": "SAAS_GL_RATES",
+      "to_field": "XPK_GL_DAILY_RATES",
+      "to_instance": "XMLDSQ_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "FK_ROOT",
+      "from_instance": "SAAS_GL_RATES",
+      "to_field": "FK_ROOT",
+      "to_instance": "XMLDSQ_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "CONVERSION_RATE",
+      "from_instance": "SAAS_GL_RATES",
+      "to_field": "CONVERSION_RATE",
+      "to_instance": "XMLDSQ_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "CONVERSION_DATE",
+      "from_instance": "SAAS_GL_RATES",
+      "to_field": "CONVERSION_DATE",
+      "to_instance": "XMLDSQ_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "CONVERSION_TYPE",
+      "from_instance": "SAAS_GL_RATES",
+      "to_field": "CONVERSION_TYPE",
+      "to_instance": "XMLDSQ_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "FROM_CURRENCY",
+      "from_instance": "SAAS_GL_RATES",
+      "to_field": "FROM_CURRENCY",
+      "to_instance": "XMLDSQ_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "TO_CURRENCY",
+      "from_instance": "SAAS_GL_RATES",
+      "to_field": "TO_CURRENCY",
+      "to_instance": "XMLDSQ_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SAAS_GL_RATES",
+      "to_field": "CREATION_DATE",
+      "to_instance": "XMLDSQ_SAAS_GL_RATES"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SAAS_GL_RATES",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "XMLDSQ_SAAS_GL_RATES"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "CONVERSION_RATE",
+      "source_path": [
+        {
+          "from_field": "CONVERSION_RATE",
+          "from_instance": "EXP_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "CONVERSION_RATE",
+          "from_instance": "XMLDSQ_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "CONVERSION_RATE",
+          "from_instance": "SAAS_GL_RATES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CONVERSION_DATE",
+      "source_path": [
+        {
+          "from_field": "CONVERSION_DATE",
+          "from_instance": "EXP_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "CONVERSION_DATE",
+          "from_instance": "XMLDSQ_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "CONVERSION_DATE",
+          "from_instance": "SAAS_GL_RATES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CONVERSION_TYPE",
+      "source_path": [
+        {
+          "from_field": "CONVERSION_TYPE",
+          "from_instance": "EXP_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "CONVERSION_TYPE",
+          "from_instance": "XMLDSQ_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "CONVERSION_TYPE",
+          "from_instance": "SAAS_GL_RATES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FROM_CURRENCY",
+      "source_path": [
+        {
+          "from_field": "FROM_CURRENCY",
+          "from_instance": "EXP_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "FROM_CURRENCY",
+          "from_instance": "XMLDSQ_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "FROM_CURRENCY",
+          "from_instance": "SAAS_GL_RATES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TO_CURRENCY",
+      "source_path": [
+        {
+          "from_field": "TO_CURRENCY",
+          "from_instance": "EXP_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "TO_CURRENCY",
+          "from_instance": "XMLDSQ_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "TO_CURRENCY",
+          "from_instance": "SAAS_GL_RATES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EXP_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "XMLDSQ_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SAAS_GL_RATES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "EXP_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "XMLDSQ_SAAS_GL_RATES"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SAAS_GL_RATES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "EXP_SAAS_GL_RATES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_SAAS_GL_RATES"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "missing",
+  "generated_timestamp": "2026-03-19T18:33:19.930019+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": true
+}

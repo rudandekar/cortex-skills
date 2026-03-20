@@ -1,0 +1,14 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_ood_wf_st_ood_fusn_order_lines_all_01_mart_st_ood_fusn_order_lines_all_filter_basic
+    model: edwtd_ood_wf_st_ood_fusn_order_lines_all_01_mart_st_ood_fusn_order_lines_all
+    description: "Verify filter transformation passes expected rows"
+    given:
+      - input: source('raw', 'ff_ood_fusn_order_lines_all')
+        rows:
+          - {id: 1, status: 'ACTIVE'}
+          - {id: 2, status: 'INACTIVE'}
+    expect:
+      rows:
+        - {id: 1, status: 'ACTIVE'}

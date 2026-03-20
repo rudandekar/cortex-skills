@@ -1,0 +1,202 @@
+{
+  "workflow_name": "wf_m_WI_BRE_CSELIST",
+  "mapping_name": "m_WI_BRE_CSELIST",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_BRE_CSELIST",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_bre_cselist_01_mart_wi_bre_cselist",
+  "source_tables": [
+    "WI_BRE_CSELIST"
+  ],
+  "sources": [
+    {
+      "name": "WI_BRE_CSELIST",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "TRANSACTION_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EVENTTYPEC",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CSEID",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_BRE_CSELIST",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "TRANSACTION_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EVENTTYPEC",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CSEID",
+        "datatype": "varchar",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_BRE_CSELIST",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "TRANSACTION_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EVENTTYPEC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CSEID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT OUTKEY AS TRANSACTION_ID , Y.EVENTTYPEC, TOKEN AS CSEID\r\n  FROM (\r\nSELECT    *  \r\nFROM  TABLE (STRTOK_SPLIT_TO_TABLE( $$STGDB.ST_TSS_SRM_CBEBRE_LOGS_CSELIST.TRANSACTION_ID,\r\n $$STGDB.ST_TSS_SRM_CBEBRE_LOGS_CSELIST.CSEID, ',')    \r\nRETURNS    (OUTKEY VARCHAR(30) CHARACTER \r\nSET    UNICODE ,TOKENNUM INTEGER ,TOKEN VARCHAR(30) CHARACTER \r\nSET  UNICODE) ) AS DT      \r\n) X,\r\n$$STGDB.ST_TSS_SRM_CBEBRE_LOGS  Y\r\nWHERE X.OUTKEY = Y.TRANSACTION_ID",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "TRANSACTION_ID",
+      "from_instance": "SQ_WI_BRE_CSELIST",
+      "to_field": "TRANSACTION_ID",
+      "to_instance": "WI_BRE_CSELIST1"
+    },
+    {
+      "from_field": "EVENTTYPEC",
+      "from_instance": "SQ_WI_BRE_CSELIST",
+      "to_field": "EVENTTYPEC",
+      "to_instance": "WI_BRE_CSELIST1"
+    },
+    {
+      "from_field": "CSEID",
+      "from_instance": "SQ_WI_BRE_CSELIST",
+      "to_field": "CSEID",
+      "to_instance": "WI_BRE_CSELIST1"
+    },
+    {
+      "from_field": "TRANSACTION_ID",
+      "from_instance": "WI_BRE_CSELIST",
+      "to_field": "TRANSACTION_ID",
+      "to_instance": "SQ_WI_BRE_CSELIST"
+    },
+    {
+      "from_field": "EVENTTYPEC",
+      "from_instance": "WI_BRE_CSELIST",
+      "to_field": "EVENTTYPEC",
+      "to_instance": "SQ_WI_BRE_CSELIST"
+    },
+    {
+      "from_field": "CSEID",
+      "from_instance": "WI_BRE_CSELIST",
+      "to_field": "CSEID",
+      "to_instance": "SQ_WI_BRE_CSELIST"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "TRANSACTION_ID",
+      "source_path": [
+        {
+          "from_field": "TRANSACTION_ID",
+          "from_instance": "SQ_WI_BRE_CSELIST"
+        },
+        {
+          "from_field": "TRANSACTION_ID",
+          "from_instance": "WI_BRE_CSELIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EVENTTYPEC",
+      "source_path": [
+        {
+          "from_field": "EVENTTYPEC",
+          "from_instance": "SQ_WI_BRE_CSELIST"
+        },
+        {
+          "from_field": "EVENTTYPEC",
+          "from_instance": "WI_BRE_CSELIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CSEID",
+      "source_path": [
+        {
+          "from_field": "CSEID",
+          "from_instance": "SQ_WI_BRE_CSELIST"
+        },
+        {
+          "from_field": "CSEID",
+          "from_instance": "WI_BRE_CSELIST"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:27.532079+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,155 @@
+{
+  "workflow_name": "wf_m_FF_XXCTS_DM_FND_USER_MAP",
+  "mapping_name": "m_FF_XXCTS_DM_FND_USER_MAP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_CA_SERVICES",
+  "target_table": "FF_XXCTS_DM_FND_USER_MAP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ca_services_wf_ff_xxcts_dm_fnd_user_map_01_mart_ff_xxcts_dm_fnd_user_map",
+  "source_tables": [
+    "XXCTS_DM_FND_USER_MAP"
+  ],
+  "sources": [
+    {
+      "name": "XXCTS_DM_FND_USER_MAP",
+      "database_type": "Oracle",
+      "owner": "",
+      "fields": [
+        {
+          "name": "R11_USER_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "R12_USER_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_XXCTS_DM_FND_USER_MAP",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "R11_USER_ID",
+        "datatype": "number",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "R12_USER_ID",
+        "datatype": "number",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_XXCTS_DM_FND_USER_MAP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "R11_USER_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "R12_USER_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT  R11_USER_ID,\r\n R12_USER_ID\r\n from XXCTS_O.XXCTS_DM_FND_USER_MAP",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "R11_USER_ID",
+      "from_instance": "SQ_XXCTS_DM_FND_USER_MAP",
+      "to_field": "R11_USER_ID",
+      "to_instance": "XXCTS_DM_FND_USER_MAP1"
+    },
+    {
+      "from_field": "R12_USER_ID",
+      "from_instance": "SQ_XXCTS_DM_FND_USER_MAP",
+      "to_field": "R12_USER_ID",
+      "to_instance": "XXCTS_DM_FND_USER_MAP1"
+    },
+    {
+      "from_field": "R11_USER_ID",
+      "from_instance": "XXCTS_DM_FND_USER_MAP",
+      "to_field": "R11_USER_ID",
+      "to_instance": "SQ_XXCTS_DM_FND_USER_MAP"
+    },
+    {
+      "from_field": "R12_USER_ID",
+      "from_instance": "XXCTS_DM_FND_USER_MAP",
+      "to_field": "R12_USER_ID",
+      "to_instance": "SQ_XXCTS_DM_FND_USER_MAP"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "R11_USER_ID",
+      "source_path": [
+        {
+          "from_field": "R11_USER_ID",
+          "from_instance": "SQ_XXCTS_DM_FND_USER_MAP"
+        },
+        {
+          "from_field": "R11_USER_ID",
+          "from_instance": "XXCTS_DM_FND_USER_MAP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "R12_USER_ID",
+      "source_path": [
+        {
+          "from_field": "R12_USER_ID",
+          "from_instance": "SQ_XXCTS_DM_FND_USER_MAP"
+        },
+        {
+          "from_field": "R12_USER_ID",
+          "from_instance": "XXCTS_DM_FND_USER_MAP"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:11.370739+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

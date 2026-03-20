@@ -1,0 +1,404 @@
+{
+  "workflow_name": "wf_m_N_SHIPPING_MILESTONE_LINK",
+  "mapping_name": "m_N_SHIPPING_MILESTONE_LINK",
+  "mapping_description": "",
+  "folder_name": "EDWTD_MFG_PRODUCTS",
+  "target_table": "N_SHIPPING_MILESTONE_LINK",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_mfg_products_wf_n_shipping_milestone_link_01_mart_n_shipping_milestone_link",
+  "source_tables": [
+    "W_SHIPPING_MILESTONE_LINK"
+  ],
+  "sources": [
+    {
+      "name": "W_SHIPPING_MILESTONE_LINK",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV1",
+      "fields": [
+        {
+          "name": "SMT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INTER_EVENT_DRTN_SECONDS_CNT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SSMT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_SHIPPING_MILESTONE_LINK",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SMT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "INTER_EVENT_DRTN_SECONDS_CNT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SSMT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_SHIPPING_MILESTONE_LINK",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SMT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INTER_EVENT_DRTN_SECONDS_CNT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SSMT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nwsml.SMT_KEY,\r\nwsml.INTER_EVENT_DRTN_SECONDS_CNT,\r\nwsml.SSMT_KEY,\r\nwsml.EDW_CREATE_DTM,\r\nwsml.EDW_CREATE_USER,\r\nwsml.EDW_UPDATE_DTM,\r\nwsml.EDW_UPDATE_USER\r\nFROM $$WORKDB.w_shipping_milestone_link wsml\r\nwhere wsml.DML_TYPE='I'\r\nand not exists \r\n(select 1 from $$INVFLMTVWDB.n_shipping_milestone_link\r\nwhere n_shipping_milestone_link.smt_key = wsml.smt_key)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SMT_KEY",
+      "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK",
+      "to_field": "SMT_KEY",
+      "to_instance": "N_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "INTER_EVENT_DRTN_SECONDS_CNT",
+      "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK",
+      "to_field": "INTER_EVENT_DRTN_SECONDS_CNT",
+      "to_instance": "N_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "SSMT_KEY",
+      "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK",
+      "to_field": "SSMT_KEY",
+      "to_instance": "N_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "SMT_KEY",
+      "from_instance": "W_SHIPPING_MILESTONE_LINK",
+      "to_field": "SMT_KEY",
+      "to_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "INTER_EVENT_DRTN_SECONDS_CNT",
+      "from_instance": "W_SHIPPING_MILESTONE_LINK",
+      "to_field": "INTER_EVENT_DRTN_SECONDS_CNT",
+      "to_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "SSMT_KEY",
+      "from_instance": "W_SHIPPING_MILESTONE_LINK",
+      "to_field": "SSMT_KEY",
+      "to_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "W_SHIPPING_MILESTONE_LINK",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_SHIPPING_MILESTONE_LINK",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "W_SHIPPING_MILESTONE_LINK",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_SHIPPING_MILESTONE_LINK",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SMT_KEY",
+      "source_path": [
+        {
+          "from_field": "SMT_KEY",
+          "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+        },
+        {
+          "from_field": "SMT_KEY",
+          "from_instance": "W_SHIPPING_MILESTONE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INTER_EVENT_DRTN_SECONDS_CNT",
+      "source_path": [
+        {
+          "from_field": "INTER_EVENT_DRTN_SECONDS_CNT",
+          "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+        },
+        {
+          "from_field": "INTER_EVENT_DRTN_SECONDS_CNT",
+          "from_instance": "W_SHIPPING_MILESTONE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SSMT_KEY",
+      "source_path": [
+        {
+          "from_field": "SSMT_KEY",
+          "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+        },
+        {
+          "from_field": "SSMT_KEY",
+          "from_instance": "W_SHIPPING_MILESTONE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "W_SHIPPING_MILESTONE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "W_SHIPPING_MILESTONE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "W_SHIPPING_MILESTONE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_W_SHIPPING_MILESTONE_LINK"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "W_SHIPPING_MILESTONE_LINK"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:16.567756+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

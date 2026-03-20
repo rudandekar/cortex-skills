@@ -1,0 +1,249 @@
+{
+  "workflow_name": "wf_m_ST_TBL_COUNTRY_GROUPING",
+  "mapping_name": "m_ST_TBL_COUNTRY_GROUPING",
+  "mapping_description": "",
+  "folder_name": "EDWTD_POS",
+  "target_table": "ST_TBL_COUNTRY_GROUPING",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_pos_wf_st_tbl_country_grouping_01_mart_st_tbl_country_grouping",
+  "source_tables": [
+    "FF_TBL_COUNTRY_GROUPING"
+  ],
+  "sources": [
+    {
+      "name": "FF_TBL_COUNTRY_GROUPING",
+      "database_type": "Flat File",
+      "owner": "DMPADM",
+      "fields": [
+        {
+          "name": "COUNTRY",
+          "datatype": "string",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COUNTRY_GROUPING_ECC",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COUNTRY_GROUPING",
+          "datatype": "string",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COUNTRY_SUB_GROUP",
+          "datatype": "string",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_TBL_COUNTRY_GROUPING",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "COUNTRY",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "COUNTRY_GROUPING_ECC",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COUNTRY_GROUPING",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COUNTRY_SUB_GROUP",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_TBL_COUNTRY_GROUPING",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "COUNTRY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COUNTRY_GROUPING_ECC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COUNTRY_GROUPING",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COUNTRY_SUB_GROUP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "COUNTRY",
+      "from_instance": "SQ_FF_TBL_COUNTRY_GROUPING",
+      "to_field": "COUNTRY",
+      "to_instance": "ST_TBL_COUNTRY_GROUPING"
+    },
+    {
+      "from_field": "COUNTRY_GROUPING_ECC",
+      "from_instance": "SQ_FF_TBL_COUNTRY_GROUPING",
+      "to_field": "COUNTRY_GROUPING_ECC",
+      "to_instance": "ST_TBL_COUNTRY_GROUPING"
+    },
+    {
+      "from_field": "COUNTRY_GROUPING",
+      "from_instance": "SQ_FF_TBL_COUNTRY_GROUPING",
+      "to_field": "COUNTRY_GROUPING",
+      "to_instance": "ST_TBL_COUNTRY_GROUPING"
+    },
+    {
+      "from_field": "COUNTRY_SUB_GROUP",
+      "from_instance": "SQ_FF_TBL_COUNTRY_GROUPING",
+      "to_field": "COUNTRY_SUB_GROUP",
+      "to_instance": "ST_TBL_COUNTRY_GROUPING"
+    },
+    {
+      "from_field": "COUNTRY",
+      "from_instance": "FF_TBL_COUNTRY_GROUPING",
+      "to_field": "COUNTRY",
+      "to_instance": "SQ_FF_TBL_COUNTRY_GROUPING"
+    },
+    {
+      "from_field": "COUNTRY_GROUPING_ECC",
+      "from_instance": "FF_TBL_COUNTRY_GROUPING",
+      "to_field": "COUNTRY_GROUPING_ECC",
+      "to_instance": "SQ_FF_TBL_COUNTRY_GROUPING"
+    },
+    {
+      "from_field": "COUNTRY_GROUPING",
+      "from_instance": "FF_TBL_COUNTRY_GROUPING",
+      "to_field": "COUNTRY_GROUPING",
+      "to_instance": "SQ_FF_TBL_COUNTRY_GROUPING"
+    },
+    {
+      "from_field": "COUNTRY_SUB_GROUP",
+      "from_instance": "FF_TBL_COUNTRY_GROUPING",
+      "to_field": "COUNTRY_SUB_GROUP",
+      "to_instance": "SQ_FF_TBL_COUNTRY_GROUPING"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "COUNTRY",
+      "source_path": [
+        {
+          "from_field": "COUNTRY",
+          "from_instance": "SQ_FF_TBL_COUNTRY_GROUPING"
+        },
+        {
+          "from_field": "COUNTRY",
+          "from_instance": "FF_TBL_COUNTRY_GROUPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COUNTRY_GROUPING_ECC",
+      "source_path": [
+        {
+          "from_field": "COUNTRY_GROUPING_ECC",
+          "from_instance": "SQ_FF_TBL_COUNTRY_GROUPING"
+        },
+        {
+          "from_field": "COUNTRY_GROUPING_ECC",
+          "from_instance": "FF_TBL_COUNTRY_GROUPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COUNTRY_GROUPING",
+      "source_path": [
+        {
+          "from_field": "COUNTRY_GROUPING",
+          "from_instance": "SQ_FF_TBL_COUNTRY_GROUPING"
+        },
+        {
+          "from_field": "COUNTRY_GROUPING",
+          "from_instance": "FF_TBL_COUNTRY_GROUPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COUNTRY_SUB_GROUP",
+      "source_path": [
+        {
+          "from_field": "COUNTRY_SUB_GROUP",
+          "from_instance": "SQ_FF_TBL_COUNTRY_GROUPING"
+        },
+        {
+          "from_field": "COUNTRY_SUB_GROUP",
+          "from_instance": "FF_TBL_COUNTRY_GROUPING"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:16.761530+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

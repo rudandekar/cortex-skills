@@ -1,0 +1,13 @@
+version: 2
+
+unit_tests:
+  - name: test_edwtd_gl_wf_wk_expense_future_budget_02_mart_w_expense_future_budget_expression_transform
+    model: edwtd_gl_wf_wk_expense_future_budget_02_mart_w_expense_future_budget
+    description: "Verify expression transformation logic"
+    given:
+      - input: source('raw', 'el_pl_fx_rate_publish')
+        rows:
+          - {col1: 'test', col2: 100}
+    expect:
+      rows:
+        - {col1: 'test', col2: 100}

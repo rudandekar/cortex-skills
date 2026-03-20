@@ -1,0 +1,283 @@
+{
+  "workflow_name": "wf_m_EL_CCM_TAC_SR_ACOD",
+  "mapping_name": "m_EL_CCM_TAC_SR_ACOD",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "EL_CCM_TAC_SR_ACOD",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_el_ccm_tac_sr_acod_01_mart_el_ccm_tac_sr_acod",
+  "source_tables": [
+    "ST_TAC_TWFM025_SR_ACOD1"
+  ],
+  "sources": [
+    {
+      "name": "ST_TAC_TWFM025_SR_ACOD1",
+      "database_type": "Teradata",
+      "owner": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SR_NUMBER",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WG_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "THEATER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DELIVERY_CHANNEL",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCRUED_ACOD",
+          "datatype": "decimal",
+          "precision": "22",
+          "scale": "10",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_CCM_TAC_SR_ACOD",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_YEAR_MONTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SR_NUMBER",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "WG_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCRUED_ACOD",
+        "datatype": "decimal",
+        "precision": "22",
+        "scale": "10",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_TAC_TWFM025_SR_ACOD1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SR_NUMBER",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WG_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DELIVERY_CHANNEL",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCRUED_ACOD",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "EL_CCM_TAC_SR_ACOD"
+    },
+    {
+      "from_field": "SR_NUMBER",
+      "from_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1",
+      "to_field": "SR_NUMBER",
+      "to_instance": "EL_CCM_TAC_SR_ACOD"
+    },
+    {
+      "from_field": "WG_NAME",
+      "from_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1",
+      "to_field": "WG_NAME",
+      "to_instance": "EL_CCM_TAC_SR_ACOD"
+    },
+    {
+      "from_field": "ACCRUED_ACOD",
+      "from_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1",
+      "to_field": "ACCRUED_ACOD",
+      "to_instance": "EL_CCM_TAC_SR_ACOD"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "ST_TAC_TWFM025_SR_ACOD1",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1"
+    },
+    {
+      "from_field": "SR_NUMBER",
+      "from_instance": "ST_TAC_TWFM025_SR_ACOD1",
+      "to_field": "SR_NUMBER",
+      "to_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1"
+    },
+    {
+      "from_field": "WG_NAME",
+      "from_instance": "ST_TAC_TWFM025_SR_ACOD1",
+      "to_field": "WG_NAME",
+      "to_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "ST_TAC_TWFM025_SR_ACOD1",
+      "to_field": "THEATER",
+      "to_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1"
+    },
+    {
+      "from_field": "DELIVERY_CHANNEL",
+      "from_instance": "ST_TAC_TWFM025_SR_ACOD1",
+      "to_field": "DELIVERY_CHANNEL",
+      "to_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1"
+    },
+    {
+      "from_field": "ACCRUED_ACOD",
+      "from_instance": "ST_TAC_TWFM025_SR_ACOD1",
+      "to_field": "ACCRUED_ACOD",
+      "to_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_YEAR_MONTH_INT",
+      "source_path": [
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SR_NUMBER",
+      "source_path": [
+        {
+          "from_field": "SR_NUMBER",
+          "from_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1"
+        },
+        {
+          "from_field": "SR_NUMBER",
+          "from_instance": "ST_TAC_TWFM025_SR_ACOD1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "WG_NAME",
+      "source_path": [
+        {
+          "from_field": "WG_NAME",
+          "from_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1"
+        },
+        {
+          "from_field": "WG_NAME",
+          "from_instance": "ST_TAC_TWFM025_SR_ACOD1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCRUED_ACOD",
+      "source_path": [
+        {
+          "from_field": "ACCRUED_ACOD",
+          "from_instance": "SQ_ST_TAC_TWFM025_SR_ACOD1"
+        },
+        {
+          "from_field": "ACCRUED_ACOD",
+          "from_instance": "ST_TAC_TWFM025_SR_ACOD1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:32:56.645167+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

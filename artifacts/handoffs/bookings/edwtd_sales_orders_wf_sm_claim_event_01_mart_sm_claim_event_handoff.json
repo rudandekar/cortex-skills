@@ -1,0 +1,249 @@
+{
+  "workflow_name": "wf_m_SM_CLAIM_EVENT",
+  "mapping_name": "m_SM_CLAIM_EVENT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "SM_CLAIM_EVENT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_sm_claim_event_01_mart_sm_claim_event",
+  "source_tables": [
+    "SM_CLAIM_EVENT"
+  ],
+  "sources": [
+    {
+      "name": "SM_CLAIM_EVENT",
+      "database_type": "Teradata",
+      "owner": "TRANSLATIONDB_DV4",
+      "fields": [
+        {
+          "name": "CLAIM_EVENT_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_CLAIM_EVENT_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "SM_CLAIM_EVENT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "CLAIM_EVENT_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_CLAIM_EVENT_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_SM_CLAIM_EVENT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "CLAIM_EVENT_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_CLAIM_EVENT_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n RANK() OVER (ORDER BY SRC.EVENT_ID) + MAX_VAL CLAIM_EVENT_KEY,\r\n SRC.EVENT_ID,\r\n CURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\n USER EDW_CREATE_USER\r\n FROM\r\n $$STGDB.ST_XXNCE_CLAIM_EVENT SRC,\r\n (SELECT COALESCE(MAX(CLAIM_EVENT_KEY),10000) MAX_VAL FROM $$ETLVWDB.SM_CLAIM_EVENT\r\n )KEY_SRC\r\n WHERE NOT EXISTS\r\n (\r\n SELECT 1 FROM\r\n $$ETLVWDB.SM_CLAIM_EVENT SM_EVENT\r\n WHERE\r\n SM_EVENT.SK_CLAIM_EVENT_ID = SRC.EVENT_ID)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "CLAIM_EVENT_KEY",
+      "from_instance": "SQ_SM_CLAIM_EVENT",
+      "to_field": "CLAIM_EVENT_KEY",
+      "to_instance": "SM_CLAIM_EVENT"
+    },
+    {
+      "from_field": "SK_CLAIM_EVENT_ID",
+      "from_instance": "SQ_SM_CLAIM_EVENT",
+      "to_field": "SK_CLAIM_EVENT_ID",
+      "to_instance": "SM_CLAIM_EVENT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_SM_CLAIM_EVENT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_CLAIM_EVENT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_SM_CLAIM_EVENT",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_CLAIM_EVENT"
+    },
+    {
+      "from_field": "CLAIM_EVENT_KEY",
+      "from_instance": "SM_CLAIM_EVENT",
+      "to_field": "CLAIM_EVENT_KEY",
+      "to_instance": "SQ_SM_CLAIM_EVENT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SM_CLAIM_EVENT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_SM_CLAIM_EVENT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SM_CLAIM_EVENT",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_SM_CLAIM_EVENT"
+    },
+    {
+      "from_field": "SK_CLAIM_EVENT_ID",
+      "from_instance": "SM_CLAIM_EVENT",
+      "to_field": "SK_CLAIM_EVENT_ID",
+      "to_instance": "SQ_SM_CLAIM_EVENT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "CLAIM_EVENT_KEY",
+      "source_path": [
+        {
+          "from_field": "CLAIM_EVENT_KEY",
+          "from_instance": "SQ_SM_CLAIM_EVENT"
+        },
+        {
+          "from_field": "CLAIM_EVENT_KEY",
+          "from_instance": "SM_CLAIM_EVENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_CLAIM_EVENT_ID",
+      "source_path": [
+        {
+          "from_field": "SK_CLAIM_EVENT_ID",
+          "from_instance": "SQ_SM_CLAIM_EVENT"
+        },
+        {
+          "from_field": "SK_CLAIM_EVENT_ID",
+          "from_instance": "SM_CLAIM_EVENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_SM_CLAIM_EVENT"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SM_CLAIM_EVENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_SM_CLAIM_EVENT"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SM_CLAIM_EVENT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:20.347794+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

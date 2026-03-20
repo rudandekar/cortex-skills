@@ -1,0 +1,815 @@
+{
+  "workflow_name": "wf_m_EL_AR_RSTD_POS_SC_CTRL_SFP",
+  "mapping_name": "m_EL_AR_RSTD_POS_SC_CTRL_SFP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "EL_AR_RSTD_POS_SC_CTRL_SFP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_el_ar_rstd_pos_sc_ctrl_sfp_03_mart_el_ar_rstd_pos_sc_ctrl_sfp",
+  "source_tables": [
+    "EL_POS_TRANSACTION_LINE_SFP",
+    "EL_AR_RSTD_POS_SC_CTRL_SFP",
+    "EL_POS_SCA_ADJ_CNG_DRCT_SFP"
+  ],
+  "sources": [
+    {
+      "name": "EL_POS_TRANSACTION_LINE_SFP",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_DV3",
+      "fields": [
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CISCO_INTERNAL_POS_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_DV3",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "START_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_WEEK_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_AGE",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SFP_INCR_FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MIN_GL_REVENUE_MEASURE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MIN_INV_REVENUE_MEASURE_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_DV3",
+      "fields": [
+        {
+          "name": "PD_BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PD_SALES_REP_NUM",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PD_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PD_SALES_COMMISSION_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_AR_RSTD_POS_SC_CTRL_SFP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_MONTH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FISCAL_WEEK_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_FISCAL_YEAR_AGE",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SFP_INCR_FISCAL_MONTH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MIN_GL_REVENUE_MEASURE_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MIN_INV_REVENUE_MEASURE_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_WEEK_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_AGE",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SFP_INCR_FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MIN_GL_REVENUE_MEASURE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MIN_INV_REVENUE_MEASURE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n FISCAL_MONTH_ID,\r\n START_DATE,\r\n END_DATE,\r\n FISCAL_WEEK_ID,\r\n DV_FISCAL_YEAR_AGE,\r\n SFP_INCR_FISCAL_MONTH_ID,\r\n MIN_GL_REVENUE_MEASURE_KEY,\r\n MIN_INV_REVENUE_MEASURE_KEY,\r\n EDW_UPDATE_DTM\r\nFROM $$ETLVWDB.EL_AR_RSTD_POS_SC_CTRL_SFP\r\nWHERE 1=2",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PD_BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PD_SALES_REP_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PD_SALES_TERRITORY_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PD_SALES_COMMISSION_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nPD_BK_POS_TRANSACTION_ID_INT,\r\nPD_SALES_REP_NUM,\r\nPD_SALES_TERRITORY_KEY,\r\n/*COALESCE(PD_SALES_REP_NUM,'UNK') AS PD_SALES_REP_NUM,*/\r\nPD_SALES_COMMISSION_PCT,\r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DATETIME,\r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DATETIME\r\nFROM $$STGDB.WI_POS_SC_FOR_INV_SFP POS_SC\r\nWHERE POS_SC.EDW_UPDATE_DTM > \r\n( SELECT Coalesce(Max(JOB_STREAM_START_TIME),Cast('2020-10-03 00:00:00' AS TIMESTAMP(0))) AS JOB_STREAM_START_TIME_POS \r\n  FROM $$ETLVWDB.DW_JOB_STREAM_RUNS\r\n  WHERE JOB_STREAM_ID = 'wf_EL_POS_SCA_ADJ_CNG_DRCT_SFP' AND JOB_STREAM_END_TIME IS NOT NULL \r\n)\r\nAND NOT EXISTS\r\n(\r\nSELECT 1 FROM $$ETLVWDB.EL_POS_SCA_ADJ_CNG_DRCT_SFP EL\r\nWHERE EL.PD_BK_POS_TRANSACTION_ID_INT = POS_SC.PD_BK_POS_TRANSACTION_ID_INT\r\nAND EL.PD_SALES_TERRITORY_KEY = POS_SC.PD_SALES_TERRITORY_KEY\r\nAND EL.PD_SALES_REP_NUM = POS_SC.PD_SALES_REP_NUM\r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ2_EL_POS_TRANSACTION_LINE_SFP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_POS_TRANSACTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CISCO_INTERNAL_POS_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nBK_POS_TRANSACTION_ID_INT,\r\nCISCO_INTERNAL_POS_FLG,\r\nSALES_ORDER_LINE_KEY,\r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DATETIME,\r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DATETIME\r\nFROM $$SLSORDVWDB.N_POS_TRANSACTION_LINE NPOS\r\nWHERE CISCO_INTERNAL_POS_FLG ='Y'\r\nAND SALES_ORDER_LINE_KEY NOT IN ( -6666 , -7777 )\r\nAND NPOS.EDW_UPDATE_DATETIME >\r\n(SELECT Coalesce(Max(JOB_STREAM_START_TIME),Cast('2020-10-03 00:00:00' AS TIMESTAMP(0))) AS JOB_STREAM_START_TIME_POS\r\nFROM $$ETLVWDB.DW_JOB_STREAM_RUNS\r\nWHERE JOB_STREAM_ID = 'wf_EL_AR_RSTD_POS_SC_CTRL_SFP' AND JOB_STREAM_END_TIME IS NOT NULL\r\n)\r\nAND NOT EXISTS\r\n(\r\nSELECT 1 FROM $$ETLVWDB.EL_POS_TRANSACTION_LINE_SFP EL\r\nWHERE EL.BK_POS_TRANSACTION_ID_INT = NPOS.BK_POS_TRANSACTION_ID_INT\r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP_1"
+    },
+    {
+      "from_field": "START_DATE",
+      "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "START_DATE",
+      "to_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP_1"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "END_DATE",
+      "to_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP_1"
+    },
+    {
+      "from_field": "FISCAL_WEEK_ID",
+      "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "FISCAL_WEEK_ID",
+      "to_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP_1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_AGE",
+      "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "DV_FISCAL_YEAR_AGE",
+      "to_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP_1"
+    },
+    {
+      "from_field": "SFP_INCR_FISCAL_MONTH_ID",
+      "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "SFP_INCR_FISCAL_MONTH_ID",
+      "to_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP_1"
+    },
+    {
+      "from_field": "MIN_GL_REVENUE_MEASURE_KEY",
+      "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "MIN_GL_REVENUE_MEASURE_KEY",
+      "to_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP_1"
+    },
+    {
+      "from_field": "MIN_INV_REVENUE_MEASURE_KEY",
+      "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "MIN_INV_REVENUE_MEASURE_KEY",
+      "to_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP_1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP_1"
+    },
+    {
+      "from_field": "PD_BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "to_field": "PD_BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "EL_POS_SCA_ADJ_CNG_DRCT_SFP_3"
+    },
+    {
+      "from_field": "PD_SALES_REP_NUM",
+      "from_instance": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "to_field": "PD_SALES_REP_NUM",
+      "to_instance": "EL_POS_SCA_ADJ_CNG_DRCT_SFP_3"
+    },
+    {
+      "from_field": "PD_SALES_TERRITORY_KEY",
+      "from_instance": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "to_field": "PD_SALES_TERRITORY_KEY",
+      "to_instance": "EL_POS_SCA_ADJ_CNG_DRCT_SFP_3"
+    },
+    {
+      "from_field": "PD_SALES_COMMISSION_PCT",
+      "from_instance": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "to_field": "PD_SALES_COMMISSION_PCT",
+      "to_instance": "EL_POS_SCA_ADJ_CNG_DRCT_SFP_3"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "EL_POS_SCA_ADJ_CNG_DRCT_SFP_3"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "EL_POS_SCA_ADJ_CNG_DRCT_SFP_3"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "SQ2_EL_POS_TRANSACTION_LINE_SFP",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "EL_POS_TRANSACTION_LINE_SFP_2"
+    },
+    {
+      "from_field": "CISCO_INTERNAL_POS_FLG",
+      "from_instance": "SQ2_EL_POS_TRANSACTION_LINE_SFP",
+      "to_field": "CISCO_INTERNAL_POS_FLG",
+      "to_instance": "EL_POS_TRANSACTION_LINE_SFP_2"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ2_EL_POS_TRANSACTION_LINE_SFP",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "EL_POS_TRANSACTION_LINE_SFP_2"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ2_EL_POS_TRANSACTION_LINE_SFP",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "EL_POS_TRANSACTION_LINE_SFP_2"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ2_EL_POS_TRANSACTION_LINE_SFP",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "EL_POS_TRANSACTION_LINE_SFP_2"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+    },
+    {
+      "from_field": "START_DATE",
+      "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "START_DATE",
+      "to_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "END_DATE",
+      "to_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+    },
+    {
+      "from_field": "FISCAL_WEEK_ID",
+      "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "FISCAL_WEEK_ID",
+      "to_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_AGE",
+      "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "DV_FISCAL_YEAR_AGE",
+      "to_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+    },
+    {
+      "from_field": "SFP_INCR_FISCAL_MONTH_ID",
+      "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "SFP_INCR_FISCAL_MONTH_ID",
+      "to_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+    },
+    {
+      "from_field": "MIN_GL_REVENUE_MEASURE_KEY",
+      "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "MIN_GL_REVENUE_MEASURE_KEY",
+      "to_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+    },
+    {
+      "from_field": "MIN_INV_REVENUE_MEASURE_KEY",
+      "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "MIN_INV_REVENUE_MEASURE_KEY",
+      "to_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+    },
+    {
+      "from_field": "PD_BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "to_field": "PD_BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP"
+    },
+    {
+      "from_field": "PD_SALES_REP_NUM",
+      "from_instance": "EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "to_field": "PD_SALES_REP_NUM",
+      "to_instance": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP"
+    },
+    {
+      "from_field": "PD_SALES_TERRITORY_KEY",
+      "from_instance": "EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "to_field": "PD_SALES_TERRITORY_KEY",
+      "to_instance": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP"
+    },
+    {
+      "from_field": "PD_SALES_COMMISSION_PCT",
+      "from_instance": "EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "to_field": "PD_SALES_COMMISSION_PCT",
+      "to_instance": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "EL_POS_SCA_ADJ_CNG_DRCT_SFP",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ3_EL_POS_SCA_ADJ_CNG_DRCT_SFP"
+    },
+    {
+      "from_field": "BK_POS_TRANSACTION_ID_INT",
+      "from_instance": "EL_POS_TRANSACTION_LINE_SFP",
+      "to_field": "BK_POS_TRANSACTION_ID_INT",
+      "to_instance": "SQ2_EL_POS_TRANSACTION_LINE_SFP"
+    },
+    {
+      "from_field": "CISCO_INTERNAL_POS_FLG",
+      "from_instance": "EL_POS_TRANSACTION_LINE_SFP",
+      "to_field": "CISCO_INTERNAL_POS_FLG",
+      "to_instance": "SQ2_EL_POS_TRANSACTION_LINE_SFP"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "EL_POS_TRANSACTION_LINE_SFP",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ2_EL_POS_TRANSACTION_LINE_SFP"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "EL_POS_TRANSACTION_LINE_SFP",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ2_EL_POS_TRANSACTION_LINE_SFP"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "EL_POS_TRANSACTION_LINE_SFP",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ2_EL_POS_TRANSACTION_LINE_SFP"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_MONTH_ID",
+      "source_path": [
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_DATE",
+      "source_path": [
+        {
+          "from_field": "START_DATE",
+          "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+        },
+        {
+          "from_field": "START_DATE",
+          "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_DATE",
+      "source_path": [
+        {
+          "from_field": "END_DATE",
+          "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+        },
+        {
+          "from_field": "END_DATE",
+          "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FISCAL_WEEK_ID",
+      "source_path": [
+        {
+          "from_field": "FISCAL_WEEK_ID",
+          "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+        },
+        {
+          "from_field": "FISCAL_WEEK_ID",
+          "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_FISCAL_YEAR_AGE",
+      "source_path": [
+        {
+          "from_field": "DV_FISCAL_YEAR_AGE",
+          "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+        },
+        {
+          "from_field": "DV_FISCAL_YEAR_AGE",
+          "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SFP_INCR_FISCAL_MONTH_ID",
+      "source_path": [
+        {
+          "from_field": "SFP_INCR_FISCAL_MONTH_ID",
+          "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+        },
+        {
+          "from_field": "SFP_INCR_FISCAL_MONTH_ID",
+          "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MIN_GL_REVENUE_MEASURE_KEY",
+      "source_path": [
+        {
+          "from_field": "MIN_GL_REVENUE_MEASURE_KEY",
+          "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+        },
+        {
+          "from_field": "MIN_GL_REVENUE_MEASURE_KEY",
+          "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MIN_INV_REVENUE_MEASURE_KEY",
+      "source_path": [
+        {
+          "from_field": "MIN_INV_REVENUE_MEASURE_KEY",
+          "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+        },
+        {
+          "from_field": "MIN_INV_REVENUE_MEASURE_KEY",
+          "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ1_EL_AR_RSTD_POS_SC_CTRL_SFP"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EL_AR_RSTD_POS_SC_CTRL_SFP"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:21.660403+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

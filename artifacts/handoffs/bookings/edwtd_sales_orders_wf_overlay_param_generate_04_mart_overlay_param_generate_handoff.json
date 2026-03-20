@@ -1,0 +1,142 @@
+{
+  "workflow_name": "wf_m_OVERLAY_PARAM_GENERATE",
+  "mapping_name": "m_OVERLAY_PARAM_GENERATE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "OVERLAY_PARAM_GENERATE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_overlay_param_generate_04_mart_overlay_param_generate",
+  "source_tables": [
+    "WI_OVERLAY_PROCESS_CONTROL"
+  ],
+  "sources": [
+    {
+      "name": "WI_OVERLAY_PROCESS_CONTROL",
+      "database_type": "Teradata",
+      "owner": "STGDB_TS1",
+      "fields": [
+        {
+          "name": "ACTIVE_IND",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROCESS_TYPE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROCESS_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "OVERLAY_PARAM_GENERATE",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PARAMETER_VALUE",
+        "datatype": "string",
+        "precision": "1000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_OVERLAY_PROCESS_CONTROL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACTIVE_IND",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROCESS_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROCESS_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT DISTINCT CAST('$$PROCESS_TYPE='||''''||PROCESS_TYPE||'''' AS VARCHAR(1000) )\r\nFROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='DRR' \r\nUNION\r\nSELECT DISTINCT CAST('$$PROCESS_TYPE='||''''||PROCESS_TYPE||'''' AS VARCHAR(1000) )\r\nFROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='FDRR' \r\nUNION\r\nSELECT DISTINCT CAST('$$MT_SLS_ACNT_RSTD_MSR_DRR_NG='||'MT_SLS_ACNT_RSTD_MSR_DRR_NG'AS VARCHAR(1000))FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='DRR'\r\nUNION\r\nSELECT DISTINCT CAST('$$MT_SLS_ACNT_RSTD_MSR_DRR_NG='||'MT_SLS_ACNT_RSTD_MSR_FDRR_NG'AS VARCHAR(1000))FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='FDRR'\r\nUNION\r\nSELECT DISTINCT CAST('$$WI_OVERLAY_DRR='||'WI_OVERLAY_DRR'AS VARCHAR(1000))FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='DRR'\r\nUNION\r\nSELECT DISTINCT CAST('$$WI_OVERLAY_DRR='||'WI_OVERLAY_FDRR'AS VARCHAR(1000))FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='FDRR'\r\nUNION\r\nSELECT DISTINCT CAST('$$MT_OVERLAY_DRR_NG='||'MT_OVERLAY_DRR_NG'AS VARCHAR(1000))FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='DRR'\r\nUNION\r\nSELECT DISTINCT CAST('$$MT_OVERLAY_DRR_NG='||'MT_OVERLAY_FDRR_NG'AS VARCHAR(1000)) FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='FDRR'\r\nUNION\r\nSELECT DISTINCT CAST('$$WI_OVERLAY_DRR_DEL='||'WI_OVERLAY_DRR_DEL'AS VARCHAR(1000))FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='DRR'\r\nUNION\r\nSELECT DISTINCT CAST('$$WI_OVERLAY_DRR_DEL='||'WI_OVERLAY_FDRR_DEL'AS VARCHAR(1000)) FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='FDRR'\r\nUNION\r\nSELECT DISTINCT CAST('$$MT_OVERLAY_DRR_NG_DEL='||'MT_OVERLAY_DRR_NG_DEL'AS VARCHAR(1000))FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='DRR'\r\nUNION\r\nSELECT DISTINCT CAST('$$MT_OVERLAY_DRR_NG_DEL='||'MT_OVERLAY_FDRR_NG_DEL'AS VARCHAR(1000)) FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='FDRR'\r\nUNION\r\nSELECT DISTINCT CAST('$$WI_OVERLAY_DRR_TMP='||'WI_OVERLAY_DRR_TMP'AS VARCHAR(1000))FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='DRR'\r\nUNION\r\nSELECT DISTINCT CAST('$$WI_OVERLAY_DRR_TMP='||'WI_OVERLAY_FDRR_TMP'AS VARCHAR(1000)) FROM $$ETLVWDB.WI_OVERLAY_PROCESS_CONTROL \r\nWHERE  ACTIVE_IND='Y'  AND PROCESS_TYPE='FDRR'\r\nUNION\r\nSELECT DISTINCT CAST('$$condition_1='||''||condition||'' AS VARCHAR(1000) ) \r\nFROM $$ETLVWDB.WI_OVERLAY_CONFIG WHERE condition_id=1\r\nUNION\r\nSELECT DISTINCT CAST('$$condition_2='||''||condition||'' AS VARCHAR(1000) ) \r\nFROM $$ETLVWDB.WI_OVERLAY_CONFIG WHERE condition_id=2\r\nUNION\r\nSELECT DISTINCT CAST('$$condition_3='||''||condition||'' AS VARCHAR(1000) ) \r\nFROM $$ETLVWDB.WI_OVERLAY_CONFIG WHERE condition_id=3\r\nUNION\r\nSELECT DISTINCT CAST('$$condition_4='||''||condition||'' AS VARCHAR(1000) ) \r\nFROM $$ETLVWDB.WI_OVERLAY_CONFIG WHERE condition_id=4\r\nUNION\r\nSELECT DISTINCT CAST('$$condition_5='||''||condition||'' AS VARCHAR(1000) ) \r\nFROM $$ETLVWDB.WI_OVERLAY_CONFIG WHERE condition_id=5\r\nUNION\r\nSELECT DISTINCT CAST('$$condition_6='||''||condition||'' AS VARCHAR(1000) ) \r\nFROM $$ETLVWDB.WI_OVERLAY_CONFIG WHERE condition_id=6\r\nUNION\r\nSELECT DISTINCT CAST('$$condition_7='||''||condition||'' AS VARCHAR(1000) ) \r\nFROM $$ETLVWDB.WI_OVERLAY_CONFIG WHERE condition_id=7\r\nUNION\r\nSELECT DISTINCT CAST('$$condition_8='||''||condition||'' AS VARCHAR(1000) ) \r\nFROM $$ETLVWDB.WI_OVERLAY_CONFIG WHERE condition_id=8",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "PROCESS_TYPE",
+      "from_instance": "SQ_OVERLAY_PROCESS_CONTROL",
+      "to_field": "PARAMETER_VALUE",
+      "to_instance": "OVERLAY_PARAM_GENERATE"
+    },
+    {
+      "from_field": "ACTIVE_IND",
+      "from_instance": "WI_OVERLAY_PROCESS_CONTROL",
+      "to_field": "ACTIVE_IND",
+      "to_instance": "SQ_OVERLAY_PROCESS_CONTROL"
+    },
+    {
+      "from_field": "PROCESS_TYPE",
+      "from_instance": "WI_OVERLAY_PROCESS_CONTROL",
+      "to_field": "PROCESS_TYPE",
+      "to_instance": "SQ_OVERLAY_PROCESS_CONTROL"
+    },
+    {
+      "from_field": "PROCESS_DATE",
+      "from_instance": "WI_OVERLAY_PROCESS_CONTROL",
+      "to_field": "PROCESS_DATE",
+      "to_instance": "SQ_OVERLAY_PROCESS_CONTROL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PARAMETER_VALUE",
+      "source_path": [
+        {
+          "from_field": "PROCESS_TYPE",
+          "from_instance": "SQ_OVERLAY_PROCESS_CONTROL"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:20.330334+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,494 @@
+{
+  "workflow_name": "wf_m_ST_CHANNELS_ALIGNMENT",
+  "mapping_name": "m_ST_CHANNELS_ALIGNMENT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_RDC",
+  "target_table": "ST_CHANNELS_ALIGNMENT_N",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rdc_wf_st_channels_alignment_01_mart_st_channels_alignment_n",
+  "source_tables": [
+    "FF_CHANNELS_ALIGNMENT_FTP"
+  ],
+  "sources": [
+    {
+      "name": "FF_CHANNELS_ALIGNMENT_FTP",
+      "database_type": "Flat File",
+      "owner": "",
+      "fields": [
+        {
+          "name": "SUB_PROMO_NAME",
+          "datatype": "string",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CHANNEL_ALIGNMENT",
+          "datatype": "string",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "STATUS",
+          "datatype": "string",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROMOTION_NAME",
+          "datatype": "string",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROMOTION_TYPE",
+          "datatype": "string",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_CHANNELS_ALIGNMENT_N",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SUB_PROMO_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CHANNEL_ALIGNMENT",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "STATUS",
+        "datatype": "varchar",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROMOTION_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROMOTION_TYPE",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_CHANNELS_ALIGNMENT_FTP",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PROMOTION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CHANNEL_ALIGNMENT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STATUS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROMOTION_NAME_MAPPED",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROMOTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_CHANNEL_ALIGNMENT",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "CHANNEL_ALIGNMENT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CHANNEL_ALIGNMENT"
+        },
+        {
+          "name": "PROMOTION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PROMOTION_NAME"
+        },
+        {
+          "name": "STATUS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "STATUS"
+        },
+        {
+          "name": "SUB_PROMO_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SUB_PROMO_NAME"
+        },
+        {
+          "name": "PROMOTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PROMOTION_TYPE"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "$$BatchId"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "CHANNEL_ALIGNMENT",
+      "from_instance": "Exp_CHANNEL_ALIGNMENT",
+      "to_field": "CHANNEL_ALIGNMENT",
+      "to_instance": "ST_CHANNELS_ALIGNMENT"
+    },
+    {
+      "from_field": "SUB_PROMO_NAME",
+      "from_instance": "Exp_CHANNEL_ALIGNMENT",
+      "to_field": "SUB_PROMO_NAME",
+      "to_instance": "ST_CHANNELS_ALIGNMENT"
+    },
+    {
+      "from_field": "STATUS",
+      "from_instance": "Exp_CHANNEL_ALIGNMENT",
+      "to_field": "STATUS",
+      "to_instance": "ST_CHANNELS_ALIGNMENT"
+    },
+    {
+      "from_field": "PROMOTION_NAME",
+      "from_instance": "Exp_CHANNEL_ALIGNMENT",
+      "to_field": "PROMOTION_NAME",
+      "to_instance": "ST_CHANNELS_ALIGNMENT"
+    },
+    {
+      "from_field": "PROMOTION_TYPE",
+      "from_instance": "Exp_CHANNEL_ALIGNMENT",
+      "to_field": "PROMOTION_TYPE",
+      "to_instance": "ST_CHANNELS_ALIGNMENT"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "Exp_CHANNEL_ALIGNMENT",
+      "to_field": "BATCH_ID",
+      "to_instance": "ST_CHANNELS_ALIGNMENT"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_CHANNEL_ALIGNMENT",
+      "to_field": "ACTION_CODE",
+      "to_instance": "ST_CHANNELS_ALIGNMENT"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Exp_CHANNEL_ALIGNMENT",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "ST_CHANNELS_ALIGNMENT"
+    },
+    {
+      "from_field": "CHANNEL_ALIGNMENT",
+      "from_instance": "FF_CHANNELS_ALIGNMENT_FTP",
+      "to_field": "CHANNEL_ALIGNMENT",
+      "to_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP"
+    },
+    {
+      "from_field": "PROMOTION_NAME",
+      "from_instance": "FF_CHANNELS_ALIGNMENT_FTP",
+      "to_field": "PROMOTION_NAME",
+      "to_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP"
+    },
+    {
+      "from_field": "STATUS",
+      "from_instance": "FF_CHANNELS_ALIGNMENT_FTP",
+      "to_field": "STATUS",
+      "to_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP"
+    },
+    {
+      "from_field": "SUB_PROMO_NAME",
+      "from_instance": "FF_CHANNELS_ALIGNMENT_FTP",
+      "to_field": "PROMOTION_NAME_MAPPED",
+      "to_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP"
+    },
+    {
+      "from_field": "PROMOTION_TYPE",
+      "from_instance": "FF_CHANNELS_ALIGNMENT_FTP",
+      "to_field": "PROMOTION_TYPE",
+      "to_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP"
+    },
+    {
+      "from_field": "CHANNEL_ALIGNMENT",
+      "from_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP",
+      "to_field": "CHANNEL_ALIGNMENT",
+      "to_instance": "Exp_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "PROMOTION_NAME",
+      "from_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP",
+      "to_field": "PROMOTION_NAME",
+      "to_instance": "Exp_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "STATUS",
+      "from_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP",
+      "to_field": "STATUS",
+      "to_instance": "Exp_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "PROMOTION_NAME_MAPPED",
+      "from_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP",
+      "to_field": "SUB_PROMO_NAME",
+      "to_instance": "Exp_CHANNEL_ALIGNMENT"
+    },
+    {
+      "from_field": "PROMOTION_TYPE",
+      "from_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP",
+      "to_field": "PROMOTION_TYPE",
+      "to_instance": "Exp_CHANNEL_ALIGNMENT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SUB_PROMO_NAME",
+      "source_path": [
+        {
+          "from_field": "SUB_PROMO_NAME",
+          "from_instance": "Exp_CHANNEL_ALIGNMENT"
+        },
+        {
+          "from_field": "PROMOTION_NAME_MAPPED",
+          "from_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CHANNEL_ALIGNMENT",
+      "source_path": [
+        {
+          "from_field": "CHANNEL_ALIGNMENT",
+          "from_instance": "Exp_CHANNEL_ALIGNMENT"
+        },
+        {
+          "from_field": "CHANNEL_ALIGNMENT",
+          "from_instance": "FF_CHANNELS_ALIGNMENT_FTP"
+        },
+        {
+          "from_field": "CHANNEL_ALIGNMENT",
+          "from_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "STATUS",
+      "source_path": [
+        {
+          "from_field": "STATUS",
+          "from_instance": "Exp_CHANNEL_ALIGNMENT"
+        },
+        {
+          "from_field": "STATUS",
+          "from_instance": "FF_CHANNELS_ALIGNMENT_FTP"
+        },
+        {
+          "from_field": "STATUS",
+          "from_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROMOTION_NAME",
+      "source_path": [
+        {
+          "from_field": "PROMOTION_NAME",
+          "from_instance": "Exp_CHANNEL_ALIGNMENT"
+        },
+        {
+          "from_field": "PROMOTION_NAME",
+          "from_instance": "FF_CHANNELS_ALIGNMENT_FTP"
+        },
+        {
+          "from_field": "PROMOTION_NAME",
+          "from_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROMOTION_TYPE",
+      "source_path": [
+        {
+          "from_field": "PROMOTION_TYPE",
+          "from_instance": "Exp_CHANNEL_ALIGNMENT"
+        },
+        {
+          "from_field": "PROMOTION_TYPE",
+          "from_instance": "FF_CHANNELS_ALIGNMENT_FTP"
+        },
+        {
+          "from_field": "PROMOTION_TYPE",
+          "from_instance": "SQ_FF_CHANNELS_ALIGNMENT_FTP"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "Exp_CHANNEL_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_CHANNEL_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "Exp_CHANNEL_ALIGNMENT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:17.880766+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

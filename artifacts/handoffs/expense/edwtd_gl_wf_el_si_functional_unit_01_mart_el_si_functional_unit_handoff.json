@@ -1,0 +1,277 @@
+{
+  "workflow_name": "wf_m_EL_SI_FUNCTIONAL_UNIT",
+  "mapping_name": "m_EL_SI_FUNCTIONAL_UNIT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "EL_SI_FUNCTIONAL_UNIT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_el_si_functional_unit_01_mart_el_si_functional_unit",
+  "source_tables": [
+    "ST_SI_FUNCTIONAL_UNIT"
+  ],
+  "sources": [
+    {
+      "name": "ST_SI_FUNCTIONAL_UNIT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DEV",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FUNCTIONAL_UNIT_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FUNCTIONAL_UNIT_VALUE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FUNCTIONAL_UNIT_DESC",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_SI_FUNCTIONAL_UNIT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FUNCTIONAL_UNIT_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FUNCTIONAL_UNIT_VALUE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FUNCTIONAL_UNIT_DESC",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ENABLED_FLAG",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_SI_FUNCTIONAL_UNIT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FUNCTIONAL_UNIT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FUNCTIONAL_UNIT_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FUNCTIONAL_UNIT_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSIFU.FUNCTIONAL_UNIT_ID,\r\nSIFU.FUNCTIONAL_UNIT_VALUE,\r\nSIFU.FUNCTIONAL_UNIT_DESC,\r\nSIFU.ENABLED_FLAG\r\nFROM $$STGDB.ST_SI_FUNCTIONAL_UNIT SIFU\r\nWHERE (SIFU.FUNCTIONAL_UNIT_ID )\r\nNOT IN\r\n(SELECT ELSIFU. FUNCTIONAL_UNIT_ID\r\nFROM $$ETLVWDB.EL_SI_FUNCTIONAL_UNIT ELSIFU)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "FUNCTIONAL_UNIT_ID",
+      "from_instance": "SQ_ST_SI_FUNCTIONAL_UNIT",
+      "to_field": "FUNCTIONAL_UNIT_ID",
+      "to_instance": "EL_SI_FUNCTIONAL_UNIT"
+    },
+    {
+      "from_field": "FUNCTIONAL_UNIT_VALUE",
+      "from_instance": "SQ_ST_SI_FUNCTIONAL_UNIT",
+      "to_field": "FUNCTIONAL_UNIT_VALUE",
+      "to_instance": "EL_SI_FUNCTIONAL_UNIT"
+    },
+    {
+      "from_field": "FUNCTIONAL_UNIT_DESC",
+      "from_instance": "SQ_ST_SI_FUNCTIONAL_UNIT",
+      "to_field": "FUNCTIONAL_UNIT_DESC",
+      "to_instance": "EL_SI_FUNCTIONAL_UNIT"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "SQ_ST_SI_FUNCTIONAL_UNIT",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "EL_SI_FUNCTIONAL_UNIT"
+    },
+    {
+      "from_field": "FUNCTIONAL_UNIT_ID",
+      "from_instance": "ST_SI_FUNCTIONAL_UNIT",
+      "to_field": "FUNCTIONAL_UNIT_ID",
+      "to_instance": "SQ_ST_SI_FUNCTIONAL_UNIT"
+    },
+    {
+      "from_field": "FUNCTIONAL_UNIT_VALUE",
+      "from_instance": "ST_SI_FUNCTIONAL_UNIT",
+      "to_field": "FUNCTIONAL_UNIT_VALUE",
+      "to_instance": "SQ_ST_SI_FUNCTIONAL_UNIT"
+    },
+    {
+      "from_field": "FUNCTIONAL_UNIT_DESC",
+      "from_instance": "ST_SI_FUNCTIONAL_UNIT",
+      "to_field": "FUNCTIONAL_UNIT_DESC",
+      "to_instance": "SQ_ST_SI_FUNCTIONAL_UNIT"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "ST_SI_FUNCTIONAL_UNIT",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "SQ_ST_SI_FUNCTIONAL_UNIT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FUNCTIONAL_UNIT_ID",
+      "source_path": [
+        {
+          "from_field": "FUNCTIONAL_UNIT_ID",
+          "from_instance": "SQ_ST_SI_FUNCTIONAL_UNIT"
+        },
+        {
+          "from_field": "FUNCTIONAL_UNIT_ID",
+          "from_instance": "ST_SI_FUNCTIONAL_UNIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FUNCTIONAL_UNIT_VALUE",
+      "source_path": [
+        {
+          "from_field": "FUNCTIONAL_UNIT_VALUE",
+          "from_instance": "SQ_ST_SI_FUNCTIONAL_UNIT"
+        },
+        {
+          "from_field": "FUNCTIONAL_UNIT_VALUE",
+          "from_instance": "ST_SI_FUNCTIONAL_UNIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FUNCTIONAL_UNIT_DESC",
+      "source_path": [
+        {
+          "from_field": "FUNCTIONAL_UNIT_DESC",
+          "from_instance": "SQ_ST_SI_FUNCTIONAL_UNIT"
+        },
+        {
+          "from_field": "FUNCTIONAL_UNIT_DESC",
+          "from_instance": "ST_SI_FUNCTIONAL_UNIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ENABLED_FLAG",
+      "source_path": [
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "SQ_ST_SI_FUNCTIONAL_UNIT"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "ST_SI_FUNCTIONAL_UNIT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:05.695848+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

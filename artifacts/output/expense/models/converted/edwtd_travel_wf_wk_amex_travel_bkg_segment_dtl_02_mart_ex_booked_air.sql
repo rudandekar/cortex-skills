@@ -1,0 +1,106 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wk_amex_travel_bkg_segment_dtl', 'batch', 'edwtd_travel'],
+    meta={
+        'source_workflow': 'wf_m_WK_AMEX_TRAVEL_BKG_SEGMENT_DTL',
+        'target_table': 'EX_BOOKED_AIR',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:05:28.664379+00:00'
+    }
+) }}
+
+WITH 
+
+source_st_booked_air AS (
+    SELECT
+        batch_id,
+        xpk_row1,
+        fk_travel1,
+        flt_carrier,
+        original_currency,
+        flt_waitlist_cxr,
+        flt_seat_type,
+        flt_miles,
+        pnr_locator1,
+        flt_waitlist_cls,
+        pax_sequence1,
+        flt_seat,
+        flight_connect_code,
+        flt_arrive,
+        flt_class,
+        to_country,
+        flt_meal,
+        flt_sequence,
+        flt_ff,
+        flt_equipment,
+        flt_origin,
+        flt_dom_intl,
+        flt_number,
+        flt_status,
+        flt_original_amount,
+        flt_farebasis_type,
+        flt_farebasis,
+        flt_elapsed_time,
+        flt_class_type,
+        converted_amount,
+        from_country,
+        converted_currency,
+        flt_type,
+        gds_code1,
+        flt_connect_time,
+        flt_depart,
+        flt_destination,
+        customer_id1,
+        create_datetime,
+        action_code
+    FROM {{ source('raw', 'st_booked_air') }}
+),
+
+final AS (
+    SELECT
+        batch_id,
+        xpk_row1,
+        fk_travel1,
+        flt_carrier,
+        original_currency,
+        flt_waitlist_cxr,
+        flt_seat_type,
+        flt_miles,
+        pnr_locator1,
+        flt_waitlist_cls,
+        pax_sequence1,
+        flt_seat,
+        flight_connect_code,
+        flt_arrive,
+        flt_class,
+        to_country,
+        flt_meal,
+        flt_sequence,
+        flt_ff,
+        flt_equipment,
+        flt_origin,
+        flt_dom_intl,
+        flt_number,
+        flt_status,
+        flt_original_amount,
+        flt_farebasis_type,
+        flt_farebasis,
+        flt_elapsed_time,
+        flt_class_type,
+        converted_amount,
+        from_country,
+        converted_currency,
+        flt_type,
+        gds_code1,
+        flt_connect_time,
+        flt_depart,
+        flt_destination,
+        customer_id1,
+        create_datetime,
+        action_code,
+        exception_type
+    FROM source_st_booked_air
+)
+
+SELECT * FROM final

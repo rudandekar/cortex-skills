@@ -1,0 +1,390 @@
+{
+  "workflow_name": "wf_m_WI_POS_SVC_LINES_WITH_IP_I",
+  "mapping_name": "m_WI_POS_SVC_LINES_WITH_IP_I",
+  "mapping_description": "",
+  "folder_name": "EDWTD_BKG_AGGRS",
+  "target_table": "WI_POS_SVC_LINES_WITH_IP_I",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_bkg_aggrs_wf_wi_pos_svc_lines_with_ip_i_01_mart_wi_pos_svc_lines_with_ip_i",
+  "source_tables": [
+    "WI_POS_SVC_LINES_WITH_IP_I"
+  ],
+  "sources": [
+    {
+      "name": "WI_POS_SVC_LINES_WITH_IP_I",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV2",
+      "fields": [
+        {
+          "name": "BK_SERVICE_CONTRACT_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_SVC_CNTRCT_LINE_START_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SVC_CNTRCT_LINE_END_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TERMINATED_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TERMINATED_REASON_SHORT_DESCR",
+          "datatype": "char",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERVICE_STATUS_CD",
+          "datatype": "char",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "IP_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_POS_SVC_LINES_WITH_IP_I",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_SERVICE_CONTRACT_NUM",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_SVC_CNTRCT_LINE_START_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SVC_CNTRCT_LINE_END_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TERMINATED_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TERMINATED_REASON_SHORT_DESCR",
+        "datatype": "char",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SERVICE_STATUS_CD",
+        "datatype": "char",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "IP_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_POS_SVC_LINES_WITH_IP_I",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_SERVICE_CONTRACT_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SVC_CNTRCT_LINE_START_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SVC_CNTRCT_LINE_END_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TERMINATED_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TERMINATED_REASON_SHORT_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_STATUS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IP_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT NSCLTS.BK_SERVICE_CONTRACT_NUM,NSCLTS.BK_SVC_CNTRCT_LINE_START_DTM    \r\n,NSCLTS.SVC_CNTRCT_LINE_END_DTM       \r\n,NSCLTS.TERMINATED_DTM                \r\n,NSCLTS.TERMINATED_REASON_SHORT_DESCR \r\n,NSCLTS.SERVICE_STATUS_CD\r\n,NSCLTS.IP_KEY\r\n  FROM $$SERVICEVWDB.N_SVC_CNTRCT_LN_TECH_SERVICES NSCLTS\r\nWHERE IP_KEY>0 \r\nAND IP_KEY IN ( SEL IP_KEY FROM $$STGDB.WI_POS_BY_SVC_IP_BY_MTH_GBY_I)\r\nGROUP BY  NSCLTS.BK_SERVICE_CONTRACT_NUM,NSCLTS.BK_SVC_CNTRCT_LINE_START_DTM    \r\n,NSCLTS.SVC_CNTRCT_LINE_END_DTM       \r\n,NSCLTS.TERMINATED_DTM                \r\n,NSCLTS.TERMINATED_REASON_SHORT_DESCR \r\n,NSCLTS.SERVICE_STATUS_CD\r\n,NSCLTS.IP_KEY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_SERVICE_CONTRACT_NUM",
+      "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I",
+      "to_field": "BK_SERVICE_CONTRACT_NUM",
+      "to_instance": "WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "BK_SVC_CNTRCT_LINE_START_DTM",
+      "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I",
+      "to_field": "BK_SVC_CNTRCT_LINE_START_DTM",
+      "to_instance": "WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "SVC_CNTRCT_LINE_END_DTM",
+      "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I",
+      "to_field": "SVC_CNTRCT_LINE_END_DTM",
+      "to_instance": "WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "TERMINATED_DTM",
+      "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I",
+      "to_field": "TERMINATED_DTM",
+      "to_instance": "WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "TERMINATED_REASON_SHORT_DESCR",
+      "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I",
+      "to_field": "TERMINATED_REASON_SHORT_DESCR",
+      "to_instance": "WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "SERVICE_STATUS_CD",
+      "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I",
+      "to_field": "SERVICE_STATUS_CD",
+      "to_instance": "WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "IP_KEY",
+      "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I",
+      "to_field": "IP_KEY",
+      "to_instance": "WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "BK_SERVICE_CONTRACT_NUM",
+      "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1",
+      "to_field": "BK_SERVICE_CONTRACT_NUM",
+      "to_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "BK_SVC_CNTRCT_LINE_START_DTM",
+      "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1",
+      "to_field": "BK_SVC_CNTRCT_LINE_START_DTM",
+      "to_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "SVC_CNTRCT_LINE_END_DTM",
+      "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1",
+      "to_field": "SVC_CNTRCT_LINE_END_DTM",
+      "to_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "TERMINATED_DTM",
+      "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1",
+      "to_field": "TERMINATED_DTM",
+      "to_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "TERMINATED_REASON_SHORT_DESCR",
+      "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1",
+      "to_field": "TERMINATED_REASON_SHORT_DESCR",
+      "to_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "SERVICE_STATUS_CD",
+      "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1",
+      "to_field": "SERVICE_STATUS_CD",
+      "to_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+    },
+    {
+      "from_field": "IP_KEY",
+      "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1",
+      "to_field": "IP_KEY",
+      "to_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_SERVICE_CONTRACT_NUM",
+      "source_path": [
+        {
+          "from_field": "BK_SERVICE_CONTRACT_NUM",
+          "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+        },
+        {
+          "from_field": "BK_SERVICE_CONTRACT_NUM",
+          "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SVC_CNTRCT_LINE_START_DTM",
+      "source_path": [
+        {
+          "from_field": "BK_SVC_CNTRCT_LINE_START_DTM",
+          "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+        },
+        {
+          "from_field": "BK_SVC_CNTRCT_LINE_START_DTM",
+          "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SVC_CNTRCT_LINE_END_DTM",
+      "source_path": [
+        {
+          "from_field": "SVC_CNTRCT_LINE_END_DTM",
+          "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+        },
+        {
+          "from_field": "SVC_CNTRCT_LINE_END_DTM",
+          "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TERMINATED_DTM",
+      "source_path": [
+        {
+          "from_field": "TERMINATED_DTM",
+          "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+        },
+        {
+          "from_field": "TERMINATED_DTM",
+          "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TERMINATED_REASON_SHORT_DESCR",
+      "source_path": [
+        {
+          "from_field": "TERMINATED_REASON_SHORT_DESCR",
+          "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+        },
+        {
+          "from_field": "TERMINATED_REASON_SHORT_DESCR",
+          "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SERVICE_STATUS_CD",
+      "source_path": [
+        {
+          "from_field": "SERVICE_STATUS_CD",
+          "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+        },
+        {
+          "from_field": "SERVICE_STATUS_CD",
+          "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "IP_KEY",
+      "source_path": [
+        {
+          "from_field": "IP_KEY",
+          "from_instance": "SQ_WI_POS_SVC_LINES_WITH_IP_I"
+        },
+        {
+          "from_field": "IP_KEY",
+          "from_instance": "WI_POS_SVC_LINES_WITH_IP_I1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:11.852725+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

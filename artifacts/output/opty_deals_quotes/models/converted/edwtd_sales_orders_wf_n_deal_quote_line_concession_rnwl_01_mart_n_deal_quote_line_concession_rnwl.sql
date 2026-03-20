@@ -1,0 +1,107 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_n_deal_quote_line_concession_rnwl', 'batch', 'edwtd_sales_orders'],
+    meta={
+        'source_workflow': 'wf_m_N_DEAL_QUOTE_LINE_CONCESSION_RNWL',
+        'target_table': 'N_DEAL_QUOTE_LINE_CONCESSION_RNWL',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:26:59.875483+00:00'
+    }
+) }}
+
+WITH 
+
+source_w_deal_quote_line_concession_rnwl AS (
+    SELECT
+        bk_deal_qt_ln_concession_key,
+        bk_deal_quote_line_key,
+        bk_quote_num,
+        bk_deal_concession_source_num,
+        concession_percent,
+        concession_usd_amt,
+        concession_expiration_dt,
+        discount_name,
+        requested_non_standard_discoun,
+        approved_non_standard_discount,
+        adjustment_price_amt,
+        source_reported_promotion_cd,
+        source_reported_promotion_name,
+        applied_product_family_id,
+        sk_concession_object_id_int,
+        ru_bk_rebate_trx_type_cd,
+        ru_bk_rebate_payment_system_cd,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        bk_concession_type_name,
+        concession_applied_flg,
+        manually_applied_discount_flg,
+        pricing_scenario_ln_key,
+        src_rptd_channel_program_name,
+        src_rptd_promotion_rev_num,
+        discount_method_cd,
+        src_rptd_discount_per_qty_amt,
+        dv_discount_per_qty_pct,
+        dv_dscnt_perqty_lmpsum_usd_amt,
+        adjusted_selling_price_usd_amt,
+        src_updated_dtm,
+        dv_src_updated_dt,
+        src_creation_dtm,
+        dv_src_creation_dt,
+        ss_code,
+        instance_id,
+        rounded_total_discount_usd_amt,
+        unrounded_total_discount_usd_amt,
+        action_code,
+        dml_type
+    FROM {{ source('raw', 'w_deal_quote_line_concession_rnwl') }}
+),
+
+final AS (
+    SELECT
+        bk_deal_qt_ln_concession_key,
+        bk_deal_quote_line_key,
+        bk_quote_num,
+        bk_deal_concession_source_num,
+        concession_percent,
+        concession_usd_amt,
+        concession_expiration_dt,
+        discount_name,
+        requested_non_standard_discoun,
+        approved_non_standard_discount,
+        adjustment_price_amt,
+        source_reported_promotion_cd,
+        source_reported_promotion_name,
+        applied_product_family_id,
+        sk_concession_object_id_int,
+        ru_bk_rebate_trx_type_cd,
+        ru_bk_rebate_payment_system_cd,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        bk_concession_type_name,
+        concession_applied_flg,
+        manually_applied_discount_flg,
+        pricing_scenario_ln_key,
+        src_rptd_channel_program_name,
+        src_rptd_promotion_rev_num,
+        discount_method_cd,
+        src_rptd_discount_per_qty_amt,
+        dv_discount_per_qty_pct,
+        dv_dscnt_perqty_lmpsum_usd_amt,
+        adjusted_selling_price_usd_amt,
+        src_updated_dtm,
+        dv_src_updated_dt,
+        src_creation_dtm,
+        dv_src_creation_dt,
+        ss_code,
+        instance_id,
+        rounded_total_discount_usd_amt,
+        unrounded_total_discount_usd_amt
+    FROM source_w_deal_quote_line_concession_rnwl
+)
+
+SELECT * FROM final

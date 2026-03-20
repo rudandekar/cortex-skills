@@ -1,0 +1,85 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_w_move_order', 'batch', 'edwtd_mfg_products'],
+    meta={
+        'source_workflow': 'wf_m_W_MOVE_ORDER',
+        'target_table': 'W_MOVE_ORDER',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:45.885060+00:00'
+    }
+) }}
+
+WITH 
+
+source_st_cg1_mtl_txn_request_headers AS (
+    SELECT
+        header_id,
+        request_number,
+        transaction_type_id,
+        move_order_type,
+        organization_id,
+        description,
+        date_required,
+        from_subinventory_code,
+        to_subinventory_code,
+        to_account_id,
+        header_status,
+        status_date,
+        last_updated_by,
+        last_update_login,
+        last_update_date,
+        created_by,
+        creation_date,
+        request_id,
+        program_application_id,
+        program_id,
+        program_update_date,
+        grouping_rule_id,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        attribute_category,
+        ship_to_location_id,
+        freight_code,
+        shipment_method,
+        auto_receipt_flag,
+        reference_id,
+        reference_detail_id,
+        assignment_id,
+        global_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime
+    FROM {{ source('raw', 'st_cg1_mtl_txn_request_headers') }}
+),
+
+final AS (
+    SELECT
+        bk_request_num,
+        inventory_organization_key,
+        sk_header_id_int,
+        move_order_type_cd,
+        move_order_approval_status_cd,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        action_code,
+        dml_type
+    FROM source_st_cg1_mtl_txn_request_headers
+)
+
+SELECT * FROM final

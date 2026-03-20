@@ -1,0 +1,574 @@
+{
+  "workflow_name": "wf_m_W_EAC_CASE_CMNT",
+  "mapping_name": "m_W_EAC_CASE_CMNT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_PARTY_SAV",
+  "target_table": "W_EAC_CASE_CMNT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_party_sav_wf_w_eac_case_cmnt_01_mart_w_eac_case_cmnt",
+  "source_tables": [
+    "ST_XXFSAM_EAC_CASE_COMMENTS_V"
+  ],
+  "sources": [
+    {
+      "name": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "database_type": "Teradata",
+      "owner": "STGDB_TS1",
+      "fields": [
+        {
+          "name": "COMMENT_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CASE_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TEXT",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMENT_LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMENTED_BY",
+          "datatype": "varchar",
+          "precision": "256",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORGANIZATION_NAME",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORGANIZATION_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_EAC_CASE_CMNT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_EAC_CASE_COMMENT_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "CRTD_BY_CSCO_WRKR_PRTY_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_EAC_CASE_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COMMENT_TXT",
+        "datatype": "varchar",
+        "precision": "4000",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SRC_LAST_UPTD_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_SRC_LAST_UPTD_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "COMMENT_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CRTD_BY_CSCO_WRKR_PRTY_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CASE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TEXT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMENT_LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SRC_LAST_UPTD_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nST_XXFSAM_EAC_CASE_COMMENTS_V.COMMENT_ID, \r\nCOALESCE(NCWP_CRTD.CISCO_WORKER_PARTY_KEY,-999) AS CRTD_BY_CSCO_WRKR_PRTY_KEY, \r\nST_XXFSAM_EAC_CASE_COMMENTS_V.CASE_ID, \r\nCOALESCE(ST_XXFSAM_EAC_CASE_COMMENTS_V.TEXT,'UNKNOWN'), \r\nCOALESCE(ST_XXFSAM_EAC_CASE_COMMENTS_V.COMMENT_LAST_UPDATE_DATE,CAST('3500-01-01 00:00:00' AS TIMESTAMP(0))),\r\nCOALESCE(ST_XXFSAM_EAC_CASE_COMMENTS_V.COMMENT_LAST_UPDATE_DATE,CAST('3500-01-01' AS DATE)),\r\nCURRENT_TIMESTAMP(0) EDW_CREATE_DTM,\r\nUSER EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) EDW_UPDATE_DTM,\r\nUSER EDW_UPDATE_USER,\r\n'I' ACTION_CODE,\r\n'I' AS DML_TYPE\r\nFROM\r\n$$STGDB.ST_XXFSAM_EAC_CASE_COMMENTS_V ST_XXFSAM_EAC_CASE_COMMENTS_V\r\nINNER JOIN  $$SLSORDVWDB.N_EAC_CASE CASE1 \r\nON CASE1.BK_EAC_CASE_ID = ST_XXFSAM_EAC_CASE_COMMENTS_V.CASE_ID\r\nLEFT JOIN $$COMREFVWDB.N_CISCO_WORKER_PARTY NCWP_CRTD\r\nON COALESCE(ST_XXFSAM_EAC_CASE_COMMENTS_V.COMMENTED_BY,'UNKNOWN')= NCWP_CRTD.CEC_ID AND NCWP_CRTD.CISCO_WORKER_PARTY_KEY<>-999",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "COMMENT_ID",
+      "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "BK_EAC_CASE_COMMENT_ID",
+      "to_instance": "W_EAC_CASE_CMNT"
+    },
+    {
+      "from_field": "CRTD_BY_CSCO_WRKR_PRTY_KEY",
+      "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "CRTD_BY_CSCO_WRKR_PRTY_KEY",
+      "to_instance": "W_EAC_CASE_CMNT"
+    },
+    {
+      "from_field": "CASE_ID",
+      "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "BK_EAC_CASE_ID",
+      "to_instance": "W_EAC_CASE_CMNT"
+    },
+    {
+      "from_field": "TEXT",
+      "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "COMMENT_TXT",
+      "to_instance": "W_EAC_CASE_CMNT"
+    },
+    {
+      "from_field": "COMMENT_LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "SRC_LAST_UPTD_DTM",
+      "to_instance": "W_EAC_CASE_CMNT"
+    },
+    {
+      "from_field": "DV_SRC_LAST_UPTD_DT",
+      "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "DV_SRC_LAST_UPTD_DT",
+      "to_instance": "W_EAC_CASE_CMNT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_EAC_CASE_CMNT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_EAC_CASE_CMNT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_EAC_CASE_CMNT"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_EAC_CASE_CMNT"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_EAC_CASE_CMNT"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_EAC_CASE_CMNT"
+    },
+    {
+      "from_field": "COMMENT_ID",
+      "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "COMMENT_ID",
+      "to_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+    },
+    {
+      "from_field": "CASE_ID",
+      "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "CASE_ID",
+      "to_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+    },
+    {
+      "from_field": "TEXT",
+      "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "TEXT",
+      "to_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+    },
+    {
+      "from_field": "COMMENT_LAST_UPDATE_DATE",
+      "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "COMMENT_LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+    },
+    {
+      "from_field": "COMMENT_ID",
+      "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "CRTD_BY_CSCO_WRKR_PRTY_KEY",
+      "to_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+    },
+    {
+      "from_field": "COMMENT_LAST_UPDATE_DATE",
+      "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+    },
+    {
+      "from_field": "COMMENT_LAST_UPDATE_DATE",
+      "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+    },
+    {
+      "from_field": "ORGANIZATION_NAME",
+      "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+    },
+    {
+      "from_field": "ORGANIZATION_NAME",
+      "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+    },
+    {
+      "from_field": "ORGANIZATION_NAME",
+      "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+    },
+    {
+      "from_field": "ORGANIZATION_NAME",
+      "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+    },
+    {
+      "from_field": "COMMENT_LAST_UPDATE_DATE",
+      "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V",
+      "to_field": "DV_SRC_LAST_UPTD_DT",
+      "to_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_EAC_CASE_COMMENT_ID",
+      "source_path": [
+        {
+          "from_field": "COMMENT_ID",
+          "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CRTD_BY_CSCO_WRKR_PRTY_KEY",
+      "source_path": [
+        {
+          "from_field": "CRTD_BY_CSCO_WRKR_PRTY_KEY",
+          "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        },
+        {
+          "from_field": "COMMENT_ID",
+          "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_EAC_CASE_ID",
+      "source_path": [
+        {
+          "from_field": "CASE_ID",
+          "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COMMENT_TXT",
+      "source_path": [
+        {
+          "from_field": "TEXT",
+          "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SRC_LAST_UPTD_DTM",
+      "source_path": [
+        {
+          "from_field": "COMMENT_LAST_UPDATE_DATE",
+          "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_SRC_LAST_UPTD_DT",
+      "source_path": [
+        {
+          "from_field": "DV_SRC_LAST_UPTD_DT",
+          "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        },
+        {
+          "from_field": "COMMENT_LAST_UPDATE_DATE",
+          "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        },
+        {
+          "from_field": "COMMENT_LAST_UPDATE_DATE",
+          "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        },
+        {
+          "from_field": "ORGANIZATION_NAME",
+          "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        },
+        {
+          "from_field": "COMMENT_LAST_UPDATE_DATE",
+          "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        },
+        {
+          "from_field": "ORGANIZATION_NAME",
+          "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        },
+        {
+          "from_field": "ORGANIZATION_NAME",
+          "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        },
+        {
+          "from_field": "ORGANIZATION_NAME",
+          "from_instance": "ST_XXFSAM_EAC_CASE_COMMENTS_V"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:15.061943+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

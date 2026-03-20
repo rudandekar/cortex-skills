@@ -1,0 +1,301 @@
+{
+  "workflow_name": "wf_m_EL_CSONE_ACTS_F",
+  "mapping_name": "m_EL_CSONE_ACTS_F",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "EL_CSONE_ACTS_F",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_el_csone_acts_f_01_mart_el_csone_acts_f",
+  "source_tables": [
+    "ST_CSONE_ACTS"
+  ],
+  "sources": [
+    {
+      "name": "ST_CSONE_ACTS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "USER_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "USER_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LOGIN_TIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LOGIN_STATUS",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_CSONE_ACTS_F",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "USER_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "USER_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LOGIN_TIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LOGIN_STATUS",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_CSONE_ACTS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "USER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "USER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOGIN_TIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOGIN_STATUS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "USER_ID",
+      "from_instance": "SQ_ST_CSONE_ACTS",
+      "to_field": "USER_ID",
+      "to_instance": "EL_CSONE_ACTS_F"
+    },
+    {
+      "from_field": "USER_NAME",
+      "from_instance": "SQ_ST_CSONE_ACTS",
+      "to_field": "USER_NAME",
+      "to_instance": "EL_CSONE_ACTS_F"
+    },
+    {
+      "from_field": "LOGIN_TIME",
+      "from_instance": "SQ_ST_CSONE_ACTS",
+      "to_field": "LOGIN_TIME",
+      "to_instance": "EL_CSONE_ACTS_F"
+    },
+    {
+      "from_field": "LOGIN_STATUS",
+      "from_instance": "SQ_ST_CSONE_ACTS",
+      "to_field": "LOGIN_STATUS",
+      "to_instance": "EL_CSONE_ACTS_F"
+    },
+    {
+      "from_field": "USER_ID",
+      "from_instance": "ST_CSONE_ACTS",
+      "to_field": "USER_ID",
+      "to_instance": "SQ_ST_CSONE_ACTS"
+    },
+    {
+      "from_field": "USER_NAME",
+      "from_instance": "ST_CSONE_ACTS",
+      "to_field": "USER_NAME",
+      "to_instance": "SQ_ST_CSONE_ACTS"
+    },
+    {
+      "from_field": "LOGIN_TIME",
+      "from_instance": "ST_CSONE_ACTS",
+      "to_field": "LOGIN_TIME",
+      "to_instance": "SQ_ST_CSONE_ACTS"
+    },
+    {
+      "from_field": "LOGIN_STATUS",
+      "from_instance": "ST_CSONE_ACTS",
+      "to_field": "LOGIN_STATUS",
+      "to_instance": "SQ_ST_CSONE_ACTS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "USER_ID",
+      "source_path": [
+        {
+          "from_field": "USER_ID",
+          "from_instance": "SQ_ST_CSONE_ACTS"
+        },
+        {
+          "from_field": "USER_ID",
+          "from_instance": "ST_CSONE_ACTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "USER_NAME",
+      "source_path": [
+        {
+          "from_field": "USER_NAME",
+          "from_instance": "SQ_ST_CSONE_ACTS"
+        },
+        {
+          "from_field": "USER_NAME",
+          "from_instance": "ST_CSONE_ACTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LOGIN_TIME",
+      "source_path": [
+        {
+          "from_field": "LOGIN_TIME",
+          "from_instance": "SQ_ST_CSONE_ACTS"
+        },
+        {
+          "from_field": "LOGIN_TIME",
+          "from_instance": "ST_CSONE_ACTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LOGIN_STATUS",
+      "source_path": [
+        {
+          "from_field": "LOGIN_STATUS",
+          "from_instance": "SQ_ST_CSONE_ACTS"
+        },
+        {
+          "from_field": "LOGIN_STATUS",
+          "from_instance": "ST_CSONE_ACTS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:21.701398+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,158 @@
+{{ config(
+    materialized='view',
+    schema='',
+    tags=['wf_m_cg1_xxscm_pl_early_build_data', 'batch', 'edwtd_batch_accum'],
+    meta={
+        'source_workflow': 'wf_m_CG1_XXSCM_PL_EARLY_BUILD_DATA',
+        'target_table': 'STG_CG1_XXSCM_PL_ERLY_BUILD_DT',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:22:00.748864+00:00'
+    }
+) }}
+
+WITH 
+
+source_stg_cg1_xxscm_pl_erly_build_dt AS (
+    SELECT
+        build_id,
+        order_number,
+        ship_set_number,
+        start_date,
+        status,
+        creation_date,
+        created_by,
+        last_updated_date,
+        last_updated_by,
+        error_msg,
+        request_id,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        processed_flag
+    FROM {{ source('raw', 'stg_cg1_xxscm_pl_erly_build_dt') }}
+),
+
+source_cg1_xxscm_pl_early_build_data AS (
+    SELECT
+        source_dml_type,
+        fully_qualified_table_name,
+        source_commit_time,
+        refresh_datetime,
+        trail_position,
+        token,
+        build_id,
+        order_number,
+        ship_set_number,
+        start_date,
+        status,
+        creation_date,
+        created_by,
+        last_updated_date,
+        last_updated_by,
+        error_msg,
+        request_id,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15
+    FROM {{ source('raw', 'cg1_xxscm_pl_early_build_data') }}
+),
+
+transformed_exp_cg1_xxscm_pl_early_build_data AS (
+    SELECT
+    source_dml_type,
+    source_commit_time,
+    refresh_datetime,
+    build_id,
+    order_number,
+    ship_set_number,
+    start_date,
+    status,
+    creation_date,
+    created_by,
+    last_updated_date,
+    last_updated_by,
+    error_msg,
+    request_id,
+    attribute1,
+    attribute2,
+    attribute3,
+    attribute4,
+    attribute5,
+    attribute6,
+    attribute7,
+    attribute8,
+    attribute9,
+    attribute10,
+    attribute11,
+    attribute12,
+    attribute13,
+    attribute14,
+    attribute15
+    FROM source_cg1_xxscm_pl_early_build_data
+),
+
+final AS (
+    SELECT
+        build_id,
+        order_number,
+        ship_set_number,
+        start_date,
+        status,
+        creation_date,
+        created_by,
+        last_updated_date,
+        last_updated_by,
+        error_msg,
+        request_id,
+        attribute1,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        processed_flag
+    FROM transformed_exp_cg1_xxscm_pl_early_build_data
+)
+
+SELECT * FROM final

@@ -1,0 +1,296 @@
+{
+  "workflow_name": "wf_m_MT_RECURRING_OFFER_REVENUE_DEF_TRX_MR",
+  "mapping_name": "m_MT_RECURRING_OFFER_REVENUE_DEF_TRX_MR",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "WI_RECUR_OFFER_KEYS_DEF_TRX",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_mt_recurring_offer_revenue_def_trx_mr_01_mart_wi_recur_offer_keys_def_trx",
+  "source_tables": [
+    "WI_RECUR_OFFER_KEYS_DEF_TRX"
+  ],
+  "sources": [
+    {
+      "name": "WI_RECUR_OFFER_KEYS_DEF_TRX",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "DV_RECURRING_OFFER_CD",
+          "datatype": "varchar",
+          "precision": "70",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_RECUR_OFFER_KEYS_DEF_TRX",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "DV_RECURRING_OFFER_CD",
+        "datatype": "varchar",
+        "precision": "70",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "PRODUCT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_PRODUCT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SALES_ORDER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_RECURRING_OFFER_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SALES_ORDER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nDV_RECURRING_OFFER_CD,\r\nPRODUCT_KEY,\r\nDV_PRODUCT_KEY,\r\nSALES_ORDER_KEY,\r\nSK_OFFER_ATTRIBUTION_ID_INT\r\nFROM\r\n(\r\nSELECT \r\nDV_RECURRING_OFFER_CD,\r\n STRTOK (DV_RECURRING_OFFER_CD,'~',1) AS PRODUCT_KEY,\r\n STRTOK (DV_RECURRING_OFFER_CD,'~',2) AS DV_PRODUCT_KEY,\r\n STRTOK (DV_RECURRING_OFFER_CD,'~',3) AS SALES_ORDER_KEY,\r\n STRTOK (DV_RECURRING_OFFER_CD,'~',4) AS SK_OFFER_ATTRIBUTION_ID_INT\r\nFROM $$FINLGLVWDB.MT_DEFERRED_REVENUE_TRX \r\nWHERE PROCESSED_FISCAL_YEAR_MTH_INT \r\n= (SELECT FISCAL_ID FROM $$ETLVWDB.EL_DF_MONTH_PROCESS_DATE)\r\nGROUP BY 1,2,3,4,5\r\n)A\r\nWHERE NOT EXISTS (\r\nSELECT 1 FROM $$FINLGLVWDB.MT_RECURRING_OFFER_REVENUE MT\r\nWHERE MT.DV_RECURRING_OFFER_CD=A.DV_RECURRING_OFFER_CD)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "from_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR",
+      "to_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "to_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX1_MR"
+    },
+    {
+      "from_field": "DV_RECURRING_OFFER_CD",
+      "from_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR",
+      "to_field": "DV_RECURRING_OFFER_CD",
+      "to_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX1_MR"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX1_MR"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX1_MR"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX1_MR"
+    },
+    {
+      "from_field": "DV_PRODUCT_KEY",
+      "from_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX",
+      "to_field": "DV_PRODUCT_KEY",
+      "to_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR"
+    },
+    {
+      "from_field": "SALES_ORDER_KEY",
+      "from_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR"
+    },
+    {
+      "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "from_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX",
+      "to_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "to_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR"
+    },
+    {
+      "from_field": "DV_RECURRING_OFFER_CD",
+      "from_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX",
+      "to_field": "DV_RECURRING_OFFER_CD",
+      "to_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "DV_RECURRING_OFFER_CD",
+      "source_path": [
+        {
+          "from_field": "DV_RECURRING_OFFER_CD",
+          "from_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR"
+        },
+        {
+          "from_field": "DV_RECURRING_OFFER_CD",
+          "from_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRODUCT_KEY",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_PRODUCT_KEY",
+      "source_path": [
+        {
+          "from_field": "DV_PRODUCT_KEY",
+          "from_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR"
+        },
+        {
+          "from_field": "DV_PRODUCT_KEY",
+          "from_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SALES_ORDER_KEY",
+      "source_path": [
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR"
+        },
+        {
+          "from_field": "SALES_ORDER_KEY",
+          "from_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_OFFER_ATTRIBUTION_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "from_instance": "SQ_WI_RECUR_OFFER_KEYS_DEF_TRX_MR"
+        },
+        {
+          "from_field": "SK_OFFER_ATTRIBUTION_ID_INT",
+          "from_instance": "WI_RECUR_OFFER_KEYS_DEF_TRX"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:32:57.441639+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

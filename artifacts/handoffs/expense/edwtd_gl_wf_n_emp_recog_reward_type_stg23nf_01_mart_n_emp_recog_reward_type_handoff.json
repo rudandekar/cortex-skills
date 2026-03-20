@@ -1,0 +1,329 @@
+{
+  "workflow_name": "wf_m_N_EMP_RECOG_REWARD_TYPE_STG23NF",
+  "mapping_name": "m_N_EMP_RECOG_REWARD_TYPE_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "N_EMP_RECOG_REWARD_TYPE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_n_emp_recog_reward_type_stg23nf_01_mart_n_emp_recog_reward_type",
+  "source_tables": [
+    "ST_EMP_RECOG_REWARD_TYPE"
+  ],
+  "sources": [
+    {
+      "name": "ST_EMP_RECOG_REWARD_TYPE",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "EMP_RECOG_REWARD_TYPE_CD",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CD",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_EMP_RECOG_REWARD_TYPE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_EMP_RECOG_REWARD_TYPE_CD",
+        "datatype": "varchar",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SOURCE_DELETED_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_EMP_RECOG_REWARD_TYPE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_EMP_RECOG_REWARD_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nEMP_RECOG_REWARD_TYPE_CD,\r\n'N' AS SOURCE_DELETED_FLG,\r\nCURRENT_TIMESTAMP(0),\r\nUSER,\r\nCURRENT_TIMESTAMP(0),\r\nUSER\r\nFROM\r\n$$STGDB.ST_EMP_RECOG_REWARD_TYPE SER\r\nWHERE NOT EXISTS (SELECT 1 FROM $$FINLGLVWDB.N_EMP_RECOG_REWARD_TYPE NER WHERE NER.BK_EMP_RECOG_REWARD_TYPE_CD=SER.EMP_RECOG_REWARD_TYPE_CD)\r\nGROUP BY EMP_RECOG_REWARD_TYPE_CD",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_EMP_RECOG_REWARD_TYPE_CD",
+      "from_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE",
+      "to_field": "BK_EMP_RECOG_REWARD_TYPE_CD",
+      "to_instance": "N_EMP_RECOG_REWARD_TYPE"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "N_EMP_RECOG_REWARD_TYPE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_EMP_RECOG_REWARD_TYPE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_EMP_RECOG_REWARD_TYPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_EMP_RECOG_REWARD_TYPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_EMP_RECOG_REWARD_TYPE"
+    },
+    {
+      "from_field": "EMP_RECOG_REWARD_TYPE_CD",
+      "from_instance": "ST_EMP_RECOG_REWARD_TYPE",
+      "to_field": "BK_EMP_RECOG_REWARD_TYPE_CD",
+      "to_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "ST_EMP_RECOG_REWARD_TYPE",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE"
+    },
+    {
+      "from_field": "EMP_RECOG_REWARD_TYPE_CD",
+      "from_instance": "ST_EMP_RECOG_REWARD_TYPE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE"
+    },
+    {
+      "from_field": "EMP_RECOG_REWARD_TYPE_CD",
+      "from_instance": "ST_EMP_RECOG_REWARD_TYPE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_EMP_RECOG_REWARD_TYPE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_EMP_RECOG_REWARD_TYPE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_EMP_RECOG_REWARD_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "BK_EMP_RECOG_REWARD_TYPE_CD",
+          "from_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE"
+        },
+        {
+          "from_field": "EMP_RECOG_REWARD_TYPE_CD",
+          "from_instance": "ST_EMP_RECOG_REWARD_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_DELETED_FLG",
+      "source_path": [
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "ST_EMP_RECOG_REWARD_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_EMP_RECOG_REWARD_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE"
+        },
+        {
+          "from_field": "EMP_RECOG_REWARD_TYPE_CD",
+          "from_instance": "ST_EMP_RECOG_REWARD_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_EMP_RECOG_REWARD_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_EMP_RECOG_REWARD_TYPE"
+        },
+        {
+          "from_field": "EMP_RECOG_REWARD_TYPE_CD",
+          "from_instance": "ST_EMP_RECOG_REWARD_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:08.227753+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

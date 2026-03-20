@@ -1,0 +1,230 @@
+{
+  "workflow_name": "wf_m_EL_SI_ACCOUNT_TYPE",
+  "mapping_name": "m_EL_SI_ACCOUNT_TYPE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "EL_SI_ACCOUNT_TYPE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_el_si_account_type_01_mart_el_si_account_type",
+  "source_tables": [
+    "ST_SI_ACCOUNT_TYPE"
+  ],
+  "sources": [
+    {
+      "name": "ST_SI_ACCOUNT_TYPE",
+      "database_type": "Teradata",
+      "owner": "STGDB_DEV",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCOUNT_TYPE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCOUNT_TYPE_DESC",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_SI_ACCOUNT_TYPE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ACCOUNT_TYPE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCOUNT_TYPE_DESC",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ENABLED_FLAG",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_SI_ACCOUNT_TYPE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ACCOUNT_TYPE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_TYPE_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n\tETAT.ACCOUNT_TYPE_ID\r\n\t,ETAT.ACCOUNT_TYPE_DESC\r\n\t,ETAT.ENABLED_FLAG\r\nFROM \r\n(\r\nSELECT \r\n\tETSAT.ACCOUNT_TYPE_ID\r\n\t,ETSAT.ACCOUNT_TYPE_DESC\r\n\t,ETSAT.ENABLED_FLAG\r\nFROM $$STGDB.ST_SI_ACCOUNT_TYPE  ETSAT\r\n) ETAT\r\nWHERE ( ETAT.ACCOUNT_TYPE_ID) NOT IN \r\n\t(SELECT ELSAT.ACCOUNT_TYPE_ID FROM $$ETLVWDB.EL_SI_ACCOUNT_TYPE ELSAT)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACCOUNT_TYPE_ID",
+      "from_instance": "SQ_ST_SI_ACCOUNT_TYPE",
+      "to_field": "ACCOUNT_TYPE_ID",
+      "to_instance": "EL_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE_DESC",
+      "from_instance": "SQ_ST_SI_ACCOUNT_TYPE",
+      "to_field": "ACCOUNT_TYPE_DESC",
+      "to_instance": "EL_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "SQ_ST_SI_ACCOUNT_TYPE",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "EL_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE_ID",
+      "from_instance": "ST_SI_ACCOUNT_TYPE",
+      "to_field": "ACCOUNT_TYPE_ID",
+      "to_instance": "SQ_ST_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ACCOUNT_TYPE_DESC",
+      "from_instance": "ST_SI_ACCOUNT_TYPE",
+      "to_field": "ACCOUNT_TYPE_DESC",
+      "to_instance": "SQ_ST_SI_ACCOUNT_TYPE"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "ST_SI_ACCOUNT_TYPE",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "SQ_ST_SI_ACCOUNT_TYPE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ACCOUNT_TYPE_ID",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_TYPE_ID",
+          "from_instance": "SQ_ST_SI_ACCOUNT_TYPE"
+        },
+        {
+          "from_field": "ACCOUNT_TYPE_ID",
+          "from_instance": "ST_SI_ACCOUNT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNT_TYPE_DESC",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_TYPE_DESC",
+          "from_instance": "SQ_ST_SI_ACCOUNT_TYPE"
+        },
+        {
+          "from_field": "ACCOUNT_TYPE_DESC",
+          "from_instance": "ST_SI_ACCOUNT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ENABLED_FLAG",
+      "source_path": [
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "SQ_ST_SI_ACCOUNT_TYPE"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "ST_SI_ACCOUNT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:05.682895+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

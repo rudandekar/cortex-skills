@@ -1,0 +1,437 @@
+{
+  "workflow_name": "wf_m_EL_CP_TABLE_SET_CTL",
+  "mapping_name": "m_EL_CP_TABLE_SET_CTL",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GTC",
+  "target_table": "EL_CP_TABLE_SET_CTL",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gtc_wf_el_cp_table_set_ctl_01_mart_el_cp_table_set_ctl",
+  "source_tables": [
+    "EL_CP_TABLE_SET_CTL"
+  ],
+  "sources": [
+    {
+      "name": "EL_CP_TABLE_SET_CTL",
+      "database_type": "Teradata",
+      "owner": "ETLVWDB_dv3",
+      "fields": [
+        {
+          "name": "SET_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SET_BASE_TABLE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SET_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EL_CP_TABLE_SET_CTL",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SET_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SET_BASE_TABLE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SET_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SS_CODE",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_EL_CP_TABLE_SET_CTL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SET_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SET_BASE_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SET_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "/*    */\r\n\r\nSELECT \r\nSET_ID, \r\nSET_BASE_TABLE, \r\nSET_NAME, \r\nCAST('CG' AS CHAR(8)) AS SS_CODE,\r\nUSER AS EDW_CREATE_USER, \r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM, \r\nUSER AS EDW_UPDATE_USER, \r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM \r\nFROM \r\n(\r\nSELECT \r\nSET_ID, \r\nSET_BASE_TABLE, \r\nSET_NAME, \r\nCAST('CG' AS CHAR(8)) AS SS_CODE\r\nFROM $$STGDB.ST_XXCP_TABLE_SET_CTL_CG1\r\nWHERE SET_BASE_TABLE = 'CP_ADJUSTMENT_RATES'\r\nUNION ALL\r\nSELECT \r\nSET_ID, \r\nSET_BASE_TABLE, \r\nSET_NAME, \r\nCAST('BV' AS CHAR(8)) AS SS_CODE\r\nFROM $$STGDB.ST_CP_TABLE_SET_CTL_BV\r\nWHERE SET_BASE_TABLE = 'CP_ADJUSTMENT_RATES'\r\n) IQ\r\nWHERE NOT EXISTS\r\n(\r\n SELECT 1\r\n   FROM $$ETLVWDB.EL_CP_TABLE_SET_CTL EL\r\n   WHERE IQ.SET_ID = EL.SET_ID\r\n     AND IQ.SS_CODE = EL.SS_CODE\r\n     AND IQ.SET_BASE_TABLE = EL.SET_BASE_TABLE\r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SET_ID",
+      "from_instance": "SQ_EL_CP_TABLE_SET_CTL",
+      "to_field": "SET_ID",
+      "to_instance": "EL_CP_TABLE_SET_CTL1"
+    },
+    {
+      "from_field": "SET_BASE_TABLE",
+      "from_instance": "SQ_EL_CP_TABLE_SET_CTL",
+      "to_field": "SET_BASE_TABLE",
+      "to_instance": "EL_CP_TABLE_SET_CTL1"
+    },
+    {
+      "from_field": "SET_NAME",
+      "from_instance": "SQ_EL_CP_TABLE_SET_CTL",
+      "to_field": "SET_NAME",
+      "to_instance": "EL_CP_TABLE_SET_CTL1"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "SQ_EL_CP_TABLE_SET_CTL",
+      "to_field": "SS_CODE",
+      "to_instance": "EL_CP_TABLE_SET_CTL1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_EL_CP_TABLE_SET_CTL",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "EL_CP_TABLE_SET_CTL1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_EL_CP_TABLE_SET_CTL",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "EL_CP_TABLE_SET_CTL1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_EL_CP_TABLE_SET_CTL",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "EL_CP_TABLE_SET_CTL1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_EL_CP_TABLE_SET_CTL",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "EL_CP_TABLE_SET_CTL1"
+    },
+    {
+      "from_field": "SET_ID",
+      "from_instance": "EL_CP_TABLE_SET_CTL",
+      "to_field": "SET_ID",
+      "to_instance": "SQ_EL_CP_TABLE_SET_CTL"
+    },
+    {
+      "from_field": "SET_BASE_TABLE",
+      "from_instance": "EL_CP_TABLE_SET_CTL",
+      "to_field": "SET_BASE_TABLE",
+      "to_instance": "SQ_EL_CP_TABLE_SET_CTL"
+    },
+    {
+      "from_field": "SET_NAME",
+      "from_instance": "EL_CP_TABLE_SET_CTL",
+      "to_field": "SET_NAME",
+      "to_instance": "SQ_EL_CP_TABLE_SET_CTL"
+    },
+    {
+      "from_field": "SS_CODE",
+      "from_instance": "EL_CP_TABLE_SET_CTL",
+      "to_field": "SS_CODE",
+      "to_instance": "SQ_EL_CP_TABLE_SET_CTL"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "EL_CP_TABLE_SET_CTL",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_EL_CP_TABLE_SET_CTL"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "EL_CP_TABLE_SET_CTL",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_EL_CP_TABLE_SET_CTL"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "EL_CP_TABLE_SET_CTL",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_EL_CP_TABLE_SET_CTL"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EL_CP_TABLE_SET_CTL",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_EL_CP_TABLE_SET_CTL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SET_ID",
+      "source_path": [
+        {
+          "from_field": "SET_ID",
+          "from_instance": "SQ_EL_CP_TABLE_SET_CTL"
+        },
+        {
+          "from_field": "SET_ID",
+          "from_instance": "EL_CP_TABLE_SET_CTL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SET_BASE_TABLE",
+      "source_path": [
+        {
+          "from_field": "SET_BASE_TABLE",
+          "from_instance": "SQ_EL_CP_TABLE_SET_CTL"
+        },
+        {
+          "from_field": "SET_BASE_TABLE",
+          "from_instance": "EL_CP_TABLE_SET_CTL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SET_NAME",
+      "source_path": [
+        {
+          "from_field": "SET_NAME",
+          "from_instance": "SQ_EL_CP_TABLE_SET_CTL"
+        },
+        {
+          "from_field": "SET_NAME",
+          "from_instance": "EL_CP_TABLE_SET_CTL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CODE",
+      "source_path": [
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "SQ_EL_CP_TABLE_SET_CTL"
+        },
+        {
+          "from_field": "SS_CODE",
+          "from_instance": "EL_CP_TABLE_SET_CTL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_EL_CP_TABLE_SET_CTL"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "EL_CP_TABLE_SET_CTL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_EL_CP_TABLE_SET_CTL"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "EL_CP_TABLE_SET_CTL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_EL_CP_TABLE_SET_CTL"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "EL_CP_TABLE_SET_CTL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_EL_CP_TABLE_SET_CTL"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EL_CP_TABLE_SET_CTL"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:12.255443+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

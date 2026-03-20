@@ -1,0 +1,657 @@
+{
+  "workflow_name": "wf_m_ST_SUBUI_AR_TRANSACTIONS",
+  "mapping_name": "m_ST_SUBUI_AR_TRANSACTIONS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_XAAS_BKGS",
+  "target_table": "SM_SUBSCR_AUTO_RNWL_CHG",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_xaas_bkgs_wf_st_subui_ar_transactions_02_mart_sm_subscr_auto_rnwl_chg",
+  "source_tables": [
+    "ST_SI_SUBUI_AR_TRANSACTIONS",
+    "SM_SUBSCR_AUTO_RNWL_CHG"
+  ],
+  "sources": [
+    {
+      "name": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "SK_SUBUI_REF_TRANSACTION_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_TYPE",
+          "datatype": "varchar",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_SUB_TYPE",
+          "datatype": "varchar",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUBSCRIPTION_REFERENCE_ID",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUBSCRIPTION_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TIER1_REASON_CODE",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TIER1_REASON_DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMMENTS",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TIER2_REASON_CODE",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TIER2_REASON_DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WEB_ORDER_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ADDITIONAL_INFO",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "SM_SUBSCR_AUTO_RNWL_CHG",
+      "database_type": "Teradata",
+      "owner": "TRANSLATIONDB_DV3",
+      "fields": [
+        {
+          "name": "SUBSCR_AUTO_RNWL_CHANGE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_WEB_ORDER_ID",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SK_SUBUI_TRX_ID",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "SM_SUBSCR_AUTO_RNWL_CHG",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SUBSCR_AUTO_RNWL_CHANGE_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_WEB_ORDER_ID",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_SUBUI_TRX_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SK_SUBUI_REF_TRANSACTION_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_SUB_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBSCRIPTION_REFERENCE_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBSCRIPTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TIER1_REASON_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TIER1_REASON_DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMMENTS",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TIER2_REASON_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TIER2_REASON_DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WEB_ORDER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ADDITIONAL_INFO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\t  COALESCE(SUBUI_AR.SK_SUBUI_REF_TRANSACTION_ID,-999) AS SK_SUBUI_REF_TRANSACTION_ID ,\r\n      SUBUI_AR.TRANSACTION_TYPE,\r\n      SUBUI_AR.TRANSACTION_SUB_TYPE,\r\n      SUBUI_AR.SUBSCRIPTION_REFERENCE_ID ,\r\n      SUBUI_AR.SUBSCRIPTION_CODE ,\r\n      SUBUI_AR.TIER1_REASON_CODE ,\r\n      SUBUI_AR.TIER1_REASON_DESCRIPTION ,\r\n      SUBUI_AR.COMMENTS,\r\n      SUBUI_AR.TIER2_REASON_CODE,\r\n      SUBUI_AR.TIER2_REASON_DESCRIPTION ,\r\n      COALESCE(SUBUI_AR.WEB_ORDER_ID,'UNKNOWN') AS WEB_ORDER_ID,\r\n      CAST(CAST(SUBUI_AR.EDW_CREATE_DTM AS VARCHAR(19)) AS TIMESTAMP(0)) EDW_CREATE_DTM,\r\n\t  SUBUI_AR.ADDITIONAL_INFO /* Q4FY21 Annuity Rel*/\r\n\tFROM \r\n   (SEL * FROM $$ETLVWDB.ST_SI_SUBUI_AR_TRANSACTIONS    \r\n   QUALIFY ROW_NUMBER() OVER (PARTITION BY SUBSCRIPTION_REFERENCE_ID,SUBSCRIPTION_CODE,WEB_ORDER_ID ORDER BY EDW_CREATE_DTM DESC)=1) SUBUI_AR\r\n   WHERE \r\n   CAST(CAST(SUBUI_AR.EDW_CREATE_DTM AS VARCHAR(19)) AS TIMESTAMP(0)) \r\n   >CAST('$$LastExtractDate' AS TIMESTAMP(0))",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_SM_SUBSCR_AUTO_RNWL_CHG",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SUBSCR_AUTO_RNWL_CHANGE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_WEB_ORDER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_SUBUI_TRX_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n RANK() OVER (ORDER BY SK_SUBUI_REF_TRANSACTION_ID,WEB_ORDER_ID) + SMAR.MAX_KEY AS SUBSCR_AUTO_RNWL_CHANGE_KEY,\r\n WEB_ORDER_ID AS BK_WEB_ORDER_ID,\r\n SK_SUBUI_REF_TRANSACTION_ID AS SK_SUBUI_TRX_ID, \r\n CURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\n USER AS  EDW_CREATE_USER\r\n FROM \r\n (SELECT * FROM $$STGDB.ST_SUBUI_AR_TRANSACTIONS  \r\n QUALIFY ROW_NUMBER() OVER (PARTITION BY SK_SUBUI_REF_TRANSACTION_ID,WEB_ORDER_ID ORDER BY EDW_CREATE_DTM DESC)=1) SUAR ,\r\n (SELECT COALESCE(MAX(SUBSCR_AUTO_RNWL_CHANGE_KEY),0 )  MAX_KEY FROM  $$ETLVWdb.SM_SUBSCR_AUTO_RNWL_CHG) SMAR\r\n WHERE  NOT EXISTS \r\n ( SELECT 1 FROM $$ETLVWdb.SM_SUBSCR_AUTO_RNWL_CHG SMART\r\n WHERE SUAR.SK_SUBUI_REF_TRANSACTION_ID=SMART.SK_SUBUI_TRX_ID\r\n AND  SUAR.WEB_ORDER_ID=SMART.BK_WEB_ORDER_ID\r\n )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "SUBSCRIPTION_REFERENCE_ID",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "SUBSCRIPTION_REFERENCE_ID",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "SUBSCRIPTION_CODE",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "SUBSCRIPTION_CODE",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "TIER1_REASON_CODE",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "TIER1_REASON_CODE",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "TIER1_REASON_DESCRIPTION",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "TIER1_REASON_DESCRIPTION",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "COMMENTS",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "COMMENTS",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "TIER2_REASON_CODE",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "TIER2_REASON_CODE",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "TIER2_REASON_DESCRIPTION",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "TIER2_REASON_DESCRIPTION",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "WEB_ORDER_ID",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "WEB_ORDER_ID",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "SK_SUBUI_REF_TRANSACTION_ID",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "SK_SUBUI_REF_TRANSACTION_ID",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "TRANSACTION_TYPE",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "TRANSACTION_TYPE",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "TRANSACTION_SUB_TYPE",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "TRANSACTION_SUB_TYPE",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "ADDITIONAL_INFO",
+      "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "ADDITIONAL_INFO",
+      "to_instance": "ST_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SM_SUBSCR_AUTO_RNWL_CHG"
+    },
+    {
+      "from_field": "SUBSCR_AUTO_RNWL_CHANGE_KEY",
+      "from_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG",
+      "to_field": "SUBSCR_AUTO_RNWL_CHANGE_KEY",
+      "to_instance": "SM_SUBSCR_AUTO_RNWL_CHG"
+    },
+    {
+      "from_field": "BK_WEB_ORDER_ID",
+      "from_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG",
+      "to_field": "BK_WEB_ORDER_ID",
+      "to_instance": "SM_SUBSCR_AUTO_RNWL_CHG"
+    },
+    {
+      "from_field": "SK_SUBUI_TRX_ID",
+      "from_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG",
+      "to_field": "SK_SUBUI_TRX_ID",
+      "to_instance": "SM_SUBSCR_AUTO_RNWL_CHG"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SM_SUBSCR_AUTO_RNWL_CHG"
+    },
+    {
+      "from_field": "SK_SUBUI_REF_TRANSACTION_ID",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "SK_SUBUI_REF_TRANSACTION_ID",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "TRANSACTION_TYPE",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "TRANSACTION_TYPE",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "TRANSACTION_SUB_TYPE",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "TRANSACTION_SUB_TYPE",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "SUBSCRIPTION_REFERENCE_ID",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "SUBSCRIPTION_REFERENCE_ID",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "SUBSCRIPTION_CODE",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "SUBSCRIPTION_CODE",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "TIER1_REASON_CODE",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "TIER1_REASON_CODE",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "TIER1_REASON_DESCRIPTION",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "TIER1_REASON_DESCRIPTION",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "COMMENTS",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "COMMENTS",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "TIER2_REASON_CODE",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "TIER2_REASON_CODE",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "TIER2_REASON_DESCRIPTION",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "TIER2_REASON_DESCRIPTION",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "WEB_ORDER_ID",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "WEB_ORDER_ID",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "ADDITIONAL_INFO",
+      "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS",
+      "to_field": "ADDITIONAL_INFO",
+      "to_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+    },
+    {
+      "from_field": "SUBSCR_AUTO_RNWL_CHANGE_KEY",
+      "from_instance": "SM_SUBSCR_AUTO_RNWL_CHG1",
+      "to_field": "SUBSCR_AUTO_RNWL_CHANGE_KEY",
+      "to_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG"
+    },
+    {
+      "from_field": "BK_WEB_ORDER_ID",
+      "from_instance": "SM_SUBSCR_AUTO_RNWL_CHG1",
+      "to_field": "BK_WEB_ORDER_ID",
+      "to_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG"
+    },
+    {
+      "from_field": "SK_SUBUI_TRX_ID",
+      "from_instance": "SM_SUBSCR_AUTO_RNWL_CHG1",
+      "to_field": "SK_SUBUI_TRX_ID",
+      "to_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SM_SUBSCR_AUTO_RNWL_CHG1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SM_SUBSCR_AUTO_RNWL_CHG1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SUBSCR_AUTO_RNWL_CHANGE_KEY",
+      "source_path": [
+        {
+          "from_field": "SUBSCR_AUTO_RNWL_CHANGE_KEY",
+          "from_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG"
+        },
+        {
+          "from_field": "SUBSCR_AUTO_RNWL_CHANGE_KEY",
+          "from_instance": "SM_SUBSCR_AUTO_RNWL_CHG1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_WEB_ORDER_ID",
+      "source_path": [
+        {
+          "from_field": "BK_WEB_ORDER_ID",
+          "from_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG"
+        },
+        {
+          "from_field": "BK_WEB_ORDER_ID",
+          "from_instance": "SM_SUBSCR_AUTO_RNWL_CHG1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_SUBUI_TRX_ID",
+      "source_path": [
+        {
+          "from_field": "SK_SUBUI_TRX_ID",
+          "from_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG"
+        },
+        {
+          "from_field": "SK_SUBUI_TRX_ID",
+          "from_instance": "SM_SUBSCR_AUTO_RNWL_CHG1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_SI_SUBUI_AR_TRANSACTIONS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "ST_SI_SUBUI_AR_TRANSACTIONS"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SM_SUBSCR_AUTO_RNWL_CHG1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_SM_SUBSCR_AUTO_RNWL_CHG"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SM_SUBSCR_AUTO_RNWL_CHG1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:26.431353+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

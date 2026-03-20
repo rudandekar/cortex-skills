@@ -1,0 +1,529 @@
+{
+  "workflow_name": "wf_m_W_SHIPPING_REV_TOTAL_POS_PLAN",
+  "mapping_name": "m_W_SHIPPING_REV_TOTAL_POS_PLAN",
+  "mapping_description": "",
+  "folder_name": "EDWTD_MFG_SOP",
+  "target_table": "W_SHIPPING_REV_TOTAL_POS_PLAN",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_mfg_sop_wf_w_shipping_rev_total_pos_plan_01_mart_w_shipping_rev_total_pos_plan",
+  "source_tables": [
+    "ST_XXCMF_SP_CRP_TOTAL_POS"
+  ],
+  "sources": [
+    {
+      "name": "ST_XXCMF_SP_CRP_TOTAL_POS",
+      "database_type": "Teradata",
+      "owner": "",
+      "fields": [
+        {
+          "name": "PRODUCT_FAMILY",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_WEEK_START_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TOTAL_POS",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_SHIPPING_REV_TOTAL_POS_PLAN",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_PRODUCT_FAMILY_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_FISCAL_WEEK_START_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_SRC_PUBLISH_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DV_SRC_PUBLISH_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TOTAL_USD_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PRODUCT_FAMILY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FISCAL_WEEK_START_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SRC_PUBLISH_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SRC_PUBLISH_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT ST_XXCMF_SP_CRP_TOTAL_POS.PRODUCT_FAMILY, ST_XXCMF_SP_CRP_TOTAL_POS.FISCAL_WEEK_START_DATE, ST_XXCMF_SP_CRP_TOTAL_POS.CREATE_DATE, ST_XXCMF_SP_CRP_TOTAL_POS.CREATE_DATE, ST_XXCMF_SP_CRP_TOTAL_POS.TOTAL_POS,\r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\nUSER AS EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM,\r\nUSER AS EDW_UPDATE_USER,\r\n'I' as ACTION_CODE,\r\n'I' AS DML_TYPE \r\nFROM\r\n$$STGDB.ST_XXCMF_SP_CRP_TOTAL_POS",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_PRODUCT_FAMILY_ID",
+      "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "BK_PRODUCT_FAMILY_ID",
+      "to_instance": "W_SHIPPING_REV_TOTAL_POS_PLAN"
+    },
+    {
+      "from_field": "BK_FISCAL_WEEK_START_DT",
+      "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "BK_FISCAL_WEEK_START_DT",
+      "to_instance": "W_SHIPPING_REV_TOTAL_POS_PLAN"
+    },
+    {
+      "from_field": "BK_SRC_PUBLISH_DTM",
+      "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "BK_SRC_PUBLISH_DTM",
+      "to_instance": "W_SHIPPING_REV_TOTAL_POS_PLAN"
+    },
+    {
+      "from_field": "DV_SRC_PUBLISH_DT",
+      "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "DV_SRC_PUBLISH_DT",
+      "to_instance": "W_SHIPPING_REV_TOTAL_POS_PLAN"
+    },
+    {
+      "from_field": "TOTAL_USD_AMT",
+      "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "TOTAL_USD_AMT",
+      "to_instance": "W_SHIPPING_REV_TOTAL_POS_PLAN"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_SHIPPING_REV_TOTAL_POS_PLAN"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_SHIPPING_REV_TOTAL_POS_PLAN"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_SHIPPING_REV_TOTAL_POS_PLAN"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_SHIPPING_REV_TOTAL_POS_PLAN"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_SHIPPING_REV_TOTAL_POS_PLAN"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_SHIPPING_REV_TOTAL_POS_PLAN"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY",
+      "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "BK_PRODUCT_FAMILY_ID",
+      "to_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+    },
+    {
+      "from_field": "FISCAL_WEEK_START_DATE",
+      "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "BK_FISCAL_WEEK_START_DT",
+      "to_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+    },
+    {
+      "from_field": "CREATE_DATE",
+      "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "BK_SRC_PUBLISH_DTM",
+      "to_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+    },
+    {
+      "from_field": "CREATE_DATE",
+      "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "DV_SRC_PUBLISH_DT",
+      "to_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+    },
+    {
+      "from_field": "TOTAL_POS",
+      "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "TOTAL_USD_AMT",
+      "to_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+    },
+    {
+      "from_field": "FISCAL_WEEK_START_DATE",
+      "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY",
+      "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+    },
+    {
+      "from_field": "FISCAL_WEEK_START_DATE",
+      "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY",
+      "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY",
+      "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+    },
+    {
+      "from_field": "PRODUCT_FAMILY",
+      "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_PRODUCT_FAMILY_ID",
+      "source_path": [
+        {
+          "from_field": "BK_PRODUCT_FAMILY_ID",
+          "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+        },
+        {
+          "from_field": "PRODUCT_FAMILY",
+          "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_FISCAL_WEEK_START_DT",
+      "source_path": [
+        {
+          "from_field": "BK_FISCAL_WEEK_START_DT",
+          "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+        },
+        {
+          "from_field": "FISCAL_WEEK_START_DATE",
+          "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SRC_PUBLISH_DTM",
+      "source_path": [
+        {
+          "from_field": "BK_SRC_PUBLISH_DTM",
+          "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+        },
+        {
+          "from_field": "CREATE_DATE",
+          "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_SRC_PUBLISH_DT",
+      "source_path": [
+        {
+          "from_field": "DV_SRC_PUBLISH_DT",
+          "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+        },
+        {
+          "from_field": "CREATE_DATE",
+          "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TOTAL_USD_AMT",
+      "source_path": [
+        {
+          "from_field": "TOTAL_USD_AMT",
+          "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+        },
+        {
+          "from_field": "TOTAL_POS",
+          "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+        },
+        {
+          "from_field": "FISCAL_WEEK_START_DATE",
+          "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+        },
+        {
+          "from_field": "PRODUCT_FAMILY",
+          "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+        },
+        {
+          "from_field": "FISCAL_WEEK_START_DATE",
+          "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+        },
+        {
+          "from_field": "PRODUCT_FAMILY",
+          "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+        },
+        {
+          "from_field": "PRODUCT_FAMILY",
+          "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_ST_XXCMF_SP_CRP_TOTAL_POS"
+        },
+        {
+          "from_field": "PRODUCT_FAMILY",
+          "from_instance": "ST_XXCMF_SP_CRP_TOTAL_POS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:18.049450+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,144 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_drvd_sca_pos_dtl_f', 'batch', 'edwtd_sales_orders'],
+    meta={
+        'source_workflow': 'wf_m_WI_DRVD_SCA_POS_DTL_F',
+        'target_table': 'SM_DRVD_SCA_POS_ADJ_DETAILS',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:34.406009+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_pos_sca_incr_dly AS (
+    SELECT
+        pos_scaac_key,
+        pd_bk_pos_transaction_id_int,
+        base_list_unit_prod_price_amt,
+        disti_rptd_cost_unit_price_amt,
+        vldtd_net_unit_price_usd_amt,
+        valuation_price_usd_amount,
+        pd_sales_territory_key,
+        pd_sales_rep_num,
+        distributor_offset_flg,
+        pd_sales_commission_pct,
+        sc_id_int,
+        source_deleted_flg,
+        last_updated_dtm,
+        dv_last_updated_dt,
+        start_tv_dtm,
+        end_tv_dtm,
+        distributor_bucket_flg,
+        pos_trx_ln_prdt_qty,
+        net_change_process_dt,
+        sk_trx_sc_id_int,
+        dsv_or_pos_type_cd,
+        pos_return_role,
+        ru_service_contract_start_dtm,
+        ru_service_contract_end_dtm,
+        ru_srvc_cntrct_drtn_mnths_cnt,
+        glbl_prc_lst_unt_prc_usd_amt,
+        glbo_prc_lst_unt_prc_lcl_amt,
+        transaction_ai_flg,
+        ai_intent_type_cd,
+        trx_ai_product_class_name,
+        ai_strategic_factor_pct
+    FROM {{ source('raw', 'wi_pos_sca_incr_dly') }}
+),
+
+source_wi_pos_sca_rep_incr AS (
+    SELECT
+        pos_scaac_key,
+        pd_bk_pos_transaction_id_int,
+        base_list_unit_prod_price_amt,
+        disti_rptd_cost_unit_price_amt,
+        vldtd_net_unit_price_usd_amt,
+        valuation_price_usd_amount,
+        pd_sales_territory_key,
+        pd_sales_rep_num,
+        distributor_offset_flg,
+        pd_sales_commission_pct,
+        sc_id_int,
+        sk_trx_sc_id_int,
+        source_deleted_flg,
+        last_updated_dtm,
+        dv_last_updated_dt,
+        start_tv_dtm,
+        end_tv_dtm,
+        distributor_bucket_flg,
+        pos_trx_ln_prdt_qty,
+        net_change_process_dt,
+        glbl_prc_lst_unt_prc_usd_amt,
+        glbo_prc_lst_unt_prc_lcl_amt,
+        transaction_ai_flg,
+        ai_intent_type_cd,
+        trx_ai_product_class_name,
+        ai_strategic_factor_pct
+    FROM {{ source('raw', 'wi_pos_sca_rep_incr') }}
+),
+
+source_wi_drvd_sca_pos_dtl_f AS (
+    SELECT
+        sk_record_number_int,
+        sk_sequence_number_int,
+        bk_sales_rep_number,
+        sales_credit_type_code,
+        sales_commission_percentage,
+        adjustment_date,
+        extended_list_price_usd_amount,
+        extended_cost_price_usd_amount,
+        extended_net_price_usd_amount,
+        forward_reverse_code,
+        bk_pos_transaction_id_int,
+        distributor_offset_flag,
+        sales_territory_key,
+        adjustment_code,
+        description,
+        sales_channel_code,
+        sales_channel_source_type,
+        channel_booking_flag,
+        sales_adjustment_datetime,
+        service_booking_flag,
+        bk_fiscal_calendar_code,
+        bk_fiscal_year_number_int,
+        bk_fiscal_month_number_int,
+        dv_fiscal_year_mth_number_int,
+        product_key,
+        process_date,
+        edw_create_user,
+        edw_update_user,
+        edw_create_datetime,
+        edw_update_datetime,
+        dv_revenue_recognition_flg,
+        dv_net_spread_flg,
+        dv_corporate_booking_flg,
+        adjustment_qty,
+        dv_latest_flg,
+        pos_offset_flg,
+        net_change_process_dt,
+        attribution_type_cd,
+        top_sku_attributed_product_key,
+        bk_offer_attribution_id_int,
+        sk_trx_sales_credit_id_int,
+        glbl_lst_prc_usd_amt,
+        glbo_lst_prc_lcl_amt,
+        transaction_ai_flg,
+        ai_intent_type_cd,
+        trx_ai_product_class_name,
+        ai_strategic_factor_pct
+    FROM {{ source('raw', 'wi_drvd_sca_pos_dtl_f') }}
+),
+
+final AS (
+    SELECT
+        allocated_pos_adj_key,
+        pos_adj_detail_seq_num_int,
+        pos_adj_detail_record_num_int,
+        edw_create_user,
+        edw_create_dtm
+    FROM source_wi_drvd_sca_pos_dtl_f
+)
+
+SELECT * FROM final

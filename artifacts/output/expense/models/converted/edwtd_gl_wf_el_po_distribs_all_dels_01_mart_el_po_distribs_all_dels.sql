@@ -1,0 +1,95 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_el_po_distribs_all_dels', 'batch', 'edwtd_gl'],
+    meta={
+        'source_workflow': 'wf_m_EL_PO_DISTRIBS_ALL_DELS',
+        'target_table': 'EL_PO_DISTRIBS_ALL_DELS',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:05:29.050039+00:00'
+    }
+) }}
+
+WITH 
+
+source_st_mf_po_distribs_all_dels AS (
+    SELECT
+        batch_id,
+        accrual_account_id,
+        accrue_on_receipt_flag,
+        accrued_flag,
+        amount_billed,
+        attribute_category,
+        attribute1,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute14,
+        attribute15,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        code_combination_id,
+        created_by,
+        creation_date,
+        deliver_to_location_id,
+        deliver_to_person_id,
+        destination_context,
+        destination_organization_id,
+        destination_subinventory,
+        destination_type_code,
+        distribution_num,
+        encumbered_flag,
+        gl_cancelled_date,
+        last_update_date,
+        last_updated_by,
+        line_location_id,
+        nonrecoverable_tax,
+        org_id,
+        po_distribution_id,
+        po_header_id,
+        po_line_id,
+        po_release_id,
+        quantity_billed,
+        quantity_cancelled,
+        quantity_delivered,
+        quantity_ordered,
+        rate,
+        rate_date,
+        recoverable_tax,
+        recovery_rate,
+        req_distribution_id,
+        req_header_reference_num,
+        req_line_reference_num,
+        request_id,
+        set_of_books_id,
+        source_distribution_id,
+        tax_recovery_override_flag,
+        ges_delete_date,
+        ges_update_date,
+        global_name,
+        create_datetime,
+        action_code
+    FROM {{ source('raw', 'st_mf_po_distribs_all_dels') }}
+),
+
+final AS (
+    SELECT
+        deliver_to_location_id,
+        deliver_to_person_id,
+        org_id,
+        po_distribution_id,
+        po_header_id,
+        po_line_id,
+        set_of_books_id,
+        source_distribution_id,
+        ges_delete_date,
+        global_name
+    FROM source_st_mf_po_distribs_all_dels
+)
+
+SELECT * FROM final

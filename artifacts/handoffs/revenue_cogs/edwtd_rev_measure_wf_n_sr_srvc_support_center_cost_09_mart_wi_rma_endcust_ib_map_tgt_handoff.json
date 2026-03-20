@@ -1,0 +1,936 @@
+{
+  "workflow_name": "wf_m_WI_RMA_END_CUST_GL_BASED",
+  "mapping_name": "m_WI_RMA_END_CUST_GL_BASED",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_RMA_ENDCUST_IB_MAP_TGT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_n_sr_srvc_support_center_cost_09_mart_wi_rma_endcust_ib_map_tgt",
+  "source_tables": [
+    "WI_RMA_ENDCUST_IB_MAP",
+    "WI_ENDCUST_REV_MAP",
+    "WI_RMA_END_CUST_GL_BASED",
+    "N_SR_SERVICE_SUPPORT_CENTER_COST"
+  ],
+  "sources": [
+    {
+      "name": "WI_RMA_ENDCUST_IB_MAP",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "FISCAL_QUARTER_NAME",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_REPAIR_ORDER_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_NAME",
+          "datatype": "varchar",
+          "precision": "360",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SL_NUM",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NO_OF_END_CUST",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_ENDCUST_REV_MAP",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "FISCAL_QUARTER_NAME",
+          "datatype": "varchar",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERVICE_CONTRACT",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_NAME",
+          "datatype": "varchar",
+          "precision": "360",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_COMP_US_NET_REV_AMT",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TOTAL_COMP_US_NET_REV_AMT",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SLK_DIST_COUNT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_RMA_END_CUST_GL_BASED",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SERVICE_REQUEST_SSC_COST_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_CUST_ENRICHMENT_MTHOD_NAME",
+          "datatype": "varchar",
+          "precision": "26",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_REPAIR_ORDER_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "C3_CUSTOMER",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_NAME",
+          "datatype": "varchar",
+          "precision": "360",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RMA_EXP",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "8",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "N_SR_SERVICE_SUPPORT_CENTER_COST",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "SERVICE_REQUEST_SSC_COST_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_SERVICE_REQUEST_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SERVICE_REQUEST_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_SERVICE_CONTRACT_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "C3_CUST_THEATER_NAME",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "C3_CUST_MARKET_SEGMENT_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_PRDT_SUBGROUP_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_ALLCTD_SERVICE_GROUP_ID",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_SERVICE_CATEGORY_ID",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_PRDT_FAMILY_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SSC_DEPT_PRSNL_RSRC_COST_USD_AMT",
+          "datatype": "decimal",
+          "precision": "27",
+          "scale": "8",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SSC_DEPRECIATION_COST_USD_AMT",
+          "datatype": "decimal",
+          "precision": "27",
+          "scale": "8",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SSC_REPAIR_COST_USD_AMT",
+          "datatype": "decimal",
+          "precision": "27",
+          "scale": "8",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SSC_DUTY_VAT_COST_USD_AMT",
+          "datatype": "decimal",
+          "precision": "27",
+          "scale": "8",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SSC_THIRD_PRTY_LOGISTICS_COST_USD_AMT",
+          "datatype": "decimal",
+          "precision": "27",
+          "scale": "8",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SSC_THIRD_PARTY_MNTNC_COST_USD_AMT",
+          "datatype": "decimal",
+          "precision": "27",
+          "scale": "8",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SSC_ORIG_EQUIP_MNFCTR_COST_USD_AMT",
+          "datatype": "decimal",
+          "precision": "27",
+          "scale": "8",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SSC_WARRANTY_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_REPAIR_ORDER_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_PRDT_PART_NUM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SR_SSC_COST_FSCL_CAL_CD",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SR_SSC_COST_FSCL_YR_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SR_SSC_COST_FSCL_MTH_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_REPAIR_ORDER_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SR_HW_PRDT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_DELETED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FAILURE_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "WARRANTY_PARTS_PCT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "12",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CONTRACTED_SERVICE_GROUP_NAME",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHIPPED_QTY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_CUST_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EXTND_STD_COST_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ALLOCATED_COST_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LOOKUP_THEATER_NAME",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SHIPPED_FISCAL_CAL_CD",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SHIPPED_FISCAL_YEAR_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SHIPPED_FISCAL_MTH_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SERVICE_OFFERING_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INSTALL_SITE_THEATER_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_SHIP_TO_CNTRY_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_ENTERPRISE_PRDT_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_COVERED_PRDT_FAMILY_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_ENTERPRISE_PRDT_FAMILY_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_SERVICE_CONTRACT_LINE_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_HW_PRDT_FAMILY_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_HYBRID_PRDT_FAMILY_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SRC_RPTD_SITE_CNTRY_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SSC_WARRANTY_CREDIT_M1_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SSC_WARRANTY_CREDIT_M2_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SSC_WARRANTY_CREDIT_M3_USD_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_WC_M1_FISCAL_CAL_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_WC_M1_FISCAL_YEAR_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_WC_M1_FISCAL_MTH_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_WC_M2_FISCAL_CAL_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_WC_M2_FISCAL_YEAR_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_WC_M2_FISCAL_MTH_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_WC_M3_FISCAL_CAL_CD",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_WC_M3_FISCAL_YEAR_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_WC_M3_FISCAL_MTH_NUM_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_END_CUSTOMER_NAME",
+          "datatype": "varchar",
+          "precision": "500",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_CUST_ENRICHMENT_MTHOD_NAME",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_RMA_ENDCUST_IB_MAP_TGT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_QUARTER_NAME",
+        "datatype": "varchar",
+        "precision": "32",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FISCAL_YEAR_MONTH_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_REPAIR_ORDER_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_END_CUSTOMER_NAME",
+        "datatype": "varchar",
+        "precision": "360",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SL_NUM",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NO_OF_END_CUST",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_RMA_END_CUST_GL_BASED",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SERVICE_REQUEST_SSC_COST_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_CUST_ENRICHMENT_MTHOD_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_REPAIR_ORDER_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "C3_CUSTOMER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_END_CUSTOMER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RMA_EXP",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n  RMA.FISCAL_YEAR_MONTH_INT \r\n ,RMA.SERVICE_REQUEST_SSC_COST_KEY\r\n   ,'EC_DIRECT_MAP_CONTRACT_1:1' AS END_CUST_ENRICHMENT_MTHOD_NAME\r\n ,RMA.BK_REPAIR_ORDER_NUM_INT       \r\n,RMA.SRC_RPTD_SERVICE_CONTARCT_NUM  AS SRC_RPTD_SERVICE_CONTARCT_NUM\r\n,RMA.SRC_RPTD_CUST_NAME AS C3_CUSTOMER\r\n,COALESCE(WI_ENDCUST.DV_END_CUSTOMER_NAME,'UNKW') AS DV_END_CUSTOMER_NAME\r\n,SUM(SSC_DPT_PRSNL_RSRC_CST_USD_AMT+SSC_DEPRECIATION_COST_USD_AMT+SSC_REPAIR_COST_USD_AMT+\r\nSSC_DUTY_VAT_COST_USD_AMT+SSC_THRD_PRTY_LGST_CST_USD_AMT+SSC_THRD_PRTY_MTNC_CST_USD_AMT+\r\nSSC_ORIG_EQP_MFGR_CST_USD_AMT)  RMA_EXP\r\nFROM $$FINLGLVWDB.N_SR_SRVC_SUPPORT_CENTER_COST RMA\t\r\n INNER JOIN $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID CNTL\r\n ON CNTL.FISCAL_YEAR_MONTH_INT = RMA.FISCAL_YEAR_MONTH_INT\r\n INNER JOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RFM \r\n ON RFM.FISCAL_YEAR_MONTH_INT=CNTL.FISCAL_YEAR_MONTH_INT\r\nLEFT JOIN $$STGDB.WI_ENDCUST_REV_MAP WI_ENDCUST \r\nON WI_ENDCUST.SERVICE_CONTRACT=RMA.SRC_RPTD_SERVICE_CONTARCT_NUM \r\nAND WI_ENDCUST.FISCAL_QUARTER_NAME=RFM.FISCAL_QUARTER_NAME\r\nAND WI_ENDCUST.SLK_DIST_COUNT = 1\r\nGROUP BY 1,2,3,4,5,6,7",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "DELETE FROM $$STGDB.WI_RMA_END_CUST_GL_BASED WHERE FISCAL_YEAR_MONTH_INT IN ( SELECT FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_CCM_TS_MTH_QTR_CNTL);",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "SQ_WI_RMA_END_CUST_GL_BASED",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "WI_RMA_END_CUST_GL_BASED_TGT"
+    },
+    {
+      "from_field": "SERVICE_REQUEST_SSC_COST_KEY",
+      "from_instance": "SQ_WI_RMA_END_CUST_GL_BASED",
+      "to_field": "SERVICE_REQUEST_SSC_COST_KEY",
+      "to_instance": "WI_RMA_END_CUST_GL_BASED_TGT"
+    },
+    {
+      "from_field": "END_CUST_ENRICHMENT_MTHOD_NAME",
+      "from_instance": "SQ_WI_RMA_END_CUST_GL_BASED",
+      "to_field": "END_CUST_ENRICHMENT_MTHOD_NAME",
+      "to_instance": "WI_RMA_END_CUST_GL_BASED_TGT"
+    },
+    {
+      "from_field": "BK_REPAIR_ORDER_NUM_INT",
+      "from_instance": "SQ_WI_RMA_END_CUST_GL_BASED",
+      "to_field": "BK_REPAIR_ORDER_NUM_INT",
+      "to_instance": "WI_RMA_END_CUST_GL_BASED_TGT"
+    },
+    {
+      "from_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "from_instance": "SQ_WI_RMA_END_CUST_GL_BASED",
+      "to_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "to_instance": "WI_RMA_END_CUST_GL_BASED_TGT"
+    },
+    {
+      "from_field": "C3_CUSTOMER",
+      "from_instance": "SQ_WI_RMA_END_CUST_GL_BASED",
+      "to_field": "C3_CUSTOMER",
+      "to_instance": "WI_RMA_END_CUST_GL_BASED_TGT"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_NAME",
+      "from_instance": "SQ_WI_RMA_END_CUST_GL_BASED",
+      "to_field": "DV_END_CUSTOMER_NAME",
+      "to_instance": "WI_RMA_END_CUST_GL_BASED_TGT"
+    },
+    {
+      "from_field": "RMA_EXP",
+      "from_instance": "SQ_WI_RMA_END_CUST_GL_BASED",
+      "to_field": "RMA_EXP",
+      "to_instance": "WI_RMA_END_CUST_GL_BASED_TGT"
+    },
+    {
+      "from_field": "FISCAL_YEAR_MONTH_INT",
+      "from_instance": "WI_RMA_END_CUST_GL_BASED",
+      "to_field": "FISCAL_YEAR_MONTH_INT",
+      "to_instance": "SQ_WI_RMA_END_CUST_GL_BASED"
+    },
+    {
+      "from_field": "SERVICE_REQUEST_SSC_COST_KEY",
+      "from_instance": "WI_RMA_END_CUST_GL_BASED",
+      "to_field": "SERVICE_REQUEST_SSC_COST_KEY",
+      "to_instance": "SQ_WI_RMA_END_CUST_GL_BASED"
+    },
+    {
+      "from_field": "END_CUST_ENRICHMENT_MTHOD_NAME",
+      "from_instance": "WI_RMA_END_CUST_GL_BASED",
+      "to_field": "END_CUST_ENRICHMENT_MTHOD_NAME",
+      "to_instance": "SQ_WI_RMA_END_CUST_GL_BASED"
+    },
+    {
+      "from_field": "BK_REPAIR_ORDER_NUM_INT",
+      "from_instance": "WI_RMA_END_CUST_GL_BASED",
+      "to_field": "BK_REPAIR_ORDER_NUM_INT",
+      "to_instance": "SQ_WI_RMA_END_CUST_GL_BASED"
+    },
+    {
+      "from_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "from_instance": "WI_RMA_END_CUST_GL_BASED",
+      "to_field": "SRC_RPTD_SERVICE_CONTARCT_NUM",
+      "to_instance": "SQ_WI_RMA_END_CUST_GL_BASED"
+    },
+    {
+      "from_field": "C3_CUSTOMER",
+      "from_instance": "WI_RMA_END_CUST_GL_BASED",
+      "to_field": "C3_CUSTOMER",
+      "to_instance": "SQ_WI_RMA_END_CUST_GL_BASED"
+    },
+    {
+      "from_field": "DV_END_CUSTOMER_NAME",
+      "from_instance": "WI_RMA_END_CUST_GL_BASED",
+      "to_field": "DV_END_CUSTOMER_NAME",
+      "to_instance": "SQ_WI_RMA_END_CUST_GL_BASED"
+    },
+    {
+      "from_field": "RMA_EXP",
+      "from_instance": "WI_RMA_END_CUST_GL_BASED",
+      "to_field": "RMA_EXP",
+      "to_instance": "SQ_WI_RMA_END_CUST_GL_BASED"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_QUARTER_NAME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FISCAL_YEAR_MONTH_INT",
+      "source_path": [
+        {
+          "from_field": "FISCAL_YEAR_MONTH_INT",
+          "from_instance": "SQ_WI_RMA_END_CUST_GL_BASED"
+        },
+        {
+          "from_field": "FISCAL_YEAR_MONTH_INT",
+          "from_instance": "WI_RMA_END_CUST_GL_BASED"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_REPAIR_ORDER_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "BK_REPAIR_ORDER_NUM_INT",
+          "from_instance": "SQ_WI_RMA_END_CUST_GL_BASED"
+        },
+        {
+          "from_field": "BK_REPAIR_ORDER_NUM_INT",
+          "from_instance": "WI_RMA_END_CUST_GL_BASED"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_END_CUSTOMER_NAME",
+      "source_path": [
+        {
+          "from_field": "DV_END_CUSTOMER_NAME",
+          "from_instance": "SQ_WI_RMA_END_CUST_GL_BASED"
+        },
+        {
+          "from_field": "DV_END_CUSTOMER_NAME",
+          "from_instance": "WI_RMA_END_CUST_GL_BASED"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SL_NUM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NO_OF_END_CUST",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:26.631754+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,183 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_mt_jel_employee_travel', 'batch', 'edwtd_gl'],
+    meta={
+        'source_workflow': 'wf_m_MT_JEL_EMPLOYEE_TRAVEL',
+        'target_table': 'WI_FET_AVG_QTR_PER_HEAD',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:05:28.959451+00:00'
+    }
+) }}
+
+WITH 
+
+source_mt_jel_employee_travel AS (
+    SELECT
+        bk_journal_entry_num_int,
+        bk_journal_entry_line_num_int,
+        bk_company_cd,
+        set_of_books_key,
+        vendor_invoice_distrib_key,
+        dv_fiscal_year_month_num_int,
+        dv_functional_amt,
+        dv_usd_amt,
+        dv_transactional_amt,
+        application_version_cd,
+        functional_currency_cd,
+        transactional_currency_cd,
+        journal_entry_line_descr,
+        ap_vendor_party_key,
+        ap_vendor_name,
+        vendor_invoice_key,
+        expense_report_line_key,
+        empl_name,
+        empl_id,
+        start_dtm,
+        destination,
+        end_dtm,
+        airlines_name,
+        trip_no,
+        avg_per_head_usd,
+        avg_per_head_qtr,
+        avg_per_head_year,
+        ss_cd,
+        dd_bk_subaccount_locality_int,
+        dd_bk_fin_acct_locality_int,
+        dd_bk_project_locality_int,
+        dd_bk_financial_location_cd,
+        dd_financial_account_cd,
+        dd_bk_subaccount_cd,
+        dd_bk_dept_cd,
+        dd_bk_project_cd,
+        dd_financial_company_mapped_cd,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user
+    FROM {{ source('raw', 'mt_jel_employee_travel') }}
+),
+
+source_n_journal_entry_line AS (
+    SELECT
+        bk_journal_entry_line_num_int,
+        bk_journal_entry_number_int,
+        set_of_books_key,
+        bk_company_code,
+        bk_functional_currency_code,
+        debit_credit_entry_type,
+        effective_dt,
+        effective_dt_calendar_cd,
+        effective_dt_fscl_year_num_int,
+        effective_dt_month_num_int,
+        general_ledger_account_key,
+        intercompany_role,
+        journal_entry_line_type,
+        journal_entry_line_type_cd,
+        ovrd_trx_fnc_curr_cnv_rt,
+        ru_dv_usd_credit_amt,
+        ru_dv_usd_debit_amt,
+        ru_functional_credit_amt,
+        ru_functional_debit_amt,
+        ru_offset_line_gla_company_cd,
+        ru_offset_line_gla_dept_cd,
+        ru_offset_line_gla_fin_acct_cd,
+        ru_offset_line_gla_fin_loc_cd,
+        ru_offset_line_gla_project_cd,
+        ru_offset_line_gla_subacct_cd,
+        ru_transactional_credit_amt,
+        ru_transactional_debit_amt,
+        ss_cd,
+        dd_bk_subaccount_locality_int,
+        dd_bk_fin_acct_locality_int,
+        dd_bk_project_locality_int,
+        dd_bk_financial_location_cd,
+        dd_financial_account_cd,
+        dd_bk_subaccount_cd,
+        dd_bk_dept_cd,
+        dd_bk_project_cd,
+        dd_financial_company_mapped_cd,
+        edw_create_user,
+        edw_update_user,
+        edw_create_dtm,
+        edw_update_dtm,
+        dv_fiscal_year_month_num_int,
+        journal_entry_line_descr,
+        ru_vendor_invoice_payment_key
+    FROM {{ source('raw', 'n_journal_entry_line') }}
+),
+
+transformed_exp_mt_jel_employee_travel_airtravel_jeline AS (
+    SELECT
+    bk_journal_entry_line_num_int,
+    bk_journal_entry_number_int,
+    set_of_books_key,
+    bk_company_cd,
+    dd_bk_dept_cd,
+    dd_financial_account_cd,
+    dd_bk_project_cd,
+    dv_fiscal_year_month_num_int,
+    er_purpose_descr,
+    trx_net_amt,
+    usd_net_amt,
+    func_net_amt,
+    vendor_invoice_distrib_key,
+    vendor_invoice_key,
+    bk_employee_id,
+    expense_report_line_key,
+    application_version_cd,
+    functional_currency_cd,
+    transactional_currency_cd,
+    ap_vendor_party_key,
+    ss_cd,
+    dd_bk_subaccount_locality_int,
+    dd_bk_fin_acct_locality_int,
+    dd_bk_project_locality_int,
+    dd_bk_financial_location_cd,
+    dd_bk_subaccount_cd,
+    dd_financial_company_mapped_cd
+    FROM source_n_journal_entry_line
+),
+
+transformed_exp_mt_jel_employee_travel_otherte_iexp AS (
+    SELECT
+    bk_journal_entry_line_num_int,
+    bk_journal_entry_number_int,
+    set_of_books_key,
+    bk_company_cd,
+    dd_bk_dept_cd,
+    dd_financial_account_cd,
+    dd_bk_project_cd,
+    dv_fiscal_year_month_num_int,
+    er_purpose_descr,
+    trx_net_amt,
+    usd_net_amt,
+    func_net_amt,
+    vendor_invoice_distrib_key,
+    vendor_invoice_key,
+    bk_employee_id,
+    expense_report_line_key,
+    application_version_cd,
+    functional_currency_cd,
+    transactional_currency_cd,
+    ap_vendor_party_key,
+    ss_cd,
+    dd_bk_subaccount_locality_int,
+    dd_bk_fin_acct_locality_int,
+    dd_bk_project_locality_int,
+    dd_bk_financial_location_cd,
+    dd_bk_subaccount_cd,
+    dd_financial_company_mapped_cd,
+    ap_vendor_name
+    FROM transformed_exp_mt_jel_employee_travel_airtravel_jeline
+),
+
+final AS (
+    SELECT
+        node_level02_id_int,
+        fiscal_year_quarter_number_int,
+        avg_per_head_qtr
+    FROM transformed_exp_mt_jel_employee_travel_otherte_iexp
+)
+
+SELECT * FROM final

@@ -1,0 +1,132 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_st_csf_fnd_user', 'batch', 'edwtd_gl'],
+    meta={
+        'source_workflow': 'wf_m_ST_CSF_FND_USER',
+        'target_table': 'ST_CSF_FND_USER_R12',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:05:28.728380+00:00'
+    }
+) }}
+
+WITH 
+
+source_csf_fnd_usr AS (
+    SELECT
+        source_dml_type,
+        ges_update_date,
+        refresh_datetime,
+        user_id,
+        user_name,
+        last_update_date,
+        last_updated_by,
+        creation_date,
+        created_by,
+        last_update_login,
+        encrypted_foundation_password,
+        encrypted_user_password,
+        session_number,
+        start_date,
+        end_date,
+        description,
+        last_logon_date,
+        password_date,
+        password_accesses_left,
+        password_lifespan_accesses,
+        password_lifespan_days,
+        employee_id,
+        email_address,
+        fax,
+        customer_id,
+        supplier_id,
+        web_password,
+        user_guid,
+        gcn_code_combination_id,
+        person_party_id
+    FROM {{ source('raw', 'csf_fnd_usr') }}
+),
+
+transformed_exptrans AS (
+    SELECT
+    user_id,
+    user_name,
+    last_update_date,
+    last_updated_by,
+    creation_date,
+    created_by,
+    last_update_login,
+    encrypted_foundation_password,
+    encrypted_user_password,
+    session_number,
+    start_date,
+    end_date,
+    description,
+    last_logon_date,
+    password_date,
+    password_accesses_left,
+    password_lifespan_accesses,
+    password_lifespan_days,
+    employee_id,
+    email_address,
+    fax,
+    customer_id,
+    supplier_id,
+    web_password,
+    user_guid,
+    gcn_code_combination_id,
+    person_party_id,
+    source_dml_type,
+    source_commit_time,
+    refresh_datetime,
+    ges_update_date,
+    'null' AS trail_file_name,
+    1 AS batch_id,
+    'CTS' AS global_name,
+    'I' AS action_code,
+    CURRENT_TIMESTAMP() AS create_datetime
+    FROM source_csf_fnd_usr
+),
+
+final AS (
+    SELECT
+        user_id,
+        user_name,
+        last_update_date,
+        last_updated_by,
+        creation_date,
+        created_by,
+        last_update_login,
+        encrypted_foundation_password,
+        encrypted_user_password,
+        session_number,
+        start_date,
+        end_date,
+        description,
+        last_logon_date,
+        password_date,
+        password_accesses_left,
+        password_lifespan_accesses,
+        password_lifespan_days,
+        employee_id,
+        email_address,
+        fax,
+        customer_id,
+        supplier_id,
+        web_password,
+        user_guid,
+        gcn_code_combination_id,
+        person_party_id,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        batch_id,
+        ges_update_date,
+        global_name,
+        action_code,
+        create_datetime
+    FROM transformed_exptrans
+)
+
+SELECT * FROM final

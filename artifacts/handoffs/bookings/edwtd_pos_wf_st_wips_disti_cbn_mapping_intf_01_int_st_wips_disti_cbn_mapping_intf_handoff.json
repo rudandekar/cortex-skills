@@ -1,0 +1,202 @@
+{
+  "workflow_name": "wf_m_ST_WIPS_DISTI_CBN_MAPPING_INTF",
+  "mapping_name": "m_ST_WIPS_DISTI_CBN_MAPPING_INTF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_POS",
+  "target_table": "ST_WIPS_DISTI_CBN_MAPPING_INTF",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_pos_wf_st_wips_disti_cbn_mapping_intf_01_int_st_wips_disti_cbn_mapping_intf",
+  "source_tables": [
+    "FF_WIPS_DISTI_CBN_MAPPING_INTF"
+  ],
+  "sources": [
+    {
+      "name": "FF_WIPS_DISTI_CBN_MAPPING_INTF",
+      "database_type": "Flat File",
+      "owner": "XXCHA_OPM_O",
+      "fields": [
+        {
+          "name": "ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CBN_CID",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_PROFILE_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_WIPS_DISTI_CBN_MAPPING_INTF",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CBN_CID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DISTI_PROFILE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_WIPS_DISTI_CBN_MAPPING_INTF",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CBN_CID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTI_PROFILE_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ID",
+      "from_instance": "SQ_FF_WIPS_DISTI_CBN_MAPPING_INTF",
+      "to_field": "ID",
+      "to_instance": "ST_WIPS_DISTI_CBN_MAPPING_INTF"
+    },
+    {
+      "from_field": "CBN_CID",
+      "from_instance": "SQ_FF_WIPS_DISTI_CBN_MAPPING_INTF",
+      "to_field": "CBN_CID",
+      "to_instance": "ST_WIPS_DISTI_CBN_MAPPING_INTF"
+    },
+    {
+      "from_field": "DISTI_PROFILE_ID",
+      "from_instance": "SQ_FF_WIPS_DISTI_CBN_MAPPING_INTF",
+      "to_field": "DISTI_PROFILE_ID",
+      "to_instance": "ST_WIPS_DISTI_CBN_MAPPING_INTF"
+    },
+    {
+      "from_field": "ID",
+      "from_instance": "FF_WIPS_DISTI_CBN_MAPPING_INTF",
+      "to_field": "ID",
+      "to_instance": "SQ_FF_WIPS_DISTI_CBN_MAPPING_INTF"
+    },
+    {
+      "from_field": "CBN_CID",
+      "from_instance": "FF_WIPS_DISTI_CBN_MAPPING_INTF",
+      "to_field": "CBN_CID",
+      "to_instance": "SQ_FF_WIPS_DISTI_CBN_MAPPING_INTF"
+    },
+    {
+      "from_field": "DISTI_PROFILE_ID",
+      "from_instance": "FF_WIPS_DISTI_CBN_MAPPING_INTF",
+      "to_field": "DISTI_PROFILE_ID",
+      "to_instance": "SQ_FF_WIPS_DISTI_CBN_MAPPING_INTF"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ID",
+      "source_path": [
+        {
+          "from_field": "ID",
+          "from_instance": "SQ_FF_WIPS_DISTI_CBN_MAPPING_INTF"
+        },
+        {
+          "from_field": "ID",
+          "from_instance": "FF_WIPS_DISTI_CBN_MAPPING_INTF"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CBN_CID",
+      "source_path": [
+        {
+          "from_field": "CBN_CID",
+          "from_instance": "SQ_FF_WIPS_DISTI_CBN_MAPPING_INTF"
+        },
+        {
+          "from_field": "CBN_CID",
+          "from_instance": "FF_WIPS_DISTI_CBN_MAPPING_INTF"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DISTI_PROFILE_ID",
+      "source_path": [
+        {
+          "from_field": "DISTI_PROFILE_ID",
+          "from_instance": "SQ_FF_WIPS_DISTI_CBN_MAPPING_INTF"
+        },
+        {
+          "from_field": "DISTI_PROFILE_ID",
+          "from_instance": "FF_WIPS_DISTI_CBN_MAPPING_INTF"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:16.827538+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

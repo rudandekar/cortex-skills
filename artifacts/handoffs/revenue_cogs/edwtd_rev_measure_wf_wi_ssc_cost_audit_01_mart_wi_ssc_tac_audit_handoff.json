@@ -1,0 +1,502 @@
+{
+  "workflow_name": "wf_m_SSC_COST_AUDIT",
+  "mapping_name": "m_SSC_COST_AUDIT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_SSC_TAC_AUDIT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_ssc_cost_audit_01_mart_wi_ssc_tac_audit",
+  "source_tables": [
+    "WI_SSC_TAC_AUDIT"
+  ],
+  "sources": [
+    {
+      "name": "WI_SSC_TAC_AUDIT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DV_SOURCE_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DOLLAR_MISMATCH_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COUNT_MISMATCH",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_SSC_TAC_AUDIT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_SOURCE_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_TABLE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DOLLAR_MISMATCH_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COUNT_MISMATCH",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_SSC_TAC_AUDIT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_SOURCE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "IP_DOLLAR_MISMATCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DOLLAR_MISMATCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_COUNT_MISMATCH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SR_COUNT_MISMATCH",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SEL SRC_IP.FISCAL_YEAR_MONTH_INT,'SSC_COST' AS DV_SOURCE_NAME,'N_SR_SERVICE_SUPPORT_CENTER_COST' AS AUDIT_TABLE, CURRENT_DATE AS AUDIT_DATE,\r\nABS(COALESCE(TGT.ALLOCATED_COST_USD_AMT,0)-  COALESCE(SRC_IP.AMOUNT,0)) AS IP_DOLLAR_MISMATCH_AMT ,\r\nABS(COALESCE(TGT.TOTAL_COST,0)-  COALESCE(SRC_IP.AMOUNT,0)) AS  DOLLAR_MISMATCH_AMT ,\r\nABS(COALESCE(TGT.TOTAL_COUNT,0)-  COALESCE(SR_RMA.TOTAL_COUNT,0)) AS TOTAL_COUNT_MISMATCH,\r\nABS(COALESCE(TGT.SR_COUNT,0)-  COALESCE(SR_RMA.SR_COUNT,0)) AS SR_COUNT_MISMATCH\r\n FROM \r\n(\r\nSELECT (SELECT FISCAL_YEAR_MONTH_INT FROM  $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID) AS FISCAL_YEAR_MONTH_INT,SUM(AMOUNT) AS AMOUNT from $$STGDB.WI_CCM_SSC_INPUT_DOLLAR \r\nWHERE FISCAL_MONTH_ID  in (SELECT FISCAL_MONTH_ID FROM  $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID) GROUP BY 1\r\n) SRC_IP\r\n\r\nFULL  JOIN \r\n(\r\nSELECT (SELECT FISCAL_YEAR_MONTH_INT FROM  $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID) AS FISCAL_YEAR_MONTH_INT,COUNT(*) TOTAL_COUNT,COUNT(DISTINCT SR_NUMBER) AS SR_COUNT FROM $$STGDB.WI_SSC_RMA_VOLUME  WHERE FISCAL_MONTH_ID  in (SELECT FISCAL_MONTH_ID FROM  $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)\r\n) SR_RMA\r\nON SRC_IP.FISCAL_YEAR_MONTH_INT=SR_RMA.FISCAL_YEAR_MONTH_INT\r\nFULL JOIN \r\n(\r\nSEL  CASE WHEN  BK_SR_SSC_COST_FSCL_MTH_NUM_INT<=9 THEN  (TRIM(BK_SR_SSC_COST_FSCL_YR_NUM_INT)||'0'||TRIM(BK_SR_SSC_COST_FSCL_MTH_NUM_INT)) \r\nELSE  (TRIM(BK_SR_SSC_COST_FSCL_YR_NUM_INT)||TRIM(BK_SR_SSC_COST_FSCL_MTH_NUM_INT)) END AS FISCAL_YEAR_MONTH_INT ,\r\nCOUNT(*) TOTAL_COUNT,\r\nCOUNT(DISTINCT SRC_RPTD_SERVICE_REQUEST_NUM_INT )  SR_COUNT , \r\nSUM(ALLOCATED_COST_USD_AMT) AS ALLOCATED_COST_USD_AMT,\r\nSUM(SSC_DEPT_PRSNL_RSRC_COST_USD_AMT) +SUM(DEPT_MERAKI_CREDIT_USD_AMT)+\r\n SUM(SSC_DEPRECIATION_COST_USD_AMT)+SUM(DPRCTN_ECO_CREDIT_USD_AMT)+SUM(DPRCTN_MERAKI_CREDIT_USD_AMT)+\r\n SUM(SSC_REPAIR_COST_USD_AMT)+SUM(REPAIR_ECO_CREDIT_USD_AMT)+  \r\n SUM(SSC_DUTY_VAT_COST_USD_AMT) +SUM(DUTY_VAT_ECO_CREDIT_USD_AMT)+ SUM(DUTY_VAT_MERAKI_CREDIT_USD_AMT) +\r\n SUM(SSC_THIRD_PRTY_LOGISTICS_COST_USD_AMT) + SUM(TPL_ECO_CREDIT_USD_AMT) +SUM(TPL_MERAKI_CREDIT_USD_AMT) +\r\n SUM(SSC_THIRD_PARTY_MNTNC_COST_USD_AMT) +\r\n SUM(SSC_ORIG_EQUIP_MNFCTR_COST_USD_AMT)+SUM(OEM_MERAKI_CREDIT_USD_AMT) \r\n\t+ COALESCE(SUM(DEPR_UMPIRE_CREDIT_USD_AMT) ,0)\r\n\t+ COALESCE(SUM(REPAIR_UMPIRE_CREDIT_USD_AMT),0)\r\n\t+ COALESCE(SUM(DUTY_VAT_UMPIRE_CREDIT_USD_AMT),0)\r\n\t+ COALESCE(SUM(TPL_UMPIRE_CREDIT_USD_AMT),0)\r\n AS TOTAL_COST\r\nFROM $$FINLGLVWDB.N_SR_SERVICE_SUPPORT_CENTER_COST  \r\nWHERE   CASE WHEN  BK_SR_SSC_COST_FSCL_MTH_NUM_INT<=9 THEN  (TRIM(BK_SR_SSC_COST_FSCL_YR_NUM_INT)||'0'||TRIM(BK_SR_SSC_COST_FSCL_MTH_NUM_INT)) \r\nELSE  (TRIM(BK_SR_SSC_COST_FSCL_YR_NUM_INT)||TRIM(BK_SR_SSC_COST_FSCL_MTH_NUM_INT)) END IN \r\n(SELECT FISCAL_YEAR_MONTH_INT FROM  $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID)\r\nGROUP BY 1\r\n) TGT\r\nON SRC_IP.FISCAL_YEAR_MONTH_INT=TGT.FISCAL_YEAR_MONTH_INT\r\nAND SR_RMA.FISCAL_YEAR_MONTH_INT=TGT.FISCAL_YEAR_MONTH_INT",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_COST_AUDIT",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DV_FISCAL_YEAR_MTH_NUMBER_INT"
+        },
+        {
+          "name": "DV_SOURCE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DV_SOURCE_NAME"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TABLE"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_DATE"
+        },
+        {
+          "name": "IP_DOLLAR_MISMATCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "DOLLAR_MISMATCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "TOTAL_COUNT_MISMATCH",
+          "datatype": "integer",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "SR_COUNT_MISMATCH",
+          "datatype": "integer",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "DOLLAR_CHECK",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": "IIF( IP_DOLLAR_MISMATCH_AMT >1000 OR DOLLAR_MISMATCH_AMT>1000,ABORT('$Mismatch in N_SR_SERVICE_SUPPORT_CENTER_COST'),DOLLAR_MISMATCH_AMT)"
+        },
+        {
+          "name": "COUNT_CHECK",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "IIF(TOTAL_COUNT_MISMATCH<>0 OR SR_COUNT_MISMATCH<>0,ABORT('Count Mismatch in N_SR_SERVICE_SUPPORT_CENTER_COST'),TOTAL_COUNT_MISMATCH)"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "EXP_COST_AUDIT",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_SSC_TAC_AUDIT1"
+    },
+    {
+      "from_field": "DV_SOURCE_NAME",
+      "from_instance": "EXP_COST_AUDIT",
+      "to_field": "DV_SOURCE_NAME",
+      "to_instance": "WI_SSC_TAC_AUDIT1"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "EXP_COST_AUDIT",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "WI_SSC_TAC_AUDIT1"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "EXP_COST_AUDIT",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "WI_SSC_TAC_AUDIT1"
+    },
+    {
+      "from_field": "DOLLAR_CHECK",
+      "from_instance": "EXP_COST_AUDIT",
+      "to_field": "DOLLAR_MISMATCH_AMT",
+      "to_instance": "WI_SSC_TAC_AUDIT1"
+    },
+    {
+      "from_field": "COUNT_CHECK",
+      "from_instance": "EXP_COST_AUDIT",
+      "to_field": "COUNT_MISMATCH",
+      "to_instance": "WI_SSC_TAC_AUDIT1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_SSC_TAC_AUDIT",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_SSC_TAC_AUDIT"
+    },
+    {
+      "from_field": "DV_SOURCE_NAME",
+      "from_instance": "WI_SSC_TAC_AUDIT",
+      "to_field": "DV_SOURCE_NAME",
+      "to_instance": "SQ_WI_SSC_TAC_AUDIT"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "WI_SSC_TAC_AUDIT",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "SQ_WI_SSC_TAC_AUDIT"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "WI_SSC_TAC_AUDIT",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "SQ_WI_SSC_TAC_AUDIT"
+    },
+    {
+      "from_field": "DOLLAR_MISMATCH_AMT",
+      "from_instance": "WI_SSC_TAC_AUDIT",
+      "to_field": "IP_DOLLAR_MISMATCH_AMT",
+      "to_instance": "SQ_WI_SSC_TAC_AUDIT"
+    },
+    {
+      "from_field": "COUNT_MISMATCH",
+      "from_instance": "WI_SSC_TAC_AUDIT",
+      "to_field": "TOTAL_COUNT_MISMATCH",
+      "to_instance": "SQ_WI_SSC_TAC_AUDIT"
+    },
+    {
+      "from_field": "COUNT_MISMATCH",
+      "from_instance": "WI_SSC_TAC_AUDIT",
+      "to_field": "SR_COUNT_MISMATCH",
+      "to_instance": "SQ_WI_SSC_TAC_AUDIT"
+    },
+    {
+      "from_field": "DOLLAR_MISMATCH_AMT",
+      "from_instance": "WI_SSC_TAC_AUDIT",
+      "to_field": "DOLLAR_MISMATCH_AMT",
+      "to_instance": "SQ_WI_SSC_TAC_AUDIT"
+    },
+    {
+      "from_field": "SR_COUNT_MISMATCH",
+      "from_instance": "SQ_WI_SSC_TAC_AUDIT",
+      "to_field": "SR_COUNT_MISMATCH",
+      "to_instance": "EXP_COST_AUDIT"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_SSC_TAC_AUDIT",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "EXP_COST_AUDIT"
+    },
+    {
+      "from_field": "DV_SOURCE_NAME",
+      "from_instance": "SQ_WI_SSC_TAC_AUDIT",
+      "to_field": "DV_SOURCE_NAME",
+      "to_instance": "EXP_COST_AUDIT"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "SQ_WI_SSC_TAC_AUDIT",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "EXP_COST_AUDIT"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "SQ_WI_SSC_TAC_AUDIT",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "EXP_COST_AUDIT"
+    },
+    {
+      "from_field": "IP_DOLLAR_MISMATCH_AMT",
+      "from_instance": "SQ_WI_SSC_TAC_AUDIT",
+      "to_field": "DOLLAR_MISMATCH_AMT",
+      "to_instance": "EXP_COST_AUDIT"
+    },
+    {
+      "from_field": "TOTAL_COUNT_MISMATCH",
+      "from_instance": "SQ_WI_SSC_TAC_AUDIT",
+      "to_field": "TOTAL_COUNT_MISMATCH",
+      "to_instance": "EXP_COST_AUDIT"
+    },
+    {
+      "from_field": "DOLLAR_MISMATCH_AMT",
+      "from_instance": "SQ_WI_SSC_TAC_AUDIT",
+      "to_field": "IP_DOLLAR_MISMATCH_AMT",
+      "to_instance": "EXP_COST_AUDIT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "EXP_COST_AUDIT"
+        },
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "WI_SSC_TAC_AUDIT"
+        },
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "SQ_WI_SSC_TAC_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_SOURCE_NAME",
+      "source_path": [
+        {
+          "from_field": "DV_SOURCE_NAME",
+          "from_instance": "EXP_COST_AUDIT"
+        },
+        {
+          "from_field": "DV_SOURCE_NAME",
+          "from_instance": "WI_SSC_TAC_AUDIT"
+        },
+        {
+          "from_field": "DV_SOURCE_NAME",
+          "from_instance": "SQ_WI_SSC_TAC_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_TABLE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "EXP_COST_AUDIT"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "WI_SSC_TAC_AUDIT"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "SQ_WI_SSC_TAC_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_DATE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "EXP_COST_AUDIT"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "WI_SSC_TAC_AUDIT"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "SQ_WI_SSC_TAC_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DOLLAR_MISMATCH_AMT",
+      "source_path": [
+        {
+          "from_field": "DOLLAR_CHECK",
+          "from_instance": "EXP_COST_AUDIT"
+        },
+        {
+          "from_field": "DOLLAR_MISMATCH_AMT",
+          "from_instance": "WI_SSC_TAC_AUDIT"
+        },
+        {
+          "from_field": "IP_DOLLAR_MISMATCH_AMT",
+          "from_instance": "SQ_WI_SSC_TAC_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COUNT_MISMATCH",
+      "source_path": [
+        {
+          "from_field": "COUNT_CHECK",
+          "from_instance": "EXP_COST_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:34.568459+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

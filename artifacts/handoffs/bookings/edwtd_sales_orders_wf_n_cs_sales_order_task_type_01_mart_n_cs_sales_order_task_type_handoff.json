@@ -1,0 +1,381 @@
+{
+  "workflow_name": "wf_m_N_CS_SALES_ORDER_TASK_TYPE ",
+  "mapping_name": "m_N_CS_SALES_ORDER_TASK_TYPE ",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "N_CS_SALES_ORDER_TASK_TYPE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_n_cs_sales_order_task_type_01_mart_n_cs_sales_order_task_type",
+  "source_tables": [
+    "W_CS_SALES_ORDER_TASK_TYPE"
+  ],
+  "sources": [
+    {
+      "name": "W_CS_SALES_ORDER_TASK_TYPE",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV5",
+      "fields": [
+        {
+          "name": "BK_CS_SALES_ORDER_TASK_TYPE_CD",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CS_SALES_ORDER_TASK_TYPE_NAME",
+          "datatype": "varchar",
+          "precision": "80",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_CS_SALES_ORDER_TASK_TYPE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_CS_SALES_ORDER_TASK_TYPE_CD",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "CS_SALES_ORDER_TASK_TYPE_NAME",
+        "datatype": "varchar",
+        "precision": "2000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_CS_SALES_ORDER_TASK_TYPE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_CS_SALES_ORDER_TASK_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CS_SALES_ORDER_TASK_TYPE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT WCSOTT.BK_CS_SALES_ORDER_TASK_TYPE_CD, WCSOTT.CS_SALES_ORDER_TASK_TYPE_NAME, WCSOTT.EDW_CREATE_DTM, WCSOTT.EDW_CREATE_USER, WCSOTT.EDW_UPDATE_DTM, WCSOTT.EDW_UPDATE_USER \r\nFROM\r\n$$WORKDB.W_CS_SALES_ORDER_TASK_TYPE WCSOTT WHERE \r\nNOT EXISTS\r\n(\r\nSELECT \r\n1 \r\nFROM \r\n$$SLSORDDB.N_CS_SALES_ORDER_TASK_TYPE NCSOTT \r\nWHERE \r\nWCSOTT .BK_CS_SALES_ORDER_TASK_TYPE_CD=NCSOTT .BK_CS_SALES_ORDER_TASK_TYPE_CD \r\nAND\r\nCOALESCE(WCSOTT .CS_SALES_ORDER_TASK_TYPE_NAME,'#')=COALESCE(NCSOTT .CS_SALES_ORDER_TASK_TYPE_NAME,'#')\r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_CS_SALES_ORDER_TASK_TYPE_CD",
+      "from_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "BK_CS_SALES_ORDER_TASK_TYPE_CD",
+      "to_instance": "N_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "CS_SALES_ORDER_TASK_TYPE_NAME",
+      "from_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "CS_SALES_ORDER_TASK_TYPE_NAME",
+      "to_instance": "N_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "BK_CS_SALES_ORDER_TASK_TYPE_CD",
+      "from_instance": "W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "BK_CS_SALES_ORDER_TASK_TYPE_CD",
+      "to_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "CS_SALES_ORDER_TASK_TYPE_NAME",
+      "from_instance": "W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "CS_SALES_ORDER_TASK_TYPE_NAME",
+      "to_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_CS_SALES_ORDER_TASK_TYPE",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_CS_SALES_ORDER_TASK_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "BK_CS_SALES_ORDER_TASK_TYPE_CD",
+          "from_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+        },
+        {
+          "from_field": "BK_CS_SALES_ORDER_TASK_TYPE_CD",
+          "from_instance": "W_CS_SALES_ORDER_TASK_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CS_SALES_ORDER_TASK_TYPE_NAME",
+      "source_path": [
+        {
+          "from_field": "CS_SALES_ORDER_TASK_TYPE_NAME",
+          "from_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+        },
+        {
+          "from_field": "CS_SALES_ORDER_TASK_TYPE_NAME",
+          "from_instance": "W_CS_SALES_ORDER_TASK_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "W_CS_SALES_ORDER_TASK_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "W_CS_SALES_ORDER_TASK_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "W_CS_SALES_ORDER_TASK_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_W_CS_SALES_ORDER_TASK_TYPE"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "W_CS_SALES_ORDER_TASK_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:19.198620+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

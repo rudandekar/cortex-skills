@@ -1,0 +1,524 @@
+{
+  "workflow_name": "wf_m_WI_CCW_NT_FLAG_DAC",
+  "mapping_name": "m_WI_CCW_NT_FLAG_DAC",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "WI_CCW_NT_FLAG_CG1",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_wi_ccw_nt_flag_dac_01_mart_wi_ccw_nt_flag_cg1",
+  "source_tables": [
+    "ST_CG1_XXCCP_ERROR_LOG_NT"
+  ],
+  "sources": [
+    {
+      "name": "ST_CG1_XXCCP_ERROR_LOG_NT",
+      "database_type": "Teradata",
+      "owner": "STGDB_LSS",
+      "fields": [
+        {
+          "name": "ERROR_LOG_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "XXCCP_HEADER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "XXCCP_LINE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORDER_HEADER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORDER_LINE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ERROR_MESSAGE",
+          "datatype": "varchar",
+          "precision": "500",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ERROR_DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ERROR_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ERROR_STATUS",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FOR_CSE_INTEGRATION",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "OPERATION_CODE",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "2",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_CCW_NT_FLAG_CG1",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SALES_ORDER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "HEADER_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GLOBAL_NAME",
+        "datatype": "char",
+        "precision": "2",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NO_TOUCH_FLAG",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "QUOTE_NUMBER",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATED_BY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ERROR_LOG_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "XXCCP_HEADER_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ERROR_MESSAGE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORDER_HEADER_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nSSO.SALES_ORDER_KEY ,\r\nEOXOH.HEADER_ID ,\r\nEOXOH.GLOBAL_NAME, \r\nCASE WHEN SCXELN.XXCCP_HEADER_ID IS NOT NULL THEN 'N'  ELSE 'Y' END AS NO_TOUCH_FLAG, \r\nEOXOH.QUOTE_NUMBER ,\r\nUSER,\r\nEOXOH.CREATE_DATETIME, \r\nUSER, \r\nCURRENT_TIMESTAMP(0) \r\nFROM \r\n$$ETLONLYDB.EL_OM_XXCCP_OE_ORDER_HEADER EOXOH\r\nLEFT OUTER  JOIN \r\n$$STGDB.ST_CG1_XXCCP_ERROR_LOG_NT SCXELN\r\nON \r\nEOXOH.XXCCP_HEADER_ID=SCXELN.XXCCP_HEADER_ID AND\r\nEOXOH.GLOBAL_NAME = SCXELN.GLOBAL_NAME \r\nINNER JOIN \r\n$$ETLVWDB.SM_SALES_ORDER SSO\r\nON\r\nEOXOH.HEADER_ID = SSO.SK_SALES_ORDER_HEADER_ID_INT\r\nAND\r\nSSO.SS_CODE = 'CG'\r\nINNER JOIN \r\n$$STGDB.WI_N_SALES_ORDER_V1_TV_DAC NSOT\r\nON \r\nSSO.SALES_ORDER_KEY = NSOT.SALES_ORDER_KEY          \r\nWHERE \r\nEOXOH.OPERATION='CREATE' \r\nAND\r\nSCXELN.OPERATION_CODE = 'CREATE'\r\n--AND  NSOT.CISCO_BOOKED_RESULT_CD = 'BOOKED'\r\nAND\r\n                SCXELN.FOR_CSE_INTEGRATION = 'Y'\r\nAND \r\n                SCXELN.ERROR_STATUS = 'CSE_COMPLETED'\r\nQUALIFY ROW_NUMBER () OVER (PARTITION BY EOXOH.HEADER_ID,EOXOH.GLOBAL_NAME ORDER BY SCXELN.ERROR_DATE DESC)=1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "WI_CCW_NT_FLAG_CG1"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "WI_CCW_NT_FLAG_CG1"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "WI_CCW_NT_FLAG_CG1"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "CREATED_BY",
+      "to_instance": "WI_CCW_NT_FLAG_CG1"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "CREATION_DATE",
+      "to_instance": "WI_CCW_NT_FLAG_CG1"
+    },
+    {
+      "from_field": "ERROR_LOG_ID",
+      "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "SALES_ORDER_KEY",
+      "to_instance": "WI_CCW_NT_FLAG_CG1"
+    },
+    {
+      "from_field": "XXCCP_HEADER_ID",
+      "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "HEADER_ID",
+      "to_instance": "WI_CCW_NT_FLAG_CG1"
+    },
+    {
+      "from_field": "ERROR_MESSAGE",
+      "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "NO_TOUCH_FLAG",
+      "to_instance": "WI_CCW_NT_FLAG_CG1"
+    },
+    {
+      "from_field": "ORDER_HEADER_ID",
+      "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "QUOTE_NUMBER",
+      "to_instance": "WI_CCW_NT_FLAG_CG1"
+    },
+    {
+      "from_field": "ERROR_LOG_ID",
+      "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "ERROR_LOG_ID",
+      "to_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+    },
+    {
+      "from_field": "XXCCP_HEADER_ID",
+      "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "XXCCP_HEADER_ID",
+      "to_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+    },
+    {
+      "from_field": "ORDER_HEADER_ID",
+      "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "ORDER_HEADER_ID",
+      "to_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+    },
+    {
+      "from_field": "ERROR_MESSAGE",
+      "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "ERROR_MESSAGE",
+      "to_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SALES_ORDER_KEY",
+      "source_path": [
+        {
+          "from_field": "ERROR_LOG_ID",
+          "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "HEADER_ID",
+      "source_path": [
+        {
+          "from_field": "XXCCP_HEADER_ID",
+          "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GLOBAL_NAME",
+      "source_path": [
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NO_TOUCH_FLAG",
+      "source_path": [
+        {
+          "from_field": "ERROR_MESSAGE",
+          "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "QUOTE_NUMBER",
+      "source_path": [
+        {
+          "from_field": "ORDER_HEADER_ID",
+          "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATED_BY",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_ST_CG1_XXCCP_ERROR_LOG_NT"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "ST_CG1_XXCCP_ERROR_LOG_NT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:22.129846+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

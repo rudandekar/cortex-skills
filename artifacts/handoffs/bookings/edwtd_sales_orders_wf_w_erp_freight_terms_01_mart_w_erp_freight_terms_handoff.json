@@ -1,0 +1,925 @@
+{
+  "workflow_name": "wf_m_W_ERP_FREIGHT_TERMS",
+  "mapping_name": "m_W_ERP_FREIGHT_TERMS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "W_ERP_FREIGHT_TERMS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_w_erp_freight_terms_01_mart_w_erp_freight_terms",
+  "source_tables": [
+    "EL_FND_LOOKUP_VALUES",
+    "N_SOURCE_SYSTEM_CODES"
+  ],
+  "sources": [
+    {
+      "name": "EL_FND_LOOKUP_VALUES",
+      "database_type": "Teradata",
+      "owner": "ETLONLYDB_DEV",
+      "fields": [
+        {
+          "name": "LOOKUP_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LANG",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SECURITY_GROUP_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LOOKUP_CODE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MEANING",
+          "datatype": "varchar",
+          "precision": "80",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "VIEW_APPLICATION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "N_SOURCE_SYSTEM_CODES",
+      "database_type": "Teradata",
+      "owner": "COMREFVWDB_DEV",
+      "fields": [
+        {
+          "name": "source_system_code",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "source_System_name",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "database_name",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "company",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "edw_create_date",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "edw_create_user",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "edw_update_date",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "edw_update_user",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "global_name",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "gmt_offset",
+          "datatype": "decimal",
+          "precision": "5",
+          "scale": "2",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_ERP_FREIGHT_TERMS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_FREIGHT_TERMS_CODE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "START_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "END_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FREIGHT_TERMS_NAME",
+        "datatype": "varchar",
+        "precision": "80",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FREIGHT_TERMS_DESCRIPTION",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FREIGHT_TERMS_ENABLED_FLAG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FREIGHT_TERMS_START_ACTIVE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FREIGHT_TERMS_END_ACTIVE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SS_CODE",
+        "datatype": "char",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_OBSERVATION_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_EL_FND_LOOKUP_VALUES",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "LOOKUP_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MEANING",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_SYSTEM_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n  TVOUTPUT.BK_FREIGHT_TERMS_CODE,\r\n  TVOUTPUT.START_TV_DATE,\r\n  COALESCE( MAX(TVOUTPUT.START_TV_DATE - INTERVAL '1' DAY) \r\n  OVER (PARTITION BY TVOUTPUT.BK_FREIGHT_TERMS_CODE\r\n  ORDER BY TVOUTPUT.START_TV_DATE ASC \r\n  ROWS BETWEEN 1 FOLLOWING AND 1 FOLLOWING), DATE '3500-01-01') AS END_TV_DATE,\r\n  TVOUTPUT.FREIGHT_TERMS_NAME,\r\n  TVOUTPUT.FREIGHT_TERMS_DESCRIPTION,\r\n  TVOUTPUT.FREIGHT_TERMS_ENABLED_FLAG,\r\n  TVOUTPUT.FREIGHT_TERMS_START_ACTIVE_DTM,\r\n  TVOUTPUT.FREIGHT_TERMS_END_ACTIVE_DTM,\r\n  TVOUTPUT.SS_CODE,\r\n  TVOUTPUT.ACTION_CODE,\r\n  TVOUTPUT.EDW_UPDATE_DATETIME,\r\n  ROW_NUMBER() OVER (PARTITION BY TVOUTPUT.BK_FREIGHT_TERMS_CODE\r\n   ORDER BY TVOUTPUT.START_TV_DATE ASC) AS RANK_INDEX,\r\n  (CASE WHEN RANK_INDEX = 1 AND NEFTT.BK_FREIGHT_TERMS_CODE IS NOT NULL THEN 'U' ELSE 'I' END) AS DML_TYPE\r\n FROM\r\n (\r\n SELECT\r\n  BK_FREIGHT_TERMS_CODE,\r\n  START_TV_DATE,\r\n  FREIGHT_TERMS_NAME,\r\n  FREIGHT_TERMS_DESCRIPTION,\r\n  FREIGHT_TERMS_ENABLED_FLAG,\r\n  FREIGHT_TERMS_START_ACTIVE_DTM,\r\n  FREIGHT_TERMS_END_ACTIVE_DTM,\r\n  SS_CODE,\r\n  ACTION_CODE,\r\n  EDW_UPDATE_DATETIME,\r\n  ROW_NUMBER() OVER (PARTITION BY BK_FREIGHT_TERMS_CODE,FREIGHT_TERMS_NAME, FREIGHT_TERMS_DESCRIPTION, FREIGHT_TERMS_ENABLED_FLAG\r\n  ORDER BY EDW_UPDATE_DATETIME DESC) AS row_num\r\n FROM\r\n (\r\n SELECT \r\n  EFLV.LOOKUP_CODE BK_FREIGHT_TERMS_CODE,\r\n  CAST(EFLV.GES_UPDATE_DATE AS DATE) START_TV_DATE,\r\n  EFLV.MEANING FREIGHT_TERMS_NAME,\r\n  EFLV.DESCRIPTION FREIGHT_TERMS_DESCRIPTION,\r\n  EFLV.ENABLED_FLAG FREIGHT_TERMS_ENABLED_FLAG,\r\n  EFLV.START_DATE_ACTIVE FREIGHT_TERMS_START_ACTIVE_DTM,\r\n  EFLV.END_DATE_ACTIVE FREIGHT_TERMS_END_ACTIVE_DTM,\r\n  NSSC.SOURCE_SYSTEM_CODE SS_CODE,\r\n  'X'  ACTION_CODE,\r\n  EFLV.GES_UPDATE_DATE EDW_UPDATE_DATETIME\r\n FROM\r\n  $$ETLVWDB.EL_FND_LOOKUP_VALUES EFLV INNER JOIN \r\n  $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC ON (NSSC.GLOBAL_NAME = EFLV.GLOBAL_NAME)\r\n  QUALIFY ROW_NUMBER() OVER (PARTITION BY  EFLV.LOOKUP_CODE ORDER BY EFLV.GES_UPDATE_DATE DESC ) = 1\r\n WHERE EFLV.GES_UPDATE_DATE > (SELECT LAST_EXTRACT_DATE FROM $$CTLDB.DW_JOB_STREAMS WHERE  JOB_STREAM_ID='wf_W_ERP_FREIGHT_TERMS')\r\n AND EFLV.LOOKUP_TYPE='FREIGHT TERMS'\r\n AND NSSC.GLOBAL_NAME='CG'  /* SJPROD RETIREMENT Q1FY14 */\r\n  UNION ALL\r\n  SELECT \r\n  NEFTT.BK_FREIGHT_TERMS_CODE,\r\n  NEFTT.START_TV_DATE,\r\n  NEFTT.FREIGHT_TERMS_NAME,\r\n  NEFTT.FREIGHT_TERMS_DESCRIPTION,\r\n  NEFTT.FREIGHT_TERMS_ENABLED_FLAG,\r\n  NEFTT.FREIGHT_TERMS_START_ACTIVE_DTM,\r\n  NEFTT.FREIGHT_TERMS_END_ACTIVE_DTM,\r\n  NEFTT.SS_CODE,\r\n  'X'  ACTION_CODE,\r\n  NEFTT.EDW_UPDATE_DATETIME\r\n FROM $$SLSORDVWDB.N_ERP_FREIGHT_TERMS_TV NEFTT\r\n WHERE END_TV_DATE = CAST ('3500-01-01' AS DATE)\r\n AND BK_FREIGHT_TERMS_CODE IN\r\n (\r\n SELECT LOOKUP_CODE\r\n FROM $$ETLVWDB.EL_FND_LOOKUP_VALUES EFLV \r\n INNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC ON (NSSC.GLOBAL_NAME = EFLV.GLOBAL_NAME)\r\n WHERE EFLV.GES_UPDATE_DATE > (SELECT LAST_EXTRACT_DATE FROM $$CTLDB.DW_JOB_STREAMS WHERE  JOB_STREAM_ID='wf_W_ERP_FREIGHT_TERMS')\r\n AND EFLV.LOOKUP_TYPE='FREIGHT TERMS'\r\n AND NSSC.GLOBAL_NAME='CG'  /* SJPROD RETIREMENT Q1FY14 */\r\n )\r\n )TVINPUT\r\n QUALIFY ROW_NUMBER() OVER (PARTITION BY \r\n    TVINPUT.BK_FREIGHT_TERMS_CODE,\r\n    TVINPUT.START_TV_DATE\r\n   ORDER BY TVINPUT.EDW_UPDATE_DATETIME DESC) = 1\r\n )TVOUTPUT\r\n LEFT JOIN $$SLSORDVWDB.N_ERP_FREIGHT_TERMS_TV NEFTT\r\n   ON TVOUTPUT.BK_FREIGHT_TERMS_CODE = NEFTT.BK_FREIGHT_TERMS_CODE\r\n   AND NEFTT.END_TV_DATE = CAST('3500-01-01' AS date)\r\n WHERE TVOUTPUT.row_num = 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_EL_FND_LOOKUP_VALUES",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "LOOKUP_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LOOKUP_CODE"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GES_UPDATE_DATE"
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_TV_DATE"
+        },
+        {
+          "name": "MEANING",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "MEANING"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DESCRIPTION"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ENABLED_FLAG"
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_DATE_ACTIVE"
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_DATE_ACTIVE"
+        },
+        {
+          "name": "SOURCE_SYSTEM_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SOURCE_SYSTEM_CODE"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_UPDATE_DATETIME"
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RANK_INDEX"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "LOOKUP_CODE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "BK_FREIGHT_TERMS_CODE",
+      "to_instance": "W_ERP_FREIGHT_TERMS"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "START_TV_DATE",
+      "to_instance": "W_ERP_FREIGHT_TERMS"
+    },
+    {
+      "from_field": "MEANING",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "FREIGHT_TERMS_NAME",
+      "to_instance": "W_ERP_FREIGHT_TERMS"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "FREIGHT_TERMS_DESCRIPTION",
+      "to_instance": "W_ERP_FREIGHT_TERMS"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "FREIGHT_TERMS_ENABLED_FLAG",
+      "to_instance": "W_ERP_FREIGHT_TERMS"
+    },
+    {
+      "from_field": "SOURCE_SYSTEM_CODE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "SS_CODE",
+      "to_instance": "W_ERP_FREIGHT_TERMS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_ERP_FREIGHT_TERMS"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_ERP_FREIGHT_TERMS"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "FREIGHT_TERMS_START_ACTIVE_DTM",
+      "to_instance": "W_ERP_FREIGHT_TERMS"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "FREIGHT_TERMS_END_ACTIVE_DTM",
+      "to_instance": "W_ERP_FREIGHT_TERMS"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "END_TV_DATE",
+      "to_instance": "W_ERP_FREIGHT_TERMS"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "EXP_EL_FND_LOOKUP_VALUES",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "W_ERP_FREIGHT_TERMS"
+    },
+    {
+      "from_field": "LOOKUP_CODE",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "LOOKUP_CODE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "MEANING",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "MEANING",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "DESCRIPTION",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "START_DATE_ACTIVE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "END_DATE_ACTIVE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "END_TV_DATE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "VIEW_APPLICATION_ID",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "RANK_INDEX",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "EL_FND_LOOKUP_VALUES",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "source_system_code",
+      "from_instance": "N_SOURCE_SYSTEM_CODES",
+      "to_field": "SOURCE_SYSTEM_CODE",
+      "to_instance": "SQ_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "RANK_INDEX",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "RANK_INDEX",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "DML_TYPE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "END_TV_DATE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "SOURCE_SYSTEM_CODE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "SOURCE_SYSTEM_CODE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "START_DATE_ACTIVE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "END_DATE_ACTIVE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "LOOKUP_CODE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "LOOKUP_CODE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    },
+    {
+      "from_field": "MEANING",
+      "from_instance": "SQ_EL_FND_LOOKUP_VALUES",
+      "to_field": "MEANING",
+      "to_instance": "EXP_EL_FND_LOOKUP_VALUES"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_FREIGHT_TERMS_CODE",
+      "source_path": [
+        {
+          "from_field": "LOOKUP_CODE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "GES_UPDATE_DATE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "SQ_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FREIGHT_TERMS_NAME",
+      "source_path": [
+        {
+          "from_field": "MEANING",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FREIGHT_TERMS_DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FREIGHT_TERMS_ENABLED_FLAG",
+      "source_path": [
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FREIGHT_TERMS_START_ACTIVE_DTM",
+      "source_path": [
+        {
+          "from_field": "START_DATE_ACTIVE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FREIGHT_TERMS_END_ACTIVE_DTM",
+      "source_path": [
+        {
+          "from_field": "END_DATE_ACTIVE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SS_CODE",
+      "source_path": [
+        {
+          "from_field": "SOURCE_SYSTEM_CODE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "GES_UPDATE_DATE",
+          "from_instance": "EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "EDW_UPDATE_DATETIME",
+          "from_instance": "SQ_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_OBSERVATION_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "EXP_EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "EL_FND_LOOKUP_VALUES"
+        },
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_EL_FND_LOOKUP_VALUES"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:24.678005+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

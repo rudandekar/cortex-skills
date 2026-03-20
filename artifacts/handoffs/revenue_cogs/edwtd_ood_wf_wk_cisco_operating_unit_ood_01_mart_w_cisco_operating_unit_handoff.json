@@ -1,0 +1,648 @@
+{
+  "workflow_name": "wf_m_WK_CISCO_OPERATING_UNIT_OOD",
+  "mapping_name": "m_WK_CISCO_OPERATING_UNIT_OOD",
+  "mapping_description": "",
+  "folder_name": "EDWTD_OOD",
+  "target_table": "W_CISCO_OPERATING_UNIT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ood_wf_wk_cisco_operating_unit_ood_01_mart_w_cisco_operating_unit",
+  "source_tables": [
+    "ST_OOD_HR_ALL_ORG_UNITS"
+  ],
+  "sources": [
+    {
+      "name": "ST_OOD_HR_ALL_ORG_UNITS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV2",
+      "fields": [
+        {
+          "name": "ORGANIZATION_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORGANIZATION_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ORGANIZATION_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DATE_FROM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DATE_TO",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "varchar",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_CISCO_OPERATING_UNIT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_OPERATING_UNIT_NAME_CODE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "OP_UNIT_ORGANIZATION_CODE",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "OP_UNIT_EFFECTIVE_START_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "OP_UNIT_EFFECTIVE_END_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_BUS_ENTITY_ORG_NAME_CODE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_ORGANIZATION_ID_INT",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "OPERATING_UNIT_SHORT_NAME",
+        "datatype": "char",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "OPERATING_UNIT_TYPE_CD",
+        "datatype": "char",
+        "precision": "5",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "exp_WK_CISCO_OPERATING_UNIT",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "ORGANIZATION_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ORGANIZATION_ID"
+        },
+        {
+          "name": "ORGANIZATION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ORGANIZATION_NAME"
+        },
+        {
+          "name": "ORGANIZATION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ORGANIZATION_CODE"
+        },
+        {
+          "name": "DATE_FROM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DATE_FROM"
+        },
+        {
+          "name": "DATE_TO",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DATE_TO"
+        },
+        {
+          "name": "OPERATING_UNIT_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "OPERATING_UNIT_TYPE_CD"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "BUSINESS_ENTITY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BUSINESS_ENTITY"
+        },
+        {
+          "name": "SHORT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SHORT_NAME"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_OOD_HR_ALL_ORG_UNITS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ORGANIZATION_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORGANIZATION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORGANIZATION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DATE_FROM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DATE_TO",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "OPERATING_UNIT_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BUSINESS_ENTITY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHORT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SEL \r\nCAST (ORGANIZATION_ID AS BIGINT)     ,          \r\nORGANIZATION_NAME        ,     \r\nORGANIZATION_CODE         ,    \r\nDATE_FROM                  ,   \r\nCOALESCE(DATE_TO, DATE '3500-01-01'),\r\n'OOD' AS OPERATING_UNIT_TYPE_CD ,       \r\nACTION_CODE,\r\n'UNKNOWN' as BK_BUS_ENTITY_ORG_NAME_CODE,\r\n'UNKNOWN' as OPERATING_UNIT_SHORT_NAME        \r\nFROM $$STGDB.ST_OOD_HR_ALL_ORG_UNITS\r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY ORGANIZATION_ID ORDER BY LAST_UPDATE_DATE DESC)=1\r\n\r\nUNION ALL\r\n\r\nSELECT\r\nORGANIZATION_ID\t\t,\r\nORGANIZATION_NAME\t,\r\nORGANIZATION_CODE\t,\r\nDATE_FROM\t\t\t,\r\nCOALESCE(DATE_TO, DATE '3500-01-01'),\r\n'OOD' AS OPERATING_UNIT_TYPE_CD,\r\nACTION_CODE,\r\n'UNKNOWN' as BK_BUS_ENTITY_ORG_NAME_CODE,\r\n'UNKNOWN' as OPERATING_UNIT_SHORT_NAME  \r\nFROM $$STGDB.ST_OOD_FUSN_HR_ALL_ORG_UNITS\r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY ORGANIZATION_ID ORDER BY LAST_UPDATE_DATE DESC)=1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "ORGANIZATION_ID",
+      "from_instance": "exp_WK_CISCO_OPERATING_UNIT",
+      "to_field": "SK_ORGANIZATION_ID_INT",
+      "to_instance": "W_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "ORGANIZATION_NAME",
+      "from_instance": "exp_WK_CISCO_OPERATING_UNIT",
+      "to_field": "BK_OPERATING_UNIT_NAME_CODE",
+      "to_instance": "W_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "ORGANIZATION_CODE",
+      "from_instance": "exp_WK_CISCO_OPERATING_UNIT",
+      "to_field": "OP_UNIT_ORGANIZATION_CODE",
+      "to_instance": "W_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "DATE_FROM",
+      "from_instance": "exp_WK_CISCO_OPERATING_UNIT",
+      "to_field": "OP_UNIT_EFFECTIVE_START_DATE",
+      "to_instance": "W_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "DATE_TO",
+      "from_instance": "exp_WK_CISCO_OPERATING_UNIT",
+      "to_field": "OP_UNIT_EFFECTIVE_END_DATE",
+      "to_instance": "W_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "exp_WK_CISCO_OPERATING_UNIT",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "BUSINESS_ENTITY",
+      "from_instance": "exp_WK_CISCO_OPERATING_UNIT",
+      "to_field": "BK_BUS_ENTITY_ORG_NAME_CODE",
+      "to_instance": "W_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "SHORT_NAME",
+      "from_instance": "exp_WK_CISCO_OPERATING_UNIT",
+      "to_field": "OPERATING_UNIT_SHORT_NAME",
+      "to_instance": "W_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "OPERATING_UNIT_TYPE_CD",
+      "from_instance": "exp_WK_CISCO_OPERATING_UNIT",
+      "to_field": "OPERATING_UNIT_TYPE_CD",
+      "to_instance": "W_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "ORGANIZATION_ID",
+      "from_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "ORGANIZATION_ID",
+      "to_instance": "exp_WK_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "ORGANIZATION_NAME",
+      "from_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "ORGANIZATION_NAME",
+      "to_instance": "exp_WK_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "ORGANIZATION_CODE",
+      "from_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "ORGANIZATION_CODE",
+      "to_instance": "exp_WK_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "DATE_FROM",
+      "from_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "DATE_FROM",
+      "to_instance": "exp_WK_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "DATE_TO",
+      "from_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "DATE_TO",
+      "to_instance": "exp_WK_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "OPERATING_UNIT_TYPE_CD",
+      "from_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "OPERATING_UNIT_TYPE_CD",
+      "to_instance": "exp_WK_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "exp_WK_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "BUSINESS_ENTITY",
+      "from_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "BUSINESS_ENTITY",
+      "to_instance": "exp_WK_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "SHORT_NAME",
+      "from_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "SHORT_NAME",
+      "to_instance": "exp_WK_CISCO_OPERATING_UNIT"
+    },
+    {
+      "from_field": "ORGANIZATION_ID",
+      "from_instance": "ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "ORGANIZATION_ID",
+      "to_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS"
+    },
+    {
+      "from_field": "ORGANIZATION_NAME",
+      "from_instance": "ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "ORGANIZATION_NAME",
+      "to_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS"
+    },
+    {
+      "from_field": "ORGANIZATION_CODE",
+      "from_instance": "ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "ORGANIZATION_CODE",
+      "to_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS"
+    },
+    {
+      "from_field": "DATE_FROM",
+      "from_instance": "ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "DATE_FROM",
+      "to_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS"
+    },
+    {
+      "from_field": "DATE_TO",
+      "from_instance": "ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "DATE_TO",
+      "to_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS"
+    },
+    {
+      "from_field": "ORGANIZATION_CODE",
+      "from_instance": "ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "OPERATING_UNIT_TYPE_CD",
+      "to_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS"
+    },
+    {
+      "from_field": "ORGANIZATION_NAME",
+      "from_instance": "ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "BUSINESS_ENTITY",
+      "to_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS"
+    },
+    {
+      "from_field": "ORGANIZATION_CODE",
+      "from_instance": "ST_OOD_HR_ALL_ORG_UNITS",
+      "to_field": "SHORT_NAME",
+      "to_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_OPERATING_UNIT_NAME_CODE",
+      "source_path": [
+        {
+          "from_field": "ORGANIZATION_NAME",
+          "from_instance": "exp_WK_CISCO_OPERATING_UNIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "OP_UNIT_ORGANIZATION_CODE",
+      "source_path": [
+        {
+          "from_field": "ORGANIZATION_CODE",
+          "from_instance": "exp_WK_CISCO_OPERATING_UNIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "OP_UNIT_EFFECTIVE_START_DATE",
+      "source_path": [
+        {
+          "from_field": "DATE_FROM",
+          "from_instance": "exp_WK_CISCO_OPERATING_UNIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "OP_UNIT_EFFECTIVE_END_DATE",
+      "source_path": [
+        {
+          "from_field": "DATE_TO",
+          "from_instance": "exp_WK_CISCO_OPERATING_UNIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_BUS_ENTITY_ORG_NAME_CODE",
+      "source_path": [
+        {
+          "from_field": "BUSINESS_ENTITY",
+          "from_instance": "exp_WK_CISCO_OPERATING_UNIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_ORGANIZATION_ID_INT",
+      "source_path": [
+        {
+          "from_field": "ORGANIZATION_ID",
+          "from_instance": "exp_WK_CISCO_OPERATING_UNIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "OPERATING_UNIT_SHORT_NAME",
+      "source_path": [
+        {
+          "from_field": "SHORT_NAME",
+          "from_instance": "exp_WK_CISCO_OPERATING_UNIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "OPERATING_UNIT_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "OPERATING_UNIT_TYPE_CD",
+          "from_instance": "exp_WK_CISCO_OPERATING_UNIT"
+        },
+        {
+          "from_field": "OPERATING_UNIT_TYPE_CD",
+          "from_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS"
+        },
+        {
+          "from_field": "ORGANIZATION_CODE",
+          "from_instance": "ST_OOD_HR_ALL_ORG_UNITS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "exp_WK_CISCO_OPERATING_UNIT"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_OOD_HR_ALL_ORG_UNITS"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_OOD_HR_ALL_ORG_UNITS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:21.046029+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

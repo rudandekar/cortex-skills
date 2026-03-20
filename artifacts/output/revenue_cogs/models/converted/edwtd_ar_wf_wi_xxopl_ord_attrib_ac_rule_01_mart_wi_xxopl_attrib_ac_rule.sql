@@ -1,0 +1,103 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_xxopl_ord_attrib_ac_rule', 'batch', 'edwtd_ar'],
+    meta={
+        'source_workflow': 'wf_m_WI_XXOPL_ORD_ATTRIB_AC_RULE',
+        'target_table': 'WI_XXOPL_ATTRIB_AC_RULE',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:44.363814+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_xxopl_attrib_ac_rule AS (
+    SELECT
+        subscription_ref_id,
+        subscription_code,
+        product_key,
+        dv_product_key,
+        line_ref_number,
+        parent_line_ref_number,
+        accounting_rule,
+        accounting_rule_duration,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user
+    FROM {{ source('raw', 'wi_xxopl_attrib_ac_rule') }}
+),
+
+source_wi_xxopl_ord_attrib_ac_rule AS (
+    SELECT
+        attribution_id,
+        line_ref_number,
+        data_source,
+        trx_id,
+        parent_trx_id,
+        inventory_item_id,
+        attribution_flag,
+        bundle_type,
+        quantity,
+        attributed_unit_list_price,
+        attributed_unit_net_price,
+        recognized_pct,
+        attributed_pct,
+        attribution_type,
+        action_code,
+        create_datetime,
+        exception_code,
+        attributed_ext_list_price,
+        attributed_ext_net_price,
+        web_order_id,
+        attributed_sales_value,
+        attributed_mrr,
+        attributed_imrr,
+        attributed_arr,
+        attributed_nrr,
+        attributed_iarr,
+        attributed_imyarr,
+        tcv,
+        attribution_code,
+        linked_attrib_id,
+        exception_detail,
+        ent_inventory_item_id,
+        parent_sub_sku_offset_id,
+        parent_sub_sku_id,
+        multi_oa_bundle_enabled,
+        attribution_details,
+        parent_line_ref_number,
+        attributed_item,
+        recognized_attr_sales_values,
+        recognized_attr_tcv,
+        booking_version,
+        erp_line_id,
+        erp_parent_line_id,
+        creation_date,
+        edw_create_dtm,
+        acv_attribution_pct,
+        pricing_term,
+        accounting_rule,
+        accounting_rule_duration
+    FROM {{ source('raw', 'wi_xxopl_ord_attrib_ac_rule') }}
+),
+
+final AS (
+    SELECT
+        subscription_ref_id,
+        subscription_code,
+        product_key,
+        dv_product_key,
+        line_ref_number,
+        parent_line_ref_number,
+        accounting_rule,
+        accounting_rule_duration,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user
+    FROM source_wi_xxopl_ord_attrib_ac_rule
+)
+
+SELECT * FROM final

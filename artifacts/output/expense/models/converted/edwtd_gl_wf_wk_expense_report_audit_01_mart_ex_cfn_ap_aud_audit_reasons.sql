@@ -1,0 +1,180 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wk_expense_report_audit', 'batch', 'edwtd_gl'],
+    meta={
+        'source_workflow': 'wf_m_WK_EXPENSE_REPORT_AUDIT',
+        'target_table': 'EX_CFN_AP_AUD_AUDIT_REASONS',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:05:28.987965+00:00'
+    }
+) }}
+
+WITH 
+
+source_st_cfn_ap_aud_audit_reasons AS (
+    SELECT
+        batch_id,
+        audit_reason_id,
+        report_header_id,
+        audit_reason_code,
+        creation_date,
+        created_by,
+        last_update_login,
+        last_update_date,
+        last_updated_by,
+        global_name,
+        ges_update_date,
+        action_code,
+        create_datetime
+    FROM {{ source('raw', 'st_cfn_ap_aud_audit_reasons') }}
+),
+
+source_sm_expense_report_audit AS (
+    SELECT
+        expense_report_audit_key,
+        sk_audit_reason_id_int,
+        edw_create_dtm,
+        edw_create_user
+    FROM {{ source('raw', 'sm_expense_report_audit') }}
+),
+
+source_n_expense_report AS (
+    SELECT
+        er_functional_currency_cd,
+        er_creation_dtm,
+        er_submitted_dtm,
+        er_status_cd,
+        er_multiple_currency_flg,
+        er_voucher_dtm,
+        er_return_instruction_txt,
+        er_return_reason_cd,
+        er_receipts_received_dtm,
+        bk_expense_report_num,
+        er_last_update_dtm,
+        er_filing_num,
+        er_audit_cd,
+        er_crt_csco_wrkr_emp_party_key,
+        er_operating_unit_name_cd,
+        sk_report_header_id_int,
+        bk_ss_cd,
+        expense_report_key,
+        er_purpose_descr,
+        er_ln_audt_aprvd_wrkr_prty_key,
+        source_deleted_flg,
+        edw_create_user,
+        edw_create_dtm,
+        edw_update_user,
+        edw_update_dtm,
+        er_for_cisco_wrkr_emp_prty_key,
+        meeting_id,
+        src_rptd_auditor_name,
+        expense_template_cd,
+        receipts_status_cd,
+        reasonable_cause_delay_descr,
+        vendor_pymnt_reject_reason_cd,
+        original_submit_dt,
+        expense_src_type_cd,
+        pending_your_resolution_cd,
+        audit_catch_category_name,
+        audit_catch_notes_txt
+    FROM {{ source('raw', 'n_expense_report') }}
+),
+
+source_n_cisco_worker_party_tv AS (
+    SELECT
+        cisco_worker_party_key,
+        start_tv_date,
+        end_tv_date,
+        cisco_worker_party_type,
+        bk_employee_id,
+        cisco_email_address,
+        cec_id,
+        hire_date,
+        job_family_code,
+        job_family_description,
+        public_job_title,
+        shift_code,
+        support_organization_code,
+        work_eligibility_flag,
+        work_type_code,
+        supervisor_party_key,
+        location_code,
+        ru_bill_rate,
+        ru_current_rate,
+        ru_vendor_category_code,
+        ru_dv_vendor_category_descr,
+        ru_vendor_company_name,
+        ru_vendor_description,
+        ru_temp_category_code,
+        ru_temp_source_code,
+        ru_temp_type_code,
+        ru_full_time_code,
+        ru_director_code,
+        ru_disabled_flag,
+        ru_disabled_veteran_flag,
+        ru_employee_class_code,
+        ru_employee_status_code,
+        ru_employee_type_code,
+        ru_dv_grade_entry_date,
+        ru_highest_educationl_lvl_code,
+        ru_dv_job_entry_date,
+        ru_manager_code,
+        ru_military_status_code,
+        ru_oncall_flag,
+        ru_employee_type,
+        ru_cs_email_address,
+        ru_job_code,
+        ru_temporary_jobtitle_name,
+        ru_cs_temp_source,
+        ru_original_hire_date,
+        ru_rehire_date,
+        ru_wpr_room_id,
+        ru_hire_start_date,
+        ru_referral_source_description,
+        ru_last_day_worked_date,
+        ru_termination_date,
+        ru_contract_end_date,
+        ru_service_date,
+        ru_next_service_date,
+        ru_next_anniversary_date,
+        ru_regular_fte_amount,
+        ru_work_phone_number,
+        ru_birthdate_day_number,
+        ru_birthdate_month_number,
+        ru_wpr_floor_id,
+        ru_mail_stop_code,
+        ru_referral_source_code,
+        ru_req_id,
+        ru_months_of_service_count,
+        ru_years_of_service_count,
+        ru_employment_type_code,
+        ru_reg_temp_code,
+        ru_company_code,
+        ru_department_code,
+        ru_building_id,
+        edw_create_user,
+        edw_create_datetime
+    FROM {{ source('raw', 'n_cisco_worker_party_tv') }}
+),
+
+final AS (
+    SELECT
+        batch_id,
+        audit_reason_id,
+        report_header_id,
+        audit_reason_code,
+        creation_date,
+        created_by,
+        last_update_login,
+        last_update_date,
+        last_updated_by,
+        global_name,
+        ges_update_date,
+        action_code,
+        create_datetime,
+        exception_type
+    FROM source_n_cisco_worker_party_tv
+)
+
+SELECT * FROM final

@@ -1,0 +1,296 @@
+{
+  "workflow_name": "wf_m_ST_CSF_RMA_WARRANTY_FRONTEND_ORDER_V",
+  "mapping_name": "m_ST_CSF_RMA_WARRANTY_FRONTEND_ORDER_V",
+  "mapping_description": "",
+  "folder_name": "EDWTD_MIGRATION",
+  "target_table": "ST_CSF_RMA_WARRANTY_FRONTEND_ORDER_V",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_migration_wf_st_csf_rma_warranty_frontend_order_v_01_mart_st_csf_rma_warranty_frontend_order_v",
+  "source_tables": [
+    "RMA_WARRANTY_FRONTEND_ORDER_V1"
+  ],
+  "sources": [
+    {
+      "name": "RMA_WARRANTY_FRONTEND_ORDER_V1",
+      "database_type": "Oracle",
+      "owner": "",
+      "fields": [
+        {
+          "name": "ORDER_NUMBER",
+          "datatype": "number(p,s)",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SR_NUMBER",
+          "datatype": "number(p,s)",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "WARRANTY",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_CSF_RMA_WARRANTY_FRONTEND_ORDER_V",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "ORDER_NUMBER",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SR_NUMBER",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "WARRANTY",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ORDER_NUMBER",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SR_NUMBER",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "WARRANTY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT       \r\n ooh.ORDER_NUMBER, \r\n ooh.ORIG_SYS_DOCUMENT_REF AS SR_NUMBER,\r\n ooh.CREATION_DATE,\r\n CASE WHEN (\r\nSUM(CASE WHEN DECODE (ooh.attribute4, NULL, DECODE (xoh.attribute1, NULL, 'EXCEPTION', 'WARRANTY'),'CONTRACT') = 'WARRANTY' OR\r\nG.ENT_RESULT_DESCRIPTION = 'Entitled Under Warranty' THEN 1 ELSE 0 END)/ COUNT(C.LINE_ID)) > 0.5 \r\nTHEN 'Y' ELSE 'N' END AS WARRANTY,\r\nSYSDATE AS EDW_CREATE_DTM\r\nFROM apps.OE_ORDER_HEADERS_ALL ooh --c3.OE_ORDER_HEADERS_ALL AS a \r\nINNER JOIN  APPS.OE_ORDER_LINES_ALL c ON c.HEADER_ID = ooh.HEADER_ID\r\nINNER JOIN apps.xxcts_OE_ORDER_HEADERS_ALL xoh ON xoh.header_id = ooh.header_id\r\nINNER JOIN XXCTS_O.XXCTS_ENT_AUDIT_LOG_TBL G ON G.ENTITLEMENT_AUDIT_ID =\r\n(SELECT MIN(ENTITLEMENT_AUDIT_ID) AS Expr1\r\nFROM XXCTS_O.XXCTS_ENT_AUDIT_LOG_TBL h\r\nWHERE (SERVICE_ORDER_LINE = c.LINE_ID))\r\nWHERE (ooh.CONTEXT = 'SVO SUBMIT')\r\nAND CAST(ooh.CREATION_DATE AS date) BETWEEN SYSDATE - 60 AND SYSDATE \r\nAND (c.LINE_CATEGORY_CODE = 'ORDER')\r\n GROUP BY ooh.ORDER_NUMBER, \r\n ooh.ORIG_SYS_DOCUMENT_REF,\r\n ooh.CREATION_DATE",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ORDER_NUMBER",
+      "from_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1",
+      "to_field": "ORDER_NUMBER",
+      "to_instance": "ST_CSF_RMA_WARRANTY_FRONTEND_ORDER_V"
+    },
+    {
+      "from_field": "SR_NUMBER",
+      "from_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1",
+      "to_field": "SR_NUMBER",
+      "to_instance": "ST_CSF_RMA_WARRANTY_FRONTEND_ORDER_V"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1",
+      "to_field": "CREATION_DATE",
+      "to_instance": "ST_CSF_RMA_WARRANTY_FRONTEND_ORDER_V"
+    },
+    {
+      "from_field": "WARRANTY",
+      "from_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1",
+      "to_field": "WARRANTY",
+      "to_instance": "ST_CSF_RMA_WARRANTY_FRONTEND_ORDER_V"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "ST_CSF_RMA_WARRANTY_FRONTEND_ORDER_V"
+    },
+    {
+      "from_field": "ORDER_NUMBER",
+      "from_instance": "RMA_WARRANTY_FRONTEND_ORDER_V1",
+      "to_field": "ORDER_NUMBER",
+      "to_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1"
+    },
+    {
+      "from_field": "SR_NUMBER",
+      "from_instance": "RMA_WARRANTY_FRONTEND_ORDER_V1",
+      "to_field": "SR_NUMBER",
+      "to_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "RMA_WARRANTY_FRONTEND_ORDER_V1",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1"
+    },
+    {
+      "from_field": "WARRANTY",
+      "from_instance": "RMA_WARRANTY_FRONTEND_ORDER_V1",
+      "to_field": "WARRANTY",
+      "to_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "RMA_WARRANTY_FRONTEND_ORDER_V1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "ORDER_NUMBER",
+      "source_path": [
+        {
+          "from_field": "ORDER_NUMBER",
+          "from_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1"
+        },
+        {
+          "from_field": "ORDER_NUMBER",
+          "from_instance": "RMA_WARRANTY_FRONTEND_ORDER_V1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SR_NUMBER",
+      "source_path": [
+        {
+          "from_field": "SR_NUMBER",
+          "from_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1"
+        },
+        {
+          "from_field": "SR_NUMBER",
+          "from_instance": "RMA_WARRANTY_FRONTEND_ORDER_V1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "RMA_WARRANTY_FRONTEND_ORDER_V1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "WARRANTY",
+      "source_path": [
+        {
+          "from_field": "WARRANTY",
+          "from_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1"
+        },
+        {
+          "from_field": "WARRANTY",
+          "from_instance": "RMA_WARRANTY_FRONTEND_ORDER_V1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_RMA_WARRANTY_FRONTEND_ORDER_V1"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "RMA_WARRANTY_FRONTEND_ORDER_V1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:18.249249+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

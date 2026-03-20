@@ -1,0 +1,130 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_wi_rev_sca_nrt_snap_smr', 'batch', 'edwtd_rev_measure'],
+    meta={
+        'source_workflow': 'wf_m_WI_REV_SCA_NRT_SNAP_SMR',
+        'target_table': 'WI_REV_SCA_NRT_REG_SNAP_TV',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:45.066823+00:00'
+    }
+) }}
+
+WITH 
+
+source_wi_rev_sca_nrt_reg_snap_tv AS (
+    SELECT
+        sales_credit_assignment_key,
+        ep_source_line_id_int,
+        sca_transaction_type,
+        sca_source_commit_dtm,
+        dv_sca_source_commit_dt,
+        sca_source_update_dtm,
+        dv_sca_source_update_dt,
+        sk_line_seq_id_int,
+        ss_cd,
+        sca_source_type_cd,
+        sca_sales_commission_pct,
+        bk_sales_credit_type_code,
+        ep_sk_sales_credit_type_id_int,
+        sales_rep_number,
+        ep_sk_salesrep_id_int,
+        sales_territory_key,
+        ep_sk_territory_id_int,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        ru_ar_transaction_line_key,
+        ru_sales_order_line_key,
+        start_tv_dtm,
+        end_tv_dtm,
+        originated_qtc_via_cg1_flg,
+        sk_sc_agent_id_int
+    FROM {{ source('raw', 'wi_rev_sca_nrt_reg_snap_tv') }}
+),
+
+source_wi_rev_sca_nrt_snap_smr_tv AS (
+    SELECT
+        sales_credit_assignment_key,
+        attr_prdt_as_new_or_rnwl_key,
+        sales_order_line_key,
+        bk_gl_company_cd,
+        bk_offer_attribution_id_int,
+        bk_ar_trx_line_int_num,
+        bk_attribution_ss_cd,
+        bk_ar_transaction_num,
+        bk_set_of_books_key,
+        sk_sc_agent_id_int,
+        bk_ar_trx_line_type,
+        originated_qtc_via_cg1_flg,
+        ep_src_line_id_int,
+        bk_ar_transaction_type_cd,
+        sca_transaction_type,
+        sca_src_commit_dtm,
+        dv_sca_src_commit_dt,
+        sca_src_update_dtm,
+        dv_sca_src_update_dt,
+        sk_line_seq_id_int,
+        ss_cd,
+        sca_source_type_cd,
+        sca_sales_commission_pct,
+        bk_sales_credit_type_code,
+        ep_sk_sales_credit_type_id_int,
+        sales_rep_number,
+        ep_sk_salesrep_id_int,
+        sales_territory_key,
+        ep_sk_territory_id_int,
+        bk_trx_split_bu_id,
+        sk_trx_split_id_int,
+        split_1_offer_attribition_pct,
+        split_2_new_renew_pct,
+        sk_rtr_attribution_id,
+        total_split_pct,
+        sls_terr_asgnmt_type_cd,
+        sales_motion_cd,
+        ru_ar_transaction_line_key,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        start_tv_dtm,
+        end_tv_dtm,
+        rtr_attribution_key,
+        split_2_type_cd
+    FROM {{ source('raw', 'wi_rev_sca_nrt_snap_smr_tv') }}
+),
+
+final AS (
+    SELECT
+        sales_credit_assignment_key,
+        ep_source_line_id_int,
+        sca_transaction_type,
+        sca_source_commit_dtm,
+        dv_sca_source_commit_dt,
+        sca_source_update_dtm,
+        dv_sca_source_update_dt,
+        sk_line_seq_id_int,
+        ss_cd,
+        sca_source_type_cd,
+        sca_sales_commission_pct,
+        bk_sales_credit_type_code,
+        ep_sk_sales_credit_type_id_int,
+        sales_rep_number,
+        ep_sk_salesrep_id_int,
+        sales_territory_key,
+        ep_sk_territory_id_int,
+        edw_create_dtm,
+        edw_create_user,
+        edw_update_dtm,
+        edw_update_user,
+        ru_ar_transaction_line_key,
+        ru_sales_order_line_key,
+        start_tv_dtm,
+        end_tv_dtm,
+        originated_qtc_via_cg1_flg,
+        sk_sc_agent_id_int
+    FROM source_wi_rev_sca_nrt_snap_smr_tv
+)
+
+SELECT * FROM final

@@ -1,0 +1,624 @@
+{
+  "workflow_name": "wf_m_ST_TSS_TAC_CENTERS_D",
+  "mapping_name": "m_ST_TSS_TAC_CENTERS_D",
+  "mapping_description": "",
+  "folder_name": "EDWTD_CA_SERVICES",
+  "target_table": "ST_TSS_TAC_CENTERS_D",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ca_services_wf_st_tss_tac_centers_d_01_mart_st_tss_tac_centers_d",
+  "source_tables": [
+    "FF_TSS_TAC_CENTERS_D"
+  ],
+  "sources": [
+    {
+      "name": "FF_TSS_TAC_CENTERS_D",
+      "database_type": "Flat File",
+      "owner": "Flat_File",
+      "fields": [
+        {
+          "name": "BL_TAC_CENTER_KEY",
+          "datatype": "string",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TAC_CENTER_ID",
+          "datatype": "string",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TAC_CENTER_NAME",
+          "datatype": "string",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NLP_REPORTING_FLAG",
+          "datatype": "string",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BL_EFFECTIVE_FROM_DATE",
+          "datatype": "string",
+          "precision": "29",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BL_EFFECTIVE_TO_DATE",
+          "datatype": "string",
+          "precision": "29",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BL_LAST_UPDATE_DATE",
+          "datatype": "string",
+          "precision": "29",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_TSS_TAC_CENTERS_D",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BL_TAC_CENTER_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TAC_CENTER_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TAC_CENTER_NAME",
+        "datatype": "varchar",
+        "precision": "20",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "NLP_REPORTING_FLAG",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ENABLED_FLAG",
+        "datatype": "varchar",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BL_EFFECTIVE_FROM_DATE",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BL_EFFECTIVE_TO_DATE",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BL_LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EX_ST_TSS_TAC_CENTERS_D",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BL_TAC_CENTER_KEY",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_BL_TAC_CENTER_KEY",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(BL_TAC_CENTER_KEY)) = '\\N',-999,TO_INTEGER(BL_TAC_CENTER_KEY))"
+        },
+        {
+          "name": "TAC_CENTER_ID",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_TAC_CENTER_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(TAC_CENTER_ID)) = '\\N',-999,TO_INTEGER(TAC_CENTER_ID))\r\n"
+        },
+        {
+          "name": "TAC_CENTER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_TAC_CENTER_NAME",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(TAC_CENTER_NAME)) = '\\N',NULL,TAC_CENTER_NAME)\r\n"
+        },
+        {
+          "name": "NLP_REPORTING_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_NLP_REPORTING_FLAG",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(NLP_REPORTING_FLAG)) = '\\N',NULL,NLP_REPORTING_FLAG)\r\n"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(ENABLED_FLAG)) = '\\N',NULL,ENABLED_FLAG)\r\n"
+        },
+        {
+          "name": "BL_EFFECTIVE_FROM_DATE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_BL_EFFECTIVE_FROM_DATE",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(BL_EFFECTIVE_FROM_DATE)) = '\\N',NULL,TO_DATE(BL_EFFECTIVE_FROM_DATE,'YYYY-MM-DD HH24:MI:SS'))\r\n"
+        },
+        {
+          "name": "BL_EFFECTIVE_TO_DATE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_BL_EFFECTIVE_TO_DATE",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(BL_EFFECTIVE_TO_DATE)) = '\\N',NULL,TO_DATE(BL_EFFECTIVE_TO_DATE,'YYYY-MM-DD HH24:MI:SS'))\r\n"
+        },
+        {
+          "name": "BL_LAST_UPDATE_DATE",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "O_BL_LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "IIF(LTRIM(RTRIM(BL_LAST_UPDATE_DATE)) = '\\N',TO_DATE('3500-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS'),TO_DATE(BL_LAST_UPDATE_DATE,'YYYY-MM-DD HH24:MI:SS'))\r\n"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_FF_TSS_TAC_CENTERS_D",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BL_TAC_CENTER_KEY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TAC_CENTER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TAC_CENTER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NLP_REPORTING_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BL_EFFECTIVE_FROM_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BL_EFFECTIVE_TO_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BL_LAST_UPDATE_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "O_BL_TAC_CENTER_KEY",
+      "from_instance": "EX_ST_TSS_TAC_CENTERS_D",
+      "to_field": "BL_TAC_CENTER_KEY",
+      "to_instance": "ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "O_TAC_CENTER_ID",
+      "from_instance": "EX_ST_TSS_TAC_CENTERS_D",
+      "to_field": "TAC_CENTER_ID",
+      "to_instance": "ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "O_TAC_CENTER_NAME",
+      "from_instance": "EX_ST_TSS_TAC_CENTERS_D",
+      "to_field": "TAC_CENTER_NAME",
+      "to_instance": "ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "O_NLP_REPORTING_FLAG",
+      "from_instance": "EX_ST_TSS_TAC_CENTERS_D",
+      "to_field": "NLP_REPORTING_FLAG",
+      "to_instance": "ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "O_ENABLED_FLAG",
+      "from_instance": "EX_ST_TSS_TAC_CENTERS_D",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "O_BL_EFFECTIVE_FROM_DATE",
+      "from_instance": "EX_ST_TSS_TAC_CENTERS_D",
+      "to_field": "BL_EFFECTIVE_FROM_DATE",
+      "to_instance": "ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "O_BL_EFFECTIVE_TO_DATE",
+      "from_instance": "EX_ST_TSS_TAC_CENTERS_D",
+      "to_field": "BL_EFFECTIVE_TO_DATE",
+      "to_instance": "ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "O_BL_LAST_UPDATE_DATE",
+      "from_instance": "EX_ST_TSS_TAC_CENTERS_D",
+      "to_field": "BL_LAST_UPDATE_DATE",
+      "to_instance": "ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "BL_TAC_CENTER_KEY",
+      "from_instance": "SQ_FF_TSS_TAC_CENTERS_D",
+      "to_field": "BL_TAC_CENTER_KEY",
+      "to_instance": "EX_ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "TAC_CENTER_ID",
+      "from_instance": "SQ_FF_TSS_TAC_CENTERS_D",
+      "to_field": "TAC_CENTER_ID",
+      "to_instance": "EX_ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "TAC_CENTER_NAME",
+      "from_instance": "SQ_FF_TSS_TAC_CENTERS_D",
+      "to_field": "TAC_CENTER_NAME",
+      "to_instance": "EX_ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "NLP_REPORTING_FLAG",
+      "from_instance": "SQ_FF_TSS_TAC_CENTERS_D",
+      "to_field": "NLP_REPORTING_FLAG",
+      "to_instance": "EX_ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "SQ_FF_TSS_TAC_CENTERS_D",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "EX_ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "BL_EFFECTIVE_FROM_DATE",
+      "from_instance": "SQ_FF_TSS_TAC_CENTERS_D",
+      "to_field": "BL_EFFECTIVE_FROM_DATE",
+      "to_instance": "EX_ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "BL_EFFECTIVE_TO_DATE",
+      "from_instance": "SQ_FF_TSS_TAC_CENTERS_D",
+      "to_field": "BL_EFFECTIVE_TO_DATE",
+      "to_instance": "EX_ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "BL_LAST_UPDATE_DATE",
+      "from_instance": "SQ_FF_TSS_TAC_CENTERS_D",
+      "to_field": "BL_LAST_UPDATE_DATE",
+      "to_instance": "EX_ST_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "BL_TAC_CENTER_KEY",
+      "from_instance": "FF_TSS_TAC_CENTERS_D",
+      "to_field": "BL_TAC_CENTER_KEY",
+      "to_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "TAC_CENTER_ID",
+      "from_instance": "FF_TSS_TAC_CENTERS_D",
+      "to_field": "TAC_CENTER_ID",
+      "to_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "TAC_CENTER_NAME",
+      "from_instance": "FF_TSS_TAC_CENTERS_D",
+      "to_field": "TAC_CENTER_NAME",
+      "to_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "NLP_REPORTING_FLAG",
+      "from_instance": "FF_TSS_TAC_CENTERS_D",
+      "to_field": "NLP_REPORTING_FLAG",
+      "to_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "FF_TSS_TAC_CENTERS_D",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "BL_EFFECTIVE_FROM_DATE",
+      "from_instance": "FF_TSS_TAC_CENTERS_D",
+      "to_field": "BL_EFFECTIVE_FROM_DATE",
+      "to_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "BL_EFFECTIVE_TO_DATE",
+      "from_instance": "FF_TSS_TAC_CENTERS_D",
+      "to_field": "BL_EFFECTIVE_TO_DATE",
+      "to_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+    },
+    {
+      "from_field": "BL_LAST_UPDATE_DATE",
+      "from_instance": "FF_TSS_TAC_CENTERS_D",
+      "to_field": "BL_LAST_UPDATE_DATE",
+      "to_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BL_TAC_CENTER_KEY",
+      "source_path": [
+        {
+          "from_field": "O_BL_TAC_CENTER_KEY",
+          "from_instance": "EX_ST_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "BL_TAC_CENTER_KEY",
+          "from_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "BL_TAC_CENTER_KEY",
+          "from_instance": "FF_TSS_TAC_CENTERS_D"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TAC_CENTER_ID",
+      "source_path": [
+        {
+          "from_field": "O_TAC_CENTER_ID",
+          "from_instance": "EX_ST_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "TAC_CENTER_ID",
+          "from_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "TAC_CENTER_ID",
+          "from_instance": "FF_TSS_TAC_CENTERS_D"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TAC_CENTER_NAME",
+      "source_path": [
+        {
+          "from_field": "O_TAC_CENTER_NAME",
+          "from_instance": "EX_ST_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "TAC_CENTER_NAME",
+          "from_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "TAC_CENTER_NAME",
+          "from_instance": "FF_TSS_TAC_CENTERS_D"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "NLP_REPORTING_FLAG",
+      "source_path": [
+        {
+          "from_field": "O_NLP_REPORTING_FLAG",
+          "from_instance": "EX_ST_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "NLP_REPORTING_FLAG",
+          "from_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "NLP_REPORTING_FLAG",
+          "from_instance": "FF_TSS_TAC_CENTERS_D"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ENABLED_FLAG",
+      "source_path": [
+        {
+          "from_field": "O_ENABLED_FLAG",
+          "from_instance": "EX_ST_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "FF_TSS_TAC_CENTERS_D"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BL_EFFECTIVE_FROM_DATE",
+      "source_path": [
+        {
+          "from_field": "O_BL_EFFECTIVE_FROM_DATE",
+          "from_instance": "EX_ST_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "BL_EFFECTIVE_FROM_DATE",
+          "from_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "BL_EFFECTIVE_FROM_DATE",
+          "from_instance": "FF_TSS_TAC_CENTERS_D"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BL_EFFECTIVE_TO_DATE",
+      "source_path": [
+        {
+          "from_field": "O_BL_EFFECTIVE_TO_DATE",
+          "from_instance": "EX_ST_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "BL_EFFECTIVE_TO_DATE",
+          "from_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "BL_EFFECTIVE_TO_DATE",
+          "from_instance": "FF_TSS_TAC_CENTERS_D"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BL_LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "O_BL_LAST_UPDATE_DATE",
+          "from_instance": "EX_ST_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "BL_LAST_UPDATE_DATE",
+          "from_instance": "SQ_FF_TSS_TAC_CENTERS_D"
+        },
+        {
+          "from_field": "BL_LAST_UPDATE_DATE",
+          "from_instance": "FF_TSS_TAC_CENTERS_D"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:11.619898+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

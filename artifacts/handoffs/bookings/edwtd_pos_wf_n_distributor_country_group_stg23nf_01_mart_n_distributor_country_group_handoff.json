@@ -1,0 +1,353 @@
+{
+  "workflow_name": "wf_m_N_DISTRIBUTOR_COUNTRY_GROUP_STG23NF",
+  "mapping_name": "m_N_DISTRIBUTOR_COUNTRY_GROUP_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_POS",
+  "target_table": "N_DISTRIBUTOR_COUNTRY_GROUP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_pos_wf_n_distributor_country_group_stg23nf_01_mart_n_distributor_country_group",
+  "source_tables": [
+    "ST_TBL_COUNTRY_GROUPING"
+  ],
+  "sources": [
+    {
+      "name": "ST_TBL_COUNTRY_GROUPING",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "COUNTRY",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COUNTRY_GROUPING_ECC",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COUNTRY_GROUPING",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COUNTRY_SUB_GROUP",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_DISTRIBUTOR_COUNTRY_GROUP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_ISO_COUNTRY_CD",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "COUNTRY_RANKING_GRP_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COUNTRY_RGNL_GRP_NAME",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COUNTRY_RGNL_SUBGRP_NAME",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_TBL_COUNTRY_GROUPING",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "COUNTRY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COUNTRY_GROUPING_ECC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COUNTRY_GROUPING",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COUNTRY_SUB_GROUP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nISO_CTRY.BK_ISO_COUNTRY_CODE AS BK_ISO_COUNTRY_CD\r\n,COALESCE(COUNTRY_GROUPING_ECC, 'UNKNOWN') COUNTRY_RANKING_GRP_CD\r\n,COALESCE(COUNTRY_GROUPING, 'UNKNOWN') COUNTRY_RGNL_GRP_NAME\r\n,COALESCE(COUNTRY_SUB_GROUP,'UNKNOWN') COUNTRY_RGNL_SUBGRP_NAME\r\n,CURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM\r\n,USER AS EDW_CREATE_USER\r\n,CURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM \r\n,USER AS EDW_UPDATE_USER\r\nFROM\r\n$$STGDB.ST_TBL_COUNTRY_GROUPING ST\r\nINNER JOIN\r\n$$COMREFVWDB.N_ISO_COUNTRY ISO_CTRY\r\nON ISO_CTRY.ISO_COUNTRY_NAME = ST.COUNTRY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "COUNTRY",
+      "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING",
+      "to_field": "BK_ISO_COUNTRY_CD",
+      "to_instance": "N_DISTRIBUTOR_COUNTRY_GROUP"
+    },
+    {
+      "from_field": "COUNTRY_GROUPING_ECC",
+      "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING",
+      "to_field": "COUNTRY_RANKING_GRP_CD",
+      "to_instance": "N_DISTRIBUTOR_COUNTRY_GROUP"
+    },
+    {
+      "from_field": "COUNTRY_GROUPING",
+      "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING",
+      "to_field": "COUNTRY_RGNL_GRP_NAME",
+      "to_instance": "N_DISTRIBUTOR_COUNTRY_GROUP"
+    },
+    {
+      "from_field": "COUNTRY_SUB_GROUP",
+      "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING",
+      "to_field": "COUNTRY_RGNL_SUBGRP_NAME",
+      "to_instance": "N_DISTRIBUTOR_COUNTRY_GROUP"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_DISTRIBUTOR_COUNTRY_GROUP"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_DISTRIBUTOR_COUNTRY_GROUP"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_DISTRIBUTOR_COUNTRY_GROUP"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_DISTRIBUTOR_COUNTRY_GROUP"
+    },
+    {
+      "from_field": "COUNTRY",
+      "from_instance": "ST_TBL_COUNTRY_GROUPING2",
+      "to_field": "COUNTRY",
+      "to_instance": "SQ_ST_TBL_COUNTRY_GROUPING"
+    },
+    {
+      "from_field": "COUNTRY_GROUPING_ECC",
+      "from_instance": "ST_TBL_COUNTRY_GROUPING2",
+      "to_field": "COUNTRY_GROUPING_ECC",
+      "to_instance": "SQ_ST_TBL_COUNTRY_GROUPING"
+    },
+    {
+      "from_field": "COUNTRY_GROUPING",
+      "from_instance": "ST_TBL_COUNTRY_GROUPING2",
+      "to_field": "COUNTRY_GROUPING",
+      "to_instance": "SQ_ST_TBL_COUNTRY_GROUPING"
+    },
+    {
+      "from_field": "COUNTRY_SUB_GROUP",
+      "from_instance": "ST_TBL_COUNTRY_GROUPING2",
+      "to_field": "COUNTRY_SUB_GROUP",
+      "to_instance": "SQ_ST_TBL_COUNTRY_GROUPING"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_ISO_COUNTRY_CD",
+      "source_path": [
+        {
+          "from_field": "COUNTRY",
+          "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COUNTRY_RANKING_GRP_CD",
+      "source_path": [
+        {
+          "from_field": "COUNTRY_GROUPING_ECC",
+          "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COUNTRY_RGNL_GRP_NAME",
+      "source_path": [
+        {
+          "from_field": "COUNTRY_GROUPING",
+          "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COUNTRY_RGNL_SUBGRP_NAME",
+      "source_path": [
+        {
+          "from_field": "COUNTRY_SUB_GROUP",
+          "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_ST_TBL_COUNTRY_GROUPING"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:15.379907+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

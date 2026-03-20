@@ -1,0 +1,400 @@
+{
+  "workflow_name": "wf_m_WI_CCM_SSC_QOH_DRIVER",
+  "mapping_name": "m_WI_CCM_SSC_QOH_DRIVER",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_CCM_SSC_QOH_DRIVER",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_ccm_ssc_qoh_driver_01_mart_wi_ccm_ssc_qoh_driver",
+  "source_tables": [
+    "GPS_INV_ON_HAND_CCM"
+  ],
+  "sources": [
+    {
+      "name": "GPS_INV_ON_HAND_CCM",
+      "database_type": "Oracle",
+      "owner": "FNRP1PRD",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "THEATER",
+          "datatype": "varchar2",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "INV_COST_AMT",
+          "datatype": "number(p,s)",
+          "precision": "38",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_CCM_SSC_QOH_DRIVER",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_MONTH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "THEATER",
+        "datatype": "varchar",
+        "precision": "250",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INV_COST_AMT",
+        "datatype": "decimal",
+        "precision": "38",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INV_PERCENTAGE",
+        "datatype": "decimal",
+        "precision": "38",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_GPS_INV_ON_HAND_CCM",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INV_COST_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT FISCAL_MONTH_ID,THEATER,SUM (COST) FROM $$STGDB.WI_GPS_INV_ON_HAND_CCM\r\nGROUP BY THEATER,FISCAL_MONTH_ID ORDER BY FISCAL_MONTH_ID DESC ,THEATER",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "LKP_WI_TSS_COST_CNTRL_MONTH",
+      "type": "Lookup Procedure",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "LOOKUP/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_YEAR_MONTH_INT",
+          "datatype": "integer",
+          "porttype": "LOOKUP",
+          "expression": ""
+        },
+        {
+          "name": "in_FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Lookup Sql Override": "",
+        "Lookup table name": "$$STGDB.WI_TSS_COST_CNTRL_MONTH_ID",
+        "Lookup Source Filter": "",
+        "Lookup caching enabled": "YES",
+        "Lookup policy on multiple match": "Report Error",
+        "Lookup condition": "FISCAL_YEAR_MONTH_INT = in_FISCAL_MONTH_ID",
+        "Connection Information": "$DBConnection_Target",
+        "Source Type": "Database",
+        "Recache if Stale": "NO",
+        "Tracing Level": "Normal",
+        "Lookup cache directory name": "$PMCacheDir",
+        "Lookup cache initialize": "NO",
+        "Lookup cache persistent": "NO",
+        "Lookup Data Cache Size": "Auto",
+        "Lookup Index Cache Size": "Auto",
+        "Dynamic Lookup Cache": "NO",
+        "Synchronize Dynamic Cache": "NO",
+        "Output Old Value On Update": "NO",
+        "Update Dynamic Cache Condition": "TRUE",
+        "Cache File Name Prefix": "",
+        "Re-cache from lookup source": "NO",
+        "Insert Else Update": "NO",
+        "Update Else Insert": "NO",
+        "Datetime Format": "",
+        "Thousand Separator": "None",
+        "Decimal Separator": ".",
+        "Case Sensitive String Comparison": "NO",
+        "Null ordering": "Null Is Highest Value",
+        "Sorted Input": "NO",
+        "Lookup source is static": "NO",
+        "Pre-build lookup cache": "Auto",
+        "Subsecond Precision": "6"
+      }
+    },
+    {
+      "name": "EXP_CCM_SSC_QOH_DRIVER",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FISCAL_MONTH_ID"
+        },
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "THEATER"
+        },
+        {
+          "name": "INV_COST_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "INV_COST_AMT"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "FIL_CCM_SSC_QOH_DRIVER",
+      "type": "Filter",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INV_COST_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Filter Condition": "NOT ISNULL(FISCAL_MONTH_ID)",
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Filter",
+    "Source Qualifier",
+    "Expression",
+    "Lookup Procedure"
+  ],
+  "connectors": [
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "FIL_CCM_SSC_QOH_DRIVER",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "WI_CCM_SSC_QOH_DRIVER"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "FIL_CCM_SSC_QOH_DRIVER",
+      "to_field": "THEATER",
+      "to_instance": "WI_CCM_SSC_QOH_DRIVER"
+    },
+    {
+      "from_field": "INV_COST_AMT",
+      "from_instance": "FIL_CCM_SSC_QOH_DRIVER",
+      "to_field": "INV_COST_AMT",
+      "to_instance": "WI_CCM_SSC_QOH_DRIVER"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "GPS_INV_ON_HAND_CCM",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_GPS_INV_ON_HAND_CCM"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "GPS_INV_ON_HAND_CCM",
+      "to_field": "THEATER",
+      "to_instance": "SQ_GPS_INV_ON_HAND_CCM"
+    },
+    {
+      "from_field": "INV_COST_AMT",
+      "from_instance": "GPS_INV_ON_HAND_CCM",
+      "to_field": "INV_COST_AMT",
+      "to_instance": "SQ_GPS_INV_ON_HAND_CCM"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_GPS_INV_ON_HAND_CCM",
+      "to_field": "in_FISCAL_MONTH_ID",
+      "to_instance": "LKP_WI_TSS_COST_CNTRL_MONTH"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "SQ_GPS_INV_ON_HAND_CCM",
+      "to_field": "THEATER",
+      "to_instance": "EXP_CCM_SSC_QOH_DRIVER"
+    },
+    {
+      "from_field": "INV_COST_AMT",
+      "from_instance": "SQ_GPS_INV_ON_HAND_CCM",
+      "to_field": "INV_COST_AMT",
+      "to_instance": "EXP_CCM_SSC_QOH_DRIVER"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "LKP_WI_TSS_COST_CNTRL_MONTH",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "EXP_CCM_SSC_QOH_DRIVER"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "EXP_CCM_SSC_QOH_DRIVER",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "FIL_CCM_SSC_QOH_DRIVER"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "EXP_CCM_SSC_QOH_DRIVER",
+      "to_field": "THEATER",
+      "to_instance": "FIL_CCM_SSC_QOH_DRIVER"
+    },
+    {
+      "from_field": "INV_COST_AMT",
+      "from_instance": "EXP_CCM_SSC_QOH_DRIVER",
+      "to_field": "INV_COST_AMT",
+      "to_instance": "FIL_CCM_SSC_QOH_DRIVER"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_MONTH_ID",
+      "source_path": [
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "FIL_CCM_SSC_QOH_DRIVER"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "GPS_INV_ON_HAND_CCM"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "LKP_WI_TSS_COST_CNTRL_MONTH"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "EXP_CCM_SSC_QOH_DRIVER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "THEATER",
+      "source_path": [
+        {
+          "from_field": "THEATER",
+          "from_instance": "FIL_CCM_SSC_QOH_DRIVER"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "GPS_INV_ON_HAND_CCM"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "SQ_GPS_INV_ON_HAND_CCM"
+        },
+        {
+          "from_field": "THEATER",
+          "from_instance": "EXP_CCM_SSC_QOH_DRIVER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INV_COST_AMT",
+      "source_path": [
+        {
+          "from_field": "INV_COST_AMT",
+          "from_instance": "FIL_CCM_SSC_QOH_DRIVER"
+        },
+        {
+          "from_field": "INV_COST_AMT",
+          "from_instance": "GPS_INV_ON_HAND_CCM"
+        },
+        {
+          "from_field": "INV_COST_AMT",
+          "from_instance": "SQ_GPS_INV_ON_HAND_CCM"
+        },
+        {
+          "from_field": "INV_COST_AMT",
+          "from_instance": "EXP_CCM_SSC_QOH_DRIVER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INV_PERCENTAGE",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:27.758631+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

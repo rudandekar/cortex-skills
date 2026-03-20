@@ -1,0 +1,423 @@
+{
+  "workflow_name": "wf_m_WK_PURCHASING_ITEM_CATEGORY",
+  "mapping_name": "m_WK_PURCHASING_ITEM_CATEGORY",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "W_PURCHASING_ITEM_CATEGORY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_wk_purchasing_item_category_01_mart_w_purchasing_item_category",
+  "source_tables": [
+    "ST_MF_MTL_CATEGORIES_B_TL"
+  ],
+  "sources": [
+    {
+      "name": "ST_MF_MTL_CATEGORIES_B_TL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CATEGORY_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LANGUAGE_CODE",
+          "datatype": "varchar",
+          "precision": "4",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SEGMENT1",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE2",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ATTRIBUTE3",
+          "datatype": "varchar",
+          "precision": "150",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_PURCHASING_ITEM_CATEGORY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_PURCHASING_ITEM_CATEGORY_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "ITEM_CATEGORY_NAME",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GPS_SPEND_CATEGORY_CD",
+        "datatype": "varchar",
+        "precision": "250",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GPS_SPEND_SUB_CATEGORY_CD",
+        "datatype": "varchar",
+        "precision": "250",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "32",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "32",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "Exp_WK_PURCHASING_ITEM_CATEGORY",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PURCHASING_ITEM_CATEGORY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_PURCHASING_ITEM_CATEGORY_ID"
+        },
+        {
+          "name": "ITEM_CATEGORY_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ITEM_CATEGORY_NAME"
+        },
+        {
+          "name": "ATTRIBUTE2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ATTRIBUTE2"
+        },
+        {
+          "name": "ATTRIBUTE3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ATTRIBUTE3"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_MF_MTL_CATEGORIES_B_TL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PURCHASING_ITEM_CATEGORY_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ITEM_CATEGORY_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ATTRIBUTE3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n SMOMCBT1.SEGMENT1 BK_PURCHASING_ITEM_CATEGORY_ID,\r\n COALESCE(SMOMCBT1.DESCRIPTION,'UNKNOWN') ITEM_CATEGORY_NAME,\r\n COALESCE (SMOMCBT1.ATTRIBUTE2,'UNKNOWN') GPS_SPEND_CATEGORY_CD ,\r\n COALESCE (SMOMCBT1.ATTRIBUTE3,'UNKNOWN') GPS_SPEND_SUB_CATEGORY_CD     \r\n FROM \r\n (\r\n SELECT SEGMENT1, DESCRIPTION, ATTRIBUTE2, ATTRIBUTE3 FROM  $$STGDB.ST_MF_MTL_CATEGORIES_B_TL SMMCBT\r\n UNION ALL\r\n SELECT SEGMENT1, DESCRIPTION ,'UNKNOWN','UNKNOWN' FROM  $$STGDB.ST_CG1_MTL_CATEGORIES_B_TL SCMCBT\r\n ) SMOMCBT1\r\n WHERE SMOMCBT1.SEGMENT1 IN \r\n (\r\n SELECT SMOMCBTIN.SEGMENT1\r\n FROM (\r\n SELECT SMMCBT.SEGMENT1, DESCRIPTION FROM  $$STGDB.ST_MF_MTL_CATEGORIES_B_TL SMMCBT\r\n UNION ALL \r\n SELECT SCMCBT.SEGMENT1, DESCRIPTION FROM  $$STGDB.ST_CG1_MTL_CATEGORIES_B_TL SCMCBT\r\n ) SMOMCBTIN\r\n GROUP BY SMOMCBTIN.SEGMENT1\r\n HAVING COUNT(1) =1\r\n ) \r\n UNION ALL\r\n SELECT SMOMCBTIN.SEGMENT1 BK_PURCHASING_ITEM_CATEGORY_ID,\r\n 'UNKNOWN' ITEM_CATEGORY_NAME,\r\n COALESCE (SMOMCBTIN.ATTRIBUTE2,'UNKNOWN') GPS_SPEND_CATEGORY_CD ,\r\n COALESCE (SMOMCBTIN.ATTRIBUTE3,'UNKNOWN') GPS_SPEND_SUB_CATEGORY_CD \r\n FROM (\r\n SELECT SEGMENT1, DESCRIPTION ,ATTRIBUTE2, ATTRIBUTE3 FROM  $$STGDB.ST_MF_MTL_CATEGORIES_B_TL SMMCBT\r\n UNION ALL \r\n SELECT SEGMENT1, DESCRIPTION ,'UNKNOWN','UNKNOWN' FROM  $$STGDB.ST_CG1_MTL_CATEGORIES_B_TL SCMCBT\r\n ) SMOMCBTIN\r\n  WHERE SMOMCBTIN.SEGMENT1 IN \r\n (\r\n  SELECT SMOMCBTIN.SEGMENT1\r\n FROM (\r\n SELECT SMMCBT.SEGMENT1, DESCRIPTION   FROM  $$STGDB.ST_MF_MTL_CATEGORIES_B_TL SMMCBT\r\n UNION ALL \r\n SELECT SCMCBT.SEGMENT1, DESCRIPTION  FROM   $$STGDB.ST_CG1_MTL_CATEGORIES_B_TL SCMCBT\r\n ) SMOMCBTIN\r\n GROUP BY SMOMCBTIN.SEGMENT1\r\n HAVING COUNT(1) >1\r\n) GROUP BY 1,2,3,4",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_PURCHASING_ITEM_CATEGORY_ID",
+      "from_instance": "Exp_WK_PURCHASING_ITEM_CATEGORY",
+      "to_field": "BK_PURCHASING_ITEM_CATEGORY_ID",
+      "to_instance": "W_PURCHASING_ITEM_CATEGORY"
+    },
+    {
+      "from_field": "ITEM_CATEGORY_NAME",
+      "from_instance": "Exp_WK_PURCHASING_ITEM_CATEGORY",
+      "to_field": "ITEM_CATEGORY_NAME",
+      "to_instance": "W_PURCHASING_ITEM_CATEGORY"
+    },
+    {
+      "from_field": "ATTRIBUTE2",
+      "from_instance": "Exp_WK_PURCHASING_ITEM_CATEGORY",
+      "to_field": "GPS_SPEND_CATEGORY_CD",
+      "to_instance": "W_PURCHASING_ITEM_CATEGORY"
+    },
+    {
+      "from_field": "ATTRIBUTE3",
+      "from_instance": "Exp_WK_PURCHASING_ITEM_CATEGORY",
+      "to_field": "GPS_SPEND_SUB_CATEGORY_CD",
+      "to_instance": "W_PURCHASING_ITEM_CATEGORY"
+    },
+    {
+      "from_field": "ATTRIBUTE3",
+      "from_instance": "SQ_ST_MF_MTL_CATEGORIES_B_TL",
+      "to_field": "ATTRIBUTE3",
+      "to_instance": "Exp_WK_PURCHASING_ITEM_CATEGORY"
+    },
+    {
+      "from_field": "BK_PURCHASING_ITEM_CATEGORY_ID",
+      "from_instance": "SQ_ST_MF_MTL_CATEGORIES_B_TL",
+      "to_field": "BK_PURCHASING_ITEM_CATEGORY_ID",
+      "to_instance": "Exp_WK_PURCHASING_ITEM_CATEGORY"
+    },
+    {
+      "from_field": "ITEM_CATEGORY_NAME",
+      "from_instance": "SQ_ST_MF_MTL_CATEGORIES_B_TL",
+      "to_field": "ITEM_CATEGORY_NAME",
+      "to_instance": "Exp_WK_PURCHASING_ITEM_CATEGORY"
+    },
+    {
+      "from_field": "ATTRIBUTE2",
+      "from_instance": "SQ_ST_MF_MTL_CATEGORIES_B_TL",
+      "to_field": "ATTRIBUTE2",
+      "to_instance": "Exp_WK_PURCHASING_ITEM_CATEGORY"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "ST_MF_MTL_CATEGORIES_B_TL",
+      "to_field": "ITEM_CATEGORY_NAME",
+      "to_instance": "SQ_ST_MF_MTL_CATEGORIES_B_TL"
+    },
+    {
+      "from_field": "SEGMENT1",
+      "from_instance": "ST_MF_MTL_CATEGORIES_B_TL",
+      "to_field": "BK_PURCHASING_ITEM_CATEGORY_ID",
+      "to_instance": "SQ_ST_MF_MTL_CATEGORIES_B_TL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_PURCHASING_ITEM_CATEGORY_ID",
+      "source_path": [
+        {
+          "from_field": "BK_PURCHASING_ITEM_CATEGORY_ID",
+          "from_instance": "Exp_WK_PURCHASING_ITEM_CATEGORY"
+        },
+        {
+          "from_field": "BK_PURCHASING_ITEM_CATEGORY_ID",
+          "from_instance": "SQ_ST_MF_MTL_CATEGORIES_B_TL"
+        },
+        {
+          "from_field": "SEGMENT1",
+          "from_instance": "ST_MF_MTL_CATEGORIES_B_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ITEM_CATEGORY_NAME",
+      "source_path": [
+        {
+          "from_field": "ITEM_CATEGORY_NAME",
+          "from_instance": "Exp_WK_PURCHASING_ITEM_CATEGORY"
+        },
+        {
+          "from_field": "ITEM_CATEGORY_NAME",
+          "from_instance": "SQ_ST_MF_MTL_CATEGORIES_B_TL"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "ST_MF_MTL_CATEGORIES_B_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GPS_SPEND_CATEGORY_CD",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE2",
+          "from_instance": "Exp_WK_PURCHASING_ITEM_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GPS_SPEND_SUB_CATEGORY_CD",
+      "source_path": [
+        {
+          "from_field": "ATTRIBUTE3",
+          "from_instance": "Exp_WK_PURCHASING_ITEM_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:13.540711+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

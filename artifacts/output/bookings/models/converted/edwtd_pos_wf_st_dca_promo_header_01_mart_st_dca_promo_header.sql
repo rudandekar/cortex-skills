@@ -1,0 +1,105 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_st_dca_promo_header', 'batch', 'edwtd_pos'],
+    meta={
+        'source_workflow': 'wf_m_ST_DCA_PROMO_HEADER',
+        'target_table': 'ST_DCA_PROMO_HEADER',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:33.591008+00:00'
+    }
+) }}
+
+WITH 
+
+source_ff_dca_promo_header AS (
+    SELECT
+        promo_id,
+        authorization_number,
+        promo_type,
+        promo_source,
+        channel_type,
+        promo_start_date,
+        promo_end_date,
+        days_for_claim,
+        market_type,
+        initiated_by,
+        approved_by,
+        active_flag,
+        created_by,
+        created_date,
+        updated_by,
+        last_update_date,
+        max_deal_value,
+        price_list_type,
+        promo_description,
+        comments,
+        standard_bulletin_no,
+        origin_theatre,
+        currency_code,
+        deal_id,
+        split_flag,
+        it_comments,
+        promo_category,
+        wpl_id,
+        gpl_id,
+        maj_head_prlist_id,
+        bundle_flag,
+        discount_rule,
+        cam_id,
+        promo_name,
+        revision_number,
+        promo_max_deal_value,
+        approval_date,
+        batch_id,
+        action_cd,
+        create_datetime
+    FROM {{ source('raw', 'ff_dca_promo_header') }}
+),
+
+final AS (
+    SELECT
+        promo_id,
+        authorization_number,
+        promo_type,
+        promo_source,
+        channel_type,
+        promo_start_date,
+        promo_end_date,
+        days_for_claim,
+        market_type,
+        initiated_by,
+        approved_by,
+        active_flag,
+        created_by,
+        created_date,
+        updated_by,
+        last_update_date,
+        max_deal_value,
+        price_list_type,
+        promo_description,
+        comments,
+        standard_bulletin_no,
+        origin_theatre,
+        currency_code,
+        deal_id,
+        split_flag,
+        it_comments,
+        promo_category,
+        wpl_id,
+        gpl_id,
+        maj_head_prlist_id,
+        bundle_flag,
+        discount_rule,
+        cam_id,
+        promo_name,
+        revision_number,
+        promo_max_deal_value,
+        approval_date,
+        batch_id,
+        action_cd,
+        create_datetime
+    FROM source_ff_dca_promo_header
+)
+
+SELECT * FROM final

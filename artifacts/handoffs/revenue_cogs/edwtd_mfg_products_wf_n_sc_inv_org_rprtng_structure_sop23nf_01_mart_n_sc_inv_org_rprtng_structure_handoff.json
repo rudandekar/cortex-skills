@@ -1,0 +1,1159 @@
+{
+  "workflow_name": "wf_m_N_SC_INV_ORG_RPRTNG_STRUCTURE_SOP23NF",
+  "mapping_name": "m_N_SC_INV_ORG_RPRTNG_STRUCTURE_SOP23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_MFG_PRODUCTS",
+  "target_table": "N_SC_INV_ORG_RPRTNG_STRUCTURE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_mfg_products_wf_n_sc_inv_org_rprtng_structure_sop23nf_01_mart_n_sc_inv_org_rprtng_structure",
+  "source_tables": [
+    "SC_INV_ORG_RPRTNG_STRUCTURE"
+  ],
+  "sources": [
+    {
+      "name": "SC_INV_ORG_RPRTNG_STRUCTURE",
+      "database_type": "Teradata",
+      "owner": "SOPDATADB_DV1",
+      "fields": [
+        {
+          "name": "ORG",
+          "datatype": "varchar",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "Sub_Region",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "Region",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DRO",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VP",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "Partner",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "Partner_Type",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ROW_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LINE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BATCH_ID",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_SC_INV_ORG_RPRTNG_STRUCTURE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "INVENTORY_ORGANIZATION_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DIRECTOR_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "VICE_PRESIDENT_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARTNER_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PARTNER_TYPE_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REGION_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SUBREGION_CD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_SC_REPORTING_HIER_ORG",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "INVENTORY_ORGANIZATION_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DIRECTOR_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VICE_PRESIDENT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REGION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBREGION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nINVENTORY_ORGANIZATION_KEY,\r\nDIRECTOR_NAME,\r\nVICE_PRESIDENT_NAME,\r\nPARTNER_NAME,\r\nPARTNER_TYPE_CD,\r\nREGION_CD,\r\nSUBREGION_CD\r\nFROM\r\n(SELECT \r\nNCIO.INVENTORY_ORGN_NAME_KEY AS INVENTORY_ORGANIZATION_KEY,\r\nSRHO.DRO AS DIRECTOR_NAME,\r\nSRHO.VP AS VICE_PRESIDENT_NAME,\r\nSRHO.Partner AS PARTNER_NAME,\r\nSRHO.Partner_Type AS PARTNER_TYPE_CD,\r\nSRHO.Region AS REGION_CD,\r\nSRHO.Sub_Region AS SUBREGION_CD,\r\n(CASE WHEN NIOPS.INVENTORY_ORGANIZATION_KEY IS NOT NULL  THEN 'U' ELSE 'I' END) AS DML_TYPE \r\n\r\nFROM \r\n$$SOPDATAVWDB.SC_INV_ORG_RPRTNG_STRUCTURE  SRHO\r\nINNER JOIN \r\n$$COMREFDB.N_CISCO_INVENTORY_ORG NCIO\r\nON \r\nNCIO.INVENTORY_ORGANIZATION_CODE=SRHO.ORG\r\nLEFT JOIN  $$INVFLMTVWDB.N_SC_INV_ORG_RPRTNG_STRUCTURE NIOPS\r\nON NIOPS.INVENTORY_ORGANIZATION_KEY=NCIO.INVENTORY_ORGN_NAME_KEY\r\nQUALIFY ROW_NUMBER () OVER (PARTITION BY  SRHO.ORG ORDER BY \r\nSRHO.BATCH_ID  DESC) = 1) A\r\nwhere A.DML_TYPE='I'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "INVENTORY_ORGANIZATION_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "INVENTORY_ORGANIZATION_KEY"
+        },
+        {
+          "name": "DIRECTOR_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DIRECTOR_NAME"
+        },
+        {
+          "name": "VICE_PRESIDENT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "VICE_PRESIDENT_NAME"
+        },
+        {
+          "name": "PARTNER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PARTNER_NAME"
+        },
+        {
+          "name": "PARTNER_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PARTNER_TYPE_CD"
+        },
+        {
+          "name": "REGION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "REGION_CD"
+        },
+        {
+          "name": "SUBREGION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SUBREGION_CD"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "INS_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "INVENTORY_ORGANIZATION_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DIRECTOR_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VICE_PRESIDENT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REGION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBREGION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_INSERT",
+        "Forward Rejected Rows": "YES",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "INVENTORY_ORGANIZATION_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "INVENTORY_ORGANIZATION_KEY"
+        },
+        {
+          "name": "DIRECTOR_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DIRECTOR_NAME"
+        },
+        {
+          "name": "VICE_PRESIDENT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "VICE_PRESIDENT_NAME"
+        },
+        {
+          "name": "PARTNER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PARTNER_NAME"
+        },
+        {
+          "name": "PARTNER_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PARTNER_TYPE_CD"
+        },
+        {
+          "name": "REGION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "REGION_CD"
+        },
+        {
+          "name": "SUBREGION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SUBREGION_CD"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "INVENTORY_ORGANIZATION_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DIRECTOR_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VICE_PRESIDENT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REGION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBREGION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_UPDATE",
+        "Forward Rejected Rows": "YES",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_SC_REPORTING_HIER_ORG1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "INVENTORY_ORGANIZATION_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DIRECTOR_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VICE_PRESIDENT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PARTNER_TYPE_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REGION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUBREGION_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nINVENTORY_ORGANIZATION_KEY,\r\nDIRECTOR_NAME,\r\nVICE_PRESIDENT_NAME,\r\nPARTNER_NAME,\r\nPARTNER_TYPE_CD,\r\nREGION_CD,\r\nSUBREGION_CD\r\nFROM\r\n(SELECT \r\nNCIO.INVENTORY_ORGN_NAME_KEY AS INVENTORY_ORGANIZATION_KEY,\r\nSRHO.DRO AS DIRECTOR_NAME,\r\nSRHO.VP AS VICE_PRESIDENT_NAME,\r\nSRHO.Partner AS PARTNER_NAME,\r\nSRHO.Partner_Type AS PARTNER_TYPE_CD,\r\nSRHO.Region AS REGION_CD,\r\nSRHO.Sub_Region AS SUBREGION_CD,\r\n(CASE WHEN NIOPS.INVENTORY_ORGANIZATION_KEY IS NOT NULL  THEN 'U' ELSE 'I' END) AS DML_TYPE \r\n\r\nFROM \r\n$$SOPDATAVWDB.SC_INV_ORG_RPRTNG_STRUCTURE  SRHO\r\nINNER JOIN \r\n$$COMREFDB.N_CISCO_INVENTORY_ORG NCIO\r\nON \r\nNCIO.INVENTORY_ORGANIZATION_CODE=SRHO.ORG\r\nLEFT JOIN  $$INVFLMTVWDB.N_SC_INV_ORG_RPRTNG_STRUCTURE NIOPS\r\nON NIOPS.INVENTORY_ORGANIZATION_KEY=NCIO.INVENTORY_ORGN_NAME_KEY\r\nQUALIFY ROW_NUMBER () OVER (PARTITION BY  SRHO.ORG ORDER BY \r\nSRHO.BATCH_ID  DESC) = 1) A\r\nwhere A.DML_TYPE='U'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression",
+    "Update Strategy"
+  ],
+  "connectors": [
+    {
+      "from_field": "DIRECTOR_NAME",
+      "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "DIRECTOR_NAME",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "VICE_PRESIDENT_NAME",
+      "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "VICE_PRESIDENT_NAME",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "INVENTORY_ORGANIZATION_KEY",
+      "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "INVENTORY_ORGANIZATION_KEY",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "PARTNER_NAME",
+      "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "PARTNER_NAME",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "PARTNER_TYPE_CD",
+      "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "PARTNER_TYPE_CD",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "REGION_CD",
+      "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "REGION_CD",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "SUBREGION_CD",
+      "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "SUBREGION_CD",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "VICE_PRESIDENT_NAME",
+      "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "VICE_PRESIDENT_NAME",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "INVENTORY_ORGANIZATION_KEY",
+      "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "INVENTORY_ORGANIZATION_KEY",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "DIRECTOR_NAME",
+      "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "DIRECTOR_NAME",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "PARTNER_NAME",
+      "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "PARTNER_NAME",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "PARTNER_TYPE_CD",
+      "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "PARTNER_TYPE_CD",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "REGION_CD",
+      "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "REGION_CD",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "SUBREGION_CD",
+      "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "SUBREGION_CD",
+      "to_instance": "N_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "DRO",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "DIRECTOR_NAME",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG"
+    },
+    {
+      "from_field": "VP",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "VICE_PRESIDENT_NAME",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG"
+    },
+    {
+      "from_field": "Partner",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "PARTNER_NAME",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG"
+    },
+    {
+      "from_field": "Partner_Type",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "PARTNER_TYPE_CD",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG"
+    },
+    {
+      "from_field": "ROW_ID",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "INVENTORY_ORGANIZATION_KEY",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG"
+    },
+    {
+      "from_field": "Sub_Region",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "SUBREGION_CD",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG"
+    },
+    {
+      "from_field": "Region",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "REGION_CD",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG"
+    },
+    {
+      "from_field": "DIRECTOR_NAME",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG",
+      "to_field": "DIRECTOR_NAME",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "VICE_PRESIDENT_NAME",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG",
+      "to_field": "VICE_PRESIDENT_NAME",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "PARTNER_NAME",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG",
+      "to_field": "PARTNER_NAME",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "PARTNER_TYPE_CD",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG",
+      "to_field": "PARTNER_TYPE_CD",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "REGION_CD",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG",
+      "to_field": "REGION_CD",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "SUBREGION_CD",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG",
+      "to_field": "SUBREGION_CD",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "INVENTORY_ORGANIZATION_KEY",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG",
+      "to_field": "INVENTORY_ORGANIZATION_KEY",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "PARTNER_TYPE_CD",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "PARTNER_TYPE_CD",
+      "to_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "REGION_CD",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "REGION_CD",
+      "to_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "SUBREGION_CD",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "SUBREGION_CD",
+      "to_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "INVENTORY_ORGANIZATION_KEY",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "INVENTORY_ORGANIZATION_KEY",
+      "to_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "DIRECTOR_NAME",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "DIRECTOR_NAME",
+      "to_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "VICE_PRESIDENT_NAME",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "VICE_PRESIDENT_NAME",
+      "to_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "PARTNER_NAME",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE",
+      "to_field": "PARTNER_NAME",
+      "to_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+    },
+    {
+      "from_field": "INVENTORY_ORGANIZATION_KEY",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG1",
+      "to_field": "INVENTORY_ORGANIZATION_KEY",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "DIRECTOR_NAME",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG1",
+      "to_field": "DIRECTOR_NAME",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "VICE_PRESIDENT_NAME",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG1",
+      "to_field": "VICE_PRESIDENT_NAME",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "PARTNER_NAME",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG1",
+      "to_field": "PARTNER_NAME",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "PARTNER_TYPE_CD",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG1",
+      "to_field": "PARTNER_TYPE_CD",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "REGION_CD",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG1",
+      "to_field": "REGION_CD",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "SUBREGION_CD",
+      "from_instance": "SQ_SC_REPORTING_HIER_ORG1",
+      "to_field": "SUBREGION_CD",
+      "to_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "INVENTORY_ORGANIZATION_KEY",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "INVENTORY_ORGANIZATION_KEY",
+      "to_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "DIRECTOR_NAME",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "DIRECTOR_NAME",
+      "to_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "VICE_PRESIDENT_NAME",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "VICE_PRESIDENT_NAME",
+      "to_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "PARTNER_NAME",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "PARTNER_NAME",
+      "to_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "PARTNER_TYPE_CD",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "PARTNER_TYPE_CD",
+      "to_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "REGION_CD",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "REGION_CD",
+      "to_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "SUBREGION_CD",
+      "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "SUBREGION_CD",
+      "to_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+    },
+    {
+      "from_field": "Sub_Region",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "SUBREGION_CD",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG1"
+    },
+    {
+      "from_field": "Region",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "REGION_CD",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG1"
+    },
+    {
+      "from_field": "DRO",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "DIRECTOR_NAME",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG1"
+    },
+    {
+      "from_field": "VP",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "VICE_PRESIDENT_NAME",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG1"
+    },
+    {
+      "from_field": "Partner",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "PARTNER_NAME",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG1"
+    },
+    {
+      "from_field": "Partner_Type",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "PARTNER_TYPE_CD",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG1"
+    },
+    {
+      "from_field": "ROW_ID",
+      "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1",
+      "to_field": "INVENTORY_ORGANIZATION_KEY",
+      "to_instance": "SQ_SC_REPORTING_HIER_ORG1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "INVENTORY_ORGANIZATION_KEY",
+      "source_path": [
+        {
+          "from_field": "INVENTORY_ORGANIZATION_KEY",
+          "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "INVENTORY_ORGANIZATION_KEY",
+          "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "ROW_ID",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "INVENTORY_ORGANIZATION_KEY",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG"
+        },
+        {
+          "from_field": "INVENTORY_ORGANIZATION_KEY",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "INVENTORY_ORGANIZATION_KEY",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG1"
+        },
+        {
+          "from_field": "INVENTORY_ORGANIZATION_KEY",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "ROW_ID",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DIRECTOR_NAME",
+      "source_path": [
+        {
+          "from_field": "DIRECTOR_NAME",
+          "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "DIRECTOR_NAME",
+          "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "DRO",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "DIRECTOR_NAME",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG"
+        },
+        {
+          "from_field": "DIRECTOR_NAME",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "DIRECTOR_NAME",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG1"
+        },
+        {
+          "from_field": "DIRECTOR_NAME",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "DRO",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "VICE_PRESIDENT_NAME",
+      "source_path": [
+        {
+          "from_field": "VICE_PRESIDENT_NAME",
+          "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "VICE_PRESIDENT_NAME",
+          "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "VP",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "VICE_PRESIDENT_NAME",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG"
+        },
+        {
+          "from_field": "VICE_PRESIDENT_NAME",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "VICE_PRESIDENT_NAME",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG1"
+        },
+        {
+          "from_field": "VICE_PRESIDENT_NAME",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "VP",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTNER_NAME",
+      "source_path": [
+        {
+          "from_field": "PARTNER_NAME",
+          "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "PARTNER_NAME",
+          "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "Partner",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "PARTNER_NAME",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG"
+        },
+        {
+          "from_field": "PARTNER_NAME",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "PARTNER_NAME",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG1"
+        },
+        {
+          "from_field": "PARTNER_NAME",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "Partner",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PARTNER_TYPE_CD",
+      "source_path": [
+        {
+          "from_field": "PARTNER_TYPE_CD",
+          "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "PARTNER_TYPE_CD",
+          "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "Partner_Type",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "PARTNER_TYPE_CD",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG"
+        },
+        {
+          "from_field": "PARTNER_TYPE_CD",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "PARTNER_TYPE_CD",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG1"
+        },
+        {
+          "from_field": "PARTNER_TYPE_CD",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "Partner_Type",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REGION_CD",
+      "source_path": [
+        {
+          "from_field": "REGION_CD",
+          "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "REGION_CD",
+          "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "Region",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "REGION_CD",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG"
+        },
+        {
+          "from_field": "REGION_CD",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "REGION_CD",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG1"
+        },
+        {
+          "from_field": "REGION_CD",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "Region",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SUBREGION_CD",
+      "source_path": [
+        {
+          "from_field": "SUBREGION_CD",
+          "from_instance": "INS_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "SUBREGION_CD",
+          "from_instance": "UPD_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "Sub_Region",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "SUBREGION_CD",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG"
+        },
+        {
+          "from_field": "SUBREGION_CD",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE"
+        },
+        {
+          "from_field": "SUBREGION_CD",
+          "from_instance": "SQ_SC_REPORTING_HIER_ORG1"
+        },
+        {
+          "from_field": "SUBREGION_CD",
+          "from_instance": "EXP_SC_INV_ORG_RPRTNG_STRUCTURE1"
+        },
+        {
+          "from_field": "Sub_Region",
+          "from_instance": "SC_INV_ORG_RPRTNG_STRUCTURE1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "thin",
+  "generated_timestamp": "2026-03-19T18:33:16.551114+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

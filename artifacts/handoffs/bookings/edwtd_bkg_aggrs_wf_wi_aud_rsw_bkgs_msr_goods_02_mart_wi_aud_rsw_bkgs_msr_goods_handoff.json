@@ -1,0 +1,636 @@
+{
+  "workflow_name": "wf_m_WI_AUD_RSW_BKGS_MSR_GOODS",
+  "mapping_name": "m_WI_AUD_RSW_BKGS_MSR_GOODS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_BKG_AGGRS",
+  "target_table": "WI_AUD_RSW_BKGS_MSR_GOODS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_bkg_aggrs_wf_wi_aud_rsw_bkgs_msr_goods_02_mart_wi_aud_rsw_bkgs_msr_goods",
+  "source_tables": [
+    "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL",
+    "WI_AUD_RSW_BKGS_MSR_GOODS"
+  ],
+  "sources": [
+    {
+      "name": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "AUDIT_TABLE_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUDIT_COLUMN_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MIN_THRESHOLD_VALUE",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MAX_THRESHOLD_VALUE",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_AUD_RSW_BKGS_MSR_GOODS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "AUDIT_TABLE_NAME",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "char",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RS_DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_AUD_RSW_BKGS_MSR_GOODS",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "AUDIT_TABLE_NAME",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+        "datatype": "char",
+        "precision": "7",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RS_DD_COMP_US_NET_PRICE_AMOUNT",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "AUDIT_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RS_DD_COMP_US_NET_PRICE_AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n'MT_RECURRING_SW_BKGS_MEASURE' AS AUDIT_TABLE_NAME,\r\nSRC.DV_FISCAL_YEAR_MTH_NUMBER_INT,\r\nSRC.BKGS_MEASURE_TRANS_TYPE_CODE,\r\nSRC.RS_DD_COMP_US_NET_PRICE_AMOUNT - COALESCE(TGT.RS_DD_COMP_US_NET_PRICE_AMOUNT,0.000000) AS RS_DD_COMP_US_NET_PRICE_AMOUNT,\r\nUSER as EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) as EDW_CREATE_DATETIME\r\nFROM\r\n\r\n(\r\nSELECT\r\nBKGS.DV_FISCAL_YEAR_MTH_NUMBER_INT,\r\nBKGS.BKGS_MEASURE_TRANS_TYPE_CODE,\r\nCAST(SUM(BKGS.DD_COMP_US_NET_PRICE_AMOUNT * CAST(NPDT.ALLOCATION_PCT AS DECIMAL (18,2)))  AS DECIMAL(18,6)) AS RS_DD_COMP_US_NET_PRICE_AMOUNT\r\nFROM $$SLSORDVWDB.MT_RSTD_BKGS_MEASURE BKGS\r\nINNER JOIN $$STGDB.WI_RS_CTRL_MTH CTRL\r\nON CTRL.FISCAL_YEAR_MONTH_INT = BKGS.DV_FISCAL_YEAR_MTH_NUMBER_INT\r\nAND CTRL.CURRENT_FISCAL_MONTH_FLAG = 'Y'\r\nAND CTRL.PROCESS_FLAG = 'Y'\r\nINNER JOIN $$COMREFVWDB.N_PRDT_TO_PRDT_CLSFTN_ALCTN NPDT\r\nON NPDT.PRODUCT_KEY = BKGS.PRODUCT_KEY\r\nAND NPDT.DV_FISCAL_YEAR_QUARTER_NUM_INT = BKGS.FISCAL_YEAR_QUARTER_NUMBER_INT\r\nAND NPDT.BK_PRDT_ALLCTN_METRIC_CD IN ('BOOKINGS', 'UNKNOWN')\r\nINNER JOIN $$COMREFVWDB.N_PRODUCT_TV NP\r\nON (CASE WHEN BKGS.PRODUCT_KEY BETWEEN -1006800 AND -1005000 THEN -998\r\nWHEN  BKGS.PRODUCT_KEY BETWEEN -1001800 AND -1000000 THEN -999\r\nELSE BKGS.PRODUCT_KEY END) = NP.ITEM_KEY\r\nAND NP.END_TV_DATE = '3500-01-01'\r\nWHERE BKGS.SERVICE_FLG = 'N'\r\nAND NP.RECURRING_OFFER_FLG = 'Y'\r\nAND NPDT.BK_PRDT_ALLCTN_CLSFCTN_CD = 'Software'\r\nGROUP BY 1,2\r\n) SRC\r\n\r\nLEFT OUTER JOIN\r\n(\r\nSELECT\r\nRSW.DV_FISCAL_YEAR_MTH_NUMBER_INT,\r\nRSW.BKGS_MEASURE_TRANS_TYPE_CODE,\r\nSUM(RSW.RS_DD_COMP_US_NET_PRICE_AMOUNT) AS RS_DD_COMP_US_NET_PRICE_AMOUNT\r\nFROM $$SLSORDVWDB.MT_RECURRING_SW_BKGS_MEASURE RSW\r\nINNER JOIN $$STGDB.WI_RS_CTRL_MTH CTRL\r\nON CTRL.FISCAL_YEAR_MONTH_INT = RSW.DV_FISCAL_YEAR_MTH_NUMBER_INT\r\nAND CTRL.CURRENT_FISCAL_MONTH_FLAG = 'Y'\r\nAND CTRL.PROCESS_FLAG = 'Y'\r\nWHERE RSW.SERVICE_FLG = 'N'\r\n/*AND RSW.RECURRING_SOFTWARE_FLG = 'Y' */ /* This filter is not req'd as we are using NON TV view */\r\nGROUP BY 1,2\r\n)TGT\r\nON SRC.DV_FISCAL_YEAR_MTH_NUMBER_INT=TGT.DV_FISCAL_YEAR_MTH_NUMBER_INT\r\nAND SRC.BKGS_MEASURE_TRANS_TYPE_CODE=TGT.BKGS_MEASURE_TRANS_TYPE_CODE",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "FILTRANS",
+      "type": "Filter",
+      "description": "",
+      "fields": [
+        {
+          "name": "AUDIT_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_COLUMN_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Filter Condition": "FALSE",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "AUDIT_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TABLE_NAME"
+        },
+        {
+          "name": "AUDIT_COLUMN_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_COLUMN_NAME"
+        },
+        {
+          "name": "AMOUNTDIFF_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AMOUNTDIFF_FLG"
+        },
+        {
+          "name": "AMOUNTDIFF_FLG_out",
+          "datatype": "string",
+          "porttype": "LOCAL VARIABLE",
+          "expression": "IIF(AMOUNTDIFF_FLG = 'Y' , ABORT('Amounts are not matching between RSTD_BKGS_MEASURE and RECURRING_SW_BKGS_MEASURE') )"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "AUDIT_TABLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_COLUMN_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AMOUNTDIFF_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n'MT_RECURRING_SW_BKGS_MEASURE' AS AUDIT_TABLE_NAME, \r\n'ALL_COLUMNS' AS AUDIT_COLUMN_NAME,\r\nCASE WHEN COUNT(*) >= 1 THEN 'Y' ELSE 'N' END as AMOUNTDIFF_FLG,\r\nUSER as EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) as EDW_CREATE_DATETIME,\r\nUSER as EDW_UPDATE_USER,\r\nCURRENT_TIMESTAMP(0) as EDW_UPDATE_DATETIME\r\nFROM \r\n(\r\n SELECT\r\n RSW.*, \r\n THR.AUDIT_COLUMN_NAME\r\n FROM \r\n $$STGDB.WI_AUD_RSW_BKGS_MSR_THRHLD_VAL THR\r\n INNER JOIN\r\n $$STGDB.WI_AUD_RSW_BKGS_MSR_GOODS RSW\r\n ON \r\n RSW.AUDIT_TABLE_NAME = THR.AUDIT_TABLE_NAME\r\n AND \r\n THR.AUDIT_TABLE_NAME = 'MT_RECURRING_SW_BKGS_MEASURE'\r\nWHERE RSW.RS_DD_COMP_US_NET_PRICE_AMOUNT NOT BETWEEN THR.MIN_THRESHOLD_VALUE AND THR.MAX_THRESHOLD_VALUE\r\n)A",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Source Qualifier",
+    "Filter"
+  ],
+  "connectors": [
+    {
+      "from_field": "AUDIT_TABLE_NAME",
+      "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1",
+      "to_field": "AUDIT_TABLE_NAME",
+      "to_instance": "WI_AUD_RSW_BKGS_MSR_GOODS_1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_AUD_RSW_BKGS_MSR_GOODS_1"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "WI_AUD_RSW_BKGS_MSR_GOODS_1"
+    },
+    {
+      "from_field": "RS_DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1",
+      "to_field": "RS_DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "WI_AUD_RSW_BKGS_MSR_GOODS_1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "WI_AUD_RSW_BKGS_MSR_GOODS_1"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "WI_AUD_RSW_BKGS_MSR_GOODS_1"
+    },
+    {
+      "from_field": "AUDIT_TABLE_NAME",
+      "from_instance": "FILTRANS",
+      "to_field": "AUDIT_TABLE_NAME",
+      "to_instance": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2"
+    },
+    {
+      "from_field": "AUDIT_COLUMN_NAME",
+      "from_instance": "FILTRANS",
+      "to_field": "AUDIT_COLUMN_NAME",
+      "to_instance": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2"
+    },
+    {
+      "from_field": "AUDIT_TABLE_NAME",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_GOODS",
+      "to_field": "AUDIT_TABLE_NAME",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_GOODS",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1"
+    },
+    {
+      "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_GOODS",
+      "to_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1"
+    },
+    {
+      "from_field": "RS_DD_COMP_US_NET_PRICE_AMOUNT",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_GOODS",
+      "to_field": "RS_DD_COMP_US_NET_PRICE_AMOUNT",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_GOODS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_GOODS",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1"
+    },
+    {
+      "from_field": "AUDIT_TABLE_NAME",
+      "from_instance": "EXPTRANS",
+      "to_field": "AUDIT_TABLE_NAME",
+      "to_instance": "FILTRANS"
+    },
+    {
+      "from_field": "AUDIT_COLUMN_NAME",
+      "from_instance": "EXPTRANS",
+      "to_field": "AUDIT_COLUMN_NAME",
+      "to_instance": "FILTRANS"
+    },
+    {
+      "from_field": "AUDIT_TABLE_NAME",
+      "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2",
+      "to_field": "AUDIT_TABLE_NAME",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "AUDIT_COLUMN_NAME",
+      "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2",
+      "to_field": "AUDIT_COLUMN_NAME",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "AMOUNTDIFF_FLG",
+      "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2",
+      "to_field": "AMOUNTDIFF_FLG",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "AUDIT_TABLE_NAME",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL",
+      "to_field": "AUDIT_TABLE_NAME",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2"
+    },
+    {
+      "from_field": "AUDIT_COLUMN_NAME",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL",
+      "to_field": "AUDIT_COLUMN_NAME",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2"
+    },
+    {
+      "from_field": "EDW_CREATE_DATETIME",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2"
+    },
+    {
+      "from_field": "EDW_UPDATE_DATETIME",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL",
+      "to_field": "EDW_UPDATE_DATETIME",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL",
+      "to_field": "AMOUNTDIFF_FLG",
+      "to_instance": "SQ_WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "AUDIT_TABLE_NAME",
+      "source_path": [
+        {
+          "from_field": "AUDIT_TABLE_NAME",
+          "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1"
+        },
+        {
+          "from_field": "AUDIT_TABLE_NAME",
+          "from_instance": "FILTRANS"
+        },
+        {
+          "from_field": "AUDIT_TABLE_NAME",
+          "from_instance": "WI_AUD_RSW_BKGS_MSR_GOODS"
+        },
+        {
+          "from_field": "AUDIT_TABLE_NAME",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "AUDIT_TABLE_NAME",
+          "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_THRHLD_VAL_2"
+        },
+        {
+          "from_field": "AUDIT_TABLE_NAME",
+          "from_instance": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1"
+        },
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "WI_AUD_RSW_BKGS_MSR_GOODS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BKGS_MEASURE_TRANS_TYPE_CODE",
+      "source_path": [
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1"
+        },
+        {
+          "from_field": "BKGS_MEASURE_TRANS_TYPE_CODE",
+          "from_instance": "WI_AUD_RSW_BKGS_MSR_GOODS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RS_DD_COMP_US_NET_PRICE_AMOUNT",
+      "source_path": [
+        {
+          "from_field": "RS_DD_COMP_US_NET_PRICE_AMOUNT",
+          "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1"
+        },
+        {
+          "from_field": "RS_DD_COMP_US_NET_PRICE_AMOUNT",
+          "from_instance": "WI_AUD_RSW_BKGS_MSR_GOODS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "WI_AUD_RSW_BKGS_MSR_GOODS"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "SQ_WI_AUD_RSW_BKGS_MSR_GOODS_1"
+        },
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "WI_AUD_RSW_BKGS_MSR_GOODS"
+        },
+        {
+          "from_field": "EDW_CREATE_DATETIME",
+          "from_instance": "WI_AUD_RSW_BKGS_MSR_THRHLD_VAL"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:10.770596+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

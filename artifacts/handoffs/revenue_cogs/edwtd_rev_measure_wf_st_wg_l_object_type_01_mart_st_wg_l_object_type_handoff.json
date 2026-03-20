@@ -1,0 +1,202 @@
+{
+  "workflow_name": "wf_m_ST_WG_L_OBJECT_TYPE",
+  "mapping_name": "m_ST_WG_L_OBJECT_TYPE",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "ST_WG_L_OBJECT_TYPE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_st_wg_l_object_type_01_mart_st_wg_l_object_type",
+  "source_tables": [
+    "FF_WG_L_OBJECT_TYPE"
+  ],
+  "sources": [
+    {
+      "name": "FF_WG_L_OBJECT_TYPE",
+      "database_type": "Flat File",
+      "owner": "FlatFile",
+      "fields": [
+        {
+          "name": "TYPE_ID",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TYPE_NAME",
+          "datatype": "string",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TYPE_DESCRIPTION",
+          "datatype": "string",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_WG_L_OBJECT_TYPE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "TYPE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TYPE_NAME",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TYPE_DESCRIPTION",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_WG_L_OBJECT_TYPE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "TYPE_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TYPE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TYPE_DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "TYPE_ID",
+      "from_instance": "SQ_FF_WG_L_OBJECT_TYPE",
+      "to_field": "TYPE_ID",
+      "to_instance": "ST_WG_L_OBJECT_TYPE"
+    },
+    {
+      "from_field": "TYPE_NAME",
+      "from_instance": "SQ_FF_WG_L_OBJECT_TYPE",
+      "to_field": "TYPE_NAME",
+      "to_instance": "ST_WG_L_OBJECT_TYPE"
+    },
+    {
+      "from_field": "TYPE_DESCRIPTION",
+      "from_instance": "SQ_FF_WG_L_OBJECT_TYPE",
+      "to_field": "TYPE_DESCRIPTION",
+      "to_instance": "ST_WG_L_OBJECT_TYPE"
+    },
+    {
+      "from_field": "TYPE_ID",
+      "from_instance": "FF_WG_L_OBJECT_TYPE",
+      "to_field": "TYPE_ID",
+      "to_instance": "SQ_FF_WG_L_OBJECT_TYPE"
+    },
+    {
+      "from_field": "TYPE_NAME",
+      "from_instance": "FF_WG_L_OBJECT_TYPE",
+      "to_field": "TYPE_NAME",
+      "to_instance": "SQ_FF_WG_L_OBJECT_TYPE"
+    },
+    {
+      "from_field": "TYPE_DESCRIPTION",
+      "from_instance": "FF_WG_L_OBJECT_TYPE",
+      "to_field": "TYPE_DESCRIPTION",
+      "to_instance": "SQ_FF_WG_L_OBJECT_TYPE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "TYPE_ID",
+      "source_path": [
+        {
+          "from_field": "TYPE_ID",
+          "from_instance": "SQ_FF_WG_L_OBJECT_TYPE"
+        },
+        {
+          "from_field": "TYPE_ID",
+          "from_instance": "FF_WG_L_OBJECT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TYPE_NAME",
+      "source_path": [
+        {
+          "from_field": "TYPE_NAME",
+          "from_instance": "SQ_FF_WG_L_OBJECT_TYPE"
+        },
+        {
+          "from_field": "TYPE_NAME",
+          "from_instance": "FF_WG_L_OBJECT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TYPE_DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "TYPE_DESCRIPTION",
+          "from_instance": "SQ_FF_WG_L_OBJECT_TYPE"
+        },
+        {
+          "from_field": "TYPE_DESCRIPTION",
+          "from_instance": "FF_WG_L_OBJECT_TYPE"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:27.119671+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

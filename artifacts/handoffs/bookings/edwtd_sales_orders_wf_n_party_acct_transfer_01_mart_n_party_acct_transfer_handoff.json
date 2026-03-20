@@ -1,0 +1,437 @@
+{
+  "workflow_name": "wf_m_N_PARTY_ACCT_TRANSFER",
+  "mapping_name": "m_N_PARTY_ACCT_TRANSFER",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "N_PARTY_ACCT_TRANSFER",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_n_party_acct_transfer_01_mart_n_party_acct_transfer",
+  "source_tables": [
+    "N_PARTY_ACCT_TRANSFER"
+  ],
+  "sources": [
+    {
+      "name": "N_PARTY_ACCT_TRANSFER",
+      "database_type": "Teradata",
+      "owner": "SLSORDDB_DV4",
+      "fields": [
+        {
+          "name": "PARTY_KEY",
+          "datatype": "bigint",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_FISCAL_YEAR",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCT_TRANSFER_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACCT_TRANSFER_REASON_DESCR",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_PARTY_ACCT_TRANSFER",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PARTY_KEY",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_FISCAL_YEAR",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCT_TRANSFER_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCT_TRANSFER_REASON_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_PARTY_ACCT_TRANSFER",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PARTY_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FISCAL_YEAR",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCT_TRANSFER_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCT_TRANSFER_REASON_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nPARTY_KEY, \r\nBK_FISCAL_YEAR, \r\nACCT_TRANSFER_FLG, \r\nEDW_CREATE_DTM, \r\nEDW_CREATE_USER, \r\nEDW_UPDATE_DTM, \r\nEDW_UPDATE_USER, \r\nACCT_TRANSFER_REASON_DESCR\r\nFROM\r\n$$SLSORDVWDB.N_PARTY_ACCT_TRANSFER where 1=2",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "PARTY_KEY",
+      "from_instance": "SQ_N_PARTY_ACCT_TRANSFER",
+      "to_field": "PARTY_KEY",
+      "to_instance": "N_PARTY_ACCT_TRANSFER1"
+    },
+    {
+      "from_field": "BK_FISCAL_YEAR",
+      "from_instance": "SQ_N_PARTY_ACCT_TRANSFER",
+      "to_field": "BK_FISCAL_YEAR",
+      "to_instance": "N_PARTY_ACCT_TRANSFER1"
+    },
+    {
+      "from_field": "ACCT_TRANSFER_FLG",
+      "from_instance": "SQ_N_PARTY_ACCT_TRANSFER",
+      "to_field": "ACCT_TRANSFER_FLG",
+      "to_instance": "N_PARTY_ACCT_TRANSFER1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_PARTY_ACCT_TRANSFER",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_PARTY_ACCT_TRANSFER1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_PARTY_ACCT_TRANSFER",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_PARTY_ACCT_TRANSFER1"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_PARTY_ACCT_TRANSFER",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_PARTY_ACCT_TRANSFER1"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_PARTY_ACCT_TRANSFER",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_PARTY_ACCT_TRANSFER1"
+    },
+    {
+      "from_field": "ACCT_TRANSFER_REASON_DESCR",
+      "from_instance": "SQ_N_PARTY_ACCT_TRANSFER",
+      "to_field": "ACCT_TRANSFER_REASON_DESCR",
+      "to_instance": "N_PARTY_ACCT_TRANSFER1"
+    },
+    {
+      "from_field": "BK_FISCAL_YEAR",
+      "from_instance": "N_PARTY_ACCT_TRANSFER",
+      "to_field": "BK_FISCAL_YEAR",
+      "to_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+    },
+    {
+      "from_field": "ACCT_TRANSFER_FLG",
+      "from_instance": "N_PARTY_ACCT_TRANSFER",
+      "to_field": "ACCT_TRANSFER_FLG",
+      "to_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_PARTY_ACCT_TRANSFER",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_PARTY_ACCT_TRANSFER",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_PARTY_ACCT_TRANSFER",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_PARTY_ACCT_TRANSFER",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+    },
+    {
+      "from_field": "PARTY_KEY",
+      "from_instance": "N_PARTY_ACCT_TRANSFER",
+      "to_field": "PARTY_KEY",
+      "to_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+    },
+    {
+      "from_field": "ACCT_TRANSFER_REASON_DESCR",
+      "from_instance": "N_PARTY_ACCT_TRANSFER",
+      "to_field": "ACCT_TRANSFER_REASON_DESCR",
+      "to_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PARTY_KEY",
+      "source_path": [
+        {
+          "from_field": "PARTY_KEY",
+          "from_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+        },
+        {
+          "from_field": "PARTY_KEY",
+          "from_instance": "N_PARTY_ACCT_TRANSFER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_FISCAL_YEAR",
+      "source_path": [
+        {
+          "from_field": "BK_FISCAL_YEAR",
+          "from_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+        },
+        {
+          "from_field": "BK_FISCAL_YEAR",
+          "from_instance": "N_PARTY_ACCT_TRANSFER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCT_TRANSFER_FLG",
+      "source_path": [
+        {
+          "from_field": "ACCT_TRANSFER_FLG",
+          "from_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+        },
+        {
+          "from_field": "ACCT_TRANSFER_FLG",
+          "from_instance": "N_PARTY_ACCT_TRANSFER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_PARTY_ACCT_TRANSFER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_PARTY_ACCT_TRANSFER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "N_PARTY_ACCT_TRANSFER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_PARTY_ACCT_TRANSFER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCT_TRANSFER_REASON_DESCR",
+      "source_path": [
+        {
+          "from_field": "ACCT_TRANSFER_REASON_DESCR",
+          "from_instance": "SQ_N_PARTY_ACCT_TRANSFER"
+        },
+        {
+          "from_field": "ACCT_TRANSFER_REASON_DESCR",
+          "from_instance": "N_PARTY_ACCT_TRANSFER"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:19.405371+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

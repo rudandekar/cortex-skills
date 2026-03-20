@@ -1,0 +1,913 @@
+{
+  "workflow_name": "wf_m_WK_FINANCIAL_LOCATION",
+  "mapping_name": "m_WK_FINANCIAL_LOCATION",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "W_FINANCIAL_LOCATION",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_wk_financial_location_02_mart_w_financial_location",
+  "source_tables": [
+    "ST_SI_LOCATION_INFO"
+  ],
+  "sources": [
+    {
+      "name": "ST_SI_LOCATION_INFO",
+      "database_type": "Teradata",
+      "owner": "STGDB",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LOCATION_VALUE",
+          "datatype": "varchar",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LOCATION_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COMPANY_VALUE",
+          "datatype": "varchar",
+          "precision": "3",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_FINANCIAL_LOCATION",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_FINANCIAL_LOCATION_CODE",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LOCATION_NAME",
+        "datatype": "varchar",
+        "precision": "80",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_COMPANY_CODE",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_LOCATION_VALUE_CODE",
+        "datatype": "char",
+        "precision": "3",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_SI_LOCATION_INFO",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_COMPANY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FINANCIAL_LOCATION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOCATION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_LOCATION_VALUE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n\tTVOUTPUT.BK_COMPANY_CODE,\r\n\tTVOUTPUT.BK_FINANCIAL_LOCATION_CODE,\r\n\tTVOUTPUT.LOCATION_NAME LOCATION_NAME,\r\n\tTVOUTPUT.SK_LOCATION_VALUE_CODE,\r\n\tTVOUTPUT.ACTION_CODE,\r\n\tTVOUTPUT.EXCEPTION_TYPE,\r\n\tTVOUTPUT.START_TV_DATE START_DATE_ACTIVE,\r\n\tCOALESCE(MAX(CAST(TVOUTPUT.START_TV_DATE AS DATE) - INTERVAL '1' DAY ) \r\n\tOVER (PARTITION BY TVOUTPUT.BK_FINANCIAL_LOCATION_CODE\r\n\tORDER\tBY TVOUTPUT.START_TV_DATE ROWS BETWEEN 1 FOLLOWING\r\n\tAND\t1 FOLLOWING), DATE '3500-01-01') AS END_DATE_ACTIVE,\r\n\tROW_NUMBER() OVER (PARTITION BY TVOUTPUT.BK_FINANCIAL_LOCATION_CODE\r\n\tORDER\tBY TVOUTPUT.START_TV_DATE ASC) AS RANK_INDEX,\r\n\t(CASE WHEN\tRANK_INDEX = 1 AND NFLTV.BK_FINANCIAL_LOCATION_CODE IS NOT NULL THEN 'U' ELSE\t'I' END) AS DML_TYPE \r\nFROM\t(\r\n\tSELECT\r\n\tBATCH_ID,\r\n\tBK_COMPANY_CODE,\r\n\tBK_FINANCIAL_LOCATION_CODE,\r\n\tLOCATION_NAME,\r\n\tSK_LOCATION_VALUE_CODE,\r\n\tSTART_TV_DATE,\r\n\tEDW_CREATE_DATETIME,\r\n\tACTION_CODE,\r\n\tEXCEPTION_TYPE,\r\n\tROW_NUMBER() OVER (PARTITION BY \r\n\tTVINPUT.BK_COMPANY_CODE,TVINPUT.BK_FINANCIAL_LOCATION_CODE, TVINPUT.LOCATION_NAME\r\n\tORDER\tBY EDW_CREATE_DATETIME DESC) AS ROW_NUM\r\n\tFROM\r\n\t(\r\n\t\t\tSELECT\r\n\t\t\tSSLI.BATCH_ID,\r\n\t\t\tSSLI.COMPANY_VALUE BK_COMPANY_CODE,\r\n\t\t\tSSLI.LOCATION_VALUE BK_FINANCIAL_LOCATION_CODE,\r\n\t\t\tSSLI.LOCATION_NAME LOCATION_NAME,\r\n\t\t\tSSLI.LOCATION_VALUE SK_LOCATION_VALUE_CODE,\r\n\t\t\tCAST(SSLI.CREATE_DATETIME AS DATE) START_TV_DATE,\r\n\t\t\tSSLI.CREATE_DATETIME EDW_CREATE_DATETIME,\r\n\t\t\tSSLI.ACTION_CODE,\r\n\t\t\t'NE' EXCEPTION_TYPE\r\n\t\tFROM\t$$STGDB.ST_SI_LOCATION_INFO SSLI LEFT OUTER JOIN\r\n\t\t\t$$FINLGLVWDB.N_FINANCIAL_COMPANY_TV NFCTV\r\nON\t\tSSLI.COMPANY_VALUE = NFCTV.BK_COMPANY_CODE\r\n\tAND\tNFCTV.END_TV_DATE=16000101\r\n\tUNION\tALL \r\n\t\tSELECT\r\n\t\t\tESLI.BATCH_ID,\r\n\t\t\tESLI.COMPANY_VALUE BK_COMPANY_CODE, \r\n\t\t\tESLI.LOCATION_VALUE BK_FINANCIAL_LOCATION_CODE,\r\n\t\t\tESLI.LOCATION_NAME LOCATION_NAME,\r\n\t\t\tESLI.LOCATION_VALUE SK_LOCATION_VALUE_CODE,\r\n\t\t\tCAST(ESLI.CREATE_DATETIME AS DATE) START_TV_DATE,\r\n\t\t\tESLI.CREATE_DATETIME EDW_CREATE_DATETIME,\r\n\t\t\tESLI.ACTION_CODE,\r\n\t\t\tESLI.EXCEPTION_TYPE\r\n\t\tFROM\t$$EXCEPDB.EX_SI_LOCATION_INFO ESLI LEFT OUTER JOIN\r\n\t\t\t$$FINLGLVWDB.N_FINANCIAL_COMPANY_TV NFCTV\r\n\t\tON\tESLI.COMPANY_VALUE=NFCTV.BK_COMPANY_CODE\r\n\tAND\tNFCTV.END_TV_DATE=16000101\r\n\tUNION\tALL\r\n\t\tSELECT\r\n\t\t\t-999 BATCH_ID,\r\n\t\t\tNFLTV.BK_COMPANY_CODE,\r\n\t\t\tNFLTV.BK_FINANCIAL_LOCATION_CODE,\r\n\t\t\tNFLTV.LOCATION_NAME,\r\n\t\t\tNFLTV.SK_LOCATION_VALUE_CODE,\r\n\t\t\tNFLTV.START_TV_DATE,\r\n\t\t\tNFLTV.EDW_UPDATE_DATETIME EDW_CREATE_DATETIME,\r\n\t\t\t'X' ACTION_CODE,\r\n\t\t\t'NE' EXCEPTION_TYPE\r\n\t\tFROM\t$$FINLGLVWDB.N_FINANCIAL_LOCATION_TV NFLTV\r\n\tWHERE\tNFLTV.BK_FINANCIAL_LOCATION_CODE IN \r\n\t (SELECT SSLI.LOCATION_VALUE FROM $$STGDB.ST_SI_LOCATION_INFO SSLI\r\n   \t  UNION ALL\r\n\t SELECT ESLI.LOCATION_VALUE FROM $$EXCEPDB.EX_SI_LOCATION_INFO ESLI)\r\n\tAND\tNFLTV.END_TV_DATE = 16000101\r\n\t)TVINPUT\r\nQUALIFY\tROW_NUMBER () OVER (PARTITION BY TVINPUT. BK_FINANCIAL_LOCATION_CODE, TVINPUT.START_TV_DATE \r\n\tORDER\tBY TVINPUT.EDW_CREATE_DATETIME DESC) = 1\r\n     )TVOUTPUT\r\nLEFT JOIN $$FINLGLVWDB.N_FINANCIAL_LOCATION_TV NFLTV\r\n\tON\tTVOUTPUT. BK_FINANCIAL_LOCATION_CODE = NFLTV. BK_FINANCIAL_LOCATION_CODE\r\n\tAND\tNFLTV.END_TV_DATE= 16000101\r\nWHERE\tROW_NUM=1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_W_FINANCIAL_LOCATION",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_COMPANY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_COMPANY_CODE"
+        },
+        {
+          "name": "BK_FINANCIAL_LOCATION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_FINANCIAL_LOCATION_CODE"
+        },
+        {
+          "name": "LOCATION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LOCATION_NAME"
+        },
+        {
+          "name": "SK_LOCATION_VALUE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SK_LOCATION_VALUE_CODE"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EXCEPTION_TYPE"
+        },
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_TV_DATE"
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_TV_DATE"
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RANK_INDEX"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        },
+        {
+          "name": "ERROR_CHECK",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'NE'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_SI_LOCATION_INFO1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOCATION_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOCATION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COMPANY_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n\t\t\tSTSILOCINFO.BATCH_ID,\r\n\t\t\tSTSILOCINFO.LOCATION_VALUE,\r\n\t\t\tSTSILOCINFO.LOCATION_NAME,\r\n\t\t\tSTSILOCINFO.COMPANY_VALUE,\r\n\t\t\tSTSILOCINFO.CREATE_DATETIME,\r\n\t\t\tSTSILOCINFO.ACTION_CODE \r\nFROM\r\n\t\t\t$$STGDB.ST_SI_LOCATION_INFO STSILOCINFO\r\n\t\t\tWHERE STSILOCINFO.LOCATION_VALUE <> '000' AND \r\n(NOT EXISTS (SELECT 1 from \r\n\t$$FINLGLVWDB. N_FINANCIAL_COMPANY_TV NFINCOM WHERE \r\n\tSTSILOCINFO.COMPANY_VALUE = NFINCOM.BK_COMPANY_CODE))",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Ex_EX_SI_LOCATION_INFO",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BATCH_ID"
+        },
+        {
+          "name": "LOCATION_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LOCATION_VALUE"
+        },
+        {
+          "name": "LOCATION_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LOCATION_NAME"
+        },
+        {
+          "name": "COMPANY_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "COMPANY_VALUE"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATE_DATETIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'RI'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_FINANCIAL_LOCATION_CODE",
+      "from_instance": "Exp_W_FINANCIAL_LOCATION",
+      "to_field": "BK_FINANCIAL_LOCATION_CODE",
+      "to_instance": "W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "Exp_W_FINANCIAL_LOCATION",
+      "to_field": "START_TV_DATE",
+      "to_instance": "W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "Exp_W_FINANCIAL_LOCATION",
+      "to_field": "END_TV_DATE",
+      "to_instance": "W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "LOCATION_NAME",
+      "from_instance": "Exp_W_FINANCIAL_LOCATION",
+      "to_field": "LOCATION_NAME",
+      "to_instance": "W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "BK_COMPANY_CODE",
+      "from_instance": "Exp_W_FINANCIAL_LOCATION",
+      "to_field": "BK_COMPANY_CODE",
+      "to_instance": "W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "SK_LOCATION_VALUE_CODE",
+      "from_instance": "Exp_W_FINANCIAL_LOCATION",
+      "to_field": "SK_LOCATION_VALUE_CODE",
+      "to_instance": "W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_W_FINANCIAL_LOCATION",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "Exp_W_FINANCIAL_LOCATION",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "COMPANY_VALUE",
+      "from_instance": "Ex_EX_SI_LOCATION_INFO",
+      "to_field": "COMPANY_VALUE",
+      "to_instance": "EX_SI_LOCATION_INFO1"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Ex_EX_SI_LOCATION_INFO",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_SI_LOCATION_INFO1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Ex_EX_SI_LOCATION_INFO",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EX_SI_LOCATION_INFO1"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "Ex_EX_SI_LOCATION_INFO",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "EX_SI_LOCATION_INFO1"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "Ex_EX_SI_LOCATION_INFO",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_SI_LOCATION_INFO1"
+    },
+    {
+      "from_field": "LOCATION_VALUE",
+      "from_instance": "Ex_EX_SI_LOCATION_INFO",
+      "to_field": "LOCATION_VALUE",
+      "to_instance": "EX_SI_LOCATION_INFO1"
+    },
+    {
+      "from_field": "LOCATION_NAME",
+      "from_instance": "Ex_EX_SI_LOCATION_INFO",
+      "to_field": "LOCATION_NAME",
+      "to_instance": "EX_SI_LOCATION_INFO1"
+    },
+    {
+      "from_field": "LOCATION_VALUE",
+      "from_instance": "ST_SI_LOCATION_INFO",
+      "to_field": "BK_FINANCIAL_LOCATION_CODE",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "COMPANY_VALUE",
+      "from_instance": "ST_SI_LOCATION_INFO",
+      "to_field": "BK_COMPANY_CODE",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "LOCATION_VALUE",
+      "from_instance": "ST_SI_LOCATION_INFO",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_SI_LOCATION_INFO",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_SI_LOCATION_INFO",
+      "to_field": "RANK_INDEX",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "BK_COMPANY_CODE",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO",
+      "to_field": "BK_COMPANY_CODE",
+      "to_instance": "Exp_W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "BK_FINANCIAL_LOCATION_CODE",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO",
+      "to_field": "BK_FINANCIAL_LOCATION_CODE",
+      "to_instance": "Exp_W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "LOCATION_NAME",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO",
+      "to_field": "LOCATION_NAME",
+      "to_instance": "Exp_W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "SK_LOCATION_VALUE_CODE",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO",
+      "to_field": "SK_LOCATION_VALUE_CODE",
+      "to_instance": "Exp_W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "Exp_W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO",
+      "to_field": "START_TV_DATE",
+      "to_instance": "Exp_W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO",
+      "to_field": "END_TV_DATE",
+      "to_instance": "Exp_W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "RANK_INDEX",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO",
+      "to_field": "RANK_INDEX",
+      "to_instance": "Exp_W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO",
+      "to_field": "DML_TYPE",
+      "to_instance": "Exp_W_FINANCIAL_LOCATION"
+    },
+    {
+      "from_field": "LOCATION_VALUE",
+      "from_instance": "ST_SI_LOCATION_INFO",
+      "to_field": "SK_LOCATION_VALUE_CODE",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "LOCATION_NAME",
+      "from_instance": "ST_SI_LOCATION_INFO",
+      "to_field": "LOCATION_NAME",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_SI_LOCATION_INFO",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_SI_LOCATION_INFO",
+      "to_field": "START_DATE_ACTIVE",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_SI_LOCATION_INFO",
+      "to_field": "END_DATE_ACTIVE",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "LOCATION_VALUE",
+      "from_instance": "ST_SI_LOCATION_INFO1",
+      "to_field": "LOCATION_VALUE",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO1"
+    },
+    {
+      "from_field": "LOCATION_NAME",
+      "from_instance": "ST_SI_LOCATION_INFO1",
+      "to_field": "LOCATION_NAME",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO1"
+    },
+    {
+      "from_field": "COMPANY_VALUE",
+      "from_instance": "ST_SI_LOCATION_INFO1",
+      "to_field": "COMPANY_VALUE",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO1"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_SI_LOCATION_INFO1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_SI_LOCATION_INFO1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO1"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO1",
+      "to_field": "BATCH_ID",
+      "to_instance": "Ex_EX_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "LOCATION_VALUE",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO1",
+      "to_field": "LOCATION_VALUE",
+      "to_instance": "Ex_EX_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "LOCATION_NAME",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO1",
+      "to_field": "LOCATION_NAME",
+      "to_instance": "Ex_EX_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "COMPANY_VALUE",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO1",
+      "to_field": "COMPANY_VALUE",
+      "to_instance": "Ex_EX_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "Ex_EX_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_SI_LOCATION_INFO1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Ex_EX_SI_LOCATION_INFO"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_SI_LOCATION_INFO1",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_SI_LOCATION_INFO1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_FINANCIAL_LOCATION_CODE",
+      "source_path": [
+        {
+          "from_field": "BK_FINANCIAL_LOCATION_CODE",
+          "from_instance": "Exp_W_FINANCIAL_LOCATION"
+        },
+        {
+          "from_field": "LOCATION_VALUE",
+          "from_instance": "ST_SI_LOCATION_INFO"
+        },
+        {
+          "from_field": "BK_FINANCIAL_LOCATION_CODE",
+          "from_instance": "SQ_ST_SI_LOCATION_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "Exp_W_FINANCIAL_LOCATION"
+        },
+        {
+          "from_field": "START_DATE_ACTIVE",
+          "from_instance": "SQ_ST_SI_LOCATION_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "Exp_W_FINANCIAL_LOCATION"
+        },
+        {
+          "from_field": "END_DATE_ACTIVE",
+          "from_instance": "SQ_ST_SI_LOCATION_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LOCATION_NAME",
+      "source_path": [
+        {
+          "from_field": "LOCATION_NAME",
+          "from_instance": "Exp_W_FINANCIAL_LOCATION"
+        },
+        {
+          "from_field": "LOCATION_NAME",
+          "from_instance": "Ex_EX_SI_LOCATION_INFO"
+        },
+        {
+          "from_field": "LOCATION_NAME",
+          "from_instance": "SQ_ST_SI_LOCATION_INFO"
+        },
+        {
+          "from_field": "LOCATION_NAME",
+          "from_instance": "ST_SI_LOCATION_INFO"
+        },
+        {
+          "from_field": "LOCATION_NAME",
+          "from_instance": "ST_SI_LOCATION_INFO1"
+        },
+        {
+          "from_field": "LOCATION_NAME",
+          "from_instance": "SQ_ST_SI_LOCATION_INFO1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_COMPANY_CODE",
+      "source_path": [
+        {
+          "from_field": "BK_COMPANY_CODE",
+          "from_instance": "Exp_W_FINANCIAL_LOCATION"
+        },
+        {
+          "from_field": "COMPANY_VALUE",
+          "from_instance": "ST_SI_LOCATION_INFO"
+        },
+        {
+          "from_field": "BK_COMPANY_CODE",
+          "from_instance": "SQ_ST_SI_LOCATION_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_LOCATION_VALUE_CODE",
+      "source_path": [
+        {
+          "from_field": "SK_LOCATION_VALUE_CODE",
+          "from_instance": "Exp_W_FINANCIAL_LOCATION"
+        },
+        {
+          "from_field": "SK_LOCATION_VALUE_CODE",
+          "from_instance": "SQ_ST_SI_LOCATION_INFO"
+        },
+        {
+          "from_field": "LOCATION_VALUE",
+          "from_instance": "ST_SI_LOCATION_INFO"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_W_FINANCIAL_LOCATION"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Ex_EX_SI_LOCATION_INFO"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_SI_LOCATION_INFO"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_SI_LOCATION_INFO"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_SI_LOCATION_INFO1"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_SI_LOCATION_INFO1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "Exp_W_FINANCIAL_LOCATION"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_SI_LOCATION_INFO"
+        },
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_ST_SI_LOCATION_INFO"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:12.960226+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

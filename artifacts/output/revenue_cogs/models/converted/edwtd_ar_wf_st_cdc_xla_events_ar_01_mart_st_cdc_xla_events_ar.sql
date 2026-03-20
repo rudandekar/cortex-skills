@@ -1,0 +1,107 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_st_cdc_xla_events_ar', 'realtime', 'edwtd_ar'],
+    meta={
+        'source_workflow': 'wf_m_ST_CDC_XLA_EVENTS_AR',
+        'target_table': 'ST_CDC_XLA_EVENTS_AR',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:33:46.277395+00:00'
+    }
+) }}
+
+WITH 
+
+source_cdc_xla_events AS (
+    SELECT
+        event_id,
+        application_id,
+        event_type_code,
+        event_date,
+        entity_id,
+        event_status_code,
+        process_status_code,
+        reference_num_1,
+        reference_num_2,
+        reference_num_3,
+        reference_num_4,
+        reference_char_1,
+        reference_char_2,
+        reference_char_3,
+        reference_char_4,
+        reference_date_1,
+        reference_date_2,
+        reference_date_3,
+        reference_date_4,
+        event_number,
+        on_hold_flag,
+        creation_date,
+        created_by,
+        last_update_date,
+        last_updated_by,
+        last_update_login,
+        program_update_date,
+        program_application_id,
+        program_id,
+        request_id,
+        upg_batch_id,
+        upg_source_application_id,
+        upg_valid_flag,
+        transaction_date,
+        budgetary_control_flag,
+        merge_event_set_id,
+        trail_file_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        processed_flag
+    FROM {{ source('raw', 'cdc_xla_events') }}
+),
+
+final AS (
+    SELECT
+        batch_id,
+        event_id,
+        application_id,
+        event_type_code,
+        event_date,
+        entity_id,
+        event_status_code,
+        process_status_code,
+        reference_num_1,
+        reference_num_2,
+        reference_num_3,
+        reference_num_4,
+        reference_char_1,
+        reference_char_2,
+        reference_char_3,
+        reference_char_4,
+        reference_date_1,
+        reference_date_2,
+        reference_date_3,
+        reference_date_4,
+        event_number,
+        on_hold_flag,
+        creation_date,
+        created_by,
+        last_update_date,
+        last_updated_by,
+        last_update_login,
+        program_update_date,
+        program_application_id,
+        program_id,
+        request_id,
+        upg_batch_id,
+        upg_source_application_id,
+        upg_valid_flag,
+        transaction_date,
+        budgetary_control_flag,
+        merge_event_set_id,
+        source_commit_time,
+        global_name,
+        create_datetime,
+        action_code
+    FROM source_cdc_xla_events
+)
+
+SELECT * FROM final

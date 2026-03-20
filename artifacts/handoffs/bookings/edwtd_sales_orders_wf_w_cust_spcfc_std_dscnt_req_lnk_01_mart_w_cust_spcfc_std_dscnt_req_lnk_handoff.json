@@ -1,0 +1,455 @@
+{
+  "workflow_name": "wf_m_W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+  "mapping_name": "m_W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_w_cust_spcfc_std_dscnt_req_lnk_01_mart_w_cust_spcfc_std_dscnt_req_lnk",
+  "source_tables": [
+    "ST_EDMS_ANALYTIC_ATTRIBS"
+  ],
+  "sources": [
+    {
+      "name": "ST_EDMS_ANALYTIC_ATTRIBS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "REQUEST_NUM",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REQUEST_VER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CONTRACT_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISCOUNT_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_DISCOUNT_REQUEST_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_DISCOUNT_REQ_VER_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_DISCOUNT_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_ST_EDMS_ANALYTIC_ATTRIBS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "REQUEST_NUM",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REQUEST_VER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONTRACT_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISCOUNT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nDISTINCT\r\nSEAA.REQUEST_NUM, \r\nSEAA.REQUEST_VER, \r\nSEAA.DISCOUNT_ID,\r\nCURRENT_TIMESTAMP(0) CREATION_DATE\r\nFROM\r\n $$STGDB.ST_EDMS_ANALYTIC_ATTRIBS SEAA",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "REQUEST_NUM",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "REQUEST_NUM"
+        },
+        {
+          "name": "REQUEST_VER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "REQUEST_VER"
+        },
+        {
+          "name": "DISCOUNT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DISCOUNT_ID"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATION_DATE"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'E_SLSORD_BATCH'"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'E_SLSORD_BATCH'"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'='"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "REQUEST_NUM",
+      "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+      "to_field": "BK_DISCOUNT_REQUEST_ID_INT",
+      "to_instance": "W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    },
+    {
+      "from_field": "REQUEST_VER",
+      "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+      "to_field": "BK_DISCOUNT_REQ_VER_NUM_INT",
+      "to_instance": "W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    },
+    {
+      "from_field": "DISCOUNT_ID",
+      "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK",
+      "to_field": "BK_DISCOUNT_ID_INT",
+      "to_instance": "W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    },
+    {
+      "from_field": "REQUEST_NUM",
+      "from_instance": "ST_EDMS_ANALYTIC_ATTRIBS",
+      "to_field": "REQUEST_NUM",
+      "to_instance": "SQ_ST_EDMS_ANALYTIC_ATTRIBS"
+    },
+    {
+      "from_field": "REQUEST_VER",
+      "from_instance": "ST_EDMS_ANALYTIC_ATTRIBS",
+      "to_field": "REQUEST_VER",
+      "to_instance": "SQ_ST_EDMS_ANALYTIC_ATTRIBS"
+    },
+    {
+      "from_field": "CONTRACT_NUMBER",
+      "from_instance": "ST_EDMS_ANALYTIC_ATTRIBS",
+      "to_field": "CONTRACT_NUMBER",
+      "to_instance": "SQ_ST_EDMS_ANALYTIC_ATTRIBS"
+    },
+    {
+      "from_field": "DISCOUNT_ID",
+      "from_instance": "ST_EDMS_ANALYTIC_ATTRIBS",
+      "to_field": "DISCOUNT_ID",
+      "to_instance": "SQ_ST_EDMS_ANALYTIC_ATTRIBS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_EDMS_ANALYTIC_ATTRIBS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_EDMS_ANALYTIC_ATTRIBS"
+    },
+    {
+      "from_field": "REQUEST_NUM",
+      "from_instance": "SQ_ST_EDMS_ANALYTIC_ATTRIBS",
+      "to_field": "REQUEST_NUM",
+      "to_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    },
+    {
+      "from_field": "REQUEST_VER",
+      "from_instance": "SQ_ST_EDMS_ANALYTIC_ATTRIBS",
+      "to_field": "REQUEST_VER",
+      "to_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    },
+    {
+      "from_field": "DISCOUNT_ID",
+      "from_instance": "SQ_ST_EDMS_ANALYTIC_ATTRIBS",
+      "to_field": "DISCOUNT_ID",
+      "to_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_ST_EDMS_ANALYTIC_ATTRIBS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_DISCOUNT_REQUEST_ID_INT",
+      "source_path": [
+        {
+          "from_field": "REQUEST_NUM",
+          "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_DISCOUNT_REQ_VER_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "REQUEST_VER",
+          "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_DISCOUNT_ID_INT",
+      "source_path": [
+        {
+          "from_field": "DISCOUNT_ID",
+          "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "EXP_W_CUST_SPCFC_STD_DSCNT_REQ_LNK"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:24.553104+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

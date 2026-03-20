@@ -1,0 +1,381 @@
+{
+  "workflow_name": "wf_m_N_AR_PAYMENT_TERM",
+  "mapping_name": "m_N_AR_PAYMENT_TERM",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "N_AR_PAYMENT_TERM",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_n_ar_payment_term_01_mart_n_ar_payment_term",
+  "source_tables": [
+    "W_AR_PAYMENT_TERM"
+  ],
+  "sources": [
+    {
+      "name": "W_AR_PAYMENT_TERM",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV8",
+      "fields": [
+        {
+          "name": "BK_AR_PAYMENT_TERM_NAME",
+          "datatype": "varchar",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AR_PAYMENT_TERM_DESCR",
+          "datatype": "varchar",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_AR_PAYMENT_TERM",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_AR_PAYMENT_TERM_NAME",
+        "datatype": "varchar",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "AR_PAYMENT_TERM_DESCR",
+        "datatype": "varchar",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_AR_PAYMENT_TERM",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_AR_PAYMENT_TERM_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AR_PAYMENT_TERM_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT WAPT.BK_AR_PAYMENT_TERM_NAME, \r\nWAPT.AR_PAYMENT_TERM_DESCR, \r\nWAPT.EDW_CREATE_DTM, \r\nWAPT.EDW_CREATE_USER, \r\nWAPT.EDW_UPDATE_DTM, \r\nWAPT.EDW_UPDATE_USER \r\nFROM\r\n$$WORKDB.W_AR_PAYMENT_TERM WAPT WHERE NOT EXISTS(SEL 1 FROM $$FINLGLVWDB.N_AR_PAYMENT_TERM NAPT \r\nWHERE NAPT.BK_AR_PAYMENT_TERM_NAME = WAPT.BK_AR_PAYMENT_TERM_NAME)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_AR_PAYMENT_TERM_NAME",
+      "from_instance": "SQ_W_AR_PAYMENT_TERM",
+      "to_field": "BK_AR_PAYMENT_TERM_NAME",
+      "to_instance": "N_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "AR_PAYMENT_TERM_DESCR",
+      "from_instance": "SQ_W_AR_PAYMENT_TERM",
+      "to_field": "AR_PAYMENT_TERM_DESCR",
+      "to_instance": "N_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_W_AR_PAYMENT_TERM",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_AR_PAYMENT_TERM",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_W_AR_PAYMENT_TERM",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_AR_PAYMENT_TERM",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_AR_PAYMENT_TERM",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "W_AR_PAYMENT_TERM",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_W_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_AR_PAYMENT_TERM",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_W_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "BK_AR_PAYMENT_TERM_NAME",
+      "from_instance": "W_AR_PAYMENT_TERM",
+      "to_field": "BK_AR_PAYMENT_TERM_NAME",
+      "to_instance": "SQ_W_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "AR_PAYMENT_TERM_DESCR",
+      "from_instance": "W_AR_PAYMENT_TERM",
+      "to_field": "AR_PAYMENT_TERM_DESCR",
+      "to_instance": "SQ_W_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "W_AR_PAYMENT_TERM",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_W_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_AR_PAYMENT_TERM",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_AR_PAYMENT_TERM"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "W_AR_PAYMENT_TERM",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_W_AR_PAYMENT_TERM"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_AR_PAYMENT_TERM_NAME",
+      "source_path": [
+        {
+          "from_field": "BK_AR_PAYMENT_TERM_NAME",
+          "from_instance": "SQ_W_AR_PAYMENT_TERM"
+        },
+        {
+          "from_field": "BK_AR_PAYMENT_TERM_NAME",
+          "from_instance": "W_AR_PAYMENT_TERM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AR_PAYMENT_TERM_DESCR",
+      "source_path": [
+        {
+          "from_field": "AR_PAYMENT_TERM_DESCR",
+          "from_instance": "SQ_W_AR_PAYMENT_TERM"
+        },
+        {
+          "from_field": "AR_PAYMENT_TERM_DESCR",
+          "from_instance": "W_AR_PAYMENT_TERM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_W_AR_PAYMENT_TERM"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "W_AR_PAYMENT_TERM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_W_AR_PAYMENT_TERM"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "W_AR_PAYMENT_TERM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_W_AR_PAYMENT_TERM"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "W_AR_PAYMENT_TERM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_W_AR_PAYMENT_TERM"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "W_AR_PAYMENT_TERM"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:32:57.796502+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,117 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_w_product_hold', 'batch', 'edwtd_sales_orders'],
+    meta={
+        'source_workflow': 'wf_m_W_PRODUCT_HOLD',
+        'target_table': 'SM_PRODUCT_HOLD',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:34.029036+00:00'
+    }
+) }}
+
+WITH 
+
+source_st_uo_oe_hold_sources_all AS (
+    SELECT
+        hold_source_id,
+        hold_id,
+        attribute1,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        context,
+        created_by,
+        creation_date,
+        hold_comment,
+        hold_entity_code,
+        hold_entity_code2,
+        hold_entity_id,
+        hold_entity_id2,
+        hold_release_id,
+        hold_until_date,
+        last_updated_by,
+        last_update_date,
+        last_update_login,
+        org_id,
+        program_application_id,
+        program_id,
+        program_update_date,
+        released_flag,
+        request_id,
+        global_name,
+        source_dml_type,
+        source_commit_time,
+        refresh_datetime,
+        create_datetime
+    FROM {{ source('raw', 'st_uo_oe_hold_sources_all') }}
+),
+
+source_st_om_oe_hold_sources_all AS (
+    SELECT
+        attribute1,
+        attribute10,
+        attribute11,
+        attribute12,
+        attribute13,
+        attribute14,
+        attribute15,
+        attribute2,
+        attribute3,
+        attribute4,
+        attribute5,
+        attribute6,
+        attribute7,
+        attribute8,
+        attribute9,
+        context,
+        created_by,
+        creation_date,
+        ges_update_date,
+        global_name,
+        hold_comment,
+        hold_entity_code,
+        hold_entity_code2,
+        hold_entity_id,
+        hold_entity_id2,
+        hold_id,
+        hold_release_id,
+        hold_source_id,
+        hold_until_date,
+        last_updated_by,
+        last_update_date,
+        last_update_login,
+        org_id,
+        program_application_id,
+        program_id,
+        program_update_date,
+        released_flag,
+        request_id,
+        batch_id,
+        create_datetime,
+        action_code
+    FROM {{ source('raw', 'st_om_oe_hold_sources_all') }}
+),
+
+final AS (
+    SELECT
+        product_hold_key,
+        sk_hold_source_id_int,
+        ss_cd,
+        edw_create_dtm,
+        edw_create_user
+    FROM source_st_om_oe_hold_sources_all
+)
+
+SELECT * FROM final

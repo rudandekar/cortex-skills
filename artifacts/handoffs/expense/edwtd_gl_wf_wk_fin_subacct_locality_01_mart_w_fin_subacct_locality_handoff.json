@@ -1,0 +1,636 @@
+{
+  "workflow_name": "wf_m_WK_FIN_SUBACCT_LOCALITY",
+  "mapping_name": "m_WK_FIN_SUBACCT_LOCALITY",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "W_FIN_SUBACCT_LOCALITY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_wk_fin_subacct_locality_01_mart_w_fin_subacct_locality",
+  "source_tables": [
+    "STSI_FLEX_VALUE_SET_STRUCT"
+  ],
+  "sources": [
+    {
+      "name": "STSI_FLEX_VALUE_SET_STRUCT",
+      "database_type": "Teradata",
+      "owner": "STGDB",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SI_FLEX_STRUCT_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SI_FLEX_VALUE_SET_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SI_FLEX_VALUE_SET_DESC",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SEGMENT_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DB_INSTANCE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RELATED_FLEX_STRUCT_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_FIN_SUBACCT_LOCALITY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_SUBACCOUNT_LOCALITY_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "START_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SUBACCOUNT_LOCALITY_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_SI_FLEX_STRUCT_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "Exp_FIN_SUBACCT_LOCALITY",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BATCH_ID"
+        },
+        {
+          "name": "SI_FLEX_VALUE_SET_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SI_FLEX_VALUE_SET_ID"
+        },
+        {
+          "name": "SI_FLEX_VALUE_SET_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SI_FLEX_VALUE_SET_DESC"
+        },
+        {
+          "name": "SI_FLEX_STRUCT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SI_FLEX_STRUCT_ID"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATE_DATETIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_DATE_ACTIVE"
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_DATE_ACTIVE"
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RANK_INDEX"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_STSI_FLEX_VALUE_SET_STRUCT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SI_FLEX_VALUE_SET_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SI_FLEX_VALUE_SET_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SI_FLEX_STRUCT_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE_ACTIVE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\n\tTVOUTPUT.BATCH_ID,\r\n\tTVOUTPUT.BK_SUBACCOUNT_LOCALITY_INT,\r\n\tTVOUTPUT.SUBACCOUNT_LOCALITY_NAME,\r\n\tTVOUTPUT.SK_SI_FLEX_STRUCT_ID_INT,\r\n\tTVOUTPUT.EDW_CREATE_DATETIME,\r\n\tTVOUTPUT.ACTION_CODE,\r\nTVOUTPUT.START_TV_DATE START_DATE_ACTIVE,\r\n\tCOALESCE(MAX (TVOUTPUT.START_TV_DATE - INTERVAL '1' DAY)\r\n\tOVER (PARTITION BY TVOUTPUT.BK_SUBACCOUNT_LOCALITY_INT  ORDER BY\r\n\tTVOUTPUT.START_TV_DATE ASC ROWS BETWEEN 1 FOLLOWING AND 1 FOLLOWING), DATE '3500-01-01') AS END_DATE_ACTIVE,\r\n\tROW_NUMBER() OVER (PARTITION BY TVOUTPUT.BK_SUBACCOUNT_LOCALITY_INT  \r\n\tORDER BY  TVOUTPUT.START_TV_DATE ASC) AS  RANK_INDEX,\r\n\t(CASE WHEN  RANK_INDEX = 1 AND NFSLTV_OUT.BK_SUBACCOUNT_LOCALITY_INT IS NOT NULL THEN 'U' ELSE 'I' END) AS DML_TYPE\r\nFROM\r\n(\r\n\tSELECT\r\n\tBATCH_ID,\r\n\tBK_SUBACCOUNT_LOCALITY_INT,\r\n\tSUBACCOUNT_LOCALITY_NAME,\r\n\tSK_SI_FLEX_STRUCT_ID_INT,\r\n\tSTART_TV_DATE,\r\n\tEDW_CREATE_DATETIME,\r\n\tACTION_CODE,\r\n\tEXCEPTION_TYPE,\r\n\tROW_NUMBER() OVER (PARTITION BY TVINPUT.BK_SUBACCOUNT_LOCALITY_INT, SUBACCOUNT_LOCALITY_NAME\r\n\tORDER BY EDW_CREATE_DATETIME DESC) AS ROW_NUM\r\n\tFROM\r\n\t(\r\n\t\tSELECT \r\n\t\t\tSSIFVSS.BATCH_ID,\r\n\t\t\tSSIFVSS.SI_FLEX_VALUE_SET_ID BK_SUBACCOUNT_LOCALITY_INT,\r\n\t\t\tSSIFVSS.SI_FLEX_VALUE_SET_DESC SUBACCOUNT_LOCALITY_NAME,\r\n\t\t\tSSIFVSS.SI_FLEX_STRUCT_ID SK_SI_FLEX_STRUCT_ID_INT,\r\n\t\t\tCAST(SSIFVSS.CREATE_DATETIME AS DATE) START_TV_DATE,\r\n\t\t\tSSIFVSS.CREATE_DATETIME  EDW_CREATE_DATETIME,\r\n\t\t\tSSIFVSS.ACTION_CODE,\r\n\t\t\t'NE' EXCEPTION_TYPE\r\n\t\tFROM $$STGDB.STSI_FLEX_VALUE_SET_STRUCT SSIFVSS\r\n\t\t\tWHERE SSIFVSS.SI_FLEX_STRUCT_ID  IN \r\n \t\t\t(\r\n\t\t\tSELECT DISTINCT SSISAI.SI_FLEX_STRUCT_ID FROM $$STGDB.ST_SI_SUB_ACCOUNT_INFO SSISAI\r\n\t\t\tUNION ALL\r\n\t\t\tSELECT ESSAI.SI_FLEX_STRUCT_ID FROM $$EXCEPDB.EX_SI_SUB_ACCOUNT_INFO ESSAI\r\n\t\t\tUNION ALL\r\n\t\t\tSELECT NFST.SK_SI_FLEX_STRUCT_ID_INT FROM $$FINLGLVWDB.N_FINANCIAL_SUBACCOUNT_TV NFST WHERE NFST.END_TV_DATE = 16000101\r\n\t\t\t)\r\n\t\tUNION ALL\r\n\t\tSELECT \r\n\t\t\t-999 BATCH_ID,\r\n\t\t\tNFSLTV.BK_SUBACCOUNT_LOCALITY_INT,\r\n\t\t\tNFSLTV.SUBACCOUNT_LOCALITY_NAME,\r\n\t\t\tNFSLTV.SK_SI_FLEX_STRUCT_ID_INT,\r\n\t\t\tNFSLTV.START_TV_DATE,\r\n\t\t\tNFSLTV.EDW_UPDATE_DATETIME EDW_CREATE_DATETIME,\r\n\t\t\t'X' ACTION_CODE,\r\n\t\t\t'NE' EXCEPTION_TYPE\r\n\t\tFROM $$FINLGLVWDB.N_FIN_SUBACCT_LOCALITY_TV  NFSLTV\r\n\t\tWHERE EXISTS (SELECT 1 FROM $$STGDB.STSI_FLEX_VALUE_SET_STRUCT SSIFVSS\r\n\t\t\t\tWHERE SSIFVSS.SI_FLEX_VALUE_SET_ID = NFSLTV.BK_SUBACCOUNT_LOCALITY_INT)\r\n\t\tAND NFSLTV.END_TV_DATE = 16000101\r\n\t)TVINPUT\r\n\tQUALIFY ROW_NUMBER () OVER (PARTITION BY TVINPUT.BK_SUBACCOUNT_LOCALITY_INT, TVINPUT.START_TV_DATE \r\n\tORDER BY TVINPUT.EDW_CREATE_DATETIME DESC) = 1\r\n)TVOUTPUT \r\n\tLEFT JOIN $$FINLGLVWDB.N_FIN_SUBACCT_LOCALITY_TV NFSLTV_OUT ON\r\n\tTVOUTPUT.BK_SUBACCOUNT_LOCALITY_INT = NFSLTV_OUT.BK_SUBACCOUNT_LOCALITY_INT \r\n\tAND NFSLTV_OUT.END_TV_DATE = 16000101\r\nWHERE ROW_NUM = 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "SI_FLEX_VALUE_SET_ID",
+      "from_instance": "Exp_FIN_SUBACCT_LOCALITY",
+      "to_field": "BK_SUBACCOUNT_LOCALITY_INT",
+      "to_instance": "W_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "Exp_FIN_SUBACCT_LOCALITY",
+      "to_field": "START_TV_DATE",
+      "to_instance": "W_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "Exp_FIN_SUBACCT_LOCALITY",
+      "to_field": "END_TV_DATE",
+      "to_instance": "W_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "SI_FLEX_VALUE_SET_DESC",
+      "from_instance": "Exp_FIN_SUBACCT_LOCALITY",
+      "to_field": "SUBACCOUNT_LOCALITY_NAME",
+      "to_instance": "W_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "SI_FLEX_STRUCT_ID",
+      "from_instance": "Exp_FIN_SUBACCT_LOCALITY",
+      "to_field": "SK_SI_FLEX_STRUCT_ID_INT",
+      "to_instance": "W_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_FIN_SUBACCT_LOCALITY",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "Exp_FIN_SUBACCT_LOCALITY",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Exp_FIN_SUBACCT_LOCALITY",
+      "to_field": "EDW_CREATE_DATETIME",
+      "to_instance": "W_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "START_DATE_ACTIVE",
+      "to_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "END_DATE_ACTIVE",
+      "to_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT"
+    },
+    {
+      "from_field": "SI_FLEX_STRUCT_ID",
+      "from_instance": "STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "SI_FLEX_STRUCT_ID",
+      "to_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT"
+    },
+    {
+      "from_field": "SI_FLEX_VALUE_SET_ID",
+      "from_instance": "STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "SI_FLEX_VALUE_SET_ID",
+      "to_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT"
+    },
+    {
+      "from_field": "SI_FLEX_VALUE_SET_DESC",
+      "from_instance": "STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "SI_FLEX_VALUE_SET_DESC",
+      "to_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT"
+    },
+    {
+      "from_field": "SEGMENT_NAME",
+      "from_instance": "STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "RANK_INDEX",
+      "to_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT"
+    },
+    {
+      "from_field": "DB_INSTANCE",
+      "from_instance": "STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "BATCH_ID",
+      "to_instance": "Exp_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "SI_FLEX_VALUE_SET_ID",
+      "from_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "SI_FLEX_VALUE_SET_ID",
+      "to_instance": "Exp_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "SI_FLEX_VALUE_SET_DESC",
+      "from_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "SI_FLEX_VALUE_SET_DESC",
+      "to_instance": "Exp_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "SI_FLEX_STRUCT_ID",
+      "from_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "SI_FLEX_STRUCT_ID",
+      "to_instance": "Exp_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "Exp_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "START_DATE_ACTIVE",
+      "from_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "START_DATE_ACTIVE",
+      "to_instance": "Exp_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "END_DATE_ACTIVE",
+      "from_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "END_DATE_ACTIVE",
+      "to_instance": "Exp_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "RANK_INDEX",
+      "from_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "RANK_INDEX",
+      "to_instance": "Exp_FIN_SUBACCT_LOCALITY"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT",
+      "to_field": "DML_TYPE",
+      "to_instance": "Exp_FIN_SUBACCT_LOCALITY"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_SUBACCOUNT_LOCALITY_INT",
+      "source_path": [
+        {
+          "from_field": "SI_FLEX_VALUE_SET_ID",
+          "from_instance": "Exp_FIN_SUBACCT_LOCALITY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "START_DATE_ACTIVE",
+          "from_instance": "Exp_FIN_SUBACCT_LOCALITY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "END_DATE_ACTIVE",
+          "from_instance": "Exp_FIN_SUBACCT_LOCALITY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SUBACCOUNT_LOCALITY_NAME",
+      "source_path": [
+        {
+          "from_field": "SI_FLEX_VALUE_SET_DESC",
+          "from_instance": "Exp_FIN_SUBACCT_LOCALITY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "Exp_FIN_SUBACCT_LOCALITY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_SI_FLEX_STRUCT_ID_INT",
+      "source_path": [
+        {
+          "from_field": "SI_FLEX_STRUCT_ID",
+          "from_instance": "Exp_FIN_SUBACCT_LOCALITY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_FIN_SUBACCT_LOCALITY"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "STSI_FLEX_VALUE_SET_STRUCT"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "Exp_FIN_SUBACCT_LOCALITY"
+        },
+        {
+          "from_field": "DB_INSTANCE",
+          "from_instance": "STSI_FLEX_VALUE_SET_STRUCT"
+        },
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_STSI_FLEX_VALUE_SET_STRUCT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:13.024494+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

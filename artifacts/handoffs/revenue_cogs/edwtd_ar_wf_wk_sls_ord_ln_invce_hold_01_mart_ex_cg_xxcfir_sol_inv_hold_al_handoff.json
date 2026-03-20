@@ -1,0 +1,1898 @@
+{
+  "workflow_name": "wf_m_WK_SLS_ORD_LN_INVCE_HOLD",
+  "mapping_name": "m_WK_SLS_ORD_LN_INVCE_HOLD",
+  "mapping_description": "",
+  "folder_name": "EDWTD_AR",
+  "target_table": "EX_CG_XXCFIR_SOL_INV_HOLD_AL",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ar_wf_wk_sls_ord_ln_invce_hold_01_mart_ex_cg_xxcfir_sol_inv_hold_al",
+  "source_tables": [
+    "SM_SALES_ORDER_LINE",
+    "ST_OM_XXCFI_SOL_INV_HOLD_AL"
+  ],
+  "sources": [
+    {
+      "name": "SM_SALES_ORDER_LINE",
+      "database_type": "Teradata",
+      "owner": "ETLVWDB_DV2",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SS_CODE",
+          "datatype": "char",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_SO_LINE_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "32",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV2",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SO_LINE_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INVOICE_HOLD_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "varchar",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DB_SOURCE_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LAST_UPDATE_LOGIN",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "EX_CG_XXCFIR_SOL_INV_HOLD_AL",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BATCH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SO_LINE_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INV_HOLD",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DB_SOURCE_NAME",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATED_BY",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_LOGIN",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "GLOBAL_NAME",
+        "datatype": "varchar",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EXCEPTION_TYPE",
+        "datatype": "char",
+        "precision": "2",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ORG_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BATCH_ID"
+        },
+        {
+          "name": "SO_LINE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SO_LINE_ID"
+        },
+        {
+          "name": "INVOICE_HOLD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "INVOICE_HOLD_FLG"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GLOBAL_NAME"
+        },
+        {
+          "name": "DB_SOURCE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DB_SOURCE_NAME"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATION_DATE"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATED_BY"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_DATE"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATED_BY"
+        },
+        {
+          "name": "LAST_UPDATE_LOGIN",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_LOGIN"
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GES_UPDATE_DATE"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATE_DATETIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'RI'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_LINE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVOICE_HOLD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DB_SOURCE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_LOGIN",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GES_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nSOCSI.BATCH_ID                      \r\n,SOCSI.SO_LINE_ID                    \r\n,SOCSI.INVOICE_HOLD_FLG              \r\n,SOCSI.GLOBAL_NAME                   \r\n,SOCSI.DB_SOURCE_NAME                \r\n,SOCSI.CREATION_DATE                 \r\n,SOCSI.CREATED_BY                    \r\n,SOCSI.LAST_UPDATE_DATE              \r\n,SOCSI.LAST_UPDATED_BY               \r\n,SOCSI.LAST_UPDATE_LOGIN             \r\n,SOCSI.GES_UPDATE_DATE               \r\n,SOCSI.CREATE_DATETIME               \r\n,SOCSI.ACTION_CODE               \r\nFROM\r\n $$STGDB.ST_OM_XXCFI_SOL_INV_HOLD_AL  SOCSI\r\nWHERE \r\nNOT EXISTS \r\n(\r\nSELECT 1 FROM   $$STGDB.ST_OM_XXCFI_SOL_INV_HOLD_AL SOHL\r\nINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC\r\n ON NSSC.GLOBAL_NAME = SOHL.GLOBAL_NAME\r\nINNER JOIN $$ETLVWDB.SM_SALES_ORDER_LINE SSOL \r\n ON SOHL.SO_LINE_ID = SSOL.SK_SO_LINE_ID_INT\r\n AND NSSC.SOURCE_SYSTEM_CODE = SSOL.SS_CODE\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSLHT\r\n ON NSLHT.SALES_ORDER_LINE_KEY = SSOL.SALES_ORDER_LINE_KEY)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVOICE_HOLD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT TVOUTPUT.SALES_ORDER_LINE_KEY\r\n,TVOUTPUT.INVOICE_HOLD_FLG\r\n,CURRENT_TIMESTAMP(0) EW_CREATE_DATETIME\r\n,USER EW_CREATE_USER\r\n,CURRENT_TIMESTAMP(0) EW_UPDATE_DATETIME\r\n,USER EW_UPDATE_USER\r\n,RFMY.FISCAL_MONTH_START_DATE AS START_TV_DATE\r\n,COALESCE (MAX (CAST (RFMY.FISCAL_MONTH_START_DATE  AS DATE) - INTERVAL '1'  DAY)\r\nOVER (PARTITION BY  TVOUTPUT.SALES_ORDER_LINE_KEY\r\n     ORDER BY TVOUTPUT.START_TV_DATE ASC \r\n     ROWS BETWEEN 1 FOLLOWING AND 1 FOLLOWING), DATE '3500-01-01') AS  END_TV_DATE,\r\nTVOUTPUT.ACTION_CODE,\r\nROW_NUMBER() OVER (PARTITION BY TVOUTPUT.SALES_ORDER_LINE_KEY ORDER BY TVOUTPUT.START_TV_DATE ASC) RANK_INDEX,\r\n(CASE WHEN RANK_INDEX=1 AND NSOLHT_OUT.BK_SALES_ORDER_LINE_KEY IS NOT NULL THEN 'U' ELSE 'I' END) AS DML_TYPE\r\nFROM\r\n (\r\nSELECT \r\nTVINPUT.SALES_ORDER_LINE_KEY,\r\nTVINPUT.INVOICE_HOLD_FLG,\r\nTVINPUT.START_TV_DATE,\r\nTVINPUT.EDW_CREATE_DATETIME,\r\nTVINPUT.ACTION_CODE,\r\nROW_NUMBER() OVER (PARTITION BY TVINPUT.SALES_ORDER_LINE_KEY\r\n,TVINPUT.INVOICE_HOLD_FLG \r\nORDER BY TVINPUT.START_TV_DATE DESC) AS ROW_NUM\r\nFROM\r\n(SELECT SSOL.SALES_ORDER_LINE_KEY\r\n,SOHL.INVOICE_HOLD_FLG\r\n,CAST(SOHL.LAST_UPDATE_DATE AS DATE) AS START_TV_DATE\r\n,SOHL.LAST_UPDATE_DATE AS EDW_CREATE_DATETIME\r\n,'I' AS ACTION_CODE\r\nFROM $$STGDB.ST_OM_XXCFI_SOL_INV_HOLD_AL SOHL\r\nINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC \r\n\tON NSSC.GLOBAL_NAME = SOHL.GLOBAL_NAME\r\nINNER JOIN $$ETLVWDB.SM_SALES_ORDER_LINE SSOL  \r\n\tON SOHL.SO_LINE_ID = SSOL.SK_SO_LINE_ID_INT\r\n    AND NSSC.SOURCE_SYSTEM_CODE = SSOL.SS_CODE\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSLHT \r\n\tON NSLHT.SALES_ORDER_LINE_KEY = SSOL.SALES_ORDER_LINE_KEY\r\n\r\nUNION ALL\r\n(SELECT SSOL.SALES_ORDER_LINE_KEY\r\n,EOHL.INVOICE_HOLD_FLG\r\n,CAST(EOHL.LAST_UPDATE_DATE AS DATE) AS START_TV_DATE\r\n,EOHL.LAST_UPDATE_DATE AS EDW_CREATE_DATETIME\r\n,'E' AS ACTION_CODE\r\nFROM $$EXCEPDB.EX_OM_XXCFI_SOL_INV_HOLD_AL EOHL\r\nINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC \r\n\tON NSSC.GLOBAL_NAME = EOHL.GLOBAL_NAME\r\nINNER JOIN $$ETLVWDB.SM_SALES_ORDER_LINE SSOL  \r\n\tON EOHL.SO_LINE_ID = SSOL.SK_SO_LINE_ID_INT\r\n    AND NSSC.SOURCE_SYSTEM_CODE = SSOL.SS_CODE\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSLHT \r\n\tON NSLHT.SALES_ORDER_LINE_KEY = SSOL.SALES_ORDER_LINE_KEY)\r\n\r\nUNION ALL\r\n\r\nSELECT \r\n/*SSOL.SALES_ORDER_LINE_KEY*/\r\nCASE WHEN COALESCE(NSOL_ORIG.SALES_ORDER_LINE_KEY,NSOLV.SALES_ORDER_LINE_KEY) IS NOT NULL THEN COALESCE(NSOL_ORIG.SALES_ORDER_LINE_KEY,NSOLV.SALES_ORDER_LINE_KEY) ELSE NSOL_CAL.SALES_ORDER_LINE_KEY END AS SALES_ORDER_LINE_KEY\r\n,SCXSIHA.INV_HOLD\r\n,CAST(SCXSIHA.LAST_UPDATE_DATE AS DATE) AS START_TV_DATE\r\n,SCXSIHA.LAST_UPDATE_DATE AS EDW_CREATE_DATETIME\r\n,'I' AS ACTION_CODE\r\nFROM $$STGDB.ST_CG_XXCFIR_SOL_INV_HOLD_AL SCXSIHA \r\nINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC \r\n\tON NSSC.GLOBAL_NAME = SCXSIHA.GLOBAL_NAME\r\n/*INNER JOIN $$ETLVWDB.SM_SALES_ORDER_LINE SSOL  \r\n\tON SCXSIHA.SO_LINE_ID = SSOL.SK_SO_LINE_ID_INT\r\n    AND NSSC.SOURCE_SYSTEM_CODE = SSOL.SS_CODE\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSLHT \r\n\tON NSLHT.SALES_ORDER_LINE_KEY = SSOL.SALES_ORDER_LINE_KEY*/\r\n/* START: ADDED AS PART OF AUS MIGRATION */\r\nLEFT OUTER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL_ORIG\r\n\tON NSOL_ORIG.SK_SO_LINE_ID_INT = SCXSIHA.SO_LINE_ID\r\n\tAND NSOL_ORIG.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\n\r\n/* Included as part of Q3FY15 OM LSS CR */ \r\nLEFT OUTER JOIN (\r\n    SELECT * FROM $$SLSORDVWDB.N_SALES_ORDER_LINE_V1_TV  QUALIFY ROW_NUMBER() OVER (PARTITION BY ABS(SK_SO_LINE_ID_INT), SS_CODE, ORIGINATED_QTC_VIA_CG1_FLG \r\n    ORDER BY SK_SO_LINE_ID_INT ASC)=1) NSOLV\r\n    ON  ABS(NSOLV.SK_SO_LINE_ID_INT) = ABS(SCXSIHA.SO_LINE_ID)\r\n    AND NSOLV.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\n    AND NSOLV.ORIGINATED_QTC_VIA_CG1_FLG = 'Y'\t\r\n\t\r\nLEFT OUTER JOIN $$ETLVWDB.EL_AR_SO_GLOBAL_NAME EL_GNAME\r\n\tON EL_GNAME.ORG_ID = SCXSIHA.ORG_ID\r\n\tAND EL_GNAME.ACTIVE_IND = 'Y'\r\nLEFT OUTER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL_CAL\r\n\tON NSOL_CAL.SK_SO_LINE_ID_INT = SCXSIHA.SO_LINE_ID\r\n\tAND NSOL_CAL.SS_CODE = EL_GNAME.ORIG_SS_CD\t\r\nWHERE (NSOL_ORIG.SALES_ORDER_LINE_KEY IS NOT NULL OR NSOL_CAL.SALES_ORDER_LINE_KEY IS NOT NULL OR NSOLV.SALES_ORDER_LINE_KEY IS NOT NULL)\t\r\n/* END: ADDED AS PART OF AUS MIGRATION */\t\r\n\r\nUNION ALL\r\nSELECT \r\n/*SSOL.SALES_ORDER_LINE_KEY*/\r\nCASE WHEN COALESCE(NSOL_ORIG.SALES_ORDER_LINE_KEY,NSOLV.SALES_ORDER_LINE_KEY) IS NOT NULL THEN COALESCE(NSOL_ORIG.SALES_ORDER_LINE_KEY,NSOLV.SALES_ORDER_LINE_KEY) ELSE NSOL_CAL.SALES_ORDER_LINE_KEY END AS SALES_ORDER_LINE_KEY\r\n,ECXSIHA.INV_HOLD\r\n,CAST(ECXSIHA.LAST_UPDATE_DATE AS DATE) AS START_TV_DATE\r\n,ECXSIHA.LAST_UPDATE_DATE AS EDW_CREATE_DATETIME\r\n,'E' AS ACTION_CODE\r\nFROM $$EXCEPDB.EX_CG_XXCFIR_SOL_INV_HOLD_AL ECXSIHA \r\nINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC \r\n\tON NSSC.GLOBAL_NAME = ECXSIHA.GLOBAL_NAME\r\n/*INNER JOIN $$ETLVWDB.SM_SALES_ORDER_LINE SSOL  \r\n\tON ECXSIHA.SO_LINE_ID = SSOL.SK_SO_LINE_ID_INT\r\n    AND NSSC.SOURCE_SYSTEM_CODE = SSOL.SS_CODE\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSLHT \r\n\tON NSLHT.SALES_ORDER_LINE_KEY = SSOL.SALES_ORDER_LINE_KEY)\t*/\r\n/* START: ADDED AS PART OF AUS MIGRATION */\r\nLEFT OUTER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL_ORIG\r\n\tON NSOL_ORIG.SK_SO_LINE_ID_INT = ECXSIHA.SO_LINE_ID\r\n\tAND NSOL_ORIG.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\n\r\n/* Included as part of Q3FY15 OM LSS CR */ \r\nLEFT OUTER JOIN (\r\n    SELECT * FROM $$SLSORDVWDB.N_SALES_ORDER_LINE_V1_TV  QUALIFY ROW_NUMBER() OVER (PARTITION BY ABS(SK_SO_LINE_ID_INT), SS_CODE, ORIGINATED_QTC_VIA_CG1_FLG \r\n    ORDER BY SK_SO_LINE_ID_INT ASC)=1) NSOLV\r\n    ON  ABS(NSOLV.SK_SO_LINE_ID_INT) = ABS(ECXSIHA.SO_LINE_ID)\r\n    AND NSOLV.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\n    AND NSOLV.ORIGINATED_QTC_VIA_CG1_FLG = 'Y'\t\t\r\n\t\r\nLEFT OUTER JOIN $$ETLVWDB.EL_AR_SO_GLOBAL_NAME EL_GNAME\r\n\tON EL_GNAME.ORG_ID = ECXSIHA.ORG_ID\r\n\tAND EL_GNAME.ACTIVE_IND = 'Y'\r\nLEFT OUTER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL_CAL\r\n\tON NSOL_CAL.SK_SO_LINE_ID_INT = ECXSIHA.SO_LINE_ID\r\n\tAND NSOL_CAL.SS_CODE = EL_GNAME.ORIG_SS_CD\t\r\nWHERE (NSOL_ORIG.SALES_ORDER_LINE_KEY IS NOT NULL OR NSOL_CAL.SALES_ORDER_LINE_KEY IS NOT NULL OR NSOLV.SALES_ORDER_LINE_KEY IS NOT NULL)\t\r\n/* END: ADDED AS PART OF AUS MIGRATION */\t\t\t\r\n\t\t\r\nUNION ALL\r\n\r\nSELECT NSLHTV.BK_SALES_ORDER_LINE_KEY\r\n,NSLHTV.INVOICE_HOLD_FLG \r\n,NSLHTV.START_TV_DT AS START_TV_DATE\r\n,NSLHTV.EDW_UPDATE_DTM AS EDW_CREATE_DATETIME\r\n,'X' AS ACTION_CODE\r\nFROM $$SLSORDVWDB.N_SLS_ORD_LN_INVCE_HOLD_TV NSLHTV\r\nWHERE NSLHTV.END_TV_DT = CAST('3500-01-01' AS DATE)\r\nAND EXISTS \r\n(SELECT 1 FROM $$STGDB.ST_OM_XXCFI_SOL_INV_HOLD_AL SOLH\r\nINNER JOIN $$ETLVWDB.SM_SALES_ORDER_LINE SSOL  \r\n\tON SOLH.SO_LINE_ID = SSOL.SK_SO_LINE_ID_INT\r\nINNER JOIN $$SLSORDVWDB.N_SLS_ORD_LN_INVCE_HOLD_TV NSLHT \r\n\tON NSLHT.BK_SALES_ORDER_LINE_KEY = SSOL.SALES_ORDER_LINE_KEY\r\nUNION ALL\r\nSELECT 1 FROM $$STGDB.ST_CG_XXCFIR_SOL_INV_HOLD_AL SCXSIHA \r\nLEFT OUTER JOIN $$ETLVWDB.SM_SALES_ORDER_LINE SSOL  \r\n\tON SCXSIHA.SO_LINE_ID = SSOL.SK_SO_LINE_ID_INT\r\n\r\n/* Included as part of Q3FY15 OM LSS CR */ \r\nLEFT OUTER JOIN (\r\n    SELECT * FROM $$SLSORDVWDB.N_SALES_ORDER_LINE_V1_TV  \r\n\tWHERE SS_CODE = 'CG' AND ORIGINATED_QTC_VIA_CG1_FLG = 'Y'\t\r\n\tQUALIFY ROW_NUMBER() OVER (PARTITION BY ABS(SK_SO_LINE_ID_INT), SS_CODE, ORIGINATED_QTC_VIA_CG1_FLG \r\n    ORDER BY SK_SO_LINE_ID_INT ASC)=1) NSOLV\r\n    ON  ABS(NSOLV.SK_SO_LINE_ID_INT) = ABS(SCXSIHA.SO_LINE_ID)\t\r\n\t\r\nINNER JOIN $$SLSORDVWDB.N_SLS_ORD_LN_INVCE_HOLD_TV NSLHT \r\n\tON NSLHT.BK_SALES_ORDER_LINE_KEY = COALESCE(SSOL.SALES_ORDER_LINE_KEY,NSOLV.SALES_ORDER_LINE_KEY)\t\r\n\t)\r\nOR EXISTS\r\n(SELECT 1 FROM $$EXCEPDB.EX_OM_XXCFI_SOL_INV_HOLD_AL SOLH\r\nINNER JOIN $$ETLVWDB.SM_SALES_ORDER_LINE SSOL  \r\n\tON SOLH.SO_LINE_ID = SSOL.SK_SO_LINE_ID_INT\r\nINNER JOIN $$SLSORDVWDB.N_SLS_ORD_LN_INVCE_HOLD_TV NSLHT \r\n\tON NSLHT.BK_SALES_ORDER_LINE_KEY = SSOL.SALES_ORDER_LINE_KEY\r\nUNION ALL\r\nSELECT 1 FROM $$EXCEPDB.EX_CG_XXCFIR_SOL_INV_HOLD_AL ECXSIHA \r\nLEFT OUTER JOIN $$ETLVWDB.SM_SALES_ORDER_LINE SSOL  \r\n\tON ECXSIHA.SO_LINE_ID = SSOL.SK_SO_LINE_ID_INT\r\n\r\n/* Included as part of Q3FY15 OM LSS CR */ \r\nLEFT OUTER JOIN (\r\n    SELECT * FROM $$SLSORDVWDB.N_SALES_ORDER_LINE_V1_TV  \r\n\tWHERE SS_CODE = 'CG' AND ORIGINATED_QTC_VIA_CG1_FLG = 'Y'\t\r\n\tQUALIFY ROW_NUMBER() OVER (PARTITION BY ABS(SK_SO_LINE_ID_INT), SS_CODE, ORIGINATED_QTC_VIA_CG1_FLG \r\n    ORDER BY SK_SO_LINE_ID_INT ASC)=1) NSOLV\r\n    ON  ABS(NSOLV.SK_SO_LINE_ID_INT) = ABS(ECXSIHA.SO_LINE_ID)\t\r\n\t\r\nINNER JOIN $$SLSORDVWDB.N_SLS_ORD_LN_INVCE_HOLD_TV NSLHT \r\n\tON NSLHT.BK_SALES_ORDER_LINE_KEY = COALESCE(SSOL.SALES_ORDER_LINE_KEY,NSOLV.SALES_ORDER_LINE_KEY)\t\r\n\t)\t\r\n)TVINPUT\r\nQUALIFY ROW_NUMBER() OVER (PARTITION BY TVINPUT.SALES_ORDER_LINE_KEY,TVINPUT.START_TV_DATE ORDER BY TVINPUT.EDW_CREATE_DATETIME DESC) =1\r\n)TVOUTPUT\r\nLEFT OUTER JOIN $$SLSORDVWDB.N_SLS_ORD_LN_INVCE_HOLD_TV NSOLHT_OUT\r\nON NSOLHT_OUT.BK_SALES_ORDER_LINE_KEY = TVOUTPUT.SALES_ORDER_LINE_KEY\r\nAND NSOLHT_OUT.END_TV_DT = CAST('3500-01-01' AS DATE)\r\nLEFT OUTER JOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RFMY\r\nON TVOUTPUT.START_TV_DATE BETWEEN FISCAL_MONTH_START_DATE AND FISCAL_MONTH_END_DATE\r\nWHERE TVOUTPUT.ROW_NUM = 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_W_SLS_ORD_LN_INVCE_HOLD",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SALES_ORDER_LINE_KEY"
+        },
+        {
+          "name": "INVOICE_HOLD_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "INVOICE_HOLD_FLG"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_CREATE_DTM"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_CREATE_USER"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_UPDATE_DTM"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "EDW_UPDATE_USER"
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_TV_DT"
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_TV_DT"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RANK_INDEX"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SO_LINE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INV_HOLD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DB_SOURCE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_LOGIN",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nSOCSI.BATCH_ID                      \r\n,SOCSI.SO_LINE_ID                    \r\n,SOCSI.INV_HOLD              \r\n,SOCSI.GLOBAL_NAME                   \r\n,SOCSI.DB_SOURCE_NAME                \r\n,SOCSI.CREATION_DATE                 \r\n,SOCSI.CREATED_BY                    \r\n,SOCSI.LAST_UPDATE_DATE              \r\n,SOCSI.LAST_UPDATED_BY               \r\n,SOCSI.LAST_UPDATE_LOGIN \r\n,SOCSI.CREATE_DATETIME               \r\n,SOCSI.ACTION_CODE\r\n,SOCSI.ORG_ID               \r\nFROM\r\n $$STGDB.ST_CG_XXCFIR_SOL_INV_HOLD_AL  SOCSI\r\nWHERE \r\nNOT EXISTS \r\n(\r\nSELECT 1 FROM   $$STGDB.ST_CG_XXCFIR_SOL_INV_HOLD_AL SOHL\r\nINNER JOIN $$COMREFVWDB.N_SOURCE_SYSTEM_CODES NSSC\r\n ON NSSC.GLOBAL_NAME = SOHL.GLOBAL_NAME\r\n/*INNER JOIN $$ETLVWDB.SM_SALES_ORDER_LINE SSOL \r\n ON SOHL.SO_LINE_ID = SSOL.SK_SO_LINE_ID_INT\r\n AND NSSC.SOURCE_SYSTEM_CODE = SSOL.SS_CODE\r\nINNER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSLHT\r\n ON NSLHT.SALES_ORDER_LINE_KEY = SSOL.SALES_ORDER_LINE_KEY)*/\r\n/* START: ADDED AS PART OF AUS MIGRATION */\r\nLEFT OUTER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL_ORIG\r\n\tON NSOL_ORIG.SK_SO_LINE_ID_INT = SOHL.SO_LINE_ID\r\n\tAND NSOL_ORIG.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\n\t\r\n/* Included as part of Q3FY15 OM LSS CR */ \r\n    LEFT OUTER JOIN (\r\n    SELECT * FROM $$SLSORDVWDB.N_SALES_ORDER_LINE_V1_TV  QUALIFY ROW_NUMBER() OVER (PARTITION BY ABS(SK_SO_LINE_ID_INT), SS_CODE, ORIGINATED_QTC_VIA_CG1_FLG \r\n    ORDER BY SK_SO_LINE_ID_INT ASC)=1) NSOLV\r\n    ON  ABS(NSOLV.SK_SO_LINE_ID_INT) = ABS(SOHL.SO_LINE_ID)\r\n    AND NSOLV.SS_CODE = NSSC.SOURCE_SYSTEM_CODE\r\n    AND NSOLV.ORIGINATED_QTC_VIA_CG1_FLG = 'Y'\r\n \t\r\nLEFT OUTER JOIN $$ETLVWDB.EL_AR_SO_GLOBAL_NAME EL_GNAME\r\n\tON EL_GNAME.ORG_ID = SOHL.ORG_ID\r\n\tAND EL_GNAME.ACTIVE_IND = 'Y'\r\nLEFT OUTER JOIN $$SLSORDVWDB.N_SALES_ORDER_LINE NSOL_CAL\r\n\tON NSOL_CAL.SK_SO_LINE_ID_INT = SOHL.SO_LINE_ID\r\n\tAND NSOL_CAL.SS_CODE = EL_GNAME.ORIG_SS_CD\t\r\nWHERE \r\n\t\tNSOL_ORIG.SALES_ORDER_LINE_KEY  IS NOT NULL OR NSOL_CAL.SALES_ORDER_LINE_KEY IS NOT NULL OR NSOLV.SALES_ORDER_LINE_KEY IS NOT NULL\r\n\t/* END: ADDED AS PART OF AUS MIGRATION */ \r\n)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BATCH_ID"
+        },
+        {
+          "name": "SO_LINE_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SO_LINE_ID"
+        },
+        {
+          "name": "INV_HOLD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "INV_HOLD"
+        },
+        {
+          "name": "GLOBAL_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "GLOBAL_NAME"
+        },
+        {
+          "name": "DB_SOURCE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DB_SOURCE_NAME"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATION_DATE"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATED_BY"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_DATE"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATED_BY"
+        },
+        {
+          "name": "LAST_UPDATE_LOGIN",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_LOGIN"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATE_DATETIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'RI'"
+        },
+        {
+          "name": "ORG_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ORG_ID"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD",
+      "to_field": "BK_SALES_ORDER_LINE_KEY",
+      "to_instance": "W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "INVOICE_HOLD_FLG",
+      "from_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD",
+      "to_field": "INVOICE_HOLD_FLG",
+      "to_instance": "W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD",
+      "to_field": "START_TV_DT",
+      "to_instance": "W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD",
+      "to_field": "END_TV_DT",
+      "to_instance": "W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "LAST_UPDATE_LOGIN",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "LAST_UPDATE_LOGIN",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "SO_LINE_ID",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "SO_LINE_ID",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "INVOICE_HOLD_FLG",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "INVOICE_HOLD_FLG",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "DB_SOURCE_NAME",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "DB_SOURCE_NAME",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "CREATED_BY",
+      "to_instance": "EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "SO_LINE_ID",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "SO_LINE_ID",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "DB_SOURCE_NAME",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "DB_SOURCE_NAME",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "CREATED_BY",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "LAST_UPDATE_LOGIN",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "LAST_UPDATE_LOGIN",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "INV_HOLD",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "INV_HOLD",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1",
+      "to_field": "ORG_ID",
+      "to_instance": "EX_CG_XXCFIR_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "BATCH_ID",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "SO_LINE_ID",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "SO_LINE_ID",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "INVOICE_HOLD_FLG",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "INVOICE_HOLD_FLG",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "DB_SOURCE_NAME",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "DB_SOURCE_NAME",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "CREATION_DATE",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "CREATED_BY",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "LAST_UPDATE_LOGIN",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "LAST_UPDATE_LOGIN",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "SO_LINE_ID",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "SO_LINE_ID",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "INVOICE_HOLD_FLG",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "INVOICE_HOLD_FLG",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "DB_SOURCE_NAME",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "DB_SOURCE_NAME",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "LAST_UPDATE_LOGIN",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "LAST_UPDATE_LOGIN",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "GES_UPDATE_DATE",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "GES_UPDATE_DATE",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "INVOICE_HOLD_FLG",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "INVOICE_HOLD_FLG",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SM_SALES_ORDER_LINE",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SM_SALES_ORDER_LINE",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SM_SALES_ORDER_LINE",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "START_TV_DT",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "END_TV_DT",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "INVOICE_HOLD_FLG",
+      "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "RANK_INDEX",
+      "to_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "SALES_ORDER_LINE_KEY",
+      "to_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "INVOICE_HOLD_FLG",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "INVOICE_HOLD_FLG",
+      "to_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "START_TV_DT",
+      "to_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "END_TV_DT",
+      "to_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "RANK_INDEX",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "RANK_INDEX",
+      "to_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1",
+      "to_field": "DML_TYPE",
+      "to_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD"
+    },
+    {
+      "from_field": "SO_LINE_ID",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "SO_LINE_ID",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "INVOICE_HOLD_FLG",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "INV_HOLD",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "SO_LINE_ID",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "ORG_ID",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "DB_SOURCE_NAME",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "DB_SOURCE_NAME",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "LAST_UPDATE_LOGIN",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "LAST_UPDATE_LOGIN",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "CREATED_BY",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "LAST_UPDATE_LOGIN",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "LAST_UPDATE_LOGIN",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "BATCH_ID",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "SO_LINE_ID",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "SO_LINE_ID",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "INV_HOLD",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "INV_HOLD",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "GLOBAL_NAME",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "GLOBAL_NAME",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "ORG_ID",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "ORG_ID",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "DB_SOURCE_NAME",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "DB_SOURCE_NAME",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2",
+      "to_field": "CREATION_DATE",
+      "to_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SO_LINE_ID",
+      "source_path": [
+        {
+          "from_field": "SO_LINE_ID",
+          "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "SO_LINE_ID",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "SO_LINE_ID",
+          "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "SO_LINE_ID",
+          "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "SO_LINE_ID",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "SO_LINE_ID",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INV_HOLD",
+      "source_path": [
+        {
+          "from_field": "INV_HOLD",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "INVOICE_HOLD_FLG",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "INV_HOLD",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DB_SOURCE_NAME",
+      "source_path": [
+        {
+          "from_field": "DB_SOURCE_NAME",
+          "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "DB_SOURCE_NAME",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "DB_SOURCE_NAME",
+          "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "DB_SOURCE_NAME",
+          "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "DB_SOURCE_NAME",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "DB_SOURCE_NAME",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATED_BY",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_LOGIN",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_LOGIN",
+          "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "LAST_UPDATE_LOGIN",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "LAST_UPDATE_LOGIN",
+          "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "LAST_UPDATE_LOGIN",
+          "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "LAST_UPDATE_LOGIN",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "LAST_UPDATE_LOGIN",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "GLOBAL_NAME",
+      "source_path": [
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "GLOBAL_NAME",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_W_SLS_ORD_LN_INVCE_HOLD"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_OM_XXCFI_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EXCEPTION_TYPE",
+      "source_path": [
+        {
+          "from_field": "EXCEPTION_TYPE",
+          "from_instance": "Exp_EX_OM_XXCFI_SOL_INV_HOLD_AL"
+        },
+        {
+          "from_field": "EXCEPTION_TYPE",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ORG_ID",
+      "source_path": [
+        {
+          "from_field": "ORG_ID",
+          "from_instance": "Exp_EX_CG_XXCFIR_SOL_INV_HOLD_AL1"
+        },
+        {
+          "from_field": "SO_LINE_ID",
+          "from_instance": "ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        },
+        {
+          "from_field": "ORG_ID",
+          "from_instance": "SQ_ST_CG_XXCFIR_SOL_INV_HOLD_AL2"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:09.870505+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

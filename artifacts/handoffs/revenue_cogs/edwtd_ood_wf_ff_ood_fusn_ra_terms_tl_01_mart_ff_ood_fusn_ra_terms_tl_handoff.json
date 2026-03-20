@@ -1,0 +1,508 @@
+{
+  "workflow_name": "wf_m_FF_OOD_FUSN_RA_TERMS_TL",
+  "mapping_name": "m_FF_OOD_FUSN_RA_TERMS_TL",
+  "mapping_description": "",
+  "folder_name": "EDWTD_OOD",
+  "target_table": "FF_OOD_FUSN_RA_TERMS_TL",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ood_wf_ff_ood_fusn_ra_terms_tl_01_mart_ff_ood_fusn_ra_terms_tl",
+  "source_tables": [
+    "SAAS_RA_TERMS_TL"
+  ],
+  "sources": [
+    {
+      "name": "SAAS_RA_TERMS_TL",
+      "database_type": "XML",
+      "owner": "",
+      "fields": [
+        {
+          "name": "XPK_ROOT",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "XPK_RA_TERMS",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FK_ROOT",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "precision": "240",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TERM_ID",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "string",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_OOD_FUSN_RA_TERMS_TL",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "NAME",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DESCRIPTION",
+        "datatype": "string",
+        "precision": "240",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TERM_ID",
+        "datatype": "bigint",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "string",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "XMLDSQ_SAAS_RA_TERMS_TL",
+      "type": "XML Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "XPK_ROOT",
+          "datatype": "bigint",
+          "porttype": "GENERATED KEY/INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "XPK_RA_TERMS",
+          "datatype": "bigint",
+          "porttype": "GENERATED KEY/INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FK_ROOT",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TERM_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal",
+        "Reset": "NO",
+        "Restart": "NO",
+        "Validate XML Source": "Validate only if DTD/Schema is present",
+        "Is Partitionable": "NO"
+      },
+      "groups": [
+        {
+          "name": "X_ROOT",
+          "expression": ""
+        },
+        {
+          "name": "X_RA_TERMS",
+          "expression": ""
+        }
+      ]
+    },
+    {
+      "name": "EXP_FUSN_RA_TERMS_TL",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "NAME"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DESCRIPTION"
+        },
+        {
+          "name": "TERM_ID",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "TERM_ID"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATION_DATE"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_DATE"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "XML Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "NAME",
+      "from_instance": "EXP_FUSN_RA_TERMS_TL",
+      "to_field": "NAME",
+      "to_instance": "FF_OOD_FUSN_RA_TERMS_TL"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EXP_FUSN_RA_TERMS_TL",
+      "to_field": "DESCRIPTION",
+      "to_instance": "FF_OOD_FUSN_RA_TERMS_TL"
+    },
+    {
+      "from_field": "TERM_ID",
+      "from_instance": "EXP_FUSN_RA_TERMS_TL",
+      "to_field": "TERM_ID",
+      "to_instance": "FF_OOD_FUSN_RA_TERMS_TL"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EXP_FUSN_RA_TERMS_TL",
+      "to_field": "CREATION_DATE",
+      "to_instance": "FF_OOD_FUSN_RA_TERMS_TL"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "EXP_FUSN_RA_TERMS_TL",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "FF_OOD_FUSN_RA_TERMS_TL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "EXP_FUSN_RA_TERMS_TL",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "FF_OOD_FUSN_RA_TERMS_TL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_FUSN_RA_TERMS_TL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "FF_OOD_FUSN_RA_TERMS_TL"
+    },
+    {
+      "from_field": "XPK_ROOT",
+      "from_instance": "SAAS_RA_TERMS_TL",
+      "to_field": "XPK_ROOT",
+      "to_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+    },
+    {
+      "from_field": "XPK_RA_TERMS",
+      "from_instance": "SAAS_RA_TERMS_TL",
+      "to_field": "XPK_RA_TERMS",
+      "to_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+    },
+    {
+      "from_field": "FK_ROOT",
+      "from_instance": "SAAS_RA_TERMS_TL",
+      "to_field": "FK_ROOT",
+      "to_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "SAAS_RA_TERMS_TL",
+      "to_field": "NAME",
+      "to_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SAAS_RA_TERMS_TL",
+      "to_field": "DESCRIPTION",
+      "to_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+    },
+    {
+      "from_field": "TERM_ID",
+      "from_instance": "SAAS_RA_TERMS_TL",
+      "to_field": "TERM_ID",
+      "to_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SAAS_RA_TERMS_TL",
+      "to_field": "CREATION_DATE",
+      "to_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SAAS_RA_TERMS_TL",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+    },
+    {
+      "from_field": "NAME",
+      "from_instance": "XMLDSQ_SAAS_RA_TERMS_TL",
+      "to_field": "NAME",
+      "to_instance": "EXP_FUSN_RA_TERMS_TL"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "XMLDSQ_SAAS_RA_TERMS_TL",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EXP_FUSN_RA_TERMS_TL"
+    },
+    {
+      "from_field": "TERM_ID",
+      "from_instance": "XMLDSQ_SAAS_RA_TERMS_TL",
+      "to_field": "TERM_ID",
+      "to_instance": "EXP_FUSN_RA_TERMS_TL"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "XMLDSQ_SAAS_RA_TERMS_TL",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EXP_FUSN_RA_TERMS_TL"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "XMLDSQ_SAAS_RA_TERMS_TL",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "EXP_FUSN_RA_TERMS_TL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "NAME",
+      "source_path": [
+        {
+          "from_field": "NAME",
+          "from_instance": "EXP_FUSN_RA_TERMS_TL"
+        },
+        {
+          "from_field": "NAME",
+          "from_instance": "SAAS_RA_TERMS_TL"
+        },
+        {
+          "from_field": "NAME",
+          "from_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "EXP_FUSN_RA_TERMS_TL"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "SAAS_RA_TERMS_TL"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TERM_ID",
+      "source_path": [
+        {
+          "from_field": "TERM_ID",
+          "from_instance": "EXP_FUSN_RA_TERMS_TL"
+        },
+        {
+          "from_field": "TERM_ID",
+          "from_instance": "SAAS_RA_TERMS_TL"
+        },
+        {
+          "from_field": "TERM_ID",
+          "from_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EXP_FUSN_RA_TERMS_TL"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SAAS_RA_TERMS_TL"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "EXP_FUSN_RA_TERMS_TL"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SAAS_RA_TERMS_TL"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "XMLDSQ_SAAS_RA_TERMS_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "EXP_FUSN_RA_TERMS_TL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_FUSN_RA_TERMS_TL"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "missing",
+  "generated_timestamp": "2026-03-19T18:33:20.033729+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": true
+}

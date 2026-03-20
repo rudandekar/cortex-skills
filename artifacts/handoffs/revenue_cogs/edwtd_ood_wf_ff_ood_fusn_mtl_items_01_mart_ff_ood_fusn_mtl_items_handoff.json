@@ -1,0 +1,571 @@
+{
+  "workflow_name": "wf_m_FF_OOD_FUSN_MTL_ITEMS",
+  "mapping_name": "m_FF_OOD_FUSN_MTL_ITEMS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_OOD",
+  "target_table": "FF_OOD_FUSN_MTL_ITEMS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ood_wf_ff_ood_fusn_mtl_items_01_mart_ff_ood_fusn_mtl_items",
+  "source_tables": [
+    "SAAS_MTL_ITEMS"
+  ],
+  "sources": [
+    {
+      "name": "SAAS_MTL_ITEMS",
+      "database_type": "XML",
+      "owner": "",
+      "fields": [
+        {
+          "name": "XPK_ROOT",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "XPK_MTL_ITEMS",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FK_ROOT",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SEGMENT1",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SEGMENT2",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SEGMENT3",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "string",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SPLIT_KEY",
+          "datatype": "integer",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_OOD_FUSN_MTL_ITEMS",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "SEGMENT1",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SEGMENT2",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SEGMENT3",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SPLIT_KEY",
+        "datatype": "number",
+        "precision": "15",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_DATETIME",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "string",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXP_FUSN_MTL_ITEMS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "SEGMENT1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SEGMENT1"
+        },
+        {
+          "name": "SEGMENT2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SEGMENT2"
+        },
+        {
+          "name": "SEGMENT3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SEGMENT3"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATION_DATE"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_DATE"
+        },
+        {
+          "name": "SPLIT_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SPLIT_KEY"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "XMLDSQ_SAAS_MTL_ITEMS",
+      "type": "XML Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "XPK_ROOT",
+          "datatype": "bigint",
+          "porttype": "GENERATED KEY/INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "XPK_MTL_ITEMS",
+          "datatype": "bigint",
+          "porttype": "GENERATED KEY/INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FK_ROOT",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SEGMENT1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SEGMENT2",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SEGMENT3",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SPLIT_KEY",
+          "datatype": "bigint",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal",
+        "Reset": "NO",
+        "Restart": "NO",
+        "Validate XML Source": "Validate only if DTD/Schema is present",
+        "Is Partitionable": "NO"
+      },
+      "groups": [
+        {
+          "name": "X_MTL_ITEMS",
+          "expression": ""
+        },
+        {
+          "name": "X_ROOT",
+          "expression": ""
+        }
+      ]
+    }
+  ],
+  "transformation_types": [
+    "XML Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "SEGMENT1",
+      "from_instance": "EXP_FUSN_MTL_ITEMS",
+      "to_field": "SEGMENT1",
+      "to_instance": "FF_OOD_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "SEGMENT2",
+      "from_instance": "EXP_FUSN_MTL_ITEMS",
+      "to_field": "SEGMENT2",
+      "to_instance": "FF_OOD_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "SEGMENT3",
+      "from_instance": "EXP_FUSN_MTL_ITEMS",
+      "to_field": "SEGMENT3",
+      "to_instance": "FF_OOD_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EXP_FUSN_MTL_ITEMS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "FF_OOD_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "EXP_FUSN_MTL_ITEMS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "FF_OOD_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "SPLIT_KEY",
+      "from_instance": "EXP_FUSN_MTL_ITEMS",
+      "to_field": "SPLIT_KEY",
+      "to_instance": "FF_OOD_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "EXP_FUSN_MTL_ITEMS",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "FF_OOD_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_FUSN_MTL_ITEMS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "FF_OOD_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "SEGMENT1",
+      "from_instance": "XMLDSQ_SAAS_MTL_ITEMS",
+      "to_field": "SEGMENT1",
+      "to_instance": "EXP_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "SEGMENT2",
+      "from_instance": "XMLDSQ_SAAS_MTL_ITEMS",
+      "to_field": "SEGMENT2",
+      "to_instance": "EXP_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "SEGMENT3",
+      "from_instance": "XMLDSQ_SAAS_MTL_ITEMS",
+      "to_field": "SEGMENT3",
+      "to_instance": "EXP_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "XMLDSQ_SAAS_MTL_ITEMS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EXP_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "XMLDSQ_SAAS_MTL_ITEMS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "EXP_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "SPLIT_KEY",
+      "from_instance": "XMLDSQ_SAAS_MTL_ITEMS",
+      "to_field": "SPLIT_KEY",
+      "to_instance": "EXP_FUSN_MTL_ITEMS"
+    },
+    {
+      "from_field": "XPK_ROOT",
+      "from_instance": "SAAS_MTL_ITEMS",
+      "to_field": "XPK_ROOT",
+      "to_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+    },
+    {
+      "from_field": "XPK_MTL_ITEMS",
+      "from_instance": "SAAS_MTL_ITEMS",
+      "to_field": "XPK_MTL_ITEMS",
+      "to_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+    },
+    {
+      "from_field": "FK_ROOT",
+      "from_instance": "SAAS_MTL_ITEMS",
+      "to_field": "FK_ROOT",
+      "to_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+    },
+    {
+      "from_field": "SEGMENT1",
+      "from_instance": "SAAS_MTL_ITEMS",
+      "to_field": "SEGMENT1",
+      "to_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+    },
+    {
+      "from_field": "SEGMENT2",
+      "from_instance": "SAAS_MTL_ITEMS",
+      "to_field": "SEGMENT2",
+      "to_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+    },
+    {
+      "from_field": "SEGMENT3",
+      "from_instance": "SAAS_MTL_ITEMS",
+      "to_field": "SEGMENT3",
+      "to_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SAAS_MTL_ITEMS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SAAS_MTL_ITEMS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+    },
+    {
+      "from_field": "SPLIT_KEY",
+      "from_instance": "SAAS_MTL_ITEMS",
+      "to_field": "SPLIT_KEY",
+      "to_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "SEGMENT1",
+      "source_path": [
+        {
+          "from_field": "SEGMENT1",
+          "from_instance": "EXP_FUSN_MTL_ITEMS"
+        },
+        {
+          "from_field": "SEGMENT1",
+          "from_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+        },
+        {
+          "from_field": "SEGMENT1",
+          "from_instance": "SAAS_MTL_ITEMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SEGMENT2",
+      "source_path": [
+        {
+          "from_field": "SEGMENT2",
+          "from_instance": "EXP_FUSN_MTL_ITEMS"
+        },
+        {
+          "from_field": "SEGMENT2",
+          "from_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+        },
+        {
+          "from_field": "SEGMENT2",
+          "from_instance": "SAAS_MTL_ITEMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SEGMENT3",
+      "source_path": [
+        {
+          "from_field": "SEGMENT3",
+          "from_instance": "EXP_FUSN_MTL_ITEMS"
+        },
+        {
+          "from_field": "SEGMENT3",
+          "from_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+        },
+        {
+          "from_field": "SEGMENT3",
+          "from_instance": "SAAS_MTL_ITEMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EXP_FUSN_MTL_ITEMS"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SAAS_MTL_ITEMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "EXP_FUSN_MTL_ITEMS"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SAAS_MTL_ITEMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SPLIT_KEY",
+      "source_path": [
+        {
+          "from_field": "SPLIT_KEY",
+          "from_instance": "EXP_FUSN_MTL_ITEMS"
+        },
+        {
+          "from_field": "SPLIT_KEY",
+          "from_instance": "XMLDSQ_SAAS_MTL_ITEMS"
+        },
+        {
+          "from_field": "SPLIT_KEY",
+          "from_instance": "SAAS_MTL_ITEMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_DATETIME",
+      "source_path": [
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "EXP_FUSN_MTL_ITEMS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_FUSN_MTL_ITEMS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "missing",
+  "generated_timestamp": "2026-03-19T18:33:19.945251+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": true
+}

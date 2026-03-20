@@ -1,0 +1,437 @@
+{
+  "workflow_name": "wf_m_N_AS_QUOTE_SVC_COMPONENT_SEP",
+  "mapping_name": "m_N_AS_QUOTE_SVC_COMPONENT_SEP",
+  "mapping_description": "",
+  "folder_name": "EDWTD_ASBI",
+  "target_table": "N_AS_QUOTE_SVC_COMPONENT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_asbi_wf_n_as_quote_svc_component_sep_01_mart_n_as_quote_svc_component",
+  "source_tables": [
+    "N_AS_QUOTE_SVC_COMPONENT"
+  ],
+  "sources": [
+    {
+      "name": "N_AS_QUOTE_SVC_COMPONENT",
+      "database_type": "Teradata",
+      "owner": "SERVICEDB_DV4",
+      "fields": [
+        {
+          "name": "BK_SVC_COMPONENT_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SVC_COMPONENT_DESCR",
+          "datatype": "varchar",
+          "precision": "4000",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BK_SS_CD",
+          "datatype": "varchar",
+          "precision": "8",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_AS_QUOTE_SVC_COMPONENT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_SVC_COMPONENT_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "SVC_COMPONENT_DESCR",
+        "datatype": "varchar",
+        "precision": "4000",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOURCE_DELETED_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_SS_CD",
+        "datatype": "varchar",
+        "precision": "8",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_N_AS_QUOTE_SVC_COMPONENT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_SVC_COMPONENT_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SVC_COMPONENT_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_SS_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "select\r\nWAQ.BK_SVC_COMPONENT_NAME,\r\nWAQ.SVC_COMPONENT_DESCR ,\r\nWAQ.SOURCE_DELETED_FLG ,\r\nWAQ.EDW_CREATE_DTM ,\r\nWAQ.EDW_CREATE_USER ,\r\nWAQ.EDW_UPDATE_DTM,\r\nWAQ.EDW_UPDATE_USER,\r\nWAQ.BK_SS_CD\r\nfrom $$WORKDB.W_AS_QUOTE_SVC_COMPONENT WAQ\r\nWHERE WAQ.DML_TYPE = 'I'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "UPDATE NAQ FROM $$SERVICEVWDB.N_AS_QUOTE_SVC_COMPONENT NAQ, $$WORKDB.W_AS_QUOTE_SVC_COMPONENT WAQ\r\nSET\r\nSVC_COMPONENT_DESCR =WAQ.SVC_COMPONENT_DESCR,\r\nSOURCE_DELETED_FLG =WAQ.SOURCE_DELETED_FLG ,\r\nEDW_UPDATE_DTM =WAQ.EDW_UPDATE_DTM,\r\nEDW_UPDATE_USER =WAQ.EDW_UPDATE_USER\r\nWHERE\r\nNAQ.BK_SVC_COMPONENT_NAME= WAQ.BK_SVC_COMPONENT_NAME\r\nAND NAQ.BK_SS_CD =WAQ.BK_SS_CD\r\nAND WAQ.DML_TYPE = 'U';",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "BK_SVC_COMPONENT_NAME",
+      "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT",
+      "to_field": "BK_SVC_COMPONENT_NAME",
+      "to_instance": "N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "SVC_COMPONENT_DESCR",
+      "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT",
+      "to_field": "SVC_COMPONENT_DESCR",
+      "to_instance": "N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "BK_SS_CD",
+      "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT",
+      "to_field": "BK_SS_CD",
+      "to_instance": "N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "BK_SVC_COMPONENT_NAME",
+      "from_instance": "N_AS_QUOTE_SVC_COMPONENT1",
+      "to_field": "BK_SVC_COMPONENT_NAME",
+      "to_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "SVC_COMPONENT_DESCR",
+      "from_instance": "N_AS_QUOTE_SVC_COMPONENT1",
+      "to_field": "SVC_COMPONENT_DESCR",
+      "to_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "N_AS_QUOTE_SVC_COMPONENT1",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "N_AS_QUOTE_SVC_COMPONENT1",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "N_AS_QUOTE_SVC_COMPONENT1",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "N_AS_QUOTE_SVC_COMPONENT1",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "N_AS_QUOTE_SVC_COMPONENT1",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+    },
+    {
+      "from_field": "BK_SS_CD",
+      "from_instance": "N_AS_QUOTE_SVC_COMPONENT1",
+      "to_field": "BK_SS_CD",
+      "to_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_SVC_COMPONENT_NAME",
+      "source_path": [
+        {
+          "from_field": "BK_SVC_COMPONENT_NAME",
+          "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+        },
+        {
+          "from_field": "BK_SVC_COMPONENT_NAME",
+          "from_instance": "N_AS_QUOTE_SVC_COMPONENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SVC_COMPONENT_DESCR",
+      "source_path": [
+        {
+          "from_field": "SVC_COMPONENT_DESCR",
+          "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+        },
+        {
+          "from_field": "SVC_COMPONENT_DESCR",
+          "from_instance": "N_AS_QUOTE_SVC_COMPONENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "N_AS_QUOTE_SVC_COMPONENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "N_AS_QUOTE_SVC_COMPONENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "N_AS_QUOTE_SVC_COMPONENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "N_AS_QUOTE_SVC_COMPONENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_DELETED_FLG",
+      "source_path": [
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "N_AS_QUOTE_SVC_COMPONENT1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_SS_CD",
+      "source_path": [
+        {
+          "from_field": "BK_SS_CD",
+          "from_instance": "SQ_N_AS_QUOTE_SVC_COMPONENT"
+        },
+        {
+          "from_field": "BK_SS_CD",
+          "from_instance": "N_AS_QUOTE_SVC_COMPONENT1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:09.230231+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

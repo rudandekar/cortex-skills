@@ -1,0 +1,101 @@
+{{ config(
+    materialized='table',
+    schema='',
+    tags=['wf_m_st_otm_gct_claims', 'batch', 'edwtd_sales_orders'],
+    meta={
+        'source_workflow': 'wf_m_ST_OTM_GCT_CLAIMS',
+        'target_table': 'ST_OTM_GCT_CLAIMS',
+        'generated_by': 'INFA2DBT_accelerator_v2.0.0',
+        'generation_timestamp': '2026-03-19T18:41:33.384244+00:00'
+    }
+) }}
+
+WITH 
+
+source_ff_otm_gct_claims AS (
+    SELECT
+        claim_id,
+        claim_comment,
+        created_date,
+        extra_splits,
+        split_percent,
+        status_code,
+        claim_type_code,
+        shr_salesrep_id,
+        cross_theatre,
+        end_user_country_iso_code,
+        updated_date,
+        report_eu_party_id,
+        claiming_reason,
+        sales_incentive_code,
+        sales_program_name,
+        salesrep_number,
+        terr_type_code,
+        sales_type_name,
+        created_by,
+        reported_end_user_name,
+        updated_by,
+        approved_by,
+        deleted_by,
+        reported_end_user_different,
+        rejected_by,
+        rejection_reason,
+        so_number,
+        global_name,
+        to_be_approved_by_node,
+        to_be_approved_by,
+        claim_status_name,
+        node_id,
+        segment1,
+        ss_code,
+        partner_be_name,
+        partner_pgtmv_id,
+        batch_id,
+        create_datetime
+    FROM {{ source('raw', 'ff_otm_gct_claims') }}
+),
+
+final AS (
+    SELECT
+        claim_id,
+        claim_comment,
+        created_date,
+        extra_splits,
+        split_percent,
+        status_code,
+        claim_type_code,
+        shr_salesrep_id,
+        cross_theatre,
+        end_user_country_iso_code,
+        updated_date,
+        report_eu_party_id,
+        claiming_reason,
+        sales_incentive_code,
+        sales_program_name,
+        salesrep_number,
+        terr_type_code,
+        sales_type_name,
+        created_by,
+        reported_end_user_name,
+        updated_by,
+        approved_by,
+        deleted_by,
+        reported_end_user_different,
+        rejected_by,
+        rejection_reason,
+        so_number,
+        global_name,
+        to_be_approved_by_node,
+        to_be_approved_by,
+        claim_status_name,
+        node_id,
+        segment1,
+        ss_code,
+        partner_be_name,
+        partner_pgtmv_id,
+        batch_id,
+        create_datetime
+    FROM source_ff_otm_gct_claims
+)
+
+SELECT * FROM final

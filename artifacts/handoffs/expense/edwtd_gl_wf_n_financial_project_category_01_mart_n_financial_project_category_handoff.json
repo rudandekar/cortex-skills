@@ -1,0 +1,357 @@
+{
+  "workflow_name": "wf_m_N_FINANCIAL_PROJECT_CATEGORY",
+  "mapping_name": "m_N_FINANCIAL_PROJECT_CATEGORY",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "N_FINANCIAL_PROJECT_CATEGORY",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_n_financial_project_category_01_mart_n_financial_project_category",
+  "source_tables": [
+    "W_FINANCIAL_PROJECT_CATEGORY"
+  ],
+  "sources": [
+    {
+      "name": "W_FINANCIAL_PROJECT_CATEGORY",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DEV",
+      "fields": [
+        {
+          "name": "BK_FIN_PROJ_CATEGORY_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FINANCIAL_PROJ_CATEGORY_DESCR",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_FINANCIAL_PROJECT_CATEGORY",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_FIN_PROJ_CATEGORY_ID_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "FINANCIAL_PROJ_CATEGORY_DESCR",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_FINANCIAL_PROJECT_CATEGORY",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_FIN_PROJ_CATEGORY_ID_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FINANCIAL_PROJ_CATEGORY_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\t\r\nWFPC.BK_FIN_PROJ_CATEGORY_ID_INT,\r\nWFPC.FINANCIAL_PROJ_CATEGORY_DESCR,\r\nWFPC.EDW_CREATE_USER ,              \r\nWFPC.EDW_UPDATE_USER ,              \r\nWFPC.EDW_CREATE_DTM ,               \r\nWFPC.EDW_UPDATE_DTM \r\nFROM\t$$WORKDB.W_FINANCIAL_PROJECT_CATEGORY WFPC\r\nWHERE\tNOT EXISTS(\r\nSELECT\t1\r\nFROM\t$$FINLGLVWDB.N_FINANCIAL_PROJECT_CATEGORY NWFPC\r\nWHERE\r\n WFPC.BK_FIN_PROJ_CATEGORY_ID_INT  =  NWFPC.BK_FIN_PROJ_CATEGORY_ID_INT )",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "FINANCIAL_PROJ_CATEGORY_DESCR",
+      "from_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY",
+      "to_field": "FINANCIAL_PROJ_CATEGORY_DESCR",
+      "to_instance": "N_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "N_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "N_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "N_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "BK_FIN_PROJ_CATEGORY_ID_INT",
+      "from_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY",
+      "to_field": "BK_FIN_PROJ_CATEGORY_ID_INT",
+      "to_instance": "N_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "FINANCIAL_PROJ_CATEGORY_DESCR",
+      "from_instance": "W_FINANCIAL_PROJECT_CATEGORY",
+      "to_field": "FINANCIAL_PROJ_CATEGORY_DESCR",
+      "to_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_FINANCIAL_PROJECT_CATEGORY",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_FINANCIAL_PROJECT_CATEGORY",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "W_FINANCIAL_PROJECT_CATEGORY",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "W_FINANCIAL_PROJECT_CATEGORY",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY"
+    },
+    {
+      "from_field": "BK_FIN_PROJ_CATEGORY_ID_INT",
+      "from_instance": "W_FINANCIAL_PROJECT_CATEGORY",
+      "to_field": "BK_FIN_PROJ_CATEGORY_ID_INT",
+      "to_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_FIN_PROJ_CATEGORY_ID_INT",
+      "source_path": [
+        {
+          "from_field": "BK_FIN_PROJ_CATEGORY_ID_INT",
+          "from_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY"
+        },
+        {
+          "from_field": "BK_FIN_PROJ_CATEGORY_ID_INT",
+          "from_instance": "W_FINANCIAL_PROJECT_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FINANCIAL_PROJ_CATEGORY_DESCR",
+      "source_path": [
+        {
+          "from_field": "FINANCIAL_PROJ_CATEGORY_DESCR",
+          "from_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY"
+        },
+        {
+          "from_field": "FINANCIAL_PROJ_CATEGORY_DESCR",
+          "from_instance": "W_FINANCIAL_PROJECT_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY"
+        },
+        {
+          "from_field": "EDW_CREATE_USER",
+          "from_instance": "W_FINANCIAL_PROJECT_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY"
+        },
+        {
+          "from_field": "EDW_UPDATE_USER",
+          "from_instance": "W_FINANCIAL_PROJECT_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY"
+        },
+        {
+          "from_field": "EDW_CREATE_DTM",
+          "from_instance": "W_FINANCIAL_PROJECT_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "SQ_W_FINANCIAL_PROJECT_CATEGORY"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "W_FINANCIAL_PROJECT_CATEGORY"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:08.427314+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

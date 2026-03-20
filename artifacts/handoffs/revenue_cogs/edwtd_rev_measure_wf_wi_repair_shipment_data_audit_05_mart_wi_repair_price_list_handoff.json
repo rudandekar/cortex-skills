@@ -1,0 +1,1432 @@
+{
+  "workflow_name": "wf_m_WI_REPAIR_SHIPMENT_DATA",
+  "mapping_name": "m_WI_REPAIR_SHIPMENT_DATA",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_REPAIR_PRICE_LIST",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_repair_shipment_data_audit_05_mart_wi_repair_price_list",
+  "source_tables": [
+    "WI_REPAIR_SHIPMENT_ORDER",
+    "WI_REPAIR_PRICE_LIST",
+    "WI_REPAIR_ORG_PRICE_LIST",
+    "WI_CST_ITEM_COSTS",
+    "WI_SSC_REPAIR_ORDER"
+  ],
+  "sources": [
+    {
+      "name": "WI_REPAIR_SHIPMENT_ORDER",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "REPAIR_ORDER_NUMBER",
+          "datatype": "varchar",
+          "precision": "20",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REPAIR_ORDER_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_ORGANIZATION_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ITEM_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHIP_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TRANSACTION_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REPAIR_QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRANSACTION_QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REPAIR_COST",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "STD_COST",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CONVERSION",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "INVENTORY_ITEM_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "THEATER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_REPAIR_PRICE_LIST",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "PRICE_LIST_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LOC",
+          "datatype": "varchar",
+          "precision": "25",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ITEM_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "LOC_ITEM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "PRICE",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "16",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_REPAIR_ORG_PRICE_LIST",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "ORGANIZATION_CODE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "REPAIR_PRICE_LIST",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_CST_ITEM_COSTS",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "INVENTORY_ITEM_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ITEM_COST",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "16",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "WI_SSC_REPAIR_ORDER",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "RECORD_TYPE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "THEATER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ITEM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHIP_FROM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SHIP_TO",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "GLOBAL_PLANNER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "THEATER_PLANNER",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DOCUMENT_REF",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "TXN_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SPLC",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUB_INV",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "QUANTITY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UOM",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COST",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "VALUE_1",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LOAD_CYCLE",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_REPAIR_PRICE_LIST",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PRICE_LIST_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LOC",
+        "datatype": "varchar",
+        "precision": "25",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ITEM_NAME",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LOC_ITEM",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PRICE",
+        "datatype": "decimal",
+        "precision": "38",
+        "scale": "16",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CURRENCY_CODE",
+        "datatype": "varchar",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "START_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_CST_ITEM_COSTS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "INVENTORY_ITEM_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ITEM_COST",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT SK_INVENTORY_ITEM_ID_INT,\r\n(REPAIR_COST_USD_AMT *0.28)  AS ITEM_COST \r\nFROM $$SERVICEVWDB.N_SSC_PRODUCT_TV\r\nGROUP BY SK_INVENTORY_ITEM_ID_INT , ITEM_COST",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "DELETE FROM $$STGDB.WI_CST_ITEM_COSTS ALL;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_REPAIR_ORG_PRICE_LIST",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "ORGANIZATION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPAIR_PRICE_LIST",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT BK_INVENTORY_SERVICE_ORG_ID,\r\nINVENTORY_PRICE_LIST_NAME \r\nFROM $$SERVICEVWDB.N_INVENTORY_SERVICE_ORG \r\nWHERE INVENTORY_PRICE_LIST_NAME LIKE  'CTS%Repair%'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "DELETE FROM $$STGDB.WI_REPAIR_ORG_PRICE_LIST ALL;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_REPAIR_PRICE_LIST",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PRICE_LIST_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ITEM_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOC_ITEM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRICE",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CURRENCY_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT NPL.BK_PRICE_LIST_NAME AS PRICE_LIST_NAME\r\n,SUBSTR(NPL.BK_PRICE_LIST_NAME,25,3) AS LOC\r\n,NP.BK_PRODUCT_ID AS ITEM\r\n,LOC||ITEM AS LOC_ITEM\r\n,NPP.LIST_PRICE_AMOUNT AS PRICE\r\n,NPL.BK_ISO_CURRENCY_CODE AS CURRENCY_CODE\r\n,NPP.START_TV_DATE\r\n,NPP.END_TV_DATE\r\nFROM $$COMREFVWDB.N_PRICE_LIST_TV   NPL\r\nINNER JOIN $$COMREFVWDB.N_PRODUCT_PRICE_TV NPP \r\nON NPL.BK_PRICE_LIST_NAME = NPP.BK_PRICE_LIST_NAME\r\nINNER JOIN $$SERVICEVWDB.N_SSC_PRODUCT_TV NP \r\nON  NPP.BK_PRODUCT_ID =NP.BK_PRODUCT_ID \r\nWHERE NPL.BK_PRICE_LIST_NAME LIKE 'CTS REPAIR PRICE LIST - %'\r\nAND NPL.BK_PRICE_LIST_NAME <> 'CTS REPAIR PRICE LIST - AUD'\r\nAND NPL.BK_PRICE_LIST_NAME <> 'CTS REPAIR PRICE LIST - EURO'\r\nAND NPL.BK_PRICE_LIST_NAME <> 'CTS REPAIR PRICE LIST - USD'\r\nAND NPP.END_TV_DATE >= CURRENT_DATE\r\n\r\nUNION \r\n\r\nSELECT NPL.BK_PRICE_LIST_NAME AS PRICE_LIST_NAME\r\n,'U02' AS LOC\r\n,NP.BK_PRODUCT_ID AS ITEM\r\n,LOC||ITEM AS LOC_ITEM\r\n,NPP.LIST_PRICE_AMOUNT AS PRICE\r\n,NPL.BK_ISO_CURRENCY_CODE AS CURRENCY_CODE\r\n,NPP.START_TV_DATE\r\n,NPP.END_TV_DATE\r\nFROM $$COMREFVWDB.N_PRICE_LIST_TV NPL\r\nINNER JOIN $$COMREFVWDB.N_PRODUCT_PRICE_TV NPP \r\nON NPL.BK_PRICE_LIST_NAME = NPP.BK_PRICE_LIST_NAME\r\nINNER JOIN $$SERVICEVWDB.N_SSC_PRODUCT_TV NP \r\nON  NPP.BK_PRODUCT_ID =NP.BK_PRODUCT_ID \r\nWHERE NPL.BK_PRICE_LIST_NAME LIKE 'CTS RPR PRICE LIST-U02 U38 U39 - USD'\r\nAND NPP.END_TV_DATE >= CURRENT_DATE",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "DELETE FROM $$STGDB.WI_REPAIR_PRICE_LIST ALL;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "REPAIR_ORDER_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPAIR_ORDER_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_ORGANIZATION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ITEM_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPAIR_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRANSACTION_QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REPAIR_COST",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "STD_COST",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CONVERSION",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INVENTORY_ITEM_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT NSRO.BK_SERVICE_REPAIR_ORDER_NUM AS REPAIR_ORDER_NUMBER,\r\nNULL AS REPAIR_ORDER_ID,\r\nNSRO.SHIP_FROM_INV_SVC_ORG_ID AS SOURCE_ORGANIZATION_CODE,\r\nNSPT.BK_PRODUCT_ID AS ITEM_NAME,\r\nNSRO.DV_REPAIR_ORDER_SHIP_DT AS SHIP_DATE,\r\nMT.TRANSACTION_DTM AS TRANSACTION_DATE,\r\n0 AS REPAIR_QUANTITY,\r\nMT.TRANSACTION_QTY AS TRANSACTION_QUANTITY,\r\nNSRO.REPAIR_ORDER_COST_LOCAL_AMT AS REPAIR_COST,\r\n0 AS STD_COST,\r\n0 AS CONVERSION,\r\nNSPT.SK_INVENTORY_ITEM_ID_INT AS INVENTORY_ITEM_ID,\r\nNULL AS THEATER    \r\nFROM $$SERVICEVWDB.N_SERVICE_REPAIR_ORDER NSRO\r\nINNER JOIN $$SERVICEVWDB.N_SSC_PRODUCT_TV NSPT \r\nON  NSRO.PRODUCT_KEY = NSPT.ITEM_KEY\r\nINNER JOIN $$FINLGLVWDB.N_RECEIVING_TRX_NEWBUY_H1 NB \r\nON NSRO.BK_SERVICE_REPAIR_ORDER_NUM=NB.BK_SERVICE_REPAIR_ORDER_NUM\r\nINNER JOIN $$SERVICEVWDB.N_SSC_MATERIAL_TRANSACTION MT\r\nON MT.RECEIVING_TRANSACTION_KEY=NB.RECEIVING_TRANSACTION_KEY\r\nINNER JOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RF \r\nON CAST( MT.TRANSACTION_DTM AS DATE ) BETWEEN RF.FISCAL_MONTH_START_DATE AND RF.FISCAL_MONTH_END_DATE \r\nINNER JOIN $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID CTRL\r\nON RF.FISCAL_YEAR_MONTH_INT = CTRL.FISCAL_YEAR_MONTH_INT\r\nWHERE MT.TRANSACTION_QTY > 0",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "DELETE FROM $$STGDB.WI_REPAIR_SHIPMENT_ORDER ALL;",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_SSC_REPAIR_ORDER",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "RECORD_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ITEM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_FROM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHIP_TO",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "GLOBAL_PLANNER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER_PLANNER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DOCUMENT_REF",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TXN_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SPLC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUB_INV",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "QUANTITY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UOM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COST",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "VALUE_1",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOAD_CYCLE",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT 'ITEMRECORD' AS RECORD_TYPE,OTM.THEATER,ITEM_NAME,RPL.SOURCE_ORGANIZATION_CODE,DESTINATION_ORGANIZATION_CODE,GLOBAL_PLANNER,THEATER_PLANNER,\r\nDOCUMENT_REF,TRANSACTION_DATE, SPLC,NULL AS DESTINATION_SUBINVENTORY,TRANSACTION_QUANTITY,UOM_CODE,\r\nCOST,(VALUE1*MONTHLY_BUDGET_CONV_RT) AS VALUE_USD,(SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID) AS FISCAL_MONTH_ID,\r\n CURRENT_DATE AS CREATED_DATE , FISCAL_MONTH_ID\r\nFROM\r\n(SELECT INVENTORY_ITEM_ID,NULL AS TRANSACTION_ID,ITEM_NAME,SOURCE_ORGANIZATION_CODE,NULL AS DESTINATION_ORGANIZATION_CODE,NULL AS GLOBAL_PLANNER,NULL AS THEATER_PLANNER,\r\n'DOC' AS DOCUMENT_REF,TRANSACTION_DATE,NULL AS SPLC,SUM (TRANSACTION_QUANTITY) AS TRANSACTION_QUANTITY,NULL AS UOM_CODE,\r\nSUM (REPAIR_COST) AS COST,SUM (COALESCE (REPAIR_COST, 0) * TRANSACTION_QUANTITY) VALUE1\r\nFROM $$STGDB.WI_REPAIR_SHIPMENT_ORDER \r\nWHERE REPAIR_COST IS NOT NULL \r\nGROUP BY INVENTORY_ITEM_ID,ITEM_NAME,SOURCE_ORGANIZATION_CODE,TRANSACTION_DATE\r\n\r\nUNION ALL\r\n\r\nSELECT RSO.INVENTORY_ITEM_ID,RSO.TRANSACTION_ID,RSO.ITEM_NAME,RSO.SOURCE_ORGANIZATION_CODE,RSO.DESTINATION_ORGANIZATION_CODE,RSO.GLOBAL_PLANNER,RSO.THEATER_PLANNER,\r\nRSO.DOCUMENT_REF,RSO.TRANSACTION_DATE,RSO.SPLC,SUM(RSO.TRANSACTION_QUANTITY),RSO.UOM_CODE,SUM(RPL.PRICE) AS COST,SUM(COALESCE(RPL.PRICE,0.00) * RSO.TRANSACTION_QUANTITY) AS VALUE1\r\nFROM \r\n(SELECT INVENTORY_ITEM_ID,NULL AS TRANSACTION_ID,ITEM_NAME,SOURCE_ORGANIZATION_CODE,NULL AS DESTINATION_ORGANIZATION_CODE,NULL AS GLOBAL_PLANNER,NULL AS THEATER_PLANNER,\r\n'DOC' AS DOCUMENT_REF,TRANSACTION_DATE,NULL AS SPLC,SUM (TRANSACTION_QUANTITY) AS TRANSACTION_QUANTITY,NULL AS UOM_CODE,\r\nSOURCE_ORGANIZATION_CODE||ITEM_NAME AS ORG_ITEM, SUM (REPAIR_COST) AS COST\r\nFROM $$STGDB.WI_REPAIR_SHIPMENT_ORDER \r\nGROUP BY INVENTORY_ITEM_ID,ITEM_NAME,SOURCE_ORGANIZATION_CODE,TRANSACTION_DATE,SHIP_DATE HAVING COST IS NULL ) RSO\r\nLEFT OUTER JOIN $$STGDB.WI_REPAIR_PRICE_LIST RPL\r\nON RSO.ORG_ITEM = RPL.LOC_ITEM\r\nWHERE RPL.PRICE IS NOT NULL\r\nGROUP BY INVENTORY_ITEM_ID,RSO.ITEM_NAME,SOURCE_ORGANIZATION_CODE,TRANSACTION_DATE\r\n\r\nUNION ALL\r\n\r\nSELECT RSPL.INVENTORY_ITEM_ID,RSPL.TRANSACTION_ID,RSPL.ITEM_NAME,RSPL.SOURCE_ORGANIZATION_CODE,RSPL.DESTINATION_ORGANIZATION_CODE,RSPL.GLOBAL_PLANNER,RSPL.THEATER_PLANNER,\r\nRSPL.DOCUMENT_REF,RSPL.TRANSACTION_DATE,RSPL.SPLC,RSPL.TRANSACTION_QUANTITY,RSPL.UOM_CODE,SUM(ROPL.PRICE) AS COST, SUM(COALESCE(ROPL.PRICE * RSPL.TRANSACTION_QUANTITY,0)) AS VALUE1\r\nFROM\r\n\r\n(SELECT RSO.INVENTORY_ITEM_ID,RSO.TRANSACTION_ID,RSO.ITEM_NAME,RSO.SOURCE_ORGANIZATION_CODE,RSO.DESTINATION_ORGANIZATION_CODE,RSO.GLOBAL_PLANNER,RSO.THEATER_PLANNER,\r\nRSO.DOCUMENT_REF,RSO.TRANSACTION_DATE,RSO.SPLC,RSO.TRANSACTION_QUANTITY,RSO.UOM_CODE,RPL.PRICE,RSO.COST\r\nFROM \r\n(SELECT INVENTORY_ITEM_ID,NULL AS TRANSACTION_ID,ITEM_NAME,SOURCE_ORGANIZATION_CODE,NULL AS DESTINATION_ORGANIZATION_CODE,NULL AS GLOBAL_PLANNER,NULL AS THEATER_PLANNER,\r\n'DOC' AS DOCUMENT_REF,TRANSACTION_DATE,NULL AS SPLC,SUM (TRANSACTION_QUANTITY) AS TRANSACTION_QUANTITY,NULL AS UOM_CODE,\r\nSOURCE_ORGANIZATION_CODE||ITEM_NAME AS ORG_ITEM, SUM (REPAIR_COST) AS COST\r\nFROM $$STGDB.WI_REPAIR_SHIPMENT_ORDER \r\nGROUP BY INVENTORY_ITEM_ID,ITEM_NAME,SOURCE_ORGANIZATION_CODE,TRANSACTION_DATE HAVING COST IS NULL ) RSO\r\nLEFT OUTER JOIN $$STGDB.WI_REPAIR_PRICE_LIST RPL\r\nON RSO.ORG_ITEM = RPL.LOC_ITEM\r\nWHERE RPL.PRICE IS NULL) RSPL\r\n\r\nLEFT OUTER JOIN (\r\nSELECT A.ORGANIZATION_CODE,A.REPAIR_PRICE_LIST, B.PRICE,B.ITEM_NAME \r\nFROM $$STGDB.WI_REPAIR_ORG_PRICE_LIST A\r\nINNER JOIN $$STGDB.WI_REPAIR_PRICE_LIST B\r\nON B.PRICE_LIST_NAME=A.REPAIR_PRICE_LIST\r\nGROUP BY A.ORGANIZATION_CODE,A.REPAIR_PRICE_LIST, B.PRICE,B.ITEM_NAME) ROPL\r\nON ROPL.ORGANIZATION_CODE = RSPL.SOURCE_ORGANIZATION_CODE AND ROPL.ITEM_NAME = RSPL.ITEM_NAME\r\nWHERE ROPL.PRICE IS NOT NULL\r\nGROUP BY RSPL.INVENTORY_ITEM_ID,RSPL.TRANSACTION_ID,RSPL.ITEM_NAME,RSPL.SOURCE_ORGANIZATION_CODE,RSPL.DESTINATION_ORGANIZATION_CODE,RSPL.GLOBAL_PLANNER,RSPL.THEATER_PLANNER,\r\nRSPL.DOCUMENT_REF,RSPL.TRANSACTION_DATE,RSPL.SPLC,RSPL.TRANSACTION_QUANTITY,RSPL.UOM_CODE\r\n\r\nUNION ALL\r\n\r\nSELECT RSOPL.INVENTORY_ITEM_ID,RSOPL.TRANSACTION_ID,RSOPL.ITEM_NAME,RSOPL.SOURCE_ORGANIZATION_CODE,RSOPL.DESTINATION_ORGANIZATION_CODE,RSOPL.GLOBAL_PLANNER,RSOPL.THEATER_PLANNER,\r\nRSOPL.DOCUMENT_REF,RSOPL.TRANSACTION_DATE,RSOPL.SPLC,RSOPL.TRANSACTION_QUANTITY,RSOPL.UOM_CODE, SUM(CST.ITEM_COST) AS COST,\r\nSUM (CST.ITEM_COST * RSOPL.TRANSACTION_QUANTITY) AS VALUE1\r\nFROM\r\n\r\n(SELECT RSPL.INVENTORY_ITEM_ID,RSPL.TRANSACTION_ID,RSPL.ITEM_NAME,RSPL.SOURCE_ORGANIZATION_CODE,RSPL.DESTINATION_ORGANIZATION_CODE,RSPL.GLOBAL_PLANNER,RSPL.THEATER_PLANNER,\r\nRSPL.DOCUMENT_REF,RSPL.TRANSACTION_DATE,RSPL.SPLC,RSPL.TRANSACTION_QUANTITY,RSPL.UOM_CODE,ROPL.PRICE\r\nFROM\r\n\r\n(SELECT RSO.INVENTORY_ITEM_ID,RSO.TRANSACTION_ID,RSO.ITEM_NAME,RSO.SOURCE_ORGANIZATION_CODE,RSO.DESTINATION_ORGANIZATION_CODE,RSO.GLOBAL_PLANNER,RSO.THEATER_PLANNER,\r\nRSO.DOCUMENT_REF,RSO.TRANSACTION_DATE,RSO.SPLC,RSO.TRANSACTION_QUANTITY,RSO.UOM_CODE,RPL.PRICE,RSO.COST\r\nFROM \r\n(SELECT INVENTORY_ITEM_ID,NULL AS TRANSACTION_ID,ITEM_NAME,SOURCE_ORGANIZATION_CODE,NULL AS DESTINATION_ORGANIZATION_CODE,NULL AS GLOBAL_PLANNER,NULL AS THEATER_PLANNER,\r\n'DOC' AS DOCUMENT_REF,TRANSACTION_DATE,NULL AS SPLC,SUM (TRANSACTION_QUANTITY) AS TRANSACTION_QUANTITY,NULL AS UOM_CODE,\r\nSOURCE_ORGANIZATION_CODE||ITEM_NAME AS ORG_ITEM, SUM (REPAIR_COST) AS COST\r\nFROM $$STGDB.WI_REPAIR_SHIPMENT_ORDER \r\nGROUP BY INVENTORY_ITEM_ID,ITEM_NAME,SOURCE_ORGANIZATION_CODE,TRANSACTION_DATE HAVING COST IS NULL ) RSO\r\nLEFT OUTER JOIN $$STGDB.WI_REPAIR_PRICE_LIST RPL\r\nON RSO.ORG_ITEM = RPL.LOC_ITEM\r\nWHERE RPL.PRICE IS NULL) RSPL\r\n\r\nLEFT OUTER JOIN (\r\nSELECT A.ORGANIZATION_CODE,A.REPAIR_PRICE_LIST, B.PRICE,B.ITEM_NAME                      \r\nFROM $$STGDB.WI_REPAIR_ORG_PRICE_LIST A\r\nINNER JOIN $$STGDB.WI_REPAIR_PRICE_LIST B\r\nON B.PRICE_LIST_NAME=A.REPAIR_PRICE_LIST\r\nGROUP BY A.ORGANIZATION_CODE,A.REPAIR_PRICE_LIST, B.PRICE,B.ITEM_NAME) ROPL\r\nON ROPL.ORGANIZATION_CODE = RSPL.SOURCE_ORGANIZATION_CODE AND ROPL.ITEM_NAME = RSPL.ITEM_NAME\r\nWHERE ROPL.PRICE IS NULL) RSOPL\r\n\r\nINNER JOIN $$STGDB.WI_CST_ITEM_COSTS CST\r\nON CST.INVENTORY_ITEM_ID = RSOPL.INVENTORY_ITEM_ID\r\nGROUP BY RSOPL.INVENTORY_ITEM_ID,RSOPL.TRANSACTION_ID,RSOPL.ITEM_NAME,RSOPL.SOURCE_ORGANIZATION_CODE,RSOPL.DESTINATION_ORGANIZATION_CODE,RSOPL.GLOBAL_PLANNER,RSOPL.THEATER_PLANNER,\r\nRSOPL.DOCUMENT_REF,RSOPL.TRANSACTION_DATE,RSOPL.SPLC,RSOPL.TRANSACTION_QUANTITY,RSOPL.UOM_CODE) RPL\r\n\r\nINNER JOIN (SELECT DISTINCT SOURCE_ORGANIZATION_CODE,THEATER FROM $$STGDB.WI_CCM_ORG_THEATER_MAPPING) OTM\r\nON OTM.SOURCE_ORGANIZATION_CODE = RPL.SOURCE_ORGANIZATION_CODE\r\n\r\n\r\nINNER JOIN (SELECT DISTINCT SOURCE_ORGANIZATION_CODE,CURRENCY FROM $$STGDB.WI_CCM_ORG_CURRENCY_MAPPING) OCM\r\nON OCM.SOURCE_ORGANIZATION_CODE = RPL.SOURCE_ORGANIZATION_CODE\r\n\r\nINNER JOIN (SELECT DISTINCT MONTHLY_BUDGET_CONV_RT,BK_FROM_CURRENCY_CD\r\nFROM $$FINLGLVWDB.MT_MONTHLY_CONVERSION_RATE \r\nWHERE MONTHLY_BUDGET_CONV_RT IS NOT NULL\r\nAND FISCAL_YEAR_MONTH_NUM_INT IN (SELECT (CASE WHEN FISCAL_MONTH_START_DATE + 6 > CURRENT_DATE \r\nTHEN FISCAL_MONTH_AGO_MONTH_NUMBER \r\nELSE FISCAL_YEAR_MONTH_INT END) \r\nFROM $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR WHERE CURRENT_FISCAL_MONTH_FLAG='Y')) ECCM\r\nON ECCM.BK_FROM_CURRENCY_CD = OCM.CURRENCY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "INVENTORY_ITEM_ID",
+      "from_instance": "SQ_WI_CST_ITEM_COSTS",
+      "to_field": "INVENTORY_ITEM_ID",
+      "to_instance": "WI_CST_ITEM_COSTS1"
+    },
+    {
+      "from_field": "ITEM_COST",
+      "from_instance": "SQ_WI_CST_ITEM_COSTS",
+      "to_field": "ITEM_COST",
+      "to_instance": "WI_CST_ITEM_COSTS1"
+    },
+    {
+      "from_field": "PRICE_LIST_NAME",
+      "from_instance": "SQ_WI_REPAIR_PRICE_LIST",
+      "to_field": "PRICE_LIST_NAME",
+      "to_instance": "WI_REPAIR_PRICE_LIST1"
+    },
+    {
+      "from_field": "LOC",
+      "from_instance": "SQ_WI_REPAIR_PRICE_LIST",
+      "to_field": "LOC",
+      "to_instance": "WI_REPAIR_PRICE_LIST1"
+    },
+    {
+      "from_field": "ITEM_NAME",
+      "from_instance": "SQ_WI_REPAIR_PRICE_LIST",
+      "to_field": "ITEM_NAME",
+      "to_instance": "WI_REPAIR_PRICE_LIST1"
+    },
+    {
+      "from_field": "PRICE",
+      "from_instance": "SQ_WI_REPAIR_PRICE_LIST",
+      "to_field": "PRICE",
+      "to_instance": "WI_REPAIR_PRICE_LIST1"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "SQ_WI_REPAIR_PRICE_LIST",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "WI_REPAIR_PRICE_LIST1"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "SQ_WI_REPAIR_PRICE_LIST",
+      "to_field": "START_TV_DATE",
+      "to_instance": "WI_REPAIR_PRICE_LIST1"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "SQ_WI_REPAIR_PRICE_LIST",
+      "to_field": "END_TV_DATE",
+      "to_instance": "WI_REPAIR_PRICE_LIST1"
+    },
+    {
+      "from_field": "LOC_ITEM",
+      "from_instance": "SQ_WI_REPAIR_PRICE_LIST",
+      "to_field": "LOC_ITEM",
+      "to_instance": "WI_REPAIR_PRICE_LIST1"
+    },
+    {
+      "from_field": "ORGANIZATION_CODE",
+      "from_instance": "SQ_WI_REPAIR_ORG_PRICE_LIST",
+      "to_field": "ORGANIZATION_CODE",
+      "to_instance": "WI_REPAIR_ORG_PRICE_LIST1"
+    },
+    {
+      "from_field": "REPAIR_PRICE_LIST",
+      "from_instance": "SQ_WI_REPAIR_ORG_PRICE_LIST",
+      "to_field": "REPAIR_PRICE_LIST",
+      "to_instance": "WI_REPAIR_ORG_PRICE_LIST1"
+    },
+    {
+      "from_field": "SHIP_DATE",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "SHIP_DATE",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "TRANSACTION_DATE",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "TRANSACTION_DATE",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "REPAIR_QUANTITY",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "REPAIR_QUANTITY",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "TRANSACTION_QUANTITY",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "TRANSACTION_QUANTITY",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "REPAIR_COST",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "REPAIR_COST",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "STD_COST",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "STD_COST",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "CONVERSION",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "CONVERSION",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "INVENTORY_ITEM_ID",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "INVENTORY_ITEM_ID",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "THEATER",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "REPAIR_ORDER_NUMBER",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "REPAIR_ORDER_NUMBER",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "REPAIR_ORDER_ID",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "REPAIR_ORDER_ID",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "SOURCE_ORGANIZATION_CODE",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "SOURCE_ORGANIZATION_CODE",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "ITEM_NAME",
+      "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "ITEM_NAME",
+      "to_instance": "WI_REPAIR_SHIPMENT_ORDER1"
+    },
+    {
+      "from_field": "RECORD_TYPE",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "RECORD_TYPE",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "THEATER",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "ITEM",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "ITEM",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "SHIP_FROM",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "SHIP_FROM",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "SHIP_TO",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "SHIP_TO",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "GLOBAL_PLANNER",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "GLOBAL_PLANNER",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "THEATER_PLANNER",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "THEATER_PLANNER",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "DOCUMENT_REF",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "DOCUMENT_REF",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "TXN_DATE",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "TXN_DATE",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "SPLC",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "SPLC",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "SUB_INV",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "SUB_INV",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "QUANTITY",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "QUANTITY",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "UOM",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "UOM",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "COST",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "COST",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "VALUE_1",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "VALUE_1",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "CREATED_DATE",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "LOAD_CYCLE",
+      "from_instance": "SQ_WI_SSC_REPAIR_ORDER",
+      "to_field": "LOAD_CYCLE",
+      "to_instance": "WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "INVENTORY_ITEM_ID",
+      "from_instance": "WI_CST_ITEM_COSTS",
+      "to_field": "INVENTORY_ITEM_ID",
+      "to_instance": "SQ_WI_CST_ITEM_COSTS"
+    },
+    {
+      "from_field": "ITEM_COST",
+      "from_instance": "WI_CST_ITEM_COSTS",
+      "to_field": "ITEM_COST",
+      "to_instance": "SQ_WI_CST_ITEM_COSTS"
+    },
+    {
+      "from_field": "REPAIR_PRICE_LIST",
+      "from_instance": "WI_REPAIR_ORG_PRICE_LIST",
+      "to_field": "REPAIR_PRICE_LIST",
+      "to_instance": "SQ_WI_REPAIR_ORG_PRICE_LIST"
+    },
+    {
+      "from_field": "ORGANIZATION_CODE",
+      "from_instance": "WI_REPAIR_ORG_PRICE_LIST",
+      "to_field": "ORGANIZATION_CODE",
+      "to_instance": "SQ_WI_REPAIR_ORG_PRICE_LIST"
+    },
+    {
+      "from_field": "PRICE_LIST_NAME",
+      "from_instance": "WI_REPAIR_PRICE_LIST",
+      "to_field": "PRICE_LIST_NAME",
+      "to_instance": "SQ_WI_REPAIR_PRICE_LIST"
+    },
+    {
+      "from_field": "LOC",
+      "from_instance": "WI_REPAIR_PRICE_LIST",
+      "to_field": "LOC",
+      "to_instance": "SQ_WI_REPAIR_PRICE_LIST"
+    },
+    {
+      "from_field": "ITEM_NAME",
+      "from_instance": "WI_REPAIR_PRICE_LIST",
+      "to_field": "ITEM_NAME",
+      "to_instance": "SQ_WI_REPAIR_PRICE_LIST"
+    },
+    {
+      "from_field": "PRICE",
+      "from_instance": "WI_REPAIR_PRICE_LIST",
+      "to_field": "PRICE",
+      "to_instance": "SQ_WI_REPAIR_PRICE_LIST"
+    },
+    {
+      "from_field": "CURRENCY_CODE",
+      "from_instance": "WI_REPAIR_PRICE_LIST",
+      "to_field": "CURRENCY_CODE",
+      "to_instance": "SQ_WI_REPAIR_PRICE_LIST"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "WI_REPAIR_PRICE_LIST",
+      "to_field": "START_TV_DATE",
+      "to_instance": "SQ_WI_REPAIR_PRICE_LIST"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "WI_REPAIR_PRICE_LIST",
+      "to_field": "END_TV_DATE",
+      "to_instance": "SQ_WI_REPAIR_PRICE_LIST"
+    },
+    {
+      "from_field": "LOC_ITEM",
+      "from_instance": "WI_REPAIR_PRICE_LIST",
+      "to_field": "LOC_ITEM",
+      "to_instance": "SQ_WI_REPAIR_PRICE_LIST"
+    },
+    {
+      "from_field": "RECORD_TYPE",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "RECORD_TYPE",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "THEATER",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "ITEM",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "ITEM",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "SHIP_FROM",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "SHIP_FROM",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "SHIP_TO",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "SHIP_TO",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "GLOBAL_PLANNER",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "GLOBAL_PLANNER",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "THEATER_PLANNER",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "THEATER_PLANNER",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "DOCUMENT_REF",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "DOCUMENT_REF",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "TXN_DATE",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "TXN_DATE",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "SPLC",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "SPLC",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "SUB_INV",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "SUB_INV",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "QUANTITY",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "QUANTITY",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "UOM",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "UOM",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "COST",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "COST",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "VALUE_1",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "VALUE_1",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "CREATED_DATE",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "CREATED_DATE",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "LOAD_CYCLE",
+      "from_instance": "WI_SSC_REPAIR_ORDER1",
+      "to_field": "LOAD_CYCLE",
+      "to_instance": "SQ_WI_SSC_REPAIR_ORDER"
+    },
+    {
+      "from_field": "REPAIR_ORDER_NUMBER",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "REPAIR_ORDER_NUMBER",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    },
+    {
+      "from_field": "REPAIR_ORDER_ID",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "REPAIR_ORDER_ID",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    },
+    {
+      "from_field": "SOURCE_ORGANIZATION_CODE",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "SOURCE_ORGANIZATION_CODE",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    },
+    {
+      "from_field": "ITEM_NAME",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "ITEM_NAME",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    },
+    {
+      "from_field": "SHIP_DATE",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "SHIP_DATE",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    },
+    {
+      "from_field": "TRANSACTION_DATE",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "TRANSACTION_DATE",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    },
+    {
+      "from_field": "REPAIR_QUANTITY",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "REPAIR_QUANTITY",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    },
+    {
+      "from_field": "TRANSACTION_QUANTITY",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "TRANSACTION_QUANTITY",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    },
+    {
+      "from_field": "REPAIR_COST",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "REPAIR_COST",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    },
+    {
+      "from_field": "STD_COST",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "STD_COST",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    },
+    {
+      "from_field": "CONVERSION",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "CONVERSION",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    },
+    {
+      "from_field": "INVENTORY_ITEM_ID",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "INVENTORY_ITEM_ID",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    },
+    {
+      "from_field": "THEATER",
+      "from_instance": "WI_REPAIR_SHIPMENT_ORDER",
+      "to_field": "THEATER",
+      "to_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PRICE_LIST_NAME",
+      "source_path": [
+        {
+          "from_field": "PRICE_LIST_NAME",
+          "from_instance": "SQ_WI_REPAIR_PRICE_LIST"
+        },
+        {
+          "from_field": "PRICE_LIST_NAME",
+          "from_instance": "WI_REPAIR_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LOC",
+      "source_path": [
+        {
+          "from_field": "LOC",
+          "from_instance": "SQ_WI_REPAIR_PRICE_LIST"
+        },
+        {
+          "from_field": "LOC",
+          "from_instance": "WI_REPAIR_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ITEM_NAME",
+      "source_path": [
+        {
+          "from_field": "ITEM_NAME",
+          "from_instance": "SQ_WI_REPAIR_PRICE_LIST"
+        },
+        {
+          "from_field": "ITEM_NAME",
+          "from_instance": "SQ_WI_REPAIR_SHIPMENT_ORDER"
+        },
+        {
+          "from_field": "ITEM_NAME",
+          "from_instance": "WI_REPAIR_PRICE_LIST"
+        },
+        {
+          "from_field": "ITEM_NAME",
+          "from_instance": "WI_REPAIR_SHIPMENT_ORDER"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LOC_ITEM",
+      "source_path": [
+        {
+          "from_field": "LOC_ITEM",
+          "from_instance": "SQ_WI_REPAIR_PRICE_LIST"
+        },
+        {
+          "from_field": "LOC_ITEM",
+          "from_instance": "WI_REPAIR_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRICE",
+      "source_path": [
+        {
+          "from_field": "PRICE",
+          "from_instance": "SQ_WI_REPAIR_PRICE_LIST"
+        },
+        {
+          "from_field": "PRICE",
+          "from_instance": "WI_REPAIR_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CURRENCY_CODE",
+      "source_path": [
+        {
+          "from_field": "CURRENCY_CODE",
+          "from_instance": "SQ_WI_REPAIR_PRICE_LIST"
+        },
+        {
+          "from_field": "CURRENCY_CODE",
+          "from_instance": "WI_REPAIR_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "START_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "SQ_WI_REPAIR_PRICE_LIST"
+        },
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "WI_REPAIR_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "SQ_WI_REPAIR_PRICE_LIST"
+        },
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "WI_REPAIR_PRICE_LIST"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:31.216260+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

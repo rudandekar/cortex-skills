@@ -1,0 +1,603 @@
+{
+  "workflow_name": "wf_m_FF_CCRM_NS_TERM_DESCRIPTIONS",
+  "mapping_name": "m_FF_CCRM_NS_TERM_DESCRIPTIONS",
+  "mapping_description": "",
+  "folder_name": "EDWTD_NGCCRM",
+  "target_table": "FF_CCRM_NS_TERM_DESCRIPTIONS",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_ngccrm_wf_ff_ccrm_ns_term_descriptions_01_mart_ff_ccrm_ns_term_descriptions",
+  "source_tables": [
+    "CCRM_NS_TERM_DESCRIPTIONS"
+  ],
+  "sources": [
+    {
+      "name": "CCRM_NS_TERM_DESCRIPTIONS",
+      "database_type": "Oracle",
+      "owner": "QTCADMIN",
+      "fields": [
+        {
+          "name": "PROFILE_ID",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TERM_ID",
+          "datatype": "number(p,s)",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "nvarchar2",
+          "precision": "3000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "nvarchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "FF_CCRM_NS_TERM_DESCRIPTIONS",
+    "database_type": "Flat File",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BATCH_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROFILE_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TERM_ID",
+        "datatype": "number",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATED_BY",
+        "datatype": "string",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DESCRIPTION",
+        "datatype": "string",
+        "precision": "3000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "string",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATE_TIMESTAMP",
+        "datatype": "datetime",
+        "precision": "29",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "string",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXP_CCRM_NS_TERM_DESCRIPTIONS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": "$$BATCH_ID"
+        },
+        {
+          "name": "PROFILE_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PROFILE_ID"
+        },
+        {
+          "name": "TERM_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "TERM_ID"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATED_BY"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "LAST_UPDATE_DATE"
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DESCRIPTION"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATED_BY"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATION_DATE"
+        },
+        {
+          "name": "CREATE_TIMESTAMP",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SESSSTARTTIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "nstring",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_CCRM_NS_TERM_DESCRIPTIONS",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PROFILE_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TERM_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DESCRIPTION",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "nstring",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\r\nPROFILE_ID,                    \r\nTERM_ID,                       \r\nLAST_UPDATED_BY,               \r\nLAST_UPDATE_DATE,              \r\nREPLACE(REPLACE(DESCRIPTION,CHR(10),' '),CHR(13),' ')  DESCRIPTION,                   \r\nCREATED_BY,                    \r\nCREATION_DATE                                                                                                            \r\nFROM CCRM_NS_TERM_DESCRIPTIONS_MV CCRM_NS_TERM_DESCRIPTIONS\r\nWHERE LAST_UPDATE_DATE > TO_DATE('$$LastExtractDate','MM/DD/YYYY HH24:MI:SS')",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "FF_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "CREATED_BY",
+      "to_instance": "FF_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "FF_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "CREATE_TIMESTAMP",
+      "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "CREATE_TIMESTAMP",
+      "to_instance": "FF_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "FF_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "BATCH_ID",
+      "to_instance": "FF_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "PROFILE_ID",
+      "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "PROFILE_ID",
+      "to_instance": "FF_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "TERM_ID",
+      "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "TERM_ID",
+      "to_instance": "FF_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "FF_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "FF_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "PROFILE_ID",
+      "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "PROFILE_ID",
+      "to_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "TERM_ID",
+      "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "TERM_ID",
+      "to_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "CREATED_BY",
+      "to_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "PROFILE_ID",
+      "from_instance": "CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "PROFILE_ID",
+      "to_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "TERM_ID",
+      "from_instance": "CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "TERM_ID",
+      "to_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "LAST_UPDATE_DATE",
+      "from_instance": "CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "DESCRIPTION",
+      "from_instance": "CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "DESCRIPTION",
+      "to_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "CCRM_NS_TERM_DESCRIPTIONS",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BATCH_ID",
+      "source_path": [
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROFILE_ID",
+      "source_path": [
+        {
+          "from_field": "PROFILE_ID",
+          "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "PROFILE_ID",
+          "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "PROFILE_ID",
+          "from_instance": "CCRM_NS_TERM_DESCRIPTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TERM_ID",
+      "source_path": [
+        {
+          "from_field": "TERM_ID",
+          "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "TERM_ID",
+          "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "TERM_ID",
+          "from_instance": "CCRM_NS_TERM_DESCRIPTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATED_BY",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "CCRM_NS_TERM_DESCRIPTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "LAST_UPDATE_DATE",
+          "from_instance": "CCRM_NS_TERM_DESCRIPTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DESCRIPTION",
+      "source_path": [
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "DESCRIPTION",
+          "from_instance": "CCRM_NS_TERM_DESCRIPTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "CCRM_NS_TERM_DESCRIPTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_CCRM_NS_TERM_DESCRIPTIONS"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "CCRM_NS_TERM_DESCRIPTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATE_TIMESTAMP",
+      "source_path": [
+        {
+          "from_field": "CREATE_TIMESTAMP",
+          "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXP_CCRM_NS_TERM_DESCRIPTIONS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:18.657791+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

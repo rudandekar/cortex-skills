@@ -1,0 +1,331 @@
+{
+  "workflow_name": "wf_m_ST_RMA_SERIAL_NUM",
+  "mapping_name": "m_ST_RMA_SERIAL_NUM",
+  "mapping_description": "",
+  "folder_name": "EDWTD_SALES_ORDERS",
+  "target_table": "ST_RMA_SERIAL_NUM",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_sales_orders_wf_st_rma_serial_number_01_mart_st_rma_serial_num",
+  "source_tables": [
+    "FF_RMA_SERIAL_NUM"
+  ],
+  "sources": [
+    {
+      "name": "FF_RMA_SERIAL_NUM",
+      "database_type": "Flat File",
+      "owner": "",
+      "fields": [
+        {
+          "name": "LINE_ID",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RMA_SERIAL_NUMBER",
+          "datatype": "string",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_BY",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "number",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATED_DATE",
+          "datatype": "datetime",
+          "precision": "29",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "ST_RMA_SERIAL_NUM",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "LINE_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RMA_SERIAL_NUM",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATION_DATE",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "CREATED_BY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATED_BY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LAST_UPDATE_DATE",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_FF_RMA_SERIAL_NUM",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "LINE_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RMA_SERIAL_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_BY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_BY",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LAST_UPDATED_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "LINE_ID",
+      "from_instance": "SQ_FF_RMA_SERIAL_NUM",
+      "to_field": "LINE_ID",
+      "to_instance": "ST_RMA_SERIAL_NUM"
+    },
+    {
+      "from_field": "RMA_SERIAL_NUMBER",
+      "from_instance": "SQ_FF_RMA_SERIAL_NUM",
+      "to_field": "RMA_SERIAL_NUM",
+      "to_instance": "ST_RMA_SERIAL_NUM"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_FF_RMA_SERIAL_NUM",
+      "to_field": "CREATION_DATE",
+      "to_instance": "ST_RMA_SERIAL_NUM"
+    },
+    {
+      "from_field": "CREATION_BY",
+      "from_instance": "SQ_FF_RMA_SERIAL_NUM",
+      "to_field": "CREATED_BY",
+      "to_instance": "ST_RMA_SERIAL_NUM"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "SQ_FF_RMA_SERIAL_NUM",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "ST_RMA_SERIAL_NUM"
+    },
+    {
+      "from_field": "LAST_UPDATED_DATE",
+      "from_instance": "SQ_FF_RMA_SERIAL_NUM",
+      "to_field": "LAST_UPDATE_DATE",
+      "to_instance": "ST_RMA_SERIAL_NUM"
+    },
+    {
+      "from_field": "LINE_ID",
+      "from_instance": "FF_RMA_SERIAL_NUM",
+      "to_field": "LINE_ID",
+      "to_instance": "SQ_FF_RMA_SERIAL_NUM"
+    },
+    {
+      "from_field": "RMA_SERIAL_NUMBER",
+      "from_instance": "FF_RMA_SERIAL_NUM",
+      "to_field": "RMA_SERIAL_NUMBER",
+      "to_instance": "SQ_FF_RMA_SERIAL_NUM"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "FF_RMA_SERIAL_NUM",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_FF_RMA_SERIAL_NUM"
+    },
+    {
+      "from_field": "CREATION_BY",
+      "from_instance": "FF_RMA_SERIAL_NUM",
+      "to_field": "CREATION_BY",
+      "to_instance": "SQ_FF_RMA_SERIAL_NUM"
+    },
+    {
+      "from_field": "LAST_UPDATED_BY",
+      "from_instance": "FF_RMA_SERIAL_NUM",
+      "to_field": "LAST_UPDATED_BY",
+      "to_instance": "SQ_FF_RMA_SERIAL_NUM"
+    },
+    {
+      "from_field": "LAST_UPDATED_DATE",
+      "from_instance": "FF_RMA_SERIAL_NUM",
+      "to_field": "LAST_UPDATED_DATE",
+      "to_instance": "SQ_FF_RMA_SERIAL_NUM"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "LINE_ID",
+      "source_path": [
+        {
+          "from_field": "LINE_ID",
+          "from_instance": "SQ_FF_RMA_SERIAL_NUM"
+        },
+        {
+          "from_field": "LINE_ID",
+          "from_instance": "FF_RMA_SERIAL_NUM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RMA_SERIAL_NUM",
+      "source_path": [
+        {
+          "from_field": "RMA_SERIAL_NUMBER",
+          "from_instance": "SQ_FF_RMA_SERIAL_NUM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATION_DATE",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "SQ_FF_RMA_SERIAL_NUM"
+        },
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "FF_RMA_SERIAL_NUM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "CREATED_BY",
+      "source_path": [
+        {
+          "from_field": "CREATION_BY",
+          "from_instance": "SQ_FF_RMA_SERIAL_NUM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATED_BY",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "SQ_FF_RMA_SERIAL_NUM"
+        },
+        {
+          "from_field": "LAST_UPDATED_BY",
+          "from_instance": "FF_RMA_SERIAL_NUM"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LAST_UPDATE_DATE",
+      "source_path": [
+        {
+          "from_field": "LAST_UPDATED_DATE",
+          "from_instance": "SQ_FF_RMA_SERIAL_NUM"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:21.890378+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

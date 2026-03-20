@@ -1,0 +1,797 @@
+{
+  "workflow_name": "wf_m_CG1_FND_DOC_SHORT_TEXT",
+  "mapping_name": "m_CG1_FND_DOC_SHORT_TEXT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_BATCH_ACCUM",
+  "target_table": "CG1_FND_DOC_SHORT_TEXT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_batch_accum_wf_cg1_fnd_doc_short_text_01_mart_cg1_fnd_doc_short_text",
+  "source_tables": [
+    "CG1_FND_DOCUMENTS_SHORT_TEXT",
+    "STG_CG1_FND_DOC_SHORT_TEXT"
+  ],
+  "sources": [
+    {
+      "name": "CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "database_type": "Oracle",
+      "owner": "GGACML",
+      "fields": [
+        {
+          "name": "SOURCE_DML_TYPE",
+          "datatype": "varchar2",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FULLY_QUALIFIED_TABLE_NAME",
+          "datatype": "varchar2",
+          "precision": "120",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REFRESH_DATETIME",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRAIL_POSITION",
+          "datatype": "varchar2",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TOKEN",
+          "datatype": "varchar2",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MEDIA_ID",
+          "datatype": "number",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHORT_TEXT",
+          "datatype": "varchar2",
+          "precision": "4000",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "APP_SOURCE_VERSION",
+          "datatype": "varchar2",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "STG_CG1_FND_DOC_SHORT_TEXT",
+      "database_type": "Teradata",
+      "owner": "ACCUMSTGDB_DV4",
+      "fields": [
+        {
+          "name": "APP_SOURCE_VERSION",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MEDIA_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SHORT_TEXT",
+          "datatype": "varchar",
+          "precision": "4000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "TRAIL_FILE_NAME",
+          "datatype": "varchar",
+          "precision": "200",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_DML_TYPE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REFRESH_DATETIME",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PROCESSED_FLAG",
+          "datatype": "varchar",
+          "precision": "5",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "CG1_FND_DOC_SHORT_TEXT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "APP_SOURCE_VERSION",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MEDIA_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SHORT_TEXT",
+        "datatype": "varchar",
+        "precision": "4000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "TRAIL_FILE_NAME",
+        "datatype": "varchar",
+        "precision": "200",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOURCE_DML_TYPE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOURCE_COMMIT_TIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "REFRESH_DATETIME",
+        "datatype": "timestamp",
+        "precision": "26",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PROCESSED_FLAG",
+        "datatype": "varchar",
+        "precision": "5",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "exp_CG1_FND_DOC_SHORT_TEXT",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "SOURCE_DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SOURCE_DML_TYPE"
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SOURCE_COMMIT_TIME"
+        },
+        {
+          "name": "REFRESH_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "REFRESH_DATETIME"
+        },
+        {
+          "name": "MEDIA_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "MEDIA_ID"
+        },
+        {
+          "name": "SHORT_TEXT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SHORT_TEXT"
+        },
+        {
+          "name": "APP_SOURCE_VERSION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "APP_SOURCE_VERSION"
+        },
+        {
+          "name": "v_MAX_SOURCE_COMMIT_TIME",
+          "datatype": "date/time",
+          "porttype": "LOCAL VARIABLE",
+          "expression": "SETMAXVARIABLE($$LastExtractDate,SOURCE_COMMIT_TIME)"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_STG_CG1_FND_DOC_SHORT_TEXT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "APP_SOURCE_VERSION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MEDIA_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHORT_TEXT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "TRAIL_FILE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REFRESH_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PROCESSED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT STG_CG1_FND_DOC_SHORT_TEXT.APP_SOURCE_VERSION, STG_CG1_FND_DOC_SHORT_TEXT.MEDIA_ID, TRANSLATE(STG_CG1_FND_DOC_SHORT_TEXT.SHORT_TEXT USING UNICODE_TO_LATIN WITH ERROR), STG_CG1_FND_DOC_SHORT_TEXT.TRAIL_FILE_NAME, STG_CG1_FND_DOC_SHORT_TEXT.SOURCE_DML_TYPE, STG_CG1_FND_DOC_SHORT_TEXT.SOURCE_COMMIT_TIME, STG_CG1_FND_DOC_SHORT_TEXT.REFRESH_DATETIME, STG_CG1_FND_DOC_SHORT_TEXT.PROCESSED_FLAG \r\nFROM\r\n $$ACCUMSTGDB.STG_CG1_FND_DOC_SHORT_TEXT STG_CG1_FND_DOC_SHORT_TEXT,\r\n (\r\n select MEDIA_ID,REFRESH_DATETIME from $$ACCUMSTGDB.STG_CG1_FND_DOC_SHORT_TEXT\r\n minus\r\n select MEDIA_ID,REFRESH_DATETIME from $$NRTACCUMDB.CG1_FND_DOC_SHORT_TEXT\r\n ) ACM\r\n where \r\n ACM.MEDIA_ID = STG_CG1_FND_DOC_SHORT_TEXT.MEDIA_ID and ACM.REFRESH_DATETIME=STG_CG1_FND_DOC_SHORT_TEXT.REFRESH_DATETIME",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "SOURCE_DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_COMMIT_TIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REFRESH_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MEDIA_ID",
+          "datatype": "double",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SHORT_TEXT",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "APP_SOURCE_VERSION",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "",
+        "User Defined Join": "",
+        "Source Filter": "SOURCE_COMMIT_TIME >= TO_TIMESTAMP('$$LastExtractDate','MM/DD/YYYY HH24:MI:SS:FF') - INTERVAL '$$OVERLAP_SECONDS' SECOND AND\r\nSOURCE_COMMIT_TIME <= (SELECT MAX(SOURCE_COMMIT_TIME) FROM $$SRCDB.CG1_FND_DOCUMENTS_SHORT_TEXT)",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "APP_SOURCE_VERSION",
+      "from_instance": "exp_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "APP_SOURCE_VERSION",
+      "to_instance": "STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "MEDIA_ID",
+      "from_instance": "exp_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "MEDIA_ID",
+      "to_instance": "STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SHORT_TEXT",
+      "from_instance": "exp_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "SHORT_TEXT",
+      "to_instance": "STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SOURCE_DML_TYPE",
+      "from_instance": "exp_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "SOURCE_DML_TYPE",
+      "to_instance": "STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SOURCE_COMMIT_TIME",
+      "from_instance": "exp_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "SOURCE_COMMIT_TIME",
+      "to_instance": "STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "REFRESH_DATETIME",
+      "from_instance": "exp_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "REFRESH_DATETIME",
+      "to_instance": "STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "APP_SOURCE_VERSION",
+      "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "APP_SOURCE_VERSION",
+      "to_instance": "CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "MEDIA_ID",
+      "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "MEDIA_ID",
+      "to_instance": "CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SHORT_TEXT",
+      "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "SHORT_TEXT",
+      "to_instance": "CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "TRAIL_FILE_NAME",
+      "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "TRAIL_FILE_NAME",
+      "to_instance": "CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SOURCE_DML_TYPE",
+      "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "SOURCE_DML_TYPE",
+      "to_instance": "CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SOURCE_COMMIT_TIME",
+      "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "SOURCE_COMMIT_TIME",
+      "to_instance": "CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "REFRESH_DATETIME",
+      "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "REFRESH_DATETIME",
+      "to_instance": "CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "PROCESSED_FLAG",
+      "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT",
+      "to_field": "PROCESSED_FLAG",
+      "to_instance": "CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SOURCE_DML_TYPE",
+      "from_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "to_field": "SOURCE_DML_TYPE",
+      "to_instance": "exp_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SOURCE_COMMIT_TIME",
+      "from_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "to_field": "SOURCE_COMMIT_TIME",
+      "to_instance": "exp_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "REFRESH_DATETIME",
+      "from_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "to_field": "REFRESH_DATETIME",
+      "to_instance": "exp_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "MEDIA_ID",
+      "from_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "to_field": "MEDIA_ID",
+      "to_instance": "exp_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SHORT_TEXT",
+      "from_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "to_field": "SHORT_TEXT",
+      "to_instance": "exp_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "APP_SOURCE_VERSION",
+      "from_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "to_field": "APP_SOURCE_VERSION",
+      "to_instance": "exp_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "APP_SOURCE_VERSION",
+      "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC",
+      "to_field": "APP_SOURCE_VERSION",
+      "to_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "MEDIA_ID",
+      "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC",
+      "to_field": "MEDIA_ID",
+      "to_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SHORT_TEXT",
+      "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC",
+      "to_field": "SHORT_TEXT",
+      "to_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "TRAIL_FILE_NAME",
+      "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC",
+      "to_field": "TRAIL_FILE_NAME",
+      "to_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SOURCE_DML_TYPE",
+      "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC",
+      "to_field": "SOURCE_DML_TYPE",
+      "to_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SOURCE_COMMIT_TIME",
+      "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC",
+      "to_field": "SOURCE_COMMIT_TIME",
+      "to_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "REFRESH_DATETIME",
+      "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC",
+      "to_field": "REFRESH_DATETIME",
+      "to_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "PROCESSED_FLAG",
+      "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC",
+      "to_field": "PROCESSED_FLAG",
+      "to_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+    },
+    {
+      "from_field": "SOURCE_DML_TYPE",
+      "from_instance": "CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "to_field": "SOURCE_DML_TYPE",
+      "to_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT"
+    },
+    {
+      "from_field": "SOURCE_COMMIT_TIME",
+      "from_instance": "CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "to_field": "SOURCE_COMMIT_TIME",
+      "to_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT"
+    },
+    {
+      "from_field": "REFRESH_DATETIME",
+      "from_instance": "CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "to_field": "REFRESH_DATETIME",
+      "to_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT"
+    },
+    {
+      "from_field": "MEDIA_ID",
+      "from_instance": "CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "to_field": "MEDIA_ID",
+      "to_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT"
+    },
+    {
+      "from_field": "SHORT_TEXT",
+      "from_instance": "CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "to_field": "SHORT_TEXT",
+      "to_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT"
+    },
+    {
+      "from_field": "APP_SOURCE_VERSION",
+      "from_instance": "CG1_FND_DOCUMENTS_SHORT_TEXT",
+      "to_field": "APP_SOURCE_VERSION",
+      "to_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "APP_SOURCE_VERSION",
+      "source_path": [
+        {
+          "from_field": "APP_SOURCE_VERSION",
+          "from_instance": "exp_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "APP_SOURCE_VERSION",
+          "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "APP_SOURCE_VERSION",
+          "from_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT"
+        },
+        {
+          "from_field": "APP_SOURCE_VERSION",
+          "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC"
+        },
+        {
+          "from_field": "APP_SOURCE_VERSION",
+          "from_instance": "CG1_FND_DOCUMENTS_SHORT_TEXT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MEDIA_ID",
+      "source_path": [
+        {
+          "from_field": "MEDIA_ID",
+          "from_instance": "exp_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "MEDIA_ID",
+          "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "MEDIA_ID",
+          "from_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT"
+        },
+        {
+          "from_field": "MEDIA_ID",
+          "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC"
+        },
+        {
+          "from_field": "MEDIA_ID",
+          "from_instance": "CG1_FND_DOCUMENTS_SHORT_TEXT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SHORT_TEXT",
+      "source_path": [
+        {
+          "from_field": "SHORT_TEXT",
+          "from_instance": "exp_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "SHORT_TEXT",
+          "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "SHORT_TEXT",
+          "from_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT"
+        },
+        {
+          "from_field": "SHORT_TEXT",
+          "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC"
+        },
+        {
+          "from_field": "SHORT_TEXT",
+          "from_instance": "CG1_FND_DOCUMENTS_SHORT_TEXT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "TRAIL_FILE_NAME",
+      "source_path": [
+        {
+          "from_field": "TRAIL_FILE_NAME",
+          "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "TRAIL_FILE_NAME",
+          "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "SOURCE_DML_TYPE",
+          "from_instance": "exp_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "SOURCE_DML_TYPE",
+          "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "SOURCE_DML_TYPE",
+          "from_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT"
+        },
+        {
+          "from_field": "SOURCE_DML_TYPE",
+          "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC"
+        },
+        {
+          "from_field": "SOURCE_DML_TYPE",
+          "from_instance": "CG1_FND_DOCUMENTS_SHORT_TEXT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_COMMIT_TIME",
+      "source_path": [
+        {
+          "from_field": "SOURCE_COMMIT_TIME",
+          "from_instance": "exp_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "SOURCE_COMMIT_TIME",
+          "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "SOURCE_COMMIT_TIME",
+          "from_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT"
+        },
+        {
+          "from_field": "SOURCE_COMMIT_TIME",
+          "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC"
+        },
+        {
+          "from_field": "SOURCE_COMMIT_TIME",
+          "from_instance": "CG1_FND_DOCUMENTS_SHORT_TEXT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "REFRESH_DATETIME",
+      "source_path": [
+        {
+          "from_field": "REFRESH_DATETIME",
+          "from_instance": "exp_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "REFRESH_DATETIME",
+          "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "REFRESH_DATETIME",
+          "from_instance": "SQ_CG1_FND_DOCUMENTS_SHORT_TEXT"
+        },
+        {
+          "from_field": "REFRESH_DATETIME",
+          "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC"
+        },
+        {
+          "from_field": "REFRESH_DATETIME",
+          "from_instance": "CG1_FND_DOCUMENTS_SHORT_TEXT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PROCESSED_FLAG",
+      "source_path": [
+        {
+          "from_field": "PROCESSED_FLAG",
+          "from_instance": "SQ_STG_CG1_FND_DOC_SHORT_TEXT"
+        },
+        {
+          "from_field": "PROCESSED_FLAG",
+          "from_instance": "STG_CG1_FND_DOC_SHORT_TEXT_SRC"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:21:40.324020+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

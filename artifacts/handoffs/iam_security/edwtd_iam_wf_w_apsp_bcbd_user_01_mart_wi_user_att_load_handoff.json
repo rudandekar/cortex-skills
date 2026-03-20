@@ -1,0 +1,895 @@
+{
+  "workflow_name": "wf_m_W_APSP_BCBD_USER",
+  "mapping_name": "m_W_APSP_BCBD_USER",
+  "mapping_description": "",
+  "folder_name": "EDWTD_IAM",
+  "target_table": "WI_USER_ATT_LOAD",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_iam_wf_w_apsp_bcbd_user_01_mart_wi_user_att_load",
+  "source_tables": [
+    "WI_USER_ATT_LOAD",
+    "W_APSP_BCBD_USER"
+  ],
+  "sources": [
+    {
+      "name": "WI_USER_ATT_LOAD",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV3",
+      "fields": [
+        {
+          "name": "USER_ID",
+          "datatype": "varchar",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "THEATER_NAME",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "USER_GROUP",
+          "datatype": "varchar",
+          "precision": "250",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "W_APSP_BCBD_USER",
+      "database_type": "Teradata",
+      "owner": "WORKDB_DV3",
+      "fields": [
+        {
+          "name": "BCBD_USER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "BCBD_USER_TYPE",
+          "datatype": "char",
+          "precision": "12",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RU_IAM_ROLE_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_IAM_USER_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_APSP_BCBD_USER_GROUP_NAME",
+          "datatype": "char",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_APSP_BCBD_THEATER_NAME",
+          "datatype": "char",
+          "precision": "40",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RU_BCBD_MAILER_ALIAS_ADDR",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_USER_ATT_LOAD",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "USER_ID",
+        "datatype": "varchar",
+        "precision": "40",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "THEATER_NAME",
+        "datatype": "varchar",
+        "precision": "250",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "USER_GROUP",
+        "datatype": "varchar",
+        "precision": "250",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BCBD_USER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BCBD_USER_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_IAM_ROLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_IAM_USER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_APSP_BCBD_USER_GROUP_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_APSP_BCBD_THEATER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_BCBD_MAILER_ALIAS_ADDR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SEL  DISTINCT SM.BCBD_USER_KEY, SM.BK_BCBD_USER_TYPE, ROLE_NAME RU_IAM_ROLE_NAME, -999 IAM_USER_KEY, \r\nNULL\tRU_APSP_BCBD_USER_GROUP_NAME,\r\nNULL\tRU_APSP_BCBD_THEATER_NAME,\r\nBK_BCBD_MAILER_ALIAS_ADDR\tRU_BCBD_MAILER_ALIAS_ADDR,\r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\nUSER AS EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM,\r\nUSER AS EDW_UPDATE_USER,\r\nCAST(CURRENT_DATE AS DATE) START_TV_DT,\r\n'3500-01-01'       END_TV_DT,                                                                               \r\n'I'    ACTION_CODE,\r\n'I'  DML_TYPE FROM \r\n$$STGDB.WI_ML_SECURITY_LOAD SEC\r\nINNER JOIN $$TRANSLATIONDB.SM_APSP_BCBD_USER SM\r\nON  SEC.USER_ID=SM.BK_BCBD_MAILER_ALIAS_ADDR\r\nWHERE SM.BK_BCBD_USER_TYPE = 'MAILER ALIAS'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_W_APSP_BCBD_USER_IAM",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BCBD_USER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BCBD_USER_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_IAM_ROLE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_IAM_USER_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_APSP_BCBD_USER_GROUP_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_APSP_BCBD_THEATER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_BCBD_MAILER_ALIAS_ADDR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "START_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SEL  DISTINCT SM.BCBD_USER_KEY, SM.BK_BCBD_USER_TYPE, NULL RU_IAM_ROLE_NAME, SM.IAM_USER_KEY, \r\nATT.USER_GROUP\tRU_APSP_BCBD_USER_GROUP_NAME,\r\nATT.THEATER_NAME\tRU_APSP_BCBD_THEATER_NAME,\r\nNULL\tRU_BCBD_MAILER_ALIAS_ADDR,\r\nCURRENT_TIMESTAMP(0) AS EDW_CREATE_DTM,\r\nUSER AS EDW_CREATE_USER,\r\nCURRENT_TIMESTAMP(0) AS EDW_UPDATE_DTM,\r\nUSER AS EDW_UPDATE_USER,\r\nCAST(CURRENT_DATE AS DATE) START_TV_DT,\r\n'3500-01-01'       END_TV_DT,                                                                               \r\n'I'    ACTION_CODE,\r\n'I'  DML_TYPE FROM \r\n$$SECURITYVWDB.MT_APSP_BCBD_SECURITY SEC\r\nINNER JOIN $$SECURITYVWDB.N_IAM_USER USR\r\nON SEC.DD_CEC_ID=USR.DD_CEC_ID AND USR.SOURCE_DELETED_FLG='N' \r\nINNER JOIN $$TRANSLATIONDB.SM_APSP_BCBD_USER SM\r\nON  USR.IAM_USER_KEY=SM.IAM_USER_KEY\r\nLEFT OUTER JOIN $$STGDB.WI_USER_ATT_LOAD ATT\r\nON SEC.DD_CEC_ID=ATT.USER_ID\r\nWHERE SM.BK_BCBD_USER_TYPE = 'IAM USER'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "USER_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "THEATER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "USER_GROUP",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT ST.USER_ID, ST.TERRITORY_CODE, ST.ROLE_NAME \r\nFROM\r\n$$STGDB.ST_CA_FIN_VISIBILITY_SEC_LOAD ST  WHERE  ST.LOAD_TYPE='user_att_load'",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "RU_APSP_BCBD_USER_GROUP_NAME",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "RU_APSP_BCBD_USER_GROUP_NAME",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "BCBD_USER_KEY",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "BCBD_USER_KEY",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "BCBD_USER_TYPE",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "BCBD_USER_TYPE",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "RU_IAM_ROLE_NAME",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "RU_IAM_ROLE_NAME",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "RU_IAM_USER_KEY",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "RU_IAM_USER_KEY",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "RU_APSP_BCBD_THEATER_NAME",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "RU_APSP_BCBD_THEATER_NAME",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "RU_BCBD_MAILER_ALIAS_ADDR",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "RU_BCBD_MAILER_ALIAS_ADDR",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "START_TV_DT",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "END_TV_DT",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_W_APSP_BCBD_USER_EMAILER",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "BCBD_USER_KEY",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "BCBD_USER_KEY",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "BCBD_USER_TYPE",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "BCBD_USER_TYPE",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "RU_IAM_ROLE_NAME",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "RU_IAM_ROLE_NAME",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "RU_IAM_USER_KEY",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "RU_IAM_USER_KEY",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "RU_APSP_BCBD_USER_GROUP_NAME",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "RU_APSP_BCBD_USER_GROUP_NAME",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "RU_APSP_BCBD_THEATER_NAME",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "RU_APSP_BCBD_THEATER_NAME",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "RU_BCBD_MAILER_ALIAS_ADDR",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "RU_BCBD_MAILER_ALIAS_ADDR",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "START_TV_DT",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "END_TV_DT",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_W_APSP_BCBD_USER_IAM",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "USER_ID",
+      "from_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD",
+      "to_field": "USER_ID",
+      "to_instance": "WI_USER_ATT_LOAD"
+    },
+    {
+      "from_field": "THEATER_NAME",
+      "from_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD",
+      "to_field": "THEATER_NAME",
+      "to_instance": "WI_USER_ATT_LOAD"
+    },
+    {
+      "from_field": "USER_GROUP",
+      "from_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD",
+      "to_field": "USER_GROUP",
+      "to_instance": "WI_USER_ATT_LOAD"
+    },
+    {
+      "from_field": "BCBD_USER_KEY",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "BCBD_USER_KEY",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "BCBD_USER_TYPE",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "BCBD_USER_TYPE",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "RU_IAM_ROLE_NAME",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "RU_IAM_ROLE_NAME",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "RU_IAM_USER_KEY",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "RU_IAM_USER_KEY",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "RU_APSP_BCBD_USER_GROUP_NAME",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "RU_APSP_BCBD_USER_GROUP_NAME",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "RU_APSP_BCBD_THEATER_NAME",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "RU_APSP_BCBD_THEATER_NAME",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "RU_BCBD_MAILER_ALIAS_ADDR",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "RU_BCBD_MAILER_ALIAS_ADDR",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "START_TV_DT",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "END_TV_DT",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_APSP_BCBD_USER_EMAILER",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_W_APSP_BCBD_USER_EMAILER"
+    },
+    {
+      "from_field": "BCBD_USER_KEY",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "BCBD_USER_KEY",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "BCBD_USER_TYPE",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "BCBD_USER_TYPE",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "RU_IAM_ROLE_NAME",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "RU_IAM_ROLE_NAME",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "RU_IAM_USER_KEY",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "RU_IAM_USER_KEY",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "RU_APSP_BCBD_USER_GROUP_NAME",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "RU_APSP_BCBD_USER_GROUP_NAME",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "RU_APSP_BCBD_THEATER_NAME",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "RU_APSP_BCBD_THEATER_NAME",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "RU_BCBD_MAILER_ALIAS_ADDR",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "RU_BCBD_MAILER_ALIAS_ADDR",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "EDW_CREATE_DTM",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "EDW_CREATE_USER",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "EDW_UPDATE_USER",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "EDW_UPDATE_USER",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "START_TV_DT",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "START_TV_DT",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "END_TV_DT",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "END_TV_DT",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "W_APSP_BCBD_USER_IAM",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_W_APSP_BCBD_USER_IAM"
+    },
+    {
+      "from_field": "USER_ID",
+      "from_instance": "ST_CA_FIN_VISIBILITY_SEC_LOAD",
+      "to_field": "USER_ID",
+      "to_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD"
+    },
+    {
+      "from_field": "THEATER_NAME",
+      "from_instance": "ST_CA_FIN_VISIBILITY_SEC_LOAD",
+      "to_field": "THEATER_NAME",
+      "to_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD"
+    },
+    {
+      "from_field": "USER_GROUP",
+      "from_instance": "ST_CA_FIN_VISIBILITY_SEC_LOAD",
+      "to_field": "USER_GROUP",
+      "to_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "USER_ID",
+      "source_path": [
+        {
+          "from_field": "USER_ID",
+          "from_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD"
+        },
+        {
+          "from_field": "USER_ID",
+          "from_instance": "ST_CA_FIN_VISIBILITY_SEC_LOAD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "THEATER_NAME",
+      "source_path": [
+        {
+          "from_field": "THEATER_NAME",
+          "from_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD"
+        },
+        {
+          "from_field": "THEATER_NAME",
+          "from_instance": "ST_CA_FIN_VISIBILITY_SEC_LOAD"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "USER_GROUP",
+      "source_path": [
+        {
+          "from_field": "USER_GROUP",
+          "from_instance": "SQ_ST_CA_FIN_VISIBILITY_SEC_LOAD"
+        },
+        {
+          "from_field": "USER_GROUP",
+          "from_instance": "ST_CA_FIN_VISIBILITY_SEC_LOAD"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:25:36.929861+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

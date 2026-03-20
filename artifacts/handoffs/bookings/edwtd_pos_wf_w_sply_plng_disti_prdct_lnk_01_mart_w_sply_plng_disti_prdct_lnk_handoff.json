@@ -1,0 +1,693 @@
+{
+  "workflow_name": "wf_m_W_SPLY_PLNG_DISTI_PRDCT_LNK",
+  "mapping_name": "m_W_SPLY_PLNG_DISTI_PRDCT_LNK",
+  "mapping_description": "",
+  "folder_name": "EDWTD_POS",
+  "target_table": "W_SPLY_PLNG_DISTI_PRDCT_LNK",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_pos_wf_w_sply_plng_disti_prdct_lnk_01_mart_w_sply_plng_disti_prdct_lnk",
+  "source_tables": [
+    "ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+  ],
+  "sources": [
+    {
+      "name": "ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "DISTRIBUTOR_MASTER_NAME",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PUBLICATION_DT",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "timestamp",
+          "precision": "26",
+          "scale": "6",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "varchar",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_SPLY_PLNG_DISTI_PRDCT_LNK",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_DISTRIBUTOR_MASTER_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "PRODUCT_KEY",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "BK_PUBLICATION_DT",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+        "datatype": "decimal",
+        "precision": "3",
+        "scale": "1",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "DISTRIBUTOR_MASTER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DISTRIBUTOR_MASTER_NAME"
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PRODUCT_KEY"
+        },
+        {
+          "name": "PUBLICATION_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PUBLICATION_DT"
+        },
+        {
+          "name": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DISTI_PRODUCT_PLNG_SEGMENT_CD"
+        },
+        {
+          "name": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DIST_PRD_WHLSL_PRC_LST_USD_AMT"
+        },
+        {
+          "name": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DIST_PRD_TRNST_DAYS_SETTNG_CNT"
+        },
+        {
+          "name": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT"
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATION_DATE"
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATED_BY"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'I'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DISTRIBUTOR_MASTER_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PUBLICATION_DT",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATION_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATED_BY",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT a.DISTRIBUTOR_MASTER_NAME, \r\nb.ITEM_KEY,\r\n a.PUBLICATION_DT, \r\na.DISTI_PRODUCT_PLNG_SEGMENT_CD, \r\na.DIST_PRD_WHLSL_PRC_LST_USD_AMT, \r\na.DIST_PRD_TRNST_DAYS_SETTNG_CNT, \r\na.DIST_PRD_WEEKS_OF_SPLY_TGT_PCT,\r\na.CREATION_DATE,\r\na.CREATED_BY\r\nFROM\r\n$$STGDB.ST_XXCMF_SP_DISTI_ITEM_ATTRI a\r\ninner join $$comrefdb.n_product b\r\non b.BK_PRODUCT_ID=a.PRODUCT_KEY",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "DISTRIBUTOR_MASTER_NAME",
+      "from_instance": "EXPTRANS",
+      "to_field": "BK_DISTRIBUTOR_MASTER_NAME",
+      "to_instance": "W_SPLY_PLNG_DISTI_PRDCT_LNK"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "EXPTRANS",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "W_SPLY_PLNG_DISTI_PRDCT_LNK"
+    },
+    {
+      "from_field": "PUBLICATION_DT",
+      "from_instance": "EXPTRANS",
+      "to_field": "BK_PUBLICATION_DT",
+      "to_instance": "W_SPLY_PLNG_DISTI_PRDCT_LNK"
+    },
+    {
+      "from_field": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+      "from_instance": "EXPTRANS",
+      "to_field": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+      "to_instance": "W_SPLY_PLNG_DISTI_PRDCT_LNK"
+    },
+    {
+      "from_field": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+      "from_instance": "EXPTRANS",
+      "to_field": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+      "to_instance": "W_SPLY_PLNG_DISTI_PRDCT_LNK"
+    },
+    {
+      "from_field": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+      "from_instance": "EXPTRANS",
+      "to_field": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+      "to_instance": "W_SPLY_PLNG_DISTI_PRDCT_LNK"
+    },
+    {
+      "from_field": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+      "from_instance": "EXPTRANS",
+      "to_field": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+      "to_instance": "W_SPLY_PLNG_DISTI_PRDCT_LNK"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "EXPTRANS",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_SPLY_PLNG_DISTI_PRDCT_LNK"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "EXPTRANS",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_SPLY_PLNG_DISTI_PRDCT_LNK"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "EXPTRANS",
+      "to_field": "EDW_CREATE_DTM",
+      "to_instance": "W_SPLY_PLNG_DISTI_PRDCT_LNK"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "EXPTRANS",
+      "to_field": "EDW_CREATE_USER",
+      "to_instance": "W_SPLY_PLNG_DISTI_PRDCT_LNK"
+    },
+    {
+      "from_field": "DISTRIBUTOR_MASTER_NAME",
+      "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "DISTRIBUTOR_MASTER_NAME",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "PUBLICATION_DT",
+      "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "PUBLICATION_DT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+      "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+      "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+      "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+      "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "CREATION_DATE",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "CREATED_BY",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "DISTRIBUTOR_MASTER_NAME",
+      "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "DISTRIBUTOR_MASTER_NAME",
+      "to_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+    },
+    {
+      "from_field": "PRODUCT_KEY",
+      "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "PRODUCT_KEY",
+      "to_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+    },
+    {
+      "from_field": "PUBLICATION_DT",
+      "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "PUBLICATION_DT",
+      "to_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+    },
+    {
+      "from_field": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+      "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+      "to_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+    },
+    {
+      "from_field": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+      "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+      "to_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+    },
+    {
+      "from_field": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+      "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+      "to_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+    },
+    {
+      "from_field": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+      "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+      "to_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+    },
+    {
+      "from_field": "CREATION_DATE",
+      "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "CREATION_DATE",
+      "to_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+    },
+    {
+      "from_field": "CREATED_BY",
+      "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI",
+      "to_field": "CREATED_BY",
+      "to_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_DISTRIBUTOR_MASTER_NAME",
+      "source_path": [
+        {
+          "from_field": "DISTRIBUTOR_MASTER_NAME",
+          "from_instance": "EXPTRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PRODUCT_KEY",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+        },
+        {
+          "from_field": "PRODUCT_KEY",
+          "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_PUBLICATION_DT",
+      "source_path": [
+        {
+          "from_field": "PUBLICATION_DT",
+          "from_instance": "EXPTRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+      "source_path": [
+        {
+          "from_field": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+          "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+        },
+        {
+          "from_field": "DISTI_PRODUCT_PLNG_SEGMENT_CD",
+          "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+      "source_path": [
+        {
+          "from_field": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+          "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+        },
+        {
+          "from_field": "DIST_PRD_WHLSL_PRC_LST_USD_AMT",
+          "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+      "source_path": [
+        {
+          "from_field": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+          "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+        },
+        {
+          "from_field": "DIST_PRD_TRNST_DAYS_SETTNG_CNT",
+          "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+      "source_path": [
+        {
+          "from_field": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+          "from_instance": "SQ_ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+        },
+        {
+          "from_field": "DIST_PRD_WEEKS_OF_SPLY_TGT_PCT",
+          "from_instance": "ST_XXCMF_SP_DISTI_ITEM_ATTRI"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [
+        {
+          "from_field": "CREATION_DATE",
+          "from_instance": "EXPTRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [
+        {
+          "from_field": "CREATED_BY",
+          "from_instance": "EXPTRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "EXPTRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "EXPTRANS"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:17.826560+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

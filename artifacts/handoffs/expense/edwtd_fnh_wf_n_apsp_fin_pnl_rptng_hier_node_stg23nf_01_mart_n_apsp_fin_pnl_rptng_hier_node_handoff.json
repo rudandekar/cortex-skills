@@ -1,0 +1,1178 @@
+{
+  "workflow_name": "wf_m_N_APSP_FIN_PNL_RPTNG_HIER_NODE_STG23NF",
+  "mapping_name": "m_N_APSP_FIN_PNL_RPTNG_HIER_NODE_STG23NF",
+  "mapping_description": "",
+  "folder_name": "EDWTD_FNH",
+  "target_table": "N_APSP_FIN_PNL_RPTNG_HIER_NODE",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_fnh_wf_n_apsp_fin_pnl_rptng_hier_node_stg23nf_01_mart_n_apsp_fin_pnl_rptng_hier_node",
+  "source_tables": [
+    "ST_N_FINANCIAL_PNL_PC_HIER"
+  ],
+  "sources": [
+    {
+      "name": "ST_N_FINANCIAL_PNL_PC_HIER",
+      "database_type": "Teradata",
+      "owner": "APIUSER",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CHILD_NODE",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "IFP_PNL_PARENT_LVL",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MRA_ALIAS",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PARENT_NODE",
+          "datatype": "varchar",
+          "precision": "255",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "REFRESH_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "N_APSP_FIN_PNL_RPTNG_HIER_NODE",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "BK_PNL_RPTNG_HIER_NODE_NAME",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "PRIMARY KEY"
+      },
+      {
+        "name": "PNL_RPTNG_HIER_NODE_DESCR",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FORECAST_PLNG_LEVEL_NUM_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "HIERARCHY_NODE_TYPE",
+        "datatype": "char",
+        "precision": "6",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SOURCE_DELETED_FLG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+        "datatype": "varchar",
+        "precision": "255",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DTM",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "UPD_INS",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PNL_RPTNG_HIER_NODE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PNL_RPTNG_HIER_NODE_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FORECAST_PLNG_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HIERARCHY_NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_INSERT",
+        "Forward Rejected Rows": "NO",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "EXPTRANS1",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PNL_RPTNG_HIER_NODE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_PNL_RPTNG_HIER_NODE_NAME"
+        },
+        {
+          "name": "PNL_RPTNG_HIER_NODE_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PNL_RPTNG_HIER_NODE_DESCR"
+        },
+        {
+          "name": "FORECAST_PLNG_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FORECAST_PLNG_LEVEL_NUM_INT"
+        },
+        {
+          "name": "HIERARCHY_NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "HIERARCHY_NODE_TYPE"
+        },
+        {
+          "name": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DV_PNL_RPTNG_HIER_NODE_LVL_INT"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SOURCE_DELETED_FLG"
+        },
+        {
+          "name": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "UPD_UPD",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PNL_RPTNG_HIER_NODE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PNL_RPTNG_HIER_NODE_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FORECAST_PLNG_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HIERARCHY_NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_UPDATE",
+        "Forward Rejected Rows": "NO",
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PNL_RPTNG_HIER_NODE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PNL_RPTNG_HIER_NODE_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FORECAST_PLNG_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HIERARCHY_NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query2",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXPTRANS",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PNL_RPTNG_HIER_NODE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_PNL_RPTNG_HIER_NODE_NAME"
+        },
+        {
+          "name": "PNL_RPTNG_HIER_NODE_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "PNL_RPTNG_HIER_NODE_DESCR"
+        },
+        {
+          "name": "FORECAST_PLNG_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FORECAST_PLNG_LEVEL_NUM_INT"
+        },
+        {
+          "name": "HIERARCHY_NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "HIERARCHY_NODE_TYPE"
+        },
+        {
+          "name": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DV_PNL_RPTNG_HIER_NODE_LVL_INT"
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SOURCE_DELETED_FLG"
+        },
+        {
+          "name": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM"
+        },
+        {
+          "name": "EDW_UPDATE_DTM",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": "SYSTIMESTAMP('SS')"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BK_PNL_RPTNG_HIER_NODE_NAME",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PNL_RPTNG_HIER_NODE_DESCR",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FORECAST_PLNG_LEVEL_NUM_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "HIERARCHY_NODE_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SOURCE_DELETED_FLG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "$$SQ_Query1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression",
+    "Update Strategy"
+  ],
+  "connectors": [
+    {
+      "from_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "from_instance": "UPD_UPD",
+      "to_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Upd"
+    },
+    {
+      "from_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "from_instance": "UPD_UPD",
+      "to_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Upd"
+    },
+    {
+      "from_field": "HIERARCHY_NODE_TYPE",
+      "from_instance": "UPD_UPD",
+      "to_field": "HIERARCHY_NODE_TYPE",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Upd"
+    },
+    {
+      "from_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "from_instance": "UPD_UPD",
+      "to_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Upd"
+    },
+    {
+      "from_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "from_instance": "UPD_UPD",
+      "to_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Upd"
+    },
+    {
+      "from_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "from_instance": "UPD_UPD",
+      "to_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Upd"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "UPD_UPD",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Upd"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "UPD_UPD",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Upd"
+    },
+    {
+      "from_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "from_instance": "UPD_INS",
+      "to_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Ins"
+    },
+    {
+      "from_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "from_instance": "UPD_INS",
+      "to_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Ins"
+    },
+    {
+      "from_field": "HIERARCHY_NODE_TYPE",
+      "from_instance": "UPD_INS",
+      "to_field": "HIERARCHY_NODE_TYPE",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Ins"
+    },
+    {
+      "from_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "from_instance": "UPD_INS",
+      "to_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Ins"
+    },
+    {
+      "from_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "from_instance": "UPD_INS",
+      "to_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Ins"
+    },
+    {
+      "from_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "from_instance": "UPD_INS",
+      "to_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Ins"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "UPD_INS",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "N_APSP_FIN_PNL_RPTNG_HIER_NODE_Ins"
+    },
+    {
+      "from_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "from_instance": "EXPTRANS1",
+      "to_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "from_instance": "EXPTRANS1",
+      "to_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "HIERARCHY_NODE_TYPE",
+      "from_instance": "EXPTRANS1",
+      "to_field": "HIERARCHY_NODE_TYPE",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "from_instance": "EXPTRANS1",
+      "to_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "from_instance": "EXPTRANS1",
+      "to_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "from_instance": "EXPTRANS1",
+      "to_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "EXPTRANS1",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "UPD_INS"
+    },
+    {
+      "from_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins",
+      "to_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins",
+      "to_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins",
+      "to_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins",
+      "to_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins",
+      "to_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "HIERARCHY_NODE_TYPE",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins",
+      "to_field": "HIERARCHY_NODE_TYPE",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "EXPTRANS1"
+    },
+    {
+      "from_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "from_instance": "EXPTRANS",
+      "to_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "from_instance": "EXPTRANS",
+      "to_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "HIERARCHY_NODE_TYPE",
+      "from_instance": "EXPTRANS",
+      "to_field": "HIERARCHY_NODE_TYPE",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "from_instance": "EXPTRANS",
+      "to_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "from_instance": "EXPTRANS",
+      "to_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "from_instance": "EXPTRANS",
+      "to_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "EXPTRANS",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "EDW_UPDATE_DTM",
+      "from_instance": "EXPTRANS",
+      "to_field": "EDW_UPDATE_DTM",
+      "to_instance": "UPD_UPD"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER",
+      "to_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+    },
+    {
+      "from_field": "CHILD_NODE",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER",
+      "to_field": "HIERARCHY_NODE_TYPE",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+    },
+    {
+      "from_field": "IFP_PNL_PARENT_LVL",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER",
+      "to_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+    },
+    {
+      "from_field": "MRA_ALIAS",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER",
+      "to_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+    },
+    {
+      "from_field": "PARENT_NODE",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER",
+      "to_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+    },
+    {
+      "from_field": "MRA_ALIAS",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER",
+      "to_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+    },
+    {
+      "from_field": "MRA_ALIAS",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+    },
+    {
+      "from_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd",
+      "to_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd",
+      "to_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "HIERARCHY_NODE_TYPE",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd",
+      "to_field": "HIERARCHY_NODE_TYPE",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd",
+      "to_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd",
+      "to_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd",
+      "to_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "SOURCE_DELETED_FLG",
+      "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "EXPTRANS"
+    },
+    {
+      "from_field": "CHILD_NODE",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1",
+      "to_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+    },
+    {
+      "from_field": "IFP_PNL_PARENT_LVL",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1",
+      "to_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+    },
+    {
+      "from_field": "MRA_ALIAS",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1",
+      "to_field": "PNL_RPTNG_HIER_NODE_DESCR",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+    },
+    {
+      "from_field": "PARENT_NODE",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1",
+      "to_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+    },
+    {
+      "from_field": "MRA_ALIAS",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1",
+      "to_field": "HIERARCHY_NODE_TYPE",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+    },
+    {
+      "from_field": "IFP_PNL_PARENT_LVL",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1",
+      "to_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+    },
+    {
+      "from_field": "MRA_ALIAS",
+      "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1",
+      "to_field": "SOURCE_DELETED_FLG",
+      "to_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "BK_PNL_RPTNG_HIER_NODE_NAME",
+      "source_path": [
+        {
+          "from_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+        },
+        {
+          "from_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "MRA_ALIAS",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER"
+        },
+        {
+          "from_field": "BK_PNL_RPTNG_HIER_NODE_NAME",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+        },
+        {
+          "from_field": "CHILD_NODE",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PNL_RPTNG_HIER_NODE_DESCR",
+      "source_path": [
+        {
+          "from_field": "PNL_RPTNG_HIER_NODE_DESCR",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "PNL_RPTNG_HIER_NODE_DESCR",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "PNL_RPTNG_HIER_NODE_DESCR",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "PNL_RPTNG_HIER_NODE_DESCR",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+        },
+        {
+          "from_field": "PNL_RPTNG_HIER_NODE_DESCR",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "PARENT_NODE",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER"
+        },
+        {
+          "from_field": "PNL_RPTNG_HIER_NODE_DESCR",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+        },
+        {
+          "from_field": "MRA_ALIAS",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FORECAST_PLNG_LEVEL_NUM_INT",
+      "source_path": [
+        {
+          "from_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+        },
+        {
+          "from_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "BATCH_ID",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER"
+        },
+        {
+          "from_field": "FORECAST_PLNG_LEVEL_NUM_INT",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+        },
+        {
+          "from_field": "IFP_PNL_PARENT_LVL",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "HIERARCHY_NODE_TYPE",
+      "source_path": [
+        {
+          "from_field": "HIERARCHY_NODE_TYPE",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "HIERARCHY_NODE_TYPE",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "HIERARCHY_NODE_TYPE",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "HIERARCHY_NODE_TYPE",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+        },
+        {
+          "from_field": "HIERARCHY_NODE_TYPE",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "CHILD_NODE",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER"
+        },
+        {
+          "from_field": "HIERARCHY_NODE_TYPE",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+        },
+        {
+          "from_field": "MRA_ALIAS",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+      "source_path": [
+        {
+          "from_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+        },
+        {
+          "from_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "IFP_PNL_PARENT_LVL",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER"
+        },
+        {
+          "from_field": "DV_PNL_RPTNG_HIER_NODE_LVL_INT",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+        },
+        {
+          "from_field": "IFP_PNL_PARENT_LVL",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SOURCE_DELETED_FLG",
+      "source_path": [
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "MRA_ALIAS",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER"
+        },
+        {
+          "from_field": "SOURCE_DELETED_FLG",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+        },
+        {
+          "from_field": "MRA_ALIAS",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+      "source_path": [
+        {
+          "from_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+          "from_instance": "UPD_INS"
+        },
+        {
+          "from_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+          "from_instance": "EXPTRANS1"
+        },
+        {
+          "from_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Ins"
+        },
+        {
+          "from_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+          "from_instance": "EXPTRANS"
+        },
+        {
+          "from_field": "MRA_ALIAS",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER"
+        },
+        {
+          "from_field": "RU_PRNT_PNL_RPTNG_HIER_NODE_NM",
+          "from_instance": "SQ_ST_N_FINANCIAL_PNL_PC_HIER_Upd"
+        },
+        {
+          "from_field": "PARENT_NODE",
+          "from_instance": "ST_N_FINANCIAL_PNL_PC_HIER1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DTM",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DTM",
+      "source_path": [
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "UPD_UPD"
+        },
+        {
+          "from_field": "EDW_UPDATE_DTM",
+          "from_instance": "EXPTRANS"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "thin",
+  "generated_timestamp": "2026-03-19T18:05:04.915714+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

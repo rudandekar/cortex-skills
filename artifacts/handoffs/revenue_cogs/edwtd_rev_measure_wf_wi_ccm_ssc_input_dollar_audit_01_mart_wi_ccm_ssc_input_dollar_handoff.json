@@ -1,0 +1,519 @@
+{
+  "workflow_name": "wf_m_WI_CCM_SSC_INPUT_DOLLAR",
+  "mapping_name": "m_WI_CCM_SSC_INPUT_DOLLAR",
+  "mapping_description": "",
+  "folder_name": "EDWTD_REV_MEASURE",
+  "target_table": "WI_CCM_SSC_INPUT_DOLLAR",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_rev_measure_wf_wi_ccm_ssc_input_dollar_audit_01_mart_wi_ccm_ssc_input_dollar",
+  "source_tables": [
+    "WI_CCM_SSC_INPUT_DOLLAR"
+  ],
+  "sources": [
+    {
+      "name": "WI_CCM_SSC_INPUT_DOLLAR",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV4",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "PL_NODE_VALUE",
+          "datatype": "varchar",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCOUNT_NUMBER",
+          "datatype": "varchar",
+          "precision": "7",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "SUB_ACCOUNT_NUMBER",
+          "datatype": "varchar",
+          "precision": "4",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "FUNCTIONAL_COST",
+          "datatype": "varchar",
+          "precision": "60",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AMOUNT",
+          "datatype": "decimal",
+          "precision": "38",
+          "scale": "9",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_CCM_SSC_INPUT_DOLLAR",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "FISCAL_MONTH_ID",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "PL_NODE_VALUE",
+        "datatype": "varchar",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACCOUNT_NUMBER",
+        "datatype": "varchar",
+        "precision": "7",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SUB_ACCOUNT_NUMBER",
+        "datatype": "varchar",
+        "precision": "4",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FUNCTIONAL_COST",
+        "datatype": "varchar",
+        "precision": "60",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AMOUNT",
+        "datatype": "decimal",
+        "precision": "38",
+        "scale": "9",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_CCM_SSC_INPUT_DOLLAR",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PL_NODE_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUB_ACCOUNT_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FUNCTIONAL_COST",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SEL CTRL.FISCAL_MONTH_ID, \r\nNULL AS PL_NODE_VALUE,\r\nNULL AS ACCOUNT_NUMBER,\r\nNULL AS SUB_ACCOUNT_NUMBER,\r\n'OTHER' AS FUNCTIONAL_COST,\r\nZEROIFNULL(TS_COA_AMT) as TS_COA_AMT\r\nFROM (SELECT\r\nFETCHAMT.FISCAL_YEAR_MONTH_INT,\r\nFETCHAMT.TS_FETCH_AMT,\r\nCOAAMT.TS_COA_AMT\r\nFROM\r\n(\r\nSELECT A.FISCAL_YEAR_MONTH_INT,\r\nSUM(A.TS_FETCH_AMT) TS_FETCH_AMT\r\nFROM (\r\nSELECT\r\nRFM.FISCAL_YEAR_MONTH_INT AS FISCAL_YEAR_MONTH_INT,\r\nTRIM(SUM(ZEROIFNULL(NJEL.RU_DV_USD_DEBIT_AMT ) -ZEROIFNULL(NJEL.RU_DV_USD_CREDIT_AMT))) TS_FETCH_AMT\r\nFROM $$FINLGLVWDB.N_JOURNAL_ENTRY_LINE NJEL\r\nINNER JOIN  $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR       RFM ON (NJEL.DV_FISCAL_YEAR_MONTH_NUM_INT  =RFM.FISCAL_YEAR_MONTH_INT )   \r\nINNER JOIN  $$FINLGLVWDB.N_JOURNAL_ENTRY NJE ON  (NJEL.BK_JOURNAL_ENTRY_NUMBER_INT = NJE.BK_JOURNAL_ENTRY_NUMBER_INT AND NJEL.SET_OF_BOOKS_KEY = NJE.SET_OF_BOOKS_KEY)\r\nINNER JOIN  $$FINLGLVWDB.N_SET_OF_BOOKS_TV NSOB ON (NJEL.SET_OF_BOOKS_KEY = NSOB.SET_OF_BOOKS_KEY AND NSOB.END_TV_DT='3500-01-01')\r\nINNER JOIN  $$FINLGLVWDB.R_PL_HIERARCHY NPLH ON ( NJEL.BK_COMPANY_CODE = NPLH.FINANCIAL_COMPANY_CODE AND NJEL.DD_BK_DEPT_CD = NPLH.FINANCIAL_DEPARTMENT_CODE AND NPLH.NODE_LEVEL05_NAME ='TSS (SUPPORT)')\r\nINNER JOIN  $$FINLGLVWDB.R_FINANCIAL_ACCOUNT_HIERARCHY NFAH ON (NJEL.DD_FINANCIAL_ACCOUNT_CD = NFAH.BK_FINANCIAL_ACCOUNT_CODE AND NFAH.LEVEL03_ACCT_GROUP_ID ='EXPENSE' AND NFAH.LEVEL04_ACCT_GROUP_ID <> 'NON EXPENSE SSOT OTHER') \r\nWHERE (  NJEL.DD_FINANCIAL_COMPANY_MAPPED_CD  IN ( 'MO' , 'MC' ) OR ( NJEL.DD_FINANCIAL_COMPANY_MAPPED_CD = 'UO' AND NJE.BK_JOURNAL_ENTRY_CATEGORY_NAME =  'REVALUATION' AND NJE.BK_JOURNAL_ENTRY_SOURCE_NAME = 'REVALUATION' AND NSOB.PUSH_TO_GLBL_CONSOL_BOOKS_FLG ='Y' ) )  \r\nGROUP BY RFM.FISCAL_YEAR_MONTH_INT \r\nUNION ALL /* DCD Elimination inclusion*/\r\nSELECT FMY.FISCAL_YEAR_MONTH_INT \r\n,TRIM(SUM(ZEROIFNULL(EXM.RU_DV_USD_DEBIT_AMT)-ZEROIFNULL(EXM.RU_DV_USD_CREDIT_AMT))) TS_FETCH_AMT\r\nFROM $$FINLGLVWDB.MT_EXPENSE_MEASURE EXM\r\nINNER JOIN $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR FMY\r\n    ON  (EXM.DV_FISCAL_YEAR_MONTH_NUM_INT = FMY.FISCAL_YEAR_MONTH_INT \r\n    AND  EXM.DD_FINANCIAL_COMPANY_MAPPED_CD IN ('MO','MC')) AND EXM.TRANSACTION_TYPE='FA_ELIM'\r\n    INNER JOIN  $$FINLGLVWDB.N_SET_OF_BOOKS_TV SOB\r\n    ON  (EXM.SET_OF_BOOKS_KEY = SOB.SET_OF_BOOKS_KEY AND SOB.END_TV_DT = '3500-01-01')  \r\n    INNER JOIN   $$FINLGLVWDB.R_PL_HIERARCHY PLH \r\n    ON  (EXM.BK_COMPANY_CODE=PLH.FINANCIAL_COMPANY_CODE \r\n    AND EXM.DD_BK_DEPT_CD = PLH.FINANCIAL_DEPARTMENT_CODE \r\n    AND PLH.NODE_LEVEL05_NAME ='TSS (SUPPORT)')\r\n    INNER JOIN  $$FINLGLVWDB.R_FINANCIAL_ACCOUNT_HIERARCHY FAH \r\n    ON  (EXM.DD_FINANCIAL_ACCOUNT_CD = FAH.BK_FINANCIAL_ACCOUNT_CODE\r\n    AND FAH.Level03_Acct_group_ID='Expense'  AND FAH.Level04_Acct_Group_ID <> 'Non Expense SSOT Other')\r\nGROUP BY FMY.FISCAL_YEAR_MONTH_INT/* DCD Elimination inclusion*/ ) A\r\nGROUP BY FISCAL_YEAR_MONTH_INT\r\n)FETCHAMT\r\n\r\nINNER JOIN(SELECT FISCAL_YEAR_MONTH_INT, CAST(SUM(USD_UNIT_NAT_NET) AS DECIMAL(26,7)) TS_COA_AMT\r\nFROM (SELECT                \r\nBK_FINANCE_REPORT_LINE_ITEM_CD ,\r\nFISCAL_YEAR_MONTH_INT,\r\nDD_FINANCIAL_ACCOUNT_CD ,\r\nBK_COMPANY_CODE ,\r\nDD_BK_DEPT_CD ,\r\nSUM(USD_NAT_NET)/SUM(NO_OF_TIMES) USD_UNIT_NAT_NET \r\nFROM (SELECT                  \r\nPARM.BK_FINANCE_REPORT_LINE_ITEM_CD ,\r\nBK_COMPANY_CODE ,\r\nDD_BK_DEPT_CD ,\r\nDD_FINANCIAL_ACCOUNT_CD ,\r\nFISCAL_YEAR_MONTH_INT,\r\nSUM(ZEROIFNULL(USD_REV_NET)) USD_REV_NET ,\r\nSUM(ZEROIFNULL(USD_NAT_NET)) USD_NAT_NET ,\r\nCOUNT(*) NO_OF_TIMES\r\nFROM ( SELECT                \r\n  JEL.BK_COMPANY_CODE ,\r\n  JEL.DD_BK_DEPT_CD ,\r\n  JEL.DD_FINANCIAL_ACCOUNT_CD ,\r\n  FMY.FISCAL_YEAR_MONTH_INT ,\r\n  SUM ( (ZEROIFNULL(JEL.RU_DV_USD_DEBIT_AMT) - ZEROIFNULL(JEL.RU_DV_USD_CREDIT_AMT)) *-1) USD_REV_NET ,\r\n  SUM((ZEROIFNULL(JEL.RU_DV_USD_DEBIT_AMT) - ZEROIFNULL(JEL.RU_DV_USD_CREDIT_AMT)) ) USD_NAT_NET \r\n  FROM $$FINLGLVWDB.N_JOURNAL_ENTRY_LINE JEL ,\r\n  $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR  FMY\r\n  WHERE JEL.DV_FISCAL_YEAR_MONTH_NUM_INT=FMY.FISCAL_YEAR_MONTH_INT\r\n  AND JEL.DD_FINANCIAL_COMPANY_MAPPED_CD IN ('MO','MC') \r\n  AND JEL.DD_FINANCIAL_ACCOUNT_CD BETWEEN '50000' AND '59999'  \r\n  GROUP BY \r\n  JEL.BK_COMPANY_CODE ,\r\n  JEL.DD_BK_DEPT_CD ,\r\n  JEL.DD_FINANCIAL_ACCOUNT_CD ,\r\n  FMY.FISCAL_YEAR_MONTH_INT \r\nUNION ALL \r\n  SELECT \r\n  BK_COMPANY_CD  AS BK_COMPANY_CODE   ,   \r\n  BK_HFM_REPORTED_DEPARTMENT_CD ,\r\n  BK_FINANCIAL_ACCOUNT_CD   ,    \r\n  NFM.FISCAL_YEAR_MONTH_INT ,\r\n  SUM((CONSOLIDATED_BALANCE_USD_AMT  ) * -1 )AS USD_REV_NET,\r\n  SUM(CONSOLIDATED_BALANCE_USD_AMT )AS USD_NAT_NET\r\n  FROM \r\n  $$FINLGLVWDB.N_HFM_ACCOUNT_BALANCE NHB,\r\n  $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR  NFM\r\n  WHERE NFM.FISCAL_YEAR_MONTH_INT=NHB.BK_FISCAL_YEAR_NUM_INT*100+NHB. BK_FISCAL_MONTH_NUM_INT  \r\n  AND NHB.SOURCE_DELETED_FLG ='N' \r\n  AND NHB.BK_ROLLUP_CATEGORY_CD ='USD Total'\r\n  AND NHB.DEPARTMENT_TYPE<> 'FINANCIAL DEPARTMENT'\r\n  AND NHB.BK_COMPANY_CD = '010'\r\n  AND BK_FINANCIAL_ACCOUNT_CD  BETWEEN '50000' AND '59999'\r\n  AND NFM.FISCAL_YEAR_MONTH_INT>=201302\r\n  GROUP BY 1,2,3,4 )C ,\r\n$$FINLGLVWDB.N_FIN_REPORT_LN_ITEM_PARAMETER PARM  \r\nWHERE PARM.INCLUSION_FLG='Y' \r\nAND PARM.BK_FINANCE_REPORT_LINE_ITEM_CD='SUPPTMATLCOSTS' \r\nAND DD_FINANCIAL_ACCOUNT_CD BETWEEN PARM.BK_ACCOUNT_RANGE_LOW_CD \r\nAND PARM.BK_ACCOUNT_RANGE_HIGH_CD \r\nAND DD_BK_DEPT_CD  BETWEEN PARM.BK_DEPARTMENT_RANGE_LOW_CD \r\nAND PARM.BK_DEPARTMENT_RANGE_HIGH_CD \r\nAND BK_COMPANY_CODE BETWEEN PARM.BK_COMPANY_RANGE_LOW_CD \r\nAND PARM.BK_COMPANY_RANGE_HIGH_CD \r\nGROUP BY PARM.BK_FINANCE_REPORT_LINE_ITEM_CD ,\r\nBK_COMPANY_CODE ,\r\nDD_BK_DEPT_CD ,\r\nDD_FINANCIAL_ACCOUNT_CD ,\r\nFISCAL_YEAR_MONTH_INT\r\n\r\nUNION ALL \r\n\r\nSELECT          \r\nPARM.BK_FINANCE_REPORT_LINE_ITEM_CD ,\r\nBK_COMPANY_CODE ,\r\nDD_BK_DEPT_CD ,\r\nDD_FINANCIAL_ACCOUNT_CD ,\r\nFISCAL_YEAR_MONTH_INT,\r\nSUM(ZEROIFNULL(USD_REV_NET)) USD_REV_NET ,\r\nSUM(ZEROIFNULL(USD_NAT_NET)) USD_NAT_NET ,\r\nCOUNT(*) NO_OF_TIMES \r\nFROM (  \r\nSELECT                   \r\nJEL.BK_COMPANY_CODE ,\r\nJEL.DD_BK_DEPT_CD ,\r\nJEL.DD_FINANCIAL_ACCOUNT_CD ,\r\nFMY.FISCAL_YEAR_MONTH_INT,\r\nSUM((ZEROIFNULL(JEL.RU_DV_USD_DEBIT_AMT) - ZEROIFNULL(JEL.RU_DV_USD_CREDIT_AMT)) ) USD_REV_NET ,\r\nSUM((ZEROIFNULL(JEL.RU_DV_USD_DEBIT_AMT) - ZEROIFNULL(JEL.RU_DV_USD_CREDIT_AMT)) ) USD_NAT_NET \r\nFROM $$FINLGLVWDB.N_JOURNAL_ENTRY_LINE JEL ,\r\n$$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR  FMY \r\nWHERE JEL.DV_FISCAL_YEAR_MONTH_NUM_INT=FMY.FISCAL_YEAR_MONTH_INT \r\nAND JEL.DD_FINANCIAL_COMPANY_MAPPED_CD IN ('MO','MC') \r\nAND JEL.DD_FINANCIAL_ACCOUNT_CD BETWEEN '50000' AND '59999' \r\nGROUP BY \r\nJEL.BK_COMPANY_CODE ,\r\nJEL.DD_BK_DEPT_CD ,\r\nJEL.DD_FINANCIAL_ACCOUNT_CD ,\r\nFMY.FISCAL_YEAR_MONTH_INT\r\nUNION ALL\r\nSELECT \r\nBK_COMPANY_CD  AS BK_COMPANY_CODE   ,           \r\nBK_HFM_REPORTED_DEPARTMENT_CD ,\r\nBK_FINANCIAL_ACCOUNT_CD   ,    \r\nNFM.FISCAL_YEAR_MONTH_INT,\r\nSUM((CONSOLIDATED_BALANCE_USD_AMT  ) )AS USD_REV_NET,\r\nSUM(CONSOLIDATED_BALANCE_USD_AMT )AS USD_NAT_NET\r\nFROM \r\n$$FINLGLVWDB.N_HFM_ACCOUNT_BALANCE NHB,\r\n$$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR  NFM\r\nWHERE NFM.FISCAL_YEAR_MONTH_INT=NHB.BK_FISCAL_YEAR_NUM_INT*100+NHB. BK_FISCAL_MONTH_NUM_INT\r\nAND NHB.SOURCE_DELETED_FLG ='N' \r\nAND NHB.BK_ROLLUP_CATEGORY_CD ='USD Total'\r\nAND NHB.DEPARTMENT_TYPE<> 'FINANCIAL DEPARTMENT'\r\nAND NHB.BK_COMPANY_CD = '010'\r\nAND BK_FINANCIAL_ACCOUNT_CD  BETWEEN '50000' AND '59999'\r\nAND NFM.FISCAL_YEAR_MONTH_INT>=201302\r\nGROUP BY 1,2,3,4 \r\n)C ,\r\n$$FINLGLVWDB.N_FIN_REPORT_LN_ITEM_PARAMETER PARM \r\nWHERE PARM.INCLUSION_FLG='N' \r\nAND PARM.BK_FINANCE_REPORT_LINE_ITEM_CD='SUPPTMATLCOSTS' \r\nAND DD_FINANCIAL_ACCOUNT_CD BETWEEN PARM.BK_ACCOUNT_RANGE_LOW_CD AND PARM.BK_ACCOUNT_RANGE_HIGH_CD \r\nAND DD_BK_DEPT_CD  BETWEEN PARM.BK_DEPARTMENT_RANGE_LOW_CD AND PARM.BK_DEPARTMENT_RANGE_HIGH_CD \r\nAND BK_COMPANY_CODE BETWEEN PARM.BK_COMPANY_RANGE_LOW_CD AND PARM.BK_COMPANY_RANGE_HIGH_CD \r\nGROUP BY   \r\nPARM.BK_FINANCE_REPORT_LINE_ITEM_CD\r\n,BK_COMPANY_CODE\r\n,DD_BK_DEPT_CD\r\n,DD_FINANCIAL_ACCOUNT_CD\r\n,FISCAL_YEAR_MONTH_INT\r\n) B\r\nGROUP BY \r\nBK_FINANCE_REPORT_LINE_ITEM_CD ,\r\nFISCAL_YEAR_MONTH_INT,\r\nDD_FINANCIAL_ACCOUNT_CD ,\r\nBK_COMPANY_CODE ,\r\nDD_BK_DEPT_CD \r\nHAVING SUM(USD_REV_NET) <> 0\r\n) G \r\nGROUP BY FISCAL_YEAR_MONTH_INT\r\n)COAAMT\r\nON FETCHAMT.FISCAL_YEAR_MONTH_INT=COAAMT.FISCAL_YEAR_MONTH_INT) A\r\nINNER JOIN  $$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RF\r\nON A.FISCAL_YEAR_MONTH_INT = RF.FISCAL_YEAR_MONTH_INT\r\nINNER JOIN $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID CTRL\r\nON RF.FISCAL_YEAR_MONTH_INT = CTRL.FISCAL_YEAR_MONTH_INT\r\nGROUP BY 1,5,6",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "DELETE FROM $$STGDB.WI_CCM_SSC_INPUT_DOLLAR WHERE FISCAL_MONTH_ID IN \r\n(SELECT FISCAL_MONTH_ID FROM $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID);",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_CCM_SSC_INPUT_DOLLAR1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "FISCAL_MONTH_ID",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "PL_NODE_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SUB_ACCOUNT_NUMBER",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FUNCTIONAL_COST",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AMOUNT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT FISCAL_MONTH_ID,PL_NODE_VALUE,DD_FINANCIAL_ACCOUNT_CD,DD_BK_SUBACCOUNT_CD,FUNCTIONAL_COST,SUM(USD_ACTUAL_AMOUNT) \r\nFROM\r\n(SELECT COALESCE(D.PL_NODE_VALUE,A.PL_NODE_VALUE) AS PL_NODE_VALUE,\r\nA.FISCAL_MONTH_ID,A.DEPT_NUMBER,A.DD_FINANCIAL_ACCOUNT_CD,A.DD_BK_SUBACCOUNT_CD,A.USD_ACTUAL_AMOUNT,\r\nCOALESCE(D.FUNCTIONAL_COST,A.FUNCTIONAL_COST) AS FUNCTIONAL_COST \r\nFROM\r\n(SELECT COALESCE(C.PL_NODE_VALUE,A.PL_NODE_VALUE) AS PL_NODE_VALUE,\r\nA.FISCAL_MONTH_ID,A.DEPT_NUMBER,A.DD_FINANCIAL_ACCOUNT_CD,A.DD_BK_SUBACCOUNT_CD,A.USD_ACTUAL_AMOUNT,\r\nCOALESCE(C.FUNCTIONAL_COST,A.FUNCTIONAL_COST) AS FUNCTIONAL_COST \r\nFROM\r\n(SELECT B.PL_NODE_VALUE,A.FISCAL_MONTH_ID,A.DEPT_NUMBER,A.DD_FINANCIAL_ACCOUNT_CD,A.DD_BK_SUBACCOUNT_CD,A.USD_ACTUAL_AMOUNT,B.FUNCTIONAL_COST\r\nFROM\r\n(SELECT  \r\nCTRL.FISCAL_MONTH_ID FISCAL_MONTH_ID\r\n,EA.BK_COMPANY_CODE||EA.DD_BK_DEPT_CD AS DEPT_NUMBER\r\n,EA.DD_FINANCIAL_ACCOUNT_CD\r\n,EA.DD_BK_SUBACCOUNT_CD\r\n,SUM(ZEROIFNULL(EA.RU_DV_USD_DEBIT_AMT)-ZEROIFNULL(EA.RU_DV_USD_CREDIT_AMT)) USD_ACTUAL_AMOUNT\r\nFROM \r\n$$STGDB.WI_EXPENSE_ACTUALS EA,\r\n$$STGDB.WI_FINANCE_ACCOUNTS ACC,\r\n$$FINLGLVWDB.N_FINANCIAL_DEPARTMENT DEP,\r\n$$FINLGLVWDB.R_PL_HIERARCHY  PL,\r\n$$COMREFVWDB.R_FISCAL_MONTH_TO_YEAR RF,\r\n$$STGDB.WI_TSS_COST_CNTRL_MONTH_ID CTRL\r\nWHERE \r\nEA.BK_COMPANY_CODE=DEP.BK_COMPANY_CODE AND \r\nEA.DD_BK_DEPT_CD=DEP.BK_DEPARTMENT_CODE AND\r\nDEP.BK_COMPANY_CODE=PL.FINANCIAL_COMPANY_CODE AND \r\nDEP.BK_DEPARTMENT_CODE=PL.FINANCIAL_DEPARTMENT_CODE AND  \r\nPL.NODE_LEVEL05_NAME='TSS (SUPPORT)' AND\r\nEA.DD_FINANCIAL_ACCOUNT_CD= ACC.BK_FINANCIAL_ACCOUNT_CODE AND\r\nEA.DD_BK_SUBACCOUNT_CD=ACC.BK_SUBACCOUNT_CODE \r\nAND ( \r\nEA.DD_FINANCIAL_COMPANY_MAPPED_CD IN ('MO','MC') \r\nOR  ( EA.DD_FINANCIAL_COMPANY_MAPPED_CD = 'UO' AND EA.BK_JOURNAL_ENTRY_CATEGORY_NAME =  'REVALUATION' AND EA.BK_JOURNAL_ENTRY_SOURCE_NAME = 'REVALUATION' AND EA.PUSH_TO_GLBL_CONSOL_BOOKS_FLG ='Y')\r\n)\r\nAND ACC.LEVEL03_ACCT_GROUP_ID ='EXPENSE' \r\nAND ACC.LEVEL04_ACCT_GROUP_ID <> 'NON EXPENSE SSOT OTHER' \r\nAND DEP.FINANCIAL_DEPT_NAME <> 'NON-SI-DEPT' \r\nAND EA.DV_FISCAL_YEAR_MONTH_NUM_INT = RF.FISCAL_YEAR_MONTH_INT\r\nAND RF.FISCAL_YEAR_MONTH_INT = CTRL.FISCAL_YEAR_MONTH_INT\r\nGROUP BY CTRL.FISCAL_MONTH_ID,EA.BK_COMPANY_CODE\r\n,EA.DD_BK_DEPT_CD\r\n,EA.DD_FINANCIAL_ACCOUNT_CD\r\n,EA.DD_BK_SUBACCOUNT_CD) A\r\n\r\nLEFT JOIN (SELECT SSC.PL_NODE_VALUE,(PL.FINANCIAL_COMPANY_CODE||PL.FINANCIAL_DEPARTMENT_CODE) DEPARTMENT_CODE,SSC.FUNCTIONAL_COST\r\nFROM $$FINLGLVWDB.R_PL_HIERARCHY PL, $$STGDB.WI_CCM_SSC_MAPPING_ALLOCATION SSC, $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID CTRL\r\nWHERE COALESCE(UPPER(SSC.ACCOUNT_NUMBER), 'EXPENSE') = 'EXPENSE'\r\nAND (PL.NODE_LEVEL06_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL07_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL08_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL09_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL10_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL11_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL12_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL13_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL14_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL15_VALUE = SSC.PL_NODE_VALUE)\r\nAND SSC.FISCAL_MONTH_ID = CTRL.FISCAL_MONTH_ID) B\r\n\r\nON B.DEPARTMENT_CODE = A.DEPT_NUMBER) A\r\n\r\nLEFT JOIN (SELECT SSC.PL_NODE_VALUE,(PL.FINANCIAL_COMPANY_CODE||PL.FINANCIAL_DEPARTMENT_CODE) DEPARTMENT_CODE ,SSC.ACCOUNT_NUMBER,SSC.FUNCTIONAL_COST\r\nFROM $$FINLGLVWDB.R_PL_HIERARCHY PL, $$STGDB.WI_CCM_SSC_MAPPING_ALLOCATION SSC, $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID CTRL\r\nWHERE COALESCE(SSC.ACCOUNT_NUMBER, 'EXPENSE') <> 'EXPENSE'\r\nAND SSC.SUB_ACCOUNT_NUMBER IS NULL\r\nAND (PL.NODE_LEVEL06_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL07_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL08_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL09_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL10_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL11_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL12_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL13_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL14_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL15_VALUE = SSC.PL_NODE_VALUE)\r\nAND SSC.FISCAL_MONTH_ID = CTRL.FISCAL_MONTH_ID) C\r\n\r\nON C.DEPARTMENT_CODE = A.DEPT_NUMBER AND C.ACCOUNT_NUMBER = A.DD_FINANCIAL_ACCOUNT_CD )A\r\n\r\nLEFT JOIN (SELECT  SSC.PL_NODE_VALUE, (PL.FINANCIAL_COMPANY_CODE||PL.FINANCIAL_DEPARTMENT_CODE) DEPARTMENT_CODE, SSC.ACCOUNT_NUMBER, SSC.SUB_ACCOUNT_NUMBER, SSC.FUNCTIONAL_COST\r\nFROM $$FINLGLVWDB.R_PL_HIERARCHY PL, $$STGDB.WI_CCM_SSC_MAPPING_ALLOCATION SSC, $$STGDB.WI_TSS_COST_CNTRL_MONTH_ID CTRL\r\nWHERE COALESCE(UPPER(SSC.ACCOUNT_NUMBER), 'EXPENSE') <> 'EXPENSE'\r\nAND SSC.SUB_ACCOUNT_NUMBER IS NOT NULL\r\nAND (PL.NODE_LEVEL06_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL07_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL08_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL09_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL10_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL11_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL12_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL13_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL14_VALUE = SSC.PL_NODE_VALUE\r\nOR PL.NODE_LEVEL15_VALUE = SSC.PL_NODE_VALUE)\r\nAND SSC.FISCAL_MONTH_ID = CTRL.FISCAL_MONTH_ID) D\r\n\r\nON D.DEPARTMENT_CODE = A.DEPT_NUMBER AND D.ACCOUNT_NUMBER = A.DD_FINANCIAL_ACCOUNT_CD AND D.SUB_ACCOUNT_NUMBER = A.DD_BK_SUBACCOUNT_CD ) A\r\n\r\nGROUP BY FISCAL_MONTH_ID,PL_NODE_VALUE,DD_FINANCIAL_ACCOUNT_CD,DD_BK_SUBACCOUNT_CD,FUNCTIONAL_COST HAVING FUNCTIONAL_COST IS NOT NULL",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "ACCOUNT_NUMBER",
+      "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR",
+      "to_field": "ACCOUNT_NUMBER",
+      "to_instance": "WI_CCM_SSC_INPUT_DOLLAR"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "WI_CCM_SSC_INPUT_DOLLAR"
+    },
+    {
+      "from_field": "PL_NODE_VALUE",
+      "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR",
+      "to_field": "PL_NODE_VALUE",
+      "to_instance": "WI_CCM_SSC_INPUT_DOLLAR"
+    },
+    {
+      "from_field": "SUB_ACCOUNT_NUMBER",
+      "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR",
+      "to_field": "SUB_ACCOUNT_NUMBER",
+      "to_instance": "WI_CCM_SSC_INPUT_DOLLAR"
+    },
+    {
+      "from_field": "FUNCTIONAL_COST",
+      "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR",
+      "to_field": "FUNCTIONAL_COST",
+      "to_instance": "WI_CCM_SSC_INPUT_DOLLAR"
+    },
+    {
+      "from_field": "AMOUNT",
+      "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR",
+      "to_field": "AMOUNT",
+      "to_instance": "WI_CCM_SSC_INPUT_DOLLAR"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "WI_CCM_SSC_INPUT_DOLLAR3"
+    },
+    {
+      "from_field": "PL_NODE_VALUE",
+      "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1",
+      "to_field": "PL_NODE_VALUE",
+      "to_instance": "WI_CCM_SSC_INPUT_DOLLAR3"
+    },
+    {
+      "from_field": "ACCOUNT_NUMBER",
+      "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1",
+      "to_field": "ACCOUNT_NUMBER",
+      "to_instance": "WI_CCM_SSC_INPUT_DOLLAR3"
+    },
+    {
+      "from_field": "SUB_ACCOUNT_NUMBER",
+      "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1",
+      "to_field": "SUB_ACCOUNT_NUMBER",
+      "to_instance": "WI_CCM_SSC_INPUT_DOLLAR3"
+    },
+    {
+      "from_field": "FUNCTIONAL_COST",
+      "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1",
+      "to_field": "FUNCTIONAL_COST",
+      "to_instance": "WI_CCM_SSC_INPUT_DOLLAR3"
+    },
+    {
+      "from_field": "AMOUNT",
+      "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1",
+      "to_field": "AMOUNT",
+      "to_instance": "WI_CCM_SSC_INPUT_DOLLAR3"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "WI_CCM_SSC_INPUT_DOLLAR1",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR"
+    },
+    {
+      "from_field": "PL_NODE_VALUE",
+      "from_instance": "WI_CCM_SSC_INPUT_DOLLAR1",
+      "to_field": "PL_NODE_VALUE",
+      "to_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR"
+    },
+    {
+      "from_field": "ACCOUNT_NUMBER",
+      "from_instance": "WI_CCM_SSC_INPUT_DOLLAR1",
+      "to_field": "ACCOUNT_NUMBER",
+      "to_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR"
+    },
+    {
+      "from_field": "SUB_ACCOUNT_NUMBER",
+      "from_instance": "WI_CCM_SSC_INPUT_DOLLAR1",
+      "to_field": "SUB_ACCOUNT_NUMBER",
+      "to_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR"
+    },
+    {
+      "from_field": "FUNCTIONAL_COST",
+      "from_instance": "WI_CCM_SSC_INPUT_DOLLAR1",
+      "to_field": "FUNCTIONAL_COST",
+      "to_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR"
+    },
+    {
+      "from_field": "AMOUNT",
+      "from_instance": "WI_CCM_SSC_INPUT_DOLLAR1",
+      "to_field": "AMOUNT",
+      "to_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR"
+    },
+    {
+      "from_field": "FISCAL_MONTH_ID",
+      "from_instance": "WI_CCM_SSC_INPUT_DOLLAR2",
+      "to_field": "FISCAL_MONTH_ID",
+      "to_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1"
+    },
+    {
+      "from_field": "PL_NODE_VALUE",
+      "from_instance": "WI_CCM_SSC_INPUT_DOLLAR2",
+      "to_field": "PL_NODE_VALUE",
+      "to_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1"
+    },
+    {
+      "from_field": "ACCOUNT_NUMBER",
+      "from_instance": "WI_CCM_SSC_INPUT_DOLLAR2",
+      "to_field": "ACCOUNT_NUMBER",
+      "to_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1"
+    },
+    {
+      "from_field": "SUB_ACCOUNT_NUMBER",
+      "from_instance": "WI_CCM_SSC_INPUT_DOLLAR2",
+      "to_field": "SUB_ACCOUNT_NUMBER",
+      "to_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1"
+    },
+    {
+      "from_field": "FUNCTIONAL_COST",
+      "from_instance": "WI_CCM_SSC_INPUT_DOLLAR2",
+      "to_field": "FUNCTIONAL_COST",
+      "to_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1"
+    },
+    {
+      "from_field": "AMOUNT",
+      "from_instance": "WI_CCM_SSC_INPUT_DOLLAR2",
+      "to_field": "AMOUNT",
+      "to_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "FISCAL_MONTH_ID",
+      "source_path": [
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "WI_CCM_SSC_INPUT_DOLLAR1"
+        },
+        {
+          "from_field": "FISCAL_MONTH_ID",
+          "from_instance": "WI_CCM_SSC_INPUT_DOLLAR2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "PL_NODE_VALUE",
+      "source_path": [
+        {
+          "from_field": "PL_NODE_VALUE",
+          "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR"
+        },
+        {
+          "from_field": "PL_NODE_VALUE",
+          "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1"
+        },
+        {
+          "from_field": "PL_NODE_VALUE",
+          "from_instance": "WI_CCM_SSC_INPUT_DOLLAR1"
+        },
+        {
+          "from_field": "PL_NODE_VALUE",
+          "from_instance": "WI_CCM_SSC_INPUT_DOLLAR2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACCOUNT_NUMBER",
+      "source_path": [
+        {
+          "from_field": "ACCOUNT_NUMBER",
+          "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR"
+        },
+        {
+          "from_field": "ACCOUNT_NUMBER",
+          "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1"
+        },
+        {
+          "from_field": "ACCOUNT_NUMBER",
+          "from_instance": "WI_CCM_SSC_INPUT_DOLLAR1"
+        },
+        {
+          "from_field": "ACCOUNT_NUMBER",
+          "from_instance": "WI_CCM_SSC_INPUT_DOLLAR2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SUB_ACCOUNT_NUMBER",
+      "source_path": [
+        {
+          "from_field": "SUB_ACCOUNT_NUMBER",
+          "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR"
+        },
+        {
+          "from_field": "SUB_ACCOUNT_NUMBER",
+          "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1"
+        },
+        {
+          "from_field": "SUB_ACCOUNT_NUMBER",
+          "from_instance": "WI_CCM_SSC_INPUT_DOLLAR1"
+        },
+        {
+          "from_field": "SUB_ACCOUNT_NUMBER",
+          "from_instance": "WI_CCM_SSC_INPUT_DOLLAR2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FUNCTIONAL_COST",
+      "source_path": [
+        {
+          "from_field": "FUNCTIONAL_COST",
+          "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR"
+        },
+        {
+          "from_field": "FUNCTIONAL_COST",
+          "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1"
+        },
+        {
+          "from_field": "FUNCTIONAL_COST",
+          "from_instance": "WI_CCM_SSC_INPUT_DOLLAR1"
+        },
+        {
+          "from_field": "FUNCTIONAL_COST",
+          "from_instance": "WI_CCM_SSC_INPUT_DOLLAR2"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AMOUNT",
+      "source_path": [
+        {
+          "from_field": "AMOUNT",
+          "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR"
+        },
+        {
+          "from_field": "AMOUNT",
+          "from_instance": "SQ_WI_CCM_SSC_INPUT_DOLLAR1"
+        },
+        {
+          "from_field": "AMOUNT",
+          "from_instance": "WI_CCM_SSC_INPUT_DOLLAR1"
+        },
+        {
+          "from_field": "AMOUNT",
+          "from_instance": "WI_CCM_SSC_INPUT_DOLLAR2"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:33:27.730819+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

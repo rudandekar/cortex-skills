@@ -1,0 +1,1254 @@
+{
+  "workflow_name": "wf_m_WK_LOCAL_FINANCIAL_ACCT",
+  "mapping_name": "m_WK_LOCAL_FINANCIAL_ACCT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_GL",
+  "target_table": "W_LOCAL_FINANCIAL_ACCT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_gl_wf_wk_local_financial_acct_02_mart_w_local_financial_acct",
+  "source_tables": [
+    "N_FIN_ACCT_LOCALITY_TV",
+    "ST_SI_ACCOUNT_LOCAL"
+  ],
+  "sources": [
+    {
+      "name": "N_FIN_ACCT_LOCALITY_TV",
+      "database_type": "Teradata",
+      "owner": "FINLGLVWDB",
+      "fields": [
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "FINANCIAL_ACCT_LOCALITY_NAME",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "EDW_CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_CREATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "EDW_UPDATE_USER",
+          "datatype": "char",
+          "precision": "30",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SK_SI_FLEX_STRUCT_ID_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "BK_FIN_ACCT_LOCALITY_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        }
+      ]
+    },
+    {
+      "name": "ST_SI_ACCOUNT_LOCAL",
+      "database_type": "Teradata",
+      "owner": "STGDB",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACCOUNT_VALUE",
+          "datatype": "varchar",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "SI_FLEX_STRUCT_ID",
+          "datatype": "decimal",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "RECLASS_ACCOUNT_VALUE",
+          "datatype": "varchar",
+          "precision": "15",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "LAST_UPDATE_DATE",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "timestamp",
+          "precision": "19",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "char",
+          "precision": "1",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "W_LOCAL_FINANCIAL_ACCT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "START_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "END_TV_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_FIN_ACCT_LOCALITY_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_BK_RCLS_FIN_ACCT_LCLTY_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "BK_FINANCIAL_ACCOUNT_CODE",
+        "datatype": "char",
+        "precision": "5",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RU_BK_RCLS_FIN_ACCT_CODE",
+        "datatype": "char",
+        "precision": "5",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FIN_LOCAL_ACCT_ENABLED_FLAG",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "FIN_LOCAL_ACCT_END_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "RECLASS_ROLE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "SK_ACCOUNT_VALUE_CODE",
+        "datatype": "char",
+        "precision": "5",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_DATETIME",
+        "datatype": "timestamp",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_CREATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "EDW_UPDATE_USER",
+        "datatype": "char",
+        "precision": "30",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "ACTION_CODE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DML_TYPE",
+        "datatype": "char",
+        "precision": "1",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "START_TV_DATE"
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_TV_DATE"
+        },
+        {
+          "name": "BK_FIN_ACCT_LOCALITY_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_FIN_ACCT_LOCALITY_INT"
+        },
+        {
+          "name": "RU_BK_RCLS_FIN_ACCT_LCLTY_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RU_BK_RCLS_FIN_ACCT_LCLTY_INT"
+        },
+        {
+          "name": "BK_FINANCIAL_ACCOUNT_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BK_FINANCIAL_ACCOUNT_CODE"
+        },
+        {
+          "name": "RU_BK_RCLS_FIN_ACCT_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RU_BK_RCLS_FIN_ACCT_CODE"
+        },
+        {
+          "name": "FIN_LOCAL_ACCT_ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FIN_LOCAL_ACCT_ENABLED_FLAG"
+        },
+        {
+          "name": "FIN_LOCAL_ACCT_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "FIN_LOCAL_ACCT_END_DATE"
+        },
+        {
+          "name": "RECLASS_ROLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RECLASS_ROLE"
+        },
+        {
+          "name": "SK_ACCOUNT_VALUE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SK_ACCOUNT_VALUE_CODE"
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RANK_INDEX"
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DML_TYPE"
+        },
+        {
+          "name": "ERROR_CHECK",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'NE'"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "Exp_EX_SI_ACCOUNT_LOCAL",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "BATCH_ID"
+        },
+        {
+          "name": "ACCOUNT_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACCOUNT_VALUE"
+        },
+        {
+          "name": "SI_FLEX_STRUCT_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "SI_FLEX_STRUCT_ID"
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ENABLED_FLAG"
+        },
+        {
+          "name": "RECLASS_ACCOUNT_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "RECLASS_ACCOUNT_VALUE"
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "END_DATE"
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "CREATE_DATETIME"
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "ACTION_CODE"
+        },
+        {
+          "name": "EXCEPTION_TYPE",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "'RI'"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    },
+    {
+      "name": "SQ_ST_SI_ACCOUNT_LOCAL1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "BATCH_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACCOUNT_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SI_FLEX_STRUCT_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RECLASS_ACCOUNT_VALUE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "CREATE_DATETIME",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n\t\tSSAL.BATCH_ID,\r\n\t\tSSAL.ACCOUNT_VALUE,\r\n\t\tSSAL.SI_FLEX_STRUCT_ID,\r\n\t\tSSAL.ENABLED_FLAG,\r\n\t\tSSAL.RECLASS_ACCOUNT_VALUE,\r\n\t\tSSAL.END_DATE,\r\n\t\tSSAL.CREATE_DATETIME,\r\n\t\tSSAL.ACTION_CODE\r\nFROM\r\n        $$STGDB.ST_SI_ACCOUNT_LOCAL SSAL\r\nWHERE   (\r\n\t\tNOT EXISTS\r\n\t\t\t(SELECT 1 \r\n\t\t\tFROM $$FINLGLVWDB.N_FIN_ACCT_LOCALITY_TV NFAL\r\n\t\t\tWHERE SSAL.SI_FLEX_STRUCT_ID = NFAL.SK_SI_FLEX_STRUCT_ID_INT)\r\n\t\tOR\tNOT EXISTS\r\n\t\t\t(SELECT 1\tFROM $$FINLGLVWDB.N_FINANCIAL_ACCOUNT_TV NFA \r\n\t\t\tWHERE SSAL.ACCOUNT_VALUE = NFA.BK_FINANCIAL_ACCOUNT_CODE)\r\n\t\tOR \t(NOT EXISTS \r\n\t\t\t    (SELECT 1 \tFROM $$FINLGLVWDB.N_FINANCIAL_ACCOUNT_TV   NFAT\r\n\t\t\t\tWHERE NFAT.BK_FINANCIAL_ACCOUNT_CODE = SSAL.RECLASS_ACCOUNT_VALUE)\r\n\t\t\t\tAND SSAL.RECLASS_ACCOUNT_VALUE IS NOT NULL)\r\n\t\t)",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "START_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "END_TV_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FIN_ACCT_LOCALITY_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_BK_RCLS_FIN_ACCT_LCLTY_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "BK_FINANCIAL_ACCOUNT_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RU_BK_RCLS_FIN_ACCT_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FIN_LOCAL_ACCT_ENABLED_FLAG",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "FIN_LOCAL_ACCT_END_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RECLASS_ROLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "SK_ACCOUNT_VALUE_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "ACTION_CODE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_INDEX",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DML_TYPE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT\tCAST(TVOUTPUT.START_TV_DATE AS DATE) START_TV_DATE,\r\n\tCOALESCE (MAX (CAST (TVOUTPUT. START_TV_DATE AS DATE) - INTERVAL '1' DAY) \r\n\tOVER (PARTITION BY TVOUTPUT.BK_FIN_ACCT_LOCALITY_INT,TVOUTPUT.BK_FINANCIAL_ACCOUNT_CODE\r\n\tORDER\tBY TVOUTPUT.START_TV_DATE ASC ROWS BETWEEN 1 FOLLOWING\r\n\tAND\t1 FOLLOWING), DATE '3500-01-01') AS END_TV_DATE,\r\n\tTVOUTPUT.BK_FIN_ACCT_LOCALITY_INT,\r\n\tTVOUTPUT.RU_BK_RCLS_FIN_ACCT_LCLTY_INT,\r\n\tTVOUTPUT.BK_FINANCIAL_ACCOUNT_CODE,\r\n\tTVOUTPUT.RU_BK_RCLS_FIN_ACCT_CODE,\r\n\tTVOUTPUT.FIN_LOCAL_ACCT_ENABLED_FLAG,\r\n\tTVOUTPUT.FIN_LOCAL_ACCT_END_DATE,\r\n\tTVOUTPUT.RECLASS_ROLE,\r\n\tTVOUTPUT.SK_ACCOUNT_VALUE_CODE,\r\n     \tTVOUTPUT.ACTION_CODE,\r\n\tROW_NUMBER () OVER (PARTITION BY TVOUTPUT.BK_FIN_ACCT_LOCALITY_INT,\r\n\t\t\t\t\t TVOUTPUT.BK_FINANCIAL_ACCOUNT_CODE \r\n\tORDER\tBY TVOUTPUT.START_TV_DATE ASC) AS RANK_INDEX,\r\n\t(CASE WHEN RANK_INDEX = 1 And NLFAT.BK_FIN_ACCT_LOCALITY_INT IS NOT NULL THEN 'U' ELSE 'I' END) As DML_TYPE\r\nFROM\t\r\n\t(\r\n\tSELECT\tSTART_TV_DATE,\r\n\t\tBK_FIN_ACCT_LOCALITY_INT,\r\n\t\tRU_BK_RCLS_FIN_ACCT_LCLTY_INT,\r\n\t\tBK_FINANCIAL_ACCOUNT_CODE,\r\n\t\tRU_BK_RCLS_FIN_ACCT_CODE,\r\n\t\tFIN_LOCAL_ACCT_ENABLED_FLAG,\r\n\t\tFIN_LOCAL_ACCT_END_DATE,\r\n\t\tRECLASS_ROLE,\r\n\t\tSK_ACCOUNT_VALUE_CODE,\r\n\t     \tACTION_CODE,\r\n\t\tROW_NUMBER () OVER (PARTITION BY BK_FIN_ACCT_LOCALITY_INT,\r\n\t\t\t\t\t\t RU_BK_RCLS_FIN_ACCT_LCLTY_INT,\r\n\t\t\t\t\t\t BK_FINANCIAL_ACCOUNT_CODE,\r\n\t\t\t\t\t\t RU_BK_RCLS_FIN_ACCT_CODE,\r\n\t\t\t\t\t\t FIN_LOCAL_ACCT_ENABLED_FLAG,\r\n\t\t\t\t\t\t FIN_LOCAL_ACCT_END_DATE\r\n\t\tORDER\tBY EDW_CREATE_DATETIME  DESC) AS ROW_NUM\r\n\tFROM\t\r\n\t\t(\r\n\t\tSELECT \r\n\t\t\tMFOM_ACCT.START_TV_DATE,\r\n\t\t\tMFOM_ACCT.END_TV_DATE,\r\n\t\t\tMFOM_ACCT.BK_FIN_ACCT_LOCALITY_INT,\r\n\t\t\tMFOM_ACCT. RU_BK_RCLS_FIN_ACCT_LCLTY_INT,\r\n\t\t\tMFOM_ACCT.BK_FINANCIAL_ACCOUNT_CODE,\r\n\t\t\tMFOM_ACCT. RU_BK_RCLS_FIN_ACCT_CODE,\t\r\n\t\t\tMFOM_ACCT.FIN_LOCAL_ACCT_ENABLED_FLAG,\r\n\t\t\tMFOM_ACCT.FIN_LOCAL_ACCT_END_DATE,\r\n\t\t\tMFOM_ACCT.RECLASS_ROLE,\r\n\t\t\tMFOM_ACCT. SK_ACCOUNT_VALUE_CODE,\r\n\t\t\tMFOM_ACCT. EDW_CREATE_DATETIME,\r\n\t\t\tMFOM_ACCT. ACTION_CODE\r\n\t\tFROM\t\r\n\t\t\t(\r\n\t\t\tSELECT\r\n\t\t\t\tCAST(SSAL.CREATE_DATETIME AS DATE) START_TV_DATE,\r\n\t\t\t\tCAST(SSAL.CREATE_DATETIME AS DATE) END_TV_DATE,\r\n\t\t\t\tNFAL.BK_FIN_ACCT_LOCALITY_INT BK_FIN_ACCT_LOCALITY_INT,\r\n\t\t\t\tNFAL.BK_FIN_ACCT_LOCALITY_INT RU_BK_RCLS_FIN_ACCT_LCLTY_INT,\r\n\t\t\t\tSSAL.ACCOUNT_VALUE BK_FINANCIAL_ACCOUNT_CODE,\r\n\t\t\t\tSSAL.RECLASS_ACCOUNT_VALUE RU_BK_RCLS_FIN_ACCT_CODE,\t\r\n\t\t\t\tSSAL.ENABLED_FLAG FIN_LOCAL_ACCT_ENABLED_FLAG,\r\n\t\t\t\tCAST(SSAL.END_DATE AS DATE) FIN_LOCAL_ACCT_END_DATE,\r\n\t\t\t\t(CASE WHEN SSAL.RECLASS_ACCOUNT_VALUE IS NULL THEN 'N' ELSE 'Y' END) RECLASS_ROLE,\r\n\t\t\t\tSSAL.ACCOUNT_VALUE SK_ACCOUNT_VALUE_CODE,\r\n\t\t\t\tSSAL.CREATE_DATETIME EDW_CREATE_DATETIME,\r\n\t\t\t\tSSAL.ACTION_CODE ACTION_CODE\r\n\t\t\tFROM\t$$STGDB.ST_SI_ACCOUNT_LOCAL SSAL, \r\n\t\t\t\t$$FINLGLVWDB.N_FIN_ACCT_LOCALITY_TV NFAL,\r\n\t\t\t\t$$FINLGLVWDB.N_FINANCIAL_ACCOUNT_TV NFA\r\n\t\t\tWHERE SSAL.SI_FLEX_STRUCT_ID = NFAL.SK_SI_FLEX_STRUCT_ID_INT\r\n\t\t\t\t\tAND\tSSAL.ACCOUNT_VALUE = NFA.BK_FINANCIAL_ACCOUNT_CODE\r\n\t\t\t\t\tAND\tNFA.END_TV_DATE=16000101\r\n\t\t\t\t\tAND\tNFAL.END_TV_DATE=16000101\r\n\t\t\tUNION\tALL\r\n\t\t\tSELECT\t\r\n\t\t\t\tCAST(EXSAL.CREATE_DATETIME AS DATE) START_TV_DATE,\r\n\t\t\t\tCAST(EXSAL.CREATE_DATETIME AS DATE) END_TV_DATE,\r\n\t\t\t\tNFAL.BK_FIN_ACCT_LOCALITY_INT BK_FIN_ACCT_LOCALITY_INT,\r\n\t\t\t\tNFAL.BK_FIN_ACCT_LOCALITY_INT RU_BK_RCLS_FIN_ACCT_LCLTY_INT,\r\n\t\t\t\tEXSAL.ACCOUNT_VALUE BK_FINANCIAL_ACCOUNT_CODE,\r\n\t\t\t\tEXSAL.RECLASS_ACCOUNT_VALUE RU_BK_RCLS_FIN_ACCT_CODE,\t\r\n\t\t\t\tEXSAL.ENABLED_FLAG FIN_LOCAL_ACCT_ENABLED_FLAG,\r\n\t\t\t\tCAST(EXSAL.END_DATE AS DATE) FIN_LOCAL_ACCT_END_DATE,\r\n\t\t\t\t(CASE WHEN EXSAL.RECLASS_ACCOUNT_VALUE IS NULL THEN 'N' ELSE 'Y' END) RECLASS_ROLE,\r\n\t\t\t\tEXSAL.ACCOUNT_VALUE SK_ACCOUNT_VALUE_CODE,\r\n\t\t\t\tEXSAL.CREATE_DATETIME EDW_CREATE_DATETIME,\r\n\t\t\t\tEXSAL.ACTION_CODE ACTION_CODE\r\n\t\t\tFROM\t$$EXCEPDB.EX_SI_ACCOUNT_LOCAL EXSAL, \r\n\t\t\t\t$$FINLGLVWDB.N_FIN_ACCT_LOCALITY_TV NFAL,\r\n\t\t\t\t$$FINLGLVWDB.N_FINANCIAL_ACCOUNT_TV NFA\r\n\t\t\tWHERE\tEXSAL.SI_FLEX_STRUCT_ID = NFAL.SK_SI_FLEX_STRUCT_ID_INT\r\n\t\t\t\tAND\tEXSAL.ACCOUNT_VALUE = NFA.BK_FINANCIAL_ACCOUNT_CODE\r\n\t\t\t\tAND\tNFA.END_TV_DATE=16000101\r\n\t\t\t\tAND\tNFAL.END_TV_DATE=16000101\r\n\t\t\t) MFOM_ACCT LEFT JOIN $$FINLGLVWDB.N_FINANCIAL_ACCOUNT_TV NFAT\r\n\t\t\tON MFOM_ACCT. RU_BK_RCLS_FIN_ACCT_CODE = NFAT.BK_FINANCIAL_ACCOUNT_CODE\r\n\t\t\tUNION\tALL\r\n\t\t\tSELECT\t\r\n\t\t\t\tNLFAT.START_TV_DATE,\r\n\t\t\t\tNLFAT.END_TV_DATE,\r\n\t\t\t\tNLFAT.BK_FIN_ACCT_LOCALITY_INT,\r\n\t\t\t\tNLFAT.RU_BK_RCLS_FIN_ACCT_LCLTY_INT,\r\n\t\t\t\tNLFAT.BK_FINANCIAL_ACCOUNT_CODE,\r\n\t\t\t\tNLFAT.RU_BK_RCLS_FIN_ACCT_CODE,\r\n\t\t\t\tNLFAT.FIN_LOCAL_ACCT_ENABLED_FLAG,\r\n\t\t\t\tNLFAT.FIN_LOCAL_ACCT_END_DATE,\r\n\t\t\t\tNLFAT.RECLASS_ROLE,\r\n\t\t\t\tNLFAT.SK_ACCOUNT_VALUE_CODE,\r\n\t\t\t\tNLFAT.EDW_UPDATE_DATETIME EDW_CREATE_DATETIME,\t\r\n\t\t\t\t'X' ACTION_CODE\r\n\t\t\tFROM\t$$FINLGLVWDB.N_LOCAL_FINANCIAL_ACCT_TV NLFAT,\r\n\t\t\t\t$$FINLGLVWDB.N_FIN_ACCT_LOCALITY_TV NFALTV\r\n\t\t\tWHERE\tNLFAT.BK_FIN_ACCT_LOCALITY_INT =NFALTV.BK_FIN_ACCT_LOCALITY_INT  \r\n\t\t\t  AND\t(NLFAT.BK_FINANCIAL_ACCOUNT_CODE, NFALTV.SK_SI_FLEX_STRUCT_ID_INT) IN\r\n\t\t\t\t\t(\r\n\t\t\t\t\tSELECT\tSSAL.ACCOUNT_VALUE,SSAL.SI_FLEX_STRUCT_ID FROM $$STGDB.ST_SI_ACCOUNT_LOCAL SSAL\r\n\t\t\t\t\tUNION\r\n\t\t\t\t\tSELECT\tEXSAL.ACCOUNT_VALUE,EXSAL.SI_FLEX_STRUCT_ID FROM $$EXCEPDB.EX_SI_ACCOUNT_LOCAL EXSAL\r\n\t\t\t\t\t)\r\n\t\t\tAND\tNLFAT.END_TV_DATE=16000101\r\n\t) TVINPUT\r\n\tQUALIFY\tROW_NUMBER () OVER (PARTITION BY TVINPUT.BK_FIN_ACCT_LOCALITY_INT,\r\n\t\t\t\t\t\t TVINPUT.BK_FINANCIAL_ACCOUNT_CODE,\r\n\t\t\t\t\t\t TVINPUT.START_TV_DATE\r\n\tORDER\tBY TVINPUT.EDW_CREATE_DATETIME DESC) = 1\r\n) TVOUTPUT\r\nLEFT JOIN $$FINLGLVWDB.N_LOCAL_FINANCIAL_ACCT_TV NLFAT\r\n\tON\tTVOUTPUT.BK_FIN_ACCT_LOCALITY_INT = NLFAT.BK_FIN_ACCT_LOCALITY_INT\r\n\tAND TVOUTPUT. BK_FINANCIAL_ACCOUNT_CODE=NLFAT. BK_FINANCIAL_ACCOUNT_CODE\r\n\tAnd\tNLFAT.END_TV_DATE =16000101\r\nWHERE\tTVOUTPUT.ROW_NUM = 1",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier",
+    "Expression"
+  ],
+  "connectors": [
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "to_field": "START_TV_DATE",
+      "to_instance": "W_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "to_field": "END_TV_DATE",
+      "to_instance": "W_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "BK_FIN_ACCT_LOCALITY_INT",
+      "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "to_field": "BK_FIN_ACCT_LOCALITY_INT",
+      "to_instance": "W_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "RU_BK_RCLS_FIN_ACCT_LCLTY_INT",
+      "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "to_field": "RU_BK_RCLS_FIN_ACCT_LCLTY_INT",
+      "to_instance": "W_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "BK_FINANCIAL_ACCOUNT_CODE",
+      "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "to_field": "BK_FINANCIAL_ACCOUNT_CODE",
+      "to_instance": "W_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "RU_BK_RCLS_FIN_ACCT_CODE",
+      "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "to_field": "RU_BK_RCLS_FIN_ACCT_CODE",
+      "to_instance": "W_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "FIN_LOCAL_ACCT_ENABLED_FLAG",
+      "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "to_field": "FIN_LOCAL_ACCT_ENABLED_FLAG",
+      "to_instance": "W_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "FIN_LOCAL_ACCT_END_DATE",
+      "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "to_field": "FIN_LOCAL_ACCT_END_DATE",
+      "to_instance": "W_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "RECLASS_ROLE",
+      "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "to_field": "RECLASS_ROLE",
+      "to_instance": "W_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "SK_ACCOUNT_VALUE_CODE",
+      "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "to_field": "SK_ACCOUNT_VALUE_CODE",
+      "to_instance": "W_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "to_field": "ACTION_CODE",
+      "to_instance": "W_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT",
+      "to_field": "DML_TYPE",
+      "to_instance": "W_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "Exp_EX_SI_ACCOUNT_LOCAL",
+      "to_field": "BATCH_ID",
+      "to_instance": "EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ACCOUNT_VALUE",
+      "from_instance": "Exp_EX_SI_ACCOUNT_LOCAL",
+      "to_field": "ACCOUNT_VALUE",
+      "to_instance": "EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "SI_FLEX_STRUCT_ID",
+      "from_instance": "Exp_EX_SI_ACCOUNT_LOCAL",
+      "to_field": "SI_FLEX_STRUCT_ID",
+      "to_instance": "EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "Exp_EX_SI_ACCOUNT_LOCAL",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "RECLASS_ACCOUNT_VALUE",
+      "from_instance": "Exp_EX_SI_ACCOUNT_LOCAL",
+      "to_field": "RECLASS_ACCOUNT_VALUE",
+      "to_instance": "EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "Exp_EX_SI_ACCOUNT_LOCAL",
+      "to_field": "END_DATE",
+      "to_instance": "EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "Exp_EX_SI_ACCOUNT_LOCAL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "Exp_EX_SI_ACCOUNT_LOCAL",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "EXCEPTION_TYPE",
+      "from_instance": "Exp_EX_SI_ACCOUNT_LOCAL",
+      "to_field": "EXCEPTION_TYPE",
+      "to_instance": "EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "START_TV_DATE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "START_TV_DATE",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "END_TV_DATE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "END_TV_DATE",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "BK_FIN_ACCT_LOCALITY_INT",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "BK_FIN_ACCT_LOCALITY_INT",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "RU_BK_RCLS_FIN_ACCT_LCLTY_INT",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "RU_BK_RCLS_FIN_ACCT_LCLTY_INT",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "BK_FINANCIAL_ACCOUNT_CODE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "BK_FINANCIAL_ACCOUNT_CODE",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "RU_BK_RCLS_FIN_ACCT_CODE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "RU_BK_RCLS_FIN_ACCT_CODE",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "FIN_LOCAL_ACCT_ENABLED_FLAG",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "FIN_LOCAL_ACCT_ENABLED_FLAG",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "FIN_LOCAL_ACCT_END_DATE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "FIN_LOCAL_ACCT_END_DATE",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "RECLASS_ROLE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "RECLASS_ROLE",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "SK_ACCOUNT_VALUE_CODE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "SK_ACCOUNT_VALUE_CODE",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "RANK_INDEX",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "RANK_INDEX",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "DML_TYPE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "DML_TYPE",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "BATCH_ID",
+      "to_instance": "Exp_EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ACCOUNT_VALUE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "ACCOUNT_VALUE",
+      "to_instance": "Exp_EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "SI_FLEX_STRUCT_ID",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "SI_FLEX_STRUCT_ID",
+      "to_instance": "Exp_EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "Exp_EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "RECLASS_ACCOUNT_VALUE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "RECLASS_ACCOUNT_VALUE",
+      "to_instance": "Exp_EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "END_DATE",
+      "to_instance": "Exp_EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "Exp_EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "Exp_EX_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "BATCH_ID",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "BATCH_ID",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL1"
+    },
+    {
+      "from_field": "ACCOUNT_VALUE",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "ACCOUNT_VALUE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL1"
+    },
+    {
+      "from_field": "SI_FLEX_STRUCT_ID",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "SI_FLEX_STRUCT_ID",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL1"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "ENABLED_FLAG",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL1"
+    },
+    {
+      "from_field": "RECLASS_ACCOUNT_VALUE",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "RECLASS_ACCOUNT_VALUE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL1"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "END_DATE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL1"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL1"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL1",
+      "to_field": "CREATE_DATETIME",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL1"
+    },
+    {
+      "from_field": "ACCOUNT_VALUE",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL",
+      "to_field": "SK_ACCOUNT_VALUE_CODE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "BK_FIN_ACCT_LOCALITY_INT",
+      "from_instance": "N_FIN_ACCT_LOCALITY_TV",
+      "to_field": "BK_FIN_ACCT_LOCALITY_INT",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "BK_FIN_ACCT_LOCALITY_INT",
+      "from_instance": "N_FIN_ACCT_LOCALITY_TV",
+      "to_field": "RU_BK_RCLS_FIN_ACCT_LCLTY_INT",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "SK_SI_FLEX_STRUCT_ID_INT",
+      "from_instance": "N_FIN_ACCT_LOCALITY_TV",
+      "to_field": "RANK_INDEX",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL",
+      "to_field": "START_TV_DATE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "CREATE_DATETIME",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL",
+      "to_field": "END_TV_DATE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ACCOUNT_VALUE",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL",
+      "to_field": "BK_FINANCIAL_ACCOUNT_CODE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL",
+      "to_field": "FIN_LOCAL_ACCT_ENABLED_FLAG",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "RECLASS_ACCOUNT_VALUE",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL",
+      "to_field": "RU_BK_RCLS_FIN_ACCT_CODE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "END_DATE",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL",
+      "to_field": "FIN_LOCAL_ACCT_END_DATE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "RECLASS_ACCOUNT_VALUE",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL",
+      "to_field": "RECLASS_ROLE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ENABLED_FLAG",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL",
+      "to_field": "DML_TYPE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    },
+    {
+      "from_field": "ACTION_CODE",
+      "from_instance": "ST_SI_ACCOUNT_LOCAL",
+      "to_field": "ACTION_CODE",
+      "to_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "START_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+        },
+        {
+          "from_field": "START_TV_DATE",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "END_TV_DATE",
+      "source_path": [
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+        },
+        {
+          "from_field": "END_TV_DATE",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "CREATE_DATETIME",
+          "from_instance": "ST_SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_FIN_ACCT_LOCALITY_INT",
+      "source_path": [
+        {
+          "from_field": "BK_FIN_ACCT_LOCALITY_INT",
+          "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+        },
+        {
+          "from_field": "BK_FIN_ACCT_LOCALITY_INT",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "BK_FIN_ACCT_LOCALITY_INT",
+          "from_instance": "N_FIN_ACCT_LOCALITY_TV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_BK_RCLS_FIN_ACCT_LCLTY_INT",
+      "source_path": [
+        {
+          "from_field": "RU_BK_RCLS_FIN_ACCT_LCLTY_INT",
+          "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+        },
+        {
+          "from_field": "RU_BK_RCLS_FIN_ACCT_LCLTY_INT",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "BK_FIN_ACCT_LOCALITY_INT",
+          "from_instance": "N_FIN_ACCT_LOCALITY_TV"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "BK_FINANCIAL_ACCOUNT_CODE",
+      "source_path": [
+        {
+          "from_field": "BK_FINANCIAL_ACCOUNT_CODE",
+          "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+        },
+        {
+          "from_field": "BK_FINANCIAL_ACCOUNT_CODE",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "ACCOUNT_VALUE",
+          "from_instance": "ST_SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RU_BK_RCLS_FIN_ACCT_CODE",
+      "source_path": [
+        {
+          "from_field": "RU_BK_RCLS_FIN_ACCT_CODE",
+          "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+        },
+        {
+          "from_field": "RU_BK_RCLS_FIN_ACCT_CODE",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "RECLASS_ACCOUNT_VALUE",
+          "from_instance": "ST_SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FIN_LOCAL_ACCT_ENABLED_FLAG",
+      "source_path": [
+        {
+          "from_field": "FIN_LOCAL_ACCT_ENABLED_FLAG",
+          "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+        },
+        {
+          "from_field": "FIN_LOCAL_ACCT_ENABLED_FLAG",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "ST_SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "FIN_LOCAL_ACCT_END_DATE",
+      "source_path": [
+        {
+          "from_field": "FIN_LOCAL_ACCT_END_DATE",
+          "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+        },
+        {
+          "from_field": "FIN_LOCAL_ACCT_END_DATE",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "END_DATE",
+          "from_instance": "ST_SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "RECLASS_ROLE",
+      "source_path": [
+        {
+          "from_field": "RECLASS_ROLE",
+          "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+        },
+        {
+          "from_field": "RECLASS_ROLE",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "RECLASS_ACCOUNT_VALUE",
+          "from_instance": "ST_SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "SK_ACCOUNT_VALUE_CODE",
+      "source_path": [
+        {
+          "from_field": "SK_ACCOUNT_VALUE_CODE",
+          "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+        },
+        {
+          "from_field": "SK_ACCOUNT_VALUE_CODE",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "ACCOUNT_VALUE",
+          "from_instance": "ST_SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_DATETIME",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_CREATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "EDW_UPDATE_USER",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "ACTION_CODE",
+      "source_path": [
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "Exp_EX_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL1"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_SI_ACCOUNT_LOCAL1"
+        },
+        {
+          "from_field": "ACTION_CODE",
+          "from_instance": "ST_SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DML_TYPE",
+      "source_path": [
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "Exp_WK_LOCAL_FINANCIAL_ACCT"
+        },
+        {
+          "from_field": "DML_TYPE",
+          "from_instance": "SQ_ST_SI_ACCOUNT_LOCAL"
+        },
+        {
+          "from_field": "ENABLED_FLAG",
+          "from_instance": "ST_SI_ACCOUNT_LOCAL"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:05:13.316137+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

@@ -1,0 +1,327 @@
+{
+  "workflow_name": "wf_m_WI_BKGS_PROD_CONFIG_DESC",
+  "mapping_name": "m_WI_BKGS_PROD_CONFIG_DESC",
+  "mapping_description": "",
+  "folder_name": "EDWTD_CART",
+  "target_table": "WI_BKGS_PROD_CONFIG_DESC_DUP",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_cart_wf_wi_bkgs_prod_config_desc_01_mart_wi_bkgs_prod_config_desc_dup",
+  "source_tables": [
+    "WI_PRODUCT_CONFIGURATION"
+  ],
+  "sources": [
+    {
+      "name": "WI_PRODUCT_CONFIGURATION",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV9",
+      "fields": [
+        {
+          "name": "PRODUCT_CONFIGURATION_DESC",
+          "datatype": "varchar",
+          "precision": "2000",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MAJOR_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MAJOR_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "MAJOR_PRODUCT_ID",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "MINOR_PRODUCT_KEY",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "RANK_NUMBER",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_BKGS_PROD_CONFIG_DESC_DUP",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "PRODUCT_CONFIGURATION_DESC",
+        "datatype": "varchar",
+        "precision": "2000",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "MAJOR_PRODUCT_ID",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_PRODUCT_CONFIGURATION1",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PRODUCT_CONFIGURATION_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MAJOR_PRODUCT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\nTRIM(PRODUCT_CONFIGURATION_DESC ),\r\nMAJOR_PRODUCT_ID \r\nFROM $$STGDB.WI_BKGS_PROD_CONFIG_DESC\r\nGROUP BY TRIM(PRODUCT_CONFIGURATION_DESC ),\r\nMAJOR_PRODUCT_ID",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "SQ_WI_BKGS_PROD_CONFIG_DESC",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "PRODUCT_CONFIGURATION_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MAJOR_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MAJOR_SALES_ORDER_LINE_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MINOR_PRODUCT_KEY",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "MAJOR_PRODUCT_ID",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "RANK_NUMBER",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT WI_PRODUCT_CONFIGURATION.PRODUCT_CONFIGURATION_DESC, WI_PRODUCT_CONFIGURATION.MAJOR_PRODUCT_KEY, WI_PRODUCT_CONFIGURATION.MAJOR_SALES_ORDER_LINE_KEY, WI_PRODUCT_CONFIGURATION.MINOR_PRODUCT_KEY, WI_PRODUCT_CONFIGURATION.MAJOR_PRODUCT_ID, WI_PRODUCT_CONFIGURATION.RANK_NUMBER \r\nFROM\r\n $$STGDB.WI_PRODUCT_CONFIGURATION where 1=2",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "PRODUCT_CONFIGURATION_DESC",
+      "from_instance": "SQ_WI_PRODUCT_CONFIGURATION1",
+      "to_field": "PRODUCT_CONFIGURATION_DESC",
+      "to_instance": "WI_BKGS_PROD_CONFIG_DESC_DUP"
+    },
+    {
+      "from_field": "MAJOR_PRODUCT_ID",
+      "from_instance": "SQ_WI_PRODUCT_CONFIGURATION1",
+      "to_field": "MAJOR_PRODUCT_ID",
+      "to_instance": "WI_BKGS_PROD_CONFIG_DESC_DUP"
+    },
+    {
+      "from_field": "MINOR_PRODUCT_KEY",
+      "from_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC",
+      "to_field": "MINOR_PRODUCT_KEY",
+      "to_instance": "WI_BKGS_PROD_CONFIG_DESC"
+    },
+    {
+      "from_field": "MAJOR_PRODUCT_ID",
+      "from_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC",
+      "to_field": "MAJOR_PRODUCT_ID",
+      "to_instance": "WI_BKGS_PROD_CONFIG_DESC"
+    },
+    {
+      "from_field": "RANK_NUMBER",
+      "from_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC",
+      "to_field": "RANK_NUMBER",
+      "to_instance": "WI_BKGS_PROD_CONFIG_DESC"
+    },
+    {
+      "from_field": "PRODUCT_CONFIGURATION_DESC",
+      "from_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC",
+      "to_field": "PRODUCT_CONFIGURATION_DESC",
+      "to_instance": "WI_BKGS_PROD_CONFIG_DESC"
+    },
+    {
+      "from_field": "MAJOR_PRODUCT_KEY",
+      "from_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC",
+      "to_field": "MAJOR_PRODUCT_KEY",
+      "to_instance": "WI_BKGS_PROD_CONFIG_DESC"
+    },
+    {
+      "from_field": "MAJOR_SALES_ORDER_LINE_KEY",
+      "from_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC",
+      "to_field": "MAJOR_SALES_ORDER_LINE_KEY",
+      "to_instance": "WI_BKGS_PROD_CONFIG_DESC"
+    },
+    {
+      "from_field": "MAJOR_PRODUCT_ID",
+      "from_instance": "WI_PRODUCT_CONFIGURATION2",
+      "to_field": "MAJOR_PRODUCT_ID",
+      "to_instance": "SQ_WI_PRODUCT_CONFIGURATION1"
+    },
+    {
+      "from_field": "PRODUCT_CONFIGURATION_DESC",
+      "from_instance": "WI_PRODUCT_CONFIGURATION2",
+      "to_field": "PRODUCT_CONFIGURATION_DESC",
+      "to_instance": "SQ_WI_PRODUCT_CONFIGURATION1"
+    },
+    {
+      "from_field": "PRODUCT_CONFIGURATION_DESC",
+      "from_instance": "WI_PRODUCT_CONFIGURATION1",
+      "to_field": "PRODUCT_CONFIGURATION_DESC",
+      "to_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC"
+    },
+    {
+      "from_field": "MAJOR_PRODUCT_KEY",
+      "from_instance": "WI_PRODUCT_CONFIGURATION1",
+      "to_field": "MAJOR_PRODUCT_KEY",
+      "to_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC"
+    },
+    {
+      "from_field": "MAJOR_SALES_ORDER_LINE_KEY",
+      "from_instance": "WI_PRODUCT_CONFIGURATION1",
+      "to_field": "MAJOR_SALES_ORDER_LINE_KEY",
+      "to_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC"
+    },
+    {
+      "from_field": "MAJOR_PRODUCT_ID",
+      "from_instance": "WI_PRODUCT_CONFIGURATION1",
+      "to_field": "MAJOR_PRODUCT_ID",
+      "to_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC"
+    },
+    {
+      "from_field": "MINOR_PRODUCT_KEY",
+      "from_instance": "WI_PRODUCT_CONFIGURATION1",
+      "to_field": "MINOR_PRODUCT_KEY",
+      "to_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC"
+    },
+    {
+      "from_field": "RANK_NUMBER",
+      "from_instance": "WI_PRODUCT_CONFIGURATION1",
+      "to_field": "RANK_NUMBER",
+      "to_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "PRODUCT_CONFIGURATION_DESC",
+      "source_path": [
+        {
+          "from_field": "PRODUCT_CONFIGURATION_DESC",
+          "from_instance": "SQ_WI_PRODUCT_CONFIGURATION1"
+        },
+        {
+          "from_field": "PRODUCT_CONFIGURATION_DESC",
+          "from_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC"
+        },
+        {
+          "from_field": "PRODUCT_CONFIGURATION_DESC",
+          "from_instance": "WI_PRODUCT_CONFIGURATION2"
+        },
+        {
+          "from_field": "PRODUCT_CONFIGURATION_DESC",
+          "from_instance": "WI_PRODUCT_CONFIGURATION1"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "MAJOR_PRODUCT_ID",
+      "source_path": [
+        {
+          "from_field": "MAJOR_PRODUCT_ID",
+          "from_instance": "SQ_WI_PRODUCT_CONFIGURATION1"
+        },
+        {
+          "from_field": "MAJOR_PRODUCT_ID",
+          "from_instance": "SQ_WI_BKGS_PROD_CONFIG_DESC"
+        },
+        {
+          "from_field": "MAJOR_PRODUCT_ID",
+          "from_instance": "WI_PRODUCT_CONFIGURATION2"
+        },
+        {
+          "from_field": "MAJOR_PRODUCT_ID",
+          "from_instance": "WI_PRODUCT_CONFIGURATION1"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:13.498184+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

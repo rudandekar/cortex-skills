@@ -1,0 +1,330 @@
+{
+  "workflow_name": "wf_m_WI_SBP_AUDIT",
+  "mapping_name": "m_WI_SBP_AUDIT",
+  "mapping_description": "",
+  "folder_name": "EDWTD_BKG_AGGRS",
+  "target_table": "WI_SBP_AUDIT",
+  "target_schema": "",
+  "proposed_model_name": "edwtd_bkg_aggrs_wf_wi_sbp_audit_01_mart_wi_sbp_audit",
+  "source_tables": [
+    "WI_SBP_AUDIT"
+  ],
+  "sources": [
+    {
+      "name": "WI_SBP_AUDIT",
+      "database_type": "Teradata",
+      "owner": "STGDB_DV1",
+      "fields": [
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date",
+          "precision": "10",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "DOLLAR_MISMATCH_AMT",
+          "datatype": "decimal",
+          "precision": "26",
+          "scale": "7",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "WI_SBP_AUDIT",
+    "database_type": "Teradata",
+    "owner": "",
+    "fields": [
+      {
+        "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+        "datatype": "integer",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_TABLE",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AUDIT_DATE",
+        "datatype": "date",
+        "precision": "10",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DOLLAR_MISMATCH_AMT",
+        "datatype": "decimal",
+        "precision": "26",
+        "scale": "7",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_WI_SBP_AUDIT",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DOLLAR_MISMATCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT \r\n SRC.DV_FISCAL_YEAR_MTH_NUMBER_INT, \r\n'MT_SERVICES_BOOKINGS' AS AUDIT_TABLE \r\n,CURRENT_DATE  \r\n,ABS(ROUND(COALESCE(SRC.SRC_BKGS_AMOUNT,1)-COALESCE(TGT.TGT_BKGS_AMOUNT,1),4))  AS BKGS_MISMATCH_AMT \r\nFROM\r\n(\r\nSEL DV_FISCAL_YEAR_MTH_NUMBER_INT, SUM (DD_COMP_US_NET_PRICE_AMOUNT) AS SRC_BKGS_AMOUNT\r\nFROM $$SLSORDVWDB.MT_RSTD_BKGS_MEASURE BKGS \r\niNNER JOIN $$COMREFVWDB.R_SALES_HIERARCHY  SALES_HIER\r\nON  BKGS.SALES_TERRITORY_KEY = SALES_HIER.SALES_TERRITORY_KEY\r\nINNER JOIN $$COMREFVWDB.N_PRODUCT PROD\r\nON PROD.ITEM_KEY = BKGS.PRODUCT_KEY\r\n/*INNER JOIN $$SLSORDVWDB.N_BOOKINGS_CHANNEL_MEASURE CHANNEL\r\nON CHANNEL.BOOKINGS_MEASURE_KEY = BKGS.BOOKINGS_MEASURE_KEY\r\nAND BKGS.BOOKINGS_PROCESS_DATE = CHANNEL.BOOKINGS_PROCESS_DATE\r\nAND BKGS.BKGS_MEASURE_TRANS_TYPE_CODE = CHANNEL.BKGS_MEASURE_TRANS_TYPE_CODE*/\r\n INNER JOIN $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR FDTY\r\nON FDTY.CALENDAR_DATE = BKGS.BOOKINGS_PROCESS_DATE \r\nWHERE\r\n SALES_HIER.SALES_TERRITORY_TYPE_CODE IN ('CORP. REVENUE','UNKNOWN') AND \r\n BKGS.DV_REVENUE_RECOGNITION_FLG = 'Y'\r\n AND PROD.BK_PRODUCT_TYPE_ID NOT IN ('TECHDOC', 'TRAINING' )\r\n AND BKGS.SERVICE_FLG = 'Y' \r\nAND  BKGS.DD_COMP_US_NET_PRICE_AMOUNT < >0 \r\n AND FDTY.FISCAL_YEAR_MONTH_INT = (SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_BKGS_CNTRL_MNTH) \r\n AND BKGS.DV_FISCAL_YEAR_MTH_NUMBER_INT = (SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_BKGS_CNTRL_MNTH)\r\nGROUP BY 1\r\n) SRC \r\n\r\nFULL JOIN\r\n(\r\nSEL  DV_FISCAL_YEAR_MTH_NUMBER_INT,SUM (DD_COMP_US_NET_PRICE_AMT      )  AS TGT_BKGS_AMOUNT FROM  $$SLSORDVWDB.MT_SERVICES_BOOKINGS  A  \r\n INNER JOIN $$COMREFVWDB.R_FISCAL_DAY_TO_YEAR FDTY\r\nON FDTY.CALENDAR_DATE = A.BOOKINGS_PROCESS_DT\r\nWHERE FDTY.FISCAL_YEAR_MONTH_INT =(SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_BKGS_CNTRL_MNTH)  AND \r\n  A.DV_FISCAL_YEAR_MTH_NUMBER_INT= (SEL FISCAL_YEAR_MONTH_INT FROM $$STGDB.WI_TSS_SRVC_BKGS_CNTRL_MNTH)\r\nGROUP BY 1 \r\n) TGT\r\n\r\nON SRC.DV_FISCAL_YEAR_MTH_NUMBER_INT=TGT.DV_FISCAL_YEAR_MTH_NUMBER_INT",
+        "User Defined Join": "",
+        "Source Filter": "",
+        "Number Of Sorted Ports": "0",
+        "Tracing Level": "Normal",
+        "Select Distinct": "NO",
+        "Is Partitionable": "NO",
+        "Pre SQL": "",
+        "Post SQL": "",
+        "Output is deterministic": "NO",
+        "Output is repeatable": "Never"
+      }
+    },
+    {
+      "name": "EXP_BKGS_MISMATCH",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "DV_FISCAL_YEAR_MTH_NUMBER_INT"
+        },
+        {
+          "name": "AUDIT_TABLE",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_TABLE"
+        },
+        {
+          "name": "AUDIT_DATE",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": "AUDIT_DATE"
+        },
+        {
+          "name": "DOLLAR_MISMATCH_AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "MISMATCH_STATUS",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": "IIF (DOLLAR_MISMATCH_AMT>ABS(1000) ,ABORT('Mismatch>$1000 in MT_SERVICES_BOOKINGS'),DOLLAR_MISMATCH_AMT)"
+        }
+      ],
+      "attributes": {
+        "Tracing Level": "Normal"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "EXP_BKGS_MISMATCH",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "WI_SBP_AUDIT"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "EXP_BKGS_MISMATCH",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "WI_SBP_AUDIT"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "EXP_BKGS_MISMATCH",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "WI_SBP_AUDIT"
+    },
+    {
+      "from_field": "MISMATCH_STATUS",
+      "from_instance": "EXP_BKGS_MISMATCH",
+      "to_field": "DOLLAR_MISMATCH_AMT",
+      "to_instance": "WI_SBP_AUDIT"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "WI_SBP_AUDIT1",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "SQ_WI_SBP_AUDIT"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "WI_SBP_AUDIT1",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "SQ_WI_SBP_AUDIT"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "WI_SBP_AUDIT1",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "SQ_WI_SBP_AUDIT"
+    },
+    {
+      "from_field": "DOLLAR_MISMATCH_AMT",
+      "from_instance": "WI_SBP_AUDIT1",
+      "to_field": "DOLLAR_MISMATCH_AMT",
+      "to_instance": "SQ_WI_SBP_AUDIT"
+    },
+    {
+      "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "from_instance": "SQ_WI_SBP_AUDIT",
+      "to_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "to_instance": "EXP_BKGS_MISMATCH"
+    },
+    {
+      "from_field": "AUDIT_TABLE",
+      "from_instance": "SQ_WI_SBP_AUDIT",
+      "to_field": "AUDIT_TABLE",
+      "to_instance": "EXP_BKGS_MISMATCH"
+    },
+    {
+      "from_field": "AUDIT_DATE",
+      "from_instance": "SQ_WI_SBP_AUDIT",
+      "to_field": "AUDIT_DATE",
+      "to_instance": "EXP_BKGS_MISMATCH"
+    },
+    {
+      "from_field": "DOLLAR_MISMATCH_AMT",
+      "from_instance": "SQ_WI_SBP_AUDIT",
+      "to_field": "DOLLAR_MISMATCH_AMT",
+      "to_instance": "EXP_BKGS_MISMATCH"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+      "source_path": [
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "EXP_BKGS_MISMATCH"
+        },
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "WI_SBP_AUDIT1"
+        },
+        {
+          "from_field": "DV_FISCAL_YEAR_MTH_NUMBER_INT",
+          "from_instance": "SQ_WI_SBP_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_TABLE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "EXP_BKGS_MISMATCH"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "WI_SBP_AUDIT1"
+        },
+        {
+          "from_field": "AUDIT_TABLE",
+          "from_instance": "SQ_WI_SBP_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AUDIT_DATE",
+      "source_path": [
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "EXP_BKGS_MISMATCH"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "WI_SBP_AUDIT1"
+        },
+        {
+          "from_field": "AUDIT_DATE",
+          "from_instance": "SQ_WI_SBP_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DOLLAR_MISMATCH_AMT",
+      "source_path": [
+        {
+          "from_field": "MISMATCH_STATUS",
+          "from_instance": "EXP_BKGS_MISMATCH"
+        },
+        {
+          "from_field": "DOLLAR_MISMATCH_AMT",
+          "from_instance": "WI_SBP_AUDIT1"
+        },
+        {
+          "from_field": "DOLLAR_MISMATCH_AMT",
+          "from_instance": "SQ_WI_SBP_AUDIT"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-19T18:41:12.399627+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}
