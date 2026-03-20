@@ -153,6 +153,14 @@ def parse_informatica_xml(xml_path: str) -> list:
 
                 transformations.append(t_info)
 
+            instance_to_target = {}
+            for inst in mapping.findall('.//INSTANCE'):
+                if inst.get('TYPE') == 'TARGET':
+                    inst_name = inst.get('NAME')
+                    trans_name = inst.get('TRANSFORMATION_NAME')
+                    if inst_name and trans_name:
+                        instance_to_target[inst_name] = trans_name
+
             connectors = []
             mapping_target_names = set()
             for conn in mapping.findall('.//CONNECTOR'):
@@ -163,7 +171,9 @@ def parse_informatica_xml(xml_path: str) -> list:
                     'to_instance': conn.get('TOINSTANCE')
                 })
                 if conn.get('TOINSTANCETYPE') == 'Target Definition':
-                    mapping_target_names.add(conn.get('TOINSTANCE'))
+                    to_inst = conn.get('TOINSTANCE')
+                    resolved = instance_to_target.get(to_inst, to_inst)
+                    mapping_target_names.add(resolved)
 
             if not mapping_target_names:
                 mapping_target_names = set(targets_by_name.keys())

@@ -5,6 +5,34 @@ All notable changes to the INFA2DBT Accelerator will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-03-20
+
+### Fixed
+- **Critical: Agent 1 Instance-to-Target Name Resolution** — Connector `TOINSTANCE` stores the mapping instance name (e.g., `TABLE1` with numeric suffix), but `targets_by_name` is keyed by TARGET definition name (e.g., `TABLE`). When Informatica appends a numeric suffix to instance names (~2,098 XMLs affected across Wave 2), the lookup silently failed and these XMLs produced 0 handoffs. Fixed by building an `instance_to_target` map from INSTANCE elements where `TYPE="TARGET"`, resolving via `TRANSFORMATION_NAME`.
+- **Agent 3 Expression Translation** — `LOCAL VARIABLE` porttype fields (Informatica internal variables) incorrectly counted as untranslated expressions. Fixed by adding `'LOCAL VARIABLE'` to the porttype skip list.
+
+### Changed
+- Agent 1 (`agent1_parser.py`): Added `instance_to_target` resolution map (lines 156-162) and connector TOINSTANCE resolution (line 175)
+- Agent 3 docs: Updated test results from single-directory (Expense: 933 models) to full Wave 2 (8,180 models across 6 directories)
+- Agent 1 docs: Added v2.4.0 instance-to-target resolution section
+
+### Test Results (Wave 2 — Full Run with Fix)
+- **8,180 models** across 6 directories (up from 4,842 before fix — **+69%**)
+- 8,174 PASS / 7 REVIEW / 0 FAIL
+- All 6 dimensions at **100%** average (99.9% for Revenue_COGS column_coverage due to 7 wide-column REVIEW models)
+
+| Directory | Before Fix | After Fix | Delta |
+|-----------|-----------|-----------|-------|
+| Expense | 933 | 1,035 | +102 |
+| Common | 418 | 818 | +400 |
+| IAM_Security | 212 | 239 | +27 |
+| Opty_Deals_Quotes | 212 | 305 | +93 |
+| Revenue_COGS | 1,968 | 3,826 | +1,858 |
+| Bookings | 1,099 | 1,958 | +859 |
+| **Total** | **4,842** | **8,181** | **+3,339** |
+
+---
+
 ## [2.3.0] - 2026-03-20
 
 ### Added

@@ -244,7 +244,7 @@ def validate_expression_translation(handoff: dict, sql: str) -> dict:
             porttype = field.get('porttype', '')
             fname = field['name'].lower()
 
-            if not expr or porttype == 'INPUT':
+            if not expr or porttype in ('INPUT', 'LOCAL VARIABLE'):
                 continue
 
             if expr.upper() == fname.upper():

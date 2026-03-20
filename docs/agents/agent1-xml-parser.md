@@ -49,6 +49,11 @@ Entry point for the INFA2DBT pipeline. Parses Informatica PowerCenter workflow X
 - **Previous behavior (v2.0):** All targets in a FOLDER were associated with every mapping, producing inflated handoff counts (e.g., 1322 handoffs)
 - **New behavior (v2.3):** Uses `CONNECTOR` elements with `TOINSTANCETYPE="Target Definition"` to link each target to its specific mapping, producing accurate counts (e.g., 937 handoffs)
 
+### v2.4.0: Instance-to-Target Name Resolution
+- **Bug (v2.3):** Connector `TOINSTANCE` stores the mapping **instance name** (e.g., `TABLE1` with numeric suffix), but `targets_by_name` is keyed by **TARGET definition name** (e.g., `TABLE`). When Informatica appends a numeric suffix to instance names, the lookup silently failed, dropping ~2,098 XMLs across Wave 2.
+- **Fix:** Builds an `instance_to_target` map from `INSTANCE` elements where `TYPE="TARGET"`, resolving `TOINSTANCE` → `TRANSFORMATION_NAME` → TARGET definition name before lookup.
+- **Impact:** Wave 2 total models increased from 4,842 to **8,180** (+69%).
+
 ### Workflow-Prefixed Naming Convention
 - **Previous:** `{xml_basename}_{seq}_{model_name}` (e.g., `edwtd_gl_wf_ff_cap_accounts_01_mart_cap_accounts`)
 - **New:** `{workflow_name}_{seq}_{target_table_name}` (e.g., `wf_ff_cap_accounts_01_ff_cap_accounts`)

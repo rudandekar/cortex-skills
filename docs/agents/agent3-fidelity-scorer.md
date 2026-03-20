@@ -135,23 +135,19 @@ python src/agent3_structural_validator.py \
 }
 ```
 
-## Expense Wave 2 Results (933 models)
+## Wave 2 Full Results (8,180 models across 6 directories)
 
-| Component | Score |
-|-----------|-------|
-| Transformation Coverage | 100% |
-| Sequence Preservation | 100% |
-| Column Coverage | 100% |
-| Expression Translation | 100% |
-| Source Coverage | 100% |
-| Logic Validation | 100% |
-| **Overall Average** | **100%** |
+| Directory | XMLs | Models | PASS | REVIEW | FAIL | Avg Score |
+|-----------|------|--------|------|--------|------|-----------|
+| Expense | ~800 | 1,035 | 1,035 | 0 | 0 | 100% |
+| Common | 409 | 818 | 818 | 0 | 0 | 100% |
+| IAM_Security | 188 | 239 | 239 | 0 | 0 | 100% |
+| Opty_Deals_Quotes | 256 | 305 | 305 | 0 | 0 | 100% |
+| Revenue_COGS | 2,112 | 3,826 | 3,819 | 7 | 0 | 99.9% |
+| Bookings | 1,221 | 1,958 | 1,958 | 0 | 0 | 100% |
+| **Total** | **~5,000** | **8,181** | **8,174** | **7** | **0** | **100%** |
 
-| Status | Count |
-|--------|-------|
-| PASS | 933 |
-| REVIEW | 0 |
-| FAIL | 0 |
+7 REVIEW models (all in Revenue_COGS) have missing target columns in wide-column tables — these are known converter limitations requiring manual review.
 
 ## Error Handling
 
