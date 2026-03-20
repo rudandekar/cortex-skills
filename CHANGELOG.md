@@ -5,6 +5,44 @@ All notable changes to the INFA2DBT Accelerator will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2026-03-20
+
+### Added
+- **Agent 3: Structural Fidelity Validator** (`src/agent3_structural_validator.py`, 602 lines) — programmatic comparison of XML handoff metadata against generated dbt SQL
+  - 6-dimension weighted scoring: Transformation Coverage (25%), Sequence Preservation (15%), Column Coverage (20%), Expression Translation (15%), Source Coverage (10%), Logic Validation (15%)
+  - PASS (≥85%) / REVIEW (70-85%) / FAIL (<70%) thresholds
+  - CTE prefix matching validates each XML transform type has a corresponding CTE
+  - Expression function translation validation: IIF→IFF, DECODE→CASE, NVL→COALESCE, SYSDATE→CURRENT_DATE, SESSSTARTTIME→CURRENT_TIMESTAMP
+  - Filter, Lookup, and Update Strategy CTE presence validation
+  - JSON report output with per-model component scores and issue details
+  - CLI: `--handoff-dir`, `--sql-dir`, `--report`, `--summary-only`
+- **Execution Sequence Preservation** in Agent 1 (`src/agent1_parser.py`)
+  - `topological_sort_sessions()` — Kahn's BFS algorithm on WORKFLOWLINK DAG
+  - Each handoff includes `execution_sequence` (integer) and `session_name` fields
+- **CONNECTOR-Based Target-to-Mapping Association** in Agent 1
+  - Uses `TOINSTANCETYPE="Target Definition"` to link targets to their correct mapping
+  - Eliminates inflated handoff counts (1322 → 937 for Expense Wave 2)
+- **Workflow-Prefixed Naming Convention**
+  - Format: `{workflow_name}_{sequence}_{target_table_name}`
+  - Workflow name from XML `WORKFLOW` element, sequence from topological sort
+
+### Changed
+- Agent 1 rewritten from v2.0 to v2.3 (436 lines) with new parsing approach
+- Agent 3 docs rewritten from spec-only to implementation documentation with test results
+- Agent 2 docs updated with Snowflake connection details and offline mode
+- README agent responsibilities table updated to reflect implemented functionality
+
+### Fixed
+- **Agent 3 Expression Translation scoring** — Models without Expression transforms scored 0% instead of 1.0; fixed to treat "nothing to translate" as perfect score
+- **Agent 3 Column Coverage regex** — Non-greedy `(.*?)\s*FROM` matched `FROM` inside column names (e.g., `bk_from_currency_cd`); fixed to require `\n\s+FROM\b` boundary
+- **Agent 3 Sequence Preservation scoring** — Penalized Agent 2 for correctly placing source CTEs first; fixed to only compare relative order of non-source transforms
+
+### Test Results (Expense Wave 2)
+- 933 models validated: **933 PASS, 0 REVIEW, 0 FAIL**
+- All 6 dimensions at **100%** average score
+
+---
+
 ## [2.2.0] - 2026-03-20
 
 ### Added

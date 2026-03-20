@@ -1,8 +1,9 @@
 # Agent 2: Informatica to dbt Converter
 
 **Skill Name:** `infa-to-dbt-converter`  
-**Version:** 2.0.0  
-**Phase:** 1 (Conversion)
+**Version:** 2.2.0  
+**Phase:** 1 (Conversion)  
+**Script:** `src/agent2_converter_v2.py` (1047 lines)
 
 ## Purpose
 
@@ -11,15 +12,14 @@ Converts a single Informatica target table's transformation chain into a product
 **Design Goals:**
 - (a) Semantically equivalent to original Informatica mapping
 - (b) Compliant with Deloitte INFA2DBT coding guidelines
-- (c) Self-documenting for Agent 4 validation
+- (c) Self-documenting for Agent 3 structural validation
 
 ## Inputs
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| `handoff_json_path` | Yes | Path to Agent 1 handoff object |
-| `coding_guidelines_path` | Yes | Path to coding guidelines document |
-| `corpus_examples_dir` | No | Path to labelled corpus examples |
+| `--handoff-dir` | Yes | Directory containing Agent 1 handoff JSONs |
+| `--output-dir` | No | Output directory (default: `/tmp/infa2dbt/output`) |
 
 ## Outputs
 
@@ -28,15 +28,22 @@ Converts a single Informatica target table's transformation chain into a product
 | `{model}.sql` | `models/converted/` | dbt model SQL file |
 | `{model}.schema.yml` | `models/converted/` | Column documentation and tests |
 | `{model}_unit.yml` | `tests/unit/` | Unit test fixtures |
-| `{model}.json` | `logs/agent2/` | Generation log |
 
-## v2.0 Features
+## Features
 
-- **RAG Integration:** Queries `INFA2DBT_CORPUS_SEARCH` for relevant patterns
-- **Persistent State:** Registers models in `MODEL_REGISTRY` table
-- **Fidelity Recording:** Calculates and stores quality scores
+- **RAG Integration:** Queries `INFA2DBT_DB.PIPELINE.INFA2DBT_CORPUS_SEARCH` Cortex Search service for relevant patterns
+- **Persistent State:** Registers models in `INFA2DBT_DB.PIPELINE.MODEL_REGISTRY` table
+- **Fidelity Recording:** Calculates structural proxy fidelity scores and stores in `INFA2DBT_DB.PIPELINE.FIDELITY_SCORES`
+- **Pipeline State Tracking:** Records run status in `INFA2DBT_DB.PIPELINE.PIPELINE_STATE`
 - **Duplicate Target Detection:** Real-time warning when target already has models
 - **Security Hardening:** Parameterized queries, JSON injection prevention
+- **Offline Mode:** `INFA2DBT_NO_STATE=1` env var bypasses all Snowflake state persistence
+
+## Snowflake Connection
+
+- Default connection: `DELOITTENA_COCO` (overridable via `SNOWFLAKE_CONNECTION_NAME` env var)
+- `snowflake_connection()` context manager checks `INFA2DBT_NO_STATE` env var before attempting connection
+- State tables: `INFA2DBT_DB.PIPELINE.{PIPELINE_STATE, MODEL_REGISTRY, FIDELITY_SCORES}`
 
 ## Workflow Steps
 

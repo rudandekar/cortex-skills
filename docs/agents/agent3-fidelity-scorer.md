@@ -1,118 +1,163 @@
-# Agent 3: Conversion Fidelity Scorer
+# Agent 3: Structural Fidelity Validator
 
 **Skill Name:** `conversion-fidelity-scorer`  
 **Version:** 1.0.0  
-**Phase:** 1 (Conversion)
+**Phase:** 1 (Conversion)  
+**Script:** `src/agent3_structural_validator.py` (602 lines)
 
 ## Purpose
 
-Validates semantic equivalence between generated dbt models and original Informatica mapping logic. Answers one question: **does the generated dbt model produce semantically equivalent output?**
+Programmatically compares Informatica XML handoff metadata against generated dbt SQL models to validate structural fidelity. Answers one question: **does the generated dbt model structurally match the original Informatica mapping?**
 
-**Key Responsibility:** This is the **only agent that can route models to quarantine**.
-
-**Critical Distinction:**
-- Agent 3 scores *conversion fidelity* (correctness)
-- Agent 6 scores *optimization priority* (ROI)
+**Key Distinction:**
+- Agent 3 performs **structural/static** validation (no data execution required)
+- Compares handoff JSON metadata (parsed XML) against generated SQL text
+- 6-dimension weighted scoring with PASS/REVIEW/FAIL thresholds
 
 ## Inputs
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| `model_sql_path` | Yes | Path to generated dbt model SQL |
-| `agent2_output_json` | Yes | Agent 2's output with quarantine_flag |
-| `handoff_json_path` | Yes | Original Agent 1 handoff |
-| `corpus_coverage_csv` | Yes | For threshold determination |
-| `pipeline_config_yaml` | No | Fidelity thresholds (default: 0.85/0.70) |
+| `--handoff-dir` | Yes | Directory containing Agent 1 handoff JSONs |
+| `--sql-dir` | Yes | Directory containing Agent 2 generated SQL files |
+| `--report` | No | Path to write full JSON report |
+| `--summary-only` | No | Print summary statistics only |
 
 ## Outputs
 
-| File | Location | Condition |
-|------|----------|-----------|
-| Pass signal | Agent 4 | All checks pass |
-| Retry signal | Agent 2 | Check fails, retries remain |
-| Quarantined model | `models/review_pending/` | Max retries exhausted |
-| Scoring log | `logs/agent3/` | Always |
+| Output | Format | Description |
+|--------|--------|-------------|
+| Console summary | Text | Pass/Review/Fail counts and component averages |
+| `validation_report.json` | JSON | Full per-model validation with component scores and issues |
 
-## Workflow Steps
+## Validation Dimensions
 
-1. **Quarantine Pre-check** - Check Agent 2's quarantine_flag
-2. **Determine Threshold** - 0.85 standard, 0.70 for thin coverage
-3. **Generate Synthetic Test Data** - 50-200 rows with edge cases
-4. **Generate Reference Output** - Translate original logic to reference SQL
-5. **Execute Comparison** - Run both models against seed data
-6. **Calculate Fidelity Score** - Weighted average across 5 dimensions
-7. **Execute Unit Tests** - Run dbt unit tests
-8. **Generate Failure Diagnosis** - If score < threshold
-9. **Routing Decision** - Pass, retry, or quarantine
-10. **Write Scoring Log** - Full scoring details
+| Dimension | Weight | What It Checks |
+|-----------|--------|----------------|
+| Transformation Coverage | 25% | Every XML transform has a corresponding CTE (by type prefix) |
+| Sequence Preservation | 15% | CTE order matches XML transform chain order (sources exempt) |
+| Column Coverage | 20% | All target columns present in final SELECT |
+| Expression Translation | 15% | Informatica expression fields translated (IIF→IFF, DECODE→CASE, NVL→COALESCE, SYSDATE→CURRENT_DATE) |
+| Source Coverage | 10% | All source tables referenced via `source()` macro |
+| Logic Validation | 15% | Filter CTEs, Lookup CTEs, Update Strategy CTEs present for corresponding XML transforms |
 
-## Fidelity Score Components
+## Scoring
 
-| Component | Weight | Pass Criteria |
-|-----------|--------|---------------|
-| Row count | 30% | Exact match |
-| Column match | 15% | Case-insensitive name match |
-| Null profile | 15% | ±2% NULL rate per column |
-| Aggregate match | 25% | Exact SUM/COUNT/MAX/MIN |
-| Spot check | 15% | 10 random rows match |
+### Thresholds
 
-## Threshold Rules
+| Status | Score | Action |
+|--------|-------|--------|
+| **PASS** | ≥ 85% | Model is structurally sound |
+| **REVIEW** | 70–85% | Manual review recommended |
+| **FAIL** | < 70% | Requires investigation or re-conversion |
 
-| Corpus Coverage | Threshold |
-|-----------------|-----------|
-| All types `ok` | 0.85 |
-| Any type `thin` | 0.70 |
-| Any type `missing` | Quarantine (no score) |
+### Scoring Rules
 
-## Routing Decision Logic
+- **No expressions to translate** → Expression Translation scores 1.0 (nothing to translate = perfect)
+- **No filters/lookups/update strategies** → Logic Validation scores 1.0 (nothing to validate = perfect)
+- **Source CTEs always come first in SQL** → Sequence comparison excludes source/XML Source Qualifier types and only compares relative order of non-source transforms (sources-first is scored separately at 20% of sequence weight)
+- **Final CTE column extraction** → Uses `\n\s+FROM\b` boundary to avoid matching `FROM` inside column names like `bk_from_currency_cd`
 
+## CTE Prefix Mapping
+
+| Informatica Type | Expected CTE Prefix |
+|-----------------|---------------------|
+| Source Qualifier | `source_` |
+| XML Source Qualifier | `xml_parsed_` |
+| Expression | `transformed_` |
+| Filter | `filtered_` |
+| Aggregator | `aggregated_` |
+| Lookup / Lookup Procedure | `lookup_` |
+| Joiner | `joined_` |
+| Router | `routed_` |
+| Update Strategy | `update_strategy_` |
+| Normalizer | `normalized_` |
+| Sequence Generator | `sequenced_` |
+| Sorter | `sorted_` |
+
+## CLI Usage
+
+```bash
+# Full validation with report
+python src/agent3_structural_validator.py \
+    --handoff-dir /tmp/infa2dbt/handoffs \
+    --sql-dir /tmp/infa2dbt/output/models/converted \
+    --report /tmp/infa2dbt/output/validation_report.json
+
+# Summary only
+python src/agent3_structural_validator.py \
+    --handoff-dir /tmp/infa2dbt/handoffs \
+    --sql-dir /tmp/infa2dbt/output/models/converted \
+    --summary-only
 ```
-if fidelity_score >= threshold AND all_unit_tests_pass:
-    → PASS to Agent 4
-elif retry_count < 3:
-    → RETRY to Agent 2 with diagnosis
-else:
-    → QUARANTINE to models/review_pending/
-```
 
-## Failure Diagnosis Example
+## Validation Report Schema
 
 ```json
 {
-  "failing_components": ["row_count", "aggregate_match"],
-  "row_count_expected": 142,
-  "row_count_actual": 138,
-  "row_count_delta": -4,
-  "aggregate_failures": [
-    {
-      "column": "order_amount",
-      "expected_sum": 142300.50,
-      "actual_sum": 138200.00,
-      "delta_pct": -2.88
+  "summary": {
+    "total": 933,
+    "pass": 933,
+    "review": 0,
+    "fail": 0,
+    "skip": 0,
+    "avg_score": 1.0,
+    "component_averages": {
+      "transformation_coverage": 1.0,
+      "sequence_preservation": 1.0,
+      "column_coverage": 1.0,
+      "expression_translation": 1.0,
+      "source_coverage": 1.0,
+      "logic_validation": 1.0
     }
-  ],
-  "likely_cause": "Filter condition too restrictive",
-  "suggested_fix": "Review WHERE clause in filtered_active_vendors CTE"
+  },
+  "models": [
+    {
+      "model_name": "wf_ff_cap_accounts_01_ff_cap_accounts",
+      "workflow_name": "WF_FF_CAP_ACCOUNTS",
+      "execution_sequence": 1,
+      "overall_score": 1.0,
+      "status": "PASS",
+      "component_scores": {...},
+      "issues": [],
+      "details": {
+        "transformation_coverage": {...},
+        "sequence_preservation": {...},
+        "column_coverage": {...},
+        "expression_translation": {...},
+        "filter_logic": {...},
+        "lookup_logic": {...},
+        "update_strategy": {...},
+        "source_coverage": {...}
+      }
+    }
+  ]
 }
 ```
 
-## Retry Count Rules
+## Expense Wave 2 Results (933 models)
 
-- Shared pool: Agent 3 + Agent 4 combined ≤ 3 retries
-- Example: If Agent 3 uses 2 retries, Agent 4 has 1 remaining
-- On retry: targeted correction only, not full regeneration
+| Component | Score |
+|-----------|-------|
+| Transformation Coverage | 100% |
+| Sequence Preservation | 100% |
+| Column Coverage | 100% |
+| Expression Translation | 100% |
+| Source Coverage | 100% |
+| Logic Validation | 100% |
+| **Overall Average** | **100%** |
+
+| Status | Count |
+|--------|-------|
+| PASS | 933 |
+| REVIEW | 0 |
+| FAIL | 0 |
 
 ## Error Handling
 
 | Condition | Action |
 |-----------|--------|
-| Synthetic data fails | Use reduced 10-row edge case set |
-| Reference SQL fails | Quarantine with `reference_sql_failure` |
-| Snowflake unavailable | Hold in queue, retry later |
-| Generated SQL syntax error | Score = 0.0 on all components |
-
-## HITL Checkpoints
-
-| Step | Risk Level | Approval Required |
-|------|-----------|-------------------|
-| None | — | Agent 3 operates autonomously |
+| SQL file not found | SKIP model, increment skip count |
+| No handoff files | Exit with message |
+| Malformed JSON | Skip model with error |
+| No final CTE in SQL | Column coverage scores 0% |

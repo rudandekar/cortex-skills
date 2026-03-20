@@ -9,12 +9,23 @@ sandbox execution and data comparison. See Agent 3 SKILL.md for the complete sco
 import json
 import os
 import re
+import sys
 import uuid
 import argparse
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Any
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__),
+    '..', 'agents', 'infa-to-dbt-converter', 'scripts'))
+try:
+    from agent2_batch import (compile_infa_expression as _compile_expr,
+                              translate_sql_dialect as _translate_dialect,
+                              build_transform_dag, resolve_cte_inputs)
+    BATCH_AVAILABLE = True
+except ImportError:
+    BATCH_AVAILABLE = False
 
 try:
     import snowflake.connector
@@ -716,34 +727,22 @@ def get_previous_cte_name(ctes: list) -> str:
 
 
 def clean_expression(expr: str, warn_on_truncate: bool = True) -> str:
-    """Clean Informatica expression for Snowflake SQL.
-    
-    Args:
-        expr: Raw expression string
-        warn_on_truncate: If True, prints warning when expression is truncated
-    
-    Returns:
-        Cleaned expression, truncated to 500 chars max with warning
-    """
     if not expr:
         return 'TRUE'
+    if BATCH_AVAILABLE:
+        result = _compile_expr(expr)
+        return result if result and result != 'NULL' else 'TRUE'
     expr = expr.replace('&#xD;&#xA;', ' ').replace('&#x9;', ' ')
     expr = expr.replace('&apos;', "'").replace('&lt;', '<').replace('&gt;', '>')
-    expr = expr.replace('DECODE(TRUE,', 'CASE WHEN ')
-    expr = expr.replace('IIF(', 'IFF(')
-    expr = expr.replace('SESSSTARTTIME', 'CURRENT_TIMESTAMP()')
-    expr = expr.replace('SYSDATE', 'CURRENT_DATE()')
-    expr = expr.replace('$PMMappingName', "'mapping_name'")
-    expr = expr.replace('SETMAXVARIABLE(', '/* SETMAXVARIABLE */ MAX(')
-    import re
-    expr = re.sub(r'\$\$(\w+)', r"'\1'", expr)
+    expr = re.sub(r'\bDECODE\s*\(\s*TRUE\s*,', 'CASE WHEN ', expr, flags=re.IGNORECASE)
+    expr = re.sub(r'\bIIF\s*\(', 'IFF(', expr, flags=re.IGNORECASE)
+    expr = re.sub(r'\bSESSSTARTTIME\b', 'CURRENT_TIMESTAMP()', expr, flags=re.IGNORECASE)
+    expr = re.sub(r'\bSYSDATE\b', 'CURRENT_DATE()', expr, flags=re.IGNORECASE)
+    expr = re.sub(r'\$PMMappingName', "'MAPPING_NAME'", expr, flags=re.IGNORECASE)
+    expr = re.sub(r'\bNVL\s*\(', 'COALESCE(', expr, flags=re.IGNORECASE)
+    expr = re.sub(r'\bSETMAXVARIABLE\s*\([^)]*\)', '/* SETMAXVARIABLE removed */', expr, flags=re.IGNORECASE)
+    expr = re.sub(r'\$\$(\w+)', lambda m: "{{ var('" + m.group(1).lower() + "') }}", expr)
     expr = ' '.join(expr.split())
-    
-    max_len = 500
-    if len(expr) > max_len:
-        if warn_on_truncate:
-            print(f"  [WARN] Expression truncated from {len(expr)} to {max_len} chars - manual review required")
-        return expr[:max_len] + ' /* TRUNCATED - review original */'
     return expr
 
 

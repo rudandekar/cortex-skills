@@ -54,9 +54,9 @@ This directory contains detailed documentation for each agent in the INFA2DBT pi
 
 | Agent | Primary Question | Key Output |
 |-------|------------------|------------|
-| 1 | How do I decompose this XML? | Handoff JSONs per target |
-| 2 | How do I convert to dbt SQL? | dbt models, schema, tests |
-| 3 | Is output semantically correct? | Pass/Retry/Quarantine decision |
+| 1 | How do I decompose this XML? | Handoff JSONs per target (with execution sequence) |
+| 2 | How do I convert to dbt SQL? | dbt models, schema, tests (with Snowflake state persistence) |
+| 3 | Does the SQL structurally match the XML? | 6-dimension fidelity score, PASS/REVIEW/FAIL |
 | 4 | Is code built correctly? | Compliance validation |
 | 5 | Is the batch ready? | Gate 1 sign-off package |
 | 6 | Which models to optimize first? | ROI tier assignments |
