@@ -1,0 +1,450 @@
+{
+  "workflow_name": "wf_m_TD_to_TD_complex",
+  "mapping_name": "m_TD_to_TD_complex",
+  "mapping_description": "",
+  "folder_name": "FOLDER_NAME",
+  "target_table": "TD_TGT",
+  "target_schema": "TGT_SCHEMA",
+  "proposed_model_name": "mart_td_tgt",
+  "source_tables": [
+    "TD_SRC"
+  ],
+  "sources": [
+    {
+      "name": "TD_SRC",
+      "database_type": "Teradata",
+      "owner": "SRC_SCHEMA",
+      "fields": [
+        {
+          "name": "KEY_ID",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "0",
+          "nullable": "NOTNULL"
+        },
+        {
+          "name": "COL_A",
+          "datatype": "varchar",
+          "precision": "100",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COL_B",
+          "datatype": "varchar",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "AMT",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        },
+        {
+          "name": "UPD_TS",
+          "datatype": "timestamp",
+          "precision": "29",
+          "scale": "6",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "TD_TGT",
+    "database_type": "Teradata",
+    "owner": "TGT_SCHEMA",
+    "fields": [
+      {
+        "name": "KEY_ID",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COL_A",
+        "datatype": "varchar",
+        "precision": "100",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COL_B_STD",
+        "datatype": "varchar",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "AMT",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "DIM_DESC",
+        "datatype": "varchar",
+        "precision": "200",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "LOAD_DT",
+        "datatype": "date",
+        "precision": "19",
+        "scale": "0",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "UPD_TS",
+        "datatype": "timestamp",
+        "precision": "29",
+        "scale": "6",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "INS_TS",
+        "datatype": "timestamp",
+        "precision": "29",
+        "scale": "6",
+        "nullable": "NOTNULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_TD_SRC",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "KEY_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COL_A",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COL_B",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPD_TS",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT KEY_ID, COL_A, COL_B, AMT, UPD_TS FROM SRC_DB.SRC_SCHEMA.SRC_TABLE WHERE UPD_TS >= TO_TIMESTAMP('$$LAST_RUN_TS','YYYY-MM-DD HH:MI:SS')",
+        "Source Filter": ""
+      }
+    },
+    {
+      "name": "EXP_Standardize",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "KEY_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COL_A",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COL_B",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPD_TS",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COL_B_STD",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOAD_DT",
+          "datatype": "date",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INS_TS",
+          "datatype": "date/time",
+          "porttype": "OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REJ_FLAG",
+          "datatype": "integer",
+          "porttype": "OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Expression": "COL_B_STD = UPPER(TRIM(COL_B))",
+        "Expression1": "LOAD_DT = TO_DATE('$$LOAD_DT','YYYY-MM-DD')",
+        "Expression2": "INS_TS = SYSTIMESTAMP",
+        "Expression3": "REJ_FLAG = IIF(ISNULL(KEY_ID) OR KEY_ID = 0, 1, 0)"
+      }
+    },
+    {
+      "name": "LKP_Dim",
+      "type": "Lookup",
+      "description": "",
+      "fields": [
+        {
+          "name": "IN_COL_B_STD",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "DIM_DESC",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Lookup Sql Override": "SELECT CODE AS COL_B_STD, DESCRIPTION AS DIM_DESC FROM TGT_DB.DIM_SCHEMA.DIM_TABLE",
+        "Lookup Condition": "COL_B_STD = IN_COL_B_STD",
+        "Return Value": "DIM_DESC",
+        "Cache": "Static"
+      }
+    },
+    {
+      "name": "AGG_ByKey",
+      "type": "Aggregator",
+      "description": "",
+      "fields": [
+        {
+          "name": "KEY_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AMT",
+          "datatype": "decimal",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "AMT_SUM",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Group By": "KEY_ID",
+        "Expression": "AMT_SUM = SUM(AMT)"
+      }
+    },
+    {
+      "name": "RTR_ValidReject",
+      "type": "Router",
+      "description": "",
+      "fields": [
+        {
+          "name": "KEY_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COL_A",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COL_B_STD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "AMT_SUM",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "DIM_DESC",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "LOAD_DT",
+          "datatype": "date",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "UPD_TS",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "INS_TS",
+          "datatype": "date/time",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "REJ_FLAG",
+          "datatype": "integer",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {},
+      "groups": [
+        {
+          "name": "VALID_REC",
+          "expression": "REJ_FLAG = 0"
+        },
+        {
+          "name": "REJECT_REC",
+          "expression": "REJ_FLAG = 1"
+        },
+        {
+          "name": "DEFAULT1",
+          "expression": "TRUE"
+        }
+      ]
+    },
+    {
+      "name": "UPDSTR_Tgt",
+      "type": "Update Strategy",
+      "description": "",
+      "fields": [
+        {
+          "name": "KEY_ID",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COL_A",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COL_B_STD",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Update Strategy Expression": "DD_INSERT"
+      }
+    }
+  ],
+  "transformation_types": [
+    "Aggregator",
+    "Router",
+    "Source Qualifier",
+    "Lookup",
+    "Expression",
+    "Update Strategy"
+  ],
+  "connectors": [],
+  "field_lineage": [
+    {
+      "target_column": "KEY_ID",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COL_A",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COL_B_STD",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "AMT",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "DIM_DESC",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "LOAD_DT",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "UPD_TS",
+      "source_path": [],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "INS_TS",
+      "source_path": [],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "thin",
+  "generated_timestamp": "2026-03-15T13:12:21.941661+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

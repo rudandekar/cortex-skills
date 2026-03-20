@@ -1,0 +1,170 @@
+{
+  "workflow_name": "wf_m_TD_to_TD",
+  "mapping_name": "m_TD_to_TD",
+  "mapping_description": "Read from Teradata and load to Teradata with pre/post SQL",
+  "folder_name": "FOLDER_NAME",
+  "target_table": "TGT_TD_TABLE",
+  "target_schema": "TGT_DB",
+  "proposed_model_name": "mart_tgt_td_table",
+  "source_tables": [
+    "SRC_TD_TABLE"
+  ],
+  "sources": [
+    {
+      "name": "SRC_TD_TABLE",
+      "database_type": "Teradata",
+      "owner": "SRC_DB",
+      "fields": [
+        {
+          "name": "COL1",
+          "datatype": "string",
+          "precision": "50",
+          "scale": "0",
+          "nullable": "NULL"
+        },
+        {
+          "name": "COL2",
+          "datatype": "decimal",
+          "precision": "18",
+          "scale": "2",
+          "nullable": "NULL"
+        }
+      ]
+    }
+  ],
+  "target": {
+    "name": "TGT_TD_TABLE",
+    "database_type": "Teradata",
+    "owner": "TGT_DB",
+    "fields": [
+      {
+        "name": "COL1",
+        "datatype": "string",
+        "precision": "50",
+        "scale": "0",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      },
+      {
+        "name": "COL2",
+        "datatype": "decimal",
+        "precision": "18",
+        "scale": "2",
+        "nullable": "NULL",
+        "keytype": "NOT A KEY"
+      }
+    ]
+  },
+  "transformation_chain": [
+    {
+      "name": "SQ_SRC_TD_TABLE",
+      "type": "Source Qualifier",
+      "description": "",
+      "fields": [
+        {
+          "name": "COL1",
+          "datatype": "string",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        },
+        {
+          "name": "COL2",
+          "datatype": "decimal",
+          "porttype": "INPUT/OUTPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {
+        "Sql Query": "SELECT COL1, COL2 FROM SRC_DB.SRC_TD_TABLE"
+      }
+    },
+    {
+      "name": "EXP_PASSTHRU",
+      "type": "Expression",
+      "description": "",
+      "fields": [
+        {
+          "name": "COL1",
+          "datatype": "string",
+          "porttype": "OUTPUT",
+          "expression": "COL1"
+        },
+        {
+          "name": "COL2",
+          "datatype": "decimal",
+          "porttype": "OUTPUT",
+          "expression": "COL2"
+        },
+        {
+          "name": "COL1_IN",
+          "datatype": "string",
+          "porttype": "INPUT",
+          "expression": ""
+        },
+        {
+          "name": "COL2_IN",
+          "datatype": "decimal",
+          "porttype": "INPUT",
+          "expression": ""
+        }
+      ],
+      "attributes": {}
+    }
+  ],
+  "transformation_types": [
+    "Expression",
+    "Source Qualifier"
+  ],
+  "connectors": [
+    {
+      "from_field": "COL1",
+      "from_instance": "SQ_SRC_TD_TABLE",
+      "to_field": "COL1_IN",
+      "to_instance": "EXP_PASSTHRU"
+    },
+    {
+      "from_field": "COL2",
+      "from_instance": "SQ_SRC_TD_TABLE",
+      "to_field": "COL2_IN",
+      "to_instance": "EXP_PASSTHRU"
+    },
+    {
+      "from_field": "COL1",
+      "from_instance": "EXP_PASSTHRU",
+      "to_field": "COL1",
+      "to_instance": "TGT_TD_TABLE"
+    },
+    {
+      "from_field": "COL2",
+      "from_instance": "EXP_PASSTHRU",
+      "to_field": "COL2",
+      "to_instance": "TGT_TD_TABLE"
+    }
+  ],
+  "field_lineage": [
+    {
+      "target_column": "COL1",
+      "source_path": [
+        {
+          "from_field": "COL1",
+          "from_instance": "EXP_PASSTHRU"
+        }
+      ],
+      "transformations_applied": []
+    },
+    {
+      "target_column": "COL2",
+      "source_path": [
+        {
+          "from_field": "COL2",
+          "from_instance": "EXP_PASSTHRU"
+        }
+      ],
+      "transformations_applied": []
+    }
+  ],
+  "corpus_coverage_status": "ok",
+  "generated_timestamp": "2026-03-15T13:11:34.354732+00:00",
+  "agent_version": "INFA2DBT_v2.0.0",
+  "quarantine_flag": false
+}

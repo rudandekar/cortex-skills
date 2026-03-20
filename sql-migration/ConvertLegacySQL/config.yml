@@ -1,0 +1,76 @@
+# ---------------------------------------------------------------------------
+# Unified Configuration for the ConvertLegacySQL Skill Suite
+#
+# This file contains all necessary parameters for the FDE skill to operate
+# safely and effectively within a client's Snowflake environment.
+# ---------------------------------------------------------------------------
+
+# === 1. Snowflake Environment Identifiers (Required) ===
+# These parameters tell the skill where to find data and where to build models.
+snowflake_account: "client_account.us-east-1" # e.g., "ab12345.us-east-1"
+snowflake_user: "RUPESH"
+snowflake_role: "SYSADMIN"         # The specific role the skill will use.
+snowflake_warehouse: "SF_SANDBOX_WH"            # The default warehouse for dbt runs and queries.
+
+# Target database and schema for development.
+# The skill will create user-specific schemas within this database (e.g., FDE_DEV_DB.FDE_USER_NAME_DEV)
+# to ensure development work is isolated.
+target_database: "DBT_TEST"
+
+# --- Source Data Location(s) ---
+# Define one or more sources. The key (e.g., 'raw_prod') will be used in dbt source definitions.
+sources:
+  - name: "RD_RAW"
+    database: "DBT_TEST"
+    schema: "PUBLIC"
+  - name: "RD_PF"
+    database: "PINNACLE_FINANCIAL"
+    schema: "ANALYTICS"
+
+
+# === 2. Governance & Auditing Parameters (Required) ===
+# These parameters control the safety and auditability of the skill.
+audit:
+  # The QUERY_TAG is essential for tracking all actions performed by the skill in QUERY_HISTORY.
+  query_tag:
+    skill_name: "ConvertLegacySQL"
+    invoked_by_user: "rudandekar@deloitte.com" # Should be dynamically filled with the FDE's email
+    client_project: "DBTConversion" # e.g., "TexasChildrensHospital"
+
+# --- Safety Guardrails ---
+# A regex pattern to identify schemas that should be treated as production.
+# The skill will require explicit, high-risk confirmation before writing to any matching schema.
+production_schema_pattern: "^(PROD|PUBLIC|ANALYTICS|GOLD)$"
+
+
+# === 3. dbt Project Configuration (Optional - has sensible defaults) ===
+# These parameters influence how the generated dbt project is structured.
+dbt:
+  project_name: "client_dbt_project"
+  # Prefix for dbt development schemas. Default is "dbt_".
+  # Resulting schema would be "dbt_FDE_USER_NAME"
+  dev_schema_prefix: "dbt_"
+
+
+# === 4. Performance & Optimization Parameters (Optional - has sensible defaults) ===
+# Controls for warehouse sizing and other performance-related settings.
+performance:
+  # The warehouse to use for particularly large, intensive operations like
+  # the initial reconciliation of a multi-terabyte table.
+  # Defaults to the primary snowflake_warehouse if not specified.
+  high_intensity_warehouse: "SF_SANDBOX_WH"
+
+  # The maximum size, in terabytes, for a table to be considered for clustering.
+  # Prevents applying costly clustering to small tables where it has little benefit.
+  clustering_min_table_size_tb: 1.0
+
+
+# === 5. File Format Parameters for Staged Files (Optional) ===
+# If you are reading from staged files (e.g., in S3), define the formats here.
+file_formats:
+  - name: "my_csv_format"
+    type: "CSV"
+    field_delimiter: ","
+    skip_header: 1
+  - name: "my_parquet_format"
+    type: "PARQUET"
