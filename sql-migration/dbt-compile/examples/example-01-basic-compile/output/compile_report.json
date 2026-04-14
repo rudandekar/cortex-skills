@@ -1,0 +1,60 @@
+{
+  "run_timestamp": "2026-03-31T15:30:00Z",
+  "dbt_version": "1.9.0",
+  "project_name": "example_infa2dbt_project",
+  "selector": "mart_comp_time_daily_tbl",
+  "summary": {
+    "models_compiled": 1,
+    "models_failed": 0,
+    "models_with_warnings": 1,
+    "snowflake_validated": false,
+    "snowflake_valid": null,
+    "snowflake_invalid": null
+  },
+  "models": [
+    {
+      "model_name": "mart_comp_time_daily_tbl",
+      "compile_status": "success",
+      "compiled_sql_path": "target/compiled/example_infa2dbt_project/models/mart_comp_time_daily_tbl.sql",
+      "cte_count": 5,
+      "resolved_sources": [
+        "RAW.PUBLIC.U0287D01",
+        "RAW.PUBLIC.PAY_PERIOD"
+      ],
+      "resolved_refs": [],
+      "informatica_artifacts": [
+        {
+          "type": "SETVARIABLE",
+          "line": 51,
+          "expression": "SETVARIABLE($$MAP_PP_YEAR_NUM, v_PAY_PERIOD)"
+        },
+        {
+          "type": "SETVARIABLE",
+          "line": 52,
+          "expression": "SETVARIABLE($$MAP_PP_END_YEAR, PP_END_YEAR)"
+        },
+        {
+          "type": "SETVARIABLE",
+          "line": 53,
+          "expression": "SETVARIABLE($$MAP_PP_NUM, PP_NUM)"
+        },
+        {
+          "type": "v_prefix",
+          "line": 50,
+          "expression": "v_PP_NUM"
+        }
+      ],
+      "todo_comments": [
+        "Note: 2 additional columns omitted - review source schema"
+      ],
+      "final_column_count": 15,
+      "warnings": [
+        "SETVARIABLE is not valid Snowflake SQL — requires manual conversion (3 occurrences)",
+        "v_PP_NUM appears to be an unconverted Informatica variable",
+        "1 TODO comment found — review needed"
+      ]
+    }
+  ],
+  "lineage": null,
+  "diffs": null
+}

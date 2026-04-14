@@ -1,0 +1,165 @@
+{
+  "skill": "dbt-compile",
+  "version": "0.1.0",
+  "evals": [
+    {
+      "id": "eval-01-basic-compile-success",
+      "name": "Basic compile — single model with Informatica artifacts",
+      "description": "Compile a single converted INFA2DBT model that has valid Jinja but contains Informatica artifacts (SETVARIABLE, v_ variables). Compile should succeed with warnings.",
+      "trigger_prompts": [
+        "compile the dbt model mart_comp_time_daily_tbl",
+        "run dbt compile on mart_comp_time_daily_tbl",
+        "check if mart_comp_time_daily_tbl compiles"
+      ],
+      "input": {
+        "dbt_project_path": "examples/example-01-basic-compile/input/",
+        "model_selector": "mart_comp_time_daily_tbl"
+      },
+      "expected": {
+        "compile_exit_code": 0,
+        "models_compiled": 1,
+        "models_failed": 0,
+        "warnings_present": true,
+        "informatica_artifacts_detected": [
+          "SETVARIABLE",
+          "v_prefix"
+        ],
+        "sources_resolved": [
+          "RAW.PUBLIC.U0287D01",
+          "RAW.PUBLIC.PAY_PERIOD"
+        ],
+        "cte_count": 5,
+        "output_files": [
+          "compile_report.json",
+          "compile_summary.md"
+        ]
+      },
+      "assertions": [
+        "compile_report.json exists and is valid JSON",
+        "compile_report.json.summary.models_compiled == 1",
+        "compile_report.json.summary.models_failed == 0",
+        "compile_report.json.models[0].informatica_artifacts has length >= 3",
+        "compile_report.json.models[0].resolved_sources contains RAW.PUBLIC.U0287D01",
+        "compile_summary.md contains 'Informatica Artifacts'",
+        "HITL checkpoint at Step 5 was NOT triggered (--validate-snowflake not set)"
+      ]
+    },
+    {
+      "id": "eval-02-compile-failure-missing-ref",
+      "name": "Compile failure — missing ref() dependency",
+      "description": "Compile a model that references another model via ref() that does not exist in the project. Should fail with a missing_ref error classified correctly.",
+      "trigger_prompts": [
+        "compile the model with broken refs",
+        "dbt compile on a model with missing dependencies"
+      ],
+      "input": {
+        "dbt_project_path": "/tmp/test_dbt_project/",
+        "model_selector": "model_with_missing_ref",
+        "model_sql": "SELECT * FROM {{ ref('nonexistent_upstream_model') }}"
+      },
+      "expected": {
+        "compile_exit_code": 1,
+        "models_compiled": 0,
+        "models_failed": 1,
+        "error_type": "missing_ref",
+        "error_ref_name": "nonexistent_upstream_model",
+        "forward_reference_check": true,
+        "output_files": [
+          "compile_report.json"
+        ]
+      },
+      "assertions": [
+        "compile_report.json exists and is valid JSON",
+        "compile_report.json.success == false",
+        "compile_report.json.errors has length >= 1",
+        "compile_report.json.errors[0].type == 'missing_ref'",
+        "Workflow STOPPED at Step 3 — did NOT proceed to Steps 5-7",
+        "Error message includes suggested fix",
+        "Forward reference classification was attempted"
+      ]
+    },
+    {
+      "id": "eval-03-full-pipeline-with-snowflake-validation",
+      "name": "Full pipeline — compile + Snowflake EXPLAIN + lineage",
+      "description": "Run complete pipeline: compile, validate against Snowflake with EXPLAIN, and extract lineage. Tests all 4 capabilities together including the HITL checkpoint at Step 5.",
+      "trigger_prompts": [
+        "compile and validate mart_comp_time_daily_tbl against Snowflake and show lineage",
+        "dbt compile --validate-snowflake --lineage on mart_comp_time_daily_tbl"
+      ],
+      "input": {
+        "dbt_project_path": "examples/example-01-basic-compile/input/",
+        "model_selector": "mart_comp_time_daily_tbl",
+        "flags": ["--validate-snowflake", "--lineage"]
+      },
+      "expected": {
+        "compile_exit_code": 0,
+        "hitl_checkpoint_triggered": true,
+        "hitl_step": 5,
+        "hitl_risk_level": "MEDIUM",
+        "snowflake_explain_attempted": true,
+        "lineage_extracted": true,
+        "output_files": [
+          "compile_report.json",
+          "compile_summary.md",
+          "lineage_graph.json",
+          "lineage_diagram.md"
+        ]
+      },
+      "assertions": [
+        "HITL checkpoint at Step 5 presented approval prompt before running EXPLAIN",
+        "HITL prompt included: model count, connection name, read-only confirmation",
+        "lineage_graph.json contains nodes for both sources and the model",
+        "lineage_graph.json.edges connects RAW.PUBLIC.U0287D01 to mart_comp_time_daily_tbl",
+        "lineage_diagram.md contains valid Mermaid graph syntax",
+        "compile_report.json.lineage is populated (not null)",
+        "Snowflake validation results included in compile_report.json"
+      ]
+    },
+    {
+      "id": "eval-04-no-dbt-installed",
+      "name": "Environment check — dbt not installed",
+      "description": "Invoke the skill when dbt is not installed on the machine. Should detect the missing installation, provide install instructions, and STOP without attempting compile.",
+      "trigger_prompts": [
+        "compile my dbt model",
+        "dbt compile"
+      ],
+      "input": {
+        "dbt_project_path": "/tmp/some_project/",
+        "precondition": "dbt is NOT on PATH"
+      },
+      "expected": {
+        "stopped_at_step": 1,
+        "install_instructions_provided": true,
+        "install_command_includes": "pip install dbt-core dbt-snowflake",
+        "no_compile_attempted": true
+      },
+      "assertions": [
+        "Workflow stopped at Step 1",
+        "User was told dbt is not installed",
+        "Install command 'pip install dbt-core dbt-snowflake' was presented",
+        "No dbt compile command was executed",
+        "No output files were generated"
+      ]
+    }
+  ],
+  "negative_trigger_evals": [
+    {
+      "id": "neg-01",
+      "prompt": "Score the fidelity of this dbt model against the Informatica source",
+      "should_trigger": false,
+      "correct_skill": "conversion-fidelity-scorer"
+    },
+    {
+      "id": "neg-02",
+      "prompt": "Optimize the CTE structure in this dbt model",
+      "should_trigger": false,
+      "correct_skill": "dbt-sql-optimizer"
+    },
+    {
+      "id": "neg-03",
+      "prompt": "Convert this Informatica workflow to dbt",
+      "should_trigger": false,
+      "correct_skill": "INFA2DBT"
+    }
+  ]
+}
