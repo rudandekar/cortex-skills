@@ -1,0 +1,148 @@
+{
+  "version": "0.2.0",
+  "generated_at": "2026-04-02T00:20:00Z",
+  "node_count": 23,
+  "edge_count": 37,
+  "external_references": [
+    "OperationalDB..ins_policy",
+    "OperationalDB..customer_master",
+    "OperationalDB..claims_header",
+    "OperationalDB..agent_master",
+    "OperationalDB..agency_master",
+    "OperationalDB..product_master",
+    "OperationalDB..payment_transactions"
+  ],
+  "layers": {
+    "L0_external": [
+      "OperationalDB..ins_policy",
+      "OperationalDB..customer_master",
+      "OperationalDB..claims_header",
+      "OperationalDB..agent_master",
+      "OperationalDB..agency_master",
+      "OperationalDB..product_master",
+      "OperationalDB..payment_transactions"
+    ],
+    "L1_staging": [
+      "stg_policies",
+      "stg_customers",
+      "stg_claims",
+      "stg_agents",
+      "stg_products",
+      "stg_payments"
+    ],
+    "L2_dimension": [
+      "dim_date",
+      "dim_product",
+      "dim_agent",
+      "dim_customer"
+    ],
+    "L3_fact": [
+      "fact_policy",
+      "fact_claims",
+      "fact_payments"
+    ],
+    "L4_audit": [
+      "etl_audit_log",
+      "etl_dq_checks"
+    ],
+    "L5_aggregation": [
+      "agg_policy_monthly",
+      "agg_claims_monthly"
+    ],
+    "L6_presentation": [
+      "v_policy_detail",
+      "v_claims_analysis",
+      "v_exec_kpi_summary"
+    ]
+  },
+  "edges": [
+    {"from": "OperationalDB..ins_policy", "to": "stg_policies", "type": "data_source"},
+    {"from": "OperationalDB..customer_master", "to": "stg_customers", "type": "data_source"},
+    {"from": "OperationalDB..claims_header", "to": "stg_claims", "type": "data_source"},
+    {"from": "OperationalDB..agent_master", "to": "stg_agents", "type": "data_source"},
+    {"from": "OperationalDB..agency_master", "to": "stg_agents", "type": "data_source"},
+    {"from": "OperationalDB..product_master", "to": "stg_products", "type": "data_source"},
+    {"from": "OperationalDB..payment_transactions", "to": "stg_payments", "type": "data_source"},
+    {"from": "stg_products", "to": "dim_product", "type": "scd1_source"},
+    {"from": "stg_agents", "to": "dim_agent", "type": "scd2_source"},
+    {"from": "stg_customers", "to": "dim_customer", "type": "scd2_source"},
+    {"from": "stg_policies", "to": "fact_policy", "type": "fact_source"},
+    {"from": "dim_customer", "to": "fact_policy", "type": "surrogate_key_lookup"},
+    {"from": "dim_agent", "to": "fact_policy", "type": "surrogate_key_lookup"},
+    {"from": "dim_product", "to": "fact_policy", "type": "surrogate_key_lookup"},
+    {"from": "stg_claims", "to": "fact_claims", "type": "fact_source"},
+    {"from": "dim_customer", "to": "fact_claims", "type": "surrogate_key_lookup"},
+    {"from": "dim_product", "to": "fact_claims", "type": "surrogate_key_lookup"},
+    {"from": "fact_policy", "to": "fact_claims", "type": "policy_key_lookup"},
+    {"from": "stg_payments", "to": "fact_payments", "type": "fact_source"},
+    {"from": "dim_customer", "to": "fact_payments", "type": "surrogate_key_lookup"},
+    {"from": "fact_policy", "to": "fact_payments", "type": "policy_key_lookup"},
+    {"from": "stg_policies", "to": "etl_dq_checks", "type": "dq_target"},
+    {"from": "stg_claims", "to": "etl_dq_checks", "type": "dq_target"},
+    {"from": "fact_policy", "to": "etl_dq_checks", "type": "dq_target"},
+    {"from": "fact_claims", "to": "etl_dq_checks", "type": "dq_target"},
+    {"from": "etl_audit_log", "to": "etl_dq_checks", "type": "log_target"},
+    {"from": "fact_policy", "to": "agg_policy_monthly", "type": "aggregation_source"},
+    {"from": "dim_date", "to": "agg_policy_monthly", "type": "dimension_lookup"},
+    {"from": "dim_product", "to": "agg_policy_monthly", "type": "dimension_lookup"},
+    {"from": "dim_agent", "to": "agg_policy_monthly", "type": "dimension_lookup"},
+    {"from": "dim_customer", "to": "agg_policy_monthly", "type": "dimension_lookup"},
+    {"from": "fact_claims", "to": "agg_claims_monthly", "type": "aggregation_source"},
+    {"from": "dim_date", "to": "agg_claims_monthly", "type": "dimension_lookup"},
+    {"from": "dim_product", "to": "agg_claims_monthly", "type": "dimension_lookup"},
+    {"from": "dim_customer", "to": "agg_claims_monthly", "type": "dimension_lookup"},
+    {"from": "fact_policy", "to": "agg_claims_monthly", "type": "cross_agg_lookup"},
+    {"from": "agg_policy_monthly", "to": "agg_claims_monthly", "type": "cross_agg_update"},
+    {"from": "fact_policy", "to": "v_policy_detail", "type": "view_source"},
+    {"from": "dim_customer", "to": "v_policy_detail", "type": "view_source"},
+    {"from": "dim_agent", "to": "v_policy_detail", "type": "view_source"},
+    {"from": "dim_product", "to": "v_policy_detail", "type": "view_source"},
+    {"from": "dim_date", "to": "v_policy_detail", "type": "view_source"},
+    {"from": "fact_claims", "to": "v_claims_analysis", "type": "view_source"},
+    {"from": "dim_customer", "to": "v_claims_analysis", "type": "view_source"},
+    {"from": "fact_policy", "to": "v_claims_analysis", "type": "view_source"},
+    {"from": "dim_product", "to": "v_claims_analysis", "type": "view_source"},
+    {"from": "dim_date", "to": "v_claims_analysis", "type": "view_source"},
+    {"from": "agg_policy_monthly", "to": "v_exec_kpi_summary", "type": "view_source"},
+    {"from": "agg_claims_monthly", "to": "v_exec_kpi_summary", "type": "view_source"}
+  ],
+  "topological_conversion_order": [
+    {"order": 1, "object": "stg_policies", "layer": "L1_staging"},
+    {"order": 2, "object": "stg_customers", "layer": "L1_staging"},
+    {"order": 3, "object": "stg_claims", "layer": "L1_staging"},
+    {"order": 4, "object": "stg_agents", "layer": "L1_staging"},
+    {"order": 5, "object": "stg_products", "layer": "L1_staging"},
+    {"order": 6, "object": "stg_payments", "layer": "L1_staging"},
+    {"order": 7, "object": "dim_date", "layer": "L2_dimension"},
+    {"order": 8, "object": "dim_product", "layer": "L2_dimension"},
+    {"order": 9, "object": "dim_agent", "layer": "L2_dimension"},
+    {"order": 10, "object": "dim_customer", "layer": "L2_dimension"},
+    {"order": 11, "object": "fact_policy", "layer": "L3_fact"},
+    {"order": 12, "object": "fact_claims", "layer": "L3_fact"},
+    {"order": 13, "object": "fact_payments", "layer": "L3_fact"},
+    {"order": 14, "object": "etl_audit_log", "layer": "L4_audit"},
+    {"order": 15, "object": "etl_dq_checks", "layer": "L4_audit"},
+    {"order": 16, "object": "agg_policy_monthly", "layer": "L5_aggregation"},
+    {"order": 17, "object": "agg_claims_monthly", "layer": "L5_aggregation"},
+    {"order": 18, "object": "v_policy_detail", "layer": "L6_presentation"},
+    {"order": 19, "object": "v_claims_analysis", "layer": "L6_presentation"},
+    {"order": 20, "object": "v_exec_kpi_summary", "layer": "L6_presentation"}
+  ],
+  "warnings": [
+    {
+      "type": "EXTERNAL_DEPENDENCY",
+      "message": "7 linked-server references to OperationalDB will be converted to [TODO] placeholders requiring manual source mapping",
+      "objects": ["stg_policies", "stg_customers", "stg_claims", "stg_agents", "stg_products", "stg_payments"]
+    },
+    {
+      "type": "CROSS_AGGREGATE_UPDATE",
+      "message": "agg_claims_monthly.loss_ratio_pct is updated FROM agg_policy_monthly — requires Snowflake UPDATE ... FROM syntax",
+      "objects": ["agg_claims_monthly"]
+    },
+    {
+      "type": "DEEP_PROCEDURAL",
+      "message": "etl_dq_checks contains 500+ lines of DECLARE/@var/IF-ELSE — likely quarantine candidate",
+      "objects": ["etl_dq_checks"]
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "skill_name": "sybase-to-snowflake",
+  "version": "0.3.0",
+  "evals": [
+    {
+      "id": 1,
+      "name": "staging-table-conversion",
+      "prompt": "Convert the Sybase staging table SQL in examples/example-01-insurance-dw/input/sql1.sql to Snowflake",
+      "input_files": ["examples/example-01-insurance-dw/input/sql1.sql"],
+      "expected_output": "Snowflake DDL and DML for 6 staging tables with CREATE OR REPLACE pattern",
+      "assertions": [
+        "Output contains CREATE OR REPLACE TABLE for each staging table",
+        "All GETDATE() calls converted to CURRENT_TIMESTAMP()",
+        "All ISNULL() calls converted to COALESCE()",
+        "No GO batch separators remain in output",
+        "Linked server notation (OperationalDB..dbo.) replaced with fully qualified names or flagged",
+        "CONVERT() with style 120 replaced with TO_CHAR or equivalent",
+        "IF EXISTS/DROP TABLE pattern replaced with CREATE OR REPLACE",
+        "Each output file contains a meta provenance header with source file, object name, and applied rules",
+        "Every non-trivial conversion has an inline -- [CONVERT] annotation with type-map section reference",
+        "object_inventory.json produced with block_id, classification, and sybase_constructs_detected per block",
+        "conversion_log.json produced with rules_applied, annotations_count, and meta_header_present per object"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "scd2-dimension-conversion",
+      "prompt": "Convert the Sybase SCD Type 2 dimension loading scripts in examples/example-01-insurance-dw/input/sql2.sql to Snowflake",
+      "input_files": ["examples/example-01-insurance-dw/input/sql2.sql"],
+      "expected_output": "Snowflake SQL for dim_date, dim_product (SCD1), dim_agent (SCD2), dim_customer (SCD2)",
+      "assertions": [
+        "dim_date WHILE loop converted to Snowflake Scripting or generator approach",
+        "IDENTITY columns converted to AUTOINCREMENT",
+        "SCD Type 1 (dim_product) converted to MERGE statement",
+        "SCD Type 2 (dim_customer) preserves expire+insert logic",
+        "DATEPART/DATENAME calls converted to DATE_PART/DAYNAME/MONTHNAME",
+        "Nested CASE expressions for age_band/credit_band preserved with correct syntax",
+        "TINYINT converted to SMALLINT",
+        "Complexity classifier scores dim_customer as Complex (7+ points)",
+        "dim_customer output includes -- [CONVERT] annotations for each ISNULL, DATEPART, DATEDIFF, and SCD2 pattern",
+        "Meta provenance header includes complexity tier and score",
+        "SCD2 conversion annotation references type-map §3: SCD Type 2"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "fact-table-with-date-keys",
+      "prompt": "Convert the Sybase fact table loading scripts in examples/example-01-insurance-dw/input/sql3.sql to Snowflake native SQL",
+      "input_files": ["examples/example-01-insurance-dw/input/sql3.sql"],
+      "expected_output": "Snowflake SQL for fact_policy, fact_claims, fact_payments with surrogate key resolution",
+      "assertions": [
+        "CONVERT(INT, CONVERT(CHAR(8), date, 112)) pattern converted to TO_NUMBER(TO_CHAR(date, 'YYYYMMDD'))",
+        "LEFT OUTER JOIN to SCD2 dimensions preserves scd_current_flag='Y' filter",
+        "Derived measures (earned_premium_amount, outstanding_reserve, loss_ratio_pct) correctly translated",
+        "DATEDIFF calls converted with quoted part names",
+        "All DATETIME columns mapped to TIMESTAMP_NTZ",
+        "dependency_graph.json shows fact tables depend on staging and dimension tables",
+        "Each fact load file has meta provenance header with Applied rules listing §2:CONVERT Function Mapping"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "procedural-dq-checks",
+      "prompt": "Convert the Sybase data quality checks and ETL audit logging in examples/example-01-insurance-dw/input/sql4.sql to Snowflake",
+      "input_files": ["examples/example-01-insurance-dw/input/sql4.sql"],
+      "expected_output": "Snowflake SQL with DQ checks wrapped in Snowflake Scripting blocks",
+      "assertions": [
+        "DECLARE @var blocks converted to Snowflake Scripting DECLARE/LET",
+        "IF/ELSE blocks converted to IF/ELSEIF/ELSE/END IF",
+        "PRINT statements converted to SYSTEM$LOG calls or removed with -- [REMOVE] annotation",
+        "@@ROWCOUNT references converted to SQLROWCOUNT",
+        "etl_audit_log INSERT preserves all check metadata",
+        "Complexity classifier scores this as Complex due to procedural depth",
+        "RAISERROR constructs wrapped in standardized TODO block with construct name, source line range, and suggested approach",
+        "TODO block count reported in conversion_log.json"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "full-pipeline-handoffs",
+      "prompt": "Run the full sybase-to-snowflake pipeline on examples/example-01-insurance-dw/input/ and verify all handoff artifacts are produced",
+      "input_files": [
+        "examples/example-01-insurance-dw/input/sql1.sql",
+        "examples/example-01-insurance-dw/input/sql2.sql",
+        "examples/example-01-insurance-dw/input/sql3.sql",
+        "examples/example-01-insurance-dw/input/sql4.sql",
+        "examples/example-01-insurance-dw/input/sql5.sql"
+      ],
+      "expected_output": "Complete converted output directory with all JSON handoff artifacts, test harness, and conversion report",
+      "assertions": [
+        "object_inventory.json exists in output_dir/logs/ with entries for all source blocks",
+        "dependency_graph.json exists with nodes, edges, topological_order, and layers",
+        "complexity_report.json exists with per-object scores and tier assignments",
+        "conversion_log.json exists with per-object rules_applied and annotations_count",
+        "fidelity_scores.json exists with per-object component_scores and routing decisions",
+        "run_log.json exists with entries for all 12 steps and overall_status",
+        "quarantine_inventory.json exists (may be empty if all objects pass)",
+        "run_all.sql exists with objects in dependency order",
+        "conversion_report.json exists in output_dir/logs/ with executive summary, quarantine inventory, and known limitations",
+        "optimization_report.json exists in output_dir/logs/ with recommendations by category and severity",
+        "optimization_ddl.sql exists with auto-apply and manual-review sections"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "fidelity-scoring-and-routing",
+      "prompt": "Run sybase-to-snowflake Step 7 (fidelity scoring) on the converted output from example-01-insurance-dw and verify routing decisions",
+      "input_files": ["examples/example-01-insurance-dw/input/sql2.sql"],
+      "expected_output": "Fidelity scores with PASS/RETRY/QUARANTINE routing for SCD2 dimension objects",
+      "assertions": [
+        "Synthetic seed data includes NULL rows, duplicate key rows, boundary dates, empty strings, and negative amounts",
+        "Fidelity score has 5 weighted components: row_count (30%), column_match (15%), null_profile (15%), aggregate_match (25%), spot_check (15%)",
+        "Objects scoring >= threshold receive PASS decision",
+        "Objects scoring below threshold with retry_count < max_retries receive RETRY decision with structured diagnosis",
+        "RETRY diagnosis includes failing_components, deltas, likely_cause, and suggested_fix",
+        "Objects exhausting retries receive QUARANTINE decision and are moved to quarantine directory",
+        "Complex objects (score >= 10) may use reduced threshold of 0.70"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "resume-from-failure",
+      "prompt": "Resume sybase-to-snowflake from Step 7 using a run_log.json that shows Steps 1-6 as passed",
+      "input_files": [],
+      "expected_output": "Pipeline resumes from Step 7 without re-executing Steps 1-6",
+      "assertions": [
+        "run_log.json is read and steps with status 'passed' are skipped",
+        "Execution starts from the first step with status 'failed' or 'pending'",
+        "Previously produced artifacts (object_inventory.json, dependency_graph.json, etc.) are reused",
+        "New run_log.json is produced with updated step statuses"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "optimization-recommendations",
+      "prompt": "Run sybase-to-snowflake Step 12 (optimization recommendations) on the converted output from example-01-insurance-dw",
+      "input_files": [
+        "examples/example-01-insurance-dw/input/sql1.sql",
+        "examples/example-01-insurance-dw/input/sql2.sql",
+        "examples/example-01-insurance-dw/input/sql3.sql",
+        "examples/example-01-insurance-dw/input/sql4.sql",
+        "examples/example-01-insurance-dw/input/sql5.sql"
+      ],
+      "expected_output": "Optimization report with categorized recommendations and ready-to-execute DDL",
+      "assertions": [
+        "optimization_report.json exists in output_dir/logs/ with version 0.3.0",
+        "Each recommendation has rec_id, rule_id (O1-O8), category, severity, classification, rationale, and ddl fields",
+        "Recommendations are classified as either auto-apply or manual-review",
+        "Severity levels are HIGH, MEDIUM, or LOW",
+        "optimization_ddl.sql exists with auto-apply section followed by manual-review section",
+        "Manual-review items are commented out with -- [MANUAL REVIEW] prefix",
+        "Staging tables are recommended as transient (O2)",
+        "Fact tables with date keys are recommended for clustering (O1)",
+        "PK/FK relationships from dependency graph produce informational constraint DDL (O5)"
+      ]
+    }
+  ]
+}

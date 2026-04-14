@@ -1,0 +1,65 @@
+{
+  "version": "0.2.0",
+  "generated_at": "2026-04-02T00:45:00Z",
+  "source_files": 5,
+  "source_blocks": 52,
+  "unique_objects": 20,
+  "output_files": {
+    "ddl_staging.sql": {"objects": ["stg_policies", "stg_customers", "stg_claims", "stg_agents", "stg_products", "stg_payments"], "line_count": 150},
+    "dml_staging.sql": {"objects": ["stg_policies", "stg_customers", "stg_claims", "stg_agents", "stg_products", "stg_payments"], "line_count": 191},
+    "ddl_dimensions.sql": {"objects": ["dim_date", "dim_product", "dim_agent", "dim_customer"], "line_count": 129},
+    "dml_dimensions.sql": {"objects": ["dim_date", "dim_product", "dim_agent", "dim_customer"], "line_count": 348},
+    "ddl_facts.sql": {"objects": ["fact_policy", "fact_claims", "fact_payments"], "line_count": 101},
+    "dml_facts.sql": {"objects": ["fact_policy", "fact_claims", "fact_payments"], "line_count": 261},
+    "ddl_audit.sql": {"objects": ["etl_audit_log"], "line_count": 36},
+    "proc_etl_dq_checks.sql": {"objects": ["sp_etl_dq_checks"], "line_count": 282, "status": "QUARANTINE"},
+    "dml_aggregation.sql": {"objects": ["agg_policy_monthly", "agg_claims_monthly"], "line_count": 185},
+    "ddl_views.sql": {"objects": ["v_policy_detail", "v_claims_analysis", "v_exec_kpi_summary"], "line_count": 162},
+    "run_all.sql": {"objects": ["orchestration"], "line_count": 79}
+  },
+  "conversion_summary": {
+    "total_conversions": 87,
+    "by_type": {
+      "IF_EXISTS_DROP_to_CREATE_OR_REPLACE": 18,
+      "GETDATE_to_CURRENT_TIMESTAMP": 13,
+      "ISNULL_to_COALESCE": 15,
+      "CONVERT_DATE_to_CAST": 12,
+      "CONVERT_INT_DATEKEY_to_TO_NUMBER_TO_CHAR": 8,
+      "IDENTITY_to_AUTOINCREMENT": 10,
+      "DATETIME_to_TIMESTAMP_NTZ": 12,
+      "TINYINT_to_SMALLINT": 8,
+      "DATEPART_to_DATE_PART": 6,
+      "DATENAME_to_DAYNAME_MONTHNAME": 3,
+      "WHILE_loop_to_GENERATOR": 1,
+      "DECLARE_VAR_to_Snowflake_Scripting": 2,
+      "SCD1_UPDATE_INSERT_to_MERGE": 1,
+      "UPDATE_FROM_to_Snowflake_UPDATE_FROM": 5,
+      "STRING_CONCAT_PLUS_to_PIPE": 4,
+      "PRINT_to_REMOVED": 6,
+      "RAISERROR_to_RAISE": 1,
+      "LINKED_SERVER_to_TODO_PLACEHOLDER": 7,
+      "GO_SEPARATOR_REMOVED": 52,
+      "SUBSTRING_to_LEFT": 1
+    }
+  },
+  "annotations": {
+    "CONVERT_count": 87,
+    "REMOVE_count": 58,
+    "TODO_count": 8
+  },
+  "quarantine": [
+    {
+      "object": "etl_dq_checks",
+      "output_file": "proc_etl_dq_checks.sql",
+      "complexity_score": 13,
+      "reason": "Deep procedural (500+ source lines, 10+ DQ checks with IF/ELSE, RAISERROR, PRINT, 8 GO-batch boundaries with variable re-declaration)",
+      "todo_count": 4,
+      "review_items": [
+        "Variable scoping across GO batch boundaries",
+        "RAISERROR → RAISE exception semantics",
+        "Implicit transaction behavior differences",
+        "CONVERT(VARCHAR, @var) → ::VARCHAR cast equivalence"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "version": "0.2.0",
+  "generated_at": "2026-04-02T00:25:00Z",
+  "rubric_version": "1.0",
+  "scoring_dimensions": ["line_count", "join_complexity", "scd_pattern", "procedural_depth", "case_depth", "derived_measures", "sybase_construct_count"],
+  "tier_thresholds": {"Simple": [0, 3], "Medium": [4, 6], "Complex": [7, 21]},
+  "fidelity_thresholds": {"Simple": 0.85, "Medium": 0.85, "Complex_default": 0.85, "Complex_deep": 0.70},
+  "deep_complex_threshold": 10,
+  "objects": [
+    {
+      "object_name": "stg_policies",
+      "blocks": ["sql1_001", "sql1_007", "sql1_013"],
+      "scores": {
+        "line_count": 0,
+        "join_complexity": 0,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 0,
+        "derived_measures": 0,
+        "sybase_construct_count": 1
+      },
+      "total_score": 1,
+      "tier": "Simple",
+      "fidelity_threshold": 0.85,
+      "notes": "Basic DDL+DML with IF EXISTS/DROP, GETDATE, DATEADD, linked server ref"
+    },
+    {
+      "object_name": "stg_customers",
+      "blocks": ["sql1_002", "sql1_008", "sql1_014"],
+      "scores": {
+        "line_count": 0,
+        "join_complexity": 0,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 0,
+        "derived_measures": 0,
+        "sybase_construct_count": 2
+      },
+      "total_score": 2,
+      "tier": "Simple",
+      "fidelity_threshold": 0.85,
+      "notes": "DDL+DML with CONVERT, LTRIM/RTRIM, LOWER, LEFT, linked server, SMALLINT"
+    },
+    {
+      "object_name": "stg_claims",
+      "blocks": ["sql1_003", "sql1_009", "sql1_015"],
+      "scores": {
+        "line_count": 0,
+        "join_complexity": 0,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 0,
+        "derived_measures": 0,
+        "sybase_construct_count": 1
+      },
+      "total_score": 1,
+      "tier": "Simple",
+      "fidelity_threshold": 0.85,
+      "notes": "DDL+DML with ISNULL, CONVERT, DATEADD, linked server ref"
+    },
+    {
+      "object_name": "stg_agents",
+      "blocks": ["sql1_004", "sql1_010", "sql1_016"],
+      "scores": {
+        "line_count": 0,
+        "join_complexity": 1,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 0,
+        "derived_measures": 0,
+        "sybase_construct_count": 1
+      },
+      "total_score": 2,
+      "tier": "Simple",
+      "fidelity_threshold": 0.85,
+      "notes": "DDL+DML with 2 linked server JOINs (agent_master + agency_master)"
+    },
+    {
+      "object_name": "stg_products",
+      "blocks": ["sql1_005", "sql1_011", "sql1_017"],
+      "scores": {
+        "line_count": 0,
+        "join_complexity": 0,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 0,
+        "derived_measures": 0,
+        "sybase_construct_count": 1
+      },
+      "total_score": 1,
+      "tier": "Simple",
+      "fidelity_threshold": 0.85,
+      "notes": "Basic DDL+DML with CONVERT, linked server"
+    },
+    {
+      "object_name": "stg_payments",
+      "blocks": ["sql1_006", "sql1_012", "sql1_018"],
+      "scores": {
+        "line_count": 0,
+        "join_complexity": 0,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 0,
+        "derived_measures": 0,
+        "sybase_construct_count": 1
+      },
+      "total_score": 1,
+      "tier": "Simple",
+      "fidelity_threshold": 0.85,
+      "notes": "DDL+DML with CONVERT, DATEADD, SMALLINT, linked server"
+    },
+    {
+      "object_name": "dim_date",
+      "blocks": ["sql2_001", "sql2_002"],
+      "scores": {
+        "line_count": 1,
+        "join_complexity": 0,
+        "scd_pattern": 0,
+        "procedural_depth": 3,
+        "case_depth": 1,
+        "derived_measures": 2,
+        "sybase_construct_count": 3
+      },
+      "total_score": 10,
+      "tier": "Complex",
+      "fidelity_threshold": 0.70,
+      "notes": "WHILE loop date generation, DECLARE @var, DATEPART/DATENAME/CONVERT(INT,...,112), TINYINT/SMALLINT. Deep complex — qualifies for 0.70 threshold."
+    },
+    {
+      "object_name": "dim_product",
+      "blocks": ["sql2_003", "sql2_004", "sql2_005"],
+      "scores": {
+        "line_count": 1,
+        "join_complexity": 1,
+        "scd_pattern": 1,
+        "procedural_depth": 0,
+        "case_depth": 1,
+        "derived_measures": 0,
+        "sybase_construct_count": 1
+      },
+      "total_score": 5,
+      "tier": "Medium",
+      "fidelity_threshold": 0.85,
+      "notes": "SCD Type 1 UPDATE+INSERT pattern, ISNULL, CASE for lob_description"
+    },
+    {
+      "object_name": "dim_agent",
+      "blocks": ["sql2_006", "sql2_007", "sql2_008"],
+      "scores": {
+        "line_count": 1,
+        "join_complexity": 2,
+        "scd_pattern": 2,
+        "procedural_depth": 0,
+        "case_depth": 1,
+        "derived_measures": 1,
+        "sybase_construct_count": 2
+      },
+      "total_score": 9,
+      "tier": "Complex",
+      "fidelity_threshold": 0.85,
+      "notes": "SCD Type 2 expire+insert with MAX(scd_version)+1, multi-column change detection, DATEADD"
+    },
+    {
+      "object_name": "dim_customer",
+      "blocks": ["sql2_009", "sql2_010", "sql2_011"],
+      "scores": {
+        "line_count": 2,
+        "join_complexity": 2,
+        "scd_pattern": 2,
+        "procedural_depth": 0,
+        "case_depth": 3,
+        "derived_measures": 3,
+        "sybase_construct_count": 2
+      },
+      "total_score": 14,
+      "tier": "Complex",
+      "fidelity_threshold": 0.70,
+      "notes": "SCD Type 2 with deep CASE nesting (age_band, credit_band, region, state_name, gender, marital), DATEDIFF, DATEPART. Deep complex — qualifies for 0.70 threshold. Pre-quarantine flag: score >= 10."
+    },
+    {
+      "object_name": "fact_policy",
+      "blocks": ["sql3_001", "sql3_002", "sql3_003"],
+      "scores": {
+        "line_count": 1,
+        "join_complexity": 2,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 0,
+        "derived_measures": 2,
+        "sybase_construct_count": 2
+      },
+      "total_score": 7,
+      "tier": "Complex",
+      "fidelity_threshold": 0.85,
+      "notes": "4-way JOIN for surrogate key resolution, CONVERT date-key pattern, DATEDIFF for policy_term_days/earned_premium, UPDATE FROM syntax"
+    },
+    {
+      "object_name": "fact_claims",
+      "blocks": ["sql3_004", "sql3_005", "sql3_006"],
+      "scores": {
+        "line_count": 2,
+        "join_complexity": 2,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 1,
+        "derived_measures": 3,
+        "sybase_construct_count": 2
+      },
+      "total_score": 10,
+      "tier": "Complex",
+      "fidelity_threshold": 0.70,
+      "notes": "5-way JOIN, CONVERT date-key, DATEDIFF for claim_report_lag/loss_ratio, UPDATE FROM for open claims refresh. Deep complex."
+    },
+    {
+      "object_name": "fact_payments",
+      "blocks": ["sql3_007", "sql3_008"],
+      "scores": {
+        "line_count": 1,
+        "join_complexity": 2,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 0,
+        "derived_measures": 1,
+        "sybase_construct_count": 2
+      },
+      "total_score": 6,
+      "tier": "Medium",
+      "fidelity_threshold": 0.85,
+      "notes": "3-way JOIN for surrogate key resolution, CONVERT date-key, DATEDIFF, SMALLINT"
+    },
+    {
+      "object_name": "etl_audit_log",
+      "blocks": ["sql4_001"],
+      "scores": {
+        "line_count": 0,
+        "join_complexity": 0,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 0,
+        "derived_measures": 0,
+        "sybase_construct_count": 1
+      },
+      "total_score": 1,
+      "tier": "Simple",
+      "fidelity_threshold": 0.85,
+      "notes": "Simple DDL with IF NOT EXISTS, IDENTITY, GETDATE default"
+    },
+    {
+      "object_name": "etl_dq_checks",
+      "blocks": ["sql4_002"],
+      "scores": {
+        "line_count": 3,
+        "join_complexity": 1,
+        "scd_pattern": 0,
+        "procedural_depth": 3,
+        "case_depth": 1,
+        "derived_measures": 2,
+        "sybase_construct_count": 3
+      },
+      "total_score": 13,
+      "tier": "Complex",
+      "fidelity_threshold": 0.70,
+      "notes": "500+ lines of DECLARE/@var/IF-ELSE branching, 10+ DQ checks, CONVERT, RAISERROR, PRINT. Deep complex — pre-quarantine candidate."
+    },
+    {
+      "object_name": "agg_policy_monthly",
+      "blocks": ["sql5_001", "sql5_002"],
+      "scores": {
+        "line_count": 1,
+        "join_complexity": 2,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 0,
+        "derived_measures": 2,
+        "sybase_construct_count": 1
+      },
+      "total_score": 6,
+      "tier": "Medium",
+      "fidelity_threshold": 0.85,
+      "notes": "5-way JOIN with GROUP BY 8 columns, ROUND/SUM/COUNT aggregates, TINYINT/SMALLINT"
+    },
+    {
+      "object_name": "agg_claims_monthly",
+      "blocks": ["sql5_003", "sql5_004", "sql5_005"],
+      "scores": {
+        "line_count": 1,
+        "join_complexity": 2,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 1,
+        "derived_measures": 2,
+        "sybase_construct_count": 2
+      },
+      "total_score": 8,
+      "tier": "Complex",
+      "fidelity_threshold": 0.85,
+      "notes": "5-way JOIN with GROUP BY, cross-aggregate UPDATE FROM agg_policy_monthly for loss_ratio_pct, ROUND/CAST"
+    },
+    {
+      "object_name": "v_policy_detail",
+      "blocks": ["sql5_006"],
+      "scores": {
+        "line_count": 1,
+        "join_complexity": 2,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 0,
+        "derived_measures": 0,
+        "sybase_construct_count": 1
+      },
+      "total_score": 4,
+      "tier": "Medium",
+      "fidelity_threshold": 0.85,
+      "notes": "5-table JOIN view, IF EXISTS/DROP sysobjects pattern"
+    },
+    {
+      "object_name": "v_claims_analysis",
+      "blocks": ["sql5_007"],
+      "scores": {
+        "line_count": 1,
+        "join_complexity": 2,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 1,
+        "derived_measures": 1,
+        "sybase_construct_count": 1
+      },
+      "total_score": 6,
+      "tier": "Medium",
+      "fidelity_threshold": 0.85,
+      "notes": "5-table JOIN view, CASE for claim_status_category, IF EXISTS/DROP"
+    },
+    {
+      "object_name": "v_exec_kpi_summary",
+      "blocks": ["sql5_008"],
+      "scores": {
+        "line_count": 1,
+        "join_complexity": 1,
+        "scd_pattern": 0,
+        "procedural_depth": 0,
+        "case_depth": 1,
+        "derived_measures": 2,
+        "sybase_construct_count": 1
+      },
+      "total_score": 6,
+      "tier": "Medium",
+      "fidelity_threshold": 0.85,
+      "notes": "2-table JOIN view with CASE WHEN for KPI calculations, ROUND/SUM/NULLIF"
+    }
+  ],
+  "tier_distribution": {
+    "Simple": 7,
+    "Medium": 6,
+    "Complex": 7
+  },
+  "pre_quarantine_flags": [
+    {
+      "object": "dim_customer",
+      "reason": "score 14 >= 10, deep CASE nesting (3/3), 6 derived banding columns",
+      "recommendation": "Attempt conversion; likely RETRY then PASS with manual CASE review"
+    },
+    {
+      "object": "etl_dq_checks",
+      "reason": "score 13 >= 10, procedural depth 3/3, 500+ lines, RAISERROR, 10+ DQ checks",
+      "recommendation": "Pre-quarantine candidate — convert as Snowflake Scripting block, expect quarantine"
+    }
+  ]
+}
