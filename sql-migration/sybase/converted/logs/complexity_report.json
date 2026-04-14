@@ -1,0 +1,928 @@
+{
+  "metadata": {
+    "rubric_version": "v0.3.0",
+    "max_score": 21,
+    "tier_thresholds": {
+      "simple": [0, 3],
+      "medium": [4, 6],
+      "complex": [7, 21]
+    },
+    "scoring_date": "2026-04-02",
+    "total_objects": 46
+  },
+  "objects": [
+    {
+      "object_name": "stg_policies",
+      "series": "basic",
+      "source_file": "sql1.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 1
+      },
+      "total_score": 3,
+      "tier": "Simple",
+      "quarantine_risk": "none",
+      "notes": "Straightforward staging DDL+DML with linked server reference, CONVERT date, GETDATE, DATEADD"
+    },
+    {
+      "object_name": "stg_customers",
+      "series": "basic",
+      "source_file": "sql1.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 1
+      },
+      "total_score": 3,
+      "tier": "Simple",
+      "quarantine_risk": "none",
+      "notes": "Similar to stg_policies with added LTRIM/RTRIM"
+    },
+    {
+      "object_name": "stg_claims",
+      "series": "basic",
+      "source_file": "sql1.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 1
+      },
+      "total_score": 3,
+      "tier": "Simple",
+      "quarantine_risk": "none",
+      "notes": "Similar to stg_policies with added ISNULL"
+    },
+    {
+      "object_name": "stg_agents",
+      "series": "basic",
+      "source_file": "sql1.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 1
+      },
+      "total_score": 3,
+      "tier": "Simple",
+      "quarantine_risk": "none",
+      "notes": "1 LEFT JOIN to agency table, similar constructs to other basic staging"
+    },
+    {
+      "object_name": "stg_products",
+      "series": "basic",
+      "source_file": "sql1.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 1
+      },
+      "total_score": 2,
+      "tier": "Simple",
+      "quarantine_risk": "none",
+      "notes": "Simplest staging table — simple SELECT, no joins, minimal transforms"
+    },
+    {
+      "object_name": "stg_payments",
+      "series": "basic",
+      "source_file": "sql1.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 1
+      },
+      "total_score": 2,
+      "tier": "Simple",
+      "quarantine_risk": "none",
+      "notes": "Simple staging with DATEADD filter, no joins"
+    },
+    {
+      "object_name": "dim_date",
+      "series": "basic",
+      "source_file": "sql2.sql",
+      "layer": "dimension",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 3,
+        "D5_case_depth": 1,
+        "D6_derived_measures": 2,
+        "D7_sybase_constructs": 2
+      },
+      "total_score": 10,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "WHILE loop date generator with DECLARE @vars, CONVERT_WITH_STYLE, DATEPART/DATENAME/DATEADD, 8 derived measures including fiscal calcs, 4-5 branch CASE for fiscal/weekday"
+    },
+    {
+      "object_name": "dim_product",
+      "series": "basic",
+      "source_file": "sql2.sql",
+      "layer": "dimension",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 1,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 1,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 1
+      },
+      "total_score": 6,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "SCD1 UPDATE+INSERT pattern, CASE with 5 branches for lob_description, IDENTITY column, 3 derived measures"
+    },
+    {
+      "object_name": "dim_agent",
+      "series": "basic",
+      "source_file": "sql2.sql",
+      "layer": "dimension",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 1,
+        "D3_scd_pattern": 3,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 1,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 2
+      },
+      "total_score": 10,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "SCD2 expire+insert, 2 joins, CASE 5+4 branches for region/channel, correlated subquery for scd_version, 7 Sybase constructs"
+    },
+    {
+      "object_name": "dim_customer",
+      "series": "basic",
+      "source_file": "sql2.sql",
+      "layer": "dimension",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 1,
+        "D3_scd_pattern": 3,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 3,
+        "D6_derived_measures": 2,
+        "D7_sybase_constructs": 2
+      },
+      "total_score": 13,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "SCD2, deeply nested CASE: age_band(6), gender(3), marital(5), state_name(7+), region(20+), credit_band(6) — multiple 6+ branch CASE with derived calcs. 7+ derived measures, 7 Sybase constructs"
+    },
+    {
+      "object_name": "fact_policy",
+      "series": "basic",
+      "source_file": "sql3.sql",
+      "layer": "fact",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 2,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 2
+      },
+      "total_score": 7,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "INSERT+UPDATE, 4 joins (stg + 3 dims), CONVERT_WITH_STYLE for date keys, 4 derived measures, 7 Sybase constructs"
+    },
+    {
+      "object_name": "fact_claims",
+      "series": "basic",
+      "source_file": "sql3.sql",
+      "layer": "fact",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 2,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 1,
+        "D6_derived_measures": 2,
+        "D7_sybase_constructs": 2
+      },
+      "total_score": 9,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "INSERT+UPDATE, 4 joins, CASE expressions, 6 derived measures (outstanding_reserve, report_lag, settlement_days, loss_ratio), 7+ constructs"
+    },
+    {
+      "object_name": "fact_payments",
+      "series": "basic",
+      "source_file": "sql3.sql",
+      "layer": "fact",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 1,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 1
+      },
+      "total_score": 5,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "INSERT only, 3 joins, 3 derived measures (date keys, days_past_due), 6 Sybase constructs"
+    },
+    {
+      "object_name": "etl_audit_log",
+      "series": "basic",
+      "source_file": "sql4.sql",
+      "layer": "audit_dq",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 2,
+        "D5_case_depth": 1,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 2
+      },
+      "total_score": 8,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "~200 lines total, heavy procedural (DECLARE, IF/ELSE, multiple blocks), RAISERROR, PRINT, NULLIF, CAST, 8 Sybase constructs"
+    },
+    {
+      "object_name": "agg_policy_monthly",
+      "series": "basic",
+      "source_file": "sql5.sql",
+      "layer": "aggregate",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 2,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 2,
+        "D6_derived_measures": 2,
+        "D7_sybase_constructs": 1
+      },
+      "total_score": 8,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "4 joins, 7 CASE branches, 6 derived measures (COUNT, SUM aggregates, avg_premium), ISNULL, TINYINT"
+    },
+    {
+      "object_name": "agg_claims_monthly",
+      "series": "basic",
+      "source_file": "sql5.sql",
+      "layer": "aggregate",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 2,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 2,
+        "D6_derived_measures": 3,
+        "D7_sybase_constructs": 1
+      },
+      "total_score": 9,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "4 joins, 8 CASE expressions, 10 derived measures (count measures + financial + severity), 5 Sybase constructs"
+    },
+    {
+      "object_name": "v_policy_detail",
+      "series": "basic",
+      "source_file": "sql5.sql",
+      "layer": "view",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 2,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 0
+      },
+      "total_score": 3,
+      "tier": "Simple",
+      "quarantine_risk": "none",
+      "notes": "5 joins but no transforms, no derived measures, just IF_EXISTS_DROP and GO"
+    },
+    {
+      "object_name": "v_claims_analysis",
+      "series": "basic",
+      "source_file": "sql5.sql",
+      "layer": "view",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 2,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 0
+      },
+      "total_score": 3,
+      "tier": "Simple",
+      "quarantine_risk": "none",
+      "notes": "6 joins (incl LEFT JOIN), no CASE, no derived measures, 2 constructs — pure join view"
+    },
+    {
+      "object_name": "v_exec_kpi_summary",
+      "series": "basic",
+      "source_file": "sql5.sql",
+      "layer": "view",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 0
+      },
+      "total_score": 2,
+      "tier": "Simple",
+      "quarantine_risk": "none",
+      "notes": "1 LEFT JOIN, 3 CASE for ratio calcs (simple), 3 derived measures, 2 constructs"
+    },
+    {
+      "object_name": "stg_policies",
+      "series": "enhanced",
+      "source_file": "ETL_Script_01.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 1,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 6,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "Enhanced with MONEY, IQ_UNIQUE, IN_DBASPACE, CREATE RULE/DEFAULT, sp_bindrule/sp_binddefault, SET TEMPORARY OPTION — 10+ distinct Sybase constructs"
+    },
+    {
+      "object_name": "stg_customers",
+      "series": "enhanced",
+      "source_file": "ETL_Script_01.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 1,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 6,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "Similar to enhanced stg_policies — heavy Sybase DDL constructs"
+    },
+    {
+      "object_name": "stg_claims",
+      "series": "enhanced",
+      "source_file": "ETL_Script_01.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 1,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 6,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "Similar to enhanced stg_policies — heavy Sybase DDL constructs"
+    },
+    {
+      "object_name": "stg_agents",
+      "series": "enhanced",
+      "source_file": "ETL_Script_01.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 1,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 6,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "1 join, similar enhanced Sybase DDL constructs"
+    },
+    {
+      "object_name": "stg_products",
+      "series": "enhanced",
+      "source_file": "ETL_Script_01.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 1,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 5,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "Similar enhanced Sybase DDL, fewer derived measures"
+    },
+    {
+      "object_name": "stg_payments",
+      "series": "enhanced",
+      "source_file": "ETL_Script_01.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 1,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 5,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "Similar enhanced Sybase DDL, DATEADD filter"
+    },
+    {
+      "object_name": "stg_territories",
+      "series": "enhanced",
+      "source_file": "ETL_Script_01.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 1,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 1,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 6,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "New table, 2 joins (territory+region+zone), enhanced Sybase constructs"
+    },
+    {
+      "object_name": "stg_reinsurance",
+      "series": "enhanced",
+      "source_file": "ETL_Script_01.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 1,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 5,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "New table, 0 joins, enhanced Sybase DDL constructs"
+    },
+    {
+      "object_name": "stg_underwriters",
+      "series": "enhanced",
+      "source_file": "ETL_Script_01.sql",
+      "layer": "staging",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 1,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 5,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "New table, 0 joins, enhanced Sybase DDL constructs"
+    },
+    {
+      "object_name": "dim_date",
+      "series": "enhanced",
+      "source_file": "ETL_Script_02.sql",
+      "layer": "dimension",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 3,
+        "D5_case_depth": 1,
+        "D6_derived_measures": 3,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 12,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "WHILE loop, DECLARE @var, STR_FUNCTION, CONVERT_WITH_STYLE, IN_DBASPACE, 10 derived measures, 10+ Sybase constructs"
+    },
+    {
+      "object_name": "dim_product",
+      "series": "enhanced",
+      "source_file": "ETL_Script_02.sql",
+      "layer": "dimension",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 1,
+        "D4_procedural_depth": 1,
+        "D5_case_depth": 1,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 9,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "SCD1, MONEY type, IN_DBASPACE, STR_FUNCTION, @@ROWCOUNT, 10+ Sybase constructs"
+    },
+    {
+      "object_name": "dim_agent",
+      "series": "enhanced",
+      "source_file": "ETL_Script_02.sql",
+      "layer": "dimension",
+      "scores": {
+        "D1_line_count": 3,
+        "D2_join_complexity": 1,
+        "D3_scd_pattern": 3,
+        "D4_procedural_depth": 3,
+        "D5_case_depth": 1,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 15,
+      "tier": "Complex",
+      "quarantine_risk": "high quarantine risk, quarantine candidate, likely manual conversion",
+      "notes": "SCD2 + CURSOR for hierarchy path, #agent_hierarchy temp table, @@FETCH_STATUS, GOTO, BEGIN_TRAN, @@ERROR, 200+ lines, 3+ joins, 12+ Sybase constructs. CURSOR + GOTO = likely manual conversion"
+    },
+    {
+      "object_name": "dim_customer",
+      "series": "enhanced",
+      "source_file": "ETL_Script_02.sql",
+      "layer": "dimension",
+      "scores": {
+        "D1_line_count": 3,
+        "D2_join_complexity": 1,
+        "D3_scd_pattern": 3,
+        "D4_procedural_depth": 2,
+        "D5_case_depth": 3,
+        "D6_derived_measures": 2,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 17,
+      "tier": "Complex",
+      "quarantine_risk": "high quarantine risk",
+      "notes": "SCD2, #changed_customers temp, BEGIN_TRAN/COMMIT/ROLLBACK, @@ERROR, RAISERROR, 200+ lines, deeply nested CASE (age_band, gender, marital, state_name, region 20+, credit_band), 10+ Sybase constructs"
+    },
+    {
+      "object_name": "dim_territory",
+      "series": "enhanced",
+      "source_file": "ETL_Script_02.sql",
+      "layer": "dimension",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 1,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 2
+      },
+      "total_score": 4,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "SCD1, COMPUTE_BY audit, ~50 lines, 1 join, 8+ constructs. COMPUTE_BY is unsupported but only 1 construct flagged"
+    },
+    {
+      "object_name": "fact_policy",
+      "series": "enhanced",
+      "source_file": "ETL_Script_03.sql",
+      "layer": "fact",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 2,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 2,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 10,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "#fact_policy_stage temp table, BEGIN_TRAN, @@ERROR, IN_DBASPACE, ~150 lines, 4 joins, 10+ Sybase constructs"
+    },
+    {
+      "object_name": "fact_claims",
+      "series": "enhanced",
+      "source_file": "ETL_Script_03.sql",
+      "layer": "fact",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 2,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 2,
+        "D5_case_depth": 1,
+        "D6_derived_measures": 2,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 12,
+      "tier": "Complex",
+      "quarantine_risk": "quarantine candidate, likely manual conversion",
+      "notes": "INSERT...EXEC sp_validate_claims, #validated_claims temp, ~150 lines, 4 joins, 10+ constructs. INSERT...EXEC is unsupported in Snowflake"
+    },
+    {
+      "object_name": "fact_reinsurance",
+      "series": "enhanced",
+      "source_file": "ETL_Script_03.sql",
+      "layer": "fact",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 1,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 1,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 2
+      },
+      "total_score": 7,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "New fact table, ~80 lines, 3 joins, IN_DBASPACE, 8+ Sybase constructs"
+    },
+    {
+      "object_name": "etl_audit_log",
+      "series": "enhanced",
+      "source_file": "ETL_Script_04.sql",
+      "layer": "audit_dq",
+      "scores": {
+        "D1_line_count": 3,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 3,
+        "D5_case_depth": 1,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 11,
+      "tier": "Complex",
+      "quarantine_risk": "quarantine candidate, likely manual conversion",
+      "notes": "CURSOR for row-level DQ, DYNAMIC_SQL, PATINDEX, CHARINDEX, STUFF_FUNCTION, STR_FUNCTION, COMPUTE_BY, USER_NAME, ~300+ lines, 15+ constructs. CURSOR + dynamic SQL + COMPUTE_BY = 3+ unsupported constructs"
+    },
+    {
+      "object_name": "agg_policy_monthly",
+      "series": "enhanced",
+      "source_file": "ETL_Script_05.sql",
+      "layer": "aggregate",
+      "scores": {
+        "D1_line_count": 3,
+        "D2_join_complexity": 2,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 3,
+        "D5_case_depth": 2,
+        "D6_derived_measures": 3,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 16,
+      "tier": "Complex",
+      "quarantine_risk": "high quarantine risk",
+      "notes": "Correlated subqueries (rolling 12m, YoY), WHILE gap-fill loop, COMPUTE_BY, ~200+ lines, 4 joins, 10+ derived measures, 10+ Sybase constructs"
+    },
+    {
+      "object_name": "agg_claims_monthly",
+      "series": "enhanced",
+      "source_file": "ETL_Script_05.sql",
+      "layer": "aggregate",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 2,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 2,
+        "D6_derived_measures": 2,
+        "D7_sybase_constructs": 2
+      },
+      "total_score": 10,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "Salvage/subrogation additions, ~80 lines, 4 joins, 8+ derived measures"
+    },
+    {
+      "object_name": "v_exec_kpi_summary",
+      "series": "enhanced",
+      "source_file": "ETL_Script_05.sql",
+      "layer": "view",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 0,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 1,
+        "D7_sybase_constructs": 0
+      },
+      "total_score": 2,
+      "tier": "Simple",
+      "quarantine_risk": "none",
+      "notes": "Similar to basic but with extra columns, minimal Sybase-specific constructs"
+    },
+    {
+      "object_name": "trg_kpi_view_readonly",
+      "series": "enhanced",
+      "source_file": "ETL_Script_05.sql",
+      "layer": "trigger",
+      "scores": {
+        "D1_line_count": 0,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 2,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 1
+      },
+      "total_score": 3,
+      "tier": "Simple",
+      "quarantine_risk": "quarantine candidate",
+      "notes": "INSTEAD OF trigger (~20 lines), RAISERROR, USER_NAME. INSTEAD_OF_TRIGGER is unsupported in Snowflake — requires architectural redesign"
+    },
+    {
+      "object_name": "trg_agg_policy_audit",
+      "series": "enhanced",
+      "source_file": "ETL_Script_05.sql",
+      "layer": "trigger",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 2,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 1
+      },
+      "total_score": 4,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "AFTER UPDATE trigger (~30 lines), GETDATE, USER_NAME, inserted/deleted tables. Triggers unsupported in Snowflake but pattern is convertible to stream+task"
+    },
+    {
+      "object_name": "sp_validate_claims",
+      "series": "enhanced",
+      "source_file": "ETL_Script_06.sql",
+      "layer": "procedure",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 2,
+        "D5_case_depth": 1,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 2
+      },
+      "total_score": 6,
+      "tier": "Medium",
+      "quarantine_risk": "none",
+      "notes": "~70 lines, IF/ELSE, @@ERROR, RAISERROR, RETURN, ISNULL, CASE, TINYINT param, 8+ Sybase constructs"
+    },
+    {
+      "object_name": "sp_run_etl_pipeline",
+      "series": "enhanced",
+      "source_file": "ETL_Script_06.sql",
+      "layer": "procedure",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 2,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 7,
+      "tier": "Complex",
+      "quarantine_risk": "none",
+      "notes": "Orchestrator ~80 lines, EXEC calls, @@ERROR checking, RAISERROR with format params, PRINT, CONVERT, TINYINT, 10+ Sybase constructs"
+    },
+    {
+      "object_name": "sp_archive_stale_policies",
+      "series": "enhanced",
+      "source_file": "ETL_Script_06.sql",
+      "layer": "procedure",
+      "scores": {
+        "D1_line_count": 2,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 3,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 3
+      },
+      "total_score": 8,
+      "tier": "Complex",
+      "quarantine_risk": "quarantine candidate, likely manual conversion",
+      "notes": "~100 lines, CURSOR with BEGIN_TRAN/COMMIT/ROLLBACK per row, @@FETCH_STATUS, @@ERROR, GOTO, PRINT, 12+ Sybase constructs. CURSOR + GOTO = likely manual conversion"
+    },
+    {
+      "object_name": "sp_recalculate_kpis",
+      "series": "enhanced",
+      "source_file": "ETL_Script_06.sql",
+      "layer": "procedure",
+      "scores": {
+        "D1_line_count": 1,
+        "D2_join_complexity": 0,
+        "D3_scd_pattern": 0,
+        "D4_procedural_depth": 3,
+        "D5_case_depth": 0,
+        "D6_derived_measures": 0,
+        "D7_sybase_constructs": 2
+      },
+      "total_score": 6,
+      "tier": "Medium",
+      "quarantine_risk": "likely manual conversion",
+      "notes": "~40 lines, dynamic SQL via EXEC(@dyn_delete), string concatenation for SQL building, @@ERROR, RAISERROR, 8+ Sybase constructs. Dynamic SQL requires manual conversion"
+    }
+  ],
+  "summary": {
+    "total_objects": 46,
+    "by_tier": {
+      "Simple": 9,
+      "Medium": 14,
+      "Complex": 23
+    },
+    "by_series": {
+      "basic": 19,
+      "enhanced": 27
+    },
+    "by_layer": {
+      "staging": 15,
+      "dimension": 8,
+      "fact": 6,
+      "aggregate": 4,
+      "view": 4,
+      "audit_dq": 2,
+      "procedure": 4,
+      "trigger": 2,
+      "view_basic": 1
+    },
+    "pre_quarantine_flags": [
+      "dim_agent (enhanced) — high quarantine risk, CURSOR+GOTO, likely manual conversion [score: 15]",
+      "dim_customer (enhanced) — high quarantine risk [score: 17]",
+      "agg_policy_monthly (enhanced) — high quarantine risk [score: 16]",
+      "etl_audit_log (enhanced) — quarantine candidate, CURSOR+dynamic SQL+COMPUTE_BY, likely manual conversion [score: 11]",
+      "fact_claims (enhanced) — quarantine candidate, INSERT...EXEC, likely manual conversion [score: 12]",
+      "sp_archive_stale_policies (enhanced) — quarantine candidate, CURSOR+GOTO, likely manual conversion [score: 8]",
+      "trg_kpi_view_readonly (enhanced) — quarantine candidate, INSTEAD OF trigger [score: 3]",
+      "sp_recalculate_kpis (enhanced) — likely manual conversion, dynamic SQL [score: 6]"
+    ],
+    "score_distribution": {
+      "min": 2,
+      "max": 17,
+      "mean": 6.89,
+      "median": 6
+    }
+  }
+}

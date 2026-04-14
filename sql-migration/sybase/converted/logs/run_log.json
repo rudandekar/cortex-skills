@@ -1,0 +1,288 @@
+{
+  "version": "0.3.0",
+  "pipeline_id": "run_20260402_001",
+  "started_at": "2026-04-02T07:00:00Z",
+  "completed_at": "2026-04-02T09:30:00Z",
+  "overall_status": "completed_with_quarantine",
+  "source_path": "/home/rudandekar/.snowflake/cortex/skills/sql-migration/sybase/",
+  "output_dir": "/home/rudandekar/.snowflake/cortex/skills/sql-migration/sybase/converted/",
+  "parameters": {
+    "target_database": "COCO_DEMO_DB",
+    "target_schema": "PUBLIC",
+    "fidelity_threshold": 0.85,
+    "max_retries": 2,
+    "connection": "DELOITTENA_COCO"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "step_name": "ingest_and_parse",
+      "status": "passed",
+      "started_at": "2026-04-02T07:00:00Z",
+      "completed_at": "2026-04-02T07:10:00Z",
+      "duration_seconds": 600,
+      "objects_processed": 240,
+      "errors": [],
+      "warnings": [],
+      "artifacts_produced": ["logs/object_inventory.json", "logs/parse_sybase.py"],
+      "hitl_checkpoint": false
+    },
+    {
+      "step_id": 2,
+      "step_name": "build_inventory",
+      "status": "passed",
+      "started_at": "2026-04-02T07:10:00Z",
+      "completed_at": "2026-04-02T07:15:00Z",
+      "duration_seconds": 300,
+      "objects_processed": 240,
+      "errors": [],
+      "warnings": [],
+      "artifacts_produced": ["logs/object_inventory.json"],
+      "hitl_checkpoint": false
+    },
+    {
+      "step_id": 3,
+      "step_name": "build_dependency_graph",
+      "status": "passed",
+      "started_at": "2026-04-02T07:15:00Z",
+      "completed_at": "2026-04-02T07:30:00Z",
+      "duration_seconds": 900,
+      "objects_processed": 240,
+      "errors": [],
+      "warnings": ["21 linked server references to OperationalDB marked as external"],
+      "artifacts_produced": ["logs/dependency_graph.json"],
+      "hitl_checkpoint": false
+    },
+    {
+      "step_id": 4,
+      "step_name": "hitl_review_inventory",
+      "status": "approved",
+      "started_at": "2026-04-02T07:30:00Z",
+      "completed_at": "2026-04-02T07:45:00Z",
+      "duration_seconds": 900,
+      "objects_processed": 0,
+      "errors": [],
+      "warnings": [],
+      "artifacts_produced": [],
+      "hitl_checkpoint": true,
+      "hitl_decision": "approved"
+    },
+    {
+      "step_id": 5,
+      "step_name": "score_complexity",
+      "status": "passed",
+      "started_at": "2026-04-02T07:45:00Z",
+      "completed_at": "2026-04-02T08:00:00Z",
+      "duration_seconds": 900,
+      "objects_processed": 46,
+      "errors": [],
+      "warnings": ["3 objects scored above quarantine threshold (≥15)"],
+      "artifacts_produced": ["logs/complexity_report.json"],
+      "hitl_checkpoint": false
+    },
+    {
+      "step_id": 6,
+      "step_name": "generate_snowflake_sql",
+      "status": "passed",
+      "started_at": "2026-04-02T08:00:00Z",
+      "completed_at": "2026-04-02T08:50:00Z",
+      "duration_seconds": 3000,
+      "objects_processed": 49,
+      "errors": [],
+      "warnings": [
+        "1 INSTEAD OF trigger has no Snowflake equivalent (TODO block emitted)",
+        "1 AFTER trigger has no Snowflake equivalent (TODO block emitted)",
+        "21 linked server references converted to TODO placeholders"
+      ],
+      "artifacts_produced": [
+        "simple_tier.sql",
+        "medium_tier.sql",
+        "complex_tier_dims_facts.sql",
+        "complex_tier_procs_aggs.sql",
+        "logs/conversion_log.json"
+      ],
+      "hitl_checkpoint": false
+    },
+    {
+      "step_id": 7,
+      "step_name": "hitl_review_converted_sql",
+      "status": "approved",
+      "started_at": "2026-04-02T08:50:00Z",
+      "completed_at": "2026-04-02T08:55:00Z",
+      "duration_seconds": 300,
+      "objects_processed": 0,
+      "errors": [],
+      "warnings": [],
+      "artifacts_produced": [],
+      "hitl_checkpoint": true,
+      "hitl_decision": "approved"
+    },
+    {
+      "step_id": 8,
+      "step_name": "fidelity_scoring",
+      "status": "passed",
+      "started_at": "2026-04-02T08:55:00Z",
+      "completed_at": "2026-04-02T09:15:00Z",
+      "duration_seconds": 1200,
+      "objects_processed": 49,
+      "errors": [],
+      "warnings": [
+        "Snowflake does not support CHECK constraints — 19 converted to informational comments",
+        "4 stored procedures required $$ delimiter fix",
+        "33 objects skipped (target tables not present in validation DB)"
+      ],
+      "artifacts_produced": ["logs/fidelity_report.json"],
+      "hitl_checkpoint": false,
+      "fidelity_summary": {
+        "total_compilable": 16,
+        "compiled_pass": 16,
+        "skipped": 33,
+        "issues_found_and_fixed": 3,
+        "issues_remaining": 0,
+        "compilation_pass_rate": "100%"
+      }
+    },
+    {
+      "step_id": 9,
+      "step_name": "hitl_review_fidelity",
+      "status": "approved",
+      "started_at": "2026-04-02T09:15:00Z",
+      "completed_at": "2026-04-02T09:16:00Z",
+      "duration_seconds": 60,
+      "objects_processed": 0,
+      "errors": [],
+      "warnings": [],
+      "artifacts_produced": [],
+      "hitl_checkpoint": true,
+      "hitl_decision": "approved"
+    },
+    {
+      "step_id": 10,
+      "step_name": "generate_test_harness",
+      "status": "passed",
+      "started_at": "2026-04-02T09:16:00Z",
+      "completed_at": "2026-04-02T09:25:00Z",
+      "duration_seconds": 540,
+      "objects_processed": 42,
+      "errors": [],
+      "warnings": [],
+      "artifacts_produced": [
+        "tests/test_ddl.sql",
+        "tests/seed_data.sql",
+        "tests/reconciliation_queries.sql",
+        "tests/test_dml.sql"
+      ],
+      "hitl_checkpoint": false,
+      "test_summary": {
+        "total_test_cases": 42,
+        "categories": {
+          "STG_DDL": 6,
+          "DIM_DATE": 8,
+          "SCD1": 4,
+          "SCD2": 11,
+          "FACT": 7,
+          "AGG": 2,
+          "VIEW": 3
+        },
+        "seed_tables": 6,
+        "seed_edge_cases": [
+          "NULL premium", "negative premium", "expiry-before-effective",
+          "NULL credit score", "FICO boundary bands", "orphan claim",
+          "zero-amount claim", "open claim", "inactive agent",
+          "late payment", "NSF payment"
+        ]
+      }
+    },
+    {
+      "step_id": 11,
+      "step_name": "hitl_review_test_plan",
+      "status": "approved",
+      "started_at": "2026-04-02T09:25:00Z",
+      "completed_at": "2026-04-02T09:26:00Z",
+      "duration_seconds": 60,
+      "objects_processed": 0,
+      "errors": [],
+      "warnings": [],
+      "artifacts_produced": [],
+      "hitl_checkpoint": true,
+      "hitl_decision": "approved"
+    },
+    {
+      "step_id": 12,
+      "step_name": "optimization_recommendations",
+      "status": "passed",
+      "started_at": "2026-04-02T09:26:00Z",
+      "completed_at": "2026-04-02T09:30:00Z",
+      "duration_seconds": 240,
+      "objects_processed": 24,
+      "errors": [],
+      "warnings": [
+        "7 recommendations classified as manual-review (require Enterprise Edition or architecture decisions)"
+      ],
+      "artifacts_produced": ["logs/optimization_report.json", "optimization_ddl.sql"],
+      "hitl_checkpoint": false,
+      "optimization_summary": {
+        "total_recommendations": 24,
+        "auto_apply": 17,
+        "manual_review": 7,
+        "categories": 8,
+        "severity_high": 14,
+        "severity_medium": 7,
+        "severity_low": 3
+      }
+    },
+    {
+      "step_id": 13,
+      "step_name": "hitl_review_optimizations",
+      "status": "approved",
+      "started_at": "2026-04-02T09:30:00Z",
+      "completed_at": "2026-04-02T09:31:00Z",
+      "duration_seconds": 60,
+      "objects_processed": 0,
+      "errors": [],
+      "warnings": [],
+      "artifacts_produced": ["logs/run_log.json"],
+      "hitl_checkpoint": true,
+      "hitl_decision": "approved"
+    }
+  ],
+  "summary": {
+    "total_source_files": 12,
+    "total_source_lines": 6101,
+    "total_objects_inventoried": 240,
+    "total_objects_scored": 46,
+    "total_objects_converted": 49,
+    "total_output_lines": 5316,
+    "quarantined": 7,
+    "average_fidelity": "100% of compilable objects (16/16)",
+    "complexity_distribution": {
+      "simple": 18,
+      "medium": 14,
+      "complex": 14
+    },
+    "tier_breakdown": {
+      "simple_tier": { "objects": 9, "lines": 434 },
+      "medium_tier": { "objects": 14, "lines": 1094 },
+      "complex_tier_dims_facts": { "objects": 14, "lines": 1868 },
+      "complex_tier_procs_aggs": { "objects": 12, "lines": 1920 }
+    },
+    "test_harness": {
+      "test_files": 4,
+      "test_lines": 797,
+      "test_cases": 42
+    },
+    "conversion_rules_applied": 39,
+    "total_annotations": { "CONVERT": 461, "REMOVE": 299, "TODO": 201 },
+    "optimization_recommendations": {
+      "total": 24,
+      "auto_apply": 17,
+      "manual_review": 7,
+      "categories": ["O1_clustering_keys", "O2_transient_tables", "O3_search_optimization", "O4_query_acceleration", "O5_informational_constraints", "O6_dynamic_table_candidates", "O7_streams_tasks_roadmap", "O8_storage_tuning"]
+    },
+    "hitl_checkpoints": {
+      "total": 5,
+      "approved": 5,
+      "rejected": 0
+    }
+  }
+}

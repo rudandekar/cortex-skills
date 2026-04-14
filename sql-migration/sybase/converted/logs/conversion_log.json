@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "skill": "sybase-to-snowflake",
+    "version": "0.3.0",
+    "run_id": "run_20260402_001",
+    "timestamp": "2026-04-02T08:50:00Z",
+    "source_path": "/home/rudandekar/.snowflake/cortex/skills/sql-migration/sybase/",
+    "output_path": "/home/rudandekar/.snowflake/cortex/skills/sql-migration/sybase/converted/"
+  },
+  "summary": {
+    "total_source_files": 12,
+    "total_source_lines": 6101,
+    "total_objects_inventoried": 240,
+    "total_objects_scored": 46,
+    "total_objects_converted": 49,
+    "total_output_files": 4,
+    "total_output_lines": 5316,
+    "total_annotations": {
+      "CONVERT": 461,
+      "REMOVE": 299,
+      "TODO": 201
+    },
+    "quarantine_candidates": 7,
+    "tier_breakdown": {
+      "simple": { "objects": 9, "file": "simple_tier.sql", "lines": 434 },
+      "medium": { "objects": 14, "file": "medium_tier.sql", "lines": 1094 },
+      "complex_dims_facts": { "objects": 14, "file": "complex_tier_dims_facts.sql", "lines": 1868 },
+      "complex_procs_aggs": { "objects": 12, "file": "complex_tier_procs_aggs.sql", "lines": 1920 }
+    }
+  },
+  "conversion_rules_applied": [
+    { "rule": "DATETIME → TIMESTAMP_NTZ", "section": "§1: Date/Time Types", "count": 85 },
+    { "rule": "DECIMAL(p,s) → NUMBER(p,s)", "section": "§1: Numeric Types", "count": 42 },
+    { "rule": "MONEY → NUMBER(19,4)", "section": "§1: Special Types", "count": 18 },
+    { "rule": "TINYINT → SMALLINT", "section": "§1: Numeric Types", "count": 24 },
+    { "rule": "IDENTITY(1,1) → AUTOINCREMENT", "section": "§1: Special Types", "count": 12 },
+    { "rule": "GETDATE() → CURRENT_TIMESTAMP()", "section": "§2: Date/Time Functions", "count": 65 },
+    { "rule": "ISNULL(a,b) → COALESCE(a,b)", "section": "§2: Null Handling", "count": 48 },
+    { "rule": "CONVERT(x,style) → TO_CHAR/TO_DATE/CAST", "section": "§2: Date/Time Functions / §6: Format Codes", "count": 38 },
+    { "rule": "DATEPART(part,d) → DATE_PART('part',d)", "section": "§2: Date/Time Functions", "count": 22 },
+    { "rule": "DATENAME(part,d) → DAYNAME/MONTHNAME", "section": "§2: Date/Time Functions", "count": 8 },
+    { "rule": "DATEDIFF(part,a,b) → DATEDIFF('part',a,b)", "section": "§2: Date/Time Functions", "count": 14 },
+    { "rule": "DATEADD(part,n,d) → DATEADD('part',n,d)", "section": "§2: Date/Time Functions", "count": 12 },
+    { "rule": "LTRIM(RTRIM(x)) → TRIM(x)", "section": "§2: String Functions", "count": 16 },
+    { "rule": "PATINDEX → REGEXP_LIKE/REGEXP_INSTR", "section": "§2: String Functions", "count": 4 },
+    { "rule": "STUFF(str,1,n,'') → SUBSTR(str,n+1)", "section": "§2: String Functions", "count": 2 },
+    { "rule": "STR(num,len) → LPAD(TO_CHAR(num),len)", "section": "§2: String Functions", "count": 6 },
+    { "rule": "LEN(str) → LENGTH(str)", "section": "§2: String Functions", "count": 3 },
+    { "rule": "USER_NAME() → CURRENT_USER()", "section": "§4: System Object Replacements", "count": 2 },
+    { "rule": "IF EXISTS/DROP/CREATE → CREATE OR REPLACE", "section": "§3: IF EXISTS Pattern", "count": 30 },
+    { "rule": "WHILE loop → GENERATOR() + CTE", "section": "§3: WHILE Loop", "count": 2 },
+    { "rule": "SCD1 UPDATE+INSERT → MERGE INTO", "section": "§3: SCD Type 1", "count": 4 },
+    { "rule": "SCD2 expire+insert → 2-step or MERGE", "section": "§3: SCD Type 2", "count": 4 },
+    { "rule": "CURSOR/FETCH/@@FETCH_STATUS → set-based CTE", "section": "§3: Pattern Conversions", "count": 3 },
+    { "rule": "SELECT INTO #temp → CREATE OR REPLACE TEMPORARY TABLE", "section": "§3: SELECT INTO Pattern", "count": 5 },
+    { "rule": "DECLARE @var → LET var / DECLARE block", "section": "§3: Variable Declaration", "count": 35 },
+    { "rule": "EXEC(@sql) → EXECUTE IMMEDIATE :sql", "section": "§5: Batch and Control Flow", "count": 3 },
+    { "rule": "EXEC proc @p=v → CALL proc(v)", "section": "§5: Batch and Control Flow", "count": 4 },
+    { "rule": "@@ERROR → EXCEPTION WHEN OTHER THEN", "section": "§4: System Object Replacements", "count": 8 },
+    { "rule": "@@ROWCOUNT → SQLROWCOUNT", "section": "§4: System Object Replacements", "count": 5 },
+    { "rule": "RAISERROR → RAISE / exception block", "section": "§5: Batch and Control Flow", "count": 7 },
+    { "rule": "GOTO label → IF/ELSE restructure", "section": "§5: Batch and Control Flow", "count": 2 },
+    { "rule": "BEGIN TRAN/COMMIT → BEGIN TRANSACTION/COMMIT", "section": "§5: Batch and Control Flow", "count": 4 },
+    { "rule": "PRINT → SYSTEM$LOG / removed", "section": "§5: Batch and Control Flow", "count": 10 },
+    { "rule": "GO → removed", "section": "§5: Batch and Control Flow", "count": 95 },
+    { "rule": "IN DBASPACE → removed", "section": "§1: IQ-Specific", "count": 18 },
+    { "rule": "IQ UNIQUE(n) → removed", "section": "§1: IQ-Specific", "count": 15 },
+    { "rule": "SET TEMPORARY OPTION → removed", "section": "§1: IQ-Specific", "count": 8 },
+    { "rule": "CREATE RULE → CHECK constraint", "section": "§4: System Object Replacements", "count": 8 },
+    { "rule": "CREATE DEFAULT → column DEFAULT", "section": "§4: System Object Replacements", "count": 6 },
+    { "rule": "sp_bindrule/sp_binddefault → removed", "section": "§4: System Object Replacements", "count": 24 },
+    { "rule": "COMPUTE BY → GROUP BY ROLLUP", "section": "§5: Batch and Control Flow", "count": 4 },
+    { "rule": "String accumulation → LISTAGG", "section": "§2: Aggregate Functions", "count": 2 },
+    { "rule": "Correlated subquery → window function", "section": "§2: Aggregate Functions", "count": 3 },
+    { "rule": "INSERT...EXEC → CTE replacement", "section": "§5: Batch and Control Flow", "count": 1 },
+    { "rule": "OperationalDB.dbo.* → TODO linked server ref", "section": "§3: Linked Server", "count": 21 },
+    { "rule": "INSTEAD OF trigger → TODO (no equivalent)", "section": "§5: Batch and Control Flow", "count": 1 },
+    { "rule": "AFTER trigger → TODO (Stream + Task)", "section": "§5: Batch and Control Flow", "count": 1 }
+  ],
+  "quarantine_items": [
+    {
+      "object": "dim_agent_enhanced",
+      "source": "ETL_Script_02.sql",
+      "score": 15,
+      "reason": "CURSOR→CTE hierarchy rewrite. Verify hierarchy depth never exceeds 3; if it does, swap CASE-based path for RECURSIVE CTE.",
+      "risk": "HIGH",
+      "file": "complex_tier_dims_facts.sql",
+      "line": 516
+    },
+    {
+      "object": "dim_customer_enhanced",
+      "source": "ETL_Script_02.sql",
+      "score": 17,
+      "reason": "Transactional semantics differ. Sybase had separate named transactions for expire vs insert with partial-commit on failure. Snowflake wraps in single EXCEPTION block — verify no downstream dependency on partial-commit semantics.",
+      "risk": "HIGH",
+      "file": "complex_tier_dims_facts.sql",
+      "line": 854
+    },
+    {
+      "object": "fact_claims_enhanced",
+      "source": "ETL_Script_03.sql",
+      "score": 12,
+      "reason": "INSERT...EXEC sp_validate_claims replaced with placeholder CTE. Actual DQ logic from stored procedure must be manually ported into the CTE.",
+      "risk": "MEDIUM",
+      "file": "complex_tier_dims_facts.sql",
+      "line": 1583
+    },
+    {
+      "object": "etl_audit_log_enhanced",
+      "source": "ETL_Script_04.sql",
+      "score": 11,
+      "reason": "CURSOR + dynamic SQL + PATINDEX + STUFF + COMPUTE BY. Set-based rewrite replaces all constructs but requires validation of REGEXP_LIKE patterns and LISTAGG output equivalence.",
+      "risk": "MEDIUM",
+      "file": "complex_tier_procs_aggs.sql",
+      "line": 344
+    },
+    {
+      "object": "agg_policy_monthly_enhanced",
+      "source": "ETL_Script_05.sql",
+      "score": 16,
+      "reason": "Correlated subqueries→window functions, WHILE gap-fill→GENERATOR. Rolling 12-month and YoY calculations rewritten with SUM OVER and LAG. Verify window frame semantics match original correlated subquery results.",
+      "risk": "HIGH",
+      "file": "complex_tier_procs_aggs.sql",
+      "line": 863
+    },
+    {
+      "object": "trg_kpi_view_readonly",
+      "source": "ETL_Script_05.sql",
+      "score": 3,
+      "reason": "INSTEAD OF trigger has no Snowflake equivalent. Converted to TODO block with RBAC suggestion.",
+      "risk": "MEDIUM",
+      "file": "complex_tier_procs_aggs.sql",
+      "line": 1276
+    },
+    {
+      "object": "sp_archive_stale_policies",
+      "source": "ETL_Script_06.sql",
+      "score": 8,
+      "reason": "CURSOR + GOTO + per-row transactions completely replaced with set-based INSERT...SELECT + DELETE. Verify archive logic handles edge cases (policies with active claims, etc.).",
+      "risk": "MEDIUM",
+      "file": "complex_tier_procs_aggs.sql",
+      "line": 1593
+    }
+  ],
+  "output_files": [
+    {
+      "file": "simple_tier.sql",
+      "objects": 9,
+      "lines": 434,
+      "annotations": 63,
+      "tier": "Simple"
+    },
+    {
+      "file": "medium_tier.sql",
+      "objects": 14,
+      "lines": 1094,
+      "annotations": 402,
+      "tier": "Medium"
+    },
+    {
+      "file": "complex_tier_dims_facts.sql",
+      "objects": 14,
+      "lines": 1868,
+      "annotations": 197,
+      "tier": "Complex"
+    },
+    {
+      "file": "complex_tier_procs_aggs.sql",
+      "objects": 12,
+      "lines": 1920,
+      "annotations": 299,
+      "tier": "Complex"
+    }
+  ],
+  "audit_trail": [
+    { "step": "parse_sybase", "timestamp": "2026-04-02T07:00:00Z", "status": "completed" },
+    { "step": "build_inventory", "timestamp": "2026-04-02T07:15:00Z", "status": "completed" },
+    { "step": "build_dependency_graph", "timestamp": "2026-04-02T07:30:00Z", "status": "completed" },
+    { "step": "hitl_review_inventory", "timestamp": "2026-04-02T07:45:00Z", "status": "approved" },
+    { "step": "score_complexity", "timestamp": "2026-04-02T08:00:00Z", "status": "completed" },
+    { "step": "generate_snowflake_sql", "timestamp": "2026-04-02T08:50:00Z", "status": "completed" },
+    { "step": "review_converted_sql", "timestamp": "2026-04-02T08:50:00Z", "status": "pending" }
+  ]
+}
