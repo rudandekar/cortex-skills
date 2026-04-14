@@ -1,12 +1,5 @@
 ---
 name: conversion-fidelity-scorer
-version: 1.0.0
-tier: user
-author: Deloitte FDE Practice
-created: 2026-03-15
-last_updated: 2026-03-15
-status: active
-
 description: >
   Validates semantic equivalence between generated DBT models and original
   Informatica mapping logic. Use this skill when validating conversion correctness,
@@ -16,10 +9,6 @@ description: >
   aggregate match, quarantine, retry.
   This skill is the ONLY agent that can route models to quarantine.
   Do NOT use for code style validation — use dbt-validation-critique instead.
-
-compatibility:
-  tools: [bash, read, write, snowflake_sql_execute]
-  context: [CLAUDE.md, PROJECT.md]
 ---
 
 # Conversion Fidelity Scorer (Agent 3)

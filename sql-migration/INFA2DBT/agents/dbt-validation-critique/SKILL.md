@@ -1,12 +1,5 @@
 ---
 name: dbt-validation-critique
-version: 1.0.0
-tier: user
-author: Deloitte FDE Practice
-created: 2026-03-15
-last_updated: 2026-03-15
-status: active
-
 description: >
   Validates DBT models for compile success, config compliance, SQL quality, schema
   documentation, and unit test coverage. Use this skill when validating converted
@@ -16,10 +9,6 @@ description: >
   unit test coverage, coding guidelines.
   This is the quality and compliance gate — "is it built the right way?"
   Do NOT use for fidelity scoring — use conversion-fidelity-scorer instead.
-
-compatibility:
-  tools: [bash, read, write, snowflake_sql_execute]
-  context: [CLAUDE.md, PROJECT.md, INFA2DBT_coding_guidelines.md]
 ---
 
 # DBT Validation & Critique (Agent 4)
