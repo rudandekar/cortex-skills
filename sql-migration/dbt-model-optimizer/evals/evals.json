@@ -1,0 +1,92 @@
+{
+  "skill_name": "dbt-model-optimizer",
+  "version": "0.1.0",
+  "evals": [
+    {
+      "id": 1,
+      "name": "dialect-cleanup-oracle-functions",
+      "prompt": "Optimize this dbt model — it was converted from Oracle and may have leftover syntax",
+      "input_files": ["examples/example-01-dialect-cleanup/input/model_with_teradata.sql"],
+      "expected_output": "Report identifying NVL, DECODE, SYSDATE replacements; all classified as SAFE",
+      "assertions": [
+        "Report contains at least one D1-ORA finding",
+        "NVL is flagged with replacement COALESCE",
+        "DECODE is flagged with replacement CASE WHEN",
+        "All D1 findings are classified as SAFE",
+        "Report includes a summary table with counts by dimension"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "cte-rewrite-unused-and-qualify",
+      "prompt": "Review this dbt model for code quality and Snowflake optimization opportunities",
+      "input_files": ["examples/example-02-cte-rewrite/input/model_with_redundant_ctes.sql"],
+      "expected_output": "Report identifying unused CTE, QUALIFY opportunity, missing tests",
+      "assertions": [
+        "Unused CTE 'unused_lookup' is flagged as D2-CTE-001 SAFE",
+        "ROW_NUMBER + WHERE rn = 1 is flagged as D3-QUAL-001 REVIEW",
+        "Missing not_null tests are flagged as D4-TEST-001 SAFE",
+        "Report distinguishes SAFE from REVIEW findings"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "audit-column-edw-to-edwsf",
+      "prompt": "Check this dbt model for audit column naming issues",
+      "input_files": [],
+      "input_inline": "{{ config(materialized='table', schema='mart') }}\nWITH src AS (\n    SELECT * FROM {{ source('raw', 'N_ORDERS') }}\n)\nSELECT\n    order_id,\n    customer_id,\n    amount,\n    EDW_CREATE_DTM,\n    EDW_UPDATE_DTM,\n    EDW_CREATE_USER,\n    EDW_UPDATE_USER\nFROM src",
+      "expected_output": "Report flagging EDW_* → EDWSF_* renaming and missing EDWSF_BATCH_ID",
+      "assertions": [
+        "All four EDW_* columns are flagged as D2-AUDIT-001 SAFE",
+        "Missing EDWSF_BATCH_ID flagged as D2-AUDIT-002 SAFE (N_ prefix model)",
+        "All audit findings are auto-fixable"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "dependency-ref-vs-source",
+      "prompt": "Optimize this dbt model for proper source/ref usage",
+      "input_inline": "{{ config(materialized='table', schema='work') }}\nSELECT\n    a.id,\n    b.name\nFROM STAGING.WI_CUSTOMER_DIM a\nJOIN {{ source('raw', 'WI_PRODUCT_DIM') }} b ON a.id = b.id",
+      "expected_output": "Report flagging raw table ref and wrong macro for WI_ prefix",
+      "assertions": [
+        "STAGING.WI_CUSTOMER_DIM flagged as D2-DEP-001 SAFE (raw table reference)",
+        "source() for WI_PRODUCT_DIM flagged as D2-DEP-002 SAFE (should use ref())",
+        "Replacement uses ref() for both WI_ tables"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "graceful-degradation-no-snowflake",
+      "prompt": "Optimize this dbt model (no Snowflake connection available)",
+      "input_files": ["examples/example-01-dialect-cleanup/input/model_with_teradata.sql"],
+      "expected_output": "Report with D1-D4 analysis completed; D5/D6 noted as unavailable",
+      "assertions": [
+        "D1-D4 findings are present and complete",
+        "Report notes 'Live profiling unavailable'",
+        "No D5 or D6 findings are emitted",
+        "Skill does not error or crash"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "trigger-phrases",
+      "prompt_variants": [
+        "optimize this dbt model",
+        "clean up migrated dbt code",
+        "check this dbt model for Teradata syntax",
+        "review my dbt SQL for best practices",
+        "improve this dbt model after migration"
+      ],
+      "should_trigger": true,
+      "should_not_trigger_prompts": [
+        "convert this Informatica mapping to dbt",
+        "optimize all models in my dbt project",
+        "convert this Oracle stored procedure to Snowflake"
+      ],
+      "assertions": [
+        "All 5 trigger prompts activate the dbt-model-optimizer skill",
+        "None of the 3 negative prompts activate this skill"
+      ]
+    }
+  ]
+}

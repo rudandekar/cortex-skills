@@ -1,0 +1,79 @@
+# dbt-model-optimizer Configuration
+# Edit thresholds and toggles without modifying SKILL.md
+
+# Dimension toggles — set false to skip specific dimensions
+dimensions:
+  dialect_cleanup: true     # D1
+  code_quality: true        # D2
+  snowflake_native: true    # D3
+  testing_docs: true        # D4
+  performance: true         # D5 (requires Snowflake connection)
+  cost_optimization: true   # D6 (requires Snowflake connection)
+
+# Safety classification overrides
+# Move specific rules between safety categories
+safety_overrides: {}
+  # Example: promote D3-QUAL-001 from REVIEW to SAFE
+  # D3-QUAL-001: SAFE
+
+# HITL behavior
+hitl:
+  auto_apply_safe: false          # Skip HITL checkpoint for SAFE changes
+  require_approval_for_review: false  # Also pause on REVIEW items (not just REQUIRES_APPROVAL)
+
+# Report output settings
+report:
+  file_name_pattern: 'optimization_report_{model_name}.md'  # {model_name} is replaced at runtime
+  report_dir: null              # null = same directory as model_path; set a path to collect reports
+  overwrite_existing: true      # Overwrite report if it already exists from a previous run
+  include_timestamp: true       # Add generation timestamp to report header
+  include_model_snapshot: false # Include a copy of the original model SQL in the report (for audit)
+
+# Live profiling settings (D5/D6)
+profiling:
+  query_history_days: 30          # How far back to look in QUERY_HISTORY
+  min_query_count: 5              # Minimum queries for reliable recommendations
+  spill_threshold_bytes: 0        # Any spilling triggers recommendation
+  pruning_ratio_threshold: 0.50   # Below this → recommend clustering
+  max_clustering_keys: 4          # Maximum clustering key columns
+  low_query_threshold_per_day: 10 # Below this → consider view materialization
+  high_query_threshold_per_day: 100  # Above this → consider table materialization
+
+# Dialect detection — patterns to identify source dialect
+# These are used in Step 1 when source_dialect='auto'
+dialect_detection:
+  teradata_indicators:
+    - 'SEL '
+    - 'BT;'
+    - 'ET;'
+    - 'COLLECT STATS'
+    - 'CASESPECIFIC'
+    - 'TITLE '
+    - 'COMPRESS'
+    - 'VOLATILE'
+  oracle_indicators:
+    - 'NVL('
+    - 'DECODE('
+    - 'SYSDATE'
+    - 'ROWNUM'
+    - '(+)'
+    - 'DUAL'
+    - 'CONNECT BY'
+    - 'SUBSTR('
+  sqlserver_indicators:
+    - 'GETDATE()'
+    - 'ISNULL('
+    - '@@IDENTITY'
+    - 'SET NOCOUNT'
+    - 'TOP '
+    - '#'
+
+# Cisco-specific audit column conventions
+# Set to false if not on a Cisco engagement
+cisco_conventions:
+  enabled: true
+  audit_prefix: 'EDWSF_'
+  require_batch_id_prefixes: ['N_', 'MT_']
+  pst_macro_name: 'edw_convert_to_pst'
+  allowed_ref_prefixes: ['W_', 'WI_', 'ST_', 'EX_', 'EL_', 'SM_', 'GL_', 'FA_']
+  allowed_source_prefixes: ['N_', 'MT_', 'R_']
