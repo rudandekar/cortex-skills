@@ -10,7 +10,6 @@ Safe Harbor compliant masking patterns, and HIPAA §164.514 de-identification st
 
 ## Overview
 
-This skill provides HIPAA-specific defaults on top of the generic `sensitive-data-governance` skill:
 - **18 HIPAA Identifiers** pre-configured
 - **Safe Harbor** compliant masking (ZIP → first 3 digits, DOB → year only)
 - **PHI-specific roles** (PHI_ACCESS_ROLE, CLINICIAN_ROLE, etc.)
@@ -20,88 +19,23 @@ This skill provides HIPAA-specific defaults on top of the generic `sensitive-dat
 
 **Load** reference: `../generic/sensitive-data-governance/SKILL.md` for base patterns.
 
-**Query** `snowflake_product_docs` for:
-- `CREATE MASKING POLICY syntax`
-- `HIPAA de-identification`
-- `Safe Harbor method`
-
 ## Workflow
 
 ### Step 1: Healthcare Environment
 
-**Ask** user:
-```
-Healthcare data configuration:
-
-1. Source EHR system?
-   a) EPIC Clarity
-   b) Cerner Millennium
-   c) Meditech
-   d) AllScripts
-   e) Custom/EDW
-
-2. How is data ingested into Snowflake?
-   a) IDMC → Snowflake
-   b) IDMC → S3 → External Tables
-   c) OpenFlow
-   d) Other
-
-3. Where is the PHI data located? (database.schema)
-
-4. Where should de-identified data be created? (database.schema)
-```
+**Ask** user: Source EHR system (EPIC/Cerner/Meditech/AllScripts/Custom), data ingestion method (IDMC/OpenFlow/Other), PHI data location (database.schema), and de-identified data target location.
 
 **⚠️ STOP**: Wait for user response.
 
 ### Step 2: Offshore Access
 
-**Ask** user:
-```
-Offshore team access:
-
-1. Are offshore teams involved?
-   a) Yes - India
-   b) Yes - Other location
-   c) No - US only
-
-2. If offshore, what IP ranges should be allowed for Zone 1 (masked) access?
-   (Provide CIDR blocks or "configure later")
-
-3. Should offshore teams have ANY access to Zone 0 (PHI)?
-   a) No (recommended for HIPAA compliance)
-   b) Yes - specific roles only (requires BAA and additional controls)
-```
+**Ask** user: Offshore team involvement (Yes-India / Yes-Other / No-US only), IP ranges for Zone 1 access, whether offshore should have ANY Zone 0 (PHI) access (not recommended).
 
 **⚠️ STOP**: Wait for user response.
 
 ### Step 3: PHI Types (18 HIPAA Identifiers)
 
-**Present** HIPAA identifiers checklist:
-```
-Select PHI types present in your data (18 HIPAA Identifiers):
-
-Direct Identifiers:
-- [x] Names (PAT_NAME, PATIENT_NAME)
-- [x] Geographic data smaller than state (ADDRESS, ZIP)
-- [x] Dates (DOB, ADMISSION_DATE, DISCHARGE_DATE, DEATH_DATE)
-- [x] Phone numbers
-- [x] Fax numbers
-- [ ] Email addresses
-- [x] SSN
-- [x] Medical record numbers (MRN, PAT_ID, PAT_MRN_ID)
-- [ ] Health plan beneficiary numbers
-- [ ] Account numbers
-- [ ] Certificate/license numbers
-- [ ] Vehicle identifiers
-- [ ] Device identifiers
-- [ ] URLs
-- [ ] IP addresses
-- [ ] Biometric identifiers
-- [ ] Full-face photos
-- [ ] Any other unique identifier
-
-Pre-selected items are common in EHR systems. Adjust as needed.
-```
+Present checklist of 18 HIPAA identifiers with common EHR defaults pre-selected: Names, Geographic data < state, Dates (DOB, admission, discharge, death), Phone, Fax, Email, SSN, MRN/PAT_ID, Health plan numbers, Account numbers, Certificate/license numbers, Vehicle IDs, Device IDs, URLs, IP addresses, Biometric IDs, Full-face photos, Other unique IDs.
 
 **⚠️ STOP**: Wait for user response.
 
@@ -109,148 +43,46 @@ Pre-selected items are common in EHR systems. Adjust as needed.
 
 #### 4.1 Two-Zone Architecture
 ```sql
--- Zone 0: PHI (US-only, BAA-covered access)
-CREATE DATABASE IF NOT EXISTS <zone0_database>
-    COMMENT = 'PHI Zone - HIPAA Protected';
+CREATE DATABASE IF NOT EXISTS <zone0_database> COMMENT = 'PHI Zone - HIPAA Protected';
 CREATE SCHEMA IF NOT EXISTS <zone0_database>.<source>_RAW;
-
--- Zone 1: De-identified (Safe Harbor compliant, offshore-safe)
-CREATE DATABASE IF NOT EXISTS <zone1_database>
-    COMMENT = 'De-identified Zone - Safe Harbor Compliant';
+CREATE DATABASE IF NOT EXISTS <zone1_database> COMMENT = 'De-identified Zone - Safe Harbor Compliant';
 CREATE SCHEMA IF NOT EXISTS <zone1_database>.<source>_MASKED;
 ```
 
 #### 4.2 Healthcare RBAC Roles
 ```sql
--- PHI access roles
-CREATE ROLE IF NOT EXISTS PHI_ACCESS_ROLE
-    COMMENT = 'Can view unmasked PHI - requires BAA coverage';
-CREATE ROLE IF NOT EXISTS CLINICIAN_ROLE
-    COMMENT = 'Clinical users with treatment purpose';
-CREATE ROLE IF NOT EXISTS HEALTH_IT_ADMIN_ROLE
-    COMMENT = 'IT administrators with PHI access';
-
--- Non-PHI roles (offshore-safe)
-CREATE ROLE IF NOT EXISTS DATA_ENGINEER_ROLE
-    COMMENT = 'Data engineering on de-identified data';
-CREATE ROLE IF NOT EXISTS ANALYST_ROLE
-    COMMENT = 'Analytics on de-identified data';
-CREATE ROLE IF NOT EXISTS APP_SERVICE_ROLE
-    COMMENT = 'Application service accounts';
-
--- Inheritance
+CREATE ROLE IF NOT EXISTS PHI_ACCESS_ROLE COMMENT = 'Can view unmasked PHI - requires BAA';
+CREATE ROLE IF NOT EXISTS CLINICIAN_ROLE COMMENT = 'Clinical users with treatment purpose';
+CREATE ROLE IF NOT EXISTS HEALTH_IT_ADMIN_ROLE COMMENT = 'IT administrators with PHI access';
+CREATE ROLE IF NOT EXISTS DATA_ENGINEER_ROLE COMMENT = 'Data engineering on de-identified data';
+CREATE ROLE IF NOT EXISTS ANALYST_ROLE COMMENT = 'Analytics on de-identified data';
 GRANT ROLE PHI_ACCESS_ROLE TO ROLE CLINICIAN_ROLE;
 GRANT ROLE PHI_ACCESS_ROLE TO ROLE HEALTH_IT_ADMIN_ROLE;
-
--- Zone 0 grants (PHI - US only)
-GRANT USAGE ON DATABASE <zone0_database> TO ROLE PHI_ACCESS_ROLE;
-GRANT SELECT ON ALL TABLES IN SCHEMA <zone0_database>.<source>_RAW 
-    TO ROLE PHI_ACCESS_ROLE;
-
--- Zone 1 grants (De-identified - offshore OK)
-GRANT USAGE ON DATABASE <zone1_database> TO ROLE DATA_ENGINEER_ROLE;
-GRANT USAGE ON DATABASE <zone1_database> TO ROLE ANALYST_ROLE;
-GRANT SELECT ON ALL TABLES IN SCHEMA <zone1_database>.<source>_MASKED 
-    TO ROLE DATA_ENGINEER_ROLE;
-GRANT SELECT ON ALL TABLES IN SCHEMA <zone1_database>.<source>_MASKED 
-    TO ROLE ANALYST_ROLE;
 ```
+
+Grant Zone 0 access to PHI_ACCESS_ROLE, Zone 1 access to DATA_ENGINEER_ROLE and ANALYST_ROLE.
 
 #### 4.3 HIPAA Classification Profile
 ```sql
 CREATE OR REPLACE CLASSIFICATION_PROFILE HIPAA_PHI_CLASSIFICATION
     MINIMUM_OBJECT_AGE_FOR_CLASSIFICATION_DAYS = 0
     MAXIMUM_CLASSIFICATION_VALIDITY_DAYS = 30
-    AUTO_TAG = TRUE
-    COMMENT = 'HIPAA PHI/PII automatic classification';
-
-ALTER DATABASE <zone0_database> 
-    SET CLASSIFICATION_PROFILE = HIPAA_PHI_CLASSIFICATION;
+    AUTO_TAG = TRUE;
+ALTER DATABASE <zone0_database> SET CLASSIFICATION_PROFILE = HIPAA_PHI_CLASSIFICATION;
 ```
 
 #### 4.4 Safe Harbor Compliant Masking Policies
 
-```sql
--- MRN/Patient ID (hash-based - preserves joins)
-CREATE OR REPLACE MASKING POLICY PHI_MRN_MASK AS (val STRING) 
-RETURNS STRING ->
-    CASE WHEN IS_ROLE_IN_SESSION('PHI_ACCESS_ROLE') THEN val
-         ELSE 'MRN-' || LEFT(SHA2(val || '<salt>', 256), 12) END;
-
--- SSN (full redaction)
-CREATE OR REPLACE MASKING POLICY PHI_SSN_MASK AS (val STRING) 
-RETURNS STRING ->
-    CASE WHEN IS_ROLE_IN_SESSION('PHI_ACCESS_ROLE') THEN val
-         ELSE '***-**-****' END;
-
--- Patient Name (full redaction)
-CREATE OR REPLACE MASKING POLICY PHI_NAME_MASK AS (val STRING) 
-RETURNS STRING ->
-    CASE WHEN IS_ROLE_IN_SESSION('PHI_ACCESS_ROLE') THEN val
-         ELSE 'REDACTED' END;
-
--- DOB (Safe Harbor: year only for age < 90)
-CREATE OR REPLACE MASKING POLICY PHI_DOB_MASK AS (val DATE) 
-RETURNS DATE ->
-    CASE 
-        WHEN IS_ROLE_IN_SESSION('PHI_ACCESS_ROLE') THEN val
-        WHEN DATEDIFF('year', val, CURRENT_DATE()) >= 90 THEN NULL  -- Age 90+ grouped
-        ELSE DATE_FROM_PARTS(YEAR(val), 1, 1)  -- Year only
-    END;
-
--- ZIP Code (Safe Harbor: first 3 digits, unless population < 20k)
-CREATE OR REPLACE MASKING POLICY PHI_ZIP_MASK AS (val STRING) 
-RETURNS STRING ->
-    CASE 
-        WHEN IS_ROLE_IN_SESSION('PHI_ACCESS_ROLE') THEN val
-        WHEN LEFT(val, 3) IN ('036','059','063','102','203','556','692','790','821','823','830','831','878','879','884','890','893') 
-            THEN '000**'  -- Low-population ZIPs masked completely
-        ELSE LEFT(val, 3) || '**'
-    END;
-
--- Address (full redaction)
-CREATE OR REPLACE MASKING POLICY PHI_ADDRESS_MASK AS (val STRING) 
-RETURNS STRING ->
-    CASE WHEN IS_ROLE_IN_SESSION('PHI_ACCESS_ROLE') THEN val
-         ELSE 'REDACTED' END;
-
--- Phone/Fax (full redaction)
-CREATE OR REPLACE MASKING POLICY PHI_PHONE_MASK AS (val STRING) 
-RETURNS STRING ->
-    CASE WHEN IS_ROLE_IN_SESSION('PHI_ACCESS_ROLE') THEN val
-         ELSE '***-***-****' END;
-
--- Email (full redaction)
-CREATE OR REPLACE MASKING POLICY PHI_EMAIL_MASK AS (val STRING) 
-RETURNS STRING ->
-    CASE WHEN IS_ROLE_IN_SESSION('PHI_ACCESS_ROLE') THEN val
-         ELSE '***@***.***' END;
-
--- Dates (admission, discharge, etc. - shift by random offset)
-CREATE OR REPLACE MASKING POLICY PHI_DATE_SHIFT_MASK AS (val DATE) 
-RETURNS DATE ->
-    CASE WHEN IS_ROLE_IN_SESSION('PHI_ACCESS_ROLE') THEN val
-         ELSE DATEADD('day', -ABS(HASH(val) % 365), val) END;
-```
+**Load** references/safe-harbor-policies.md for the full set of Safe Harbor compliant masking policy DDL.
 
 #### 4.5 Network Policies (Offshore Restrictions)
-```sql
--- US-only access for Zone 0 (PHI)
-CREATE OR REPLACE NETWORK POLICY US_ONLY_PHI_ACCESS
-    ALLOWED_IP_LIST = ('<us_office_cidr>', '<us_vpn_cidr>')
-    COMMENT = 'HIPAA: Restrict PHI access to US locations';
 
--- Allow offshore for Zone 1 (de-identified)
-CREATE OR REPLACE NETWORK POLICY OFFSHORE_DEIDENTIFIED_ACCESS
-    ALLOWED_IP_LIST = ('<us_cidr>', '<india_cidr>')
-    COMMENT = 'Safe Harbor compliant de-identified data access';
-```
+Create US-only network policy for Zone 0 (PHI) access and a broader policy allowing offshore IPs for Zone 1 (de-identified) access.
 
 ### Step 5: EHR-Specific Column Mappings
 
-**Based on EHR system**, provide column → policy mappings:
-
 **EPIC Clarity:**
+
 | Column Pattern | Masking Policy |
 |---------------|----------------|
 | PAT_MRN_ID, PAT_ID | PHI_MRN_MASK |
@@ -262,40 +94,21 @@ CREATE OR REPLACE NETWORK POLICY OFFSHORE_DEIDENTIFIED_ACCESS
 | HOME_PHONE, WORK_PHONE | PHI_PHONE_MASK |
 | EMAIL_ADDRESS | PHI_EMAIL_MASK |
 
-**Cerner Millennium:**
-| Column Pattern | Masking Policy |
-|---------------|----------------|
-| PERSON_ID, MRN | PHI_MRN_MASK |
-| NAME_FULL_FORMATTED | PHI_NAME_MASK |
-| BIRTH_DT_TM | PHI_DOB_MASK |
+For Cerner Millennium: map PERSON_ID/MRN→PHI_MRN_MASK, NAME_FULL_FORMATTED→PHI_NAME_MASK, BIRTH_DT_TM→PHI_DOB_MASK.
 
 ### Step 6: Review and Execute
 
-**Present** summary and get approval.
+Present summary and get approval before executing DDL.
 
-**⚠️ STOP**: Wait for approval before executing.
+**⚠️ STOP**: Wait for approval.
 
 ### Step 7: Validate Safe Harbor Compliance
 
-```sql
--- Verify masking works
-USE ROLE PHI_ACCESS_ROLE;
-SELECT PAT_MRN_ID, PAT_NAME, BIRTH_DATE, ZIP FROM <table> LIMIT 3;
--- Should see: real values
-
-USE ROLE ANALYST_ROLE;
-SELECT PAT_MRN_ID, PAT_NAME, BIRTH_DATE, ZIP FROM <table> LIMIT 3;
--- Should see: MRN-xxxx, REDACTED, 1985-01-01, 100**
-
--- Verify Zone 1 is Safe Harbor compliant
--- No direct identifiers should be visible to non-PHI roles
-```
+Test as PHI_ACCESS_ROLE (should see real data) and as ANALYST_ROLE (should see masked values: MRN-xxxx, REDACTED, year-only DOB, 3-digit ZIP).
 
 ## Stopping Points
 
-- ✋ Step 1: After healthcare environment config
-- ✋ Step 2: After offshore access config
-- ✋ Step 3: After PHI type selection
+- ✋ Step 1-3: After each discovery step
 - ✋ Step 6: Before executing DDL
 - ✋ Step 7: After validation
 
@@ -306,19 +119,10 @@ SELECT PAT_MRN_ID, PAT_NAME, BIRTH_DATE, ZIP FROM <table> LIMIT 3;
 - Safe Harbor compliant masking policies
 - EHR-specific column mappings
 - Network policies for offshore restrictions
-- Validation confirming de-identification
 
 ## HIPAA Reference
 
-**Safe Harbor De-identification (§164.514(b)(2)):**
-- Remove all 18 identifier types
-- ZIP: First 3 digits only (unless population < 20,000)
-- Dates: Year only for DOB; may shift other dates
-- Age: Group 90+ years together
-
-**Expert Determination (§164.514(b)(1)):**
-- Alternative method requiring statistical expert certification
-- Not covered by this skill
+**Safe Harbor De-identification (§164.514(b)(2)):** Remove all 18 identifier types. ZIP: first 3 digits only (unless population < 20,000). Dates: year only for DOB. Age: group 90+ together.
 
 ## Related Skills
 
